@@ -1,0 +1,398 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>BMG Crew Builder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ГЛАВНОЕ МЕНЮ ВЫБОРА -->
+  <div id="mainMenu" class="main-menu">
+    <div class="main-menu-bg"></div>
+    <div class="main-menu-content">
+      <div class="main-logo">
+        <h1>BMG</h1>
+        <p class="subtitle" data-i18n="subtitle">Batman: Gotham Chronicles<br>Crew Builder</p>
+      </div>
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+      </div>
+      <div class="menu-buttons">
+        <button class="menu-btn" onclick="showCards()">
+          <span class="btn-icon">🃏</span>
+          <span class="btn-text" data-i18n="cards">CARDS</span>
+        </button>
+        <button class="menu-btn" onclick="showBuilder()">
+          <span class="btn-icon">👥</span>
+          <span class="btn-text" data-i18n="crews">CREWS</span>
+        </button>
+        <button class="menu-btn" onclick="showMyCrews()">
+          <span class="btn-icon">🗂️</span>
+          <span class="btn-text" data-i18n="my_crews">MY CREWS</span>
+        </button>
+        <button class="menu-btn" onclick="showRules()">
+          <span class="btn-icon">📖</span>
+          <span class="btn-text" data-i18n="rules">RULES</span>
+        </button>
+      </div>
+      <div class="main-menu-footer">
+        <p class="version">v0.7.1</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- РАЗДЕЛ КАРТОЧКИ (ПРОСМОТР) -->
+  <div id="cardsSection" style="display:none;">
+    <!-- ТОП-БАР (УПРОЩЁННЫЙ, БЕЗ ОТРЯДА) -->
+    <div class="top-bar">
+      <div class="top-bar-content">
+        <h1>BMG</h1>
+        <div class="header-buttons">
+          <div class="lang-switch header-lang-switch">
+            <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+          </div>
+          <button class="compendium-small-btn" onclick="backToMenu()">
+            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> <!-- Иконка назад -->
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ВКЛАДКИ ФРАКЦИЙ -->
+    <div class="tabs-container hidden" id="cardsTabsContainer">
+      <div class="faction-cards">
+        <div class="faction-card" data-faction="Bat Family" style="background-image: url('img/menu/BATMAN.jpg');">
+          <img class="faction-icon" src="img/menu/BATMAN.png" alt="Bat Family">
+        
+        </div>
+        <div class="faction-card" data-faction="GCPD" style="background-image: url('img/menu/GCPD.jpg');">
+          <img class="faction-icon" src="img/menu/GCPD.png" alt="GCPD">
+        
+        </div>
+        <div class="faction-card" data-faction="Birds of Prey" style="background-image: url('img/menu/BIRDS_OF_PREY.jpg');">
+          <img class="faction-icon" src="img/menu/BIRDS_OF_PREY.png" alt="Birds of Prey">
+        
+        </div>
+        <div class="faction-card" data-faction="Joker" style="background-image: url('img/menu/JOKER.jpg');">
+          <img class="faction-icon" src="img/menu/JOKER.png" alt="Joker">
+        
+        </div>
+        <div class="faction-card" data-faction="Bane" style="background-image: url('img/menu/SOLDIERS.jpg');">
+          <img class="faction-icon" src="img/menu/SOLDIERS.png" alt="Bane">
+        
+        </div>
+        <div class="faction-card" data-faction="League of Shadows" style="background-image: url('img/menu/LEAGUE.jpg');">
+          <img class="faction-icon" src="img/menu/LEAGUE.png" alt="League of Shadows">
+        
+        </div>
+        <div class="faction-card" data-faction="Royal Flush" style="background-image: url('img/menu/RoyalFlush.jpg');">
+          <img class="faction-icon" src="img/menu/RoyalFlush.png" alt="Royal Flush">
+        
+        </div>
+        <div class="faction-card" data-faction="Penguin" style="background-image: url('img/menu/PENGUIN.jpg');">
+          <img class="faction-icon" src="img/menu/PENGUIN.png" alt="Penguin">
+        
+        </div>
+        <div class="faction-card" data-faction="Mr. Freeze" style="background-image: url('img/menu/MR_FREEZE.jpg');">
+          <img class="faction-icon" src="img/menu/MR_FREEZE.png" alt="Mr. Freeze">
+        
+        </div>
+        <div class="faction-card" data-faction="Scarecrow" style="background-image: url('img/menu/SCARECROW.jpg');">
+          <img class="faction-icon" src="img/menu/SCARECROW.png" alt="Scarecrow">
+        
+        </div>
+        <div class="faction-card" data-faction="Two-Face" style="background-image: url('img/menu/TWO-FACE.jpg');">
+          <img class="faction-icon" src="img/menu/TWO-FACE.png" alt="Two-Face">
+        
+        </div>
+        <div class="faction-card" data-faction="The Riddler" style="background-image: url('img/menu/RIDDLER.jpg');">
+          <img class="faction-icon" src="img/menu/RIDDLER.png" alt="The Riddler">
+        
+        </div>
+        <div class="faction-card" data-faction="Organized Crime" style="background-image: url('img/menu/OrganizedCrime.jpg');">
+          <img class="faction-icon" src="img/menu/OrganizedCrime.png" alt="Organized Crime">
+        
+        </div>
+        <div class="faction-card" data-faction="Suicide Squad" style="background-image: url('img/menu/Suicide_Squad.jpg');">
+          <img class="faction-icon" src="img/menu/Suicide_Squad.png" alt="Suicide Squad">
+        
+        </div>
+        <div class="faction-card" data-faction="Court of Owls" style="background-image: url('img/menu/OWLS.jpg');">
+          <img class="faction-icon" src="img/menu/OWLS.png" alt="Court of Owls">
+        
+        </div>
+        <div class="faction-card" data-faction="Watchmen" style="background-image: url('img/menu/Watchmen.jpg');">
+          <img class="faction-icon" src="img/menu/Watchmen.png" alt="Watchmen">
+        
+        </div>
+        <div class="faction-card" data-faction="Batman Who Laughs" style="background-image: url('img/menu/BatmanWhoLaughs.jpg');">
+          <img class="faction-icon" src="img/menu/BatmanWhoLaughs.png" alt="Batman Who Laughs">
+        
+        </div>
+        <div class="faction-card" data-faction="Cults" style="background-image: url('img/menu/CULTS.jpg');">
+          <img class="faction-icon" src="img/menu/CULTS.png" alt="Cults">
+        
+        </div>
+        <div class="faction-card" data-faction="Doom Patrol" style="background-image: url('img/menu/Doom_Patrol.jpg');">
+          <img class="faction-icon" src="img/menu/Doom_Patrol.png" alt="Doom Patrol">
+          
+        </div>
+        <div class="faction-card" data-faction="Unknown" style="background-image: url('img/menu/UNKNOWN.jpg');">
+          <img class="faction-icon" src="img/menu/UNKNOWN.png" alt="Unknown">
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Контейнер для моделей -->
+    <div id="modelsGridCards" class="models-list"></div>
+  </div>
+
+  <!-- РАЗДЕЛ БИЛДЕР -->
+  <div id="builderSection" style="display:none;">
+    <!-- ШАГ 1: ВЫБОР ФРАКЦИИ -->
+    <div id="factionSelect" class="faction-select">
+      <div class="top-bar">
+        <div class="top-bar-content">
+          <h1 data-i18n="select_faction">ВЫБОР ФРАКЦИИ</h1>
+          <div class="header-buttons">
+            <div class="lang-switch header-lang-switch">
+              <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+              <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+            </div>
+            <button class="compendium-small-btn" onclick="backToMenu()">
+              <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- ВКЛАДКИ ФРАКЦИЙ -->
+      <div class="tabs-container hidden" id="builderFactionCards">
+      <div class="faction-cards">
+        <div class="faction-card" data-faction="Bat Family" style="background-image: url('img/menu/BATMAN.jpg');">
+          <img class="faction-icon" src="img/menu/BATMAN.png" alt="Bat Family">
+        
+        </div>
+        <div class="faction-card" data-faction="GCPD" style="background-image: url('img/menu/GCPD.jpg');">
+          <img class="faction-icon" src="img/menu/GCPD.png" alt="GCPD">
+        
+        </div>
+        <div class="faction-card" data-faction="Birds of Prey" style="background-image: url('img/menu/BIRDS_OF_PREY.jpg');">
+          <img class="faction-icon" src="img/menu/BIRDS_OF_PREY.png" alt="Birds of Prey">
+        
+        </div>
+        <div class="faction-card" data-faction="Joker" style="background-image: url('img/menu/JOKER.jpg');">
+          <img class="faction-icon" src="img/menu/JOKER.png" alt="Joker">
+        
+        </div>
+        <div class="faction-card" data-faction="Bane" style="background-image: url('img/menu/SOLDIERS.jpg');">
+          <img class="faction-icon" src="img/menu/SOLDIERS.png" alt="Bane">
+        
+        </div>
+        <div class="faction-card" data-faction="League of Shadows" style="background-image: url('img/menu/LEAGUE.jpg');">
+          <img class="faction-icon" src="img/menu/LEAGUE.png" alt="League of Shadows">
+        
+        </div>
+        <div class="faction-card" data-faction="Royal Flush" style="background-image: url('img/menu/RoyalFlush.jpg');">
+          <img class="faction-icon" src="img/menu/RoyalFlush.png" alt="Royal Flush">
+        
+        </div>
+        <div class="faction-card" data-faction="Penguin" style="background-image: url('img/menu/PENGUIN.jpg');">
+          <img class="faction-icon" src="img/menu/PENGUIN.png" alt="Penguin">
+        
+        </div>
+        <div class="faction-card" data-faction="Mr. Freeze" style="background-image: url('img/menu/MR_FREEZE.jpg');">
+          <img class="faction-icon" src="img/menu/MR_FREEZE.png" alt="Mr. Freeze">
+        
+        </div>
+        <div class="faction-card" data-faction="Scarecrow" style="background-image: url('img/menu/SCARECROW.jpg');">
+          <img class="faction-icon" src="img/menu/SCARECROW.png" alt="Scarecrow">
+        
+        </div>
+        <div class="faction-card" data-faction="Two-Face" style="background-image: url('img/menu/TWO-FACE.jpg');">
+          <img class="faction-icon" src="img/menu/TWO-FACE.png" alt="Two-Face">
+        
+        </div>
+        <div class="faction-card" data-faction="The Riddler" style="background-image: url('img/menu/RIDDLER.jpg');">
+          <img class="faction-icon" src="img/menu/RIDDLER.png" alt="The Riddler">
+        
+        </div>
+        <div class="faction-card" data-faction="Organized Crime" style="background-image: url('img/menu/OrganizedCrime.jpg');">
+          <img class="faction-icon" src="img/menu/OrganizedCrime.png" alt="Organized Crime">
+        
+        </div>
+        <div class="faction-card" data-faction="Suicide Squad" style="background-image: url('img/menu/Suicide_Squad.jpg');">
+          <img class="faction-icon" src="img/menu/Suicide_Squad.png" alt="Suicide Squad">
+        
+        </div>
+        <div class="faction-card" data-faction="Court of Owls" style="background-image: url('img/menu/OWLS.jpg');">
+          <img class="faction-icon" src="img/menu/OWLS.png" alt="Court of Owls">
+        
+        </div>
+        <div class="faction-card" data-faction="Watchmen" style="background-image: url('img/menu/Watchmen.jpg');">
+          <img class="faction-icon" src="img/menu/Watchmen.png" alt="Watchmen">
+        
+        </div>
+        <div class="faction-card" data-faction="Batman Who Laughs" style="background-image: url('img/menu/BatmanWhoLaughs.jpg');">
+          <img class="faction-icon" src="img/menu/BatmanWhoLaughs.png" alt="Batman Who Laughs">
+        
+        </div>
+        <div class="faction-card" data-faction="Cults" style="background-image: url('img/menu/CULTS.jpg');">
+          <img class="faction-icon" src="img/menu/CULTS.png" alt="Cults">
+        
+        </div>
+        <div class="faction-card" data-faction="Doom Patrol" style="background-image: url('img/menu/Doom_Patrol.jpg');">
+          <img class="faction-icon" src="img/menu/Doom_Patrol.png" alt="Doom Patrol">
+          
+        </div>
+        <div class="faction-card" data-faction="Unknown" style="background-image: url('img/menu/UNKNOWN.jpg');">
+          <img class="faction-icon" src="img/menu/UNKNOWN.png" alt="Unknown">
+          
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- ШАГ 2: БИЛДЕР БАНДЫ (СКРЫТ ПО УМОЛЧАНИЮ) -->
+    <div id="builderMain" style="display:none;">
+      <!-- ТОП-БАР С ОТРЯДОМ -->
+      <div class="top-bar">
+        <div class="top-bar-content">
+          <h1>BMG</h1>
+          <div class="header-buttons">
+            <div class="lang-switch header-lang-switch">
+              <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+              <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+            </div>
+            <button class="compendium-small-btn" onclick="openModelSearch()">
+              <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            </button>
+            <button class="compendium-small-btn" onclick="openCompendium()">
+              <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H6V4h12v16zm-4-8H10v-1h4v1zm0-3H10V8h4v1zm0-3H10V6h4v1z"/></svg>
+            </button>
+            <button class="compendium-small-btn" onclick="importRoster()" data-i18n-title="import_title" title="Импорт ростера">
+              <svg viewBox="0 0 24 24"><path d="M19 15v4H5v-4H3v6h18v-6zm-8 1h2V8h3l-4-5-4 5h3z"/></svg>
+            </button>
+            <button class="compendium-small-btn" onclick="exportRoster()" data-i18n-title="export_title" title="Экспорт ростера">
+              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            </button>
+            <button class="compendium-small-btn" onclick="confirmBuilderExit()">
+              <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="funds">
+          <span data-i18n="crew">ОТРЯД</span>: <span id="crewCount">0</span> | <span data-i18n="rep">REP</span>: <span id="totalRep">0</span> / <input id="repLimit" type="number" value="350" style="width:50px; background:#222; color:#fff; border:1px solid #e94560;"> | $<span id="totalFunding">0 / 1500</span>
+          <span id="charismaticIndicator" style="margin-left:15px; color:#ffd700; font-weight:bold; display:none;">✨ CHARISMATIC: <span id="charismaticStatus">AVAILABLE</span></span>
+        </div>
+      </div>
+
+      <div id="modelsGridBuilder" class="models-list"></div>
+    </div>
+  </div>
+
+  <!-- МОИ БАНДЫ -->
+  <div id="myCrewsSection" style="display:none;">
+    <div class="top-bar">
+      <div class="top-bar-content">
+        <h1 data-i18n="my_crews_title">МОИ БАНДЫ</h1>
+        <div class="header-buttons">
+          <div class="lang-switch header-lang-switch">
+            <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+          </div>
+          <button class="compendium-small-btn" onclick="backToMenu()">
+            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="my-crews-toolbar">
+      <button class="menu-btn my-crews-action-btn" onclick="importMyCrewFromTxt()">
+        <span class="btn-icon">📥</span>
+        <span class="btn-text" data-i18n="my_crews_add_txt">ДОБАВИТЬ ИЗ TXT</span>
+      </button>
+      <button class="menu-btn my-crews-action-btn" onclick="exportAllMyCrewsTxt()">
+        <span class="btn-icon">💾</span>
+        <span class="btn-text" data-i18n="my_crews_export_all">СОХРАНИТЬ ВСЕ TXT</span>
+      </button>
+    </div>
+
+    <div id="myCrewsList" class="my-crews-list"></div>
+  </div>
+
+  <!-- COMPENDIUM (ПРАВИЛА) -->
+  <div id="compendiumModal" class="compendium-modal">
+    <div class="compendium-header">
+      <button onclick="closeCompendium()" class="back-btn" data-i18n="back">НАЗАД</button>
+      <h2 data-i18n="compendium">СПРАВОЧНИК <span>v1.4</span></h2>
+      <div class="lang-switch header-lang-switch">
+        <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+      </div>
+      <div class="rules-docs-buttons">
+        <a href="https://app.knightmodels.com/files//rule-document-rulebook-1701448204.pdf" target="_blank" class="rules-doc-btn" data-i18n="rulebook">Rulebook</a>
+        <a href="https://app.knightmodels.com/files//rule-document-faqs-1701683889.pdf" target="_blank" class="rules-doc-btn" data-i18n="faqs">FAQs</a>
+        <a href="https://app.knightmodels.com/files//rule-document-batmatch-1700369985.pdf" target="_blank" class="rules-doc-btn" data-i18n="batmatch">Batmatch</a>
+      </div>
+    </div>
+    <div class="search-mode-switch">
+      <button id="compendiumSearchModeModelsBtn" class="search-mode-btn" onclick="setCompendiumSearchMode('models')" data-i18n="search_models_tab">Модели</button>
+      <button id="compendiumSearchModeRulesBtn" class="search-mode-btn active" onclick="setCompendiumSearchMode('rules')" data-i18n="search_rules_tab">Правила</button>
+    </div>
+    <div class="compendium-search-wrapper">
+      <div class="compendium-search">
+        <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input type="text" id="compendiumSearch" placeholder="Поиск по трейтам, оружию, правилам..." data-i18n-placeholder="compendium_search">
+        <button class="clear-search" onclick="clearCompendiumSearch()">×</button>
+      </div>
+    </div>
+    <div id="compendiumList" class="compendium-content"></div>
+  </div>
+
+  <!-- ПОИСК МОДЕЛЕЙ (ДЛЯ БИЛДЕРА) -->
+  <div id="modelSearchModal" class="compendium-modal">
+    <div class="compendium-header">
+      <button onclick="closeModelSearch()" class="back-btn" data-i18n="back">НАЗАД</button>
+      <h2 data-i18n="model_search">ПОИСК МОДЕЛЕЙ</h2>
+      <div class="lang-switch header-lang-switch">
+        <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+      </div>
+    </div>
+    <div class="search-mode-switch">
+      <button id="searchModeModelsBtn" class="search-mode-btn active" onclick="setModelSearchMode('models')" data-i18n="search_models_tab">Модели</button>
+      <button id="searchModeRulesBtn" class="search-mode-btn" onclick="setModelSearchMode('rules')" data-i18n="search_rules_tab">Правила</button>
+    </div>
+    <div class="compendium-search-wrapper">
+      <div class="compendium-search">
+        <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input type="text" id="modelSearchInput" placeholder="Введите имя модели..." data-i18n-placeholder="model_search_placeholder" autocomplete="off">
+        <button class="clear-search" onclick="clearUnifiedSearch()">×</button>
+      </div>
+    </div>
+    <div id="modelSearchResults" class="compendium-content"></div>
+  </div>
+
+  <!-- ПОЛНАЯ КАРТОЧКА -->
+  <div class="full-card" id="fullCard">
+    <div class="lang-switch header-lang-switch full-card-lang-switch">
+      <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+      <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+    </div>
+    <div class="close-full" onclick="closeFullCard()">X</div>
+    <div class="full-inner" id="fullCardContent"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="printable-models.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
