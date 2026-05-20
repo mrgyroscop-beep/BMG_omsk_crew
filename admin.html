@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMG Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-page">
+  <div class="admin-shell">
+    <header class="admin-header">
+      <div class="admin-title-block">
+        <p class="eyebrow">BMG Admin</p>
+        <h1>Редактор моделей</h1>
+        <p id="sourceStatus" class="source-status">Подготовка источника данных…</p>
+      </div>
+
+      <div class="admin-top-actions">
+        <button id="reloadBundledBtn" class="admin-btn admin-btn-ghost">Обновить из исходника</button>
+        <button id="bindSourceBtn" class="admin-btn admin-btn-ghost">Привязать models.json</button>
+        <button id="saveToSourceBtn" class="admin-btn">Сохранить models.json</button>
+      </div>
+
+      <div class="admin-top-actions">
+        <button id="bindDataJsBtn" class="admin-btn admin-btn-ghost">Привязать data.js</button>
+        <button id="buildDataJsBtn" class="admin-btn">Собрать data.js</button>
+      </div>
+
+      <div class="admin-top-actions">
+        <button id="bindBackupDirBtn" class="admin-btn admin-btn-ghost">Папка бэкапов</button>
+        <button id="createBackupBtn" class="admin-btn admin-btn-ghost">Создать бэкап</button>
+        <button id="versionHistoryBtn" class="admin-btn admin-btn-ghost">История версий</button>
+      </div>
+
+      <div class="admin-top-actions">
+        <button id="resetSessionBtn" class="admin-btn admin-btn-ghost">Сбросить локальную сессию</button>
+        <button id="loadJsonBtn" class="admin-btn admin-btn-ghost">Загрузить JSON</button>
+        <button id="downloadJsonBtn" class="admin-btn admin-btn-ghost">Скачать models.json</button>
+        <button id="downloadDataJsBtn" class="admin-btn admin-btn-ghost">Скачать data.generated.js</button>
+        <button id="newModelBtn" class="admin-btn admin-btn-ghost">Новая модель</button>
+        <button id="duplicateModelBtn" class="admin-btn admin-btn-ghost">Дублировать</button>
+        <button id="deleteModelBtn" class="admin-btn admin-btn-danger">Удалить</button>
+      </div>
+
+      <input id="jsonFileInput" type="file" accept=".json,application/json" hidden>
+      <input id="imageFileInput" type="file" accept="image/*" hidden>
+    </header>
+
+    <div class="admin-banner">
+      <strong>Важно:</strong>
+      страница редактирует модели в памяти, автосохраняет локальную сессию в браузере и умеет либо скачать
+      <code>models.json</code> и <code>data.generated.js</code>, либо записать <code>models.json</code> и собранный
+      <code>data.js</code> обратно в исходные файлы через файловый доступ браузера. Для бэкапов сохраняются полные
+      версии только <code>models.json</code>, с дедупликацией по содержимому и ограничением истории. Фото можно
+      выбрать и загрузить прямо из блока портрета выбранной модели.
+    </div>
+
+    <main class="admin-main">
+      <aside class="admin-sidebar">
+        <div class="sidebar-toolbar">
+          <label class="field-label" for="searchInput">Поиск</label>
+          <input id="searchInput" class="admin-input" type="search" placeholder="Имя, realname, id, фракция">
+
+          <label class="field-label" for="factionFilter">Фракция</label>
+          <select id="factionFilter" class="admin-select">
+            <option value="">Все фракции</option>
+          </select>
+
+          <div class="sidebar-meta">
+            <span id="listCount">0 моделей</span>
+            <span id="dirtyState" class="dirty-state">Без локальных правок</span>
+          </div>
+        </div>
+
+        <div id="modelList" class="model-list"></div>
+      </aside>
+
+      <section class="admin-editor">
+        <div id="editorEmptyState" class="editor-empty">
+          <h2>Выберите модель</h2>
+          <p>Слева можно найти модель, создать новую или загрузить свой <code>models.json</code>.</p>
+        </div>
+
+        <div id="editorPanel" class="editor-panel" hidden></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="backupHistoryModal" class="admin-modal" hidden>
+    <div class="admin-modal-backdrop" data-close-backup-history></div>
+    <div class="admin-modal-card">
+      <div class="admin-modal-head">
+        <div>
+          <p class="eyebrow">Backups</p>
+          <h2>История версий</h2>
+        </div>
+        <button id="closeBackupHistoryBtn" class="admin-btn admin-btn-ghost" type="button">Закрыть</button>
+      </div>
+      <div id="backupHistoryList" class="backup-history-list"></div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="printable-models.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

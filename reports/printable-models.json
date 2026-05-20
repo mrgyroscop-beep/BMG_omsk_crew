@@ -1,0 +1,3070 @@
+{
+  "model_count_in_app": 512,
+  "printable_model_count": 185,
+  "printable_models": [
+    {
+      "model": "Aaron Cash",
+      "file_count": 1,
+      "files": [
+        "aaron_cash_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "aaron cash",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Ace",
+      "file_count": 2,
+      "files": [
+        "Ace_Base_Unsupported.stl",
+        "Ace_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "ace",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Alfred Pennyworth",
+      "file_count": 5,
+      "files": [
+        "Alfred_Pennyworth_Basepart1_unsupported.stl",
+        "Alfred_Pennyworth_Basepart2_unsupported.stl",
+        "Alfred_Pennyworth_Body_unsupported.stl",
+        "Alfred_Pennyworth_Hands_unsupported.stl",
+        "DKR_Alfred_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "alfred pennyworth",
+          "reason": "img_exact"
+        },
+        {
+          "group": "dark knight rises alfred",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Arkham Assistant 1",
+      "file_count": 2,
+      "files": [
+        "Arkham_Assistant_1_base_unsupported.stl",
+        "Arkham_Assistant_1_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "arkham assistant 1",
+          "reason": "name_exact"
+        }
+      ]
+    },
+    {
+      "model": "Arkham Assistant 2",
+      "file_count": 2,
+      "files": [
+        "Arkham_Assistant_2_base_unsupported.stl",
+        "Arkham_Assistant_2_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "arkham assistant 2",
+          "reason": "name_exact"
+        }
+      ]
+    },
+    {
+      "model": "Arkham Knight",
+      "file_count": 4,
+      "files": [
+        "Arkham_Knight_Body_Unsupported.stl",
+        "Arkham_Knight_Head_A_Unsupported.stl",
+        "Arkham_Knight_Head_B_Unsupported.stl",
+        "Arkham_Knight_Head_C_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "arkham knight",
+          "reason": "manual"
+        },
+        {
+          "group": "arkham knight head a",
+          "reason": "manual"
+        },
+        {
+          "group": "arkham knight head b",
+          "reason": "manual"
+        },
+        {
+          "group": "arkham knight head c",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Armoured Assassin",
+      "file_count": 1,
+      "files": [
+        "Armoured_Assassin_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "armoured assassin",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Axe Clown",
+      "file_count": 1,
+      "files": [
+        "axe_clown_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "axe clown",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Bane Commander",
+      "file_count": 2,
+      "files": [
+        "Bane_Commander_Body_unsupported.stl",
+        "Bane_Commander_base_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "bane commander",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Bane Dark Knight Rises",
+      "file_count": 1,
+      "files": [
+        "DKR_Bane_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "dark knight rises bane",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Bane Titan",
+      "file_count": 4,
+      "files": [
+        "Bane_AC_Base_Unsupported.stl",
+        "Bane_AC_Body_Part1_Unsupported.stl",
+        "Bane_AC_Body_Part2_Unsupported.stl",
+        "Bane_AC_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "bane arkham city",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Bane Unleashed",
+      "file_count": 5,
+      "files": [
+        "Bane_Unleashed_Base_unsupported.stl",
+        "Bane_Unleashed_Batman_unsupported.stl",
+        "Bane_Unleashed_Bats_unsupported.stl",
+        "Bane_Unleashed_Body_unsupported.stl",
+        "Bane_Unleashed_Cape_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "bane unleashed",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Barrel Clown",
+      "file_count": 1,
+      "files": [
+        "barrel_clown_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "barrel clown",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Barsad",
+      "file_count": 1,
+      "files": [
+        "DKR_Barsad_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "dark knight rises barsad",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Batgirl Classic Costume",
+      "file_count": 3,
+      "files": [
+        "Batgirl_base_A_unsupported.stl",
+        "Batgirl_base_B_unsupported.stl",
+        "Batgirl_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "batgirl",
+          "reason": "manual"
+        },
+        {
+          "group": "batgirl base a",
+          "reason": "manual"
+        },
+        {
+          "group": "batgirl base b",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Batgirl Vampire Queen",
+      "file_count": 4,
+      "files": [
+        "Vampire_Queen_base_unsupported.stl",
+        "Vampire_Queen_body_unsupported.stl",
+        "Vampire_Queen_headA_unsupported.stl",
+        "Vampire_Queen_headB_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "vampire queen",
+          "reason": "manual"
+        },
+        {
+          "group": "vampire queen head a",
+          "reason": "manual"
+        },
+        {
+          "group": "vampire queen head b",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Batman 1997",
+      "file_count": 4,
+      "files": [
+        "Batman_10th_arm_unsupported.stl",
+        "Batman_10th_base_unsupported.stl",
+        "Batman_10th_body_unsupported.stl",
+        "Batman_10th_leg_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "batman 10th",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Batman [Bruce Wayne / 40mm]",
+      "file_count": 3,
+      "files": [
+        "Batman_BTG_Base_unsupported.stl",
+        "Batman_BTG_Body_unsupported.stl",
+        "Batman_BTG_Cape_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "batman blackest night",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Batman [Thomas Wayne / 40mm]",
+      "file_count": 7,
+      "files": [
+        "Batman_Flashpoint_basepart1_unsupported.stl",
+        "Batman_Flashpoint_basepart2_unsupported.stl",
+        "Batman_Flashpoint_body_unsupported.stl",
+        "Batman_Flashpoint_leftarmA_unsupported.stl",
+        "Batman_Flashpoint_leftarmB_unsupported.stl",
+        "Batman_Flashpoint_rightarmA_unsupported.stl",
+        "Batman_Flashpoint_rightarmB_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "batman flashpoint",
+          "reason": "manual"
+        },
+        {
+          "group": "batman flashpoint leftarm a",
+          "reason": "manual"
+        },
+        {
+          "group": "batman flashpoint leftarm b",
+          "reason": "manual"
+        },
+        {
+          "group": "batman flashpoint rightarm a",
+          "reason": "manual"
+        },
+        {
+          "group": "batman flashpoint rightarm b",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Batman Arkham City",
+      "file_count": 2,
+      "files": [
+        "Batman_AC_Base_Unsupported.stl",
+        "Batman_AC_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "batman arkham city",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Batman Arkham Knight",
+      "file_count": 3,
+      "files": [
+        "Batman_AK_Base_Unsupported.stl",
+        "Batman_AK_Body_Unsupported.stl",
+        "Batman_AK_Cape_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "batman arkham knight",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Batman Dark Knight Rises",
+      "file_count": 3,
+      "files": [
+        "DKR_Batman_acc1_Unsupported.stl",
+        "DKR_Batman_acc2_Unsupported.stl",
+        "DKR_Batman_body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "dark knight rises",
+          "reason": "manual"
+        },
+        {
+          "group": "dark knight rises batman acc1",
+          "reason": "manual"
+        },
+        {
+          "group": "dark knight rises batman acc2",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Batman Dark Knight Rises Batpod",
+      "file_count": 4,
+      "files": [
+        "DKR_Batman_on_Batpod_arms_Unsupported.stl",
+        "DKR_Batman_on_Batpod_body_Unsupported.stl",
+        "DKR_Batman_on_Batpod_leg_Unsupported.stl",
+        "DKR_Batman_on_Batpod_vehicle_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "dark knight rises batman on batpod",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Batman Red Rain",
+      "file_count": 1,
+      "files": [
+        "Batman_Red_Rain_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "batman red rain",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Batman The Gotham City Knight",
+      "file_count": 6,
+      "files": [
+        "Batman_BTG_Base_unsupported.stl",
+        "Batman_BTG_Body_unsupported.stl",
+        "Batman_BTG_Cape_unsupported.stl",
+        "Batman_gotham_city_knight_base_unsupported.stl",
+        "Batman_gotham_city_knight_body_unsupported.stl",
+        "Batman_gotham_city_knight_cape_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "batman blackest night",
+          "reason": "manual"
+        },
+        {
+          "group": "batman gotham city knight",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Batmobile Arkham Knight",
+      "file_count": 16,
+      "files": [
+        "Batmobile_AK_Body_Unsupported.stl",
+        "Batmobile_AK_Bridge_Left_Unsupported.stl",
+        "Batmobile_AK_Bridge_Right_Unsupported.stl",
+        "Batmobile_AK_Cabin_Unsupported.stl",
+        "Batmobile_AK_Cannon_Base_Unsupported.stl",
+        "Batmobile_AK_Cannon_Main_Unsupported.stl",
+        "Batmobile_AK_Front_Left_Unsupported.stl",
+        "Batmobile_AK_Front_Right_Unsupported.stl",
+        "Batmobile_AK_JOKERACC2_Unsupported.stl",
+        "Batmobile_AK_JOKERACC_Unsupported.stl",
+        "Batmobile_AK_Middle_Left_Unsupported.stl",
+        "Batmobile_AK_Middle_Right_Unsupported.stl",
+        "Batmobile_AK_Missile_Pod_Unsupported.stl",
+        "Batmobile_AK_Rear_Left_Unsupported.stl",
+        "Batmobile_AK_Rear_Right_Unsupported.stl",
+        "Batmobile_AK_Wheel_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "batmobile arkham knight",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Beast Boy - Gorilla Teen Titans",
+      "file_count": 1,
+      "files": [
+        "Beast_Boy_Gorilla_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "beast boy gorilla",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Beast Boy - Hawk Teen Titans",
+      "file_count": 1,
+      "files": [
+        "Beast_Boy_Hawk_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "beast boy hawk",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Beast Boy - Human (Teen Titans)",
+      "file_count": 1,
+      "files": [
+        "Beast_Boy_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "beast boy",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Beast Boy - Tiger Teen Titans",
+      "file_count": 1,
+      "files": [
+        "Beast_Boy_Tiger_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "beast boy tiger",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Beat Cop",
+      "file_count": 1,
+      "files": [
+        "Beat_Cop_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "beat cop",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Bird Classic",
+      "file_count": 2,
+      "files": [
+        "Bird_Base_unsupported.stl",
+        "Bird_Body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "bird",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Black Canary",
+      "file_count": 1,
+      "files": [
+        "Black_Canary_BoP_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "black canary bo p",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Blunderbuss Clown",
+      "file_count": 1,
+      "files": [
+        "blunderbuss_clown_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "blunderbuss clown",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Bruce Batman Begins",
+      "file_count": 1,
+      "files": [
+        "DKR_Bruce_Wayne_Ninja_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "dark knight rises bruce wayne ninja",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Bruce the Hyena",
+      "file_count": 2,
+      "files": [
+        "Bruce_The_Hyena_Unsupported.stl",
+        "bud_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "bruce the hyena",
+          "reason": "img_exact"
+        },
+        {
+          "group": "bud",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Catwoman Batman Returns",
+      "file_count": 4,
+      "files": [
+        "Catwoman_Batman_Returns_Arms_Unsupported.stl",
+        "Catwoman_Batman_Returns_Base_Unsupported.stl",
+        "Catwoman_Batman_Returns_Body_Unsupported.stl",
+        "Catwoman_Batman_Returns_Cat_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "catwoman batman returns",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Catwoman Dark Knight Rises",
+      "file_count": 1,
+      "files": [
+        "DKR_Catwoman_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "dark knight rises catwoman",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Chainsaw Clown",
+      "file_count": 1,
+      "files": [
+        "chainsaw_clown_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "chainsaw clown",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Cheshire",
+      "file_count": 1,
+      "files": [
+        "Cheshire_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "cheshire",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Christmas Joker",
+      "file_count": 3,
+      "files": [
+        "Christmas_Joker_arm_unsupported.stl",
+        "Christmas_Joker_base_unsupported.stl",
+        "Christmas_Joker_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "christmas joker",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Clown Hunter",
+      "file_count": 2,
+      "files": [
+        "Clown_hunter_base_unsupported.stl",
+        "Clown_hunter_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "clown hunter",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Commissioner Gordon",
+      "file_count": 8,
+      "files": [
+        "Commissioner_Gordon_Base40mm_unsupported.stl",
+        "Commissioner_Gordon_Base60mm_unsupported.stl",
+        "Commissioner_Gordon_Batsignal_hollowed_unsupported.stl",
+        "Commissioner_Gordon_Batsignal_unsupported.stl",
+        "Commissioner_Gordon_Body_unsupported.stl",
+        "Commissioner_Gordon_StructureA_unsupported.stl",
+        "Commissioner_Gordon_StructureB_unsupported.stl",
+        "SWAT_James_Gordon_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "commissioner gordon",
+          "reason": "manual"
+        },
+        {
+          "group": "commissioner gordon batsignal",
+          "reason": "manual"
+        },
+        {
+          "group": "commissioner gordon structure a",
+          "reason": "manual"
+        },
+        {
+          "group": "commissioner gordon structure b",
+          "reason": "manual"
+        },
+        {
+          "group": "swat james gordon",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Condiment King",
+      "file_count": 3,
+      "files": [
+        "condiment_king_base_unsupported.stl",
+        "condiment_king_body_unsupported.stl",
+        "condiment_king_table_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "condiment king",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Crazy Quilt",
+      "file_count": 2,
+      "files": [
+        "Crazy_Quilt_Base_Unsupported.stl",
+        "Crazy_Quilt_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "crazy quilt",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Damien Darhk",
+      "file_count": 1,
+      "files": [
+        "Damien_Darhk_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "damien darhk",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Detective Montoya",
+      "file_count": 1,
+      "files": [
+        "Detective_Montoya_BoP_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "detective montoya bo p",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Dove",
+      "file_count": 1,
+      "files": [
+        "Dove_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "dove",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Dr. Friitawa",
+      "file_count": 2,
+      "files": [
+        "Friitawa_base_unsupported.stl",
+        "Friitawa_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "friitawa",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Eagly",
+      "file_count": 1,
+      "files": [
+        "Eagly_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "eagly",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Electrocutioner",
+      "file_count": 1,
+      "files": [
+        "Electrocutioner_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "electrocutioner",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Emperor Penguin",
+      "file_count": 3,
+      "files": [
+        "Emperor_Penguin_Base_Unsupported.stl",
+        "Emperor_Penguin_Body_Unsupported.stl",
+        "Emperor_Penguin_Leg_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "emperor penguin",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Explosive Penguin",
+      "file_count": 1,
+      "files": [
+        "Explosive_Penguin_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "explosive penguin",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Floronic Man",
+      "file_count": 4,
+      "files": [
+        "Floronic_Man_Base_A_Unsupported.stl",
+        "Floronic_Man_Base_B_Unsupported.stl",
+        "Floronic_Man_Base_C_Unsupported.stl",
+        "Floronic_Man_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "floronic man",
+          "reason": "manual"
+        },
+        {
+          "group": "floronic man base a",
+          "reason": "manual"
+        },
+        {
+          "group": "floronic man base b",
+          "reason": "manual"
+        },
+        {
+          "group": "floronic man base c",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Frank the Plant",
+      "file_count": 7,
+      "files": [
+        "Frank_Base_A_Unsupported.stl",
+        "Frank_Base_Tentacle_A_Unsupported.stl",
+        "Frank_Base_Tentacle_B_Unsupported.stl",
+        "Frank_Body_A_Unsupported.stl",
+        "Frank_Body_B_Unsupported.stl",
+        "Frank_Eye_A_Unsupported.stl",
+        "Frank_Eye_B_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "frank base a",
+          "reason": "manual"
+        },
+        {
+          "group": "frank base tentacle a",
+          "reason": "manual"
+        },
+        {
+          "group": "frank base tentacle b",
+          "reason": "manual"
+        },
+        {
+          "group": "frank body a",
+          "reason": "manual"
+        },
+        {
+          "group": "frank body b",
+          "reason": "manual"
+        },
+        {
+          "group": "frank eye a",
+          "reason": "manual"
+        },
+        {
+          "group": "frank eye b",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Gentleman Ghost",
+      "file_count": 6,
+      "files": [
+        "Gentleman_Ghost_arm_unsupported.stl",
+        "Gentleman_Ghost_baseA_unsupported.stl",
+        "Gentleman_Ghost_baseB_unsupported.stl",
+        "Gentleman_Ghost_body_unsupported.stl",
+        "Gentleman_Ghost_cape_unsupported.stl",
+        "Gentleman_Ghost_leg_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "gentleman ghost",
+          "reason": "manual"
+        },
+        {
+          "group": "gentleman ghost base a",
+          "reason": "manual"
+        },
+        {
+          "group": "gentleman ghost base b",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Green Arrow (Arrow)",
+      "file_count": 4,
+      "files": [
+        "Arrow_Base_Unsupported.stl",
+        "Arrow_Body_Unsupported.stl",
+        "Arrow_Head_Unsupported.stl",
+        "Arrow_Hood_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "arrow",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Grumpy",
+      "file_count": 1,
+      "files": [
+        "Grumpy_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "grumpy",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Guardian Monk",
+      "file_count": 1,
+      "files": [
+        "Guardian_Monk_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "guardian monk",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Happy",
+      "file_count": 1,
+      "files": [
+        "Happy_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "happy",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Harley Quinn",
+      "file_count": 1,
+      "files": [
+        "Harley_Quinn_BoP_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "harley quinn bo p",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Harley Quinn (& The Boys)",
+      "file_count": 2,
+      "files": [
+        "Harley_&_her_hyenas_Base_unsupported.stl",
+        "Harley_&_her_hyenas_hyenaB_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "harley her hyenas",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Harley Quinn (Arkham Asylum)",
+      "file_count": 1,
+      "files": [
+        "Harley_Quinn_AA_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "harley quinn arkham asylum",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Harley Quinn (BTG)",
+      "file_count": 4,
+      "files": [
+        "harley_BTG_base_unsupported.stl",
+        "harley_BTG_body_unsupported.stl",
+        "harley_BTG_head_A_unsupported.stl",
+        "harley_BTG_head_B_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "harley blackest night",
+          "reason": "manual"
+        },
+        {
+          "group": "harley blackest night head a",
+          "reason": "manual"
+        },
+        {
+          "group": "harley blackest night head b",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Harley Quinn Arkham Knight",
+      "file_count": 1,
+      "files": [
+        "Harley_Quinn_AK_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "harley quinn arkham knight",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Harley Quinn Bewitched",
+      "file_count": 2,
+      "files": [
+        "Harley_Quinn_Bewitched_base_unsupported.stl",
+        "Harley_Quinn_Bewitched_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "harley quinn bewitched",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Harley Quinn KaBoom!",
+      "file_count": 3,
+      "files": [
+        "Harley_Quinn_KABOOM_BaseA_Unsupported.stl",
+        "Harley_Quinn_KABOOM_BaseB_Unsupported.stl",
+        "Harley_Quinn_KABOOM_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "harley quinn kaboom",
+          "reason": "manual"
+        },
+        {
+          "group": "harley quinn kaboom base a",
+          "reason": "manual"
+        },
+        {
+          "group": "harley quinn kaboom base b",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Harley Quinn Roller Derby",
+      "file_count": 3,
+      "files": [
+        "Harley_Quinn_RollerDerby_BaseA_Unsupported.stl",
+        "Harley_Quinn_RollerDerby_BaseB_Unsupported.stl",
+        "Harley_Quinn_RollerDerby_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "harley quinn roller derby",
+          "reason": "manual"
+        },
+        {
+          "group": "harley quinn roller derby base a",
+          "reason": "manual"
+        },
+        {
+          "group": "harley quinn roller derby base b",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Harley Thug 1",
+      "file_count": 1,
+      "files": [
+        "Harley_Thug_Axe_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "harley thug axe",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Harley Thug 2",
+      "file_count": 1,
+      "files": [
+        "Harley_Thug_Chainsaw_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "harley thug chainsaw",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Harley Thug 3",
+      "file_count": 1,
+      "files": [
+        "Harley_Thug_Shotgun_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "harley thug shotgun",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Harley Thug 4",
+      "file_count": 1,
+      "files": [
+        "Harley_Thug_Minigun_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "harley thug minigun",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Harley Thug 5",
+      "file_count": 1,
+      "files": [
+        "Harley_Thug_RPG_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "harley thug rpg",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Harley Thug 6",
+      "file_count": 1,
+      "files": [
+        "Harley_Thug_Bat_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "harley thug bat",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Harley Thug 7",
+      "file_count": 1,
+      "files": [
+        "Harley_Thug_Trench_wrench_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "harley thug trench wrench",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Hawk",
+      "file_count": 2,
+      "files": [
+        "Hawk_body_unsupported.stl",
+        "Hawk_cape_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "hawk",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Henry Ducard",
+      "file_count": 1,
+      "files": [
+        "Ducard_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "ducard",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Huge Nightmare",
+      "file_count": 2,
+      "files": [
+        "Huge_Nightmare_base_unsupported.stl",
+        "Huge_Nightmare_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "huge nightmare",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Hugo Strange",
+      "file_count": 2,
+      "files": [
+        "Hugo_Strange_base_unsupported.stl",
+        "Hugo_Strange_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "hugo strange",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Huntress",
+      "file_count": 4,
+      "files": [
+        "Huntress_BoP_Unsupported.stl",
+        "Huntress_base_unsupported.stl",
+        "Huntress_body_unsupported.stl",
+        "Huntress_cape_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "huntress",
+          "reason": "manual"
+        },
+        {
+          "group": "huntress bo p",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Hypnotic",
+      "file_count": 1,
+      "files": [
+        "Hypnotic_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "hypnotic",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Imperceptible Man",
+      "file_count": 1,
+      "files": [
+        "Imperceptible_Man_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "imperceptible man",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Infiltrate OP",
+      "file_count": 1,
+      "files": [
+        "Infiltrate_OP_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "infiltrate organized crime",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Joker (Arkham Asylum)",
+      "file_count": 1,
+      "files": [
+        "Joker_AA_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "joker arkham asylum",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Joker (Bat-Armor)",
+      "file_count": 2,
+      "files": [
+        "Joker_bat-armor__base_unsupported.stl",
+        "Joker_bat-armor_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "joker bat armor",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Joker (Dark Knight Rises)",
+      "file_count": 1,
+      "files": [
+        "DKR_Joker_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "dark knight rises joker",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Joker (Explosive Arrival)",
+      "file_count": 1,
+      "files": [
+        "Joker_explosive_arrival_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "joker explosive arrival",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Joker [Unknown / 40mm / 60mm]",
+      "file_count": 13,
+      "files": [
+        "Joker_BTG_Acc40mm_unsupported.stl",
+        "Joker_BTG_Acc60mm_unsupported.stl",
+        "Joker_BTG_Base40mm_unsupported.stl",
+        "Joker_BTG_Base_unsupported.stl",
+        "Joker_BTG_Body_unsupported.stl",
+        "Joker_BTG_DwarfA_unsupported.stl",
+        "Joker_BTG_DwarfB_unsupported.stl",
+        "Joker_BTG_Hand_Fish_unsupported.stl",
+        "Joker_BTG_Hand_Hat_unsupported.stl",
+        "Joker_BTG_Hand_Mic_unsupported.stl",
+        "Joker_BTG_Hand_Pistol_unsupported.stl",
+        "Joker_BTG_StructureA_unsupported.stl",
+        "Joker_BTG_StructureB_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "joker blackest night",
+          "reason": "manual"
+        },
+        {
+          "group": "joker blackest night acc40mm",
+          "reason": "manual"
+        },
+        {
+          "group": "joker blackest night acc60mm",
+          "reason": "manual"
+        },
+        {
+          "group": "joker blackest night dwarf a",
+          "reason": "manual"
+        },
+        {
+          "group": "joker blackest night dwarf b",
+          "reason": "manual"
+        },
+        {
+          "group": "joker blackest night structure a",
+          "reason": "manual"
+        },
+        {
+          "group": "joker blackest night structure b",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Joker Titan",
+      "file_count": 2,
+      "files": [
+        "Joker_Titan_base_unsupported.stl",
+        "Joker_Titan_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "joker titan",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Joker's Bus Driver",
+      "file_count": 1,
+      "files": [
+        "Joker_s_Bus_Driver_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "joker s bus driver",
+          "reason": "name_exact"
+        }
+      ]
+    },
+    {
+      "model": "KGBeast",
+      "file_count": 4,
+      "files": [
+        "KGBeast_arm_a_unsupported.stl",
+        "KGBeast_arm_b_unsupported.stl",
+        "KGBeast_base_unsupported.stl",
+        "KGBeast_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "kg beast",
+          "reason": "img_exact"
+        },
+        {
+          "group": "kg beast arm a",
+          "reason": "manual"
+        },
+        {
+          "group": "kg beast arm b",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Killer Moth",
+      "file_count": 2,
+      "files": [
+        "killermoth_base_unsupported.stl",
+        "killermoth_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "killermoth",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Kite-Man",
+      "file_count": 3,
+      "files": [
+        "Kite_Man_Base_A_Unsupported.stl",
+        "Kite_Man_Base_B_Unsupported.stl",
+        "Kite_Man_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "kite man",
+          "reason": "manual"
+        },
+        {
+          "group": "kite man base a",
+          "reason": "manual"
+        },
+        {
+          "group": "kite man base b",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Lady Shiva",
+      "file_count": 2,
+      "files": [
+        "Shiva_Base_Unsupported.stl",
+        "Shiva_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "shiva",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Lark",
+      "file_count": 1,
+      "files": [
+        "Lark_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "lark",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "League Acolyte 1",
+      "file_count": 1,
+      "files": [
+        "League_Acolyte1_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "league acolyte1",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "League Acolyte 2",
+      "file_count": 1,
+      "files": [
+        "League_Acolyte2_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "league acolyte2",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "League Acolyte 3",
+      "file_count": 2,
+      "files": [
+        "League_Acolyte3_Body_Unsupported.stl",
+        "League_Acolyte3_Hawk_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "league acolyte3",
+          "reason": "manual"
+        },
+        {
+          "group": "league acolyte3 hawk",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "League Acolyte 4",
+      "file_count": 1,
+      "files": [
+        "League_Acolyte4_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "league acolyte4",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "League of Shadows Ninja 1",
+      "file_count": 1,
+      "files": [
+        "LoS_Ninja_Sword_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "lo s ninja sword",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "League of Shadows Ninja 2",
+      "file_count": 1,
+      "files": [
+        "LoS_Ninja_Bo_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "lo s ninja bo",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "League of Shadows Ninja 3",
+      "file_count": 1,
+      "files": [
+        "LoS_Ninja_Bow_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "lo s ninja bow",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Lieutenant OP",
+      "file_count": 1,
+      "files": [
+        "Lieutenant_OP_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "lieutenant organized crime",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Little Nightmare",
+      "file_count": 4,
+      "files": [
+        "Little_Nightmare_1_base_unsupported.stl",
+        "Little_Nightmare_1_body_unsupported.stl",
+        "Little_Nightmare_2_base_unsupported.stl",
+        "Little_Nightmare_2_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "little nightmare 1",
+          "reason": "manual"
+        },
+        {
+          "group": "little nightmare 2",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Lobo (Paramilitary)",
+      "file_count": 2,
+      "files": [
+        "Lobo_Paramilitary_base_unsupported.stl",
+        "Lobo_Paramilitary_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "lobo paramilitary",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Loose Lips",
+      "file_count": 1,
+      "files": [
+        "Loose_Lips_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "loose lips",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Macgregor",
+      "file_count": 1,
+      "files": [
+        "Macgregor_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "macgregor",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Mad Hatter",
+      "file_count": 3,
+      "files": [
+        "Mad_Hatter_base_unsupported.stl",
+        "Mad_Hatter_body_unsupported.stl",
+        "Mad_Hatter_sofa_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "mad hatter",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Mad Hatter Arkham Knight",
+      "file_count": 1,
+      "files": [
+        "Jervis_Tetch_AK_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "jervis tetch arkham knight",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Malicia",
+      "file_count": 1,
+      "files": [
+        "Malicia_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "malicia",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Man-Bat",
+      "file_count": 4,
+      "files": [
+        "Manbat_base_unsupported.stl",
+        "Manbat_body_unsupported.stl",
+        "Manbat_leftwing_unsupported.stl",
+        "Manbat_rightwing_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "manbat",
+          "reason": "manual"
+        },
+        {
+          "group": "manbat leftwing",
+          "reason": "manual"
+        },
+        {
+          "group": "manbat rightwing",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Medic OP",
+      "file_count": 1,
+      "files": [
+        "Medic_OP_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "medic organized crime",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Mercenary 1",
+      "file_count": 1,
+      "files": [
+        "DKR_Mercenary_1_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "dark knight rises mercenary 1",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Mercenary 2",
+      "file_count": 1,
+      "files": [
+        "DKR_Mercenary_2_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "dark knight rises mercenary 2",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Minigun Penguin",
+      "file_count": 1,
+      "files": [
+        "Minigun_Penguin_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "minigun penguin",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Miranda Tate",
+      "file_count": 1,
+      "files": [
+        "DKR_Miranda_Tate_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "dark knight rises miranda tate",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Mr. Camera",
+      "file_count": 2,
+      "files": [
+        "Mr_Camera_Base_Unsupported.stl",
+        "Mr_Camera_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "mr camera",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Mr. Combustible",
+      "file_count": 1,
+      "files": [
+        "Mr_Combustible_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "mr combustible",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Mr. Toxic",
+      "file_count": 2,
+      "files": [
+        "Mr_Toxic_Body_Unsupported.stl",
+        "Mr_Toxic_Cape_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "mr toxic",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Mutated Plant 1",
+      "file_count": 1,
+      "files": [
+        "Mutated_Plant_1_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "mutated plant 1",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Mutated Plant 2",
+      "file_count": 1,
+      "files": [
+        "Mutated_Plant_2_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "mutated plant 2",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Mutated Plant 3",
+      "file_count": 1,
+      "files": [
+        "Mutated_Plant_3_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "mutated plant 3",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Nightmare of Anger",
+      "file_count": 2,
+      "files": [
+        "Nightmare_of_Anger_base_unsupported.stl",
+        "Nightmare_of_Anger_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "nightmare of anger",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Nightmare of Demotivation",
+      "file_count": 2,
+      "files": [
+        "Nightmare_of_Demotivation_base_unsupported.stl",
+        "Nightmare_of_Demotivation_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "nightmare of demotivation",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Nightmare of Fear",
+      "file_count": 2,
+      "files": [
+        "Nightmare_of_Fear_base_unsupported.stl",
+        "Nightmare_of_Fear_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "nightmare of fear",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Nightmare of Insignificance",
+      "file_count": 2,
+      "files": [
+        "Nightmare_of_Insignificance_base_unsupported.stl",
+        "Nightmare_of_Insignificance_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "nightmare of insignificance",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Nightwing Arkham Knight",
+      "file_count": 1,
+      "files": [
+        "Nightwing_AK_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "nightwing arkham knight",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Nightwing Rebirth",
+      "file_count": 3,
+      "files": [
+        "Nightwing_base_A_unsupported.stl",
+        "Nightwing_base_B_unsupported.stl",
+        "Nightwing_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "nightwing",
+          "reason": "manual"
+        },
+        {
+          "group": "nightwing base a",
+          "reason": "manual"
+        },
+        {
+          "group": "nightwing base b",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Nyssa Al Ghul",
+      "file_count": 2,
+      "files": [
+        "Nyssa_base_Unsupported.stl",
+        "Nyssa_body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "nyssa",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Oracle",
+      "file_count": 6,
+      "files": [
+        "Oracle_base_unsupported.stl",
+        "Oracle_body_unsupported.stl",
+        "Oracle_leftwhell_unsupported.stl",
+        "Oracle_rightwhell_unsupported.stl",
+        "Oracle_screens_unsupported.stl",
+        "Oracle_upperbody_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "oracle",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Peacemaker John Cena",
+      "file_count": 4,
+      "files": [
+        "Peacemaker_base_unsupported.stl",
+        "Peacemaker_body_unsupported.stl",
+        "Peacemaker_head_unsupported.stl",
+        "Peacemaker_helmet_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "peacemaker",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Penguin Elite Thug",
+      "file_count": 1,
+      "files": [
+        "Penguin_Elite_Thug_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "penguin elite thug",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Penguin Lieutenant",
+      "file_count": 1,
+      "files": [
+        "Penguin_Lieutenant_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "penguin lieutenant",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Penguin Thug 1",
+      "file_count": 1,
+      "files": [
+        "Penguin_Thug_1_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "penguin thug 1",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Penguin Thug 2",
+      "file_count": 1,
+      "files": [
+        "Penguin_Thug_2_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "penguin thug 2",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Poison Ivy",
+      "file_count": 9,
+      "files": [
+        "Poison_Ivy_BaseA_Unsupported.stl",
+        "Poison_Ivy_BaseB_Unsupported.stl",
+        "Poison_Ivy_BaseC_Unsupported.stl",
+        "Poison_Ivy_Base_BIGPlant_A_Unsupported.stl",
+        "Poison_Ivy_Base_BIGPlant_B_Unsupported.stl",
+        "Poison_Ivy_Base_Plant_A_Unsupported.stl",
+        "Poison_Ivy_Base_Plant_B_Unsupported.stl",
+        "Poison_Ivy_Base_Plant_C_Unsupported.stl",
+        "Poison_Ivy_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "poison ivy",
+          "reason": "manual"
+        },
+        {
+          "group": "poison ivy base a",
+          "reason": "manual"
+        },
+        {
+          "group": "poison ivy base b",
+          "reason": "manual"
+        },
+        {
+          "group": "poison ivy base big plant a",
+          "reason": "manual"
+        },
+        {
+          "group": "poison ivy base big plant b",
+          "reason": "manual"
+        },
+        {
+          "group": "poison ivy base c",
+          "reason": "manual"
+        },
+        {
+          "group": "poison ivy base plant a",
+          "reason": "manual"
+        },
+        {
+          "group": "poison ivy base plant b",
+          "reason": "manual"
+        },
+        {
+          "group": "poison ivy base plant c",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Poison Ivy Arkham City",
+      "file_count": 1,
+      "files": [
+        "Poison_Ivy_AC_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "poison ivy arkham city",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Psycho Pirate",
+      "file_count": 5,
+      "files": [
+        "Psycho_Pirate_Base_Unsupported.stl",
+        "Psycho_Pirate_BodyA_Unsupported.stl",
+        "Psycho_Pirate_BodyB_Unsupported.stl",
+        "Psycho_Pirate_HeadA_Unsupported.stl",
+        "Psycho_Pirate_HeadB_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "psycho pirate",
+          "reason": "manual"
+        },
+        {
+          "group": "psycho pirate body a",
+          "reason": "manual"
+        },
+        {
+          "group": "psycho pirate body b",
+          "reason": "manual"
+        },
+        {
+          "group": "psycho pirate head a",
+          "reason": "manual"
+        },
+        {
+          "group": "psycho pirate head b",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Ra's al Ghul",
+      "file_count": 7,
+      "files": [
+        "Ra_sAlGhul_Unsupported.stl",
+        "Ras_Al_Ghul_Base_40mm_Unsupported.stl",
+        "Ras_Al_Ghul_Base_60mm_Part1_Unsupported.stl",
+        "Ras_Al_Ghul_Base_60mm_Part2_Unsupported.stl",
+        "Ras_Al_Ghul_Base_60mm_Part3_Unsupported.stl",
+        "Ras_Al_Ghul_Body_Unsupported.stl",
+        "Ras_Al_Ghul_Cape_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "ra s al ghul",
+          "reason": "name_exact"
+        },
+        {
+          "group": "ras al ghul",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Ra's Al Ghul Acolyte",
+      "file_count": 1,
+      "files": [
+        "Ras_Al_Ghul_Acolyte_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "ras al ghul acolyte",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Rabid Plant 1",
+      "file_count": 2,
+      "files": [
+        "Rabid_Plant_1_Base_Unsupported.stl",
+        "Rabid_Plant_1_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "rabid plant 1",
+          "reason": "name_exact"
+        }
+      ]
+    },
+    {
+      "model": "Rabid Plant 2",
+      "file_count": 2,
+      "files": [
+        "Rabid_Plant_2_Base_Unsupported.stl",
+        "Rabid_Plant_2_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "rabid plant 2",
+          "reason": "name_exact"
+        }
+      ]
+    },
+    {
+      "model": "Raven",
+      "file_count": 1,
+      "files": [
+        "Raven_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "raven",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Raven Trigon's Daughter",
+      "file_count": 2,
+      "files": [
+        "Raven_Trigon_s_Daughter__base_unsupported.stl",
+        "Raven_Trigon_s_Daughter_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "raven trigon s daughter",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Rebel Masked Assassin 1",
+      "file_count": 1,
+      "files": [
+        "Rebel_Masked_Assassin1_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "rebel masked assassin1",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Rebel Masked Assassin 2",
+      "file_count": 1,
+      "files": [
+        "Rebel_Masked_Assassin2_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "rebel masked assassin2",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Rebel Monk",
+      "file_count": 1,
+      "files": [
+        "Rebel_Monk_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "rebel monk",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Red Hood The Outlaw",
+      "file_count": 8,
+      "files": [
+        "Red_Hood_base_unsupported.stl",
+        "Red_Hood_body_unsupported.stl",
+        "Red_Hood_clowna_unsupported.stl",
+        "Red_Hood_clownb_unsupported.stl",
+        "Red_Hood_headA_unsupported.stl",
+        "Red_Hood_headB_unsupported.stl",
+        "Red_Hood_leftarmA_unsupported.stl",
+        "Red_Hood_leftarmB_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "red",
+          "reason": "manual"
+        },
+        {
+          "group": "red hood clowna",
+          "reason": "manual"
+        },
+        {
+          "group": "red hood clownb",
+          "reason": "manual"
+        },
+        {
+          "group": "red hood head a",
+          "reason": "manual"
+        },
+        {
+          "group": "red hood head b",
+          "reason": "manual"
+        },
+        {
+          "group": "red hood leftarm a",
+          "reason": "manual"
+        },
+        {
+          "group": "red hood leftarm b",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Red Robin",
+      "file_count": 3,
+      "files": [
+        "Red_Robin_base_unsupported.stl",
+        "Red_Robin_body_unsupported.stl",
+        "Red_Robin_cape_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "red robin",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Robin 1997",
+      "file_count": 3,
+      "files": [
+        "Robin_10th_base_unsupported.stl",
+        "Robin_10th_baseacc_unsupported.stl",
+        "Robin_10th_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "robin 10th",
+          "reason": "manual"
+        },
+        {
+          "group": "robin 10th baseacc",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Robin [Damian Wayne / 30mm]",
+      "file_count": 1,
+      "files": [
+        "Damian_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "damian",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Robin Classic",
+      "file_count": 1,
+      "files": [
+        "Robin_Dick_Grayson_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "robin dick grayson",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Rocket Launcher Penguin",
+      "file_count": 2,
+      "files": [
+        "Rocket_Launcher_Penguin_Rocket_Unsupported.stl",
+        "Rocket_Launcher_Penguin__Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "rocket launcher penguin",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Roller Derby Thug 1",
+      "file_count": 2,
+      "files": [
+        "Roller_Derby_Thug_1_Base_Unsupported.stl",
+        "Roller_Derby_Thug_1_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "roller derby thug 1",
+          "reason": "name_exact"
+        }
+      ]
+    },
+    {
+      "model": "Roller Derby Thug 2",
+      "file_count": 2,
+      "files": [
+        "Roller_Derby_Thug_2_Base_Unsupported.stl",
+        "Roller_Derby_Thug_2_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "roller derby thug 2",
+          "reason": "name_exact"
+        }
+      ]
+    },
+    {
+      "model": "Roller Derby Thug 3",
+      "file_count": 2,
+      "files": [
+        "Roller_Derby_Thug_3_Base_Unsupported.stl",
+        "Roller_Derby_Thug_3_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "roller derby thug 3",
+          "reason": "name_exact"
+        }
+      ]
+    },
+    {
+      "model": "Roller Derby Thug 4",
+      "file_count": 2,
+      "files": [
+        "Roller_Derby_Thug_4_Base_Unsupported.stl",
+        "Roller_Derby_Thug_4_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "roller derby thug 4",
+          "reason": "name_exact"
+        }
+      ]
+    },
+    {
+      "model": "Scarecrow (The Worst Nightmare)",
+      "file_count": 3,
+      "files": [
+        "Scarecrow_Worst_Nightmare_base_unsupported.stl",
+        "Scarecrow_Worst_Nightmare_body_unsupported.stl",
+        "Scarecrow_Worst_Nightmare_horse_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "scarecrow worst nightmare",
+          "reason": "manual"
+        },
+        {
+          "group": "scarecrow worst nightmare horse",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Scarecrow Arkham Asylum",
+      "file_count": 1,
+      "files": [
+        "Scarecrow_AA_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "scarecrow arkham asylum",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Shadow Armored Assassin",
+      "file_count": 2,
+      "files": [
+        "Rebel_Armored_Assassin_Unsupported.stl",
+        "Shadows_Armoured_Assassin_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "rebel armored assassin",
+          "reason": "manual"
+        },
+        {
+          "group": "shadows armoured assassin",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Smash",
+      "file_count": 1,
+      "files": [
+        "Smash_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "smash",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Solomon Grundy",
+      "file_count": 3,
+      "files": [
+        "Solomon_Grundy_arm_unsupported.stl",
+        "Solomon_Grundy_base_unsupported.stl",
+        "Solomon_Grundy_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "solomon grundy",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Starfire Teen Titans",
+      "file_count": 1,
+      "files": [
+        "Starfire_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "starfire",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Street Demonz 1",
+      "file_count": 1,
+      "files": [
+        "Street_Demonz_1_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "street demonz 1",
+          "reason": "name_exact"
+        }
+      ]
+    },
+    {
+      "model": "Street Demonz 2",
+      "file_count": 1,
+      "files": [
+        "Street_Demonz_2_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "street demonz 2",
+          "reason": "name_exact"
+        }
+      ]
+    },
+    {
+      "model": "Street Demonz 3",
+      "file_count": 1,
+      "files": [
+        "Street_Demonz_3_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "street demonz 3",
+          "reason": "name_exact"
+        }
+      ]
+    },
+    {
+      "model": "Street Demonz 4",
+      "file_count": 2,
+      "files": [
+        "Street_Demonz_4_PartA_Unsupported.stl",
+        "Street_Demonz_4_PartB_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "street demonz 4 part a",
+          "reason": "manual"
+        },
+        {
+          "group": "street demonz 4 part b",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Street Jester 1",
+      "file_count": 1,
+      "files": [
+        "Street_Jester_1_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "street jester 1",
+          "reason": "name_exact"
+        }
+      ]
+    },
+    {
+      "model": "Street Jester 2",
+      "file_count": 1,
+      "files": [
+        "Street_Jester_2_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "street jester 2",
+          "reason": "name_exact"
+        }
+      ]
+    },
+    {
+      "model": "SWAT QRT 1",
+      "file_count": 1,
+      "files": [
+        "swat_shotgun_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "swat shotgun",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "SWAT QRT 2",
+      "file_count": 1,
+      "files": [
+        "swat_rifle_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "swat rifle",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "SWAT QRT 3",
+      "file_count": 2,
+      "files": [
+        "swat_sniper_arms_unsupported.stl",
+        "swat_sniper_body_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "swat sniper",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Talia Rebirth",
+      "file_count": 3,
+      "files": [
+        "Talia_Base_Part1_Unsupported.stl",
+        "Talia_Base_Part2_Unsupported.stl",
+        "Talia_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "talia",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Ted Hunter",
+      "file_count": 1,
+      "files": [
+        "Ted_Hunter_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "ted hunter",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "The Heretic",
+      "file_count": 1,
+      "files": [
+        "The_Heretic_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "the heretic",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "The Penguin (Burgess Meredith)",
+      "file_count": 2,
+      "files": [
+        "The_Penguin_Crime_Lord_Rising_Base_Unsupported.stl",
+        "The_Penguin_Crime_Lord_Rising_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "the penguin crime lord rising",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "The Penguin Arkham City",
+      "file_count": 1,
+      "files": [
+        "The_Penguin_AC_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "the penguin arkham city",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "The Penguin Danny DeVito",
+      "file_count": 2,
+      "files": [
+        "The_Penguin_Batman_Returns_Base_Unsupported.stl",
+        "The_Penguin_Batman_Returns_Body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "the penguin batman returns",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "The Penguin New 52",
+      "file_count": 2,
+      "files": [
+        "The_Penguin_Crime_Lord_Rising_Base_Unsupported.stl",
+        "The_Penguin_Crime_Lord_Rising_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "the penguin crime lord rising",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "The Penguin Penguin's Duck",
+      "file_count": 4,
+      "files": [
+        "The_Penguin_On_Duck_Duck_body_Unsupported.stl",
+        "The_Penguin_On_Duck_Duck_head_Unsupported.stl",
+        "The_Penguin_On_Duck_Duck_wheels_Unsupported.stl",
+        "The_Penguin_On_Duck_Penguin_body_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "the penguin on duck duck",
+          "reason": "manual"
+        },
+        {
+          "group": "the penguin on duck penguin",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Two-Face Arkham City",
+      "file_count": 1,
+      "files": [
+        "Two-Face_AC_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "two face arkham city",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Ubu",
+      "file_count": 1,
+      "files": [
+        "Ubu_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "ubu",
+          "reason": "img_exact"
+        }
+      ]
+    },
+    {
+      "model": "Unknown [Cassandra Cain / 30mm]",
+      "file_count": 1,
+      "files": [
+        "Cassandra_Cain_BoP_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "cassandra cain bo p",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Warden Sharp",
+      "file_count": 1,
+      "files": [
+        "Quincy_Sharp_Unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "quincy sharp",
+          "reason": "manual"
+        }
+      ]
+    },
+    {
+      "model": "Wonder Girl",
+      "file_count": 1,
+      "files": [
+        "Donna_Troy_unsupported.stl"
+      ],
+      "groups": [
+        {
+          "group": "donna troy",
+          "reason": "manual"
+        }
+      ]
+    }
+  ],
+  "unresolved_group_count": 19,
+  "unresolved_groups": [
+    {
+      "group": "30 base",
+      "files": [
+        "30_base_unsupported.stl"
+      ]
+    },
+    {
+      "group": "40 base",
+      "files": [
+        "40_base_unsupported.stl"
+      ]
+    },
+    {
+      "group": "60 base",
+      "files": [
+        "60_base_unsupported.stl"
+      ]
+    },
+    {
+      "group": "bane king",
+      "files": [
+        "Bane_King_Base_unsupported.stl",
+        "Bane_King_Body_unsupported.stl",
+        "Bane_King_Throne_unsupported.stl"
+      ]
+    },
+    {
+      "group": "batman king",
+      "files": [
+        "batman_king_base_unsupported.stl",
+        "batman_king_body_unsupported.stl"
+      ]
+    },
+    {
+      "group": "chuckles",
+      "files": [
+        "Chuckles_Unsupported.stl"
+      ]
+    },
+    {
+      "group": "dark knight rises catwoman on batpod",
+      "files": [
+        "DKR_Catwoman_on_Batpod_arms_Unsupported.stl",
+        "DKR_Catwoman_on_Batpod_body_Unsupported.stl",
+        "DKR_Catwoman_on_Batpod_vehicle_Unsupported.stl"
+      ]
+    },
+    {
+      "group": "harley thug breaker",
+      "files": [
+        "Harley_Thug_Breaker_Arm_Unsupported.stl",
+        "Harley_Thug_Breaker_Body_Unsupported.stl"
+      ]
+    },
+    {
+      "group": "kid flash",
+      "files": [
+        "Kid_Flash_unsupported.stl"
+      ]
+    },
+    {
+      "group": "killer croc arkham city",
+      "files": [
+        "Killer_Croc_AC_Base_Unsupported.stl",
+        "Killer_Croc_AC_Body_Unsupported.stl"
+      ]
+    },
+    {
+      "group": "lou",
+      "files": [
+        "lou_unsupported.stl"
+      ]
+    },
+    {
+      "group": "reverse flash",
+      "files": [
+        "Reverse_Flash_Unsupported.stl"
+      ]
+    },
+    {
+      "group": "spartan",
+      "files": [
+        "Spartan_Head_Unsupported.stl",
+        "Spartan_Helmet_Unsupported.stl",
+        "Spartan__Body_Unsupported.stl"
+      ]
+    },
+    {
+      "group": "spoiler",
+      "files": [
+        "Spoiler_base_unsupported.stl",
+        "Spoiler_body_unsupported.stl",
+        "Spoiler_leftarm_unsupported.stl",
+        "Spoiler_rightarm_unsupported.stl"
+      ]
+    },
+    {
+      "group": "the wizard",
+      "files": [
+        "The_Wizard_Base_Unsupported.stl",
+        "The_Wizard_Body_Unsupported.stl"
+      ]
+    },
+    {
+      "group": "tumbler",
+      "files": [
+        "Tumbler_Unsupported.stl"
+      ]
+    },
+    {
+      "group": "wrestler a",
+      "files": [
+        "Wrestler_A_base_unsupported.stl",
+        "Wrestler_A_body_unsupported.stl"
+      ]
+    },
+    {
+      "group": "wrestler b",
+      "files": [
+        "Wrestler_B_base_unsupported.stl",
+        "Wrestler_B_body_unsupported.stl"
+      ]
+    },
+    {
+      "group": "wrestler b boxes",
+      "files": [
+        "Wrestler_B_boxes_unsupported.stl"
+      ]
+    }
+  ]
+}
