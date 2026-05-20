@@ -4,7 +4,8 @@
 /* ============================================= */
 
 * { margin:0; padding:0; box-sizing:border-box; touch-action:manipulation; }
-body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:100vh; -webkit-tap-highlight-color:transparent; }
+html { width:100%; overflow-x:hidden; }
+body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:100vh; -webkit-tap-highlight-color:transparent; overflow-x:hidden; }
 
 /* ТОП-БАР */
 .top-bar { background:linear-gradient(#111,#000); padding:10px 12px; text-align:center; border-bottom:4px solid #e94560; position:sticky; top:0; z-index:100; box-shadow:0 4px 15px rgba(0,0,0,.6); }
@@ -534,6 +535,8 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   flex-wrap: wrap;
   justify-content: center;
   background: #050505;
+  width: 100%;
+  overflow: hidden;
 }
 
 .my-crews-action-btn {
@@ -547,6 +550,8 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   display: grid;
   gap: 14px;
   padding: 14px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .my-crews-empty {
@@ -566,6 +571,8 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   border-radius: 18px;
   padding: 16px;
   box-shadow: 0 10px 24px rgba(0,0,0,.35);
+  min-width: 0;
+  overflow: hidden;
 }
 
 .my-crew-card-head {
@@ -604,6 +611,9 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   font-family: Consolas, monospace;
   font-size: 12px;
   margin-bottom: 12px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .my-crew-actions {
@@ -624,6 +634,7 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(233,69,96,.35);
   transition: all .25s ease;
+  min-width: 0;
 }
 
 .my-crew-action-btn:hover {
@@ -694,6 +705,149 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 
   .my-crew-meta {
     text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-bar {
+    padding: 10px 8px 8px;
+  }
+
+  .top-bar-content {
+    padding: 0;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .top-bar h1 {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
+    text-align: left;
+    font-size: clamp(18px, 7vw, 28px);
+    letter-spacing: clamp(2px, 1.6vw, 5px);
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+  }
+
+  .header-buttons {
+    flex: 0 0 auto;
+    gap: 6px;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .top-bar .header-lang-switch,
+  .compendium-header .header-lang-switch {
+    gap: 4px;
+  }
+
+  .top-bar .header-lang-switch .lang-btn,
+  .compendium-header .header-lang-switch .lang-btn {
+    min-width: 42px;
+    min-height: 42px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .compendium-small-btn {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .compendium-small-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .my-crews-toolbar {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px 10px 10px;
+  }
+
+  .my-crews-action-btn {
+    width: 100%;
+    max-width: none;
+    min-height: 64px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    font-size: clamp(16px, 5vw, 20px);
+    letter-spacing: 2px;
+  }
+
+  .my-crews-action-btn .btn-text,
+  .menu-btn .btn-text {
+    min-width: 0;
+    letter-spacing: 2px;
+    overflow-wrap: anywhere;
+    line-height: 1.15;
+  }
+
+  .my-crews-action-btn .btn-icon {
+    flex: 0 0 auto;
+    font-size: 26px;
+  }
+
+  .my-crews-list {
+    gap: 12px;
+    padding: 10px 8px 18px;
+  }
+
+  .my-crew-card {
+    border-radius: 14px;
+    padding: 14px;
+  }
+
+  .my-crew-card-head {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .my-crew-title {
+    font-size: 22px;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+  }
+
+  .my-crew-subtitle,
+  .my-crew-meta {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .my-crew-meta {
+    text-align: left;
+  }
+
+  .my-crew-preview {
+    padding: 10px;
+    font-size: 11px;
+    line-height: 1.45;
+    border-radius: 10px;
+    white-space: pre-wrap;
+  }
+
+  .my-crew-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .my-crew-action-btn {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border-radius: 18px;
+    font-size: 15px;
+    letter-spacing: 0.5px;
   }
 }
 

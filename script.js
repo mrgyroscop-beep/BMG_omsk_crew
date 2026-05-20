@@ -6108,32 +6108,32 @@ const showFullCard = model => {
 
   // --- Маппинг иконок ---
   const factionIcons = {
-    "Bat Family": "BATMAN.png",
-    "GCPD": "GCPD.png",
-    "Birds of Prey": "BIRDS_OF_PREY.png",
-    "Joker": "JOKER.png",
-    "Bane": "SOLDIERS.png",
-    "League of Shadows": "LEAGUE.png",
-    "Royal Flush": "RoyalFlush.png",
-    "Penguin": "PENGUIN.png",
-    "Mr. Freeze": "MR_FREEZE.png",
-    "Scarecrow": "SCARECROW.png",
-    "Two-Face": "TWO-FACE.png",
-    "The Riddler": "RIDDLER.png",
-    "Organized Crime": "OrganizedCrime.png",
-    "Suicide Squad": "Suicide_Squad.png",
-    "Court of Owls": "OWLS.png",
-    "Watchmen": "Watchmen.png",
-    "Batman Who Laughs": "BatmanWhoLaughs.png",
-    "Cults": "CULTS.png",
-    "Doom Patrol": "Doom_Patrol.png",
-    "Unknown": "UNKNOWN.png"
+    "Bat Family": "img/ico/AFF_BATMAN_ICON.png",
+    "GCPD": "img/ico/AFF_LAW_FORCES_ICON.png",
+    "Birds of Prey": "img/menu/BIRDS_OF_PREY.png",
+    "Joker": "img/ico/AFF_JOKER_ICON.png",
+    "Bane": "img/ico/AFF_BANE_ICON.png",
+    "League of Shadows": "img/ico/AFF_LEAGUE_ICON.png",
+    "Royal Flush": "img/ico/AFF_ROYAL_FLUSH_ICON.png",
+    "Penguin": "img/ico/AFF_PENGUIN_ICON.png",
+    "Mr. Freeze": "img/ico/AFF_MRFREEZE_ICON.png",
+    "Scarecrow": "img/ico/AFF_SCARECROW_ICON.png",
+    "Two-Face": "img/menu/TWO-FACE.png",
+    "The Riddler": "img/ico/AFF_RIDDLER_ICON}.png",
+    "Organized Crime": "img/ico/AFF_CRIME_ICON.png",
+    "Suicide Squad": "img/ico/AFF_SUICIDE_SQUAD_ICON.png",
+    "Court of Owls": "img/ico/AFF_OWLS_ICON.png",
+    "Watchmen": "img/menu/Watchmen.png",
+    "Batman Who Laughs": "img/menu/BatmanWhoLaughs.png",
+    "Cults": "img/ico/AFF_CULTS_ICON.png",
+    "Doom Patrol": "img/menu/Doom_Patrol.png",
+    "Unknown": "img/menu/UNKNOWN.png"
   };
 
   const renderIcons = arr => arr.length
     ? arr.map(f => {
-        const file = factionIcons[f] || "UNKNOWN.png";
-        return `<img src="img/${file}" alt="${f}" class="faction-icon-small">`;
+        const iconPath = factionIcons[f] || "img/menu/UNKNOWN.png";
+        return `<img src="${iconPath}" alt="${f}" class="faction-icon-small">`;
       }).join(" ")
     : "—";
 
