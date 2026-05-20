@@ -197,8 +197,9 @@ const translations = {
     export_copied: "Ростер скопирован в буфер обмена!",
     export_copy_prompt: "Скопируйте текст ростера:",
     roster_name_prompt: "Введите название банды для экспорта:",
-    charismatic_available: "ДОСТУПЕН",
-    charismatic_used: "ИСПОЛЬЗОВАН",
+    charismatic_label: "ХАРИЗМАТИЧНЫЙ:",
+    charismatic_available: "доступен 1 дополнительный Free Agent",
+    charismatic_used: "дополнительный Free Agent использован",
     export_title: "Экспорт ростера",
     import_title: "Импорт ростера",
     no_available_equipment: "Нет доступного оборудования",
@@ -287,8 +288,9 @@ const translations = {
     export_copied: "Roster copied to clipboard!",
     export_copy_prompt: "Copy the roster text:",
     roster_name_prompt: "Enter a crew name for export:",
-    charismatic_available: "AVAILABLE",
-    charismatic_used: "USED",
+    charismatic_label: "CHARISMATIC:",
+    charismatic_available: "1 additional Free Agent available",
+    charismatic_used: "additional Free Agent used",
     export_title: "Export Roster",
     import_title: "Import Roster",
     no_available_equipment: "No available equipment",
@@ -1636,6 +1638,7 @@ const exactTraitTranslations = {
     "Counter Argument": "Контраргумент",
     "Court of Owls Crew": "Банда Суда Сов",
     "Coward's Reward": "Награда труса",
+    "Criminal Bonds": "Криминальные связи",
     "Criminal Empire": "Преступная империя",
     "Criminology": "Криминология",
     "Crucial Information": "Ключевая информация",
@@ -1812,6 +1815,7 @@ const exactTraitTranslations = {
     "Elusive": "Неуловимый",
     "Embrace the Chaos": "Прими хаос",
     "Emotion Control": "Контроль эмоций",
+    "Empire of Lies": "Империя лжи",
     "Enemies of the Court": "Враги Двора",
     "Enervating (X)": "Изнурение (X)",
     "Energy Absorption": "Поглощение энергии",
@@ -3518,6 +3522,10 @@ const normalizedCompendiumBodyFallbacks = {
       "Один раз за раунд, когда эта модель становится целью вражеской модели или сама выбирает вражескую модель целью, вы кладёте 1 карту цели из своей руки рубашкой вверх перед собой. Вы можете заменить 1 кубик в своём броске или в броске противника значением этой карты. Затем сбросьте её."
     ,[normalizeTranslationKey("When both players end the placing of the Sewer markers, each player must place 1 Criminal Empire marker (use an Event marker) at least 8\" away of all Deployment Zones. Each time a friendly model makes a Manipulate action within 4\" of a Criminal Empire marker, you earn 1 Business Counter.")]:
       "Когда оба игрока заканчивают размещение маркеров канализации, каждый игрок должен разместить 1 маркер Преступной империи, используя маркер события, не ближе 8\" от любых зон расстановки. Каждый раз, когда дружественная модель выполняет действие Манипуляция в пределах 4\" от маркера Преступной империи, вы получаете 1 жетон бизнеса."
+    ,[normalizeTranslationKey("If this model is included in your crew, you can recruit up to 3 models with Affiliation {AFF_PENGUIN_ICON}, Rank {RANK_HENCHMAN_ICON}, and the Criminal trait. Additional models in the crew with this trait have no further effect.")]:
+      "Если эта модель включена в вашу команду, вы можете нанять до 3 моделей с принадлежностью {AFF_PENGUIN_ICON}, рангом {RANK_HENCHMAN_ICON} и трейтом Criminal. Дополнительные модели в команде с этим трейтом не дают дальнейшего эффекта."
+    ,[normalizeTranslationKey("After this model Sets a Suspect within 8” and LoS of an enemy model, the opponent must show you their Objective card hand. Choose one of those cards and the opponent must discard it. You can search into your Objective deck for a card that shares the Type of the card discarded by the opponent.")]:
+      "После того как эта модель размещает Suspect маркер в пределах 8” и линии видимости вражеской модели, противник должен показать вам свою руку карт Objective. Выберите одну из этих карт, и противник должен сбросить её. Вы можете найти в своей колоде Objective карту с тем же типом, что и сброшенная противником карта."
     ,[normalizeTranslationKey("Choose one of the following: • All models with the Saint Dumas Zealot keyword within 8\" remove 2 {STUN_ICON} Damage. • Discard X Objective cards (where X is equal to the number of models with the Saint Dumas Zealot trait within 8\").\r\nThis model may spend a Manipulate action to activate this Special.")]:
       "Выберите одно из следующего: • Все модели с ключевым словом Saint Dumas Zealot в пределах 8\" снимают 2 {STUN_ICON} урона. • Сбросьте X карт целей, где X равно числу моделей с трейтом Saint Dumas Zealot в пределах 8\".\r\nЭта модель может потратить действие Манипуляция, чтобы активировать этот Special."
     ,[normalizeTranslationKey("This model may not be deployed as normal at the start of the game. Instead, at the start of the Raise the Plan phase of the second round, place this model anywhere on the board (but not inside a building or similar enclosed space).")]:
@@ -5729,6 +5737,52 @@ function equipmentFundingValue(eq) {
   return numericValue(eq?.fundingCost, 0);
 }
 
+function normalizeEquipmentConditionName(condition) {
+  return String(condition || "")
+    .replace(/^Alias:\s*/i, "")
+    .replace(/\s+in crew$/i, "")
+    .trim();
+}
+
+function normalizeEquipmentMatchName(name) {
+  return String(name || "")
+    .toLowerCase()
+    .replace(/[().]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function modelMatchesEquipmentName(model, conditionName) {
+  const expected = normalizeEquipmentConditionName(conditionName);
+  const expectedLoose = normalizeEquipmentMatchName(expected);
+  if (!expectedLoose) return false;
+
+  return [model?.name, model?.alias, model?.realname].some(value => {
+    const current = String(value || "").trim();
+    const currentLoose = normalizeEquipmentMatchName(current);
+    return current === expected ||
+      current.startsWith(expected + " ") ||
+      current.startsWith(expected + "(") ||
+      currentLoose === expectedLoose ||
+      currentLoose.startsWith(expectedLoose + " ");
+  });
+}
+
+function crewHasEquipmentModelCondition(condition) {
+  return crew.some(model => modelMatchesEquipmentName(model, condition));
+}
+
+function isEquipmentCharacterCondition(condition) {
+  const trimmed = String(condition || "").trim();
+  if (!trimmed) return false;
+  if (trimmed.startsWith("Alias:")) return true;
+  if (trimmed.endsWith(" in crew")) return crewHasEquipmentModelCondition(trimmed);
+  if (trimmed.startsWith("Only ")) return false;
+  if (trimmed.startsWith("Model has ")) return false;
+  if (/cannot (buy|purchase)/i.test(trimmed)) return false;
+  return true;
+}
+
 function modelRepValue(model) {
   return numericValue(model?.rep, 0);
 }
@@ -5755,10 +5809,12 @@ const updateCrewBar = () => {
   // Обновляем индикатор Charismatic
   const hasCharismatic = crew.some(m => m.traits && m.traits.includes("Charismatic"));
   const indicator = $("charismaticIndicator");
+  const label = $("charismaticLabel");
   const status = $("charismaticStatus");
   
   if (hasCharismatic) {
     indicator.style.display = "inline";
+    label.textContent = t("charismatic_label");
     if (modifiers.charismaticUsed) {
       status.textContent = t("charismatic_used");
       status.style.color = "#ff4444";
@@ -6960,13 +7016,13 @@ function openEquipmentMenu(model, cardElement) {
     // Проверяем, является ли это Equipment с условием на трейт в банде (например, "Vampire Queen in crew")
     // Такое оборудование доступно ВСЕМ моделям независимо от ранга, если требуемый трейт есть в банде
     const hasTraitInCrewCondition = eq.conditions && eq.conditions.some(cond =>
-      cond.endsWith(' in crew') && !cond.startsWith('Alias:')
+      cond.endsWith(' in crew') && !cond.startsWith('Alias:') && !crewHasEquipmentModelCondition(cond)
     );
 
     if (hasTraitInCrewCondition) {
       // Проверяем наличие требуемого трейта в банде
       const hasRequiredTrait = eq.conditions.some(cond => {
-        if (cond.endsWith(' in crew') && !cond.startsWith('Alias:')) {
+        if (cond.endsWith(' in crew') && !cond.startsWith('Alias:') && !crewHasEquipmentModelCondition(cond)) {
           const traitName = cond.replace(' in crew', '').trim();
           // Проверяем, есть ли в банде модель с таким трейтом
           return crew.some(m => m.traits && m.traits.some(t => t.includes(traitName)));
@@ -6982,8 +7038,7 @@ function openEquipmentMenu(model, cardElement) {
       // Это не Equipment с условием на трейт в банде, применяем обычные правила
       // Сначала проверяем, является ли это Special Equipment (требует персонажа в отряде)
       const isSpecialEquipment = eq.conditions && eq.conditions.some(cond =>
-        cond.startsWith('Alias:') || 
-        (cond.endsWith(' in crew') && crew.some(m => m.name === cond.replace(' in crew', '').trim()))
+        isEquipmentCharacterCondition(cond) && crewHasEquipmentModelCondition(cond)
       );
 
       if (isSpecialEquipment) {
@@ -6996,16 +7051,7 @@ function openEquipmentMenu(model, cardElement) {
           if (modelName) {
             // Проверяем точное совпадение или совпадение по базовому имени
             // Например, "Scarecrow" должен совпадать с "Scarecrow (The Worst Nightmare)"
-            const foundModel = crew.find(m => {
-              // Точное совпадение
-              if (m.name === modelName || m.alias === modelName) return true;
-              // Проверка: modelName является началом имени модели (например, "Scarecrow" -> "Scarecrow (The Worst Nightmare)")
-              if (m.name.startsWith(modelName + ' ') || m.name.startsWith(modelName + '(')) return true;
-              // Проверка по alias
-              if (m.alias && (m.alias.startsWith(modelName + ' ') || m.alias.startsWith(modelName + '('))) return true;
-              return false;
-            });
-            return foundModel;
+            return crewHasEquipmentModelCondition(modelName);
           }
           return false;
         });
@@ -7022,7 +7068,7 @@ function openEquipmentMenu(model, cardElement) {
             return false; // Нет targetModels — не Henchman не могут покупать
           }
 
-          const allowedByName = eq.targetModels.some(t => t === crewModel.name);
+          const allowedByName = eq.targetModels.some(t => modelMatchesEquipmentName(crewModel, t));
           const allowedByRank = eq.targetModels.some(t => t === crewModel.rankUsed);
 
           if (!allowedByName && !allowedByRank) {
@@ -7039,6 +7085,9 @@ function openEquipmentMenu(model, cardElement) {
 
         // Проверка на наличие трейта в банде: "Vampire Queen in crew"
         if (trimmed.endsWith(' in crew')) {
+          if (trimmed.startsWith('Alias:')) {
+            return crewHasEquipmentModelCondition(trimmed);
+          }
           const traitName = trimmed.replace(' in crew', '').trim();
           // Проверяем, есть ли в банде модель с таким трейтом
           return crew.some(m => m.traits && m.traits.some(t => t.includes(traitName)));
@@ -7100,7 +7149,13 @@ function openEquipmentMenu(model, cardElement) {
             if (t === 'Bots') return 'Bot';
             return t;
           });
-          return crewModel.traits && normalizedTraits.some(t => crewModel.traits.some(trait => trait.includes(t) || trait.startsWith(t)));
+          return crewModel.traits && normalizedTraits.some(t => crewModel.traits.some(trait => {
+            const normalizedTrait = String(trait || "").replace(/\.$/, "");
+            const normalizedRequired = String(t || "").replace(/\.$/, "");
+            return normalizedTrait === normalizedRequired ||
+              normalizedTrait.startsWith(normalizedRequired + " ") ||
+              normalizedTrait.startsWith(normalizedRequired + "(");
+          }));
         }
 
         // "Only Arkham Asylum Dr." — проверка на трейт с точкой
@@ -7127,7 +7182,7 @@ function openEquipmentMenu(model, cardElement) {
         }
 
         // Простое имя модели — наличие в crew (SPECIAL EQUIPMENT)
-        return crew.some(m => m.name === trimmed || m.alias === trimmed);
+        return crewHasEquipmentModelCondition(trimmed);
       });
 
       if (!allConditionsMet) return false;
@@ -7171,26 +7226,11 @@ function openEquipmentMenu(model, cardElement) {
 
   // Функция для определения Special Equipment
   function isSpecialEquipment(eq) {
-    // Special Equipment имеет conditions с именем персонажа или "Alias: X in crew"
-    // Equipment с условием на трейт (например, "Vampire Queen in crew") не считается Special Equipment
-    if (eq.conditions && eq.conditions.length) {
-      // Проверяем, есть ли условие на трейт в банде (не имя персонажа)
-      const hasTraitCondition = eq.conditions.some(cond =>
-        cond.endsWith(' in crew') && !cond.startsWith('Alias:') &&
-        !crew.some(m => m.name === cond.replace(' in crew', '').trim())
-      );
-      
-      if (hasTraitCondition) {
-        return false; // Это equipment с условием на трейт, а не Special Equipment
-      }
-      
-      return eq.conditions.some(cond =>
-        cond.startsWith('Alias:') ||
-        cond.endsWith(' in crew') ||
-        crew.some(m => m.name === cond.trim() || m.alias === cond.trim())
-      );
-    }
-    return false;
+    // Special Equipment имеет conditions с именем персонажа или "Alias: X in crew".
+    // Equipment с условием на трейт (например, "Vampire Queen in crew") не считается Special Equipment.
+    return !!(eq.conditions && eq.conditions.some(cond =>
+      isEquipmentCharacterCondition(cond) && crewHasEquipmentModelCondition(cond)
+    ));
   }
 
   overlay.innerHTML = `
@@ -7213,14 +7253,14 @@ function openEquipmentMenu(model, cardElement) {
           // Проверяем условие на трейт в банде (например, "Vampire Queen in crew")
           const reqTrait = eq.conditions ? eq.conditions.find(c => 
             c.endsWith(' in crew') && !c.startsWith('Alias:') &&
-            !crew.some(m => m.name === c.replace(' in crew', '').trim())
+            !crewHasEquipmentModelCondition(c)
           )?.replace(' in crew', '').trim() : null;
           
           // Проверяем условие по имени персонажа (Special Equipment)
-          const reqCharacter = isSpecial && eq.conditions ? eq.conditions.find(c => 
-            (c.endsWith(' in crew') && crew.some(m => m.traits && m.traits.some(t => t.includes(c.replace(' in crew', '').trim())))) || 
-            crew.some(m => m.name === c.trim())
-          )?.replace(' in crew', '').replace('Alias: ', '') : null;
+          const reqCharacterCondition = isSpecial && eq.conditions ? eq.conditions.find(c =>
+            isEquipmentCharacterCondition(c) && crewHasEquipmentModelCondition(c)
+          ) : null;
+          const reqCharacter = reqCharacterCondition ? normalizeEquipmentConditionName(reqCharacterCondition) : null;
 
           const reqText = reqTrait
             ? `<br><small style="color:#ffd700;">${uiText("requires")} ${translateDisplayText(reqTrait)} ${uiText("in_crew_suffix")}</small>`

@@ -21955,7 +21955,7 @@
                         "Penguin"
                     ],
         "print":  "yes",
-        "img":  "",
+        "img":  "img/ThePenguinCrimeLordRising.png",
         "stats":  {
                       "Attack":  3,
                       "Defense":  3,
