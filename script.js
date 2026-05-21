@@ -200,6 +200,9 @@ const translations = {
     charismatic_label: "ХАРИЗМАТИЧНЫЙ:",
     charismatic_available: "доступен 1 дополнительный Free Agent",
     charismatic_used: "дополнительный Free Agent использован",
+    possessed_label: "ОДЕРЖИМОСТЬ:",
+    possessed_status: "чужие Henchman: {used}/3",
+    possessed_limit_exceeded: "Possessed позволяет нанять не более 3 Henchman с чужой Affiliation",
     export_title: "Экспорт ростера",
     import_title: "Импорт ростера",
     no_available_equipment: "Нет доступного оборудования",
@@ -291,6 +294,9 @@ const translations = {
     charismatic_label: "CHARISMATIC:",
     charismatic_available: "1 additional Free Agent available",
     charismatic_used: "additional Free Agent used",
+    possessed_label: "POSSESSED:",
+    possessed_status: "any-affiliation Henchmen: {used}/3",
+    possessed_limit_exceeded: "Possessed can recruit no more than 3 Henchmen with other Affiliation",
     export_title: "Export Roster",
     import_title: "Import Roster",
     no_available_equipment: "No available equipment",
@@ -4418,6 +4424,45 @@ function localizeFactionList(input) {
   return values.map(localizeFactionName).join(" • ");
 }
 
+const factionIconPaths = {
+  "Bat Family": "img/ico/AFF_BATMAN_ICON.png",
+  "GCPD": "img/ico/AFF_LAW_FORCES_ICON.png",
+  "Birds of Prey": "img/menu/BIRDS_OF_PREY.png",
+  "Joker": "img/ico/AFF_JOKER_ICON.png",
+  "Bane": "img/ico/AFF_BANE_ICON.png",
+  "League of Shadows": "img/ico/AFF_LEAGUE_ICON.png",
+  "Royal Flush": "img/ico/AFF_ROYAL_FLUSH_ICON.png",
+  "Penguin": "img/ico/AFF_PENGUIN_ICON.png",
+  "Mr. Freeze": "img/ico/AFF_MRFREEZE_ICON.png",
+  "Scarecrow": "img/ico/AFF_SCARECROW_ICON.png",
+  "Two-Face": "img/menu/TWO-FACE.png",
+  "The Riddler": "img/ico/AFF_RIDDLER_ICON}.png",
+  "Organized Crime": "img/ico/AFF_CRIME_ICON.png",
+  "Suicide Squad": "img/ico/AFF_SUICIDE_SQUAD_ICON.png",
+  "Court of Owls": "img/ico/AFF_OWLS_ICON.png",
+  "Watchmen": "img/menu/Watchmen.png",
+  "Batman Who Laughs": "img/menu/BatmanWhoLaughs.png",
+  "Cults": "img/ico/AFF_CULTS_ICON.png",
+  "Doom Patrol": "img/menu/Doom_Patrol.png",
+  "Unknown": "img/menu/UNKNOWN.png"
+};
+
+function renderFactionIcons(factions, className = "faction-icon-small") {
+  const values = Array.isArray(factions) ? factions : String(factions || "").split(/\s*[\/,]\s*/).filter(Boolean);
+  if (!values.length) return "—";
+  return values.map(faction => {
+    const iconPath = factionIconPaths[faction] || factionIconPaths.Unknown;
+    const label = localizeFactionName(faction);
+    return `<img src="${iconPath}" alt="${label}" title="${label}" class="${className}" onerror="this.src='${factionIconPaths.Unknown}'">`;
+  }).join(" ");
+}
+
+function renderModelAffiliationLine(model) {
+  const factions = getFactions(model);
+  const rivals = getRivals(model);
+  return `<div class="mini-affiliation-line"><span class="mini-affiliation-group">F: ${renderFactionIcons(factions, "mini-faction-icon")}</span><span class="mini-rivals">R: ${renderFactionIcons(rivals, "mini-faction-icon")}</span></div>`;
+}
+
 function localizeRank(rank) {
   if (!rank) return currentLang === "ru" ? "Свободный агент" : "Free Agent";
   const values = Array.isArray(rank) ? rank : String(rank).split("/").map(item => item.trim()).filter(Boolean);
@@ -5477,6 +5522,10 @@ const addToCrew = m => {
       ranks = ["Sidekick"];
     }
 
+    if (!canHireInFaction(m, currentFaction) && canShowByPossessedRule(m)) {
+      ranks = ranks.filter(rank => rank === "Henchman");
+    }
+
     if (ranks.length === 1) {
       addModelWithRank(m, ranks[0]);
     } else if (ranks.length > 1) {
@@ -5609,14 +5658,23 @@ function addModelWithRank(model, chosenRank, options = {}) {
     }
   }
 
+  const usePossessedRecruitment = needsPossessedRecruitment(model, chosenRank);
+
   const cloned = {
     ...model,
     rep: numericValue(model.rep, model.rep),
     funding: numericValue(model.funding, model.funding),
+    stats: { ...(model.stats || {}) },
+    traits: [...getModelTraits(model)],
     rankUsed: chosenRank,
     uniqueId: Date.now() + Math.random(),
     equipment: []
   };
+
+  if (usePossessedRecruitment) {
+    applyPossessedRecruitmentEffects(cloned);
+  }
+
   if (!bmgCanAddModel(cloned, { allowThreeJokersLeader })) return null;
   // ИЗМЕНЕНИЕ: используем unshift вместо push для добавления в начало массива
   crew.unshift(cloned);
@@ -5642,6 +5700,10 @@ function showRankSelectionModal(model, ranks) {
     if (modelRanks.includes("Leader") && modelRanks.includes("Sidekick")) {
       availableRanks = ["Sidekick"];
     }
+  }
+
+  if (!canHireInFaction(model, currentFaction) && canShowByPossessedRule(model)) {
+    availableRanks = availableRanks.filter(rank => rank === "Henchman");
   }
 
   // Специальное правило для Henry Ducard: может быть Sidekick только если лидером нанят Ra's al Ghul Decoy
@@ -5834,6 +5896,18 @@ const updateCrewBar = () => {
   } else {
     indicator.style.display = "none";
   }
+
+  const possessedIndicator = $("possessedIndicator");
+  const possessedLabel = $("possessedLabel");
+  const possessedStatus = $("possessedStatus");
+  if (hasPossessedBoss()) {
+    possessedIndicator.style.display = "inline";
+    possessedLabel.textContent = t("possessed_label");
+    possessedStatus.textContent = t("possessed_status", { used: bmgPossessedHenchmanCount() });
+    possessedStatus.style.color = bmgPossessedHenchmanCount() >= POSSESSED_HENCHMAN_LIMIT ? "#ff4444" : "#44ff44";
+  } else {
+    possessedIndicator.style.display = "none";
+  }
 };
 
 function calculateModifiers() {
@@ -6001,6 +6075,7 @@ const renderMiniCardsBuilder = debounce(() => {
     const originalModel = findBaseModel(m) || m;
     return { 
       ...originalModel, 
+      ...m,
       inCrew: true, 
       count: countInCrew(originalModel),
       instance: m // ссылка на экземпляр в отряде
@@ -6008,7 +6083,7 @@ const renderMiniCardsBuilder = debounce(() => {
   }));
   
   // === ИСПРАВЛЕНО: используем canHireInFaction для режима билдера ===
-  let filteredModels = models.filter(m => canHireInFaction(m, currentFaction) && !hasInCrew(m));
+  let filteredModels = models.filter(m => (canHireInFaction(m, currentFaction) || canShowByPossessedRule(m)) && !hasInCrew(m));
 
   // Скрываем модели с невыполненными зависимостями
   filteredModels = filteredModels.filter(m => checkModelDependency(m));
@@ -6069,6 +6144,7 @@ ${item.inCrew && BMG_BOSS && BMG_BOSS.name === item.name ? '<span class="boss-cr
 <img src="${item.img}" onerror="this.src='img/no.png'">
 <div class="mini-info">
   <div class="mini-name">${item.name}</div>
+  ${renderModelAffiliationLine(item)}
   <div class="mini-ranks">
     ${ranks.map(rank => `<img src="img/${rank}.png" alt="${rank}" class="rank-icon" onerror="this.src='img/no.png'">`).join('')}
   </div>
@@ -6139,7 +6215,9 @@ function rerenderOpenFullCard() {
 }
 
 const showFullCard = model => {
+  const crewInstance = model?.instance || findCrewModel(model);
   currentFullCardModel =
+    crewInstance ||
     models[model?._id] ||
     (model?.id ? models.find(m => m.id === model.id) : null) ||
     models.find(m => m.name === model?.name) ||
@@ -6171,39 +6249,12 @@ const showFullCard = model => {
   const rep = displayValue(model.rep);
   const funding = displayValue(model.funding);
 
-  // --- Маппинг иконок ---
-  const factionIcons = {
-    "Bat Family": "img/ico/AFF_BATMAN_ICON.png",
-    "GCPD": "img/ico/AFF_LAW_FORCES_ICON.png",
-    "Birds of Prey": "img/menu/BIRDS_OF_PREY.png",
-    "Joker": "img/ico/AFF_JOKER_ICON.png",
-    "Bane": "img/ico/AFF_BANE_ICON.png",
-    "League of Shadows": "img/ico/AFF_LEAGUE_ICON.png",
-    "Royal Flush": "img/ico/AFF_ROYAL_FLUSH_ICON.png",
-    "Penguin": "img/ico/AFF_PENGUIN_ICON.png",
-    "Mr. Freeze": "img/ico/AFF_MRFREEZE_ICON.png",
-    "Scarecrow": "img/ico/AFF_SCARECROW_ICON.png",
-    "Two-Face": "img/menu/TWO-FACE.png",
-    "The Riddler": "img/ico/AFF_RIDDLER_ICON}.png",
-    "Organized Crime": "img/ico/AFF_CRIME_ICON.png",
-    "Suicide Squad": "img/ico/AFF_SUICIDE_SQUAD_ICON.png",
-    "Court of Owls": "img/ico/AFF_OWLS_ICON.png",
-    "Watchmen": "img/menu/Watchmen.png",
-    "Batman Who Laughs": "img/menu/BatmanWhoLaughs.png",
-    "Cults": "img/ico/AFF_CULTS_ICON.png",
-    "Doom Patrol": "img/menu/Doom_Patrol.png",
-    "Unknown": "img/menu/UNKNOWN.png"
-  };
-
-  const renderIcons = arr => arr.length
-    ? arr.map(f => {
-        const iconPath = factionIcons[f] || "img/menu/UNKNOWN.png";
-        return `<img src="${iconPath}" alt="${f}" class="faction-icon-small">`;
-      }).join(" ")
-    : "—";
-
-  const factionIconsHTML = renderIcons(mainFactions);
-  const rivalsIconsHTML   = renderIcons(rivalFactions);
+  const factionIconsHTML = renderFactionIcons(mainFactions);
+  const rivalsIconsHTML = renderFactionIcons(rivalFactions);
+  const willpowerPenaltyClass = model.hiredByPossessed && model.possessedWillpowerPenalty ? " possessed-stat-penalty" : "";
+  const willpowerPenaltyTitle = model.hiredByPossessed && model.possessedWillpowerPenalty
+    ? ` title="Possessed: -${model.possessedWillpowerPenalty} Willpower"`
+    : "";
 
   // --- Оружие и трейты ---
 const weaponsHTML = model.weapons?.length ? model.weapons.map(w => {
@@ -6275,7 +6326,7 @@ const weaponsHTML = model.weapons?.length ? model.weapons.map(w => {
           <img src="${model.img}" class="official-img" onerror="this.src='img/no.png'">
         </div>
         <div class="official-stats">
-          <div class="official-stat vertical-stat"><span class="official-value">${model.stats.Willpower || "-"}</span><span class="official-label">${uiText("stat_willpower")}</span></div>
+          <div class="official-stat vertical-stat"><span class="official-value${willpowerPenaltyClass}"${willpowerPenaltyTitle}>${model.stats.Willpower || "-"}</span><span class="official-label">${uiText("stat_willpower")}</span></div>
           <div class="official-stat vertical-stat"><span class="official-value">${model.stats.Endurance || "-"}</span><span class="official-label">${uiText("stat_endurance")}</span></div>
           <div class="official-stat"><span class="official-value">${model.stats.Attack || "-"}</span><span class="official-label"><img src="img/Attack.png" class="stat-icon"></span></div>
           <div class="official-stat"><span class="official-value">${model.stats.Defense || "-"}</span><span class="official-label"><img src="img/Defense.png" class="stat-icon"></span></div>
@@ -6627,6 +6678,63 @@ function bmgRankCount(rank) {
   return crew.filter(m => m.rankUsed === rank).length;
 }
 
+const POSSESSED_HENCHMAN_LIMIT = 3;
+
+function getModelTraits(model) {
+  return Array.isArray(model?.traits) ? model.traits : [];
+}
+
+function hasTrait(model, traitName) {
+  return getModelTraits(model).some(trait => getCleanName(trait) === traitName);
+}
+
+function hasPossessedBoss() {
+  return !!(BMG_BOSS && hasTrait(BMG_BOSS, "Possessed"));
+}
+
+function hasForbiddenPossessedRecruitTrait(model) {
+  return hasTrait(model, "Bot") || hasTrait(model, "Cybernetic");
+}
+
+function bmgPossessedHenchmanCount() {
+  return crew.filter(model => model.hiredByPossessed).length;
+}
+
+function canBePossessedHenchman(model, chosenRank = null) {
+  const ranks = chosenRank ? [chosenRank] : getRanks(model);
+  return hasPossessedBoss()
+    && ranks.includes("Henchman")
+    && !hasForbiddenPossessedRecruitTrait(model);
+}
+
+function needsPossessedRecruitment(model, chosenRank = null) {
+  return canBePossessedHenchman(model, chosenRank) && !canHireInFaction(model, currentFaction);
+}
+
+function canShowByPossessedRule(model) {
+  return needsPossessedRecruitment(model);
+}
+
+function applyPossessedRecruitmentEffects(model) {
+  model.hiredByPossessed = true;
+  model.originalFaction = getFactions(model);
+  const bossFactions = BMG_AFFILIATIONS?.length ? BMG_AFFILIATIONS : getFactions(BMG_BOSS);
+  model.faction = [...bossFactions];
+
+  model.stats = { ...(model.stats || {}) };
+  const willpower = numericValue(model.stats.Willpower, null);
+  if (willpower !== null) {
+    model.possessedOriginalWillpower = willpower;
+    model.possessedWillpowerPenalty = 1;
+    model.stats.Willpower = Math.max(0, willpower - 1);
+  }
+
+  model.traits = [...getModelTraits(model)];
+  if (!hasTrait(model, "Self-Discipline")) {
+    model.traits.push("Self-Discipline");
+  }
+}
+
 function bmgCanAddModel(model, options = {}) {
   const { allowThreeJokersLeader = false } = options;
 
@@ -6637,6 +6745,12 @@ function bmgCanAddModel(model, options = {}) {
   const rank = model.rankUsed;
   if (!rank) {
     alert(t("rank_not_selected"));
+    return false;
+  }
+
+  const usePossessedRecruitment = model.hiredByPossessed === true;
+  if (usePossessedRecruitment && bmgPossessedHenchmanCount() >= POSSESSED_HENCHMAN_LIMIT) {
+    alert(t("possessed_limit_exceeded"));
     return false;
   }
 
@@ -6671,7 +6785,7 @@ function bmgCanAddModel(model, options = {}) {
   }
 
   // Проверка аффилиации
-  if (BMG_BOSS) {
+  if (BMG_BOSS && !usePossessedRecruitment) {
     const modelFactions = getFactions(model);
     const bossFactions = BMG_AFFILIATIONS || [];
 
@@ -6695,7 +6809,7 @@ function bmgCanAddModel(model, options = {}) {
       }
     }
   }
-    // Специальное правило для Cults: остальные модели должны иметь нужный культист-трейт
+  // Специальное правило для Cults: остальные модели должны иметь нужный культист-трейт
   if (currentFaction === "Cults" && BMG_BOSS && BMG_BOSS.name !== model.name) {
     let requiredTrait = null;
     if (BMG_BOSS.name === "Deacon Blackfire") {
@@ -6929,8 +7043,9 @@ function bmgCanAddModel(model, options = {}) {
       }
     }
 
-    // Possessed: Только в supernatural фракциях
-    if (t === "Possessed" && !["Cults", "Batman Who Laughs"].includes(currentFaction)) {
+    // Possessed сам по себе не запрещает нанимать модель в ее напечатанную фракцию.
+    const isPrintedFaction = getFactions(model).includes(currentFaction);
+    if (t === "Possessed" && !isPrintedFaction && !["Cults", "Batman Who Laughs"].includes(currentFaction)) {
       alert(t("possessed_only_supernatural"));
       exceeded = true;
     }

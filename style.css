@@ -42,6 +42,10 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 }
 .funds { font-size:14px; font-weight:bold; margin-top:8px; }
 .funds span { color:#e94560; margin:0 10px; }
+#charismaticIndicator,
+#possessedIndicator { white-space:nowrap; }
+#charismaticIndicator span,
+#possessedIndicator span { margin:0 2px; }
 
 /* ВКЛАДКИ ФРАКЦИЙ */
 .tabs-container { background:#111; padding:10px 0 8px; border-bottom:3px solid #222; overflow-y:auto; display:none; }
@@ -64,6 +68,11 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 .mini-card img { width:100%; height:115px; object-fit:cover; }
 .mini-info { padding:10px 8px; text-align:center; }
 .mini-name { font-weight:bold; font-size:13.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-bottom:3px; }
+.mini-affiliation-line { color:#bfc3cc; font-size:11px; line-height:1.2; margin:2px 0 4px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:flex; align-items:center; justify-content:center; gap:8px; }
+.mini-affiliation-line .mini-affiliation-group,
+.mini-affiliation-line .mini-rivals { display:inline-flex; align-items:center; gap:3px; min-width:0; }
+.mini-affiliation-line .mini-rivals { color:#8f949e; }
+.mini-faction-icon { height:18px !important; width:auto !important; max-width:26px; object-fit:contain; vertical-align:middle; border-radius:3px; box-shadow:0 1px 4px rgba(0,0,0,0.55); }
 .mini-rep { color:#e94560; font-weight:bold; font-size:14px; line-height:1.35; }
 .add-btn, .remove-btn { position:absolute; top:8px; right:8px; width:40px; height:40px; border-radius:50%; font-size:24px; font-weight:bold; border:none; z-index:10; box-shadow:0 3px 10px rgba(0,0,0,.6); transition:all .3s; cursor:pointer; }
 .add-btn { background:#e94560; color:#fff; }
@@ -187,6 +196,7 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 .official-stats { flex:1; display:grid; grid-template-columns:1fr 1fr; gap:4px; align-content:start; }
 .official-stat { background:#000; color:#ffd700; padding:8px; border-radius:12px; text-align:center; font-weight:bold; box-shadow:0 4px 12px rgba(0,0,0,.4); }
 .official-value { font-size:30px; display:block; line-height:1; }
+.official-value.possessed-stat-penalty { color:#ff4444; text-shadow:0 0 12px rgba(255,68,68,.7); }
 .official-label { font-size:20px; letter-spacing:2px; opacity:.9; margin-top:4px; }
 .vertical-stat { display:flex; align-items:center; justify-content:center; padding:8px; }
 .vertical-stat .official-value { font-size:50px; line-height:1; margin-right:10px; }
@@ -266,6 +276,7 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 .models-list .mini-card img { width:80px; height:80px; border-radius:8px; }
 .models-list .mini-info { flex:1; text-align:left; padding:0; }
 .models-list .mini-name { font-size:14px; }
+.models-list .mini-affiliation-line { justify-content:flex-start; font-size:11px; max-width:100%; }
 .models-list .mini-rep { font-size:13px; }
 .models-list .add-btn, .models-list .remove-btn { position:static; width:34px; height:34px; font-size:16px; margin-left:auto; }
 .models-list .remove-btn { margin-left:5px; }
@@ -711,6 +722,17 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 @media (max-width: 480px) {
   .top-bar {
     padding: 10px 8px 8px;
+  }
+
+  .funds {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  #charismaticIndicator,
+  #possessedIndicator {
+    margin-left: 0 !important;
+    white-space: normal;
   }
 
   .top-bar-content {
