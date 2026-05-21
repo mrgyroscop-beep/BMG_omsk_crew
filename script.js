@@ -722,6 +722,8 @@ const exactTextTranslations = {
     "Only Henchman/Free Agents": "Только подручные/свободные агенты",
     "Only Arkham Asylum Dr.": "Только доктор Аркхэмской лечебницы",
     "Only Plants": "Только растения",
+    "Plants cannot purchase": "Растения не могут покупать это снаряжение",
+    "Eternal Option Required": "Требуется опция Eternal",
     "Iceberg Lounge": "Айсберг Лаунж",
     "Jason Todd is Boss": "Джейсон Тодд является боссом",
     "Model has Bot trait": "Модель имеет трейт Bot",
@@ -770,6 +772,8 @@ const exactTextTranslations = {
     "Immunity to CRT.": "Иммунитет к CRT.",
     "Invulnerability (1), Tough Skin, +1 skills (except Endurance), +3 Endurance, 6\" action radius.": "Неуязвимость (1), Tough Skin, +1 ко всем навыкам, кроме стойкости, +3 к стойкости, радиус действия 6\".",
     "Model gains 1 Spray Can.": "Модель получает 1 баллончик с краской.",
+    "Model gains the Batclaw/Grapple-gun trait.": "Модель получает трейт Batclaw/Grapple-gun.",
+    "Model gains the Night Vision trait.": "Модель получает трейт Night Vision.",
     "Model gains Chain of Command.": "Модель получает Chain of Command.",
     "Model gains Combat Flip rule.": "Модель получает правило Combat Flip.",
     "Model gains Disarray rule.": "Модель получает правило Disarray.",
@@ -1037,6 +1041,7 @@ const exactTextTranslations = {
     "Once per round, this model may reroll any single die that it has rolled, for whatever reason.": "Один раз за раунд эта модель может перебросить любой один кубик, который она бросила, по любой причине.",
     "This model gains +4” to its basic move distance, but can neither Jump nor Climb.": "Эта модель получает +4” к своей базовой дистанции перемещения, но не может ни Jump, ни Climb.",
     "Model gains the Tough Skin and Desensitized traits.": "Модель получает трейты Tough Skin и Desensitized.",
+    "Model's Close Combat attacks gain the Steal trait.": "Атаки ближнего боя этой модели получают трейт Steal.",
     "Model gains the Tough Skin and Sturdy traits.": "Модель получает трейты Tough Skin и Sturdy.",
     "Target an enemy model (not a Vehicle) within 8” and line of sight. For the rest of the round, the target cannot perform Special Actions unless it Efforts 2 {STUN_ICON}, and to Effort during a Willpower roll must take 2 {STUN_ICON} instead of 1.": "Выберите вражескую модель, не являющуюся Vehicle, в пределах 8” и линии видимости. До конца раунда цель не может выполнять специальные действия, если только не тратит Effort за 2 {STUN_ICON}, а при использовании Effort во время броска силы воли должна получать 2 {STUN_ICON} вместо 1.",
     "Target an enemy model (not a Vehicle) within 8” and line of sight.  The target must pass a Willpower roll or be unable to perform Melee Attacks this round.": "Выберите вражескую модель, не являющуюся Vehicle, в пределах 8” и линии видимости. Цель должна пройти бросок силы воли, иначе в этом раунде она не сможет выполнять атаки ближнего боя.",
@@ -1160,6 +1165,7 @@ const exactTextTranslations = {
     "Model gains the Scheming (2) trait.": "Модель получает трейт Scheming (2).",
     "This model may choose up to 2 Suspect markers within 8” and move them up to 2”.": "Эта модель может выбрать до 2 Suspect маркеров в пределах 8” и переместить каждый на расстояние до 2”.",
     "When this model becomes a Casualty, all models in Contact must pass an Endurance roll of receive {BLOOD_ICON} Damage.": "Когда эта модель становится выбывшей, все модели в контакте с ней должны пройти бросок Endurance или получить {BLOOD_ICON} урона.",
+    "When this model becomes a Casualty, all models in Contact must pass an Endurance roll or receive {BLOOD_ICON} Damage.": "Когда эта модель становится выбывшей, все модели в контакте с ней должны пройти бросок Endurance или получить {BLOOD_ICON} урона.",
     "Model gains the Luck and Cannibal traits.": "Модель получает трейты Luck и Cannibal.",
     "This crew can only hire models with the Affiliation: The Court of Owls.": "Эта команда может нанимать только модели с Affiliation: The Court of Owls.",
     "Choose a KO enemy (not a Vehicle) in contact. That model is removed from play as a Casualty.": "Выберите KO-вражескую модель, не являющуюся Vehicle, находящуюся в контакте. Эта модель удаляется из игры как выбывшая.",
@@ -3006,6 +3012,7 @@ const exactCompendiumBodyTranslations = {
     "Choose a friendly model with Rank {RANK_HENCHMAN_ICON} within 4” of this model (but not the activated model itself). That model gains 2 {+DEF_ICON}.": "Выберите дружественную модель ранга {RANK_HENCHMAN_ICON} в пределах 4” от этой модели, но не саму активированную модель. Эта модель получает 2 {+DEF_ICON}.",
     "This model receives a +1 bonus to its Attack and Defense rolls. In addition, enemy models roll 1 less attack die when targeting this model.": "Эта модель получает +1 к броскам Attack и Defense. Кроме того, вражеские модели бросают на 1 кубик атаки меньше, когда выбирают её целью.",
     "Model gains the Invulnerability (1) and Tough Skin traits, +1 to all Basic Skills except Endurance, +3 to Endurance, and the action area radius is increased to 6”.": "Модель получает трейты Неуязвимость (1) и Толстая кожа, +1 ко всем базовым характеристикам кроме Endurance, +3 к Endurance, а радиус её зоны действия увеличивается до 6”.",
+    "Model gains the Invulnerability (1) and Tough Skin traits, +1 to all Basic Skills except Endurance, +3 to Endurance, and the action area radius is increased to 6\".": "Модель получает трейты Неуязвимость (1) и Толстая кожа, +1 ко всем базовым характеристикам кроме Endurance, +3 к Endurance, а радиус её зоны действия увеличивается до 6\".",
     "When this model or a friendly model with Alias: Batman (Robert Pattinson) reveals an enemy Suspect, you may look at your opponent's Objective hand.": "Когда эта модель или дружественная модель с Alias: Batman (Robert Pattinson) раскрывает вражеский Suspect маркер, вы можете посмотреть руку карт целей противника.",
     "Target a model with the Bot trait within 4” and Line of Sight. Remove up to 3 Damage markers from that model.": "Выберите модель с трейтом Bot в пределах 4” и линии видимости. Уберите с этой модели до 3 маркеров урона.",
     "The first time this model is selected as a target by an enemy ranged attack in each round, it reduces the attacker’s RoF by -1.": "В первый раз за раунд, когда эта модель выбирается целью вражеской дальней атаки, она уменьшает RoF атакующего на 1.",
@@ -5778,6 +5785,8 @@ function isEquipmentCharacterCondition(condition) {
   if (trimmed.startsWith("Alias:")) return true;
   if (trimmed.endsWith(" in crew")) return crewHasEquipmentModelCondition(trimmed);
   if (trimmed.startsWith("Only ")) return false;
+  if (/^Name:\s*/i.test(trimmed)) return false;
+  if (trimmed === "Eternal Option Required") return false;
   if (trimmed.startsWith("Model has ")) return false;
   if (/cannot (buy|purchase)/i.test(trimmed)) return false;
   return true;
@@ -7095,6 +7104,18 @@ function openEquipmentMenu(model, cardElement) {
 
         // Пропускаем условия "Alias: X in crew", так как они уже были проверены в isSpecialEquipment
         if (trimmed.startsWith('Alias:')) {
+          return true;
+        }
+
+        // Ограничение покупки конкретной моделью: "Name: Dr. Pamela Lillian Isley"
+        if (/^Name:\s*/i.test(trimmed)) {
+          const requiredName = trimmed.replace(/^Name:\s*/i, '').trim();
+          return modelMatchesEquipmentName(crewModel, requiredName);
+        }
+
+        // Сейчас в билдере нет отдельного переключателя Eternal Option, но условие должно
+        // оставаться в данных и компедиуме, не превращая Passage в недоступный апдейт.
+        if (trimmed === 'Eternal Option Required') {
           return true;
         }
 
