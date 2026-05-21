@@ -708,8 +708,8 @@ const models = [
     "traits": [
       "Arrest",
       "Bat Cape",
-      "Bat-Armor MKII",
-      "Batclaw / Grapple Gun",
+      "Bat-Armor MK II",
+      "Batclaw/Grapple Gun",
       "Combo (Unarmed)",
       "Dark Knight",
       "Detective",
@@ -1113,7 +1113,7 @@ const models = [
     "traits": [
       "Bat Cape",
       "Bat Family",
-      "Bat-Armor MKI",
+      "Bat-Armor MK I",
       "Batclaw",
       "Counter Attack",
       "Detective",
@@ -2794,7 +2794,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/Batman.png",
+    "img": "img/BATMAN.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
