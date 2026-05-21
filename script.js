@@ -3,6 +3,7 @@ let crew = [];
 let crewEquipmentCounts = {}; // { "Magazine": count } for crew-wide limits
 let modelSearchMode = 'models';
 let compendiumSearchMode = 'rules';
+let builderPrintOnly = false;
 let modifiers = {
   extraFreeAgents: 0,
   extraVehicles: 0,
@@ -203,6 +204,7 @@ const translations = {
     possessed_label: "ОДЕРЖИМОСТЬ:",
     possessed_status: "чужие Henchman: {used}/3",
     possessed_limit_exceeded: "Possessed позволяет нанять не более 3 Henchman с чужой Affiliation",
+    print_filter_title: "Только модели с Print",
     export_title: "Экспорт ростера",
     import_title: "Импорт ростера",
     no_available_equipment: "Нет доступного оборудования",
@@ -297,6 +299,7 @@ const translations = {
     possessed_label: "POSSESSED:",
     possessed_status: "any-affiliation Henchmen: {used}/3",
     possessed_limit_exceeded: "Possessed can recruit no more than 3 Henchmen with other Affiliation",
+    print_filter_title: "Only models with Print",
     export_title: "Export Roster",
     import_title: "Import Roster",
     no_available_equipment: "No available equipment",
@@ -381,6 +384,8 @@ function setLanguage(lang) {
   if (document.getElementById('fullCard')?.classList.contains('active')) {
     rerenderOpenFullCard();
   }
+
+  updateBuilderPrintFilterButton();
 
   if (currentMode === 'my-crews') {
     renderMyCrews();
@@ -5556,12 +5561,32 @@ function closeModelSearch() {
   $('modelSearchModal').classList.remove('active');
 }
 
+function updateBuilderPrintFilterButton() {
+  const button = $("builderPrintFilterBtn");
+  if (!button) return;
+  button.classList.toggle("active", builderPrintOnly);
+  button.setAttribute("aria-pressed", builderPrintOnly ? "true" : "false");
+  button.title = t("print_filter_title");
+}
+
+function toggleBuilderPrintFilter() {
+  builderPrintOnly = !builderPrintOnly;
+  updateBuilderPrintFilterButton();
+  if (currentMode === "builder") {
+    renderMiniCardsBuilder();
+  }
+  if ($("modelSearchModal")?.classList.contains("active")) {
+    renderUnifiedSearch();
+  }
+}
+
 // ======================== ВЫБОР ФРАКЦИИ В БИЛДЕРЕ ========================
 function selectFaction(faction) {
   currentFaction = faction;
   $('factionSelect').style.display = 'none';
   $('builderFactionCards').classList.add('hidden'); // Скрываем вкладки фракций
   $('builderMain').style.display = 'block';
+  updateBuilderPrintFilterButton();
   renderMiniCardsBuilder();
   updateCrewBar();
 }
@@ -5820,6 +5845,9 @@ function showRankSelectionModal(model, ranks) {
       modifiers = calculateModifiers();
       updateCrewBar();
       renderMiniCardsBuilder();
+      if ($("modelSearchModal")?.classList.contains("active")) {
+        renderUnifiedSearch();
+      }
       overlay.remove();
     };
   });
@@ -6139,6 +6167,7 @@ const renderMiniCardsView = debounce(() => {
 <img src="${model.img}" onerror="this.src='img/no.png'">
 <div class="mini-info">
   <div class="mini-name">${model.name}</div>
+  ${renderModelAffiliationLine(model)}
   <div class="mini-ranks">
     ${ranks.map(rank => `<img src="img/${rank}.png" alt="${rank}" class="rank-icon" onerror="this.src='img/no.png'">`).join('')}
   </div>
@@ -6184,6 +6213,10 @@ const renderMiniCardsBuilder = debounce(() => {
 
   // Скрываем новые модели, которые уже не помещаются в оставшиеся Rep или Funding
   filteredModels = filteredModels.filter(m => canAffordModelInCurrentCrew(m));
+
+  if (builderPrintOnly) {
+    filteredModels = filteredModels.filter(m => hasPrintableFile(m));
+  }
 
   // Определение порядка рангов
   const rankOrder = {
@@ -6497,6 +6530,7 @@ function renderRulesSearch(query) {
 
 function renderModelsSearch(query) {
   const normalizedQuery = query.toLowerCase().trim();
+  const isBuilderSearch = currentMode === "builder";
   const results = models
     .filter(m => {
       const factions = Array.isArray(m.faction)
@@ -6505,27 +6539,55 @@ function renderModelsSearch(query) {
           ? m.faction.replace(/ *& */gi,",").replace(/ *\/ */g,",").split(",").map(s=>s.trim())
           : [];
 
-      if (!factions.includes(currentFaction) || !m.name.toLowerCase().includes(normalizedQuery)) {
+      const visibleInCurrentMode = isBuilderSearch
+        ? (canHireInFaction(m, currentFaction) || canShowByPossessedRule(m))
+        : factions.includes(currentFaction);
+
+      if (!visibleInCurrentMode || !m.name.toLowerCase().includes(normalizedQuery)) {
         return false;
       }
       if (!checkModelDependency(m)) {
+        return false;
+      }
+      if (isBuilderSearch && checkAversionHidden(m)) {
+        return false;
+      }
+      if (isBuilderSearch && !canAffordModelInCurrentCrew(m)) {
+        return false;
+      }
+      if (isBuilderSearch && builderPrintOnly && !hasPrintableFile(m)) {
         return false;
       }
       return true;
     })
     .sort((a,b) => a.name.localeCompare(b.name));
 
-  const html = results.length ? results.map(m => `
-    <div class="comp-entry" style="cursor:pointer" onclick="showFullCard(models[${m._id}])">
-      <div class="comp-title" style="background:#222;padding:16px;font-size:18px">
-        ${m.name}<span style="float:right;color:#e94560;font-weight:bold">${displayValue(m.rep)} Rep • $${displayValue(m.funding)} • ${getPrintableStatusText(m)}</span>
-      </div>
-      <div class="comp-text" style="padding:12px;font-size:14px;color:#aaa">
-        ${localizeRank(m.rank||"Free Agent")} • ${localizeFactionList(Array.isArray(m.faction)?m.faction:m.faction||"—")}
-      </div>
-    </div>`).join("") : `<div style="text-align:center;color:#888;padding:100px;font-size:18px">${t("nothing_found")}</div>`;
+  const html = results.length ? results.map(m => {
+    const isMinionOrHorde = m.traits && m.traits.some(trait => trait.startsWith("Minion") || trait === "Horde");
+    const alreadyInCrew = hasInCrew(m);
+    const canShowAddButton = isBuilderSearch && (!alreadyInCrew || isMinionOrHorde);
+
+    return `
+      <div class="comp-entry model-search-card" onclick="showFullCard(models[${m._id}])">
+        ${canShowAddButton ? `<button class="add-btn search-add-btn" onclick="event.stopPropagation(); addModelFromSearch(${m._id})">+</button>` : ""}
+        <img class="model-search-img" src="${m.img}" alt="${escapeAttribute(m.name)}" onerror="this.src='img/no.png'">
+        <div class="model-search-info">
+          <div class="model-search-name">${escapeHtml(m.name)}</div>
+          ${renderModelAffiliationLine(m)}
+          <div class="model-search-rank">${localizeRank(m.rank || "Free Agent")}</div>
+          <div class="model-search-cost">${displayValue(m.rep)} Rep • $${displayValue(m.funding)} • ${getPrintableStatusText(m)}</div>
+        </div>
+      </div>`;
+  }).join("") : `<div style="text-align:center;color:#888;padding:100px;font-size:18px">${t("nothing_found")}</div>`;
 
   $("modelSearchResults").innerHTML = html;
+}
+
+function addModelFromSearch(modelId) {
+  const model = models[modelId];
+  if (!model) return;
+  addToCrew(model);
+  renderUnifiedSearch();
 }
 
 function renderUnifiedSearch() {
@@ -6578,7 +6640,6 @@ function showTraitDesc(traitName) {
   // Обрабатываем иконки в заголовке и в самом тексте
   const formattedTitle = replaceIcons(translateDisplayText(traitName));
   const formattedBody = replaceIcons(localizeCompendiumBody(rawText)).replace(/\n/g, "<br>");
-  const traitUsageHtml = renderTraitModelUsage(traitName);
 
   overlay.innerHTML = `
     <div class="trait-popup-content">
@@ -6588,7 +6649,6 @@ function showTraitDesc(traitName) {
       </div>
       <div class="trait-popup-body">
         ${formattedBody}
-        ${traitUsageHtml}
       </div>
     </div>
   `;
@@ -6747,6 +6807,7 @@ window.addEventListener("load", () => {
     renderMiniCardsBuilder();
   }
   updateCrewBar();
+  updateBuilderPrintFilterButton();
   
   // Инициализация табов
   initTabs();

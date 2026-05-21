@@ -24,6 +24,8 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 }
 .compendium-small-btn { display:flex; align-items:center; gap:8px; background:#e94560; color:#fff; padding:8px 8px; border-radius:30px; font-size:13px; font-weight:bold; cursor:pointer; box-shadow:0 4px 15px rgba(233,69,96,.5); transition:all .3s; position: relative; }
 .compendium-small-btn:hover { background:#ff3366; transform:translateY(-2px); }
+.compendium-small-btn.active { background:#ffd700; color:#000; box-shadow:0 0 18px rgba(255,215,0,.55); }
+.compendium-small-btn.active svg { fill:#000; }
 .compendium-small-btn svg { width:24px; height:24px; fill:#fff; }
 .compendium-small-btn[title]:hover::after {
   content: attr(title);
@@ -189,6 +191,14 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 .comp-models-list { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
 .comp-model-chip { border:1px solid #d0d0d0; background:#111; color:#ffd700; border-radius:8px; padding:5px 8px; font-family:'Oswald',sans-serif; font-size:12px; font-weight:bold; cursor:pointer; line-height:1.2; }
 .comp-model-chip:hover { border-color:#e94560; color:#fff; }
+.model-search-card { position:relative; display:flex; gap:12px; align-items:stretch; cursor:pointer; padding:10px 58px 10px 10px; }
+.model-search-img { flex:0 0 82px; width:82px; height:104px; object-fit:cover; border-radius:8px; background:#050505; border:1px solid #333; }
+.model-search-info { flex:1 1 auto; min-width:0; display:flex; flex-direction:column; justify-content:center; gap:4px; }
+.model-search-name { color:#ffd700; font-size:18px; font-weight:bold; line-height:1.15; }
+.model-search-rank { color:#d6d6d6; font-size:13px; line-height:1.25; }
+.model-search-cost { color:#e94560; font-size:14px; font-weight:bold; line-height:1.25; }
+.model-search-card .mini-affiliation-line { justify-content:flex-start; margin:0; white-space:normal; }
+.model-search-card .search-add-btn { top:50%; right:12px; transform:translateY(-50%); }
 
 /* ОФИЦИАЛЬНЫЕ КАРТОЧКИ */
 .official-card { background:#ffd700; color:#000; border-radius:20px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.6); margin:10px; font-family:'Oswald',sans-serif; }
