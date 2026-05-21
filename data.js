@@ -6978,6 +6978,7 @@ const models = [
       "Huge",
       "Recover the Titan",
       "Titan Addict",
+      "Titan Dose (4)",
       "Tough Guy",
       "Veteran",
       "Desensitized",
