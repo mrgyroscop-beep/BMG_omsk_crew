@@ -184,6 +184,11 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 .comp-entry { margin:28px 15px 10px; background:#111; border-radius:16px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,.4); border:1px solid #333; }
 .comp-title { background:#e94560; color:#fff; padding:12px 8px; font-weight:bold; font-size:22px; text-align:center; letter-spacing:1px; }
 .comp-text { background:#f8f9fa; padding:12px 10px; line-height:1.75; color:#000000; font-size:15.5px; border-top:1px solid #ddd; }
+.comp-models-note { margin-top:14px; padding:10px; border:1px solid #ddd; border-radius:8px; background:#fff; }
+.comp-models-note summary { cursor:pointer; color:#e94560; font-weight:bold; line-height:1.35; }
+.comp-models-list { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+.comp-model-chip { border:1px solid #d0d0d0; background:#111; color:#ffd700; border-radius:8px; padding:5px 8px; font-family:'Oswald',sans-serif; font-size:12px; font-weight:bold; cursor:pointer; line-height:1.2; }
+.comp-model-chip:hover { border-color:#e94560; color:#fff; }
 
 /* ОФИЦИАЛЬНЫЕ КАРТОЧКИ */
 .official-card { background:#ffd700; color:#000; border-radius:20px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.6); margin:10px; font-family:'Oswald',sans-serif; }

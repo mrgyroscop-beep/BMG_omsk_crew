@@ -4765,6 +4765,81 @@ function localizeCompendiumBody(text) {
   return postProcessLocalizedText(translateSentence(text));
 }
 
+let compendiumTraitUsageCache = null;
+
+function normalizeTraitUsageKey(trait) {
+  return normalizeExactKey(getCleanName(trait));
+}
+
+function normalizeTraitBaseUsageKey(trait) {
+  return normalizeTraitUsageKey(String(trait || "").split("(")[0]);
+}
+
+function getCompendiumTraitUsageCache() {
+  if (compendiumTraitUsageCache) return compendiumTraitUsageCache;
+
+  const usage = new Map();
+  if (typeof models !== "undefined" && Array.isArray(models)) {
+    models.forEach((model, index) => {
+      const traits = Array.isArray(model.traits) ? model.traits : [];
+      traits.forEach(trait => {
+        const keys = new Set([
+          normalizeTraitUsageKey(trait),
+          normalizeTraitBaseUsageKey(trait)
+        ]);
+
+        keys.forEach(key => {
+          if (!key) return;
+          if (!usage.has(key)) usage.set(key, []);
+          const list = usage.get(key);
+          if (!list.some(item => item.index === index)) {
+            list.push({ model, index });
+          }
+        });
+      });
+    });
+  }
+
+  compendiumTraitUsageCache = usage;
+  return compendiumTraitUsageCache;
+}
+
+function getModelsWithCompendiumTrait(traitName) {
+  const usage = getCompendiumTraitUsageCache();
+  const exactKey = normalizeTraitUsageKey(traitName);
+  const exactMatches = usage.get(exactKey) || [];
+  if (exactMatches.length) return exactMatches;
+
+  const baseKey = normalizeTraitBaseUsageKey(traitName);
+  return baseKey && baseKey !== exactKey ? (usage.get(baseKey) || []) : [];
+}
+
+function getTraitUsageTitle(count) {
+  return currentLang === "ru"
+    ? `Есть у моделей (${count})`
+    : `Models with this trait (${count})`;
+}
+
+function renderTraitModelUsage(traitName) {
+  const usage = getModelsWithCompendiumTrait(traitName);
+  if (!usage.length) return "";
+
+  const title = getTraitUsageTitle(usage.length);
+  const isShortList = usage.length <= 8;
+  const chips = usage.map(({ model, index }) => `
+    <button class="comp-model-chip" type="button" onclick="event.stopPropagation(); showFullCard(models[${index}])">
+      ${escapeHtml(model.name)}
+    </button>
+  `).join("");
+
+  return `
+    <details class="comp-models-note" ${isShortList ? "open" : ""}>
+      <summary>${escapeHtml(title)}</summary>
+      <div class="comp-models-list">${chips}</div>
+    </details>
+  `;
+}
+
 function getCompendiumCache(lang = currentLang, force = false) {
   if (!window.compendium) {
     return { entries: [], keys: [], html: "" };
@@ -4781,6 +4856,9 @@ function getCompendiumCache(lang = currentLang, force = false) {
     const entries = Object.keys(window.compendium).map(key => {
       const localizedTitle = localizeCompendiumTitle(key);
       const localizedBody = localizeCompendiumBody(compendium[key] || "");
+      const traitUsage = getModelsWithCompendiumTrait(key);
+      const traitUsageHtml = renderTraitModelUsage(key);
+      const traitUsageText = traitUsage.map(({ model }) => model.name).join(" ");
 
       return {
         key,
@@ -4788,11 +4866,11 @@ function getCompendiumCache(lang = currentLang, force = false) {
         localizedTitle,
         localizedTitleLower: localizedTitle.toLowerCase(),
         localizedBody,
-        localizedBodyLower: localizedBody.toLowerCase(),
+        localizedBodyLower: `${localizedBody} ${traitUsageText}`.toLowerCase(),
         html: `
       <div class="comp-entry">
         <div class="comp-title">${replaceIcons(localizedTitle)}</div>
-        <div class="comp-text">${replaceIcons(localizedBody.replace(/\n/g, "<br>"))}</div>
+        <div class="comp-text">${replaceIcons(localizedBody.replace(/\n/g, "<br>"))}${traitUsageHtml}</div>
       </div>`
       };
     }).sort((a, b) => a.localizedTitleLower.localeCompare(b.localizedTitleLower));
@@ -5870,10 +5948,23 @@ function crewModelFundingTotal(model) {
   return modelFundingValue(model) + (model?.equipment || []).reduce((sum, eq) => sum + equipmentFundingValue(eq), 0);
 }
 
+function crewRepUsed() {
+  return crew.reduce((sum, model) => sum + crewModelRepTotal(model), 0);
+}
+
+function crewFundingUsed() {
+  return crew.reduce((sum, model) => sum + crewModelFundingTotal(model), 0);
+}
+
+function canAffordModelInCurrentCrew(model) {
+  return crewRepUsed() + modelRepValue(model) <= BMG_REP_LIMIT
+    && crewFundingUsed() + modelFundingValue(model) <= bmgFundingLimit();
+}
+
 const updateCrewBar = () => {
   $("crewCount").textContent = crew.length;
-  let totalRep = crew.reduce((a, m) => a + crewModelRepTotal(m), 0);
-  let usedFunding = crew.reduce((a, m) => a + crewModelFundingTotal(m), 0);
+  let totalRep = crewRepUsed();
+  let usedFunding = crewFundingUsed();
   $("totalRep").textContent = totalRep;
   $("totalFunding").textContent = `${usedFunding} / ${bmgFundingLimit()}`;
   
@@ -6090,6 +6181,9 @@ const renderMiniCardsBuilder = debounce(() => {
 
   // Скрываем модели из-за правил Aversion (если в отряде есть модель, для которой эта модель в списке Aversion)
   filteredModels = filteredModels.filter(m => !checkAversionHidden(m));
+
+  // Скрываем новые модели, которые уже не помещаются в оставшиеся Rep или Funding
+  filteredModels = filteredModels.filter(m => canAffordModelInCurrentCrew(m));
 
   // Определение порядка рангов
   const rankOrder = {
@@ -6484,6 +6578,7 @@ function showTraitDesc(traitName) {
   // Обрабатываем иконки в заголовке и в самом тексте
   const formattedTitle = replaceIcons(translateDisplayText(traitName));
   const formattedBody = replaceIcons(localizeCompendiumBody(rawText)).replace(/\n/g, "<br>");
+  const traitUsageHtml = renderTraitModelUsage(traitName);
 
   overlay.innerHTML = `
     <div class="trait-popup-content">
@@ -6493,6 +6588,7 @@ function showTraitDesc(traitName) {
       </div>
       <div class="trait-popup-body">
         ${formattedBody}
+        ${traitUsageHtml}
       </div>
     </div>
   `;
@@ -6637,7 +6733,7 @@ window.addEventListener("load", () => {
       }
 
       // Опционально: предупреждение, если текущий отряд превышает новый лимит
-      const currentRep = crew.reduce((a, m) => a + crewModelRepTotal(m), 0);
+      const currentRep = crewRepUsed();
       if (currentRep > BMG_REP_LIMIT) {
         alert(t("rep_exceeds", { current: currentRep, new: BMG_REP_LIMIT }));
       }
@@ -6739,8 +6835,8 @@ function bmgCanAddModel(model, options = {}) {
   const { allowThreeJokersLeader = false } = options;
 
   // Рассчитываем общую Rep и Funding с учетом оборудования
-  let totalRep = crew.reduce((a, m) => a + crewModelRepTotal(m), 0) + modelRepValue(model);
-  let usedFunding = crew.reduce((a, m) => a + crewModelFundingTotal(m), 0) + modelFundingValue(model);
+  let totalRep = crewRepUsed() + modelRepValue(model);
+  let usedFunding = crewFundingUsed() + modelFundingValue(model);
 
   const rank = model.rankUsed;
   if (!rank) {
@@ -7357,7 +7453,7 @@ function openEquipmentMenu(model, cardElement) {
   overlay.className = "rank-select-modal";
 
   // Считаем доступный бюджет
-  const usedFunding = crew.reduce((a, m) => a + crewModelFundingTotal(m), 0);
+  const usedFunding = crewFundingUsed();
   const availableFunding = bmgFundingLimit() - usedFunding;
 
   // Функция для определения Special Equipment
@@ -7425,7 +7521,7 @@ function openEquipmentMenu(model, cardElement) {
       if (!eq) return;
 
       // Проверка бюджета
-      const usedFunding = crew.reduce((a, m) => a + crewModelFundingTotal(m), 0);
+      const usedFunding = crewFundingUsed();
       const availableFunding = bmgFundingLimit() - usedFunding;
       if (availableFunding < equipmentFundingValue(eq)) {
         alert(uiText("equipment_funding_error"));
@@ -7486,8 +7582,8 @@ function buildRosterExportText(rosterName = "") {
   exportText += `Limits: Rep ${repLimit} | Funding $${fundingLimit}\n`;
   exportText += `════════════════════════════════════════\n`;
 
-  const totalRep = crew.reduce((a, m) => a + crewModelRepTotal(m), 0);
-  const usedFunding = crew.reduce((a, m) => a + crewModelFundingTotal(m), 0);
+  const totalRep = crewRepUsed();
+  const usedFunding = crewFundingUsed();
   exportText += `Summary: ${crew.length} models | Used Rep ${totalRep} | Used Funding $${usedFunding}\n\n`;
   exportText += `MODELS:\n`;
 
