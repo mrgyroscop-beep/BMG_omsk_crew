@@ -22,6 +22,24 @@ window.factionCrewRules = factionCrewRules;
 
 // ======================== КАРТЫ ДЛЯ БИЛДЕРА ========================
 // Каталог пока наполняется постепенно. Названия карт оставляем как на оригинальной карте.
+const builderMandatoryCards = [
+  {
+    id: "vigilantes-special-rules",
+    name: "VIGILANTES SPECIAL RULES",
+    img: "img/cards/vigilantes/vigilantes-special-rules.jpg",
+    renderAsCardImage: true,
+    type: "Special Rules",
+    faction: ["Bat Family"],
+    category: "crew",
+    mandatory: true,
+    countsForDeck: false,
+    text: {
+      en: "THWART\n\nAfter placing the Sewers and Lampposts, Set 8 friendly THWART! markers in Play.\n\nYou cannot have more than 8 friendly THWART! markers in Play at the same time.\n\nIf an Objective card refers to a THWART!, it only refers to a friendly THWART!.\n\nWhen a model places a Suspect within 4” of a THWART! the owner of that model may Move that THWART! 4”.\n\nWhen a THWART! is Moved or Placed, it cannot end within 4” of an Edge of the Gaming Area.",
+      ru: "THWART\n\nПосле размещения Sewers и Lampposts выставьте в игру 8 дружественных маркеров THWART!.\n\nУ вас не может быть больше 8 дружественных маркеров THWART! в игре одновременно.\n\nЕсли карта цели ссылается на THWART!, это относится только к дружественному THWART!.\n\nКогда модель размещает Suspect в пределах 4” от THWART!, владелец этой модели может передвинуть этот THWART! на 4”.\n\nКогда THWART! передвигается или размещается, он не может закончить это перемещение в пределах 4” от края Gaming Area."
+    }
+  }
+];
+
 const builderCards = [
   {
     id: "valuable-commodities",
@@ -269,9 +287,367 @@ const builderCards = [
       en: "Set a WayneTech Event marker in contact with a friendly Suspect and place this card aside. Models within 4” of the WayneTech marker cannot make Efforts. Discard this card at the end of the Recount.",
       ru: "Разместите маркер события WayneTech в контакте с дружественным Suspect маркером и отложите эту карту. Модели в пределах 4” от маркера WayneTech не могут делать Effort. Сбросьте эту карту в конце Recount."
     }
+  },
+  {
+    id: "seeking-the-trail",
+    name: "SEEKING THE TRAIL",
+    img: "img/cards/vigilantes/seeking-the-trail.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bat Family"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 4,
+    text: {
+      en: "A friendly model Sets a Suspect within 4” of an enemy model that is within 8” of a THWART!. Then remove that THWART!.",
+      ru: "Дружественная модель выставляет Suspect в пределах 4” от вражеской модели, которая находится в пределах 8” от THWART!. Затем уберите этот THWART!."
+    },
+    resource: {
+      cost: 1,
+      en: "An active friendly model within 4” of a THWART! Moves 4”.",
+      ru: "Активная дружественная модель в пределах 4” от THWART! передвигается на 4”."
+    }
+  },
+  {
+    id: "solving-the-puzzle",
+    name: "SOLVING THE PUZZLE",
+    img: "img/cards/vigilantes/solving-the-puzzle.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bat Family"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 4,
+    text: {
+      en: "A friendly model Reveals a Suspect within 4” of an enemy model that is within 8” of a THWART!, then remove that THWART! marker.",
+      ru: "Дружественная модель раскрывает Suspect в пределах 4” от вражеской модели, которая находится в пределах 8” от THWART!, затем уберите этот маркер THWART!."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 0 • If you have fewer than 5 THWART! in play, cancel an Objective card used as a Resource. That card is discarded.",
+      ru: "Burn 0 • Если у вас в игре меньше 5 THWART!, отмените карту цели, использованную как Resource. Эта карта сбрасывается."
+    }
+  },
+  {
+    id: "attempt-thwarted",
+    name: "ATTEMPT THWARTED",
+    img: "img/cards/vigilantes/attempt-thwarted.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bat Family"],
+    category: "crew",
+    phase: "II",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Each time a friendly model starts its activation within 4” of a THWART!, place a success marker on this card if it Sets a Suspect that activation. If it does not, place a failure marker.\n\nScore when this card has 3 success markers. Discard when this card has 3 failure markers.\n\nWhen scored, the opponent removes a THWART!.",
+      ru: "Каждый раз, когда дружественная модель начинает активацию в пределах 4” от THWART!, положите на эту карту маркер успеха, если она выставила Suspect в этой активации. Если нет, положите маркер провала.\n\nЗасчитайте, когда на этой карте 3 маркера успеха. Сбросьте, когда на этой карте 3 маркера провала.\n\nКогда карта засчитана, оппонент убирает THWART!."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 0 • Move a THWART! 4”.",
+      ru: "Burn 0 • Передвиньте THWART! на 4”."
+    }
+  },
+  {
+    id: "undercover-action",
+    name: "UNDERCOVER ACTION",
+    img: "img/cards/vigilantes/undercover-action.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bat Family"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "A friendly model Sets a Suspect in the enemy DZ and within 4” of a THWART!. Then remove that THWART!.",
+      ru: "Дружественная модель выставляет Suspect во вражеской DZ и в пределах 4” от THWART!. Затем уберите этот THWART!."
+    },
+    resource: {
+      cost: 1,
+      en: "Remove a THWART! within 4” of the friendly active model. Look at the opponent's Objective hand. Discard 1 card from their hand or yours.",
+      ru: "Уберите THWART! в пределах 4” от активной дружественной модели. Посмотрите руку карт целей оппонента. Сбросьте 1 карту из его руки или из вашей."
+    }
+  },
+  {
+    id: "ending-your-villany",
+    name: "ENDING YOUR VILLANY",
+    img: "img/cards/vigilantes/ending-your-villany.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bat Family"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "An enemy model suffers KO within 4” of a THWART!. Then remove that THWART!.",
+      ru: "Вражеская модель получает KO в пределах 4” от THWART!. Затем уберите этот THWART!."
+    },
+    resource: {
+      cost: 1,
+      en: "Play at the start of an activation. Target model gains 2 Free Efforts during this activation.",
+      ru: "Разыграйте в начале активации. Выбранная модель получает 2 Free Efforts на время этой активации."
+    }
+  },
+  {
+    id: "secure-the-zone",
+    name: "SECURE THE ZONE",
+    img: "img/cards/vigilantes/secure-the-zone.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bat Family"],
+    category: "crew",
+    phase: "IV",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "2 opposite edges of the Gaming Area have a friendly Suspect within 4”.\n\nThe opponent Moves those Suspects 4”, and removes 1 THWART!.",
+      ru: "У двух противоположных краев Gaming Area есть дружественный Suspect в пределах 4”.\n\nОппонент передвигает эти Suspects на 4” и убирает 1 THWART!."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 0 • Move a friendly marker 4”.",
+      ru: "Burn 0 • Передвиньте дружественный маркер на 4”."
+    }
+  },
+  {
+    id: "teamwork-action",
+    name: "TEAMWORK ACTION",
+    img: "img/cards/vigilantes/teamwork-action.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bat Family"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • Play this card when an enemy model makes a Tactical action and target it. Each activation in which a friendly model Sets a Suspect within 4” of the target or targets it with an Attack, place a success marker on this card.\n\nScore when this card has 2 success markers.\n\nWhen scored, the opponent removes a THWART!.",
+      ru: "Limited • Разыграйте эту карту, когда вражеская модель выполняет Tactical action, и выберите ее целью. В каждой активации, где дружественная модель выставляет Suspect в пределах 4” от цели или выбирает ее целью Attack, положите на эту карту маркер успеха.\n\nЗасчитайте, когда на этой карте 2 маркера успеха.\n\nКогда карта засчитана, оппонент убирает THWART!."
+    },
+    resource: {
+      cost: 0,
+      en: "A friendly model within 4” of another friendly model and a THWART! adds 1 die during a Melee Attack or Defense roll.",
+      ru: "Дружественная модель в пределах 4” от другой дружественной модели и THWART! добавляет 1 кубик во время Melee Attack или Defense roll."
+    }
+  },
+  {
+    id: "informant",
+    name: "INFORMANT",
+    img: "img/cards/vigilantes/informant.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bat Family"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Play when a friendly model Sets a Suspect. Until the end of the Round, that Suspect is also an Informant marker and cannot be Revealed or removed this round.\n\nScore if there are no enemy models within 4” of the Informant marker, or if it has 2 THWARTS! within 4”. If scored this way, remove both THWARTS!.",
+      ru: "Разыграйте, когда дружественная модель выставляет Suspect. До конца раунда этот Suspect также является маркером Informant и не может быть Revealed или удален в этом раунде.\n\nЗасчитайте, если в пределах 4” от маркера Informant нет вражеских моделей, или если в пределах 4” от него есть 2 THWARTS!. Если засчитано этим способом, уберите оба THWARTS!."
+    },
+    resource: {
+      cost: "*",
+      en: "Exception (When Scoring) • Set a THWART! within 4” of the Informant marker.",
+      ru: "Exception (When Scoring) • Выставьте THWART! в пределах 4” от маркера Informant."
+    }
+  },
+  {
+    id: "patrol-report",
+    name: "PATROL REPORT",
+    img: "img/cards/vigilantes/patrol-report.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bat Family"],
+    category: "crew",
+    phase: "III",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Target a friendly model. When the target Sets a Suspect, place a Numeric counter on this card, and add an additional counter if the Suspect is placed within 4” of an enemy model and a THWART!. A friendly Boss may spend a Special Action to roll 1D6.\n\nScore if the result matches a Numeric counter on this card.",
+      ru: "Выберите дружественную модель. Когда цель выставляет Suspect, положите на эту карту Numeric counter и добавьте дополнительный counter, если Suspect размещен в пределах 4” от вражеской модели и THWART!. Дружественный Boss может потратить Special Action, чтобы бросить 1D6.\n\nЗасчитайте, если результат совпадает с Numeric counter на этой карте."
+    },
+    resource: {
+      cost: "*",
+      en: "Burn 1 • Exception (When Scoring) • Set a THWART! within 4” of the target.",
+      ru: "Burn 1 • Exception (When Scoring) • Выставьте THWART! в пределах 4” от цели."
+    }
+  },
+  {
+    id: "unveiling-the-truth",
+    name: "UNVEILING THE TRUTH",
+    img: "img/cards/vigilantes/unveiling-the-truth.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bat Family"],
+    category: "crew",
+    phase: "II",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • Target a friendly model within 4” of a THWART! or a model that has the Detective trait. When that model reveals an enemy Suspect, place 2 success markers on this card.\n\nScore when this card has more success markers than enemy Suspects in play.",
+      ru: "Limited • Выберите дружественную модель в пределах 4” от THWART! или модель с трейтом Detective. Когда эта модель раскрывает вражеский Suspect, положите 2 маркера успеха на эту карту.\n\nЗасчитайте, когда на этой карте больше маркеров успеха, чем вражеских Suspects в игре."
+    },
+    resource: {
+      cost: 1,
+      en: "A friendly model within 8” and LoS of a THWART! gains a free Manipulate action.",
+      ru: "Дружественная модель в пределах 8” и LoS от THWART! получает бесплатное действие Manipulate."
+    }
+  },
+  {
+    id: "we-are-the-night",
+    name: "WE ARE THE NIGHT",
+    img: "img/cards/vigilantes/we-are-the-night.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bat Family"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "A friendly model within 4” of a THWART! Turns Off a Lamppost.",
+      ru: "Дружественная модель в пределах 4” от THWART! выключает Lamppost."
+    },
+    resource: {
+      cost: 1,
+      en: "An enemy model suffering KO that is in contact with a friendly model and within 4” of a THWART! is removed as a Casualty.",
+      ru: "Вражеская модель в KO, находящаяся в контакте с дружественной моделью и в пределах 4” от THWART!, удаляется как Casualty."
+    }
+  },
+  {
+    id: "none-of-you-are-safe",
+    name: "NONE OF YOU ARE SAFE",
+    img: "img/cards/vigilantes/none-of-you-are-safe.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bat Family"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 4,
+    text: {
+      en: "A friendly model inflicts Damage on an enemy model that is not within 4” of a THWART! but is within 4” of a friendly Suspect.\n\nChange all inflicted {BLOOD_ICON} to {STUN_ICON}.",
+      ru: "Дружественная модель наносит Damage вражеской модели, которая не находится в пределах 4” от THWART!, но находится в пределах 4” от дружественного Suspect.\n\nЗамените все нанесенные {BLOOD_ICON} на {STUN_ICON}."
+    },
+    resource: {
+      cost: "*",
+      en: "Burn 1 • Exception (When Scoring) • Set a THWART! within 4” of the target.",
+      ru: "Burn 1 • Exception (When Scoring) • Выставьте THWART! в пределах 4” от цели."
+    }
+  },
+  {
+    id: "closing-the-trigons-portal",
+    name: "CLOSING THE TRIGON'S PORTAL",
+    img: "img/cards/vigilantes/closing-the-trigons-portal.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bat Family"],
+    category: "crew",
+    phase: "I",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Set a Trigon's Portal Event marker within 4” of a Suspect and an enemy.\n\nScore if there are more THWARTS! and friendly models than enemy models within 4” of the Trigon's Portal.",
+      ru: "Разместите маркер события Trigon's Portal в пределах 4” от Suspect и врага.\n\nЗасчитайте, если в пределах 4” от Trigon's Portal больше THWARTS! и дружественных моделей, чем вражеских моделей."
+    },
+    resource: {
+      cost: "*",
+      en: "Burn 1 • Exception (When Scoring) • Set a THWART! within 4” of the Trigon's Portal before removing it.",
+      ru: "Burn 1 • Exception (When Scoring) • Выставьте THWART! в пределах 4” от Trigon's Portal перед его удалением."
+    }
+  },
+  {
+    id: "stubborn-resilience",
+    name: "STUBBORN RESILIENCE",
+    img: "img/cards/vigilantes/stubborn-resilience.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bat Family"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 4,
+    text: {
+      en: "Limited • Target a friendly model within 4” of a THWART! and a friendly Suspect. Place a Timer 1D3+2 on this card.\n\nWhen the counter is reduced to 0, the target is within 4” of a THWART!.",
+      ru: "Limited • Выберите дружественную модель в пределах 4” от THWART! и дружественного Suspect. Положите на эту карту Timer 1D3+2.\n\nКогда counter снижается до 0, цель находится в пределах 4” от THWART!."
+    },
+    resource: {
+      cost: "*",
+      en: "Burn 1 • Exception (When Scoring) • Set a THWART! within 4” of the target.",
+      ru: "Burn 1 • Exception (When Scoring) • Выставьте THWART! в пределах 4” от цели."
+    }
+  },
+  {
+    id: "containing-the-threat",
+    name: "CONTAINING THE THREAT",
+    img: "img/cards/vigilantes/containing-the-threat.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bat Family"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "A friendly model within 4” of a THWART! blocks at least 2 successful hits.",
+      ru: "Дружественная модель в пределах 4” от THWART! блокирует как минимум 2 успешных попадания."
+    },
+    resource: {
+      cost: 2,
+      en: "Burn 1 • Play when a friendly model suffers {BLOOD_ICON}. Roll 1D6. On a result of 6+ the model ignores that {BLOOD_ICON}.\n\nAdd 1 to the result for each THWART! within 4”. If the roll is successful, remove 1 of those THWARTS!.",
+      ru: "Burn 1 • Разыграйте, когда дружественная модель получает {BLOOD_ICON}. Бросьте 1D6. При результате 6+ модель игнорирует этот {BLOOD_ICON}.\n\nДобавьте 1 к результату за каждый THWART! в пределах 4”. Если бросок успешен, уберите 1 из этих THWARTS!."
+    }
+  },
+  {
+    id: "much-to-prove",
+    name: "MUCH TO PROVE",
+    img: "img/cards/vigilantes/much-to-prove.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bat Family"],
+    category: "crew",
+    phase: "III",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • Target the active friendly model. Each time the target inflicts Damage on an enemy model, if that friendly model is within 4” of a THWART!, place a success marker on this card. Then the opponent Moves that THWART! 4”.\n\nScore when this card has 2 success markers.",
+      ru: "Limited • Выберите активную дружественную модель. Каждый раз, когда цель наносит Damage вражеской модели, если эта дружественная модель находится в пределах 4” от THWART!, положите на эту карту маркер успеха. Затем оппонент передвигает этот THWART! на 4”.\n\nЗасчитайте, когда на этой карте 2 маркера успеха."
+    },
+    resource: {
+      cost: 1,
+      en: "A model without Audacity within 8” of a THWART! gains a free Attack action.",
+      ru: "Модель без Audacity в пределах 8” от THWART! получает бесплатное действие Attack."
+    }
+  },
+  {
+    id: "tonight-we-are-the-law",
+    name: "TONIGHT, WE ARE THE LAW",
+    img: "img/cards/vigilantes/tonight-we-are-the-law.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bat Family"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "A friendly model with the The Dark Knight Returns trait inflicts KO on an enemy that is within 4” of a THWART!. Then remove all {BLOOD_ICON} on that enemy model.",
+      ru: "Дружественная модель с трейтом The Dark Knight Returns наносит KO врагу, который находится в пределах 4” от THWART!. Затем уберите все {BLOOD_ICON} с этой вражеской модели."
+    },
+    resource: {
+      cost: 1,
+      en: "An active friendly model with the The Dark Knight Returns trait within 8” of a THWART! removes up to 2 Damage.",
+      ru: "Активная дружественная модель с трейтом The Dark Knight Returns в пределах 8” от THWART! снимает до 2 Damage."
+    }
   }
 ];
 
+window.BMG_BUILDER_MANDATORY_CARDS = builderMandatoryCards;
 window.BMG_BUILDER_CARDS = builderCards;
 
 // ======================== ПРАВИЛА ЗАВИСИМОСТЕЙ МОДЕЛЕЙ ========================

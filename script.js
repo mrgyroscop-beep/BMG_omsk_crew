@@ -161,6 +161,7 @@ const translations = {
     builder_cards_tab: "КАРТЫ",
     builder_cards_selected: "Карты в колоде",
     builder_cards_available: "Доступные карты",
+    builder_cards_mandatory: "Обязательные правила",
     builder_cards_empty: "Каталог карт пуст",
     builder_cards_no_available: "Нет доступных карт",
     builder_card_limit_reached: "Достигнут лимит этой карты",
@@ -169,6 +170,7 @@ const translations = {
     builder_card_single_limit_reached: "В колоде может быть не больше 15 одиночных карт",
     builder_card_general_limit_reached: "Общих карт может быть не больше 15",
     builder_card_translation: "Перевод",
+    builder_card_mandatory: "Обязательно",
     builder_card_type: "Тип",
     builder_card_phase: "Фаза",
     builder_card_value: "Ценность",
@@ -281,6 +283,7 @@ const translations = {
     builder_cards_tab: "CARDS",
     builder_cards_selected: "Cards in deck",
     builder_cards_available: "Available cards",
+    builder_cards_mandatory: "Mandatory rules",
     builder_cards_empty: "Card catalog is empty",
     builder_cards_no_available: "No available cards",
     builder_card_limit_reached: "Card limit reached",
@@ -289,6 +292,7 @@ const translations = {
     builder_card_single_limit_reached: "The deck cannot include more than 15 single cards",
     builder_card_general_limit_reached: "The deck cannot include more than 15 general cards",
     builder_card_translation: "Translation",
+    builder_card_mandatory: "Mandatory",
     builder_card_type: "Type",
     builder_card_phase: "Phase",
     builder_card_value: "Value",
@@ -5726,6 +5730,15 @@ function getBuilderCardCatalog() {
   return Array.isArray(source) ? source : [];
 }
 
+function getBuilderMandatoryCardCatalog() {
+  const source = window.BMG_BUILDER_MANDATORY_CARDS || window.bmgBuilderMandatoryCards || [];
+  return Array.isArray(source) ? source : [];
+}
+
+function getObjectiveDeckCards(cards = crewCards) {
+  return cards.filter(card => card && card.countsForDeck !== false && card.type !== "Special Rules");
+}
+
 function getBuilderCardKey(card, index = 0) {
   if (!card) return `card-${index}`;
   return String(card.id || card.key || card.name || card.title || `card-${index}`);
@@ -5886,6 +5899,7 @@ function getBuilderCardTranslationHTML(card) {
 function findBuilderCardByKey(cardKey) {
   const decodedKey = decodeURIComponent(cardKey);
   return getBuilderCardCatalog().find((card, index) => getBuilderCardKey(card, index) === decodedKey)
+    || getBuilderMandatoryCardCatalog().find((card, index) => getBuilderCardKey(card, index) === decodedKey)
     || crewCards.find(card => getBuilderCardKey(card) === decodedKey)
     || null;
 }
@@ -5909,8 +5923,9 @@ function renderBuilderCardThumb(card) {
 }
 
 function getObjectiveDeckStats(cards = crewCards) {
+  const deckCards = getObjectiveDeckCards(cards);
   const selectedMap = new Map();
-  cards.forEach((card, index) => {
+  deckCards.forEach((card, index) => {
     const key = getBuilderCardKey(card, index);
     const entry = selectedMap.get(key) || { card, count: 0 };
     entry.count += 1;
@@ -5918,7 +5933,7 @@ function getObjectiveDeckStats(cards = crewCards) {
   });
 
   const stats = {
-    total: cards.length,
+    total: deckCards.length,
     general: 0,
     crewSpecific: 0,
     single: 0,
@@ -6044,11 +6059,12 @@ function getBuilderCardAddCheck(card) {
 }
 
 function renderBuilderCardItem(card, options = {}) {
-  const { selected = false, count = 0, viewOnly = false } = options;
+  const { selected = false, count = 0, viewOnly = false, mandatory = false } = options;
   const key = escapeAttribute(encodeURIComponent(getBuilderCardKey(card)));
   const max = getBuilderCardMax(card);
   const limitText = max > 1 ? `0-${max}` : "0-1";
-  const button = viewOnly
+  const footerBadge = mandatory ? t("builder_card_mandatory") : limitText;
+  const button = viewOnly || mandatory
     ? ""
     : selected
       ? `<button class="remove-btn" onclick="event.stopPropagation(); removeBuilderCard('${key}')">−</button>`
@@ -6056,21 +6072,21 @@ function renderBuilderCardItem(card, options = {}) {
 
   if (card?.renderAsCardImage && card?.img) {
     return `
-      <div class="mini-card builder-card-item builder-card-image-item ${selected ? "in-crew" : ""} ${viewOnly ? "builder-card-readonly" : ""}">
+      <div class="mini-card builder-card-item builder-card-image-item ${selected ? "in-crew" : ""} ${viewOnly || mandatory ? "builder-card-readonly" : ""} ${mandatory ? "builder-card-mandatory" : ""}">
         ${button}
         ${count > 1 ? `<span class="count">x${count}</span>` : ""}
         <img src="${escapeAttribute(card.img)}" class="builder-card-full-img" alt="${escapeAttribute(getBuilderCardName(card))}" onerror="this.src='img/no.png'">
         <div class="builder-card-image-footer">
           <span>${escapeHtml(getBuilderCardName(card))}</span>
           <button class="builder-card-translation-btn" type="button" onclick="event.stopPropagation(); showBuilderCardTranslation('${key}')">${t("builder_card_translation")}</button>
-          <strong>${limitText}</strong>
+          <strong>${footerBadge}</strong>
         </div>
       </div>
     `;
   }
 
   return `
-    <div class="mini-card builder-card-item ${selected ? "in-crew" : ""} ${viewOnly ? "builder-card-readonly" : ""}">
+    <div class="mini-card builder-card-item ${selected ? "in-crew" : ""} ${viewOnly || mandatory ? "builder-card-readonly" : ""} ${mandatory ? "builder-card-mandatory" : ""}">
       ${button}
       ${count > 1 ? `<span class="count">x${count}</span>` : ""}
       ${renderBuilderCardThumb(card)}
@@ -6079,7 +6095,7 @@ function renderBuilderCardItem(card, options = {}) {
         ${renderBuilderCardMeta(card)}
         ${card?.showInlineText === false ? "" : renderBuilderCardText(card)}
         <button class="builder-card-translation-btn" type="button" onclick="event.stopPropagation(); showBuilderCardTranslation('${key}')">${t("builder_card_translation")}</button>
-        <div class="mini-rep">${limitText}</div>
+        <div class="mini-rep">${footerBadge}</div>
       </div>
     </div>
   `;
@@ -6095,9 +6111,18 @@ function renderCardsCatalogView() {
   }
 
   const catalog = getBuilderCardCatalog().filter(canShowBuilderCard);
-  grid.innerHTML = catalog.length
-    ? `<div class="builder-cards-section-title">${t("builder_cards_available")}</div>${catalog.map(card => renderBuilderCardItem(card, { viewOnly: true })).join("")}`
-    : `<div class="builder-cards-empty">${t("builder_cards_empty")}</div>`;
+  const mandatoryCards = getBuilderMandatoryCardCatalog().filter(canShowBuilderCard);
+  const sections = [];
+
+  if (mandatoryCards.length) {
+    sections.push(`<div class="builder-cards-section-title">${t("builder_cards_mandatory")}</div>${mandatoryCards.map(card => renderBuilderCardItem(card, { viewOnly: true, mandatory: true })).join("")}`);
+  }
+
+  if (catalog.length) {
+    sections.push(`<div class="builder-cards-section-title">${t("builder_cards_available")}</div>${catalog.map(card => renderBuilderCardItem(card, { viewOnly: true })).join("")}`);
+  }
+
+  grid.innerHTML = sections.length ? sections.join("") : `<div class="builder-cards-empty">${t("builder_cards_empty")}</div>`;
 }
 
 function renderBuilderCards() {
@@ -6105,6 +6130,7 @@ function renderBuilderCards() {
   if (!grid) return;
 
   const catalog = getBuilderCardCatalog().filter(canShowBuilderCard);
+  const mandatoryCards = getBuilderMandatoryCardCatalog().filter(canShowBuilderCard);
   const deckStats = getObjectiveDeckStats();
 
   const selectedCardsHTML = [...deckStats.selectedMap.values()]
@@ -6117,6 +6143,10 @@ function renderBuilderCards() {
     .join("");
 
   const sections = [renderObjectiveDeckSummary()];
+
+  if (mandatoryCards.length) {
+    sections.push(`<div class="builder-cards-section-title">${t("builder_cards_mandatory")}</div>${mandatoryCards.map(card => renderBuilderCardItem(card, { viewOnly: true, mandatory: true })).join("")}`);
+  }
 
   if (selectedCardsHTML) {
     sections.push(`<div class="builder-cards-section-title">${t("builder_cards_selected")}</div>${selectedCardsHTML}`);
@@ -8272,7 +8302,9 @@ function buildRosterExportText(rosterName = "") {
 
   const totalRep = crewRepUsed();
   const usedFunding = crewFundingUsed();
-  exportText += `Summary: ${crew.length} models | ${crewCards.length} cards | Used Rep ${totalRep} | Used Funding $${usedFunding}\n\n`;
+  const deckCards = getObjectiveDeckCards();
+  const mandatoryCards = getBuilderMandatoryCardCatalog().filter(canShowBuilderCard);
+  exportText += `Summary: ${crew.length} models | ${deckCards.length} cards | Used Rep ${totalRep} | Used Funding $${usedFunding}\n\n`;
   exportText += `MODELS:\n`;
 
   crew.forEach(m => {
@@ -8290,9 +8322,18 @@ function buildRosterExportText(rosterName = "") {
     }
   });
 
-  if (crewCards.length > 0) {
+  if (mandatoryCards.length > 0) {
+    exportText += `\nSPECIAL RULES:\n`;
+    mandatoryCards.forEach(card => {
+      exportText += `- ${getBuilderCardName(card)}`;
+      if (card.type) exportText += ` | Type ${card.type}`;
+      exportText += ` | Mandatory\n`;
+    });
+  }
+
+  if (deckCards.length > 0) {
     exportText += `\nCARDS:\n`;
-    crewCards.forEach(card => {
+    deckCards.forEach(card => {
       exportText += `- ${getBuilderCardName(card)}`;
       if (card.type) exportText += ` | Type ${card.type}`;
       if (card.phase) exportText += ` | Phase ${card.phase}`;

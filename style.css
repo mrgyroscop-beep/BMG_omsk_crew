@@ -318,6 +318,9 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 .builder-card-item { min-height:96px; }
 .builder-card-readonly { cursor:default; }
 .builder-card-readonly:hover { transform:none; box-shadow:0 4px 12px rgba(0,0,0,.5); }
+.builder-card-mandatory { border-color:#3fa66b !important; box-shadow:0 0 16px rgba(63,166,107,.28); }
+.builder-card-mandatory .builder-card-image-footer strong,
+.builder-card-mandatory .mini-rep { color:#44ff88; }
 .builder-card-image-item { display:flex; flex-direction:column !important; align-items:stretch !important; gap:8px !important; width:100%; max-width:360px; margin:0 auto; padding:10px !important; }
 .builder-card-image-item .add-btn,
 .builder-card-image-item .remove-btn { position:absolute; top:12px; right:12px; margin-left:0; }
