@@ -20,6 +20,260 @@
 // Экспортируем для использования в script.js
 window.factionCrewRules = factionCrewRules;
 
+// ======================== КАРТЫ ДЛЯ БИЛДЕРА ========================
+// Каталог пока наполняется постепенно. Названия карт оставляем как на оригинальной карте.
+const builderCards = [
+  {
+    id: "valuable-commodities",
+    name: "VALUABLE COMMODITIES",
+    img: "img/cards/valuable-commodities.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 1,
+    text: {
+      en: "Play when a friendly model Sets a Suspect. Set a Valuables Event marker with the Loot rules in contact with that model.\n\nScore if a friendly model is in control of the Valuables at the end of the game.\n\nThis Objective cannot be played after the third round.",
+      ru: "Разыграйте, когда дружественная модель выставляет Suspect маркер. Разместите маркер события Valuables с правилами Loot в контакте с этой моделью.\n\nЗасчитайте, если дружественная модель контролирует Valuables в конце игры.\n\nЭту карту цели нельзя разыграть после третьего раунда."
+    },
+    resource: {
+      cost: 2,
+      en: "Draw 3 cards.",
+      ru: "Возьмите 3 карты."
+    }
+  },
+  {
+    id: "catch-a-bullet",
+    name: "CATCH A BULLET",
+    img: "img/cards/catch-a-bullet.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    phase: "III",
+    value: "1 VP",
+    maxPerDeck: 1,
+    text: {
+      en: "A friendly model inflicts at least 6 Damage with a single Ranged attack.",
+      ru: "Дружественная модель наносит не менее 6 Damage одной Ranged атакой."
+    },
+    resource: {
+      cost: 0,
+      en: "Set an Ammo Crate Event marker in contact with a friendly Suspect and place this card aside. During a friendly model's activation, it may remove an Ammo Crate in contact to restore an Ammo Magazine and discard this card.",
+      ru: "Разместите маркер события Ammo Crate в контакте с дружественным Suspect маркером и отложите эту карту. Во время активации дружественной модели она может убрать Ammo Crate в контакте, чтобы восстановить Ammo Magazine, затем сбросьте эту карту."
+    }
+  },
+  {
+    id: "call-an-ambulance",
+    name: "CALL AN AMBULANCE!",
+    img: "img/cards/call-an-ambulance.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    phase: "II",
+    value: "1 VP",
+    maxPerDeck: 1,
+    text: {
+      en: "Play and target a friendly model when it suffers Damage from an Attack.\n\nScore if the target has Damage removed as a result of this card.\n\nAn active friendly model in contact with the target may suffer 2 Damage. Remove 1 Damage from the target.",
+      ru: "Разыграйте и выберите дружественную модель, когда она получает Damage от Attack.\n\nЗасчитайте, если в результате этой карты с цели был снят Damage.\n\nАктивная дружественная модель в контакте с целью может получить 2 Damage. Снимите 1 Damage с цели."
+    },
+    resource: {
+      cost: 0,
+      en: "Set a Medical Supplies Event marker in contact with a friendly Suspect and place this card aside. During a friendly model's activation, it may remove a Medical Supplies in contact to remove 3 Damage and discard this card.",
+      ru: "Разместите маркер события Medical Supplies в контакте с дружественным Suspect маркером и отложите эту карту. Во время активации дружественной модели она может убрать Medical Supplies в контакте, чтобы снять 3 Damage, затем сбросьте эту карту."
+    }
+  },
+  {
+    id: "dirty-job",
+    name: "DIRTY JOB",
+    img: "img/cards/dirty-job.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    phase: "III",
+    value: "1 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "During a friendly model's activation, an enemy model suffers KO or is removed as a Casualty.",
+      ru: "Во время активации дружественной модели вражеская модель получает KO или удаляется как Casualty."
+    },
+    resource: {
+      cost: 1,
+      en: "A friendly model suffers {BLOOD_ICON} and adds 1 die to a Melee Attack.",
+      ru: "Дружественная модель получает {BLOOD_ICON} и добавляет 1 кубик к Melee Attack."
+    }
+  },
+  {
+    id: "they-must-know-pain",
+    name: "THEY MUST KNOW PAIN",
+    img: "img/cards/they-must-know-pain.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    phase: "III",
+    value: "1 VP",
+    maxPerDeck: 1,
+    text: {
+      en: "A friendly model inflicts at least 6 Damage with a single Melee attack.",
+      ru: "Дружественная модель наносит не менее 6 Damage одной Melee атакой."
+    },
+    resource: {
+      cost: 1,
+      en: "During a friendly model's activation, it may remove up to 2 Damage or target a friendly model within 4” to automatically recover from KO.",
+      ru: "Во время активации дружественной модели она может снять до 2 Damage или выбрать дружественную модель в пределах 4”, чтобы та автоматически восстановилась от KO."
+    }
+  },
+  {
+    id: "confusion",
+    name: "CONFUSION",
+    img: "img/cards/confusion.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    phase: "III",
+    value: "1 VP",
+    maxPerDeck: 1,
+    text: {
+      en: "A friendly model Reveals an enemy Suspect within 8” of an enemy DZ.",
+      ru: "Дружественная модель раскрывает вражеский Suspect маркер в пределах 8” от вражеской DZ."
+    },
+    resource: {
+      cost: 1,
+      en: "During a friendly model's activation, you can Move another friendly model 3”.",
+      ru: "Во время активации дружественной модели вы можете переместить другую дружественную модель на 3”."
+    }
+  },
+  {
+    id: "im-feeling-weird",
+    name: "I'M FEELING... WEIRD",
+    img: "img/cards/im-feeling-weird.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    phase: "III",
+    value: "1 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Inflict a Status on an enemy model.",
+      ru: "Наложите Status на вражескую модель."
+    },
+    resource: {
+      cost: 1,
+      en: "Remove a Status from a friendly model.",
+      ru: "Снимите Status с дружественной модели."
+    }
+  },
+  {
+    id: "stick-to-the-plan",
+    name: "STICK TO THE PLAN",
+    img: "img/cards/stick-to-the-plan.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    phase: "IV",
+    value: "1 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "There are more friendly Suspects than enemy Suspects in play.",
+      ru: "В игре больше дружественных Suspect маркеров, чем вражеских."
+    },
+    resource: {
+      cost: 1,
+      en: "Target a friendly {RANK_HENCHMAN_ICON} within 4” of a friendly Suspect. That model gains +4 basic move distance.",
+      ru: "Выберите дружественную модель ранга {RANK_HENCHMAN_ICON} в пределах 4” от дружественного Suspect маркера. Эта модель получает +4 к базовой дистанции перемещения."
+    }
+  },
+  {
+    id: "overdrive",
+    name: "OVERDRIVE",
+    img: "img/cards/overdrive.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    phase: "III",
+    value: "1 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "An enemy model makes an Effort when defending against a Melee Attack and the friendly attacking model did not make an Effort.",
+      ru: "Вражеская модель делает Effort при защите от Melee Attack, а дружественная атакующая модель не делала Effort."
+    },
+    resource: {
+      cost: 0,
+      en: "Set a Venom Container Event marker in contact with a friendly Suspect and place this card aside. During a friendly model's activation, it may remove a Venom Container in contact to gain a Venom Dose and discard this card.",
+      ru: "Разместите маркер события Venom Container в контакте с дружественным Suspect маркером и отложите эту карту. Во время активации дружественной модели она может убрать Venom Container в контакте, чтобы получить Venom Dose, затем сбросьте эту карту."
+    }
+  },
+  {
+    id: "flanking",
+    name: "FLANKING",
+    img: "img/cards/flanking.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    phase: "IV",
+    value: "1 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Remove a friendly Suspect within 4” of a corner of the Gaming Area.",
+      ru: "Уберите дружественный Suspect маркер в пределах 4” от угла Gaming Area."
+    },
+    resource: {
+      cost: 1,
+      en: "A friendly model gains 1 Defense die when defending against a Melee Attack.",
+      ru: "Дружественная модель получает 1 Defense кубик при защите от Melee Attack."
+    }
+  },
+  {
+    id: "disturbance",
+    name: "DISTURBANCE",
+    img: "img/cards/disturbance.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    phase: "III",
+    value: "1 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "A friendly model Reveals an enemy Suspect. After revealing, there are more friendly Suspects than enemy Suspects in play.",
+      ru: "Дружественная модель раскрывает вражеский Suspect маркер. После раскрытия в игре больше дружественных Suspect маркеров, чем вражеских."
+    },
+    resource: {
+      cost: 0,
+      en: "At the start of an enemy activation, target a Sewer. That marker cannot be used this activation.",
+      ru: "В начале вражеской активации выберите Sewer. Этот маркер нельзя использовать в этой активации."
+    }
+  },
+  {
+    id: "stake-your-claim",
+    name: "STAKE YOUR CLAIM",
+    img: "img/cards/stake-your-claim.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    phase: "III",
+    value: "1 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "A friendly model Sets a Suspect in an enemy DZ.",
+      ru: "Дружественная модель выставляет Suspect маркер во вражеской DZ."
+    },
+    resource: {
+      cost: 0,
+      en: "Target a friendly Suspect and place this card aside. A model that reveals this marker this round suffers the Enervating (2) Status. You can discard this card at any time.",
+      ru: "Выберите дружественный Suspect маркер и отложите эту карту. Модель, которая раскрывает этот маркер в этом раунде, получает Enervating (2) Status. Вы можете сбросить эту карту в любое время."
+    }
+  },
+  {
+    id: "die-hard",
+    name: "DIE HARD",
+    img: "img/cards/die-hard.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    phase: "I",
+    value: "1 VP",
+    maxPerDeck: 1,
+    text: {
+      en: "Target a friendly model that is not a Boss.\n\nThat model is still in play.",
+      ru: "Выберите дружественную модель, которая не является Boss.\n\nЭта модель всё ещё находится в игре."
+    },
+    resource: {
+      cost: 0,
+      en: "Set a WayneTech Event marker in contact with a friendly Suspect and place this card aside. Models within 4” of the WayneTech marker cannot make Efforts. Discard this card at the end of the Recount.",
+      ru: "Разместите маркер события WayneTech в контакте с дружественным Suspect маркером и отложите эту карту. Модели в пределах 4” от маркера WayneTech не могут делать Effort. Сбросьте эту карту в конце Recount."
+    }
+  }
+];
+
+window.BMG_BUILDER_CARDS = builderCards;
+
 // ======================== ПРАВИЛА ЗАВИСИМОСТЕЙ МОДЕЛЕЙ ========================
 // Структура: { "Модель": { requiredModel: "Требуемая модель", trait: "Требуемый трейт (опционально)" } }
 // Модель будет скрыта в поиске и не может быть добавлена, пока не выполнена зависимость

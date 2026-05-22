@@ -1,9 +1,12 @@
 ﻿// ======================== ГЛОБАЛЬНЫЕ ========================
 let crew = [];
+let crewCards = [];
 let crewEquipmentCounts = {}; // { "Magazine": count } for crew-wide limits
 let modelSearchMode = 'models';
 let compendiumSearchMode = 'rules';
 let builderPrintOnly = false;
+let builderContentMode = 'models';
+let cardsContentMode = 'models';
 let modifiers = {
   extraFreeAgents: 0,
   extraVehicles: 0,
@@ -31,6 +34,9 @@ const MY_CREWS_STORAGE_KEY = 'bmg_my_crews_v1';
 
 // Режимы просмотра
 let currentMode = 'menu'; // menu, cards, builder, my-crews, rules
+const OBJECTIVE_DECK_SIZE = 30;
+const OBJECTIVE_DECK_MAX_GENERAL = 15;
+const OBJECTIVE_DECK_MAX_SINGLE = 15;
 
 // ======================== ИКОНКИ ========================
 const ICON_MAP = {
@@ -151,6 +157,31 @@ const translations = {
     search_models_tab: "Модели",
     search_rules_tab: "Правила",
     search_rules_title: "ПОИСК ПРАВИЛ",
+    builder_models_tab: "МОДЕЛИ",
+    builder_cards_tab: "КАРТЫ",
+    builder_cards_selected: "Карты в колоде",
+    builder_cards_available: "Доступные карты",
+    builder_cards_empty: "Каталог карт пуст",
+    builder_cards_no_available: "Нет доступных карт",
+    builder_card_limit_reached: "Достигнут лимит этой карты",
+    builder_card_deck_full: "В колоде уже 30 карт",
+    builder_card_pack_too_large: "Этот комплект не помещается в колоду",
+    builder_card_single_limit_reached: "В колоде может быть не больше 15 одиночных карт",
+    builder_card_general_limit_reached: "Общих карт может быть не больше 15",
+    builder_card_translation: "Перевод",
+    builder_card_type: "Тип",
+    builder_card_phase: "Фаза",
+    builder_card_value: "Ценность",
+    builder_deck_rules: "Правила колоды",
+    builder_deck_total: "Колода",
+    builder_deck_general: "Общие",
+    builder_deck_crew_specific: "Фракц./перс.",
+    builder_deck_single: "Одиночные",
+    builder_deck_valid: "Колода собрана по правилам",
+    builder_deck_need_total: "Нужно ровно 30 карт",
+    builder_deck_need_crew_specific: "Общих карт должно быть не больше, чем фракционных и персональных",
+    builder_deck_need_single: "Одиночных карт может быть не больше половины колоды",
+    builder_deck_need_copy_sets: "Карты с несколькими копиями должны быть добавлены полным комплектом",
     nothing_found: "Ничего не найдено",
     subtitle: "Batman: Gotham Chronicles<br>Конструктор отрядов",
     leader_first: "Первой моделью должен быть Leader для этой фракции!",
@@ -194,7 +225,7 @@ const translations = {
     animal_no_equipment: "Модели с трейтом Animal не могут покупать оборудование!",
     fully_equipped_no_equipment: "Модель с трейтом Fully Equipped не может покупать оборудование!",
     limited_equipment_max_reached: "Модель с трейтом Limited Equipment уже достигла лимита в 1 единицу оборудования!",
-    export_empty_roster: "Отряд пуст! Добавьте модели перед экспортом.",
+    export_empty_roster: "Отряд пуст! Добавьте модели или карты перед экспортом.",
     export_copied: "Ростер скопирован в буфер обмена!",
     export_copy_prompt: "Скопируйте текст ростера:",
     roster_name_prompt: "Введите название банды для экспорта:",
@@ -246,6 +277,31 @@ const translations = {
     search_models_tab: "Models",
     search_rules_tab: "Rules",
     search_rules_title: "RULE SEARCH",
+    builder_models_tab: "MODELS",
+    builder_cards_tab: "CARDS",
+    builder_cards_selected: "Cards in deck",
+    builder_cards_available: "Available cards",
+    builder_cards_empty: "Card catalog is empty",
+    builder_cards_no_available: "No available cards",
+    builder_card_limit_reached: "Card limit reached",
+    builder_card_deck_full: "The deck already has 30 cards",
+    builder_card_pack_too_large: "This copy set does not fit into the deck",
+    builder_card_single_limit_reached: "The deck cannot include more than 15 single cards",
+    builder_card_general_limit_reached: "The deck cannot include more than 15 general cards",
+    builder_card_translation: "Translation",
+    builder_card_type: "Type",
+    builder_card_phase: "Phase",
+    builder_card_value: "Value",
+    builder_deck_rules: "Deck rules",
+    builder_deck_total: "Deck",
+    builder_deck_general: "General",
+    builder_deck_crew_specific: "Crew/model",
+    builder_deck_single: "Single cards",
+    builder_deck_valid: "Deck follows the rules",
+    builder_deck_need_total: "The deck must contain exactly 30 cards",
+    builder_deck_need_crew_specific: "General cards cannot outnumber crew-specific and model cards",
+    builder_deck_need_single: "Single cards cannot be more than half of the deck",
+    builder_deck_need_copy_sets: "Cards with multiple copies must be added as a full copy set",
     nothing_found: "Nothing found",
     subtitle: "Batman: Gotham Chronicles<br>Crew Builder",
     leader_first: "Leader must be the first model for this faction!",
@@ -289,7 +345,7 @@ const translations = {
     animal_no_equipment: "Models with Animal trait cannot purchase equipment!",
     fully_equipped_no_equipment: "Model with Fully Equipped trait cannot purchase any equipment!",
     limited_equipment_max_reached: "Model with Limited Equipment trait has already reached the limit of 1 equipment!",
-    export_empty_roster: "Crew is empty! Add models before exporting.",
+    export_empty_roster: "Crew is empty! Add models or cards before exporting.",
     export_copied: "Roster copied to clipboard!",
     export_copy_prompt: "Copy the roster text:",
     roster_name_prompt: "Enter a crew name for export:",
@@ -386,6 +442,14 @@ function setLanguage(lang) {
   }
 
   updateBuilderPrintFilterButton();
+  updateBuilderContentModeButtons();
+  updateCardsContentModeButtons();
+  if (currentMode === 'builder' && builderContentMode === 'cards') {
+    renderBuilderCards();
+  }
+  if (currentMode === 'cards' && cardsContentMode === 'cards') {
+    renderCardsCatalogView();
+  }
 
   if (currentMode === 'my-crews') {
     renderMyCrews();
@@ -5425,6 +5489,7 @@ function exportAllMyCrewsTxt() {
 
 function showCards() {
   currentMode = 'cards';
+  cardsContentMode = 'models';
   $('mainMenu').style.display = 'none';
   $('cardsSection').style.display = 'block';
   $('builderSection').style.display = 'none';
@@ -5434,12 +5499,15 @@ function showCards() {
   // Сбрасываем фракцию и показываем вкладки
   currentFaction = null;
   $('modelsGridCards').innerHTML = '';
+  if ($('cardsGridCards')) $('cardsGridCards').innerHTML = '';
+  updateCardsContentModeButtons();
   $('cardsTabsContainer').classList.remove('hidden');
   initTabs();
 }
 
 function showBuilder() {
   currentMode = 'builder';
+  builderContentMode = 'models';
   $('mainMenu').style.display = 'none';
   $('cardsSection').style.display = 'none';
   $('builderSection').style.display = 'block';
@@ -5448,6 +5516,7 @@ function showBuilder() {
   $('builderMain').style.display = 'none';
   $('compendiumModal').classList.remove('active');
   $('builderFactionCards').classList.remove('hidden'); // Показываем вкладки фракций
+  updateBuilderContentModeButtons();
   initTabs(); // Инициализация табов для выбора фракции
 }
 
@@ -5475,6 +5544,7 @@ function backToMenu() {
   if ($('cardsTabsContainer')) {
     $('cardsTabsContainer').classList.remove('hidden');
     $('modelsGridCards').innerHTML = '';
+    if ($('cardsGridCards')) $('cardsGridCards').innerHTML = '';
   }
 }
 
@@ -5486,7 +5556,7 @@ function backToFactionSelect() {
 }
 
 function hasUnsavedCrewSelection() {
-  return crew.length > 0;
+  return crew.length > 0 || crewCards.length > 0;
 }
 
 function closeBuilderExitModal() {
@@ -5580,6 +5650,519 @@ function toggleBuilderPrintFilter() {
   }
 }
 
+function updateBuilderContentModeButtons() {
+  const isCardsMode = builderContentMode === 'cards';
+  const modelsButton = $("builderModelsTabBtn");
+  const cardsButton = $("builderCardsTabBtn");
+  const modelsPanel = $("builderModelsPanel");
+  const cardsPanel = $("builderCardsPanel");
+  const searchButton = $("builderModelSearchBtn");
+  const printButton = $("builderPrintFilterBtn");
+
+  if (modelsButton) {
+    modelsButton.classList.toggle("active", !isCardsMode);
+    modelsButton.setAttribute("aria-pressed", !isCardsMode ? "true" : "false");
+  }
+  if (cardsButton) {
+    cardsButton.classList.toggle("active", isCardsMode);
+    cardsButton.setAttribute("aria-pressed", isCardsMode ? "true" : "false");
+  }
+  if (modelsPanel) modelsPanel.style.display = isCardsMode ? "none" : "block";
+  if (cardsPanel) cardsPanel.style.display = isCardsMode ? "block" : "none";
+  if (searchButton) searchButton.style.display = isCardsMode ? "none" : "";
+  if (printButton) printButton.style.display = isCardsMode ? "none" : "";
+}
+
+function setBuilderContentMode(mode) {
+  builderContentMode = mode === 'cards' ? 'cards' : 'models';
+  updateBuilderContentModeButtons();
+
+  if (builderContentMode === 'cards') {
+    closeModelSearch();
+    renderBuilderCards();
+  } else {
+    renderMiniCardsBuilder();
+  }
+}
+
+function updateCardsContentModeButtons() {
+  const isCardsMode = cardsContentMode === 'cards';
+  const modelsButton = $("cardsModelsTabBtn");
+  const cardsButton = $("cardsCardsTabBtn");
+  const modelsPanel = $("cardsModelsPanel");
+  const cardsPanel = $("cardsCardsPanel");
+
+  if (modelsButton) {
+    modelsButton.classList.toggle("active", !isCardsMode);
+    modelsButton.setAttribute("aria-pressed", !isCardsMode ? "true" : "false");
+  }
+  if (cardsButton) {
+    cardsButton.classList.toggle("active", isCardsMode);
+    cardsButton.setAttribute("aria-pressed", isCardsMode ? "true" : "false");
+  }
+  if (modelsPanel) modelsPanel.style.display = isCardsMode ? "none" : "block";
+  if (cardsPanel) cardsPanel.style.display = isCardsMode ? "block" : "none";
+}
+
+function setCardsContentMode(mode) {
+  cardsContentMode = mode === 'cards' ? 'cards' : 'models';
+  updateCardsContentModeButtons();
+
+  if (!currentFaction) {
+    if ($("modelsGridCards")) $("modelsGridCards").innerHTML = "";
+    if ($("cardsGridCards")) $("cardsGridCards").innerHTML = "";
+    return;
+  }
+
+  if (cardsContentMode === 'cards') {
+    renderCardsCatalogView();
+  } else {
+    renderMiniCardsView();
+  }
+}
+
+function getBuilderCardCatalog() {
+  const source = window.BMG_BUILDER_CARDS || window.bmgBuilderCards || window.BMG_OBJECTIVE_CARDS || [];
+  return Array.isArray(source) ? source : [];
+}
+
+function getBuilderCardKey(card, index = 0) {
+  if (!card) return `card-${index}`;
+  return String(card.id || card.key || card.name || card.title || `card-${index}`);
+}
+
+function getBuilderCardName(card) {
+  return String(card?.name || card?.title || "Unnamed Card");
+}
+
+function getBuilderCardMax(card) {
+  const value = card?.maxPerDeck ?? card?.maxPerCrew ?? card?.limit ?? card?.max ?? 1;
+  return Math.max(1, numericValue(value, 1));
+}
+
+function getBuilderCardCopies(card) {
+  return getBuilderCardMax(card);
+}
+
+function getBuilderCardCount(card) {
+  const key = getBuilderCardKey(card);
+  return crewCards.filter(item => getBuilderCardKey(item) === key).length;
+}
+
+function getBuilderCardFactionList(card) {
+  const factions = Array.isArray(card?.faction)
+    ? card.faction
+    : typeof card?.faction === "string" && card.faction.trim()
+      ? card.faction.replace(/ *& */gi, ",").replace(/ *\/ */g, ",").split(",").map(s => s.trim())
+      : [];
+  return factions.filter(Boolean);
+}
+
+function isBuilderCardGeneral(card) {
+  if (!card) return true;
+  if (card.isGeneral !== undefined) return Boolean(card.isGeneral);
+
+  const category = String(card.category || card.deckType || "").toLowerCase();
+  if (["general", "generic", "common"].includes(category)) return true;
+  if (["crew", "faction", "unique", "model", "character"].includes(category)) return false;
+
+  return getBuilderCardFactionList(card).length === 0
+    && !card.affiliation
+    && !card.crewIcon
+    && !card.subtitle
+    && !card.modelName
+    && !card.modelAlias
+    && !card.requiredModel
+    && !card.requiredModelName;
+}
+
+function isBuilderCardSingle(card) {
+  return getBuilderCardCopies(card) <= 1;
+}
+
+function getBuilderCardRequiredModelName(card) {
+  return card?.requiredModel || card?.requiredModelName || card?.modelName || card?.modelAlias || card?.subtitle || "";
+}
+
+function getBuilderCardRequiredRank(card) {
+  return card?.requiredRank || card?.rank || card?.rankIcon || "";
+}
+
+function normalizeBuilderCardRankText(value) {
+  const loose = normalizeEquipmentMatchName(String(value || "")
+    .replace(/[{}]/g, "")
+    .replace(/^RANK_|_ICON$/g, "")
+    .replace(/_/g, " "));
+  if (loose === "freeagent" || loose === "free agent") return "free agent";
+  if (loose === "sidekick") return "sidekick";
+  if (loose === "henchman") return "henchman";
+  if (loose === "leader") return "leader";
+  if (loose === "vehicle") return "vehicle";
+  return loose;
+}
+
+function getBuilderCardEligibleCrewModels(card) {
+  const requiredModel = String(getBuilderCardRequiredModelName(card) || "").trim();
+  const requiredRank = String(getBuilderCardRequiredRank(card) || "").trim();
+  if (!requiredModel && !requiredRank) return crew;
+
+  const rankLoose = normalizeBuilderCardRankText(requiredRank);
+  return crew.filter(model => {
+    if (requiredModel && !modelMatchesEquipmentName(model, requiredModel)) return false;
+    if (!requiredRank) return true;
+
+    const ranks = [model.rankUsed, ...getRanks(model)].filter(Boolean);
+    return ranks.some(rank => {
+      const currentLoose = normalizeBuilderCardRankText(rank);
+      return currentLoose === rankLoose || currentLoose.includes(rankLoose) || rankLoose.includes(currentLoose);
+    });
+  });
+}
+
+function canShowBuilderCard(card) {
+  const factions = getBuilderCardFactionList(card);
+
+  return !factions.length || factions.includes(currentFaction) || factions.includes("Any") || factions.includes("All");
+}
+
+function renderBuilderCardMeta(card) {
+  const meta = [];
+  if (card?.type) meta.push(`${t("builder_card_type")}: ${escapeHtml(card.type)}`);
+  if (card?.phase) meta.push(`${t("builder_card_phase")}: ${escapeHtml(card.phase)}`);
+  if (card?.value !== undefined && card?.value !== null && card?.value !== "") {
+    meta.push(`${t("builder_card_value")}: ${escapeHtml(card.value)}`);
+  }
+  return meta.length ? `<div class="builder-card-meta">${meta.join(" • ")}</div>` : "";
+}
+
+function getLocalizedCardField(value) {
+  if (!value) return "";
+  if (typeof value === "string") return value;
+  if (typeof value === "object") {
+    return value[currentLang] || value.ru || value.en || "";
+  }
+  return String(value);
+}
+
+function renderBuilderCardText(card) {
+  const text = getLocalizedCardField(card?.text || card?.description || card?.objective);
+  const resourceText = getLocalizedCardField(card?.resource);
+  const resourceCost = card?.resource?.cost ?? card?.resourceCost;
+  const html = [];
+
+  if (text) {
+    html.push(`<div class="builder-card-text">${escapeHtml(text).replace(/\n/g, "<br>")}</div>`);
+  }
+
+  if (resourceText) {
+    const cost = resourceCost !== undefined && resourceCost !== null && resourceCost !== ""
+      ? `<span class="builder-card-resource-cost">&#9889; ${escapeHtml(resourceCost)}:</span>`
+      : "";
+    html.push(`<div class="builder-card-resource">${cost}<span>${escapeHtml(resourceText)}</span></div>`);
+  }
+
+  return html.join("");
+}
+
+function getBuilderCardTranslationHTML(card) {
+  const text = getLocalizedCardField(card?.text || card?.description || card?.objective);
+  const resourceText = getLocalizedCardField(card?.resource);
+  const resourceCost = card?.resource?.cost ?? card?.resourceCost;
+  const parts = [];
+
+  if (text) {
+    parts.push(`<div>${escapeHtml(text).replace(/\n/g, "<br>")}</div>`);
+  }
+  if (resourceText) {
+    const cost = resourceCost !== undefined && resourceCost !== null && resourceCost !== ""
+      ? `&#9889; ${escapeHtml(resourceCost)}: `
+      : "";
+    parts.push(`<div style="margin-top:16px;color:#ffd700;font-weight:bold;">${cost}${escapeHtml(resourceText)}</div>`);
+  }
+
+  return parts.join("");
+}
+
+function findBuilderCardByKey(cardKey) {
+  const decodedKey = decodeURIComponent(cardKey);
+  return getBuilderCardCatalog().find((card, index) => getBuilderCardKey(card, index) === decodedKey)
+    || crewCards.find(card => getBuilderCardKey(card) === decodedKey)
+    || null;
+}
+
+function showBuilderCardTranslation(cardKey) {
+  const card = findBuilderCardByKey(cardKey);
+  if (!card) return;
+  showTraitPopup(getBuilderCardName(card), getBuilderCardTranslationHTML(card));
+}
+
+function renderBuilderCardThumb(card) {
+  if (card?.img) {
+    return `<img src="${escapeAttribute(card.img)}" class="builder-card-img" onerror="this.src='img/no.png'">`;
+  }
+
+  return `
+    <div class="builder-card-thumb" aria-hidden="true">
+      <svg viewBox="0 0 24 24"><path d="M4 3h12l4 4v14H4V3zm11 1.5V8h3.5L15 4.5zM7 11h10v2H7v-2zm0 4h10v2H7v-2z"/></svg>
+    </div>
+  `;
+}
+
+function getObjectiveDeckStats(cards = crewCards) {
+  const selectedMap = new Map();
+  cards.forEach((card, index) => {
+    const key = getBuilderCardKey(card, index);
+    const entry = selectedMap.get(key) || { card, count: 0 };
+    entry.count += 1;
+    selectedMap.set(key, entry);
+  });
+
+  const stats = {
+    total: cards.length,
+    general: 0,
+    crewSpecific: 0,
+    single: 0,
+    copyRuleIssues: [],
+    selectedMap
+  };
+
+  selectedMap.forEach(entry => {
+    if (isBuilderCardGeneral(entry.card)) {
+      stats.general += entry.count;
+    } else {
+      stats.crewSpecific += entry.count;
+    }
+    if (isBuilderCardSingle(entry.card)) {
+      stats.single += entry.count;
+    }
+
+    const copies = getBuilderCardCopies(entry.card);
+    if (entry.count > 0 && entry.count !== copies) {
+      stats.copyRuleIssues.push({
+        name: getBuilderCardName(entry.card),
+        count: entry.count,
+        copies
+      });
+    }
+  });
+
+  stats.isLegal = stats.total === OBJECTIVE_DECK_SIZE
+    && stats.general <= stats.crewSpecific
+    && stats.single <= OBJECTIVE_DECK_MAX_SINGLE
+    && stats.copyRuleIssues.length === 0;
+  return stats;
+}
+
+function getObjectiveDeckWarnings(stats = getObjectiveDeckStats()) {
+  const warnings = [];
+  if (stats.total !== OBJECTIVE_DECK_SIZE) warnings.push(t("builder_deck_need_total"));
+  if (stats.general > stats.crewSpecific) warnings.push(t("builder_deck_need_crew_specific"));
+  if (stats.single > OBJECTIVE_DECK_MAX_SINGLE) warnings.push(t("builder_deck_need_single"));
+  if (stats.copyRuleIssues.length) warnings.push(t("builder_deck_need_copy_sets"));
+  return warnings;
+}
+
+function renderObjectiveDeckSummary() {
+  const stats = getObjectiveDeckStats();
+  const warnings = getObjectiveDeckWarnings(stats);
+  const statusClass = stats.isLegal ? "is-ok" : "is-warning";
+  const totalClass = stats.total === OBJECTIVE_DECK_SIZE ? "is-ok" : "is-warning";
+  const crewClass = stats.general <= stats.crewSpecific ? "is-ok" : "is-warning";
+  const singleClass = stats.single <= OBJECTIVE_DECK_MAX_SINGLE ? "is-ok" : "is-warning";
+  const messages = stats.isLegal
+    ? `<div class="builder-deck-message is-ok">${t("builder_deck_valid")}</div>`
+    : warnings.map(message => `<div class="builder-deck-message">${escapeHtml(message)}</div>`).join("");
+
+  return `
+    <div class="builder-cards-summary ${statusClass}">
+      <div class="builder-deck-summary-row">
+        <span class="${totalClass}">${t("builder_deck_total")}: ${stats.total}/${OBJECTIVE_DECK_SIZE}</span>
+        <span class="${crewClass}">${t("builder_deck_general")}: ${stats.general} / ${t("builder_deck_crew_specific")}: ${stats.crewSpecific}</span>
+        <span class="${singleClass}">${t("builder_deck_single")}: ${stats.single}/${OBJECTIVE_DECK_MAX_SINGLE}</span>
+        <button class="builder-card-translation-btn builder-deck-rules-btn" type="button" onclick="showObjectiveDeckRules()">${t("builder_deck_rules")}</button>
+      </div>
+      ${messages ? `<div class="builder-deck-messages">${messages}</div>` : ""}
+    </div>
+  `;
+}
+
+function showObjectiveDeckRules() {
+  const rules = currentLang === "en"
+    ? [
+      "The Objective deck must contain exactly 30 cards.",
+      "General cards, with no Affiliation icon, cannot outnumber cards unique to your crew. Model-specific cards count as unique if their subtitle matches a model's Name or Alias and the rank icon matches that model.",
+      "No more than half of the deck can be single cards.",
+      "Cards with a printed number of copies must be included as that full set: no more and no less."
+    ]
+    : [
+      "Колода целей должна содержать ровно 30 карт.",
+      "Общих карт без значка Affiliation не может быть больше, чем карт, уникальных для вашей банды. Персональные карты моделей считаются уникальными, если подзаголовок совпадает с Name или Alias модели, а значок ранга совпадает с ее рангом.",
+      "Одиночных карт может быть не больше половины колоды.",
+      "Карты с указанным числом копий добавляются только полным комплектом: ни больше, ни меньше."
+    ];
+
+  showTraitPopup(
+    t("builder_deck_rules"),
+    `<div class="objective-deck-rules">${rules.map(rule => `<div>• ${escapeHtml(rule)}</div>`).join("")}</div>`
+  );
+}
+
+function getBuilderCardAddCount(card) {
+  return Math.max(0, getBuilderCardCopies(card) - getBuilderCardCount(card));
+}
+
+function getBuilderCardAddCheck(card) {
+  const currentCount = getBuilderCardCount(card);
+  const copies = getBuilderCardCopies(card);
+  if (currentCount >= copies) {
+    return { ok: false, reason: t("builder_card_limit_reached") };
+  }
+
+  const hasCrewRequirement = getBuilderCardRequiredModelName(card) || getBuilderCardRequiredRank(card);
+  if (hasCrewRequirement && getBuilderCardEligibleCrewModels(card).length === 0) {
+    return { ok: false, reason: t("builder_deck_need_crew_specific") };
+  }
+
+  const addCount = getBuilderCardAddCount(card);
+  const stats = getObjectiveDeckStats();
+  if (stats.total + addCount > OBJECTIVE_DECK_SIZE) {
+    return {
+      ok: false,
+      reason: stats.total >= OBJECTIVE_DECK_SIZE ? t("builder_card_deck_full") : t("builder_card_pack_too_large")
+    };
+  }
+
+  if (isBuilderCardSingle(card) && stats.single + addCount > OBJECTIVE_DECK_MAX_SINGLE) {
+    return { ok: false, reason: t("builder_card_single_limit_reached") };
+  }
+
+  if (isBuilderCardGeneral(card) && stats.general + addCount > OBJECTIVE_DECK_MAX_GENERAL) {
+    return { ok: false, reason: t("builder_card_general_limit_reached") };
+  }
+
+  return { ok: true, addCount };
+}
+
+function renderBuilderCardItem(card, options = {}) {
+  const { selected = false, count = 0, viewOnly = false } = options;
+  const key = escapeAttribute(encodeURIComponent(getBuilderCardKey(card)));
+  const max = getBuilderCardMax(card);
+  const limitText = max > 1 ? `0-${max}` : "0-1";
+  const button = viewOnly
+    ? ""
+    : selected
+      ? `<button class="remove-btn" onclick="event.stopPropagation(); removeBuilderCard('${key}')">−</button>`
+      : `<button class="add-btn" onclick="event.stopPropagation(); addBuilderCard('${key}')">+</button>`;
+
+  if (card?.renderAsCardImage && card?.img) {
+    return `
+      <div class="mini-card builder-card-item builder-card-image-item ${selected ? "in-crew" : ""} ${viewOnly ? "builder-card-readonly" : ""}">
+        ${button}
+        ${count > 1 ? `<span class="count">x${count}</span>` : ""}
+        <img src="${escapeAttribute(card.img)}" class="builder-card-full-img" alt="${escapeAttribute(getBuilderCardName(card))}" onerror="this.src='img/no.png'">
+        <div class="builder-card-image-footer">
+          <span>${escapeHtml(getBuilderCardName(card))}</span>
+          <button class="builder-card-translation-btn" type="button" onclick="event.stopPropagation(); showBuilderCardTranslation('${key}')">${t("builder_card_translation")}</button>
+          <strong>${limitText}</strong>
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="mini-card builder-card-item ${selected ? "in-crew" : ""} ${viewOnly ? "builder-card-readonly" : ""}">
+      ${button}
+      ${count > 1 ? `<span class="count">x${count}</span>` : ""}
+      ${renderBuilderCardThumb(card)}
+      <div class="mini-info">
+        <div class="mini-name">${escapeHtml(getBuilderCardName(card))}</div>
+        ${renderBuilderCardMeta(card)}
+        ${card?.showInlineText === false ? "" : renderBuilderCardText(card)}
+        <button class="builder-card-translation-btn" type="button" onclick="event.stopPropagation(); showBuilderCardTranslation('${key}')">${t("builder_card_translation")}</button>
+        <div class="mini-rep">${limitText}</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderCardsCatalogView() {
+  const grid = $("cardsGridCards");
+  if (!grid) return;
+
+  if (!currentFaction) {
+    grid.innerHTML = "";
+    return;
+  }
+
+  const catalog = getBuilderCardCatalog().filter(canShowBuilderCard);
+  grid.innerHTML = catalog.length
+    ? `<div class="builder-cards-section-title">${t("builder_cards_available")}</div>${catalog.map(card => renderBuilderCardItem(card, { viewOnly: true })).join("")}`
+    : `<div class="builder-cards-empty">${t("builder_cards_empty")}</div>`;
+}
+
+function renderBuilderCards() {
+  const grid = $("builderCardsGrid");
+  if (!grid) return;
+
+  const catalog = getBuilderCardCatalog().filter(canShowBuilderCard);
+  const deckStats = getObjectiveDeckStats();
+
+  const selectedCardsHTML = [...deckStats.selectedMap.values()]
+    .map(entry => renderBuilderCardItem(entry.card, { selected: true, count: entry.count }))
+    .join("");
+
+  const availableCards = catalog.filter(card => getBuilderCardAddCheck(card).ok);
+  const availableCardsHTML = availableCards
+    .map(card => renderBuilderCardItem(card))
+    .join("");
+
+  const sections = [renderObjectiveDeckSummary()];
+
+  if (selectedCardsHTML) {
+    sections.push(`<div class="builder-cards-section-title">${t("builder_cards_selected")}</div>${selectedCardsHTML}`);
+  }
+
+  if (catalog.length) {
+    sections.push(`<div class="builder-cards-section-title">${t("builder_cards_available")}</div>${availableCardsHTML || `<div class="builder-cards-empty">${t("builder_cards_no_available")}</div>`}`);
+  } else {
+    sections.push(`<div class="builder-cards-empty">${t("builder_cards_empty")}</div>`);
+  }
+
+  grid.innerHTML = sections.join("");
+}
+
+function addBuilderCard(cardKey) {
+  cardKey = decodeURIComponent(cardKey);
+  const catalog = getBuilderCardCatalog().filter(canShowBuilderCard);
+  const card = catalog.find((item, index) => getBuilderCardKey(item, index) === cardKey);
+  if (!card) return;
+
+  const check = getBuilderCardAddCheck(card);
+  if (!check.ok) {
+    alert(check.reason);
+    return;
+  }
+
+  for (let i = 0; i < check.addCount; i++) {
+    crewCards.unshift({
+      ...card,
+      uniqueId: Date.now() + Math.random() + i
+    });
+  }
+  renderBuilderCards();
+  updateCrewBar();
+}
+
+function removeBuilderCard(cardKey) {
+  cardKey = decodeURIComponent(cardKey);
+  const previousLength = crewCards.length;
+  crewCards = crewCards.filter(card => getBuilderCardKey(card) !== cardKey);
+  if (crewCards.length !== previousLength) {
+    renderBuilderCards();
+    updateCrewBar();
+  }
+}
+
 // ======================== ВЫБОР ФРАКЦИИ В БИЛДЕРЕ ========================
 function selectFaction(faction) {
   currentFaction = faction;
@@ -5587,7 +6170,7 @@ function selectFaction(faction) {
   $('builderFactionCards').classList.add('hidden'); // Скрываем вкладки фракций
   $('builderMain').style.display = 'block';
   updateBuilderPrintFilterButton();
-  renderMiniCardsBuilder();
+  setBuilderContentMode('models');
   updateCrewBar();
 }
 
@@ -6756,7 +7339,11 @@ function initTabs() {
       if (card.closest('#cardsSection')) { // Для cardsSection
         // Скрываем вкладки фракций после выбора
         $('cardsTabsContainer').classList.add('hidden');
-        renderMiniCardsView(); // Рендерим модели только после выбора
+        if (cardsContentMode === 'cards') {
+          renderCardsCatalogView();
+        } else {
+          renderMiniCardsView(); // Рендерим модели только после выбора
+        }
       } else if (card.closest('#factionSelect')) {
         const faction = card.dataset.faction;
         selectFaction(faction);
@@ -6845,6 +7432,8 @@ window.addEventListener("load", () => {
   }
   updateCrewBar();
   updateBuilderPrintFilterButton();
+  updateBuilderContentModeButtons();
+  updateCardsContentModeButtons();
   
   // Инициализация табов
   initTabs();
@@ -7648,6 +8237,7 @@ function openEquipmentMenu(model, cardElement) {
 
 function resetCrew() {
   crew = [];
+  crewCards = [];
   BMG_BOSS = null;
   BMG_AFFILIATIONS = null;
   crewEquipmentCounts = {};
@@ -7665,7 +8255,7 @@ function resetCrew() {
   };
   updateCrewBar();
   if (currentMode === 'builder') {
-    renderMiniCardsBuilder();
+    setBuilderContentMode('models');
   }
 }
 
@@ -7682,7 +8272,7 @@ function buildRosterExportText(rosterName = "") {
 
   const totalRep = crewRepUsed();
   const usedFunding = crewFundingUsed();
-  exportText += `Summary: ${crew.length} models | Used Rep ${totalRep} | Used Funding $${usedFunding}\n\n`;
+  exportText += `Summary: ${crew.length} models | ${crewCards.length} cards | Used Rep ${totalRep} | Used Funding $${usedFunding}\n\n`;
   exportText += `MODELS:\n`;
 
   crew.forEach(m => {
@@ -7699,6 +8289,17 @@ function buildRosterExportText(rosterName = "") {
       exportText += `  Equipment: ${eqList}\n`;
     }
   });
+
+  if (crewCards.length > 0) {
+    exportText += `\nCARDS:\n`;
+    crewCards.forEach(card => {
+      exportText += `- ${getBuilderCardName(card)}`;
+      if (card.type) exportText += ` | Type ${card.type}`;
+      if (card.phase) exportText += ` | Phase ${card.phase}`;
+      if (card.value !== undefined && card.value !== null && card.value !== "") exportText += ` | Value ${card.value}`;
+      exportText += `\n`;
+    });
+  }
 
   exportText += `\n════════════════════════════════════════\n`;
   exportText += `TOTAL: Rep ${totalRep} | Funding $${usedFunding}\n`;
@@ -7752,6 +8353,7 @@ function parseRosterImportText(text) {
   const cleanLines = lines.map(line => line.trim());
   const entries = [];
   let currentEntry = null;
+  let importSection = "models";
 
   const shouldSkipLine = line =>
     line.startsWith("BMG CREW - ") ||
@@ -7762,6 +8364,7 @@ function parseRosterImportText(text) {
     line.startsWith("Total: ") ||
     line.startsWith("TOTAL: ") ||
     line === "MODELS:" ||
+    line === "CARDS:" ||
     separator.test(line);
 
   const parseEquipmentList = equipmentText => equipmentText
@@ -7773,7 +8376,18 @@ function parseRosterImportText(text) {
     .filter(item => item.name);
 
   cleanLines.forEach(line => {
+    if (line === "MODELS:") {
+      importSection = "models";
+      currentEntry = null;
+      return;
+    }
+    if (line === "CARDS:") {
+      importSection = "cards";
+      currentEntry = null;
+      return;
+    }
     if (shouldSkipLine(line)) return;
+    if (importSection === "cards") return;
 
     if (/^Equipment:/i.test(line)) {
       if (!currentEntry) {
@@ -8016,7 +8630,7 @@ function importRoster() {
 }
 
 function exportRoster() {
-  if (crew.length === 0) {
+  if (crew.length === 0 && crewCards.length === 0) {
     alert(t("export_empty_roster"));
     return;
   }

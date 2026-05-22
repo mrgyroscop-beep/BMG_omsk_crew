@@ -48,6 +48,9 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 #possessedIndicator { white-space:nowrap; }
 #charismaticIndicator span,
 #possessedIndicator span { margin:0 2px; }
+.builder-content-switch { display:flex; justify-content:center; gap:8px; padding:10px 4px 0; }
+.builder-content-switch-btn { min-height:36px; min-width:112px; border:1px solid #3a3a3a; border-radius:999px; background:#151515; color:#cfd2d8; font-family:'Oswald',sans-serif; font-size:13px; font-weight:bold; letter-spacing:1px; cursor:pointer; box-shadow:inset 0 0 0 1px rgba(255,255,255,0.03); transition:all .2s ease; }
+.builder-content-switch-btn.active { background:#e94560; color:#fff; border-color:#ff6b86; box-shadow:0 0 16px rgba(233,69,96,.45); }
 
 /* ВКЛАДКИ ФРАКЦИЙ */
 .tabs-container { background:#111; padding:10px 0 8px; border-bottom:3px solid #222; overflow-y:auto; display:none; }
@@ -298,6 +301,40 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 .models-list .mini-card .count { position:static; margin-left:10px; }
 .models-list .mini-card .equipment-icon { position:static; margin-left:10px; }
 .models-list .mini-ranks { display:flex; gap:6px; margin-top:4px; }
+.builder-cards-list { padding-top:12px; }
+.builder-cards-summary { background:#111; border:1px solid #333; border-radius:8px; color:#ffd700; padding:10px 12px; font-size:14px; font-weight:bold; text-align:center; }
+.builder-cards-summary.is-ok { border-color:#3fa66b; box-shadow:0 0 12px rgba(63,166,107,.22); }
+.builder-cards-summary.is-warning { border-color:#e94560; }
+.builder-deck-summary-row { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:8px 14px; }
+.builder-deck-summary-row span { white-space:nowrap; }
+.builder-deck-summary-row .is-ok { color:#44ff88; }
+.builder-deck-summary-row .is-warning { color:#ffd700; }
+.builder-deck-messages { margin-top:8px; display:grid; gap:4px; color:#c7c9d1; font-family:Arial,sans-serif; font-size:12px; font-weight:normal; line-height:1.35; }
+.builder-deck-message.is-ok { color:#44ff88; font-weight:bold; }
+.builder-deck-rules-btn { padding:4px 10px; }
+.objective-deck-rules { display:grid; gap:10px; text-align:left; }
+.builder-cards-section-title { color:#e94560; font-size:13px; font-weight:bold; letter-spacing:1px; padding:8px 4px 0; text-transform:uppercase; }
+.builder-cards-empty { background:#111; border:1px dashed #3a3a3a; border-radius:8px; color:#8f949e; padding:22px 12px; text-align:center; font-size:14px; }
+.builder-card-item { min-height:96px; }
+.builder-card-readonly { cursor:default; }
+.builder-card-readonly:hover { transform:none; box-shadow:0 4px 12px rgba(0,0,0,.5); }
+.builder-card-image-item { display:flex; flex-direction:column !important; align-items:stretch !important; gap:8px !important; width:100%; max-width:360px; margin:0 auto; padding:10px !important; }
+.builder-card-image-item .add-btn,
+.builder-card-image-item .remove-btn { position:absolute; top:12px; right:12px; margin-left:0; }
+.builder-card-image-item .count { position:absolute !important; top:14px; right:58px; margin-left:0 !important; }
+.builder-card-full-img { width:100% !important; height:auto !important; aspect-ratio:470/667; object-fit:contain !important; border-radius:8px !important; background:#0b0b0b; box-shadow:0 8px 22px rgba(0,0,0,.55); }
+.builder-card-image-footer { display:flex; justify-content:space-between; align-items:center; gap:10px; color:#bfc3cc; font-size:12px; line-height:1.2; }
+.builder-card-image-footer span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.builder-card-image-footer strong { color:#e94560; white-space:nowrap; }
+.builder-card-translation-btn { border:1px solid #e94560; border-radius:999px; background:#141414; color:#ffd700; font-family:'Oswald',sans-serif; font-size:12px; font-weight:bold; letter-spacing:.4px; padding:5px 10px; cursor:pointer; white-space:nowrap; }
+.builder-card-translation-btn:hover { background:#e94560; color:#fff; }
+.builder-card-thumb { width:80px; height:80px; flex:0 0 80px; border-radius:8px; background:#0b0b0b; border:1px solid #333; display:flex; align-items:center; justify-content:center; }
+.builder-card-thumb svg { width:34px; height:34px; fill:#ffd700; opacity:.9; }
+.builder-card-img { flex:0 0 80px; object-fit:cover; }
+.builder-card-meta { color:#bfc3cc; font-size:12px; line-height:1.3; margin:2px 0 4px; }
+.builder-card-text { color:#f1f1f1; font-family:Arial,sans-serif; font-size:13px; line-height:1.35; margin:6px 0; }
+.builder-card-resource { display:flex; align-items:center; gap:8px; color:#f1f1f1; font-family:Arial,sans-serif; font-size:13px; line-height:1.3; margin-top:7px; padding-top:7px; border-top:1px solid rgba(255,255,255,.12); }
+.builder-card-resource-cost { color:#fff; font-family:'Oswald',sans-serif; font-size:15px; font-weight:bold; white-space:nowrap; }
 
 /* ИКОНКИ В ТЕКСТЕ */
 .inline-icon { display:inline-block; height:1.1em; width:auto; vertical-align:middle; margin:0 2px; }
@@ -742,6 +779,18 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   .funds {
     font-size: 12px;
     line-height: 1.5;
+  }
+
+  .builder-content-switch {
+    gap: 6px;
+    padding-top: 8px;
+  }
+
+  .builder-content-switch-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 38px;
+    font-size: 12px;
   }
 
   #charismaticIndicator,
