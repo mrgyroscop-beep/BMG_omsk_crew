@@ -23,10 +23,6 @@ let specialTraitNames = new Set(); // Кэш специальных трейто
 let compendiumCacheByLang = {};
 let i18nNodeCache = null;
 let currentFullCardModel = null;
-let fullCardTouchStartX = 0;
-let fullCardTouchStartY = 0;
-let fullCardTouchStartScroll = 0;
-let fullCardTouchSwitcherZone = false;
 const printableModelNames = window.PRINTABLE_MODEL_NAMES || new Set();
 const printableModelKeys = window.PRINTABLE_MODEL_KEYS || new Set();
 const printableModelImageKeys = window.PRINTABLE_MODEL_IMAGE_KEYS || new Set();
@@ -6382,97 +6378,6 @@ function rerenderOpenFullCard() {
   }
 }
 
-function getFullCardNavigationKey(model) {
-  const source = model?.instance || model;
-  if (!source) return "";
-  if (source.uniqueId !== undefined && source.uniqueId !== null) {
-    return `instance:${source.uniqueId}`;
-  }
-
-  const baseModel = findBaseModel(source) || source;
-  return getModelIdentityKey(baseModel);
-}
-
-function getFullCardNavigationModels() {
-  if (currentMode === "builder") {
-    return getBuilderCardItems();
-  }
-
-  if (currentMode === "cards") {
-    return getCardsViewModels();
-  }
-
-  return sortModelsByRankAndName(models);
-}
-
-function navigateFullCard(direction) {
-  const list = getFullCardNavigationModels();
-  if (!currentFullCardModel || list.length < 2) return;
-
-  const currentKey = getFullCardNavigationKey(currentFullCardModel);
-  let currentIndex = list.findIndex(item => getFullCardNavigationKey(item) === currentKey);
-
-  if (currentIndex < 0) {
-    const currentBase = findBaseModel(currentFullCardModel) || currentFullCardModel;
-    const baseKey = getModelIdentityKey(currentBase);
-    currentIndex = list.findIndex(item => getModelIdentityKey(findBaseModel(item) || item) === baseKey);
-  }
-
-  if (currentIndex < 0) return;
-
-  const nextIndex = (currentIndex + direction + list.length) % list.length;
-  showFullCard(list[nextIndex]);
-
-  const fullCard = $("fullCard");
-  if (fullCard) {
-    fullCard.scrollTop = 0;
-  }
-}
-
-function initFullCardSwipeNavigation() {
-  const fullCard = $("fullCard");
-  if (!fullCard) return;
-
-  fullCard.addEventListener("touchstart", event => {
-    if (!fullCard.classList.contains("active") || event.touches.length !== 1) return;
-
-    const touch = event.touches[0];
-    fullCardTouchStartX = touch.clientX;
-    fullCardTouchStartY = touch.clientY;
-    fullCardTouchStartScroll = fullCard.scrollTop;
-
-    const target = event.target instanceof Element ? event.target : null;
-    fullCardTouchSwitcherZone = !!target?.closest(".official-header, .official-main");
-  }, { passive: true });
-
-  fullCard.addEventListener("touchend", event => {
-    if (!fullCard.classList.contains("active") || event.changedTouches.length !== 1) return;
-
-    const touch = event.changedTouches[0];
-    const deltaX = touch.clientX - fullCardTouchStartX;
-    const deltaY = touch.clientY - fullCardTouchStartY;
-    const absX = Math.abs(deltaX);
-    const absY = Math.abs(deltaY);
-    const swipeThreshold = 80;
-
-    if (absY < swipeThreshold || absY < absX * 1.25) return;
-
-    const maxScroll = Math.max(0, fullCard.scrollHeight - fullCard.clientHeight);
-    const atTop = fullCardTouchStartScroll <= 6;
-    const atBottom = fullCardTouchStartScroll >= maxScroll - 6;
-    const notScrollable = maxScroll <= 6;
-    const canNavigate =
-      fullCardTouchSwitcherZone ||
-      notScrollable ||
-      (deltaY > 0 && atTop) ||
-      (deltaY < 0 && atBottom);
-
-    if (!canNavigate) return;
-
-    navigateFullCard(deltaY < 0 ? 1 : -1);
-  }, { passive: true });
-}
-
 const showFullCard = model => {
   const crewInstance = model?.instance || findCrewModel(model);
   currentFullCardModel =
@@ -6940,7 +6845,6 @@ window.addEventListener("load", () => {
   }
   updateCrewBar();
   updateBuilderPrintFilterButton();
-  initFullCardSwipeNavigation();
   
   // Инициализация табов
   initTabs();
