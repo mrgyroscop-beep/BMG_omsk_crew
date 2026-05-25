@@ -2951,6 +2951,7 @@ window.BMG_BUILDER_CARDS = builderCards;
 // Для сложных условий (or) можно указать requiredModels — массив требуемых моделей (нужна хотя бы одна)
 const modelDependencyRules = {
   // Batman Who Laughs
+  "Infected Who Laughs": { requiredModel: "The Batman Who Laughs" },
   "Robin Who Laughs": { requiredModel: "The Batman Who Laughs" },
   
   // Dark Knight Rises

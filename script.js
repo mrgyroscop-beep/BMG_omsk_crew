@@ -5,6 +5,9 @@ let crewEquipmentCounts = {}; // { "Magazine": count } for crew-wide limits
 let modelSearchMode = 'models';
 let compendiumSearchMode = 'rules';
 let builderPrintOnly = false;
+let builderFactionOnly = false;
+let cardsPrintOnly = false;
+let cardsFactionOnly = false;
 let builderContentMode = 'models';
 let cardsContentMode = 'models';
 let modifiers = {
@@ -200,6 +203,7 @@ const translations = {
     model_not_affiliation: "Модель не входит в аффилиацию Босса",
     model_not_match_affiliation: "Модель не совпадает по Affiliation с Боссом или не имеет аффилиации Unknown",
     model_not_match: "Модель не совпадает по Affiliation с Боссом",
+    model_cannot_be_hired: "Эту модель нельзя нанять в текущий отряд",
     leader_trait_required: "Для лидера {leader} разрешены только модели с трейтом \"{trait}\"",
     model_already_added: "Вы уже добавили модель с именем («{name}»)",
     only_one_leader: "Только один Leader",
@@ -238,6 +242,7 @@ const translations = {
     possessed_status: "чужие Henchman: {used}/3",
     possessed_limit_exceeded: "Possessed позволяет нанять не более 3 Henchman с чужой Affiliation",
     print_filter_title: "Только модели с Print",
+    faction_filter_title: "Только модели выбранной фракции",
     export_title: "Экспорт ростера",
     import_title: "Импорт ростера",
     no_available_equipment: "Нет доступного оборудования",
@@ -322,6 +327,7 @@ const translations = {
     model_not_affiliation: "Model is not in Boss's affiliation",
     model_not_match_affiliation: "Model doesn't match Boss's Affiliation or doesn't have Unknown affiliation",
     model_not_match: "Model doesn't match Boss's Affiliation",
+    model_cannot_be_hired: "This model cannot be recruited to the current crew",
     leader_trait_required: "For leader {leader}, only models with trait \"{trait}\" are allowed",
     model_already_added: "You've already added a model named \"{name}\"",
     only_one_leader: "Only one Leader",
@@ -360,6 +366,7 @@ const translations = {
     possessed_status: "any-affiliation Henchmen: {used}/3",
     possessed_limit_exceeded: "Possessed can recruit no more than 3 Henchmen with other Affiliation",
     print_filter_title: "Only models with Print",
+    faction_filter_title: "Only selected faction models",
     export_title: "Export Roster",
     import_title: "Import Roster",
     no_available_equipment: "No available equipment",
@@ -5141,6 +5148,25 @@ function findCrewModel(model) {
 const hasInCrew = m => crew.some(x => isSameModel(x, m));
 const countInCrew = m => crew.filter(x => isSameModel(x, m)).length;
 
+function getMinionTraitValue(model) {
+  const trait = getModelTraits(model).find(t => /^Minion \((.+)\)$/.test(t));
+  return trait ? trait.match(/^Minion \((.+)\)$/)[1].trim() : null;
+}
+
+function getMinionLimit(model) {
+  const value = getMinionTraitValue(model);
+  if (!value) return null;
+
+  const parsed = parseInt(value, 10);
+  const baseLimit = Number.isNaN(parsed) ? 1 : parsed;
+  return baseLimit + (modifiers.extraMinions[value] || 0) + (modifiers.extraMinions.All || 0);
+}
+
+function isMinionLimitReached(model) {
+  const limit = getMinionLimit(model);
+  return limit !== null && countInCrew(model) >= limit;
+}
+
 function isThreeJokersModel(model) {
   return !!model && Array.isArray(model.traits) && model.traits.includes("Three Jokers") && THREE_JOKERS_NAMES.includes(model.name);
 }
@@ -5211,16 +5237,24 @@ function findCompendiumEntry(searchTerm) {
 // ======================== ПРОВЕРКА ЗАВИСИМОСТЕЙ МОДЕЛЕЙ ========================
 // Возвращает true, если зависимость модели выполнена (требуемая модель есть в отряде)
 // Также проверяет правила Aversion — если в отряде есть модель из списка Aversion, возвращает false
+function getModelDependencyOptions(dependency) {
+  if (!dependency) return [];
+  const required = dependency.requiredModels || dependency.requiredModel;
+  if (Array.isArray(required)) return required.filter(Boolean);
+  return required ? [required] : [];
+}
+
+function formatModelDependencyRequirement(dependency) {
+  return getModelDependencyOptions(dependency).join(" / ");
+}
+
 function checkModelDependency(model) {
   // Проверяем зависимости (Required)
   const dependency = window.modelDependencyRules?.[model.name];
   if (dependency) {
-    const requiredModel = dependency.requiredModel;
-    if (requiredModel) {
-      // Проверяем, есть ли требуемая модель в отряде
-      if (!crew.some(m => m.name === requiredModel)) {
-        return false;
-      }
+    const requiredModels = getModelDependencyOptions(dependency);
+    if (requiredModels.length && !requiredModels.some(required => crew.some(m => m.name === required))) {
+      return false;
     }
   }
 
@@ -5245,11 +5279,11 @@ function getUnmetDependency(model) {
   const dependency = window.modelDependencyRules?.[model.name];
   if (!dependency) return null;
 
-  const requiredModel = dependency.requiredModel;
-  if (!requiredModel) return null;
+  const requiredModels = getModelDependencyOptions(dependency);
+  if (!requiredModels.length) return null;
 
-  if (!crew.some(m => m.name === requiredModel)) {
-    return requiredModel;
+  if (!requiredModels.some(required => crew.some(m => m.name === required))) {
+    return formatModelDependencyRequirement(dependency);
   }
 
   return null;
@@ -5266,6 +5300,204 @@ function checkAversionHidden(model) {
     }
   }
   return false;
+}
+
+function hasRequiredTraitOption(required) {
+  const requiredOptions = String(required || "").split(/\s+or\s+/).map(s => s.trim()).filter(Boolean);
+  return requiredOptions.some(req =>
+    crew.some(m => m.name === req || m.name.includes(req) || getFactions(m).includes(req))
+  );
+}
+
+function canPassTraitRecruitmentRules(model) {
+  const traits = getModelTraits(model);
+
+  for (const trait of traits) {
+    const hatesMatch = trait.match(/^Hates \((.+)\)$/);
+    if (hatesMatch) {
+      const hated = hatesMatch[1];
+      if (crew.some(m => m.name === hated || getFactions(m).includes(hated))) return false;
+    }
+
+    const aversionMatch = trait.match(/^Aversion \((.+)\)$/);
+    if (aversionMatch) {
+      const averted = aversionMatch[1];
+      if (crew.some(m => m.name === averted || getFactions(m).includes(averted))) return false;
+    }
+
+    const requiredMatch = trait.match(/^Required \((.+)\)$/);
+    if (requiredMatch && !hasRequiredTraitOption(requiredMatch[1])) return false;
+
+    if (trait === "Incorruptible" && ["Joker", "Bane", "Penguin", "Mr. Freeze", "Scarecrow", "Two-Face", "The Riddler", "Organized Crime", "Suicide Squad", "Batman Who Laughs", "Cults"].includes(currentFaction)) {
+      return false;
+    }
+
+    if ((trait === "Freed" || trait === "He Freed Me") && !crew.some(m => m.name === "The Batman Who Laughs")) {
+      return false;
+    }
+
+    if (trait === "My Idol!" && (!BMG_BOSS || BMG_BOSS.name !== "Joker")) {
+      return false;
+    }
+
+    const isPrintedFaction = getFactions(model).includes(currentFaction);
+    if (trait === "Possessed" && !isPrintedFaction && !["Cults", "Batman Who Laughs"].includes(currentFaction)) {
+      return false;
+    }
+
+    if (trait === "Meet Goliath!" && !crew.some(m => m.name === "Goliath")) {
+      return false;
+    }
+
+    if (trait === "The Sidekick" && (bmgRankCount("Sidekick") >= 1 || !BMG_BOSS)) {
+      return false;
+    }
+
+    if (trait === "Amazon Lineage" && currentFaction !== "Birds of Prey") {
+      return false;
+    }
+  }
+
+  const aversionList = window.modelAversionRules?.[model.name];
+  if (aversionList && Array.isArray(aversionList) && crew.some(m => aversionList.includes(m.name))) {
+    return false;
+  }
+
+  for (const crewModel of crew) {
+    const crewAversionList = window.modelAversionRules?.[crewModel.name];
+    if (crewAversionList && Array.isArray(crewAversionList) && crewAversionList.includes(model.name)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function canUseRankForCurrentCrew(model, rank) {
+  if (!currentFaction || !rank) return false;
+
+  const factionRules = factionCrewRules[currentFaction] || {};
+  const modelRanks = getRanks(model);
+
+  if (!modelRanks.includes(rank)) return false;
+
+  if (!BMG_BOSS) {
+    if (rank !== "Leader") return false;
+  }
+
+  if (BMG_BOSS && BMG_BOSS.rankUsed === "Sidekick" && rank === "Leader" && !modelRanks.includes("Sidekick")) {
+    return false;
+  }
+
+  if (model.name === "Henry Ducard" && rank === "Sidekick") {
+    const hasRasGhulDecoyAsLeader = BMG_BOSS && BMG_BOSS.name === "Ra's al Ghul Decoy" && BMG_BOSS.rankUsed === "Leader";
+    if (!hasRasGhulDecoyAsLeader) return false;
+  }
+
+  const usePossessedRecruitment = needsPossessedRecruitment(model, rank);
+  if (usePossessedRecruitment && bmgPossessedHenchmanCount() >= POSSESSED_HENCHMAN_LIMIT) return false;
+
+  if (!checkModelDependency(model) || checkAversionHidden(model) || !canAffordModelInCurrentCrew(model)) {
+    return false;
+  }
+
+  if (BMG_BOSS && !usePossessedRecruitment) {
+    const modelFactions = getFactions(model);
+    const bossFactions = BMG_AFFILIATIONS || [];
+
+    if (factionRules.onlyAffiliationMembers) {
+      if (!modelFactions.some(a => bossFactions.includes(a))) return false;
+    } else if (factionRules.onlyBossAffiliationOrNoAffiliation) {
+      if (!modelFactions.includes("Unknown") && !modelFactions.some(a => bossFactions.includes(a))) return false;
+    } else if (!modelFactions.includes("Unknown") && !modelFactions.some(a => bossFactions.includes(a))) {
+      return false;
+    }
+  }
+
+  if (currentFaction === "Cults" && BMG_BOSS && BMG_BOSS.name !== model.name) {
+    const requiredTrait = BMG_BOSS.name === "Deacon Blackfire"
+      ? "Blackfire Cultist"
+      : BMG_BOSS.name === "Kobra"
+        ? "Kobra Cultist"
+        : null;
+    if (requiredTrait && !getModelTraits(model).includes(requiredTrait)) return false;
+  }
+
+  const realname = model.realname || "—";
+  if (!factionRules.allowSameNameDifferentAlias && realname !== "Unknown" && realname !== "—") {
+    if (crew.some(m => (m.realname || "—") === realname)) return false;
+  }
+
+  if (rank === "Henchman" && isMinionLimitReached(model)) return false;
+
+  if (!factionRules.ignoreStandardRankRequirements) {
+    const extras = bmgExtraSlots();
+    const modelTraits = getModelTraits(model);
+
+    if (rank === "Leader") {
+      if (bmgRankCount("Leader") >= 1) return false;
+      if (BMG_BOSS && BMG_BOSS.rankUsed === "Sidekick" && !modelRanks.includes("Sidekick")) return false;
+    }
+
+    if (rank === "Sidekick") {
+      if (bmgRankCount("Leader") === 0 && bmgRankCount("Sidekick") >= 2) return false;
+      if (bmgRankCount("Leader") >= 1 && bmgRankCount("Sidekick") >= 1) return false;
+    }
+
+    if (rank === "Free Agent" && bmgRankCount("Free Agent") >= 1 + extras + (modifiers.extraFreeAgents || 0)) {
+      const hasCharismatic = crew.some(m => getModelTraits(m).includes("Charismatic"));
+      if (!hasCharismatic || modifiers.charismaticUsed) return false;
+    }
+
+    if (rank === "Vehicle" && bmgRankCount("Vehicle") >= 1 + extras + (modifiers.extraVehicles || 0)) {
+      return false;
+    }
+
+    if (rank === "Henchman") {
+      const hasMinionOrHorde = modelTraits.some(t => t.startsWith("Minion") || t === "Horde");
+      if (!hasMinionOrHorde) {
+        const sameNameCount = crew.filter(x => x.name === model.name && x.rankUsed === "Henchman").length;
+        if (sameNameCount >= 1 + (modifiers.extraDuplicates || 0)) return false;
+      }
+
+      for (const trait of modelTraits) {
+        const eliteMatch = trait.match(/^Elite \((.+)\)$/);
+        if (eliteMatch) {
+          const type = eliteMatch[1];
+          const count = crew.filter(m => getModelTraits(m).some(u => u.match(new RegExp(`^Elite \\(${type}\\)$`)))).length;
+          const hasEliteBoss = crew.some(m => getModelTraits(m).some(u => u === `Elite Boss (${type})`));
+          const limit = hasEliteBoss ? 99 : 1 + (modifiers.extraElites[type] || 0);
+          if (count >= limit) return false;
+        }
+
+        const veteranMatch = trait.match(/^Veteran \((.+)\)$/);
+        if (veteranMatch) {
+          const type = veteranMatch[1];
+          const count = crew.filter(m => getModelTraits(m).some(u => u.match(new RegExp(`^Veteran \\(${type}\\)$`)))).length;
+          if (count >= 1 + (modifiers.extraVeterans[type] || 0)) return false;
+        }
+
+        const minionMatch = trait.match(/^Minion \((.+)\)$/);
+        if (minionMatch && isMinionLimitReached(model)) return false;
+
+        if (trait === "Horde" && bmgRankCount("Henchman") >= 5 + (modifiers.extraMinions["All"] || 0)) {
+          return false;
+        }
+      }
+    }
+  }
+
+  return canPassTraitRecruitmentRules(model);
+}
+
+function getRecruitableRanksForCurrentCrew(model) {
+  let ranks = getRanks(model);
+
+  if (!canHireInFaction(model, currentFaction) && canShowByPossessedRule(model)) {
+    ranks = ranks.filter(rank => rank === "Henchman");
+  }
+
+  return ranks.filter(rank => canUseRankForCurrentCrew(model, rank));
 }
 
 function loadMyCrewsFromStorage() {
@@ -5654,6 +5886,38 @@ function toggleBuilderPrintFilter() {
   }
 }
 
+function modelHasCurrentFaction(model) {
+  if (!currentFaction || !model) return false;
+  return getFactions(model).includes(currentFaction);
+}
+
+function passesBuilderFactionFilter(model) {
+  return !builderFactionOnly || modelHasCurrentFaction(model);
+}
+
+function canConsiderModelForCurrentBuilder(model) {
+  return canHireInFaction(model, currentFaction) || canShowByPossessedRule(model);
+}
+
+function updateBuilderFactionFilterButton() {
+  const button = $("builderFactionFilterBtn");
+  if (!button) return;
+  button.classList.toggle("active", builderFactionOnly);
+  button.setAttribute("aria-pressed", builderFactionOnly ? "true" : "false");
+  button.title = t("faction_filter_title");
+}
+
+function toggleBuilderFactionFilter() {
+  builderFactionOnly = !builderFactionOnly;
+  updateBuilderFactionFilterButton();
+  if (currentMode === "builder") {
+    renderMiniCardsBuilder();
+  }
+  if ($("modelSearchModal")?.classList.contains("active")) {
+    renderUnifiedSearch();
+  }
+}
+
 function updateBuilderContentModeButtons() {
   const isCardsMode = builderContentMode === 'cards';
   const modelsButton = $("builderModelsTabBtn");
@@ -5662,6 +5926,7 @@ function updateBuilderContentModeButtons() {
   const cardsPanel = $("builderCardsPanel");
   const searchButton = $("builderModelSearchBtn");
   const printButton = $("builderPrintFilterBtn");
+  const factionButton = $("builderFactionFilterBtn");
 
   if (modelsButton) {
     modelsButton.classList.toggle("active", !isCardsMode);
@@ -5675,6 +5940,9 @@ function updateBuilderContentModeButtons() {
   if (cardsPanel) cardsPanel.style.display = isCardsMode ? "block" : "none";
   if (searchButton) searchButton.style.display = isCardsMode ? "none" : "";
   if (printButton) printButton.style.display = isCardsMode ? "none" : "";
+  if (factionButton) factionButton.style.display = isCardsMode ? "none" : "";
+  updateBuilderPrintFilterButton();
+  updateBuilderFactionFilterButton();
 }
 
 function setBuilderContentMode(mode) {
@@ -5689,12 +5957,60 @@ function setBuilderContentMode(mode) {
   }
 }
 
+function passesCardsPrintFilter(model) {
+  return !cardsPrintOnly || hasPrintableFile(model);
+}
+
+function passesCardsFactionFilter(model) {
+  return !cardsFactionOnly || modelHasCurrentFaction(model);
+}
+
+function updateCardsPrintFilterButton() {
+  const button = $("cardsPrintFilterBtn");
+  if (!button) return;
+  button.classList.toggle("active", cardsPrintOnly);
+  button.setAttribute("aria-pressed", cardsPrintOnly ? "true" : "false");
+  button.title = t("print_filter_title");
+}
+
+function updateCardsFactionFilterButton() {
+  const button = $("cardsFactionFilterBtn");
+  if (!button) return;
+  button.classList.toggle("active", cardsFactionOnly);
+  button.setAttribute("aria-pressed", cardsFactionOnly ? "true" : "false");
+  button.title = t("faction_filter_title");
+}
+
+function toggleCardsPrintFilter() {
+  cardsPrintOnly = !cardsPrintOnly;
+  updateCardsPrintFilterButton();
+  if (currentMode === "cards" && cardsContentMode === "models") {
+    renderMiniCardsView();
+  }
+  if (currentMode === "cards" && $("modelSearchModal")?.classList.contains("active")) {
+    renderUnifiedSearch();
+  }
+}
+
+function toggleCardsFactionFilter() {
+  cardsFactionOnly = !cardsFactionOnly;
+  updateCardsFactionFilterButton();
+  if (currentMode === "cards" && cardsContentMode === "models") {
+    renderMiniCardsView();
+  }
+  if (currentMode === "cards" && $("modelSearchModal")?.classList.contains("active")) {
+    renderUnifiedSearch();
+  }
+}
+
 function updateCardsContentModeButtons() {
   const isCardsMode = cardsContentMode === 'cards';
   const modelsButton = $("cardsModelsTabBtn");
   const cardsButton = $("cardsCardsTabBtn");
   const modelsPanel = $("cardsModelsPanel");
   const cardsPanel = $("cardsCardsPanel");
+  const printButton = $("cardsPrintFilterBtn");
+  const factionButton = $("cardsFactionFilterBtn");
 
   if (modelsButton) {
     modelsButton.classList.toggle("active", !isCardsMode);
@@ -5706,6 +6022,10 @@ function updateCardsContentModeButtons() {
   }
   if (modelsPanel) modelsPanel.style.display = isCardsMode ? "none" : "block";
   if (cardsPanel) cardsPanel.style.display = isCardsMode ? "block" : "none";
+  if (printButton) printButton.style.display = isCardsMode ? "none" : "";
+  if (factionButton) factionButton.style.display = isCardsMode ? "none" : "";
+  updateCardsPrintFilterButton();
+  updateCardsFactionFilterButton();
 }
 
 function setCardsContentMode(mode) {
@@ -6195,6 +6515,8 @@ function removeBuilderCard(cardKey) {
 
 // ======================== ВЫБОР ФРАКЦИИ В БИЛДЕРЕ ========================
 function selectFaction(faction) {
+  if (currentMode === 'builder' && faction === 'Unknown') return;
+
   currentFaction = faction;
   $('factionSelect').style.display = 'none';
   $('builderFactionCards').classList.add('hidden'); // Скрываем вкладки фракций
@@ -6226,10 +6548,10 @@ const addToCrew = m => {
   if (!isMinionOrHorde && hasInCrew(m)) {
     removeFromCrew(m);
   } else {
-    let ranks = getRanks(m);
+    let ranks = getRecruitableRanksForCurrentCrew(m);
 
-    if (!BMG_BOSS && factionRules.mustHaveLeaderAsBoss && !ranks.includes("Leader")) {
-      alert(t("leader_first"));
+    if (!ranks.length) {
+      alert(t("model_cannot_be_hired"));
       return;
     }
 
@@ -6410,7 +6732,11 @@ function addModelWithRank(model, chosenRank, options = {}) {
 // Модальное окно выбора ранга
 function showRankSelectionModal(model, ranks) {
   // Если босс — Sidekick, и модель имеет оба ранга (Leader и Sidekick), показываем только Sidekick
-  let availableRanks = ranks;
+  let availableRanks = ranks.filter(rank => getRecruitableRanksForCurrentCrew(model).includes(rank));
+  if (!availableRanks.length) {
+    alert(t("model_cannot_be_hired"));
+    return;
+  }
   if (BMG_BOSS && BMG_BOSS.rankUsed === "Sidekick") {
     const modelRanks = getRanks(model);
     if (modelRanks.includes("Leader") && modelRanks.includes("Sidekick")) {
@@ -6755,9 +7081,68 @@ function sortModelsByRankAndName(modelList) {
   });
 }
 
+const INCORRUPTIBLE_BLOCKED_FACTIONS = [
+  "Joker",
+  "Bane",
+  "Penguin",
+  "Mr. Freeze",
+  "Scarecrow",
+  "Two-Face",
+  "The Riddler",
+  "Organized Crime",
+  "Suicide Squad",
+  "Batman Who Laughs",
+  "Cults"
+];
+
+function hasStaticFactionRestriction(model, faction) {
+  const traits = getModelTraits(model);
+  const modelFactions = getFactions(model);
+
+  if (traits.includes("Incorruptible") && INCORRUPTIBLE_BLOCKED_FACTIONS.includes(faction)) {
+    return true;
+  }
+
+  if ((traits.includes("Freed") || traits.includes("He Freed Me")) && faction !== "Batman Who Laughs") {
+    return true;
+  }
+
+  if (traits.includes("My Idol!") && faction !== "Joker") {
+    return true;
+  }
+
+  if (traits.includes("Amazon Lineage") && faction !== "Birds of Prey") {
+    return true;
+  }
+
+  if (traits.includes("Possessed") && !modelFactions.includes(faction) && !["Cults", "Batman Who Laughs"].includes(faction)) {
+    return true;
+  }
+
+  return false;
+}
+
+function canShowInFactionCards(model, faction) {
+  if (!model || !faction) return false;
+  if (hasStaticFactionRestriction(model, faction)) return false;
+
+  const factionRules = factionCrewRules[faction] || {};
+  const modelFactions = getFactions(model);
+
+  if (factionRules.onlyAffiliationMembers) {
+    return modelFactions.includes(faction);
+  }
+
+  return canHireInFaction(model, faction);
+}
+
 function getCardsViewModels() {
   if (!currentFaction) return [];
-  return sortModelsByRankAndName(models.filter(m => canViewInFaction(m, currentFaction)));
+  return sortModelsByRankAndName(models.filter(m =>
+    canShowInFactionCards(m, currentFaction) &&
+    passesCardsPrintFilter(m) &&
+    passesCardsFactionFilter(m)
+  ));
 }
 
 function getBuilderCardItems() {
@@ -6772,10 +7157,12 @@ function getBuilderCardItems() {
     };
   });
 
-  let filteredModels = models.filter(m => (canHireInFaction(m, currentFaction) || canShowByPossessedRule(m)) && !hasInCrew(m));
-  filteredModels = filteredModels.filter(m => checkModelDependency(m));
-  filteredModels = filteredModels.filter(m => !checkAversionHidden(m));
-  filteredModels = filteredModels.filter(m => canAffordModelInCurrentCrew(m));
+  let filteredModels = models.filter(m =>
+    canConsiderModelForCurrentBuilder(m) &&
+    passesBuilderFactionFilter(m) &&
+    !hasInCrew(m) &&
+    getRecruitableRanksForCurrentCrew(m).length > 0
+  );
 
   if (builderPrintOnly) {
     filteredModels = filteredModels.filter(m => hasPrintableFile(m));
@@ -6800,9 +7187,7 @@ const renderMiniCardsView = debounce(() => {
 
   const grid = $("modelsGridCards");
 
-  // === ИСПРАВЛЕНО: используем canViewInFaction для режима просмотра ===
-  // В режиме просмотра НЕ применяем правила factionCrewRules и modelDependencyRules
-  // Эти правила работают только в билдере
+  // В режиме просмотра показываем базово допустимые модели фракции без проверок текущего состава.
   let filteredModels = getCardsViewModels();
 
   const fragment = document.createDocumentFragment();
@@ -6853,16 +7238,12 @@ const renderMiniCardsBuilder = debounce(() => {
   }));
   
   // === ИСПРАВЛЕНО: используем canHireInFaction для режима билдера ===
-  let filteredModels = models.filter(m => (canHireInFaction(m, currentFaction) || canShowByPossessedRule(m)) && !hasInCrew(m));
-
-  // Скрываем модели с невыполненными зависимостями
-  filteredModels = filteredModels.filter(m => checkModelDependency(m));
-
-  // Скрываем модели из-за правил Aversion (если в отряде есть модель, для которой эта модель в списке Aversion)
-  filteredModels = filteredModels.filter(m => !checkAversionHidden(m));
-
-  // Скрываем новые модели, которые уже не помещаются в оставшиеся Rep или Funding
-  filteredModels = filteredModels.filter(m => canAffordModelInCurrentCrew(m));
+  let filteredModels = models.filter(m =>
+    canConsiderModelForCurrentBuilder(m) &&
+    passesBuilderFactionFilter(m) &&
+    !hasInCrew(m) &&
+    getRecruitableRanksForCurrentCrew(m).length > 0
+  );
 
   if (builderPrintOnly) {
     filteredModels = filteredModels.filter(m => hasPrintableFile(m));
@@ -6898,6 +7279,8 @@ const renderMiniCardsBuilder = debounce(() => {
 
   renderArray.forEach(item => {
     const isMinionOrHorde = item.traits && item.traits.some(t => t.startsWith("Minion") || t === "Horde");
+    const canAddMoreCopies = getRecruitableRanksForCurrentCrew(item).length > 0;
+    const minionLimit = getMinionLimit(item);
     const ranks = getRanks(item);
 
     const div = document.createElement("div");
@@ -6905,11 +7288,13 @@ const renderMiniCardsBuilder = debounce(() => {
 
     let buttons = '';
     if (isMinionOrHorde) {
-      buttons = `<button class="add-btn" onclick="event.stopPropagation();addToCrew(models[${item._id}])">+</button>`;
+      buttons = canAddMoreCopies
+        ? `<button class="add-btn" onclick="event.stopPropagation();addToCrew(models[${item._id}])">+</button>`
+        : "";
       if (item.count > 0) {
         buttons += `
           <button class="remove-btn" onclick="event.stopPropagation();removeFromCrew(models[${item._id}])">−</button>
-          <span class="count">x${item.count}</span>`;
+          <span class="count">x${item.count}${minionLimit ? `/${minionLimit}` : ""}</span>`;
       }
     } else {
       buttons = `<button class="${item.inCrew ? "remove-btn" : "add-btn"}" onclick="event.stopPropagation();addToCrew(models[${item._id}])">${item.inCrew ? "−" : "+"}</button>`;
@@ -7183,26 +7568,23 @@ function renderModelsSearch(query) {
   const isBuilderSearch = currentMode === "builder";
   const results = models
     .filter(m => {
-      const factions = Array.isArray(m.faction)
-        ? m.faction
-        : typeof m.faction === "string"
-          ? m.faction.replace(/ *& */gi,",").replace(/ *\/ */g,",").split(",").map(s=>s.trim())
-          : [];
-
       const visibleInCurrentMode = isBuilderSearch
-        ? (canHireInFaction(m, currentFaction) || canShowByPossessedRule(m))
-        : factions.includes(currentFaction);
+        ? canConsiderModelForCurrentBuilder(m)
+        : canShowInFactionCards(m, currentFaction);
 
       if (!visibleInCurrentMode || !m.name.toLowerCase().includes(normalizedQuery)) {
         return false;
       }
-      if (!checkModelDependency(m)) {
+      if (isBuilderSearch && !passesBuilderFactionFilter(m)) {
         return false;
       }
-      if (isBuilderSearch && checkAversionHidden(m)) {
+      if (!isBuilderSearch && !passesCardsPrintFilter(m)) {
         return false;
       }
-      if (isBuilderSearch && !canAffordModelInCurrentCrew(m)) {
+      if (!isBuilderSearch && !passesCardsFactionFilter(m)) {
+        return false;
+      }
+      if (isBuilderSearch && getRecruitableRanksForCurrentCrew(m).length === 0) {
         return false;
       }
       if (isBuilderSearch && builderPrintOnly && !hasPrintableFile(m)) {
@@ -7590,9 +7972,8 @@ function bmgCanAddModel(model, options = {}) {
 
   // Проверка первого Босса
   if (!BMG_BOSS) {
-    const validBossRanks = factionRules.mustHaveLeaderAsBoss ? ["Leader"] : ["Leader", "Sidekick"];
-    if (!getRanks(model).some(r => validBossRanks.includes(r))) {
-      alert(t("leader_required", { rank: factionRules.mustHaveLeaderAsBoss ? "Leader" : "Leader или Sidekick" }));
+    if (model.rankUsed !== "Leader") {
+      alert(t("leader_required", { rank: "Leader" }));
       return false;
     }
   }
@@ -7645,6 +8026,11 @@ function bmgCanAddModel(model, options = {}) {
       alert(t("model_already_added", { name: realname }));
       return false;
     }
+  }
+
+  if (rank === "Henchman" && isMinionLimitReached(model)) {
+    alert(t("minion_limit_exceeded", { type: getMinionTraitValue(model) || "" }));
+    return false;
   }
 
   // Проверка лимитов рангов
@@ -7739,15 +8125,9 @@ function bmgCanAddModel(model, options = {}) {
       let minionExceeded = false;
       model.traits.forEach(t => {
         const minionMatch = t.match(/^Minion \((.+)\)$/);
-        if (minionMatch) {
-          const x = minionMatch[1].trim();
-          const parsedX = parseInt(x, 10);
-          const limit = isNaN(parsedX) ? 1 + (modifiers.extraMinions[x] || 0) : parsedX;
-          const count = crew.filter(m => m.traits.some(u => u.match(new RegExp(`^Minion \\(${x}\\)$`)))).length;
-          if (count >= limit) {
-            alert(t("minion_limit_exceeded", { type: x }));
-            minionExceeded = true;
-          }
+        if (minionMatch && isMinionLimitReached(model)) {
+          alert(t("minion_limit_exceeded", { type: minionMatch[1].trim() }));
+          minionExceeded = true;
         }
       });
       if (minionExceeded) return false;
@@ -7840,10 +8220,10 @@ function bmgCanAddModel(model, options = {}) {
       exceeded = true;
     }
 
-    // Freed / He Freed Me: Требует liberator (например, Bane)
+    // Freed / He Freed Me: модели Batman Who Laughs требуют The Batman Who Laughs в отряде
     if (t === "Freed" || t === "He Freed Me") {
-      if (!crew.some(m => m.name === "Bane" || m.traits.includes("Liberator"))) {
-        alert(t("requires_liberator"));
+      if (!crew.some(m => m.name === "The Batman Who Laughs")) {
+        alert(t("model_requires_other", { model: model.name, required: "The Batman Who Laughs" }));
         exceeded = true;
       }
     }

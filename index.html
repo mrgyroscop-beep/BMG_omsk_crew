@@ -56,6 +56,12 @@
             <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
             <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
           </div>
+          <button id="cardsPrintFilterBtn" class="compendium-small-btn print-filter-btn" onclick="toggleCardsPrintFilter()" data-i18n-title="print_filter_title" title="Только модели с Print">
+            <svg viewBox="0 0 24 24"><path d="M6 9V3h12v6h1c1.66 0 3 1.34 3 3v5h-4v4H6v-4H2v-5c0-1.66 1.34-3 3-3h1zm2-4v4h8V5H8zm8 12H8v2h8v-2zm2-3h2v-2c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1v2h2v-2h12v2z"/></svg>
+          </button>
+          <button id="cardsFactionFilterBtn" class="compendium-small-btn faction-filter-btn" onclick="toggleCardsFactionFilter()" data-i18n-title="faction_filter_title" title="Только модели выбранной фракции">
+            <svg viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5.05-3.41 9.76-8 11-4.59-1.24-8-5.95-8-11V5l8-3zm0 2.16L6 6.41V11c0 3.94 2.51 7.64 6 8.84 3.49-1.2 6-4.9 6-8.84V6.41l-6-2.25zm-3 5.09l3-1.12 3 1.12V12c0 1.93-1.17 3.78-3 4.56-1.83-.78-3-2.63-3-4.56V9.25z"/></svg>
+          </button>
           <button class="compendium-small-btn" onclick="backToMenu()">
             <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> <!-- Иконка назад -->
           </button>
@@ -259,10 +265,6 @@
           <img class="faction-icon" src="img/menu/Doom_Patrol.png" alt="Doom Patrol">
           
         </div>
-        <div class="faction-card" data-faction="Unknown" style="background-image: url('img/menu/UNKNOWN.jpg');">
-          <img class="faction-icon" src="img/menu/UNKNOWN.png" alt="Unknown">
-          
-        </div>
       </div>
     </div>
     </div>
@@ -283,6 +285,9 @@
             </button>
             <button id="builderPrintFilterBtn" class="compendium-small-btn print-filter-btn" onclick="toggleBuilderPrintFilter()" data-i18n-title="print_filter_title" title="Только модели с Print">
               <svg viewBox="0 0 24 24"><path d="M6 9V3h12v6h1c1.66 0 3 1.34 3 3v5h-4v4H6v-4H2v-5c0-1.66 1.34-3 3-3h1zm2-4v4h8V5H8zm8 12H8v2h8v-2zm2-3h2v-2c0-.55-.45-1-1-1H5c-.55 0-1 .45-1 1v2h2v-2h12v2z"/></svg>
+            </button>
+            <button id="builderFactionFilterBtn" class="compendium-small-btn faction-filter-btn" onclick="toggleBuilderFactionFilter()" data-i18n-title="faction_filter_title" title="Только модели выбранной фракции">
+              <svg viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5.05-3.41 9.76-8 11-4.59-1.24-8-5.95-8-11V5l8-3zm0 2.16L6 6.41V11c0 3.94 2.51 7.64 6 8.84 3.49-1.2 6-4.9 6-8.84V6.41l-6-2.25zm-3 5.09l3-1.12 3 1.12V12c0 1.93-1.17 3.78-3 4.56-1.83-.78-3-2.63-3-4.56V9.25z"/></svg>
             </button>
             <button class="compendium-small-btn" onclick="openCompendium()">
               <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H6V4h12v16zm-4-8H10v-1h4v1zm0-3H10V8h4v1zm0-3H10V6h4v1z"/></svg>
