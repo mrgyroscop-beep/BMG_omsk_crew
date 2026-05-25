@@ -37,6 +37,222 @@ const builderMandatoryCards = [
       en: "THWART\n\nAfter placing the Sewers and Lampposts, Set 8 friendly THWART! markers in Play.\n\nYou cannot have more than 8 friendly THWART! markers in Play at the same time.\n\nIf an Objective card refers to a THWART!, it only refers to a friendly THWART!.\n\nWhen a model places a Suspect within 4” of a THWART! the owner of that model may Move that THWART! 4”.\n\nWhen a THWART! is Moved or Placed, it cannot end within 4” of an Edge of the Gaming Area.",
       ru: "THWART\n\nПосле размещения Sewers и Lampposts выставьте в игру 8 дружественных маркеров THWART!.\n\nУ вас не может быть больше 8 дружественных маркеров THWART! в игре одновременно.\n\nЕсли карта цели ссылается на THWART!, это относится только к дружественному THWART!.\n\nКогда модель размещает Suspect в пределах 4” от THWART!, владелец этой модели может передвинуть этот THWART! на 4”.\n\nКогда THWART! передвигается или размещается, он не может закончить это перемещение в пределах 4” от края Gaming Area."
     }
+  },
+  {
+    id: "harley-quinn-friends-special-rules",
+    name: "HARLEY QUINN & FRIENDS SPECIAL RULES",
+    img: "img/cards/harley-quinn-friends/harley-quinn-friends-special-rules.jpg",
+    renderAsCardImage: true,
+    type: "Special Rules",
+    faction: ["Birds of Prey"],
+    category: "crew",
+    mandatory: true,
+    countsForDeck: false,
+    text: {
+      en: "VANDALIZED!\n\nWhen you score this Objective, use a counter to mark a Scenery Element, Lamppost, or Sewer within 4” of the Active model as Vandalized!. That is now considered a Vandalized element.\n\nSPRAY CAN\n\nA model equipped with a Spray Can when it Sets a Suspect may expend 1 of its Spray Cans to Vandalize a scenery element, Streetlamp or Sewer in contact with that Suspect.",
+      ru: "VANDALIZED!\n\nКогда вы засчитываете эту Objective, используйте counter, чтобы отметить Scenery Element, Lamppost или Sewer в пределах 4” от активной модели как Vandalized!. Теперь это считается Vandalized элементом.\n\nSPRAY CAN\n\nМодель со Spray Can, когда она выставляет Suspect, может потратить 1 Spray Can, чтобы сделать Vandalized элементом scenery element, Streetlamp или Sewer в контакте с этим Suspect."
+    }
+  },
+  {
+    id: "penguin-business-counters",
+    name: "BUSINESS COUNTERS",
+    img: "img/cards/penguin/business-counters-1.jpg",
+    renderAsCardImage: true,
+    type: "Special Rules",
+    faction: ["Penguin"],
+    category: "crew",
+    mandatory: true,
+    countsForDeck: false,
+    text: {
+      en: "Any time one of the following happens, place a counter near this card to represent the Business counters.\n\n• A friendly model suffers KO or is removed as a Casualty.\n• Your opponent scores an Objective card.\n\nA friendly Boss can only have up to 6 Business counters at any time.\n\nYou may not spend Business counters if your Boss is suffering KO.\n\nIf your Boss is removed as a Casualty, all Business counters are lost and your new Boss will start gaining counters as normal.",
+      ru: "Каждый раз, когда происходит одно из следующих событий, положите counter рядом с этой картой, чтобы обозначить Business counters.\n\n• Дружественная модель получает KO или удаляется как Casualty.\n• Ваш оппонент засчитывает Objective card.\n\nУ дружественного Boss может быть не больше 6 Business counters одновременно.\n\nВы не можете тратить Business counters, если ваш Boss находится в KO.\n\nЕсли ваш Boss удален как Casualty, все Business counters теряются, а новый Boss начинает получать counters как обычно."
+    }
+  },
+  {
+    id: "penguin-business-counters-continued",
+    name: "BUSINESS COUNTERS CONTINUED",
+    img: "img/cards/penguin/business-counters-2.jpg",
+    renderAsCardImage: true,
+    type: "Special Rules",
+    faction: ["Penguin"],
+    category: "crew",
+    mandatory: true,
+    countsForDeck: false,
+    text: {
+      en: "You may spend 1 Business counter during a friendly model's activation that did not have Audacity to perform an additional action.\n\nIt cannot be an action it has already performed this turn.\n\nWithout revealing, remove the top card from your Objective deck and place it aside face down. At the end of Recount, reveal each face down card.\n\nFor each card revealed, the opponent chooses one of your {RANK_HENCHMAN_ICON} to suffer the Enervating (X) Status. Where X is equal to the revealed card's Resource cost. Discard those cards.",
+      ru: "Вы можете потратить 1 Business counter во время активации дружественной модели, у которой не было Audacity, чтобы выполнить дополнительное действие.\n\nЭто не может быть действие, которое она уже выполняла в этот ход.\n\nНе раскрывая, уберите верхнюю карту из вашей Objective deck и отложите ее лицом вниз. В конце Recount раскройте каждую карту, лежащую лицом вниз.\n\nЗа каждую раскрытую карту оппонент выбирает одну вашу модель ранга {RANK_HENCHMAN_ICON}, которая получает Enervating (X) Status. X равен Resource cost раскрытой карты. Сбросьте эти карты."
+    }
+  },
+  {
+    id: "scarecrow-the-fear",
+    name: "THE FEAR",
+    img: "img/cards/scarecrow/the-fear.jpg",
+    renderAsCardImage: true,
+    type: "Special Rules",
+    faction: ["Scarecrow"],
+    category: "crew",
+    mandatory: true,
+    countsForDeck: false,
+    text: {
+      en: "If your Objective deck includes Objective cards that has Affiliation: {AFF_SCARECROW_ICON}, place 12 Fear cards aside forming your Fear Pile, shuffled and face down.\n\nWhen a rule instructs you to place a Fear card into your Objective deck, add the top card from your Fear Pile and shuffle your Objective deck.\n\nWhen a Fear card is drawn from your Objective deck or Discarded from your hand or Objective deck, reveal it and resolve its effects. Return it to the bottom of your Fear Pile.",
+      ru: "Если ваша Objective deck включает Objective cards с Affiliation: {AFF_SCARECROW_ICON}, отложите 12 Fear cards, сформировав Fear Pile, перемешанную и лежащую лицом вниз.\n\nКогда правило указывает поместить Fear card в вашу Objective deck, добавьте верхнюю карту из Fear Pile и перемешайте Objective deck.\n\nКогда Fear card взята из Objective deck или Discarded из вашей руки или Objective deck, раскройте ее и разрешите ее эффект. Верните ее вниз Fear Pile."
+    }
+  },
+  {
+    id: "scarecrow-objective-cards-keywords",
+    name: "OBJECTIVE CARDS KEYWORDS",
+    img: "img/cards/scarecrow/objective-cards-keywords.jpg",
+    renderAsCardImage: true,
+    type: "Special Rules",
+    faction: ["Scarecrow"],
+    category: "crew",
+    mandatory: true,
+    countsForDeck: false,
+    text: {
+      en: "Burn X: You can play this Resource by paying X Resource points to discard this card from your hand, placing it at the bottom of your Objective deck.\n\nException (In Play): This Resource is not played in the usual way. This Resource may only be used while this card is in play as an Objective and does not go to the Spent Resources pile when used.\n\nException (When Scoring): This Resource is not played in the usual way. The effect of this Resource is used when this card is scored.\n\nException (Scored Pile): This Resource is not played in the usual way. The effect of this Resource applies while this card is scored.\n\nLimited: Only 1 card with this name can be in play at a time.\n\nOpening: If this card is included in your Objective deck, you must put it aside before the game starts. At the end of step 4 of Prepare the Game, you must play this card as an Objective. If a card with this keyword is going to be discarded, remove it from the game instead.",
+      ru: "Burn X: Вы можете разыграть этот Resource, заплатив X Resource points, чтобы сбросить эту карту из руки и положить ее вниз Objective deck.\n\nException (In Play): Этот Resource разыгрывается не обычным способом. Его можно использовать только пока эта карта находится в игре как Objective, и при использовании он не отправляется в Spent Resources pile.\n\nException (When Scoring): Этот Resource разыгрывается не обычным способом. Его эффект применяется, когда эта карта засчитывается.\n\nException (Scored Pile): Этот Resource разыгрывается не обычным способом. Его эффект действует, пока эта карта засчитана.\n\nLimited: Только 1 карта с этим названием может быть в игре одновременно.\n\nOpening: Если эта карта включена в вашу Objective deck, вы должны отложить ее перед началом игры. В конце шага 4 Prepare the Game вы должны разыграть эту карту как Objective. Если карта с этим ключевым словом должна быть сброшена, вместо этого удалите ее из игры."
+    }
+  },
+  {
+    id: "scarecrow-fear-audacity-stun",
+    name: "FEAR: AUDACITY STUN",
+    img: "img/cards/scarecrow/fear-audacity-stun.jpg",
+    renderAsCardImage: true,
+    type: "Fear Card",
+    faction: ["Scarecrow"],
+    category: "crew",
+    mandatory: true,
+    countsForDeck: false,
+    maxPerDeck: 2,
+    text: {
+      en: "The opponent chooses one of their models with Audacity to suffer 2 {STUN_ICON}.",
+      ru: "Оппонент выбирает одну из своих моделей с Audacity. Эта модель получает 2 {STUN_ICON}."
+    }
+  },
+  {
+    id: "scarecrow-fear-move-enemy",
+    name: "FEAR: MOVE ENEMY",
+    img: "img/cards/scarecrow/fear-move-enemy.jpg",
+    renderAsCardImage: true,
+    type: "Fear Card",
+    faction: ["Scarecrow"],
+    category: "crew",
+    mandatory: true,
+    countsForDeck: false,
+    maxPerDeck: 2,
+    text: {
+      en: "You Move target enemy model 4” directly away from the closest enemy model.",
+      ru: "Вы передвигаете выбранную вражескую модель на 4” напрямую от ближайшей вражеской модели."
+    }
+  },
+  {
+    id: "scarecrow-fear-attack-bonus",
+    name: "FEAR: ATTACK BONUS",
+    img: "img/cards/scarecrow/fear-attack-bonus.jpg",
+    renderAsCardImage: true,
+    type: "Fear Card",
+    faction: ["Scarecrow"],
+    category: "crew",
+    mandatory: true,
+    countsForDeck: false,
+    maxPerDeck: 2,
+    text: {
+      en: "A friendly model within 4” of an enemy model gains 1 {+ATT_ICON}.",
+      ru: "Дружественная модель в пределах 4” от вражеской модели получает 1 {+ATT_ICON}."
+    }
+  },
+  {
+    id: "scarecrow-fear-terror-status",
+    name: "FEAR: TERROR STATUS",
+    img: "img/cards/scarecrow/fear-terror-status.jpg",
+    renderAsCardImage: true,
+    type: "Fear Card",
+    faction: ["Scarecrow"],
+    category: "crew",
+    mandatory: true,
+    countsForDeck: false,
+    maxPerDeck: 2,
+    text: {
+      en: "An enemy model within 4” of a friendly Suspect suffers the Terror Status.",
+      ru: "Вражеская модель в пределах 4” от дружественного Suspect получает Terror Status."
+    }
+  },
+  {
+    id: "scarecrow-fear-move-suspect",
+    name: "FEAR: MOVE SUSPECT",
+    img: "img/cards/scarecrow/fear-move-suspect.jpg",
+    renderAsCardImage: true,
+    type: "Fear Card",
+    faction: ["Scarecrow"],
+    category: "crew",
+    mandatory: true,
+    countsForDeck: false,
+    maxPerDeck: 2,
+    text: {
+      en: "Move a Suspect 4”.",
+      ru: "Передвиньте Suspect на 4”."
+    }
+  },
+  {
+    id: "scarecrow-fear-scared-status",
+    name: "FEAR: SCARED STATUS",
+    img: "img/cards/scarecrow/fear-scared-status.jpg",
+    renderAsCardImage: true,
+    type: "Fear Card",
+    faction: ["Scarecrow"],
+    category: "crew",
+    mandatory: true,
+    countsForDeck: false,
+    maxPerDeck: 2,
+    text: {
+      en: "An enemy model within 4” of a friendly Suspect suffers the Scared Status.",
+      ru: "Вражеская модель в пределах 4” от дружественного Suspect получает Scared Status."
+    }
+  },
+  {
+    id: "two-face-the-coin-good-side",
+    name: "THE COIN GOOD SIDE",
+    img: "img/cards/two-face/the-coin-good-side.png",
+    renderAsCardImage: true,
+    type: "Side Card",
+    faction: ["Two-Face"],
+    category: "crew",
+    mandatory: true,
+    countsForDeck: false,
+    text: {
+      en: "If your Boss has Affiliation: Two-Face, you must keep this card aside, and after you draw your initial hand of Objective cards, choose 1 Side card and place it somewhere visible. Then shuffle the other Side card into your Objective deck.\n\nA card that has a Good Side or Twisted Side on its requirement can only be scored if it matches the active The Coin Side card. If a card has both Good Side and Twisted Side requirements, you can complete only those matching The Coin side in play. The Resource effect applied is the one that matches The Coin Side in play. You may play a The Coin card as any other Objective card, discarding the other in play (it doesn't count as an Objective being played).\n\nIf your Boss has Affiliation: Two-Face, your deck must include at least 7 Objective cards with either Good Side or Twisted Side (not both).",
+      ru: "Если у вашего Boss Affiliation: Two-Face, вы должны отложить эту карту. После того как вы возьмете начальную руку Objective cards, выберите 1 Side card и положите ее на видное место. Затем замешайте другую Side card в вашу Objective deck.\n\nКарта, у которой в требовании указан Good Side или Twisted Side, может быть засчитана только если она совпадает с активной The Coin Side card. Если у карты есть требования и Good Side, и Twisted Side, вы можете выполнить только те, что совпадают с The Coin side в игре. Применяется тот Resource effect, который совпадает с The Coin Side в игре. Вы можете разыграть The Coin card как любую другую Objective card, сбросив другую карту в игре; это не считается розыгрышем Objective.\n\nЕсли у вашего Boss Affiliation: Two-Face, ваша колода должна включать как минимум 7 Objective cards с Good Side или Twisted Side, но не с обеими сторонами сразу."
+    }
+  },
+  {
+    id: "two-face-the-coin-twisted-side",
+    name: "THE COIN TWISTED SIDE",
+    img: "img/cards/two-face/the-coin-twisted-side.jpg",
+    renderAsCardImage: true,
+    type: "Side Card",
+    faction: ["Two-Face"],
+    category: "crew",
+    mandatory: true,
+    countsForDeck: false,
+    text: {
+      en: "If your Boss has Affiliation: Two-Face, you must keep this card aside, and after you draw your initial hand of Objective cards, choose 1 Side card and place it somewhere visible. Then shuffle the other Side card into your Objective deck.\n\nA card that has a Good Side or Twisted Side on its requirement can only be scored if it matches the active The Coin Side card. If a card has both Good Side and Twisted Side requirements, you can complete only those matching The Coin side in play. The Resource effect applied is the one that matches The Coin Side in play. You may play a The Coin card as any other Objective card, discarding the other in play (it doesn't count as an Objective being played).\n\nIf your Boss has Affiliation: Two-Face, your deck must include at least 7 Objective cards with either Good Side or Twisted Side (not both).",
+      ru: "Если у вашего Boss Affiliation: Two-Face, вы должны отложить эту карту. После того как вы возьмете начальную руку Objective cards, выберите 1 Side card и положите ее на видное место. Затем замешайте другую Side card в вашу Objective deck.\n\nКарта, у которой в требовании указан Good Side или Twisted Side, может быть засчитана только если она совпадает с активной The Coin Side card. Если у карты есть требования и Good Side, и Twisted Side, вы можете выполнить только те, что совпадают с The Coin side в игре. Применяется тот Resource effect, который совпадает с The Coin Side в игре. Вы можете разыграть The Coin card как любую другую Objective card, сбросив другую карту в игре; это не считается розыгрышем Objective.\n\nЕсли у вашего Boss Affiliation: Two-Face, ваша колода должна включать как минимум 7 Objective cards с Good Side или Twisted Side, но не с обеими сторонами сразу."
+    }
+  },
+  {
+    id: "batman-who-laughs-special-rules",
+    name: "BWL SPECIAL RULES",
+    img: "img/cards/batman-who-laughs/bwl-special-rules.jpg",
+    renderAsCardImage: true,
+    type: "Special Rules",
+    faction: ["Batman Who Laughs"],
+    category: "crew",
+    mandatory: true,
+    countsForDeck: false,
+    text: {
+      en: "INFECTED\n\nWhen a model gains an Infected counter, that model discards any previously gained Infected counters.\n\nFREED\n\nRemove an Infected counter from an enemy model. Place up to 2 models with the Freed trait previously removed as Casualty. Place them within 4” of a friendly model (Alias: Batman Who Laughs). If the enemy model has the Rank: {RANK_LEADER_ICON} or {RANK_SIDEKICK_ICON}, you may increase the cost of this Resource to 1 to place a model with He Freed Me trait instead.\n\nA model placed this way may be activated as normal if it did not already activate earlier in this Round. The opponent gains a Pass marker for each model placed.",
+      ru: "INFECTED\n\nКогда модель получает Infected counter, она сбрасывает все ранее полученные Infected counters.\n\nFREED\n\nУберите Infected counter с вражеской модели. Разместите до 2 моделей с трейтом Freed, ранее удаленных как Casualty. Разместите их в пределах 4” от дружественной модели (Alias: Batman Who Laughs). Если вражеская модель имеет Rank: {RANK_LEADER_ICON} или {RANK_SIDEKICK_ICON}, вы можете увеличить стоимость этого Resource до 1, чтобы вместо этого разместить модель с трейтом He Freed Me.\n\nМодель, размещенная таким образом, может активироваться как обычно, если она еще не активировалась ранее в этом Round. Оппонент получает Pass marker за каждую размещенную модель."
+    }
   }
 ];
 
@@ -643,6 +859,2085 @@ const builderCards = [
       cost: 1,
       en: "An active friendly model with the The Dark Knight Returns trait within 8” of a THWART! removes up to 2 Damage.",
       ru: "Активная дружественная модель с трейтом The Dark Knight Returns в пределах 8” от THWART! снимает до 2 Damage."
+    }
+  },
+  {
+    id: "attack-the-system",
+    name: "ATTACK THE SYSTEM",
+    img: "img/cards/harley-quinn-friends/attack-the-system.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Birds of Prey"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Vandalized! • A friendly model inflicts 2 Damage to an enemy model with Audacity. If the active model is within 4” of a Vandalized element, Move a marker 4”.",
+      ru: "Vandalized! • Дружественная модель наносит 2 Damage вражеской модели с Audacity. Если активная модель находится в пределах 4” от Vandalized элемента, передвиньте marker на 4”."
+    },
+    resource: {
+      cost: 1,
+      en: "The active model performs a Free Special action. It cannot perform the same Special more than once.",
+      ru: "Активная модель выполняет Free Special action. Она не может выполнить тот же Special более одного раза."
+    }
+  },
+  {
+    id: "fight-in-the-shadows",
+    name: "FIGHT IN THE SHADOWS",
+    img: "img/cards/harley-quinn-friends/fight-in-the-shadows.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Birds of Prey"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Vandalized! • A friendly model performs a successful hit on 2 enemy models with the same Attack action. If the active model is within 4” of a Vandalized element, remove up to 2 Damage from it.",
+      ru: "Vandalized! • Дружественная модель успешно попадает по 2 вражеским моделям одной Attack action. Если активная модель находится в пределах 4” от Vandalized элемента, снимите с нее до 2 Damage."
+    },
+    resource: {
+      cost: 1,
+      en: "When declaring an Attack action gain 2 Free Efforts.",
+      ru: "При объявлении Attack action получите 2 Free Efforts."
+    }
+  },
+  {
+    id: "blitzkrieg",
+    name: "BLITZKRIEG",
+    img: "img/cards/harley-quinn-friends/blitzkrieg.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Birds of Prey"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Vandalized! • The friendly active model has Moved 8” at least from its starting position and KOed or removed as a Casualty an enemy model. If the active model is within 4” of a Vandalized element, Move the active model 4”.",
+      ru: "Vandalized! • Активная дружественная модель переместилась минимум на 8” от своей стартовой позиции и нанесла KO или удалила как Casualty вражескую модель. Если активная модель находится в пределах 4” от Vandalized элемента, передвиньте активную модель на 4”."
+    },
+    resource: {
+      cost: 0,
+      en: "Burn 1 • When targeted by an Attack action, gain 2 Free Efforts.",
+      ru: "Burn 1 • Когда модель выбрана целью Attack action, получите 2 Free Efforts."
+    }
+  },
+  {
+    id: "riots-in-the-streets",
+    name: "RIOTS IN THE STREETS",
+    img: "img/cards/harley-quinn-friends/riots-in-the-streets.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Birds of Prey"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Vandalized! • A friendly model Sets a Suspect in contact with a Lamppost or Sewer that is not already a Vandalized element. The target for Vandalized! must be that Lamppost or Sewer.",
+      ru: "Vandalized! • Дружественная модель выставляет Suspect в контакте с Lamppost или Sewer, который еще не является Vandalized элементом. Целью для Vandalized! должен быть этот Lamppost или Sewer."
+    },
+    resource: {
+      cost: 1,
+      en: "The active friendly model gains +4 to its Basic move distance this activation.",
+      ru: "Активная дружественная модель получает +4 к Basic move distance на эту активацию."
+    }
+  },
+  {
+    id: "match-day",
+    name: "MATCH DAY",
+    img: "img/cards/harley-quinn-friends/match-day.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Birds of Prey"],
+    category: "crew",
+    phase: "III",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • Play when the active friendly model Sets a Suspect. The opponent Sets a Match Ball Event marker on Ground Level within 8” of the Suspect. A model may Manipulate the Match Ball to Move it 8”. If it ends within 4” of a Vandalized element, Move it an additional 2” (Triggers once per Manipulate).\n\nScore if the Match Ball ends a Move in the opponent's DZ.",
+      ru: "Limited • Разыграйте, когда активная дружественная модель выставляет Suspect. Оппонент выставляет маркер события Match Ball на Ground Level в пределах 8” от Suspect. Модель может выполнить Manipulate с Match Ball, чтобы передвинуть его на 8”. Если он заканчивает движение в пределах 4” от Vandalized элемента, передвиньте его еще на 2” (срабатывает один раз за Manipulate).\n\nЗасчитайте, если Match Ball заканчивает движение в DZ оппонента."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 0 • An active model within 4” of a friendly Suspect gains 1 Spray Can.",
+      ru: "Burn 0 • Активная модель в пределах 4” от дружественного Suspect получает 1 Spray Can."
+    }
+  },
+  {
+    id: "the-revolt-has-begun",
+    name: "THE REVOLT HAS BEGUN",
+    img: "img/cards/harley-quinn-friends/the-revolt-has-begun.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Birds of Prey"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Play this Objective when you Vandalize an element.\n\nScore if there are more Vandalized elements than enemy Suspects in play.",
+      ru: "Разыграйте эту Objective, когда вы делаете элемент Vandalized.\n\nЗасчитайте, если в игре больше Vandalized элементов, чем вражеских Suspects."
+    },
+    resource: {
+      cost: 0,
+      en: "Burn 1 • When a friendly model is targeted by a Melee attack and is within 4” of a Vandalized element, the attacking model suffers the Enervating (1) Status.",
+      ru: "Burn 1 • Когда дружественная модель выбрана целью Melee attack и находится в пределах 4” от Vandalized элемента, атакующая модель получает Status Enervating (1)."
+    }
+  },
+  {
+    id: "selfie",
+    name: "SELFIE!",
+    img: "img/cards/harley-quinn-friends/selfie.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Birds of Prey"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "A friendly model Reveals an enemy Suspect within 4” of a Vandalized element.",
+      ru: "Дружественная модель раскрывает вражеский Suspect в пределах 4” от Vandalized элемента."
+    },
+    resource: {
+      cost: 0,
+      en: "Until the end of the activation of the active enemy model, target friendly model rolls 2 additional Defense dice.",
+      ru: "До конца активации активной вражеской модели выбранная дружественная модель бросает 2 дополнительных Defense dice."
+    }
+  },
+  {
+    id: "take-back-what-is-ours",
+    name: "TAKE BACK WHAT IS OURS",
+    img: "img/cards/harley-quinn-friends/take-back-what-is-ours.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Birds of Prey"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Play when a friendly model Sets a Suspect. Set a Spoils Event marker with the Loot rules in contact with that model.\n\nScore if a friendly model is in control of the Spoils.\n\nThis card can only be played during your first two activations of the Round.",
+      ru: "Разыграйте, когда дружественная модель выставляет Suspect. Разместите маркер события Spoils с правилами Loot в контакте с этой моделью.\n\nЗасчитайте, если дружественная модель контролирует Spoils.\n\nЭту карту можно разыграть только во время ваших первых двух активаций раунда."
+    },
+    resource: {
+      cost: 1,
+      en: "The active model uses a Spray Can to mark a Scenery Element, Lamppost, or Sewer within 4” as Vandalized!.",
+      ru: "Активная модель использует Spray Can, чтобы отметить Scenery Element, Lamppost или Sewer в пределах 4” как Vandalized!."
+    }
+  },
+  {
+    id: "ecoterrorism",
+    name: "ECOTERRORISM",
+    img: "img/cards/harley-quinn-friends/ecoterrorism.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Birds of Prey"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • Each time a Scenery Element, Lamppost, or Sewer becomes Vandalized, place a success marker on this card.\n\nScore when this card has 4 success markers.",
+      ru: "Limited • Каждый раз, когда Scenery Element, Lamppost или Sewer становится Vandalized, положите на эту карту маркер успеха.\n\nЗасчитайте, когда на этой карте 4 маркера успеха."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 0 • A model within 4” of a Vandalized element spends its Attack action to mark a Scenery Element in contact as Vandalized!.",
+      ru: "Burn 0 • Модель в пределах 4” от Vandalized элемента тратит свое действие Attack, чтобы отметить Scenery Element в контакте как Vandalized!."
+    }
+  },
+  {
+    id: "outstanding-move",
+    name: "OUTSTANDING MOVE",
+    img: "img/cards/harley-quinn-friends/outstanding-move.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Birds of Prey"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "A friendly model Sets a Suspect in the opponent's DZ.",
+      ru: "Дружественная модель выставляет Suspect в DZ оппонента."
+    },
+    resource: {
+      cost: 0,
+      en: "A model within 4” of a Vandalized element may Set or Reveal a Suspect marker within 3” and LoS instead of in contact this activation.",
+      ru: "Модель в пределах 4” от Vandalized элемента может Set или Reveal Suspect marker в пределах 3” и LoS вместо контакта в этой активации."
+    }
+  },
+  {
+    id: "poison-the-supply",
+    name: "POISON THE SUPPLY",
+    img: "img/cards/harley-quinn-friends/poison-the-supply.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Birds of Prey"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "A model uses a Sewer and a Scenery Element, Lamppost, or Sewer became Vandalized this activation.",
+      ru: "Модель использует Sewer, и Scenery Element, Lamppost или Sewer стал Vandalized в этой активации."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 1 • Place a friendly model with the Plant trait within 4” of a Vandalized element.",
+      ru: "Burn 1 • Разместите дружественную модель с трейтом Plant в пределах 4” от Vandalized элемента."
+    }
+  },
+  {
+    id: "analog-hacking",
+    name: "ANALOG HACKING",
+    img: "img/cards/harley-quinn-friends/analog-hacking.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Birds of Prey"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 4,
+    text: {
+      en: "Target friendly model that has the Plant Trait or that at the beginning of its activation no enemy model can see, Reveals an enemy Suspect.",
+      ru: "Выбранная дружественная модель, у которой есть Plant Trait или которую в начале ее активации не видит ни одна вражеская модель, Reveals вражеский Suspect."
+    },
+    resource: {
+      cost: 1,
+      en: "The active friendly model spends its Manipulate action and another friendly model within 8” performs the action instead.",
+      ru: "Активная дружественная модель тратит свое действие Manipulate, а другая дружественная модель в пределах 8” выполняет это действие вместо нее."
+    }
+  },
+  {
+    id: "so-long-its-been-a-gas",
+    name: "SO LONG... IT'S BEEN A GAS!",
+    img: "img/cards/joker/so-long-its-been-a-gas.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Joker"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "When a model Reveals an enemy Suspect, the owner of the model targets one of their models. Set a Suspect in contact ignoring the minimum distance rules and that model suffers Enervating (2).",
+      ru: "Когда модель раскрывает вражеский Suspect, владелец этой модели выбирает одну из своих моделей. Разместите Suspect в контакте, игнорируя правила минимальной дистанции, и эта модель получает Enervating (2)."
+    },
+    resource: {
+      cost: 0,
+      en: "When a Suspect is Revealed, before removing, Set a Gas Canister marker and place this card aside. Any model within 4” of this marker during its activation suffers the Poison Status.\n\nA model in contact may Manipulate the Canister marker to remove it, then discard this card.",
+      ru: "Когда Suspect раскрыт, перед удалением разместите маркер Gas Canister и отложите эту карту. Любая модель в пределах 4” от этого маркера во время своей активации получает Poison Status.\n\nМодель в контакте может выполнить Manipulate с маркером Canister, чтобы убрать его, затем сбросьте эту карту."
+    }
+  },
+  {
+    id: "bite-the-dust",
+    name: "BITE THE DUST!",
+    img: "img/cards/joker/bite-the-dust.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Joker"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 4,
+    text: {
+      en: "Chaos • Play when a friendly model Sets a Suspect. It is also an Explosive Teeth marker with Timer 1D6. At the end of each subsequent model's activation Move this marker a full 1D6” directly towards that model. When the numeric counter is reduced to 0 or the Suspect would be removed, center an Explosive template over this marker. Models affected suffer {BLOOD_ICON}. Remove the Suspect.\n\nScore if the counter is reduced to 0 and a model suffers {BLOOD_ICON} damage as a result.",
+      ru: "Chaos • Разыграйте, когда дружественная модель выставляет Suspect. Он также является маркером Explosive Teeth с Timer 1D6. В конце активации каждой следующей модели передвиньте этот маркер на полные 1D6” прямо к этой модели. Когда numeric counter снижается до 0 или Suspect должен быть удален, поместите Explosive template по центру этого маркера. Затронутые модели получают {BLOOD_ICON}. Уберите Suspect.\n\nЗасчитайте, если counter снижается до 0 и модель получает {BLOOD_ICON} damage в результате."
+    },
+    resource: {
+      cost: 0,
+      en: "Discard your Objective hand.",
+      ru: "Сбросьте свою руку Objective-карт."
+    }
+  },
+  {
+    id: "let-them-in-on-the-joke",
+    name: "LET THEM IN ON THE JOKE",
+    img: "img/cards/joker/let-them-in-on-the-joke.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Joker"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Chaos • A friendly model with the Trickster trait Sets a Suspect within 4” of an enemy model.",
+      ru: "Chaos • Дружественная модель с трейтом Trickster выставляет Suspect в пределах 4” от вражеской модели."
+    },
+    resource: {
+      cost: 1,
+      en: "Increase or decrease a Numeric counter by a value of 1 or 2.",
+      ru: "Увеличьте или уменьшите Numeric counter на 1 или 2."
+    }
+  },
+  {
+    id: "it-doesnt-look-fresh",
+    name: "IT DOESN'T LOOK FRESH",
+    img: "img/cards/joker/it-doesnt-look-fresh.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Joker"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Play when a friendly model Sets a Suspect. That Suspect is also a Poisoned Fish. A model that Reveals a Poisoned Fish suffers the Poison Status.\n\nScore while the marker is in play.",
+      ru: "Разыграйте, когда дружественная модель выставляет Suspect. Этот Suspect также является Poisoned Fish. Модель, которая раскрывает Poisoned Fish, получает Poison Status.\n\nЗасчитайте, пока маркер находится в игре."
+    },
+    resource: {
+      cost: 1,
+      en: "When a model takes a Poison Endurance roll, add 1D6 to the result.",
+      ru: "Когда модель проходит Poison Endurance roll, добавьте 1D6 к результату."
+    }
+  },
+  {
+    id: "lets-dance",
+    name: "LET'S DANCE!",
+    img: "img/cards/joker/lets-dance.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Joker"],
+    category: "crew",
+    phase: "I",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "A friendly Leader, Free Agent, Sidekick, or Henchman suffers Damage from an enemy action during this Round.",
+      ru: "Дружественная модель ранга Leader, Free Agent, Sidekick или Henchman получает Damage от вражеского действия в этом раунде."
+    },
+    resource: {
+      cost: 1,
+      en: "Choose 1 friendly model with 1 or more Damage. Exchange the {STUN_ICON} Damage for {BLOOD_ICON} Damage or vice versa. You cannot do this if the model would become KO or be removed as a Casualty as a result.",
+      ru: "Выберите 1 дружественную модель с 1 или более Damage. Замените {STUN_ICON} Damage на {BLOOD_ICON} Damage или наоборот. Нельзя сделать это, если в результате модель станет KO или будет удалена как Casualty."
+    }
+  },
+  {
+    id: "youre-expendable",
+    name: "YOU'RE EXPENDABLE",
+    img: "img/cards/joker/youre-expendable.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Joker"],
+    category: "crew",
+    phase: "III",
+    value: "1 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Chaos • A friendly model with the Trickster trait becomes KO or is removed as a Casualty.",
+      ru: "Chaos • Дружественная модель с трейтом Trickster получает KO или удаляется как Casualty."
+    },
+    resource: {
+      cost: 1,
+      en: "An enemy model Reveals a friendly Suspect. Place a friendly model with the Trickster trait in contact with that marker before removing it.",
+      ru: "Вражеская модель раскрывает дружественный Suspect. Разместите дружественную модель с трейтом Trickster в контакте с этим маркером перед его удалением."
+    }
+  },
+  {
+    id: "seasoning-the-mix",
+    name: "SEASONING THE MIX",
+    img: "img/cards/joker/seasoning-the-mix.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Joker"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Chaos • A model with the Poison Status is removed as a Casualty.",
+      ru: "Chaos • Модель с Poison Status удаляется как Casualty."
+    },
+    resource: {
+      cost: 1,
+      en: "At the start of a model's activation, Move up to 2 friendly Suspects 4”.",
+      ru: "В начале активации модели передвиньте до 2 дружественных Suspects на 4”."
+    }
+  },
+  {
+    id: "let-them-do-their-thing",
+    name: "LET THEM DO THEIR THING",
+    img: "img/cards/joker/let-them-do-their-thing.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Joker"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "When a friendly model Sets a Suspect, center an Explosive template on the Suspect. Choose a direction and roll 2D6. Place the template that many inches in the chosen direction. Models affected by the template suffer {STUN_ICON}{STUN_ICON}.\n\nScore if this inflicts Damage on a model.",
+      ru: "Когда дружественная модель выставляет Suspect, поместите Explosive template по центру Suspect. Выберите направление и бросьте 2D6. Разместите шаблон на столько дюймов в выбранном направлении. Модели, затронутые шаблоном, получают {STUN_ICON}{STUN_ICON}.\n\nЗасчитайте, если это наносит Damage модели."
+    },
+    resource: {
+      cost: 1,
+      en: "Target a model with the Poison Status. Other models within 4” suffer the Poison Status.",
+      ru: "Выберите модель с Poison Status. Другие модели в пределах 4” получают Poison Status."
+    }
+  },
+  {
+    id: "psychopaths",
+    name: "PSYCHOPATHS",
+    img: "img/cards/joker/psychopaths.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Joker"],
+    category: "crew",
+    phase: "II",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Each time a model is removed from the game as Casualty or becomes KO, place a success marker on this card. Each time an enemy model Sets a Suspect, place a failure marker on this card.\n\nScore if there are more success markers than failure markers on this card.",
+      ru: "Каждый раз, когда модель удаляется из игры как Casualty или получает KO, положите на эту карту маркер успеха. Каждый раз, когда вражеская модель выставляет Suspect, положите на эту карту маркер провала.\n\nЗасчитайте, если на этой карте больше маркеров успеха, чем маркеров провала."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 1 • When a model suffers {BLOOD_ICON} Damage, you can use this Resource and a friendly model gains 2 {STUN_ICON}.",
+      ru: "Burn 1 • Когда модель получает {BLOOD_ICON} Damage, вы можете использовать этот Resource, и дружественная модель получает 2 {STUN_ICON}."
+    }
+  },
+  {
+    id: "the-first-laugh",
+    name: "THE FIRST LAUGH",
+    img: "img/cards/joker/the-first-laugh.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Joker"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Chaos • A model suffers a Status and 5 other models are suffering a Status.",
+      ru: "Chaos • Модель получает Status, и 5 других моделей уже имеют Status."
+    },
+    resource: {
+      cost: 1,
+      en: "When a model takes a Poison Endurance roll, add 1D6 to the result.",
+      ru: "Когда модель проходит Poison Endurance roll, добавьте 1D6 к результату."
+    }
+  },
+  {
+    id: "poisoning-gotham",
+    name: "POISONING GOTHAM",
+    img: "img/cards/joker/poisoning-gotham.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Joker"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Limited • Chaos • When a friendly model Sets a Suspect within 4” of a Sewer, place a success marker on this card. This card starts with 1 success marker for each friendly It Doesn't Look Fresh objective card scored.\n\nScore when this card has 4 success markers.",
+      ru: "Limited • Chaos • Когда дружественная модель выставляет Suspect в пределах 4” от Sewer, положите на эту карту маркер успеха. Эта карта начинает с 1 маркером успеха за каждую засчитанную дружественную карту цели It Doesn't Look Fresh.\n\nЗасчитайте, когда на этой карте 4 маркера успеха."
+    },
+    resource: {
+      cost: 0,
+      en: "When a player discards an Objective card, they must discard their whole hand.",
+      ru: "Когда игрок сбрасывает Objective card, он должен сбросить всю руку."
+    }
+  },
+  {
+    id: "ace-chemicals-barrel",
+    name: "ACE CHEMICAL'S BARREL",
+    img: "img/cards/joker/ace-chemicals-barrel.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Joker"],
+    category: "crew",
+    phase: "II",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Set a Poison Barrel Event marker (it also counts as an enemy model suffering KO) in contact with a friendly Suspect. A friendly model may spend an Attack action in contact to Move this marker 6”.\n\nScore if the Poison Barrel is in contact with an enemy model.",
+      ru: "Разместите маркер события Poison Barrel (он также считается вражеской моделью в KO) в контакте с дружественным Suspect. Дружественная модель в контакте может потратить Attack action, чтобы передвинуть этот маркер на 6”.\n\nЗасчитайте, если Poison Barrel находится в контакте с вражеской моделью."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 0 • Exception (In Play) • Target a model within 4” of a friendly Poison Barrel. Its owner chooses if it suffers Enervating (3) or the Poison Status.",
+      ru: "Burn 0 • Exception (In Play) • Выберите модель в пределах 4” от дружественного Poison Barrel. Ее владелец выбирает, получает ли она Enervating (3) или Poison Status."
+    }
+  },
+  {
+    id: "stage-play",
+    name: "STAGE PLAY",
+    img: "img/cards/joker/stage-play.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Joker"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • Set 2 Stage Event markers at least 10” away from an edge of the Gaming Area and 10” from each other. When a model with Audacity declares 2 actions within 4” of a Stage during its activation, place a success marker on this card.\n\nScore when this card has 4 success markers.",
+      ru: "Limited • Разместите 2 маркера события Stage как минимум в 10” от края Gaming Area и в 10” друг от друга. Когда модель с Audacity объявляет 2 действия в пределах 4” от Stage во время своей активации, положите на эту карту маркер успеха.\n\nЗасчитайте, когда на этой карте 4 маркера успеха."
+    },
+    resource: {
+      cost: 2,
+      en: "Burn 1 • Treat the active friendly model as if it has Audacity this activation.",
+      ru: "Burn 1 • Считайте активную дружественную модель имеющей Audacity на эту активацию."
+    }
+  },
+  {
+    id: "search-and-destroy",
+    name: "SEARCH & DESTROY",
+    img: "img/cards/soldiers-of-fortune/search-and-destroy.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bane"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "An enemy model suffers 2 hits during an Attack action where the friendly model Efforted at least twice.",
+      ru: "Вражеская модель получает 2 попадания во время Attack action, в которой дружественная модель Efforted как минимум дважды."
+    },
+    resource: {
+      cost: 1,
+      en: "Play when a friendly model uses a Venom Dose, it gains {+DEF_ICON}4.",
+      ru: "Разыграйте, когда дружественная модель использует Venom Dose: она получает {+DEF_ICON}4."
+    }
+  },
+  {
+    id: "hardpoint",
+    name: "HARDPOINT",
+    img: "img/cards/soldiers-of-fortune/hardpoint.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bane"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "A friendly model is within 8” of another friendly model with the Veteran trait and blocks 2 successful hits.",
+      ru: "Дружественная модель находится в пределах 8” от другой дружественной модели с трейтом Veteran и блокирует 2 успешных попадания."
+    },
+    resource: {
+      cost: 0,
+      en: "A friendly model in contact with a friendly Suspect or ending a Move within 4” of a friendly Suspect gains 1 Venom Dose.",
+      ru: "Дружественная модель в контакте с дружественным Suspect или заканчивающая Move в пределах 4” от дружественного Suspect получает 1 Venom Dose."
+    }
+  },
+  {
+    id: "ground-war",
+    name: "GROUND WAR",
+    img: "img/cards/soldiers-of-fortune/ground-war.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bane"],
+    category: "crew",
+    phase: "IV",
+    value: "3 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "You have at least 2 friendly models within 4” of the same Scenery element that's within 8” (or inside) the opponent's DZ.",
+      ru: "У вас есть как минимум 2 дружественные модели в пределах 4” от одного и того же Scenery element, который находится в пределах 8” от DZ оппонента или внутри нее."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 1 • Target a friendly Suspect and place this card aside. It is also an Advantage Position marker. Friendly models within 4” benefit from Cover.\n\nIf this marker is removed discard this card.",
+      ru: "Burn 1 • Выберите дружественный Suspect и отложите эту карту. Он также является маркером Advantage Position. Дружественные модели в пределах 4” получают Cover.\n\nЕсли этот маркер удален, сбросьте эту карту."
+    }
+  },
+  {
+    id: "invasion",
+    name: "INVASION",
+    img: "img/cards/soldiers-of-fortune/invasion.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bane"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Play when a friendly model Sets a Suspect within 4” of a Scenery Element that is within 4” of an enemy model. Place a Timer 4 on that Suspect.\n\nScore if the counter is reduced to 0.",
+      ru: "Разыграйте, когда дружественная модель выставляет Suspect в пределах 4” от Scenery Element, который находится в пределах 4” от вражеской модели. Положите Timer 4 на этот Suspect.\n\nЗасчитайте, если counter снижен до 0."
+    },
+    resource: {
+      cost: 1,
+      en: "Place this card aside. Enemy Suspects within 2” of a target friendly model with the Veteran trait are not considered friendly to the opponent.\n\nIf an enemy Sets a Suspect within 4” of the target discard this card.",
+      ru: "Отложите эту карту. Вражеские Suspects в пределах 2” от выбранной дружественной модели с трейтом Veteran не считаются дружественными для оппонента.\n\nЕсли враг выставляет Suspect в пределах 4” от выбранной модели, сбросьте эту карту."
+    }
+  },
+  {
+    id: "domination",
+    name: "DOMINATION",
+    img: "img/cards/soldiers-of-fortune/domination.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bane"],
+    category: "crew",
+    phase: "I",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Set a Domination Event marker in contact with an enemy model. Any model may Manipulate it to Move it 4”.\n\nAt the end of the round you have more friendly models than enemy models within 4” of the Domination.",
+      ru: "Разместите маркер события Domination в контакте с вражеской моделью. Любая модель может выполнить Manipulate с ним, чтобы передвинуть его на 4”.\n\nВ конце раунда у вас больше дружественных моделей, чем вражеских, в пределах 4” от Domination."
+    },
+    resource: {
+      cost: 1,
+      en: "At the start of a model's activation, Move a Suspect or friendly Drone marker 4”.",
+      ru: "В начале активации модели передвиньте Suspect или дружественный Drone marker на 4”."
+    }
+  },
+  {
+    id: "free-for-all",
+    name: "FREE-FOR-ALL",
+    img: "img/cards/soldiers-of-fortune/free-for-all.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bane"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Have more friendly models than enemy models within 4” of the center of the Gaming Area.",
+      ru: "У вас больше дружественных моделей, чем вражеских, в пределах 4” от центра Gaming Area."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 1 • Place this card aside.\nFriendly models while under the effect of a Dose gains 1 Free Effort while Defending.\n\nThis card is discarded when a friendly model is removed as a Casualty.",
+      ru: "Burn 1 • Отложите эту карту.\nДружественные модели под эффектом Dose получают 1 Free Effort при защите.\n\nЭта карта сбрасывается, когда дружественная модель удаляется как Casualty."
+    }
+  },
+  {
+    id: "black-ops",
+    name: "BLACK OPS",
+    img: "img/cards/soldiers-of-fortune/black-ops.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bane"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 4,
+    text: {
+      en: "A friendly model Sets a Suspect within 8” of an enemy model that cannot draw LoS to the friendly model or the Suspect.",
+      ru: "Дружественная модель выставляет Suspect в пределах 8” от вражеской модели, которая не может провести LoS к дружественной модели или к Suspect."
+    },
+    resource: {
+      cost: 0,
+      en: "Target friendly Suspect is treated as a Sewer this activation.",
+      ru: "Выбранный дружественный Suspect считается Sewer на эту активацию."
+    }
+  },
+  {
+    id: "global-offensive",
+    name: "GLOBAL OFFENSIVE",
+    img: "img/cards/soldiers-of-fortune/global-offensive.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bane"],
+    category: "crew",
+    phase: "III",
+    value: "3 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Have more friendly models with the Veteran trait in play than there are enemy Suspects.",
+      ru: "У вас в игре больше дружественных моделей с трейтом Veteran, чем вражеских Suspects."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 0 • A friendly model suffering KO is Moved 4” directly towards the nearest friendly model with the Veteran trait.",
+      ru: "Burn 0 • Дружественная модель в KO передвигается на 4” напрямую к ближайшей дружественной модели с трейтом Veteran."
+    }
+  },
+  {
+    id: "cyber-attack",
+    name: "CYBER ATTACK",
+    img: "img/cards/soldiers-of-fortune/cyber-attack.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bane"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Play when a friendly model Sets a Suspect within 8” of an enemy Suspect. Place a Timer 1D3+2 on this card.\n\nScore if the Numeric counter is reduced to 0 and either Suspect is still in play.",
+      ru: "Разыграйте, когда дружественная модель выставляет Suspect в пределах 8” от вражеского Suspect. Положите Timer 1D3+2 на эту карту.\n\nЗасчитайте, если Numeric counter снижен до 0 и любой из этих Suspects все еще в игре."
+    },
+    resource: {
+      cost: 2,
+      en: "Burn 1 • Set a friendly Drone event marker within 4” of a friendly Suspect and place this card aside. Attack actions targeting an enemy model within 4” of a Drone gain +1 to Attack dice rolls.\n\nYou may remove the Drone event marker at any time, then discard this card.",
+      ru: "Burn 1 • Разместите дружественный Drone event marker в пределах 4” от дружественного Suspect и отложите эту карту. Attack actions, выбирающие целью вражескую модель в пределах 4” от Drone, получают +1 к Attack dice rolls.\n\nВы можете убрать Drone event marker в любой момент, затем сбросьте эту карту."
+    }
+  },
+  {
+    id: "triangulation",
+    name: "TRIANGULATION",
+    img: "img/cards/soldiers-of-fortune/triangulation.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bane"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "At the start of Recount, place the Expansive template.\n\nThe Expansive template affects 3 Suspects and at least 1 is a friendly Suspect.",
+      ru: "В начале Recount разместите Expansive template.\n\nExpansive template затрагивает 3 Suspects, и как минимум 1 из них является дружественным Suspect."
+    },
+    resource: {
+      cost: 1,
+      en: "Play at the start of an enemy model's activation. If that model ends a Move or Place within 4” of a friendly Suspect, Move a friendly model 4” directly towards it.",
+      ru: "Разыграйте в начале активации вражеской модели. Если эта модель заканчивает Move или Place в пределах 4” от дружественного Suspect, передвиньте дружественную модель на 4” напрямую к ней."
+    }
+  },
+  {
+    id: "suppressing-fire",
+    name: "SUPPRESSING FIRE",
+    img: "img/cards/soldiers-of-fortune/suppressing-fire.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bane"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "A friendly model inflicts Damage with a Ranged Attack targeting at least 2 models. Change all Damage and Status to Enervating (2).",
+      ru: "Дружественная модель наносит Damage с помощью Ranged Attack, выбирающей целью как минимум 2 модели. Замените весь Damage и Status на Enervating (2)."
+    },
+    resource: {
+      cost: 0,
+      en: "At the start of a friendly model's activation, target an enemy model within 12” and LoS to it. The friendly model Spends 1 Ammo and the opponent chooses one of the following. The target suffers Slow (4) or suffers {BLOOD_ICON}{BLOOD_ICON}{BLOOD_ICON}.",
+      ru: "В начале активации дружественной модели выберите вражескую модель в пределах 12” и LoS к ней. Дружественная модель тратит 1 Ammo, а оппонент выбирает один из вариантов. Цель получает Slow (4) или получает {BLOOD_ICON}{BLOOD_ICON}{BLOOD_ICON}."
+    }
+  },
+  {
+    id: "military-coordination",
+    name: "MILITARY COORDINATION",
+    img: "img/cards/soldiers-of-fortune/military-coordination.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bane"],
+    category: "crew",
+    phase: "II",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Assign Numerical counters 1, 2, 3, and 4 to different friendly models (or up to the friendly models currently in play). These counters cannot be modified.\n\nScore if those models activated in order (1, 2, 3, 4).",
+      ru: "Назначьте Numerical counters 1, 2, 3 и 4 разным дружественным моделям или всем дружественным моделям, которые сейчас в игре, если их меньше. Эти counters нельзя изменять.\n\nЗасчитайте, если эти модели активировались по порядку (1, 2, 3, 4)."
+    },
+    resource: {
+      cost: 0,
+      en: "Burn 0 • Exception (In Play) • A model activating in order gains 1 {+ATT_ICON} or {+DEF_ICON}.",
+      ru: "Burn 0 • Exception (In Play) • Модель, активирующаяся по порядку, получает 1 {+ATT_ICON} или {+DEF_ICON}."
+    }
+  },
+  {
+    id: "enhanced-soldiers",
+    name: "ENHANCED SOLDIERS",
+    img: "img/cards/soldiers-of-fortune/enhanced-soldiers.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Bane"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Target a friendly model.\n\nFor each {STUN_ICON} that model receives from Efforting, place a success marker on this card. If the model is under the effects of a Dose during that action, place 1 additional success marker.\n\nScore when this card has 4 success markers.",
+      ru: "Выберите дружественную модель.\n\nЗа каждый {STUN_ICON}, который эта модель получает от Efforting, положите маркер успеха на эту карту. Если модель находится под эффектом Dose во время этого действия, положите 1 дополнительный маркер успеха.\n\nЗасчитайте, когда на этой карте 4 маркера успеха."
+    },
+    resource: {
+      cost: "*",
+      en: "Burn 1 • Exception (When Scoring) • A friendly model gains a Venom Dose.",
+      ru: "Burn 1 • Exception (When Scoring) • Дружественная модель получает Venom Dose."
+    }
+  },
+  {
+    id: "eradicate-the-order",
+    name: "ERADICATE THE ORDER",
+    img: "img/cards/league-of-assassins/eradicate-the-order.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["League of Shadows"],
+    category: "crew",
+    phase: "IV",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "There are more friendly Suspects than enemy Suspects in play.",
+      ru: "В игре больше дружественных Suspects, чем вражеских Suspects."
+    },
+    resource: {
+      cost: 0,
+      en: "The active model ignores the Smoke rule until the end of the Round.",
+      ru: "Активная модель игнорирует правило Smoke до конца раунда."
+    }
+  },
+  {
+    id: "under-their-noses",
+    name: "UNDER THEIR NOSES",
+    img: "img/cards/league-of-assassins/under-their-noses.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["League of Shadows"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 4,
+    text: {
+      en: "A friendly model Sets a Suspect within 4” of an enemy Suspect.",
+      ru: "Дружественная модель выставляет Suspect в пределах 4” от вражеского Suspect."
+    },
+    resource: {
+      cost: 1,
+      en: "Set a Smoke Special Event marker in contact with the active friendly model. Place this card aside and Discard during Recount.\n\nIf an enemy model Sets a Suspect within 4” of this Smoke Event marker, remove it and discard this card.",
+      ru: "Разместите маркер Smoke Special Event в контакте с активной дружественной моделью. Отложите эту карту и сбросьте ее во время Recount.\n\nЕсли вражеская модель выставляет Suspect в пределах 4” от этого Smoke Event marker, уберите его и сбросьте эту карту."
+    }
+  },
+  {
+    id: "do-not-deviate-from-the-plan",
+    name: "DO NOT DEVIATE FROM THE PLAN",
+    img: "img/cards/league-of-assassins/do-not-deviate-from-the-plan.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["League of Shadows"],
+    category: "crew",
+    phase: "IV",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • Shadow's Plan is at Level 2 or above.\n\nWhen a friendly model Sets a Suspect you may play this as III. If you do, change the scoring text to \"Shadow's Plan is at Level 3.\"",
+      ru: "Limited • Shadow's Plan на уровне 2 или выше.\n\nКогда дружественная модель выставляет Suspect, вы можете разыграть эту карту как III. Если вы это делаете, измените условие выполнения на «Shadow's Plan на уровне 3»."
+    },
+    resource: {
+      cost: "*",
+      en: "Burn 0 • Exception (When Scoring) • Place a friendly model in a position where no enemy model can draw LoS to it.",
+      ru: "Burn 0 • Exception (When Scoring) • Разместите дружественную модель в позиции, где ни одна вражеская модель не может провести к ней LoS."
+    }
+  },
+  {
+    id: "from-the-shadows",
+    name: "FROM THE SHADOWS",
+    img: "img/cards/league-of-assassins/from-the-shadows.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["League of Shadows"],
+    category: "crew",
+    phase: "I",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Target an enemy model.\n\nThat model is the next enemy model removed as a Casualty.\n\nIf Shadow's Plan is at Level 3 you may play this as III.",
+      ru: "Выберите вражескую модель.\n\nЭта модель должна стать следующей вражеской моделью, удаленной как Casualty.\n\nЕсли Shadow's Plan на уровне 3, вы можете разыграть эту карту как III."
+    },
+    resource: {
+      cost: 2,
+      en: "Burn 1 • Play at the start of a friendly {RANK_HENCHMAN_ICON} activation. Spend a Movement action to Place itself within 4” of a friendly Suspect instead of moving.",
+      ru: "Burn 1 • Разыграйте в начале активации дружественной модели ранга {RANK_HENCHMAN_ICON}. Потратьте Movement action, чтобы разместить эту модель в пределах 4” от дружественного Suspect вместо движения."
+    }
+  },
+  {
+    id: "blood-for-blood",
+    name: "BLOOD FOR BLOOD",
+    img: "img/cards/league-of-assassins/blood-for-blood.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["League of Shadows"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "A friendly model with the Assassin trait within 6” of a friendly Suspect, inflicts {BLOOD_ICON} on an enemy model.",
+      ru: "Дружественная модель с трейтом Assassin в пределах 6” от дружественного Suspect наносит {BLOOD_ICON} вражеской модели."
+    },
+    resource: {
+      cost: 2,
+      en: "Burn 0 • Center an Explosive template on each friendly Suspect. Any model affected by a template suffer {STUN_ICON}{BLOOD_ICON}. Then remove those Suspects.",
+      ru: "Burn 0 • Поместите Explosive template по центру каждого дружественного Suspect. Любая модель, затронутая шаблоном, получает {STUN_ICON}{BLOOD_ICON}. Затем уберите эти Suspects."
+    }
+  },
+  {
+    id: "reclaim-the-lazarus-pit",
+    name: "RECLAIM THE LAZARUS PIT",
+    img: "img/cards/league-of-assassins/reclaim-the-lazarus-pit.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["League of Shadows"],
+    category: "crew",
+    phase: "II",
+    value: "3 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Set a Lazarus Pit Event marker (40mm) within 4” of the center of the Board.\n\nThere are 3 friendly Suspects within 4” of the Lazarus Pit.",
+      ru: "Разместите маркер события Lazarus Pit (40 мм) в пределах 4” от центра поля.\n\nВ пределах 4” от Lazarus Pit находятся 3 дружественных Suspects."
+    },
+    resource: {
+      cost: "*",
+      en: "Burn 1 • Exception (When Scoring) • Before removing the Lazarus Pit, choose a friendly {RANK_HENCHMAN_ICON} that has been removed as a Casualty. Place it in contact with the Lazarus Pit.",
+      ru: "Burn 1 • Exception (When Scoring) • Перед удалением Lazarus Pit выберите дружественную модель ранга {RANK_HENCHMAN_ICON}, которая была удалена как Casualty. Разместите ее в контакте с Lazarus Pit."
+    }
+  },
+  {
+    id: "we-cannot-be-defeated",
+    name: "WE CANNOT BE DEFEATED",
+    img: "img/cards/league-of-assassins/we-cannot-be-defeated.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["League of Shadows"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Play when a friendly model Sets a Suspect.\n\nThat Suspect is within 6” of another 2 friendly Suspects.\n\nThe opponent may Move those 3 Suspects 4”.",
+      ru: "Разыграйте, когда дружественная модель выставляет Suspect.\n\nЭтот Suspect находится в пределах 6” от еще 2 дружественных Suspects.\n\nОппонент может передвинуть эти 3 Suspects на 4”."
+    },
+    resource: {
+      cost: 0,
+      en: "The active model can Set or Reveal a Suspect within X”. Where X is equal to the Level of Shadow's Plan x2.",
+      ru: "Активная модель может Set или Reveal Suspect в пределах X”. X равен уровню Shadow's Plan x2."
+    }
+  },
+  {
+    id: "the-fire-rises",
+    name: "THE FIRE RISES",
+    img: "img/cards/league-of-assassins/the-fire-rises.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["League of Shadows"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "A friendly model Reveals an enemy Suspect within 6” of a friendly Boss and Shadow's Plan is at Level 2 or higher.",
+      ru: "Дружественная модель Reveals вражеский Suspect в пределах 6” от дружественного Boss, и Shadow's Plan находится на уровне 2 или выше."
+    },
+    resource: {
+      cost: 0,
+      en: "Burn 0 • A friendly model with the Assassin Trait adds 3 dice to an Attack roll. After resolving that Attack action, remove that model as a Casualty.",
+      ru: "Burn 0 • Дружественная модель с трейтом Assassin добавляет 3 кубика к Attack roll. После разрешения этой Attack action удалите эту модель как Casualty."
+    }
+  },
+  {
+    id: "multiple-threats",
+    name: "MULTIPLE THREATS",
+    img: "img/cards/league-of-assassins/multiple-threats.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["League of Shadows"],
+    category: "crew",
+    phase: "III",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • Target up to 6 friendly Suspects. Place a Numeric counter on each. Place a Timer 6-X on this card (X is equal to the Level of Shadow's Plan). When the counter is reduced to 0, roll 1D6.\n\nScore if the result matches any of the Numeric counters, remove those counters.",
+      ru: "Limited • Выберите до 6 дружественных Suspects. Положите Numeric counter на каждого. Положите Timer 6-X на эту карту, где X равен уровню Shadow's Plan. Когда counter снижен до 0, бросьте 1D6.\n\nЗасчитайте, если результат совпадает с любым из Numeric counters, затем уберите эти counters."
+    },
+    resource: {
+      cost: 1,
+      en: "A friendly model within 4” of a friendly Suspect gains +X” to its Basic Move Distance (X is equal to the Level of Shadow's Plan x2).",
+      ru: "Дружественная модель в пределах 4” от дружественного Suspect получает +X” к Basic Move Distance, где X равен уровню Shadow's Plan x2."
+    }
+  },
+  {
+    id: "a-step-ahead",
+    name: "A STEP AHEAD",
+    img: "img/cards/league-of-assassins/a-step-ahead.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["League of Shadows"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Each time a friendly model Sets a Suspect and no enemy model can draw LoS to it, place a success marker on this card. If that friendly model has the Assassin (X) trait, place an additional success marker.\n\nScore when this card has 4 success markers.",
+      ru: "Каждый раз, когда дружественная модель выставляет Suspect и ни одна вражеская модель не может провести к нему LoS, положите маркер успеха на эту карту. Если у этой дружественной модели есть трейт Assassin (X), положите дополнительный маркер успеха.\n\nЗасчитайте, когда на этой карте 4 маркера успеха."
+    },
+    resource: {
+      cost: 1,
+      en: "At the start of a friendly model's activation, enemy models reduce their Effort limit by the current Level of Shadow's Plan during this activation.",
+      ru: "В начале активации дружественной модели вражеские модели уменьшают свой лимит Effort на текущий уровень Shadow's Plan на время этой активации."
+    }
+  },
+  {
+    id: "where-ends-everything",
+    name: "WHERE ENDS EVERYTHING",
+    img: "img/cards/league-of-assassins/where-ends-everything.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["League of Shadows"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • Play when a friendly model Sets a Suspect within 4” of a Scenery Element that is completely within 6” of an enemy DZ.\n\nThere are 2 friendly Suspects within 4” of that Scenery Element.",
+      ru: "Limited • Разыграйте, когда дружественная модель выставляет Suspect в пределах 4” от Scenery Element, который полностью находится в пределах 6” от вражеской DZ.\n\nВ пределах 4” от этого Scenery Element находятся 2 дружественных Suspects."
+    },
+    resource: {
+      cost: "*",
+      en: "Burn (1) • Exception (Scored Pile) • The distance friendly models are affected by the Night Rule is reduced by 2.",
+      ru: "Burn (1) • Exception (Scored Pile) • Дистанция, на которой дружественные модели подвержены Night Rule, уменьшается на 2."
+    }
+  },
+  {
+    id: "shadows-feint",
+    name: "SHADOW'S FEINT",
+    img: "img/cards/league-of-assassins/shadows-feint.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["League of Shadows"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Score a Critical result and do not apply the Critical effect.",
+      ru: "Получите Critical result и не применяйте Critical effect."
+    },
+    resource: {
+      cost: 0,
+      en: "When declaring an Attack action gain X Free Efforts. Where X is equal to the Level of Shadow's Plan.",
+      ru: "При объявлении Attack action получите X Free Efforts, где X равен уровню Shadow's Plan."
+    }
+  },
+  {
+    id: "well-rounded-mind",
+    name: "WELL ROUNDED MIND",
+    img: "img/cards/league-of-assassins/well-rounded-mind.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["League of Shadows"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Plot • Play when a friendly model Sets a Suspect within 4” of an enemy model. When you play a card as an Objective or Resource, you may Reveal another card from your hand with the same card Type and place it under this card.\n\nScore when this card has 1 of each Type under it ({OT_PROTECTION_ICON} - {OT_CONTROL_ICON} - {OT_MENACE_ICON} - {OT_VIOLENCE_ICON}).",
+      ru: "Plot • Разыграйте, когда дружественная модель выставляет Suspect в пределах 4” от вражеской модели. Когда вы разыгрываете карту как Objective или Resource, вы можете Reveal другую карту из руки с тем же Type карты и положить ее под эту карту.\n\nЗасчитайте, когда под этой картой лежит по 1 карте каждого Type ({OT_PROTECTION_ICON} - {OT_CONTROL_ICON} - {OT_MENACE_ICON} - {OT_VIOLENCE_ICON})."
+    },
+    resource: {
+      cost: 0,
+      en: "Play this card in the Play Area with another card from your hand under it. In a friendly model's activation, discard this card and return the other to your hand.",
+      ru: "Разыграйте эту карту в Play Area, положив под нее другую карту из руки. Во время активации дружественной модели сбросьте эту карту и верните другую карту в руку."
+    }
+  },
+  {
+    id: "smuggled-goods",
+    name: "SMUGGLED GOODS",
+    img: "img/cards/penguin/smuggled-goods.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Penguin"],
+    category: "crew",
+    phase: "II",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Set a Goods Event marker within 8” of an enemy DZ. Enemy models may Manipulate it to Move it 4”. Friendly models may Manipulate it to Move it 2+X inches. Where X is equal to the number of friendly Business counters.\n\nThe Goods is closer to your DZ than the opponent's DZ.",
+      ru: "Разместите маркер события Goods в пределах 8” от вражеской DZ. Вражеские модели могут выполнить Manipulate с ним, чтобы передвинуть его на 4”. Дружественные модели могут выполнить Manipulate с ним, чтобы передвинуть его на 2+X дюймов, где X равен количеству дружественных Business counters.\n\nGoods находится ближе к вашей DZ, чем к DZ оппонента."
+    },
+    resource: {
+      cost: 1,
+      en: "The active friendly model Moves 4”.",
+      ru: "Активная дружественная модель Moves на 4”."
+    }
+  },
+  {
+    id: "territory-fight",
+    name: "TERRITORY FIGHT",
+    img: "img/cards/penguin/territory-fight.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Penguin"],
+    category: "crew",
+    phase: "III",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • The opponent Sets 2 Territory Event markers on Ground Level outside of any DZ and 5” away from the Edge of the Gaming Area. Then you Set 2 more. They must be 12” away from each other.\n\nHave a friendly Suspect or model within 4” of each Territory.",
+      ru: "Limited • Оппонент выставляет 2 Territory Event markers на Ground Level вне любой DZ и в 5” от края Gaming Area. Затем вы выставляете еще 2. Они должны быть в 12” друг от друга.\n\nУ вас есть дружественный Suspect или модель в пределах 4” от каждого Territory."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 1 • Mark a friendly Suspect and set this card aside. While it is in play, enemy models cannot make Efforts within 4”.\n\nWhen this Suspect is removed, discard this card.",
+      ru: "Burn 1 • Отметьте дружественный Suspect и отложите эту карту. Пока она в игре, вражеские модели не могут делать Efforts в пределах 4”.\n\nКогда этот Suspect удален, сбросьте эту карту."
+    }
+  },
+  {
+    id: "this-is-mine",
+    name: "THIS IS MINE!",
+    img: "img/cards/penguin/this-is-mine.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Penguin"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 4,
+    text: {
+      en: "A friendly model Reveals an enemy Suspect.",
+      ru: "Дружественная модель Reveals вражеский Suspect."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 0 • Move an enemy Suspect 4”.",
+      ru: "Burn 0 • Передвиньте вражеский Suspect на 4”."
+    }
+  },
+  {
+    id: "not-buying-dont-touch",
+    name: "NOT BUYING? DON'T TOUCH!",
+    img: "img/cards/penguin/not-buying-dont-touch.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Penguin"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Target an enemy model when it either removes a friendly Suspect or removes a model as a Casualty.\n\nA friendly Suspect is within 4” of the target.",
+      ru: "Выберите вражескую модель, когда она удаляет дружественный Suspect или удаляет модель как Casualty.\n\nДружественный Suspect находится в пределах 4” от цели."
+    },
+    resource: {
+      cost: 1,
+      en: "Spend X Business. Target model gains X+1 free Efforts while Attacking or Defending this activation, where X is the amount of Business spent.",
+      ru: "Потратьте X Business. Выбранная модель получает X+1 free Efforts при атаке или защите в эту активацию, где X равен количеству потраченного Business."
+    }
+  },
+  {
+    id: "profitable-negotiation",
+    name: "PROFITABLE NEGOTIATION",
+    img: "img/cards/penguin/profitable-negotiation.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Penguin"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Limited • Play when a friendly model Sets a Suspect within 4” of an enemy model. Look at the opponent's Objective hand and choose a III card. Place a Timer 2D6 on this card. Reduce the counter by the number of Business you have to a minimum of 1.\n\nScore if the counter is reduced to 0 and the opponent has not Scored a card with the name of the chosen card while this card is in play.",
+      ru: "Limited • Разыграйте, когда дружественная модель выставляет Suspect в пределах 4” от вражеской модели. Посмотрите Objective hand оппонента и выберите карту III. Положите Timer 2D6 на эту карту. Уменьшите counter на количество Business, которое у вас есть, минимум до 1.\n\nЗасчитайте, если counter снижен до 0 и оппонент не Scored карту с названием выбранной карты, пока эта карта была в игре."
+    },
+    resource: {
+      cost: 1,
+      en: "When a friendly model Sets a Suspect, Set an Information Event marker in contact with the Suspect, target an enemy model and place this card aside. While this Event is in play, the target must be the last model in its crew to activate.\n\nModels may Manipulate an Information marker to remove it, then discard this card.",
+      ru: "Когда дружественная модель выставляет Suspect, разместите Information Event marker в контакте с Suspect, выберите вражескую модель и отложите эту карту. Пока этот Event в игре, выбранная модель должна активироваться последней моделью своей команды.\n\nМодели могут выполнить Manipulate с Information marker, чтобы убрать его, затем сбросьте эту карту."
+    }
+  },
+  {
+    id: "secret-equipment-bases",
+    name: "SECRET EQUIPMENT BASES",
+    img: "img/cards/penguin/secret-equipment-bases.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Penguin"],
+    category: "crew",
+    phase: "II",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Target 2 Scenery elements that are 8” away from each other and any DZ.\n\nThere are friendly Suspects within 4” of both elements.\n\nIf there are not enough scenery elements more than 8” away from all DZs, choose any two scenery elements 8” apart and not in any DZs.",
+      ru: "Выберите 2 Scenery elements, которые находятся в 8” друг от друга и от любой DZ.\n\nВ пределах 4” от обоих элементов находятся дружественные Suspects.\n\nЕсли недостаточно scenery elements дальше чем на 8” от всех DZ, выберите любые два scenery elements в 8” друг от друга и не в любой DZ."
+    },
+    resource: {
+      cost: 1,
+      en: "The next time a model Sets a Suspect this activation, Set it within 4” instead of in contact.",
+      ru: "В следующий раз, когда модель выставляет Suspect в эту активацию, выставьте его в пределах 4” вместо контакта."
+    }
+  },
+  {
+    id: "goods-raid",
+    name: "GOODS RAID",
+    img: "img/cards/penguin/goods-raid.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Penguin"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "A friendly model Sets a Suspect in an enemy DZ.",
+      ru: "Дружественная модель выставляет Suspect во вражеской DZ."
+    },
+    resource: {
+      cost: 1,
+      en: "An active friendly model within 4” of a Suspect recovers 1 Ammo previously spent.",
+      ru: "Активная дружественная модель в пределах 4” от Suspect восстанавливает 1 ранее потраченный Ammo."
+    }
+  },
+  {
+    id: "everyone-has-a-price",
+    name: "EVERYONE HAS A PRICE",
+    img: "img/cards/penguin/everyone-has-a-price.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Penguin"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "An enemy model that is outnumbered receives at least 2 Successful hits.",
+      ru: "Вражеская модель, которая находится в меньшинстве, получает как минимум 2 Successful hits."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 1 • When a friendly model is removed as a Casualty, before removing it, interrupt the action and perform an Attack action with it.",
+      ru: "Burn 1 • Когда дружественная модель удаляется как Casualty, перед удалением прервите действие и выполните этой моделью Attack action."
+    }
+  },
+  {
+    id: "unlimited-funds",
+    name: "UNLIMITED FUNDS",
+    img: "img/cards/penguin/unlimited-funds.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Penguin"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Limited • When a friendly model performs a Ranged Attack, place a success marker on this card.\n\nScore when this card has 3 success markers.",
+      ru: "Limited • Когда дружественная модель выполняет Ranged Attack, положите маркер успеха на эту карту.\n\nЗасчитайте, когда на этой карте 3 маркера успеха."
+    },
+    resource: {
+      cost: 1,
+      en: "Spend 1 Business to gain a Free Set action this activation.",
+      ru: "Потратьте 1 Business, чтобы получить Free Set action в эту активацию."
+    }
+  },
+  {
+    id: "get-it-fast",
+    name: "GET IT, FAST!",
+    img: "img/cards/penguin/get-it-fast.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Penguin"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Play when a friendly model Sets a Suspect. Place a Timer 2D6 on that Suspect. Reduce the counter by the number of Business you have to a minimum of one.\n\nScore if the counter is reduced to 0.",
+      ru: "Разыграйте, когда дружественная модель выставляет Suspect. Положите Timer 2D6 на этот Suspect. Уменьшите counter на количество Business, которое у вас есть, минимум до 1.\n\nЗасчитайте, если counter снижен до 0."
+    },
+    resource: {
+      cost: 0,
+      en: "Gain 1 Business if the active model Reveals a Suspect.",
+      ru: "Получите 1 Business, если активная модель Reveals Suspect."
+    }
+  },
+  {
+    id: "a-collector-of-goods",
+    name: "A COLLECTOR OF GOODS",
+    img: "img/cards/penguin/a-collector-of-goods.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Penguin"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Limited • Plot • Play when a friendly model Sets a Suspect within 4” of an enemy model. When a friendly model Reveals a Suspect, you may Reveal a card from your hand and place it under this card.\n\nScore when this card has 1 of each Type under it ({OT_PROTECTION_ICON} - {OT_CONTROL_ICON} - {OT_MENACE_ICON} - {OT_VIOLENCE_ICON}).",
+      ru: "Limited • Plot • Разыграйте, когда дружественная модель выставляет Suspect в пределах 4” от вражеской модели. Когда дружественная модель Reveals Suspect, вы можете Reveal карту из руки и положить ее под эту карту.\n\nЗасчитайте, когда под этой картой лежит по 1 карте каждого Type ({OT_PROTECTION_ICON} - {OT_CONTROL_ICON} - {OT_MENACE_ICON} - {OT_VIOLENCE_ICON})."
+    },
+    resource: {
+      cost: 0,
+      en: "Target a friendly Suspect, the opponent may not Discard cards from your hand as long as this Suspect is in play.",
+      ru: "Выберите дружественный Suspect. Оппонент не может Discard карты из вашей руки, пока этот Suspect находится в игре."
+    }
+  },
+  {
+    id: "the-long-game",
+    name: "THE LONG GAME",
+    img: "img/cards/penguin/the-long-game.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Penguin"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 4,
+    text: {
+      en: "A friendly model Sets a Suspect and you have at least 2 more Suspects than your opponent in play.",
+      ru: "Дружественная модель выставляет Suspect, и у вас в игре как минимум на 2 Suspects больше, чем у оппонента."
+    },
+    resource: {
+      cost: 2,
+      en: "Burn 1 • Choose 1 friendly model with Rank: {RANK_HENCHMAN_ICON}, and the Mobster trait, that has been removed as a Casualty. Place that model in your DZ. It cannot activate this round.",
+      ru: "Burn 1 • Выберите 1 дружественную модель ранга {RANK_HENCHMAN_ICON} с трейтом Mobster, которая была удалена как Casualty. Разместите эту модель в вашей DZ. Она не может активироваться в этом раунде."
+    }
+  },
+  {
+    id: "boo",
+    name: "BOO!",
+    img: "img/cards/scarecrow/boo.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Scarecrow"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 4,
+    text: {
+      en: "A Fear card is added to your Objective deck.",
+      ru: "Fear card добавляется в вашу Objective deck."
+    },
+    resource: {
+      cost: 1,
+      en: "When a model takes a Willpower roll, roll 1D6 and add it to the results.",
+      ru: "Когда модель проходит Willpower roll, бросьте 1D6 и добавьте его к результатам."
+    }
+  },
+  {
+    id: "deepest-fears",
+    name: "DEEPEST FEARS",
+    img: "img/cards/scarecrow/deepest-fears.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Scarecrow"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 4,
+    text: {
+      en: "A friendly model Sets a Suspect within 4” of an enemy model suffering a Status.",
+      ru: "Дружественная модель выставляет Suspect в пределах 4” от вражеской модели, имеющей Status."
+    },
+    resource: {
+      cost: "*",
+      en: "Burn 0 • Exception (Scored Pile) • The Range for the Tangible Fear and Inspire Fear traits on friendly models increase by 1”.",
+      ru: "Burn 0 • Exception (Scored Pile) • Range трейтов Tangible Fear и Inspire Fear у дружественных моделей увеличивается на 1”."
+    }
+  },
+  {
+    id: "what-do-you-fear",
+    name: "WHAT DO YOU FEAR?",
+    img: "img/cards/scarecrow/what-do-you-fear.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Scarecrow"],
+    category: "crew",
+    phase: "III",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • When a Fear card is returned to the Fear pile, place a success marker on this card.\n\nScore when this card has 4 success markers.",
+      ru: "Limited • Когда Fear card возвращается в Fear pile, положите маркер успеха на эту карту.\n\nЗасчитайте, когда на этой карте 4 маркера успеха."
+    },
+    resource: {
+      cost: 0,
+      en: "Burn 1 • The active model may measure LoS and Range from a friendly Suspect when using the Inspire Fear trait this activation.",
+      ru: "Burn 1 • Активная модель может измерять LoS и Range от дружественного Suspect при использовании трейта Inspire Fear в эту активацию."
+    }
+  },
+  {
+    id: "endless-torment",
+    name: "ENDLESS TORMENT",
+    img: "img/cards/scarecrow/endless-torment.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Scarecrow"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "An enemy model suffering the Scared Status is removed as a Casualty.",
+      ru: "Вражеская модель со Scared Status удаляется как Casualty."
+    },
+    resource: {
+      cost: 1,
+      en: "An enemy model within 8” and LoS of a friendly model suffers the Scared Status.",
+      ru: "Вражеская модель в пределах 8” и LoS от дружественной модели получает Scared Status."
+    }
+  },
+  {
+    id: "fear-makes-you-predictable",
+    name: "FEAR MAKES YOU PREDICTABLE",
+    img: "img/cards/scarecrow/fear-makes-you-predictable.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Scarecrow"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "A friendly model Reveals an enemy Suspect within 4” of an enemy model suffering a Status.\n\nWhen scored the opponent chooses one of the following: You add 2 Fear cards to your Objective deck or you search your Objective deck for a copy of this card.",
+      ru: "Дружественная модель Reveals вражеский Suspect в пределах 4” от вражеской модели, имеющей Status.\n\nКогда карта засчитана, оппонент выбирает одно из следующего: вы добавляете 2 Fear cards в вашу Objective deck или ищете в Objective deck копию этой карты."
+    },
+    resource: {
+      cost: 1,
+      en: "Discard X cards from your Objective deck, where X is equal to the number of cards in your Terror pile.",
+      ru: "Discard X карт из вашей Objective deck, где X равен количеству карт в вашей Terror pile."
+    }
+  },
+  {
+    id: "living-nightmare",
+    name: "LIVING NIGHTMARE",
+    img: "img/cards/scarecrow/living-nightmare.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Scarecrow"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "An enemy model resolves a Willpower, Attack, or Defense roll and there is still a card in your Terror pile.",
+      ru: "Вражеская модель разрешает Willpower, Attack или Defense roll, и в вашей Terror pile все еще есть карта."
+    },
+    resource: {
+      cost: 1,
+      en: "A model with CRT (True Fear) gains True Fear on its Attack actions this activation.",
+      ru: "Модель с CRT (True Fear) получает True Fear на свои Attack actions в эту активацию."
+    }
+  },
+  {
+    id: "darkness-embrace",
+    name: "DARKNESS' EMBRACE",
+    img: "img/cards/scarecrow/darkness-embrace.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Scarecrow"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Set a Darkness' Embrace Event marker in contact with an enemy model.\n\nThere are more friendly models with the Nightmare trait than enemy models within 4” of the Darkness' Embrace.",
+      ru: "Разместите маркер события Darkness' Embrace в контакте с вражеской моделью.\n\nВ пределах 4” от Darkness' Embrace больше дружественных моделей с трейтом Nightmare, чем вражеских моделей."
+    },
+    resource: {
+      cost: 1,
+      en: "The active model removes X Damage, where X is equal to the number of enemy models suffering the Scared Status within 8” and LoS.",
+      ru: "Активная модель снимает X Damage, где X равен количеству вражеских моделей со Scared Status в пределах 8” и LoS."
+    }
+  },
+  {
+    id: "its-ok-to-be-afraid",
+    name: "IT'S OK TO BE AFRAID!",
+    img: "img/cards/scarecrow/its-ok-to-be-afraid.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Scarecrow"],
+    category: "crew",
+    phase: "III",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • When a friendly model Sets a Suspect, target that Suspect.\n\nScore if that Suspect is still in play when you return a Fear card to the Fear pile.",
+      ru: "Limited • Когда дружественная модель выставляет Suspect, выберите этот Suspect.\n\nЗасчитайте, если этот Suspect все еще в игре, когда вы возвращаете Fear card в Fear pile."
+    },
+    resource: {
+      cost: 0,
+      en: "Play this Resource when a model performs a Willpower roll (before rolling). If it is affected by the Insidious trait, it must make an Effort or fail the Willpower roll by 5.",
+      ru: "Разыграйте этот Resource, когда модель выполняет Willpower roll, до броска. Если она находится под действием трейта Insidious, она должна сделать Effort или провалить Willpower roll на 5."
+    }
+  },
+  {
+    id: "intoxicated-by-fear",
+    name: "INTOXICATED BY FEAR",
+    img: "img/cards/scarecrow/intoxicated-by-fear.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Scarecrow"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "When the opponent would resolve a Fear card, they target one of your models instead.",
+      ru: "Когда оппонент должен разрешить Fear card, вместо этого он выбирает целью одну из ваших моделей."
+    },
+    resource: {
+      cost: 1,
+      en: "An enemy model within 4” of a friendly model with the Nightmare trait suffers the Terror Status.",
+      ru: "Вражеская модель в пределах 4” от дружественной модели с трейтом Nightmare получает Terror Status."
+    }
+  },
+  {
+    id: "the-dawn-comes",
+    name: "THE DAWN COMES",
+    img: "img/cards/scarecrow/the-dawn-comes.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Scarecrow"],
+    category: "crew",
+    phase: "IV",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Your Fear pile has fewer than 12 cards.",
+      ru: "В вашей Fear pile меньше 12 карт."
+    },
+    resource: {
+      cost: "*",
+      en: "Burn 1 • Exception (Scored Pile) • Friendly models with the Nightmare trait gain +1 to Strength.",
+      ru: "Burn 1 • Exception (Scored Pile) • Дружественные модели с трейтом Nightmare получают +1 к Strength."
+    }
+  },
+  {
+    id: "test-patients",
+    name: "TEST PATIENTS",
+    img: "img/cards/scarecrow/test-patients.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Scarecrow"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • Each time a friendly model with the Nightmare trait inflicts Damage with an attack, place a success marker on this card.\n\nScore when this card has 5 success markers.",
+      ru: "Limited • Каждый раз, когда дружественная модель с трейтом Nightmare наносит Damage атакой, положите маркер успеха на эту карту.\n\nЗасчитайте, когда на этой карте 5 маркеров успеха."
+    },
+    resource: {
+      cost: 1,
+      en: "Move an enemy model suffering the Scared Status 4” towards a friendly model with the Psychologist trait.",
+      ru: "Передвиньте вражескую модель со Scared Status на 4” к дружественной модели с трейтом Psychologist."
+    }
+  },
+  {
+    id: "spooky-presence",
+    name: "SPOOKY PRESENCE",
+    img: "img/cards/scarecrow/spooky-presence.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Scarecrow"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "A friendly model with the Criminal or Psychiatrist trait that no enemy model can see at the start of its activation Reveals an enemy Suspect.",
+      ru: "Дружественная модель с трейтом Criminal или Psychiatrist, которую не видит ни одна вражеская модель в начале ее активации, Reveals вражеский Suspect."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 1 • Place a friendly model with Rank {RANK_HENCHMAN_ICON} and the Criminal or Psychiatrist trait, that has been removed as a Casualty in contact with a target friendly model with the Nightmare trait. Remove the target from the game permanently.",
+      ru: "Burn 1 • Разместите дружественную модель ранга {RANK_HENCHMAN_ICON} с трейтом Criminal или Psychiatrist, которая была удалена как Casualty, в контакте с выбранной дружественной моделью с трейтом Nightmare. Удалите выбранную модель из игры навсегда."
+    }
+  },
+  {
+    id: "kill-them-twice",
+    name: "KILL THEM TWICE",
+    img: "img/cards/two-face/kill-them-twice.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Two-Face"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Twisted Side • A friendly model with a friendly Suspect within 4” inflicts KO or removes an enemy model as a Casualty.",
+      ru: "Twisted Side • Дружественная модель с дружественным Suspect в пределах 4” наносит KO или удаляет вражескую модель как Casualty."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 1 • Search your Objective deck and Reveal a Coin card. Shuffle your deck and play that Coin card.",
+      ru: "Burn 1 • Найдите в Objective deck и Reveal Coin card. Перемешайте колоду и разыграйте эту Coin card."
+    }
+  },
+  {
+    id: "two-make-this-better",
+    name: "TWO MAKE THIS BETTER",
+    img: "img/cards/two-face/two-make-this-better.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Two-Face"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Good Side • A friendly model Sets a Suspect within 4” of an enemy model and another friendly Suspect is within 4” of an enemy model.",
+      ru: "Good Side • Дружественная модель выставляет Suspect в пределах 4” от вражеской модели, и другой дружественный Suspect находится в пределах 4” от вражеской модели."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 1 • Search your Objective deck and Reveal a Coin card. Shuffle your deck and play that Coin card.",
+      ru: "Burn 1 • Найдите в Objective deck и Reveal Coin card. Перемешайте колоду и разыграйте эту Coin card."
+    }
+  },
+  {
+    id: "the-gamble",
+    name: "THE GAMBLE",
+    img: "img/cards/two-face/the-gamble.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Two-Face"],
+    category: "crew",
+    phase: "III",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • Set 2 Gamble Event markers on Ground Level outside of any DZ and more than 5” away from the edge of the Gaming Area and at least 10” away between them. Place a Timer 1D6 on this card. When it is reduced to 0:\n\nGood Side • Score if each Gamble marker has a friendly Suspect within 4”.\n\nTwisted Side • Score if there are no enemy Suspects within 4” of either Gamble marker.",
+      ru: "Limited • Разместите 2 Gamble Event markers на Ground Level вне любой DZ, дальше чем на 5” от края Gaming Area и на расстоянии как минимум 10” друг от друга. Положите Timer 1D6 на эту карту. Когда он снижен до 0:\n\nGood Side • Засчитайте, если у каждого Gamble marker есть дружественный Suspect в пределах 4”.\n\nTwisted Side • Засчитайте, если в пределах 4” от любого Gamble marker нет вражеских Suspects."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 1 • Active model gains 1 Extra Special Action. Cannot repeat the same Special Action.",
+      ru: "Burn 1 • Активная модель получает 1 Extra Special Action. Нельзя повторить тот же Special Action."
+    }
+  },
+  {
+    id: "heads-or-heads",
+    name: "HEADS OR HEADS",
+    img: "img/cards/two-face/heads-or-heads.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Two-Face"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Twisted Side • A friendly model inflicts 4 Damage targeting a model that has Audacity.",
+      ru: "Twisted Side • Дружественная модель наносит 4 Damage, выбирая целью модель с Audacity."
+    },
+    resource: {
+      cost: 1,
+      en: "Good Side • The active model may place or reveal a Suspect marker within 3” and LoS instead of in contact this activation.\n\nTwisted Side • A model within 4” of a friendly Suspect counts as having waited 1 round for the purpose of the Reload trait.",
+      ru: "Good Side • Активная модель может place или reveal Suspect marker в пределах 3” и LoS вместо контакта в эту активацию.\n\nTwisted Side • Модель в пределах 4” от дружественного Suspect считается ожидавшей 1 раунд для целей трейта Reload."
+    }
+  },
+  {
+    id: "the-balance-of-justice",
+    name: "THE BALANCE OF JUSTICE",
+    img: "img/cards/two-face/the-balance-of-justice.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Two-Face"],
+    category: "crew",
+    phase: "II",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Twisted Side • An even number of models (not 0) are removed from the game as Casualties this round.\n\nGood Side • There is an even number of enemy Suspects in Play.",
+      ru: "Twisted Side • Четное количество моделей, но не 0, удалено из игры как Casualties в этом раунде.\n\nGood Side • В игре четное количество вражеских Suspects."
+    },
+    resource: {
+      cost: 1,
+      en: "Good Side • Move a marker 4”.\n\nTwisted Side • Cancel an Objective card used as a Resource.",
+      ru: "Good Side • Передвиньте marker на 4”.\n\nTwisted Side • Отмените Objective card, использованную как Resource."
+    }
+  },
+  {
+    id: "time-bomb",
+    name: "TIME BOMB",
+    img: "img/cards/two-face/time-bomb.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Two-Face"],
+    category: "crew",
+    phase: "III",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Twisted Side • When a friendly model Reveals an enemy Suspect, place an Explosive template on a Suspect and another on a friendly Suspect. Affected models suffer {BLOOD_ICON}.\n\nScore if both templates inflict Damage on enemy models.",
+      ru: "Twisted Side • Когда дружественная модель Reveals вражеский Suspect, поместите Explosive template на Suspect и еще один на дружественный Suspect. Затронутые модели получают {BLOOD_ICON}.\n\nЗасчитайте, если оба шаблона наносят Damage вражеским моделям."
+    },
+    resource: {
+      cost: 1,
+      en: "After you make a dice roll, change the result of one of the dice to match another die in the same roll.",
+      ru: "После того как вы сделали dice roll, измените результат одного кубика так, чтобы он совпал с другим кубиком в этом же броске."
+    }
+  },
+  {
+    id: "closing-argument",
+    name: "CLOSING ARGUMENT",
+    img: "img/cards/two-face/closing-argument.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Two-Face"],
+    category: "crew",
+    phase: "III",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Good Side • Play when a friendly model Sets a Suspect. Place a Timer 1D6 on 2 friendly Suspects that are within 4” of a Sewer or Lamppost. Roll only once.\n\nScore if both Numeric counters are reduced to 0.",
+      ru: "Good Side • Разыграйте, когда дружественная модель выставляет Suspect. Положите Timer 1D6 на 2 дружественных Suspects, которые находятся в пределах 4” от Sewer или Lamppost. Бросок делается только один раз.\n\nЗасчитайте, если оба Numeric counters снижены до 0."
+    },
+    resource: {
+      cost: 1,
+      en: "A model with a friendly Suspect within 4” adds 1 die to a Ranged Attack dice roll.",
+      ru: "Модель с дружественным Suspect в пределах 4” добавляет 1 кубик к Ranged Attack dice roll."
+    }
+  },
+  {
+    id: "two-faces-of-the-coin",
+    name: "TWO FACES OF THE COIN",
+    img: "img/cards/two-face/two-faces-of-the-coin.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Two-Face"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Good Side • Have an even number of friendly Suspects in play.",
+      ru: "Good Side • В игре четное количество дружественных Suspects."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 1 • Set a Coin Event marker in contact with a model and place this card aside. Models within 4” of the marker gain:\n\nGood Side • Friendly models roll 2 additional dice while Defending.\n\nTwisted Side • Enemy models roll 2 fewer dice while Defending.\n\nWhen an enemy model Sets a Suspect in contact with this Event remove it and discard this card.",
+      ru: "Burn 1 • Разместите Coin Event marker в контакте с моделью и отложите эту карту. Модели в пределах 4” от маркера получают:\n\nGood Side • Дружественные модели бросают 2 дополнительных кубика при защите.\n\nTwisted Side • Вражеские модели бросают на 2 кубика меньше при защите.\n\nКогда вражеская модель выставляет Suspect в контакте с этим Event, уберите его и сбросьте эту карту."
+    }
+  },
+  {
+    id: "double-or-nothing",
+    name: "DOUBLE OR NOTHING",
+    img: "img/cards/two-face/double-or-nothing.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Two-Face"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Good Side • A friendly model with an Audacity marker Sets a Suspect within 4” of 2 enemy models.",
+      ru: "Good Side • Дружественная модель с Audacity marker выставляет Suspect в пределах 4” от 2 вражеских моделей."
+    },
+    resource: {
+      cost: 2,
+      en: "Burn 0 • When scoring an Objective, treat the Coin card as the other side.",
+      ru: "Burn 0 • Когда засчитываете Objective, считайте Coin card другой стороной."
+    }
+  },
+  {
+    id: "fast-allegation",
+    name: "FAST ALLEGATION",
+    img: "img/cards/two-face/fast-allegation.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Two-Face"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 4,
+    text: {
+      en: "Good Side • The active friendly model Sets a Suspect more than 4” from its original position.\n\nTwisted Side • The active friendly model Moves, then scores at least 1 successful hit with a Ranged attack.",
+      ru: "Good Side • Активная дружественная модель выставляет Suspect дальше чем на 4” от своей исходной позиции.\n\nTwisted Side • Активная дружественная модель Moves, затем получает как минимум 1 successful hit Ranged attack."
+    },
+    resource: {
+      cost: 1,
+      en: "Search your Objective deck and Reveal a Coin card. Shuffle your deck and play that Coin card.",
+      ru: "Найдите в Objective deck и Reveal Coin card. Перемешайте колоду и разыграйте эту Coin card."
+    }
+  },
+  {
+    id: "punishment",
+    name: "PUNISHMENT",
+    img: "img/cards/two-face/punishment.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Two-Face"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Twisted Side • Limited • Place a success marker on this card for each enemy model removed as Casualty from the game (max of 4). When a friendly model Reveals an enemy Suspect or removes an enemy model as a Casualty, add 1 success marker.\n\nScore when this card has 6 success markers.",
+      ru: "Twisted Side • Limited • Положите маркер успеха на эту карту за каждую вражескую модель, удаленную из игры как Casualty, максимум 4. Когда дружественная модель Reveals вражеский Suspect или удаляет вражескую модель как Casualty, добавьте 1 маркер успеха.\n\nЗасчитайте, когда на этой карте 6 маркеров успеха."
+    },
+    resource: {
+      cost: 0,
+      en: "Target a non active model. Target may play a Resource in his next activation without paying its Resource Cost.",
+      ru: "Выберите неактивную модель. Цель может разыграть Resource в своей следующей активации без оплаты Resource Cost."
+    }
+  },
+  {
+    id: "the-odds",
+    name: "THE ODDS",
+    img: "img/cards/two-face/the-odds.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Two-Face"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • When you play a Side card, place a success marker if it is the Good Side or a failure marker if it is the Twisted Side.\n\nGood Side • Score if this card has at least 3 success markers.\n\nTwisted Side • Score if this card has at least 3 failure markers.",
+      ru: "Limited • Когда вы разыгрываете Side card, положите маркер успеха, если это Good Side, или маркер провала, если это Twisted Side.\n\nGood Side • Засчитайте, если на этой карте как минимум 3 маркера успеха.\n\nTwisted Side • Засчитайте, если на этой карте как минимум 3 маркера провала."
+    },
+    resource: {
+      cost: 1,
+      en: "Reveal and Discard the top card of your Objective deck. If it has Good Side on it the active model gains 1 {+DEF_ICON}. If it has Twisted Side on it the active model gains +1 to Ranged Attack dice rolls this activation.",
+      ru: "Reveal и Discard верхнюю карту вашей Objective deck. Если на ней есть Good Side, активная модель получает 1 {+DEF_ICON}. Если на ней есть Twisted Side, активная модель получает +1 к Ranged Attack dice rolls в эту активацию."
+    }
+  },
+  {
+    id: "dark-multiverse-corruption",
+    name: "DARK MULTIVERSE CORRUPTION",
+    img: "img/cards/batman-who-laughs/dark-multiverse-corruption.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Batman Who Laughs"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Play when a friendly model Sets a Suspect. That Suspect is also a Corruption marker.\n\nThe marker is in play.\n\nA model that Reveals a Corruption marker gains an Infected counter.",
+      ru: "Разыграйте, когда дружественная модель выставляет Suspect. Этот Suspect также считается Corruption marker.\n\nЭтот marker находится в игре.\n\nМодель, которая Reveals Corruption marker, получает Infected counter."
+    },
+    resource: {
+      cost: 2,
+      en: "An enemy with an Infected counter within 8” and LoS of the active friendly model suffers the Hypnotize Status.",
+      ru: "Вражеская модель с Infected counter в пределах 8” и LoS от активной дружественной модели получает Hypnotize Status."
+    }
+  },
+  {
+    id: "whispered-words",
+    name: "WHISPERED WORDS",
+    img: "img/cards/batman-who-laughs/whispered-words.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Batman Who Laughs"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 4,
+    text: {
+      en: "A friendly model Sets a Suspect within 4” of an enemy model. Then that enemy gains an Infected counter.",
+      ru: "Дружественная модель выставляет Suspect в пределах 4” от вражеской модели. Затем эта вражеская модель получает Infected counter."
+    },
+    resource: {
+      cost: 0,
+      en: "Burn 1 • Remove an Infected counter from an enemy within 4” of the active model. The active model removes 2 Damage.",
+      ru: "Burn 1 • Уберите Infected counter с врага в пределах 4” от активной модели. Активная модель убирает 2 Damage."
+    }
+  },
+  {
+    id: "my-sons-kill",
+    name: "MY SONS... KILL!",
+    img: "img/cards/batman-who-laughs/my-sons-kill.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Batman Who Laughs"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 4,
+    text: {
+      en: "A friendly model without Audacity inflicts Damage on an enemy model with Audacity.\n\nThat enemy model gains an Infected counter.",
+      ru: "Дружественная модель без Audacity наносит Damage вражеской модели с Audacity.\n\nЭта вражеская модель получает Infected counter."
+    },
+    resource: {
+      cost: 1,
+      en: "A model without an Audacity may perform an additional Action (cannot repeat the same action).",
+      ru: "Модель без Audacity может выполнить дополнительное Action. Нельзя повторить то же самое action."
+    }
+  },
+  {
+    id: "crow",
+    name: "CROW",
+    img: "img/cards/batman-who-laughs/crow.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Batman Who Laughs"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "During a friendly model's activation, an enemy model with {BLOOD_ICON} Damage is targeted with an Attack and suffers KO. That model removes all {BLOOD_ICON} Damage.\n\nThat enemy model gains an Infected counter.",
+      ru: "Во время активации дружественной модели вражеская модель с {BLOOD_ICON} Damage становится целью Attack и получает KO. Эта модель убирает весь {BLOOD_ICON} Damage.\n\nЭта вражеская модель получает Infected counter."
+    },
+    resource: {
+      cost: 1,
+      en: "During a friendly model's activation, target a friendly model with Audacity that has not activated. The target gives its Audacity to a friendly model that has already activated and did not have Audacity. The target immediately performs a Movement and an Attack action in that order.",
+      ru: "Во время активации дружественной модели выберите дружественную модель с Audacity, которая еще не активировалась. Цель передает свою Audacity дружественной модели, которая уже активировалась и не имела Audacity. Цель немедленно выполняет Movement и Attack action в этом порядке."
+    }
+  },
+  {
+    id: "something-twisted-and-wrong",
+    name: "SOMETHING TWISTED AND WRONG",
+    img: "img/cards/batman-who-laughs/something-twisted-and-wrong.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Batman Who Laughs"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • When an enemy model receives an Infected counter, place a {OBJECTIVE_CROSS_ICON} on this card.\n\nScore when this card has 4 {OBJECTIVE_CROSS_ICON}.",
+      ru: "Limited • Когда вражеская модель получает Infected counter, положите {OBJECTIVE_CROSS_ICON} на эту карту.\n\nЗасчитайте, когда на этой карте 4 {OBJECTIVE_CROSS_ICON}."
+    },
+    resource: {
+      cost: "0*",
+      en: "Burn 1 • Freed",
+      ru: "Burn 1 • Freed"
+    }
+  },
+  {
+    id: "im-you",
+    name: "I'M YOU",
+    img: "img/cards/batman-who-laughs/im-you.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Batman Who Laughs"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Play when a friendly model Reveals an enemy Suspect.\n\nThat model is within the enemy DZ.\n\nWhen scored, an enemy model gains an Infected counter.",
+      ru: "Разыграйте, когда дружественная модель Reveals вражеский Suspect.\n\nЭта модель находится во вражеской DZ.\n\nКогда карта засчитана, вражеская модель получает Infected counter."
+    },
+    resource: {
+      cost: "0*",
+      en: "Burn 1 • Freed",
+      ru: "Burn 1 • Freed"
+    }
+  },
+  {
+    id: "sleeper-agents",
+    name: "SLEEPER AGENTS",
+    img: "img/cards/batman-who-laughs/sleeper-agents.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Batman Who Laughs"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Play when a friendly model Sets a Suspect. It is also a Sleeper Agent marker with Timer 1D3+2. At the end of each subsequent model's activation Move this marker a full 1D6” directly towards that model. When this numeric counter is reduced to 0 or this Suspect would be removed, target an enemy model within 2” of it. That model gains an Infected counter.\n\nScore if a model is targeted and the counter is reduced to 0.",
+      ru: "Разыграйте, когда дружественная модель выставляет Suspect. Он также считается Sleeper Agent marker с Timer 1D3+2. В конце каждой последующей активации модели Move этот marker на полный 1D6” прямо к этой модели. Когда этот numeric counter снижен до 0 или этот Suspect должен быть удален, выберите вражескую модель в пределах 2” от него. Эта модель получает Infected counter.\n\nЗасчитайте, если модель была выбрана целью и counter снижен до 0."
+    },
+    resource: {
+      cost: 1,
+      en: "At the start of a friendly model's activation, place it where no enemy model can draw LoS and is not affected by the Illuminated rule.",
+      ru: "В начале активации дружественной модели разместите ее там, где ни одна вражеская модель не может провести LoS, и она не находится под действием Illuminated rule."
+    }
+  },
+  {
+    id: "big-cosmic-joke",
+    name: "BIG COSMIC JOKE",
+    img: "img/cards/batman-who-laughs/big-cosmic-joke.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Batman Who Laughs"],
+    category: "crew",
+    phase: "III",
+    value: "3 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Limited • When a model without Audacity does not perform an Attack action during its activation, place an O marker on this card. When an enemy model with Audacity performs a Manipulate action, place a {OBJECTIVE_CROSS_ICON} on this card.\n\nThis card has more O markers than {OBJECTIVE_CROSS_ICON}.",
+      ru: "Limited • Когда модель без Audacity не выполняет Attack action во время своей активации, положите O marker на эту карту. Когда вражеская модель с Audacity выполняет Manipulate action, положите {OBJECTIVE_CROSS_ICON} на эту карту.\n\nНа этой карте больше O markers, чем {OBJECTIVE_CROSS_ICON}."
+    },
+    resource: {
+      cost: 1,
+      en: "Target an enemy model with the Poison Status. It immediately takes a Poison roll.",
+      ru: "Выберите вражескую модель с Poison Status. Она немедленно выполняет Poison roll."
+    }
+  },
+  {
+    id: "a-world-that-shouldnt-exist",
+    name: "A WORLD THAT SHOULDN'T EXIST",
+    img: "img/cards/batman-who-laughs/a-world-that-shouldnt-exist.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Batman Who Laughs"],
+    category: "crew",
+    phase: "II",
+    value: "3 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Target a friendly model without Audacity.\n\nThat model is within 4” of a Suspect.\n\nIt may be played at the start of an enemy's activation as a Phase III card, but the target is chosen by the opponent.",
+      ru: "Выберите дружественную модель без Audacity.\n\nЭта модель находится в пределах 4” от Suspect.\n\nЭту карту можно разыграть в начале активации врага как Phase III card, но цель выбирает оппонент."
+    },
+    resource: {
+      cost: "0*",
+      en: "Burn 1 • Freed",
+      ru: "Burn 1 • Freed"
+    }
+  },
+  {
+    id: "lights-fault",
+    name: "LIGHT'S FAULT",
+    img: "img/cards/batman-who-laughs/lights-fault.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Batman Who Laughs"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Limited • Play when an enemy model gains an Infected counter.\n\nScore if there are more models with Infected counters than enemy models without Infected counters.",
+      ru: "Limited • Разыграйте, когда вражеская модель получает Infected counter.\n\nЗасчитайте, если моделей с Infected counters больше, чем вражеских моделей без Infected counters."
+    },
+    resource: {
+      cost: 1,
+      en: "Target a Suspect within 4” of an enemy model with an Infected counter. Move it 4”.",
+      ru: "Выберите Suspect в пределах 4” от вражеской модели с Infected counter. Move его на 4”."
+    }
+  },
+  {
+    id: "you-dont-trust-anything",
+    name: "YOU DON'T TRUST ANYTHING",
+    img: "img/cards/batman-who-laughs/you-dont-trust-anything.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Batman Who Laughs"],
+    category: "crew",
+    phase: "II",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Assign numerical counters 1, 2, and 3 to enemy models. (These counters cannot be modified).\n\nScore if those models do not activate in ascending order (1, 2, 3).\n\nEach model that activates in ascending order gains an Infected counter.",
+      ru: "Назначьте numerical counters 1, 2 и 3 вражеским моделям. Эти counters нельзя изменять.\n\nЗасчитайте, если эти модели не активируются в возрастающем порядке (1, 2, 3).\n\nКаждая модель, которая активируется в возрастающем порядке, получает Infected counter."
+    },
+    resource: {
+      cost: 1,
+      en: "Exception (In Play) • Models with Audacity cannot make Efforts this activation.",
+      ru: "Exception (In Play) • Модели с Audacity не могут делать Efforts в эту активацию."
+    }
+  },
+  {
+    id: "take-a-good-look",
+    name: "TAKE A GOOD LOOK",
+    img: "img/cards/batman-who-laughs/take-a-good-look.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["Batman Who Laughs"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "A friendly model Reveals an enemy Suspect within 4” of an enemy model with an Infected counter.",
+      ru: "Дружественная модель Reveals вражеский Suspect в пределах 4” от вражеской модели с Infected counter."
+    },
+    resource: {
+      cost: 1,
+      en: "An active friendly model without Audacity Moves 4”.\n\nReduce the cost by 1 of this Resource if the active model is within 8” of an enemy with an Infected counter.",
+      ru: "Активная дружественная модель без Audacity Moves на 4”.\n\nУменьшите стоимость этого Resource на 1, если активная модель находится в пределах 8” от врага с Infected counter."
     }
   }
 ];
