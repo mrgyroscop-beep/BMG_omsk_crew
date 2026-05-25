@@ -3608,10 +3608,12 @@ const models = [
       "Chlorokinesis",
       "Control Pheromones",
       "Elite Boss (Plants)",
+      "Gotham City Siren",
       "Mortal Kiss",
       "Poison Immunity",
       "Possessed",
-      "Scientific"
+      "Scientific",
+      "The Song of the Sirens"
     ]
   },
   {
