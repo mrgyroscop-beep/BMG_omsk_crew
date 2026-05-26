@@ -2972,7 +2972,7 @@ const modelDependencyRules = {
   "Gilda Dent": { requiredModel: "Two-Face" },
   
   // The Riddler (Jim Carrey / Riddler 1995)
-  "Two-Face": { requiredModel: "The Riddler" },
+  "Two-Face": { requiredModel: "The Riddler", faction: "The Riddler" },
   
   // Batman Michael Keaton
   "Catwoman Michelle Pfeiffer": { requiredModel: "Batman Michael Keaton" },

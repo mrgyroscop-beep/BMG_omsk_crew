@@ -243,6 +243,10 @@ const translations = {
     possessed_limit_exceeded: "Possessed позволяет нанять не более 3 Henchman с чужой Affiliation",
     print_filter_title: "Только модели с Print",
     faction_filter_title: "Только модели выбранной фракции",
+    builder_more_title: "Дополнительные действия",
+    builder_more_compendium: "Справочник",
+    builder_more_import: "Импорт ростера",
+    builder_more_export: "Экспорт ростера",
     export_title: "Экспорт ростера",
     import_title: "Импорт ростера",
     no_available_equipment: "Нет доступного оборудования",
@@ -367,6 +371,10 @@ const translations = {
     possessed_limit_exceeded: "Possessed can recruit no more than 3 Henchmen with other Affiliation",
     print_filter_title: "Only models with Print",
     faction_filter_title: "Only selected faction models",
+    builder_more_title: "More actions",
+    builder_more_compendium: "Compendium",
+    builder_more_import: "Import Roster",
+    builder_more_export: "Export Roster",
     export_title: "Export Roster",
     import_title: "Import Roster",
     no_available_equipment: "No available equipment",
@@ -5244,6 +5252,27 @@ function getModelDependencyOptions(dependency) {
   return required ? [required] : [];
 }
 
+function getModelDependencyMatcherValues(dependency, singularKey, pluralKey) {
+  if (!dependency) return [];
+  const value = dependency[pluralKey] || dependency[singularKey];
+  if (Array.isArray(value)) return value.filter(Boolean);
+  return value ? [value] : [];
+}
+
+function modelDependencyApplies(model, dependency) {
+  const factions = getModelDependencyMatcherValues(dependency, "faction", "factions");
+  if (factions.length && !getFactions(model).some(faction => factions.includes(faction))) {
+    return false;
+  }
+
+  const ranks = getModelDependencyMatcherValues(dependency, "rank", "ranks");
+  if (ranks.length && !getRanks(model).some(rank => ranks.includes(rank))) {
+    return false;
+  }
+
+  return true;
+}
+
 function formatModelDependencyRequirement(dependency) {
   return getModelDependencyOptions(dependency).join(" / ");
 }
@@ -5251,7 +5280,7 @@ function formatModelDependencyRequirement(dependency) {
 function checkModelDependency(model) {
   // Проверяем зависимости (Required)
   const dependency = window.modelDependencyRules?.[model.name];
-  if (dependency) {
+  if (dependency && modelDependencyApplies(model, dependency)) {
     const requiredModels = getModelDependencyOptions(dependency);
     if (requiredModels.length && !requiredModels.some(required => crew.some(m => m.name === required))) {
       return false;
@@ -5278,6 +5307,7 @@ function checkModelDependency(model) {
 function getUnmetDependency(model) {
   const dependency = window.modelDependencyRules?.[model.name];
   if (!dependency) return null;
+  if (!modelDependencyApplies(model, dependency)) return null;
 
   const requiredModels = getModelDependencyOptions(dependency);
   if (!requiredModels.length) return null;
@@ -5743,6 +5773,7 @@ function showCards() {
 
 function showBuilder() {
   currentMode = 'builder';
+  closeBuilderMoreMenu();
   builderContentMode = 'models';
   $('mainMenu').style.display = 'none';
   $('cardsSection').style.display = 'none';
@@ -5767,6 +5798,7 @@ function showRules() {
 
 function backToMenu() {
   currentMode = 'menu';
+  closeBuilderMoreMenu();
   $('mainMenu').style.display = 'flex';
   $('cardsSection').style.display = 'none';
   $('builderSection').style.display = 'none';
@@ -5785,6 +5817,7 @@ function backToMenu() {
 }
 
 function backToFactionSelect() {
+  closeBuilderMoreMenu();
   $('factionSelect').style.display = 'block';
   $('builderMain').style.display = 'none';
   $('builderFactionCards').classList.remove('hidden'); // Показываем вкладки фракций
@@ -5867,6 +5900,28 @@ function closeModelSearch() {
   $('modelSearchModal').classList.remove('active');
 }
 
+function closeBuilderMoreMenu() {
+  const menu = document.getElementById("builderMoreMenu");
+  const button = document.getElementById("builderMoreMenuBtn");
+  if (menu) menu.classList.remove("active");
+  if (button) button.setAttribute("aria-expanded", "false");
+}
+
+function toggleBuilderMoreMenu(event) {
+  if (event) event.stopPropagation();
+  const menu = document.getElementById("builderMoreMenu");
+  const button = document.getElementById("builderMoreMenuBtn");
+  if (!menu) return;
+  const isActive = menu.classList.toggle("active");
+  if (button) button.setAttribute("aria-expanded", isActive ? "true" : "false");
+}
+
+document.addEventListener("click", event => {
+  if (!event.target.closest(".builder-more-actions")) {
+    closeBuilderMoreMenu();
+  }
+});
+
 function updateBuilderPrintFilterButton() {
   const button = $("builderPrintFilterBtn");
   if (!button) return;
@@ -5947,6 +6002,7 @@ function updateBuilderContentModeButtons() {
 
 function setBuilderContentMode(mode) {
   builderContentMode = mode === 'cards' ? 'cards' : 'models';
+  closeBuilderMoreMenu();
   updateBuilderContentModeButtons();
 
   if (builderContentMode === 'cards') {
@@ -7070,15 +7126,29 @@ const cardRankOrder = {
   "Vehicle": 5
 };
 
-function sortModelsByRankAndName(modelList) {
-  return [...modelList].sort((a, b) => {
-    const ranksA = getRanks(a);
-    const ranksB = getRanks(b);
-    const minA = ranksA.length > 0 ? Math.min(...ranksA.map(r => cardRankOrder[r] || 999)) : 999;
-    const minB = ranksB.length > 0 ? Math.min(...ranksB.map(r => cardRankOrder[r] || 999)) : 999;
-    if (minA !== minB) return minA - minB;
-    return a.name.localeCompare(b.name);
-  });
+function getModelSortRankValue(model) {
+  const ranks = model?.rankUsed ? [model.rankUsed] : getRanks(model);
+  return ranks.length > 0 ? Math.min(...ranks.map(r => cardRankOrder[r] || 999)) : 999;
+}
+
+function getModelSortRepValue(model) {
+  return numericValue(model?.rep, 0);
+}
+
+function compareModelsByRankAndRep(a, b) {
+  const rankA = getModelSortRankValue(a);
+  const rankB = getModelSortRankValue(b);
+  if (rankA !== rankB) return rankA - rankB;
+
+  const repA = getModelSortRepValue(a);
+  const repB = getModelSortRepValue(b);
+  if (repA !== repB) return repB - repA;
+
+  return a.name.localeCompare(b.name);
+}
+
+function sortModelsByRankAndRep(modelList) {
+  return [...modelList].sort(compareModelsByRankAndRep);
 }
 
 const INCORRUPTIBLE_BLOCKED_FACTIONS = [
@@ -7138,7 +7208,7 @@ function canShowInFactionCards(model, faction) {
 
 function getCardsViewModels() {
   if (!currentFaction) return [];
-  return sortModelsByRankAndName(models.filter(m =>
+  return sortModelsByRankAndRep(models.filter(m =>
     canShowInFactionCards(m, currentFaction) &&
     passesCardsPrintFilter(m) &&
     passesCardsFactionFilter(m)
@@ -7146,7 +7216,7 @@ function getCardsViewModels() {
 }
 
 function getBuilderCardItems() {
-  let renderArray = crew.map(m => {
+  let renderArray = sortModelsByRankAndRep(crew.map(m => {
     const originalModel = findBaseModel(m) || m;
     return {
       ...originalModel,
@@ -7155,7 +7225,7 @@ function getBuilderCardItems() {
       count: countInCrew(originalModel),
       instance: m
     };
-  });
+  }));
 
   let filteredModels = models.filter(m =>
     canConsiderModelForCurrentBuilder(m) &&
@@ -7168,7 +7238,7 @@ function getBuilderCardItems() {
     filteredModels = filteredModels.filter(m => hasPrintableFile(m));
   }
 
-  renderArray.push(...sortModelsByRankAndName(filteredModels).map(m => ({
+  renderArray.push(...sortModelsByRankAndRep(filteredModels).map(m => ({
     ...m,
     inCrew: false,
     count: 0
@@ -7226,7 +7296,7 @@ const renderMiniCardsBuilder = debounce(() => {
   let renderArray = [];
   
   // Сначала добавляем все модели из отряда (в порядке как они есть в crew)
-  renderArray.push(...crew.map(m => {
+  renderArray.push(...sortModelsByRankAndRep(crew.map(m => {
     const originalModel = findBaseModel(m) || m;
     return { 
       ...originalModel, 
@@ -7235,7 +7305,7 @@ const renderMiniCardsBuilder = debounce(() => {
       count: countInCrew(originalModel),
       instance: m // ссылка на экземпляр в отряде
     };
-  }));
+  })));
   
   // === ИСПРАВЛЕНО: используем canHireInFaction для режима билдера ===
   let filteredModels = models.filter(m =>
@@ -7249,27 +7319,8 @@ const renderMiniCardsBuilder = debounce(() => {
     filteredModels = filteredModels.filter(m => hasPrintableFile(m));
   }
 
-  // Определение порядка рангов
-  const rankOrder = {
-    "Leader": 1,
-    "Sidekick": 2,
-    "Henchman": 3,
-    "Free Agent": 4,
-    "Vehicle": 5
-  };
-
-  // Сортировка: сначала по наивысшему (минимальному по номеру) рангу, затем по имени алфавитно
-  filteredModels.sort((a, b) => {
-    const ranksA = getRanks(a);
-    const ranksB = getRanks(b);
-    const minA = ranksA.length > 0 ? Math.min(...ranksA.map(r => rankOrder[r] || 999)) : 999;
-    const minB = ranksB.length > 0 ? Math.min(...ranksB.map(r => rankOrder[r] || 999)) : 999;
-    if (minA !== minB) return minA - minB;
-    return a.name.localeCompare(b.name);
-  });
-
   // Добавляем отфильтрованные модели в renderArray
-  renderArray.push(...filteredModels.map(m => ({
+  renderArray.push(...sortModelsByRankAndRep(filteredModels).map(m => ({
     ...m,
     inCrew: false,
     count: 0
@@ -7592,7 +7643,7 @@ function renderModelsSearch(query) {
       }
       return true;
     })
-    .sort((a,b) => a.name.localeCompare(b.name));
+    .sort(compareModelsByRankAndRep);
 
   const html = results.length ? results.map(m => {
     const isMinionOrHorde = m.traits && m.traits.some(trait => trait.startsWith("Minion") || trait === "Horde");

@@ -275,7 +275,7 @@
       <div class="top-bar">
         <div class="top-bar-content">
           <h1>BMG</h1>
-          <div class="header-buttons">
+          <div class="header-buttons builder-header-buttons">
             <div class="lang-switch header-lang-switch">
               <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
               <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
@@ -289,15 +289,25 @@
             <button id="builderFactionFilterBtn" class="compendium-small-btn faction-filter-btn" onclick="toggleBuilderFactionFilter()" data-i18n-title="faction_filter_title" title="Только модели выбранной фракции">
               <svg viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5.05-3.41 9.76-8 11-4.59-1.24-8-5.95-8-11V5l8-3zm0 2.16L6 6.41V11c0 3.94 2.51 7.64 6 8.84 3.49-1.2 6-4.9 6-8.84V6.41l-6-2.25zm-3 5.09l3-1.12 3 1.12V12c0 1.93-1.17 3.78-3 4.56-1.83-.78-3-2.63-3-4.56V9.25z"/></svg>
             </button>
-            <button class="compendium-small-btn" onclick="openCompendium()">
-              <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H6V4h12v16zm-4-8H10v-1h4v1zm0-3H10V8h4v1zm0-3H10V6h4v1z"/></svg>
-            </button>
-            <button class="compendium-small-btn" onclick="importRoster()" data-i18n-title="import_title" title="Импорт ростера">
-              <svg viewBox="0 0 24 24"><path d="M19 15v4H5v-4H3v6h18v-6zm-8 1h2V8h3l-4-5-4 5h3z"/></svg>
-            </button>
-            <button class="compendium-small-btn" onclick="exportRoster()" data-i18n-title="export_title" title="Экспорт ростера">
-              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-            </button>
+            <div class="builder-more-actions">
+              <button id="builderMoreMenuBtn" class="compendium-small-btn builder-more-btn" type="button" onclick="toggleBuilderMoreMenu(event)" data-i18n-title="builder_more_title" title="Дополнительные действия" aria-expanded="false" aria-controls="builderMoreMenu">
+                <svg viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
+              </button>
+              <div id="builderMoreMenu" class="builder-more-menu" role="menu">
+                <button class="builder-more-menu-item" type="button" onclick="closeBuilderMoreMenu(); openCompendium()" role="menuitem">
+                  <svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H6V4h12v16zm-4-8H10v-1h4v1zm0-3H10V8h4v1zm0-3H10V6h4v1z"/></svg>
+                  <span data-i18n="builder_more_compendium">Справочник</span>
+                </button>
+                <button class="builder-more-menu-item" type="button" onclick="closeBuilderMoreMenu(); importRoster()" role="menuitem">
+                  <svg viewBox="0 0 24 24"><path d="M19 15v4H5v-4H3v6h18v-6zm-8 1h2V8h3l-4-5-4 5h3z"/></svg>
+                  <span data-i18n="builder_more_import">Импорт ростера</span>
+                </button>
+                <button class="builder-more-menu-item" type="button" onclick="closeBuilderMoreMenu(); exportRoster()" role="menuitem">
+                  <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                  <span data-i18n="builder_more_export">Экспорт ростера</span>
+                </button>
+              </div>
+            </div>
             <button class="compendium-small-btn" onclick="confirmBuilderExit()">
               <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
             </button>

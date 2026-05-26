@@ -14,7 +14,7 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 .header-buttons { display:flex; gap:12px; }
 .header-lang-switch { display:flex; gap:6px; margin-bottom:0; align-items:center; }
 .top-bar .header-lang-switch,
-.compendium-header .header-lang-switch { justify-content:center; }
+.compendium-header .header-lang-switch { justify-content:center; margin-bottom:0; }
 .top-bar .header-lang-switch .lang-btn,
 .compendium-header .header-lang-switch .lang-btn {
   padding: 6px 12px;
@@ -41,6 +41,61 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   white-space: nowrap;
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+.builder-more-actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+.builder-more-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 220px;
+  max-width: calc(100vw - 24px);
+  padding: 8px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: #151515;
+  box-shadow: 0 12px 30px rgba(0,0,0,.75), 0 0 18px rgba(233,69,96,.22);
+  z-index: 220;
+}
+.builder-more-menu.active {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.builder-more-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 40px;
+  padding: 9px 10px;
+  border: 1px solid #2e2e2e;
+  border-radius: 8px;
+  background: #202020;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+.builder-more-menu-item:hover {
+  border-color: #e94560;
+  background: #2a1820;
+  color: #ffd700;
+}
+.builder-more-menu-item svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  fill: currentColor;
 }
 .funds { font-size:14px; font-weight:bold; margin-top:8px; }
 .funds span { color:#e94560; margin:0 10px; }
@@ -819,11 +874,29 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
     overflow-wrap: anywhere;
   }
 
+  #builderMain .top-bar h1 {
+    flex: 0 0 42px;
+    max-width: 42px;
+    font-size: 22px;
+    letter-spacing: 3px;
+    overflow-wrap: normal;
+  }
+
   .header-buttons {
     flex: 0 0 auto;
     gap: 6px;
     align-items: center;
     min-width: 0;
+  }
+
+  #builderMain .builder-header-buttons {
+    gap: 4px;
+    max-width: calc(100vw - 58px);
+    justify-content: flex-end;
+  }
+
+  #builderMain .builder-header-buttons .header-lang-switch {
+    margin-bottom: 0;
   }
 
   .top-bar .header-lang-switch,
@@ -852,6 +925,29 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   .compendium-small-btn svg {
     width: 22px;
     height: 22px;
+  }
+
+  #builderMain .compendium-small-btn {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  #builderMain .compendium-small-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  #builderMain .top-bar .header-lang-switch .lang-btn {
+    min-width: 36px;
+    min-height: 38px;
+    padding: 0 8px;
+    font-size: 11px;
+  }
+
+  #builderMain .builder-more-menu {
+    top: calc(100% + 6px);
+    min-width: 204px;
   }
 
   .my-crews-toolbar {
@@ -937,6 +1033,46 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
     border-radius: 18px;
     font-size: 15px;
     letter-spacing: 0.5px;
+  }
+}
+
+@media (max-width: 360px) {
+  #builderMain .top-bar-content {
+    gap: 6px;
+  }
+
+  #builderMain .top-bar h1 {
+    flex-basis: 34px;
+    max-width: 34px;
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+
+  #builderMain .builder-header-buttons {
+    gap: 3px;
+    max-width: calc(100vw - 46px);
+  }
+
+  #builderMain .compendium-small-btn {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+
+  #builderMain .compendium-small-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  #builderMain .top-bar .header-lang-switch .lang-btn {
+    min-width: 32px;
+    min-height: 34px;
+    padding: 0 6px;
+    font-size: 10px;
+  }
+
+  #builderMain .builder-more-menu {
+    min-width: 196px;
   }
 }
 
