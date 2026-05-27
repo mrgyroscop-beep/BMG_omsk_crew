@@ -145,6 +145,7 @@ const translations = {
     my_crews_add_txt: "ДОБАВИТЬ ИЗ TXT",
     my_crews_export_all: "СОХРАНИТЬ ВСЕ TXT",
     my_crews_empty: "Пока нет сохранённых банд. Импортируйте TXT-файл ростера, и он появится здесь.",
+    my_crews_play: "Играть",
     my_crews_open: "Открыть в билдере",
     my_crews_download: "Скачать TXT",
     my_crews_delete: "Удалить",
@@ -309,6 +310,7 @@ const translations = {
     my_crews_add_txt: "ADD FROM TXT",
     my_crews_export_all: "SAVE ALL TXT",
     my_crews_empty: "No saved crews yet. Import a roster TXT file and it will appear here.",
+    my_crews_play: "Play",
     my_crews_open: "Open in builder",
     my_crews_download: "Download TXT",
     my_crews_delete: "Delete",
@@ -5778,6 +5780,14 @@ function createMyCrewRecordFromText(text) {
   };
 }
 
+function canPlaySavedMyCrew(crewEntry) {
+  try {
+    return Boolean(buildMatchCrewState(crewEntry)?.validation?.isLegal);
+  } catch (error) {
+    return false;
+  }
+}
+
 function renderMyCrews() {
   const container = $('myCrewsList');
   if (!container) return;
@@ -5789,27 +5799,34 @@ function renderMyCrews() {
 
   const sortedCrews = [...myCrews].sort((a, b) => String(b.addedAt || "").localeCompare(String(a.addedAt || "")));
 
-  container.innerHTML = sortedCrews.map(crewEntry => `
-    <div class="my-crew-card" data-my-crew-id="${escapeAttribute(crewEntry.id)}">
-      <div class="my-crew-card-head">
-        <div>
-          <div class="my-crew-title">${escapeHtml(crewEntry.title || crewEntry.faction || "Crew")}</div>
-          <div class="my-crew-subtitle">${t("my_crews_faction")}: ${escapeHtml(crewEntry.faction || "Unknown")}</div>
+  container.innerHTML = sortedCrews.map(crewEntry => {
+    const canPlay = canPlaySavedMyCrew(crewEntry);
+    return `
+      <div class="my-crew-card" data-my-crew-id="${escapeAttribute(crewEntry.id)}">
+        <div class="my-crew-card-head">
+          <div>
+            <div class="my-crew-title">${escapeHtml(crewEntry.title || crewEntry.faction || "Crew")}</div>
+            <div class="my-crew-subtitle">${t("my_crews_faction")}: ${escapeHtml(crewEntry.faction || "Unknown")}</div>
+          </div>
+          <div class="my-crew-meta">
+            <div>${escapeHtml(String(crewEntry.modelCount || 0))} ${t("my_crews_models")}</div>
+            <div>${t("my_crews_added")}: ${escapeHtml(formatMyCrewDate(crewEntry.addedAt))}</div>
+          </div>
         </div>
-        <div class="my-crew-meta">
-          <div>${escapeHtml(String(crewEntry.modelCount || 0))} ${t("my_crews_models")}</div>
-          <div>${t("my_crews_added")}: ${escapeHtml(formatMyCrewDate(crewEntry.addedAt))}</div>
+        <pre class="my-crew-preview">${escapeHtml(crewEntry.text.split("\n").slice(0, 6).join("\n"))}</pre>
+        <div class="my-crew-actions">
+          ${canPlay ? `<button class="my-crew-action-btn" data-my-crew-play="${escapeAttribute(crewEntry.id)}">${t("my_crews_play")}</button>` : ""}
+          <button class="my-crew-action-btn" data-my-crew-open="${escapeAttribute(crewEntry.id)}">${t("my_crews_open")}</button>
+          <button class="my-crew-action-btn" data-my-crew-download="${escapeAttribute(crewEntry.id)}">${t("my_crews_download")}</button>
+          <button class="my-crew-action-btn danger" data-my-crew-delete="${escapeAttribute(crewEntry.id)}">${t("my_crews_delete")}</button>
         </div>
       </div>
-      <pre class="my-crew-preview">${escapeHtml(crewEntry.text.split("\n").slice(0, 6).join("\n"))}</pre>
-      <div class="my-crew-actions">
-        <button class="my-crew-action-btn" data-my-crew-open="${escapeAttribute(crewEntry.id)}">${t("my_crews_open")}</button>
-        <button class="my-crew-action-btn" data-my-crew-download="${escapeAttribute(crewEntry.id)}">${t("my_crews_download")}</button>
-        <button class="my-crew-action-btn danger" data-my-crew-delete="${escapeAttribute(crewEntry.id)}">${t("my_crews_delete")}</button>
-      </div>
-    </div>
-  `).join("");
+    `;
+  }).join("");
 
+  container.querySelectorAll('[data-my-crew-play]').forEach(button => {
+    button.addEventListener('click', () => playSavedMyCrew(button.dataset.myCrewPlay));
+  });
   container.querySelectorAll('[data-my-crew-open]').forEach(button => {
     button.addEventListener('click', () => openSavedMyCrew(button.dataset.myCrewOpen));
   });
@@ -5819,6 +5836,24 @@ function renderMyCrews() {
   container.querySelectorAll('[data-my-crew-delete]').forEach(button => {
     button.addEventListener('click', () => deleteSavedMyCrew(button.dataset.myCrewDelete));
   });
+}
+
+function playSavedMyCrew(crewId) {
+  const crewEntry = myCrews.find(item => item.id === crewId);
+  if (!crewEntry) return;
+
+  try {
+    const state = buildMatchCrewState(crewEntry);
+    if (!state.validation.isLegal) {
+      alert(t("match_roster_invalid"));
+      return;
+    }
+    matchSelectedCrewId = crewId;
+    matchCurrentPayloadCode = "";
+    showMatch();
+  } catch (error) {
+    alert(error.message || t("match_roster_invalid"));
+  }
 }
 
 function showMyCrews() {
@@ -6173,14 +6208,110 @@ function decodeBase64Url(value) {
   return new TextDecoder().decode(bytes);
 }
 
-function buildMatchPayloadCode(roster) {
-  return `${MATCH_PAYLOAD_PREFIX_V2}${encodeBase64Url(JSON.stringify(compactMatchRoster(roster)))}`;
+function encodeBytesBase64Url(bytes) {
+  let binary = "";
+  bytes.forEach(byte => {
+    binary += String.fromCharCode(byte);
+  });
+  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
 }
 
-function encodeMatchRank(rank) {
-  if (!rank) return "";
+function decodeBase64UrlBytes(value) {
+  const normalized = String(value || "").replace(/-/g, "+").replace(/_/g, "/");
+  const padded = normalized + "=".repeat((4 - normalized.length % 4) % 4);
+  const binary = atob(padded);
+  return Uint8Array.from(binary, char => char.charCodeAt(0));
+}
+
+function writeMatchVarint(bytes, value) {
+  let next = Math.max(0, numericValue(value, 0));
+  do {
+    let byte = next & 0x7F;
+    next = Math.floor(next / 128);
+    if (next > 0) byte |= 0x80;
+    bytes.push(byte);
+  } while (next > 0);
+}
+
+function readMatchVarint(reader) {
+  let result = 0;
+  let shift = 0;
+  while (reader.index < reader.bytes.length) {
+    const byte = reader.bytes[reader.index++];
+    result += (byte & 0x7F) * Math.pow(2, shift);
+    if ((byte & 0x80) === 0) return result;
+    shift += 7;
+    if (shift > 35) break;
+  }
+  throw new Error(t("match_payload_invalid"));
+}
+
+function writeMatchString(bytes, value) {
+  const encoded = new TextEncoder().encode(String(value || ""));
+  writeMatchVarint(bytes, encoded.length);
+  encoded.forEach(byte => bytes.push(byte));
+}
+
+function readMatchString(reader) {
+  const length = readMatchVarint(reader);
+  if (reader.index + length > reader.bytes.length) {
+    throw new Error(t("match_payload_invalid"));
+  }
+  const chunk = reader.bytes.slice(reader.index, reader.index + length);
+  reader.index += length;
+  return new TextDecoder().decode(chunk);
+}
+
+function writeMatchCatalogRef(bytes, index, fallbackText) {
+  if (Number.isInteger(index) && index >= 0) {
+    writeMatchVarint(bytes, index + 1);
+    return;
+  }
+  writeMatchVarint(bytes, 0);
+  writeMatchString(bytes, fallbackText || "");
+}
+
+function readMatchCatalogRef(reader) {
+  const value = readMatchVarint(reader);
+  if (value > 0) return { index: value - 1, text: "" };
+  return { index: null, text: readMatchString(reader) };
+}
+
+function getMatchFactionCatalog() {
+  const result = [];
+  const add = faction => {
+    if (faction && !result.includes(faction)) result.push(faction);
+  };
+  if (typeof factionCrewRules !== "undefined" && factionCrewRules) {
+    Object.keys(factionCrewRules).forEach(add);
+  }
+  models.forEach(model => getFactions(model).forEach(add));
+  return result;
+}
+
+function writeMatchRankRef(bytes, rank) {
+  if (!rank) {
+    writeMatchVarint(bytes, 0);
+    return;
+  }
   const index = MATCH_RANK_CODES.indexOf(rank);
-  return index >= 0 ? index : rank;
+  if (index >= 0) {
+    writeMatchVarint(bytes, index + 1);
+    return;
+  }
+  writeMatchVarint(bytes, MATCH_RANK_CODES.length + 1);
+  writeMatchString(bytes, rank);
+}
+
+function readMatchRankRef(reader, model) {
+  const value = readMatchVarint(reader);
+  if (value === 0) return decodeMatchRank("", model);
+  if (value <= MATCH_RANK_CODES.length) return MATCH_RANK_CODES[value - 1] || "";
+  return readMatchString(reader);
+}
+
+function buildMatchPayloadCode(roster) {
+  return `${MATCH_PAYLOAD_PREFIX_V2}${encodeMatchPayloadBytes(roster)}`;
 }
 
 function decodeMatchRank(value, model) {
@@ -6193,22 +6324,6 @@ function decodeMatchRank(value, model) {
 function getMatchEquipmentCatalog(faction) {
   if (typeof equipmentByFaction === "undefined") return [];
   return Array.isArray(equipmentByFaction[faction]) ? equipmentByFaction[faction] : [];
-}
-
-function encodeMatchEquipmentList(equipmentNames, faction) {
-  const catalog = getMatchEquipmentCatalog(faction);
-  return (equipmentNames || []).map(name => {
-    const index = catalog.findIndex(item => item.name === name);
-    return index >= 0 ? index : name;
-  });
-}
-
-function decodeMatchEquipmentList(equipmentRefs, faction) {
-  const catalog = getMatchEquipmentCatalog(faction);
-  return (equipmentRefs || []).map(ref => {
-    if (typeof ref === "number") return catalog[ref]?.name || "";
-    return String(ref || "");
-  }).filter(Boolean);
 }
 
 function getMatchCardCatalogIndex(card) {
@@ -6225,81 +6340,114 @@ function getMatchCardByRef(ref) {
   return catalog.find(card => getBuilderCardKey(card) === ref || getBuilderCardName(card) === ref) || null;
 }
 
-function getMatchModelByRef(ref, fallbackName = "", faction = "") {
-  if (typeof ref === "number") return models[ref] || null;
-  const numericRef = String(ref || "").match(/^\d+$/) ? numericValue(ref, null) : null;
-  if (numericRef !== null && models[numericRef]) return models[numericRef];
-  return findMatchRosterModel(fallbackName || String(ref || ""), faction);
-}
-
-function compactMatchModel(model, faction) {
-  const catalogModel = typeof model.id === "number" ? models[model.id] : findMatchRosterModel(model, faction);
-  const ref = typeof model.id === "number" ? model.id : getMatchModelIndex(catalogModel);
-  const row = [ref !== null && ref !== undefined ? ref : (model.name || "")];
-  const rank = encodeMatchRank(model.rank);
-  const equipment = encodeMatchEquipmentList(model.equipment || [], faction);
-
-  if (rank !== "" || equipment.length) row.push(rank);
-  if (equipment.length) row.push(equipment);
-  return row;
-}
-
-function compactMatchCard(card) {
-  const ref = getMatchCardCatalogIndex(card);
-  const row = [ref !== null && ref !== undefined ? ref : (card.id || card.name || "")];
-  const count = numericValue(card.count, 1);
-  if (count !== 1) row.push(count);
-  return row;
-}
-
-function compactMatchRoster(roster) {
+function encodeMatchPayloadBytes(roster) {
   const faction = roster.faction || "Unknown";
-  return [
-    faction,
-    roster.repLimit || 350,
-    roster.fundingLimit || 1500,
-    roster.usedRep || 0,
-    roster.usedFunding || 0,
-    (roster.models || []).map(model => compactMatchModel(model, faction)),
-    (roster.cards || []).map(compactMatchCard)
-  ];
+  const factionCatalog = getMatchFactionCatalog();
+  const bytes = [];
+
+  writeMatchVarint(bytes, 2);
+  writeMatchCatalogRef(bytes, factionCatalog.indexOf(faction), faction);
+  writeMatchVarint(bytes, roster.repLimit || 350);
+  writeMatchVarint(bytes, roster.fundingLimit || 1500);
+  writeMatchVarint(bytes, roster.usedRep || 0);
+  writeMatchVarint(bytes, roster.usedFunding || 0);
+
+  const rosterModels = Array.isArray(roster.models) ? roster.models : [];
+  writeMatchVarint(bytes, rosterModels.length);
+  rosterModels.forEach(model => {
+    const catalogModel = typeof model.id === "number" ? models[model.id] : findMatchRosterModel(model, faction);
+    const modelIndex = typeof model.id === "number" ? model.id : getMatchModelIndex(catalogModel);
+    writeMatchCatalogRef(bytes, modelIndex, model.name || catalogModel?.name || "");
+    writeMatchRankRef(bytes, model.rank || "");
+
+    const equipment = Array.isArray(model.equipment) ? model.equipment : [];
+    const equipmentCatalog = getMatchEquipmentCatalog(faction);
+    writeMatchVarint(bytes, equipment.length);
+    equipment.forEach(name => {
+      const index = equipmentCatalog.findIndex(item => item.name === name);
+      writeMatchCatalogRef(bytes, index, name);
+    });
+  });
+
+  const rosterCards = Array.isArray(roster.cards) ? roster.cards : [];
+  writeMatchVarint(bytes, rosterCards.length);
+  rosterCards.forEach(card => {
+    const cardIndex = getMatchCardCatalogIndex(card);
+    writeMatchCatalogRef(bytes, cardIndex, card.id || card.name || "");
+    writeMatchVarint(bytes, numericValue(card.count, 1));
+  });
+
+  return encodeBytesBase64Url(bytes);
 }
 
-function expandMatchRosterV2(compactRoster) {
-  const faction = compactRoster[0] || "Unknown";
-  const modelsList = Array.isArray(compactRoster[5]) ? compactRoster[5] : [];
-  const cardsList = Array.isArray(compactRoster[6]) ? compactRoster[6] : [];
-  const expandedModels = modelsList.map(row => {
-    const modelRow = Array.isArray(row) ? row : [row];
-    const baseModel = getMatchModelByRef(modelRow[0], "", faction);
-    return {
+function decodeMatchPayloadBytes(body) {
+  const bytes = decodeBase64UrlBytes(body);
+
+  const reader = { bytes, index: 0 };
+  const version = readMatchVarint(reader);
+  if (version !== 2) {
+    throw new Error(t("match_payload_invalid"));
+  }
+
+  const factionRef = readMatchCatalogRef(reader);
+  const factionCatalog = getMatchFactionCatalog();
+  const faction = factionRef.index !== null
+    ? (factionCatalog[factionRef.index] || "Unknown")
+    : (factionRef.text || "Unknown");
+  const repLimit = readMatchVarint(reader);
+  const fundingLimit = readMatchVarint(reader);
+  const usedRep = readMatchVarint(reader);
+  const usedFunding = readMatchVarint(reader);
+  const modelCount = readMatchVarint(reader);
+  const expandedModels = [];
+
+  for (let index = 0; index < modelCount; index++) {
+    const modelRef = readMatchCatalogRef(reader);
+    const baseModel = modelRef.index !== null
+      ? (models[modelRef.index] || null)
+      : findMatchRosterModel(modelRef.text, faction);
+    const rank = readMatchRankRef(reader, baseModel);
+    const equipmentCount = readMatchVarint(reader);
+    const equipmentCatalog = getMatchEquipmentCatalog(faction);
+    const equipment = [];
+
+    for (let eqIndex = 0; eqIndex < equipmentCount; eqIndex++) {
+      const eqRef = readMatchCatalogRef(reader);
+      equipment.push(eqRef.index !== null ? (equipmentCatalog[eqRef.index]?.name || "") : eqRef.text);
+    }
+
+    expandedModels.push({
       id: getMatchModelIndex(baseModel),
-      name: baseModel?.name || String(modelRow[0] || ""),
-      rank: decodeMatchRank(modelRow[1], baseModel),
+      name: baseModel?.name || modelRef.text || "",
+      rank,
       rep: baseModel?.rep ?? "",
       funding: baseModel?.funding ?? "",
-      equipment: decodeMatchEquipmentList(Array.isArray(modelRow[2]) ? modelRow[2] : [], faction)
-    };
-  });
-  const expandedCards = cardsList.map(row => {
-    const cardRow = Array.isArray(row) ? row : [row];
-    const card = getMatchCardByRef(cardRow[0]);
-    const count = numericValue(cardRow[1], 1);
-    return {
-      id: card ? getBuilderCardKey(card) : String(cardRow[0] || ""),
-      name: card ? getBuilderCardName(card) : String(cardRow[0] || ""),
+      equipment: equipment.filter(Boolean)
+    });
+  }
+
+  const cardRows = readMatchVarint(reader);
+  const expandedCards = [];
+  const cardCatalog = getAllMatchCardsCatalog();
+  for (let index = 0; index < cardRows; index++) {
+    const cardRef = readMatchCatalogRef(reader);
+    const card = cardRef.index !== null ? (cardCatalog[cardRef.index] || null) : getMatchCardByRef(cardRef.text);
+    const count = readMatchVarint(reader);
+    expandedCards.push({
+      id: card ? getBuilderCardKey(card) : cardRef.text,
+      name: card ? getBuilderCardName(card) : cardRef.text,
       count,
       type: card?.type || ""
-    };
-  });
+    });
+  }
 
   return {
     title: faction,
     faction,
-    repLimit: compactRoster[1] || 350,
-    fundingLimit: compactRoster[2] || 1500,
-    usedRep: compactRoster[3] || 0,
-    usedFunding: compactRoster[4] || 0,
+    repLimit,
+    fundingLimit,
+    usedRep,
+    usedFunding,
     modelCount: expandedModels.length,
     cardCount: expandedCards.reduce((sum, card) => sum + numericValue(card.count, 1), 0),
     models: expandedModels,
@@ -6307,24 +6455,35 @@ function expandMatchRosterV2(compactRoster) {
   };
 }
 
-function expandMatchRoster(compactRoster) {
-  if (!Array.isArray(compactRoster)) return null;
-  return expandMatchRosterV2(compactRoster);
+function normalizeMatchPayloadCode(rawCode) {
+  let code = String(rawCode || "").replace(/\u0000/g, "").trim();
+  try {
+    const decoded = decodeURIComponent(code);
+    if (decoded.includes(MATCH_PAYLOAD_PREFIX_V2)) code = decoded.trim();
+  } catch (error) {
+    // Some scanners already return plain text; percent-decoding is only a convenience.
+  }
+
+  const prefixIndex = code.indexOf(MATCH_PAYLOAD_PREFIX_V2);
+  if (prefixIndex >= 0) {
+    code = code.slice(prefixIndex);
+  }
+  return code.replace(/\s+/g, "");
 }
 
 function parseMatchPayloadCode(rawCode) {
-  const code = String(rawCode || "").trim();
+  const code = normalizeMatchPayloadCode(rawCode);
   if (!code.startsWith(MATCH_PAYLOAD_PREFIX_V2)) {
     throw new Error(t("match_payload_invalid"));
   }
-  const payload = JSON.parse(decodeBase64Url(code.replace(MATCH_PAYLOAD_PREFIX_V2, "")));
-  if (!Array.isArray(payload)) {
+  const roster = decodeMatchPayloadBytes(code.replace(MATCH_PAYLOAD_PREFIX_V2, ""));
+  if (!roster) {
     throw new Error(t("match_payload_invalid"));
   }
   return {
     t: "bmg-match-roster",
     v: 2,
-    roster: expandMatchRoster(payload)
+    roster
   };
 }
 
