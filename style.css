@@ -668,6 +668,16 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   font-size: 18px;
 }
 
+.my-crews-create-btn {
+  flex: 0 1 260px;
+}
+
+.my-crews-create-btn .btn-icon {
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 700;
+}
+
 .my-crews-list {
   display: grid;
   gap: 14px;

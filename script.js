@@ -34,6 +34,9 @@ const printableModelKeys = window.PRINTABLE_MODEL_KEYS || new Set();
 const printableModelImageKeys = window.PRINTABLE_MODEL_IMAGE_KEYS || new Set();
 let myCrews = [];
 const MY_CREWS_STORAGE_KEY = 'bmg_my_crews_v1';
+let builderEditingCrewId = null;
+let builderRosterTitle = "";
+let builderSavedRosterText = "";
 let matchSelectedCrewId = null;
 let matchCurrentPayloadCode = "";
 let matchOpponentRoster = null;
@@ -48,7 +51,8 @@ let diceAnimationTimer = null;
 let diceFinishTimer = null;
 
 // Режимы просмотра
-let currentMode = 'menu'; // menu, cards, builder, my-crews, rules
+let currentMode = 'menu'; // menu, cards, builder, my-crews, match, match-game, rules
+let navigationHistory = [];
 const OBJECTIVE_DECK_SIZE = 30;
 const OBJECTIVE_DECK_MAX_GENERAL = 15;
 const OBJECTIVE_DECK_MAX_SINGLE = 15;
@@ -139,12 +143,13 @@ let currentLang = 'ru';
 const translations = {
   ru: {
     cards: "КАРТОЧКИ",
-    crews: "ОТРЯДЫ",
+    crews: "БАНДЫ",
     my_crews: "МОИ БАНДЫ",
-    my_crews_title: "МОИ БАНДЫ",
+    my_crews_title: "БАНДЫ",
+    my_crews_create: "НОВАЯ БАНДА",
     my_crews_add_txt: "ДОБАВИТЬ ИЗ TXT",
     my_crews_export_all: "СОХРАНИТЬ ВСЕ TXT",
-    my_crews_empty: "Пока нет сохранённых банд. Импортируйте TXT-файл ростера, и он появится здесь.",
+    my_crews_empty: "Пока нет сохранённых банд. Нажмите +, чтобы собрать новую, или импортируйте TXT-файл ростера.",
     my_crews_play: "Играть",
     my_crews_open: "Открыть в билдере",
     my_crews_download: "Скачать TXT",
@@ -296,6 +301,9 @@ const translations = {
     print_filter_title: "Только модели с Print",
     faction_filter_title: "Только модели выбранной фракции",
     builder_more_title: "Дополнительные действия",
+    builder_save: "Сохранить",
+    builder_save_done: "Банда сохранена.",
+    builder_save_failed: "Не удалось сохранить банду.",
     builder_more_compendium: "Справочник",
     builder_more_import: "Импорт ростера",
     builder_more_export: "Экспорт ростера",
@@ -309,10 +317,11 @@ const translations = {
     cards: "CARDS",
     crews: "CREWS",
     my_crews: "MY CREWS",
-    my_crews_title: "MY CREWS",
+    my_crews_title: "CREWS",
+    my_crews_create: "NEW CREW",
     my_crews_add_txt: "ADD FROM TXT",
     my_crews_export_all: "SAVE ALL TXT",
-    my_crews_empty: "No saved crews yet. Import a roster TXT file and it will appear here.",
+    my_crews_empty: "No saved crews yet. Press + to build a new one, or import a roster TXT file.",
     my_crews_play: "Play",
     my_crews_open: "Open in builder",
     my_crews_download: "Download TXT",
@@ -464,6 +473,9 @@ const translations = {
     print_filter_title: "Only models with Print",
     faction_filter_title: "Only selected faction models",
     builder_more_title: "More actions",
+    builder_save: "Save",
+    builder_save_done: "Crew saved.",
+    builder_save_failed: "Failed to save crew.",
     builder_more_compendium: "Compendium",
     builder_more_import: "Import Roster",
     builder_more_export: "Export Roster",
@@ -5881,6 +5893,93 @@ function createMyCrewRecordFromText(text) {
   };
 }
 
+function normalizeRosterText(text) {
+  return String(text || "").replace(/\r\n/g, "\n").trim();
+}
+
+function hasBuilderRosterContent() {
+  return getRecruitedCrewModels().length > 0 || crewCards.length > 0;
+}
+
+function getBuilderRosterSnapshot(rosterName = builderRosterTitle) {
+  if (!hasBuilderRosterContent()) return "";
+  return normalizeRosterText(buildRosterExportText(rosterName || ""));
+}
+
+function markBuilderRosterClean(rosterName = builderRosterTitle, text = null) {
+  builderRosterTitle = rosterName || "";
+  builderSavedRosterText = text === null
+    ? getBuilderRosterSnapshot(builderRosterTitle)
+    : normalizeRosterText(text);
+}
+
+function isBuilderDirty() {
+  return getBuilderRosterSnapshot(builderRosterTitle) !== builderSavedRosterText;
+}
+
+function clearBuilderSaveState() {
+  builderEditingCrewId = null;
+  builderRosterTitle = "";
+  builderSavedRosterText = "";
+}
+
+function saveBuilderCrew() {
+  if (!hasBuilderRosterContent()) {
+    alert(t("export_empty_roster"));
+    return false;
+  }
+
+  const editingEntryBeforeLoad = builderEditingCrewId
+    ? myCrews.find(item => item.id === builderEditingCrewId)
+    : null;
+  loadMyCrewsFromStorage();
+  if (editingEntryBeforeLoad && !myCrews.some(item => item.id === builderEditingCrewId)) {
+    myCrews.unshift(editingEntryBeforeLoad);
+  }
+
+  let rosterName = builderRosterTitle;
+  if (!rosterName && builderEditingCrewId) {
+    rosterName = myCrews.find(item => item.id === builderEditingCrewId)?.title || "";
+  }
+  if (!rosterName) {
+    rosterName = promptRosterName();
+    if (rosterName === null) return false;
+  }
+
+  try {
+    const text = normalizeRosterText(buildRosterExportText(rosterName));
+    const record = createMyCrewRecordFromText(text);
+    const now = new Date().toISOString();
+
+    if (builderEditingCrewId) {
+      const index = myCrews.findIndex(item => item.id === builderEditingCrewId);
+      if (index >= 0) {
+        myCrews[index] = {
+          ...myCrews[index],
+          ...record,
+          id: builderEditingCrewId,
+          addedAt: myCrews[index].addedAt || record.addedAt,
+          updatedAt: now
+        };
+      } else {
+        builderEditingCrewId = record.id;
+        myCrews.unshift({ ...record, updatedAt: now });
+      }
+    } else {
+      builderEditingCrewId = record.id;
+      myCrews.unshift({ ...record, updatedAt: now });
+    }
+
+    saveMyCrewsToStorage();
+    markBuilderRosterClean(record.title, text);
+    alert(t("builder_save_done"));
+    return true;
+  } catch (error) {
+    alert(error.message || t("builder_save_failed"));
+    return false;
+  }
+}
+
 function canPlaySavedMyCrew(crewEntry) {
   try {
     return Boolean(buildMatchCrewState(crewEntry)?.validation?.isLegal);
@@ -5957,7 +6056,8 @@ function playSavedMyCrew(crewId) {
   }
 }
 
-function showMyCrews() {
+function showMyCrews(options = {}) {
+  rememberNavigation('my-crews', options);
   currentMode = 'my-crews';
   closeMatchQrScanner();
   $('mainMenu').style.display = 'none';
@@ -5972,12 +6072,22 @@ function showMyCrews() {
   renderMyCrews();
 }
 
+function createNewCrewFromMyCrews() {
+  resetCrew();
+  clearBuilderSaveState();
+  currentFaction = null;
+  showBuilder();
+}
+
 function openSavedMyCrew(crewId) {
   const crewEntry = myCrews.find(item => item.id === crewId);
   if (!crewEntry) return;
 
   try {
-    importRosterFromText(crewEntry.text);
+    importRosterFromText(crewEntry.text, {
+      builderCrewId: crewId,
+      builderRosterTitle: crewEntry.title
+    });
   } catch (error) {
     alert(error.message || (currentLang === "ru" ? "Не удалось открыть сохранённую банду." : "Failed to open saved crew."));
   }
@@ -7026,6 +7136,7 @@ function startMatchGame() {
   matchGameSide = "own";
   matchGameCardsExpanded = false;
 
+  rememberNavigation('match-game');
   currentMode = 'match-game';
   closeMatchQrScanner();
   $('mainMenu').style.display = 'none';
@@ -7400,7 +7511,8 @@ async function startMatchQrScanner() {
   }
 }
 
-function showMatch() {
+function showMatch(options = {}) {
+  rememberNavigation('match', options);
   currentMode = 'match';
   closeMatchQrScanner();
   $('mainMenu').style.display = 'none';
@@ -7415,7 +7527,8 @@ function showMatch() {
   renderMatchSection();
 }
 
-function showCards() {
+function showCards(options = {}) {
+  rememberNavigation('cards', options);
   currentMode = 'cards';
   closeMatchQrScanner();
   cardsContentMode = 'models';
@@ -7436,7 +7549,8 @@ function showCards() {
   initTabs();
 }
 
-function showBuilder() {
+function showBuilder(options = {}) {
+  rememberNavigation('builder', options);
   currentMode = 'builder';
   closeMatchQrScanner();
   closeBuilderMoreMenu();
@@ -7455,7 +7569,8 @@ function showBuilder() {
   initTabs(); // Инициализация табов для выбора фракции
 }
 
-function showRules() {
+function showRules(options = {}) {
+  rememberNavigation('rules', options);
   currentMode = 'rules';
   closeMatchQrScanner();
   $('mainMenu').style.display = 'none';
@@ -7467,8 +7582,30 @@ function showRules() {
   openCompendium();
 }
 
-function backToMenu() {
+function rememberNavigation(nextMode, options = {}) {
+  if (options?.skipHistory || !currentMode || currentMode === nextMode) return;
+  if (navigationHistory[navigationHistory.length - 1] !== currentMode) {
+    navigationHistory.push(currentMode);
+  }
+}
+
+function showScreen(mode, options = {}) {
+  if (mode === 'cards') return showCards(options);
+  if (mode === 'builder') return showBuilder(options);
+  if (mode === 'my-crews') return showMyCrews(options);
+  if (mode === 'match') return showMatch(options);
+  if (mode === 'rules') return showRules(options);
+  return backToMenu(options);
+}
+
+function navigateBack() {
+  const previousMode = navigationHistory.pop() || 'menu';
+  showScreen(previousMode, { skipHistory: true });
+}
+
+function backToMenu(options = {}) {
   currentMode = 'menu';
+  if (!options?.skipHistory) navigationHistory = [];
   closeMatchQrScanner();
   closeBuilderMoreMenu();
   $('mainMenu').style.display = 'flex';
@@ -7499,7 +7636,7 @@ function backToFactionSelect() {
 }
 
 function hasUnsavedCrewSelection() {
-  return getRecruitedCrewModels().length > 0 || crewCards.length > 0;
+  return isBuilderDirty();
 }
 
 function closeBuilderExitModal() {
@@ -7508,8 +7645,13 @@ function closeBuilderExitModal() {
 }
 
 function confirmBuilderExit() {
+  const leaveBuilder = () => {
+    resetCrew();
+    navigateBack();
+  };
+
   if (!hasUnsavedCrewSelection()) {
-    backToFactionSelect();
+    leaveBuilder();
     return;
   }
 
@@ -7518,14 +7660,14 @@ function confirmBuilderExit() {
   const copy = currentLang === "ru"
     ? {
         title: "Выйти из сборки отряда?",
-        message: "У вас уже есть выбранные модели в отряде. Если выйти сейчас, текущий отряд будет сброшен.",
-        confirm: "Выйти и сбросить",
+        message: "Есть несохранённые изменения. Сохраните банду или выгрузите TXT, если хотите оставить текущую версию.",
+        confirm: "Выйти без сохранения",
         cancel: "Остаться"
       }
     : {
         title: "Leave crew builder?",
-        message: "You already have selected models in your crew. If you leave now, the current crew will be reset.",
-        confirm: "Leave and reset",
+        message: "There are unsaved changes. Save the crew or export TXT if you want to keep the current version.",
+        confirm: "Leave without saving",
         cancel: "Stay here"
       };
 
@@ -7550,7 +7692,7 @@ function confirmBuilderExit() {
 
   modal.querySelector(".confirm-exit-btn").onclick = () => {
     closeBuilderExitModal();
-    backToFactionSelect();
+    leaveBuilder();
   };
 
   modal.querySelector(".cancel-exit-btn").onclick = () => {
@@ -7567,7 +7709,7 @@ function confirmBuilderExit() {
 // ПРАВКА: Добавляем недостающие функции закрытия модалов
 function closeCompendium() {
   $('compendiumModal').classList.remove('active');
-  if (currentMode === 'rules') backToMenu(); // ПРАВКА: Возврат в меню для "Правила"
+  if (currentMode === 'rules') navigateBack();
 }
 
 function closeModelSearch() {
@@ -10453,6 +10595,7 @@ function openEquipmentMenu(model, cardElement) {
 function resetCrew() {
   crew = [];
   crewCards = [];
+  clearBuilderSaveState();
   BMG_BOSS = null;
   BMG_AFFILIATIONS = null;
   crewEquipmentCounts = {};
@@ -10731,7 +10874,7 @@ function getImportRankPriority(rank) {
   return order[rank] || 99;
 }
 
-function importRosterFromText(text) {
+function importRosterFromText(text, options = {}) {
   const parsed = parseRosterImportText(text);
   const factionExists = Object.prototype.hasOwnProperty.call(factionCrewRules, parsed.faction) ||
     models.some(model => canHireInFaction(model, parsed.faction));
@@ -10742,6 +10885,9 @@ function importRosterFromText(text) {
 
   resetCrew();
   showBuilder();
+  BMG_REP_LIMIT = parsed.repLimit || 350;
+  const repLimitInput = document.getElementById('repLimit');
+  if (repLimitInput) repLimitInput.value = BMG_REP_LIMIT;
   selectFaction(parsed.faction);
 
   const pendingEntries = parsed.entries.map((entry, index) => {
@@ -10792,6 +10938,8 @@ function importRosterFromText(text) {
   modifiers = calculateModifiers();
   updateCrewBar();
   renderMiniCardsBuilder();
+  builderEditingCrewId = options.builderCrewId || null;
+  markBuilderRosterClean(options.builderRosterTitle || parsed.crewName || "");
 
   if (importWarnings.length) {
     const message = currentLang === "ru"
@@ -10809,7 +10957,7 @@ function getSafeRosterFileToken(value, fallback = "unknown") {
 }
 
 function promptRosterName() {
-  const suggestedName = currentFaction || (currentLang === "ru" ? "Банда" : "Crew");
+  const suggestedName = builderRosterTitle || currentFaction || (currentLang === "ru" ? "Банда" : "Crew");
   const enteredValue = prompt(t("roster_name_prompt"), suggestedName);
   if (enteredValue === null) return null;
   return enteredValue.trim() || suggestedName;
@@ -10975,6 +11123,7 @@ function exportRoster() {
     const exportText = buildRosterExportText(rosterName);
     closeExportRosterModal();
     downloadRosterText(exportText, rosterName);
+    markBuilderRosterClean(rosterName, exportText);
   };
 
   modal.querySelector(".export-clipboard-btn").onclick = () => {
@@ -10983,6 +11132,7 @@ function exportRoster() {
     const exportText = buildRosterExportText(rosterName);
     closeExportRosterModal();
     copyRosterText(exportText);
+    markBuilderRosterClean(rosterName, exportText);
   };
 
   modal.querySelector(".cancel-exit-btn").onclick = () => {

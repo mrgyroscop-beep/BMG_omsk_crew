@@ -26,13 +26,9 @@
           <span class="btn-icon">🃏</span>
           <span class="btn-text" data-i18n="cards">CARDS</span>
         </button>
-        <button class="menu-btn" onclick="showBuilder()">
+        <button class="menu-btn" onclick="showMyCrews()">
           <span class="btn-icon">👥</span>
           <span class="btn-text" data-i18n="crews">CREWS</span>
-        </button>
-        <button class="menu-btn" onclick="showMyCrews()">
-          <span class="btn-icon">🗂️</span>
-          <span class="btn-text" data-i18n="my_crews">MY CREWS</span>
         </button>
         <button class="menu-btn" onclick="showMatch()">
           <span class="btn-icon">🎲</span>
@@ -66,7 +62,7 @@
           <button id="cardsFactionFilterBtn" class="compendium-small-btn faction-filter-btn" onclick="toggleCardsFactionFilter()" data-i18n-title="faction_filter_title" title="Только модели выбранной фракции">
             <svg viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5.05-3.41 9.76-8 11-4.59-1.24-8-5.95-8-11V5l8-3zm0 2.16L6 6.41V11c0 3.94 2.51 7.64 6 8.84 3.49-1.2 6-4.9 6-8.84V6.41l-6-2.25zm-3 5.09l3-1.12 3 1.12V12c0 1.93-1.17 3.78-3 4.56-1.83-.78-3-2.63-3-4.56V9.25z"/></svg>
           </button>
-          <button class="compendium-small-btn" onclick="backToMenu()">
+          <button class="compendium-small-btn" onclick="navigateBack()">
             <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> <!-- Иконка назад -->
           </button>
         </div>
@@ -184,7 +180,7 @@
               <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
               <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
             </div>
-            <button class="compendium-small-btn" onclick="backToMenu()">
+            <button class="compendium-small-btn" onclick="navigateBack()">
               <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
             </button>
           </div>
@@ -293,6 +289,9 @@
             <button id="builderFactionFilterBtn" class="compendium-small-btn faction-filter-btn" onclick="toggleBuilderFactionFilter()" data-i18n-title="faction_filter_title" title="Только модели выбранной фракции">
               <svg viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5.05-3.41 9.76-8 11-4.59-1.24-8-5.95-8-11V5l8-3zm0 2.16L6 6.41V11c0 3.94 2.51 7.64 6 8.84 3.49-1.2 6-4.9 6-8.84V6.41l-6-2.25zm-3 5.09l3-1.12 3 1.12V12c0 1.93-1.17 3.78-3 4.56-1.83-.78-3-2.63-3-4.56V9.25z"/></svg>
             </button>
+            <button id="builderSaveBtn" class="compendium-small-btn" onclick="saveBuilderCrew()" data-i18n-title="builder_save" title="Сохранить">
+              <svg viewBox="0 0 24 24"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zM12 19c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zM6 8V5h9v3H6z"/></svg>
+            </button>
             <div class="builder-more-actions">
               <button id="builderMoreMenuBtn" class="compendium-small-btn builder-more-btn" type="button" onclick="toggleBuilderMoreMenu(event)" data-i18n-title="builder_more_title" title="Дополнительные действия" aria-expanded="false" aria-controls="builderMoreMenu">
                 <svg viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg>
@@ -347,7 +346,7 @@
             <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
             <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
           </div>
-          <button class="compendium-small-btn" onclick="backToMenu()">
+          <button class="compendium-small-btn" onclick="navigateBack()">
             <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
         </div>
@@ -355,6 +354,10 @@
     </div>
 
     <div class="my-crews-toolbar">
+      <button class="menu-btn my-crews-action-btn my-crews-create-btn" onclick="createNewCrewFromMyCrews()" data-i18n-title="my_crews_create" title="Новая банда">
+        <span class="btn-icon">+</span>
+        <span class="btn-text" data-i18n="my_crews_create">НОВАЯ БАНДА</span>
+      </button>
       <button class="menu-btn my-crews-action-btn" onclick="importMyCrewFromTxt()">
         <span class="btn-icon">📥</span>
         <span class="btn-text" data-i18n="my_crews_add_txt">ДОБАВИТЬ ИЗ TXT</span>
@@ -378,7 +381,7 @@
             <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
             <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
           </div>
-          <button class="compendium-small-btn" onclick="backToMenu()">
+          <button class="compendium-small-btn" onclick="navigateBack()">
             <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
         </div>
@@ -428,7 +431,7 @@
             <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
             <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
           </div>
-          <button class="compendium-small-btn" onclick="showMatch()">
+          <button class="compendium-small-btn" onclick="navigateBack()">
             <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
           </button>
         </div>
