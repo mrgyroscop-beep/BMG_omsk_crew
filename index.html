@@ -406,13 +406,14 @@
           <button class="match-action-btn" type="button" onclick="copyMatchCode()" data-i18n="match_copy_code">Скопировать код</button>
         </div>
         <label class="match-field-label" for="matchImportCode" data-i18n="match_paste_code">Или вставьте код оппонента</label>
-        <textarea id="matchImportCode" class="match-code-textarea" placeholder="BMGMATCH:v1:..."></textarea>
+        <textarea id="matchImportCode" class="match-code-textarea" placeholder="BMG2:..."></textarea>
         <button class="match-action-btn secondary" type="button" onclick="importMatchCodeFromTextarea()" data-i18n="match_import_code">Добавить оппонента</button>
       </section>
 
       <section class="match-panel match-opponent-panel">
         <h2 data-i18n="match_opponent">Оппонент</h2>
         <div id="matchOpponentRoster" class="match-opponent-roster"></div>
+        <button id="matchClearOpponentBtn" class="match-action-btn danger" type="button" onclick="clearMatchOpponent()" disabled data-i18n="match_clear_opponent">Очистить</button>
       </section>
     </div>
   </div>

@@ -171,6 +171,7 @@ const translations = {
     match_paste_code: "Или вставьте код оппонента",
     match_import_code: "Добавить оппонента",
     match_opponent: "Оппонент",
+    match_clear_opponent: "Очистить",
     match_no_opponent: "Банда оппонента пока не добавлена.",
     match_roster_ok: "Ростер готов к матчу.",
     match_roster_invalid: "Ростер пока нельзя использовать в матче.",
@@ -336,6 +337,7 @@ const translations = {
     match_paste_code: "Or paste opponent code",
     match_import_code: "Add opponent",
     match_opponent: "Opponent",
+    match_clear_opponent: "Clear",
     match_no_opponent: "No opponent crew has been added yet.",
     match_roster_ok: "Roster is ready for the match.",
     match_roster_invalid: "Roster cannot be used for the match yet.",
@@ -6711,8 +6713,17 @@ function importMatchCodeFromTextarea() {
   }
 }
 
+function clearMatchOpponent() {
+  matchOpponentRoster = null;
+  saveMatchOpponentToStorage();
+  renderMatchOpponentRoster();
+  updateMatchStartGameButton();
+}
+
 function renderMatchOpponentRoster() {
   const container = $("matchOpponentRoster");
+  const clearButton = $("matchClearOpponentBtn");
+  if (clearButton) clearButton.disabled = !matchOpponentRoster;
   if (!container) return;
 
   if (!matchOpponentRoster) {

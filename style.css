@@ -778,6 +778,7 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   gap: 16px;
   width: min(1180px, calc(100vw - 28px));
   margin: 18px auto 28px;
+  box-sizing: border-box;
 }
 
 .match-panel {
@@ -786,6 +787,8 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 6px 22px rgba(0,0,0,.45);
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .match-opponent-panel {
@@ -820,6 +823,7 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   font-family: 'Oswald', sans-serif;
   font-size: 15px;
   outline: none;
+  box-sizing: border-box;
 }
 
 .match-select {
@@ -888,6 +892,12 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   border: 2px solid #e94560;
 }
 
+.match-action-btn.danger {
+  background: #8e1a1a;
+  border: 2px solid #b12a2a;
+  box-shadow: 0 4px 14px rgba(180,40,40,.35);
+}
+
 .match-action-btn:disabled {
   opacity: .45;
   cursor: not-allowed;
@@ -935,6 +945,7 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 
 .match-roster-meta {
   color: #bfc1c8;
+  overflow-wrap: anywhere;
 }
 
 .match-roster-list {
@@ -944,6 +955,8 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   border: 1px solid #2d2d2d;
   border-radius: 8px;
   background: #101010;
+  overflow-wrap: anywhere;
+  min-width: 0;
 }
 
 .match-roster-list-title {
@@ -1270,6 +1283,50 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 }
 
 /* Адаптив для маленьких экранов */
+@media (max-width: 1024px) {
+  .match-layout {
+    grid-template-columns: 1fr;
+    width: min(100%, calc(100vw - 16px));
+    gap: 12px;
+    margin-top: 12px;
+    overflow-x: hidden;
+  }
+
+  .match-opponent-panel {
+    grid-column: auto;
+  }
+
+  .match-panel {
+    padding: 14px;
+  }
+
+  .match-panel h2 {
+    font-size: clamp(22px, 8vw, 34px);
+    letter-spacing: clamp(1px, 1.5vw, 3px);
+  }
+
+  .match-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .match-action-btn {
+    width: 100%;
+    min-width: 0;
+    padding-inline: 10px;
+    font-size: clamp(13px, 4vw, 15px);
+    letter-spacing: .8px;
+  }
+
+  .match-play-btn {
+    grid-column: 1 / -1;
+  }
+
+  .match-roster-head {
+    align-items: flex-start;
+  }
+}
+
 @media (max-width: 400px) {
   .main-logo h1 {
     font-size: 60px;
@@ -1295,21 +1352,6 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 
   .my-crew-meta {
     text-align: left;
-  }
-
-  .match-layout {
-    grid-template-columns: 1fr;
-    width: calc(100vw - 16px);
-    gap: 12px;
-    margin-top: 12px;
-  }
-
-  .match-panel {
-    padding: 14px;
-  }
-
-  .match-action-btn {
-    width: 100%;
   }
 }
 
