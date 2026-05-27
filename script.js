@@ -34,6 +34,11 @@ const printableModelKeys = window.PRINTABLE_MODEL_KEYS || new Set();
 const printableModelImageKeys = window.PRINTABLE_MODEL_IMAGE_KEYS || new Set();
 let myCrews = [];
 const MY_CREWS_STORAGE_KEY = 'bmg_my_crews_v1';
+let matchSelectedCrewId = null;
+let matchCurrentPayloadCode = "";
+let matchOpponentRoster = null;
+let matchScannerState = null;
+const MATCH_OPPONENT_STORAGE_KEY = 'bmg_match_opponent_roster_v1';
 let versionEasterClickCount = 0;
 let versionEasterClickTimer = null;
 let diceAnimationTimer = null;
@@ -149,6 +154,33 @@ const translations = {
     my_crews_delete_confirm: "Удалить эту банду из раздела «Мои банды»?",
     my_crews_export_empty: "В разделе «Мои банды» пока нечего сохранять.",
     my_crews_export_done: "Файл со всеми бандами подготовлен.",
+    match: "МАТЧ",
+    match_title: "МАТЧ",
+    match_my_roster: "Моя банда",
+    match_select_crew: "Выберите банду из Моих банд",
+    match_choose_placeholder: "Выберите сохранённую банду",
+    match_no_crews: "В разделе «Мои банды» пока нет сохранённых ростеров.",
+    match_exchange: "Обмен",
+    match_show_qr: "Показать QR",
+    match_scan_qr: "Сканировать QR",
+    match_copy_code: "Скопировать код",
+    match_paste_code: "Или вставьте код оппонента",
+    match_import_code: "Добавить оппонента",
+    match_opponent: "Оппонент",
+    match_no_opponent: "Банда оппонента пока не добавлена.",
+    match_roster_ok: "Ростер готов к матчу.",
+    match_roster_invalid: "Ростер пока нельзя использовать в матче.",
+    match_qr_unavailable: "QR-библиотека не загрузилась. Можно скопировать код вручную.",
+    match_camera_unavailable: "Камера или сканер QR недоступны. Вставьте код вручную.",
+    match_code_copied: "Код матча скопирован.",
+    match_payload_invalid: "Не удалось прочитать код матча.",
+    match_own_roster_required: "Сначала выберите валидную свою банду.",
+    match_models: "Модели",
+    match_cards: "Карты",
+    match_limits: "Лимиты",
+    match_used: "Использовано",
+    match_scan_title: "Сканирование QR",
+    match_scan_hint: "Наведите камеру на QR оппонента.",
     rules: "ПРАВИЛА",
     select_faction: "ВЫБОР ФРАКЦИИ",
     crew: "ОТРЯД",
@@ -277,6 +309,33 @@ const translations = {
     my_crews_delete_confirm: "Delete this crew from My Crews?",
     my_crews_export_empty: "There are no crews to save yet.",
     my_crews_export_done: "The file with all crews is ready.",
+    match: "MATCH",
+    match_title: "MATCH",
+    match_my_roster: "My Crew",
+    match_select_crew: "Choose a crew from My Crews",
+    match_choose_placeholder: "Choose a saved crew",
+    match_no_crews: "There are no saved rosters in My Crews yet.",
+    match_exchange: "Exchange",
+    match_show_qr: "Show QR",
+    match_scan_qr: "Scan QR",
+    match_copy_code: "Copy code",
+    match_paste_code: "Or paste opponent code",
+    match_import_code: "Add opponent",
+    match_opponent: "Opponent",
+    match_no_opponent: "No opponent crew has been added yet.",
+    match_roster_ok: "Roster is ready for the match.",
+    match_roster_invalid: "Roster cannot be used for the match yet.",
+    match_qr_unavailable: "QR library did not load. You can copy the code manually.",
+    match_camera_unavailable: "Camera or QR scanner is unavailable. Paste the code manually.",
+    match_code_copied: "Match code copied.",
+    match_payload_invalid: "Could not read match code.",
+    match_own_roster_required: "Choose a valid crew first.",
+    match_models: "Models",
+    match_cards: "Cards",
+    match_limits: "Limits",
+    match_used: "Used",
+    match_scan_title: "QR scan",
+    match_scan_hint: "Point the camera at the opponent QR.",
     rules: "RULES",
     select_faction: "SELECT FACTION",
     crew: "CREW",
@@ -476,6 +535,9 @@ function setLanguage(lang) {
 
   if (currentMode === 'my-crews') {
     renderMyCrews();
+  }
+  if (currentMode === 'match') {
+    renderMatchSection();
   }
 }
 
@@ -5178,6 +5240,7 @@ function showDiceEasterEgg() {
         <div class="dice-face">${renderDiceFace(1)}</div>
       </div>
       <div class="dice-result">Бросок d6...</div>
+      <div class="dice-egg hidden">Егорина украл яичко</div>
       <div class="dice-waldo hidden">ВАЛЬДО!</div>
     </div>
   `;
@@ -5201,6 +5264,9 @@ function showDiceEasterEgg() {
     if (result) result.textContent = `Выпало: ${finalValue}`;
     if (finalValue === 6) {
       modal.querySelector(".dice-waldo")?.classList.remove("hidden");
+    }
+    if (finalValue === 1) {
+      modal.querySelector(".dice-egg")?.classList.remove("hidden");
     }
   }, 920);
 }
@@ -5733,10 +5799,12 @@ function renderMyCrews() {
 
 function showMyCrews() {
   currentMode = 'my-crews';
+  closeMatchQrScanner();
   $('mainMenu').style.display = 'none';
   $('cardsSection').style.display = 'none';
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'block';
+  $('matchSection').style.display = 'none';
   $('compendiumModal').classList.remove('active');
   $('modelSearchModal').classList.remove('active');
   loadMyCrewsFromStorage();
@@ -5861,13 +5929,541 @@ function exportAllMyCrewsTxt() {
   alert(t("my_crews_export_done"));
 }
 
+function matchText(ru, en) {
+  return currentLang === "ru" ? ru : en;
+}
+
+function loadMatchOpponentFromStorage() {
+  try {
+    const raw = localStorage.getItem(MATCH_OPPONENT_STORAGE_KEY);
+    matchOpponentRoster = raw ? JSON.parse(raw) : null;
+  } catch (error) {
+    console.warn("Failed to load opponent roster", error);
+    matchOpponentRoster = null;
+  }
+}
+
+function saveMatchOpponentToStorage() {
+  try {
+    if (matchOpponentRoster) {
+      localStorage.setItem(MATCH_OPPONENT_STORAGE_KEY, JSON.stringify(matchOpponentRoster));
+    } else {
+      localStorage.removeItem(MATCH_OPPONENT_STORAGE_KEY);
+    }
+  } catch (error) {
+    console.warn("Failed to save opponent roster", error);
+  }
+}
+
+function getSortedMyCrews() {
+  return [...myCrews].sort((a, b) => String(b.addedAt || "").localeCompare(String(a.addedAt || "")));
+}
+
+function getMatchSelectedCrewEntry() {
+  return myCrews.find(item => item.id === matchSelectedCrewId) || null;
+}
+
+function getAllMatchCardsCatalog() {
+  return [...getBuilderCardCatalog(), ...getBuilderMandatoryCardCatalog()];
+}
+
+function findBuilderCardByName(cardName) {
+  const normalized = normalizeEquipmentMatchName(cardName);
+  return getAllMatchCardsCatalog().find(card => normalizeEquipmentMatchName(getBuilderCardName(card)) === normalized) || null;
+}
+
+function getParsedRosterCardObjects(parsed) {
+  return (parsed.cards || []).map(cardInfo => {
+    const catalogCard = findBuilderCardByName(cardInfo.name);
+    return catalogCard ? { ...catalogCard } : {
+      id: `unknown-${normalizeEquipmentMatchName(cardInfo.name)}`,
+      name: cardInfo.name,
+      type: cardInfo.type,
+      phase: cardInfo.phase,
+      value: cardInfo.value,
+      maxPerDeck: 1,
+      isGeneral: true
+    };
+  });
+}
+
+function getParsedRosterCosts(parsed) {
+  const entryRep = parsed.entries.reduce((sum, entry) => sum + numericValue(entry.rep, 0), 0);
+  const entryFunding = parsed.entries.reduce((sum, entry) => sum + numericValue(entry.funding, 0), 0);
+
+  return {
+    usedRep: parsed.usedRep !== null && parsed.usedRep !== undefined ? parsed.usedRep : entryRep,
+    usedFunding: parsed.usedFunding !== null && parsed.usedFunding !== undefined ? parsed.usedFunding : entryFunding
+  };
+}
+
+function aggregateMatchCards(parsedCards) {
+  const map = new Map();
+  parsedCards.forEach(cardInfo => {
+    const catalogCard = findBuilderCardByName(cardInfo.name);
+    const key = catalogCard ? getBuilderCardKey(catalogCard) : normalizeEquipmentMatchName(cardInfo.name);
+    const entry = map.get(key) || {
+      id: key,
+      name: catalogCard ? getBuilderCardName(catalogCard) : cardInfo.name,
+      type: catalogCard?.type || cardInfo.type || "",
+      count: 0
+    };
+    entry.count += 1;
+    map.set(key, entry);
+  });
+  return [...map.values()];
+}
+
+function buildMatchRosterFromParsedCrew(crewEntry, parsed) {
+  const costs = getParsedRosterCosts(parsed);
+  return {
+    title: crewEntry.title || parsed.crewName || parsed.faction || "Crew",
+    faction: parsed.faction,
+    repLimit: parsed.repLimit || 350,
+    fundingLimit: parsed.fundingLimit || 1500,
+    usedRep: costs.usedRep,
+    usedFunding: costs.usedFunding,
+    modelCount: parsed.entries.length,
+    cardCount: (parsed.cards || []).length,
+    models: parsed.entries.map(entry => ({
+      name: entry.modelName,
+      rank: entry.rank || "",
+      equipment: (entry.equipment || []).map(eq => eq.name).filter(Boolean)
+    })),
+    cards: aggregateMatchCards(parsed.cards || [])
+  };
+}
+
+function validateMatchRoster(parsed) {
+  const messages = [];
+  let isLegal = true;
+
+  if (!parsed.entries.length) {
+    isLegal = false;
+    messages.push(matchText("В ростере нет моделей.", "Roster has no models."));
+  }
+
+  const missingModels = parsed.entries
+    .filter(entry => !models.some(model => model.name === entry.modelName))
+    .map(entry => entry.modelName);
+  if (missingModels.length) {
+    isLegal = false;
+    messages.push(matchText(`Не найдены модели: ${missingModels.join(", ")}`, `Missing models: ${missingModels.join(", ")}`));
+  }
+
+  const costs = getParsedRosterCosts(parsed);
+  if (costs.usedRep > parsed.repLimit) {
+    isLegal = false;
+    messages.push(matchText(`Превышен лимит REP: ${costs.usedRep}/${parsed.repLimit}.`, `REP limit exceeded: ${costs.usedRep}/${parsed.repLimit}.`));
+  }
+
+  if (costs.usedFunding > parsed.fundingLimit) {
+    isLegal = false;
+    messages.push(matchText(`Превышен лимит Funding: $${costs.usedFunding}/$${parsed.fundingLimit}.`, `Funding limit exceeded: $${costs.usedFunding}/$${parsed.fundingLimit}.`));
+  }
+
+  const unknownCards = (parsed.cards || []).filter(card => !findBuilderCardByName(card.name)).map(card => card.name);
+  if (unknownCards.length) {
+    isLegal = false;
+    messages.push(matchText(`Не найдены карты: ${unknownCards.join(", ")}`, `Missing cards: ${unknownCards.join(", ")}`));
+  }
+
+  const deckStats = getObjectiveDeckStats(getParsedRosterCardObjects(parsed));
+  const deckWarnings = getObjectiveDeckWarnings(deckStats);
+  if (!deckStats.isLegal) {
+    isLegal = false;
+    messages.push(...deckWarnings);
+  }
+
+  if (!messages.length) {
+    messages.push(t("match_roster_ok"));
+  }
+
+  return {
+    isLegal,
+    messages,
+    costs,
+    deckStats
+  };
+}
+
+function buildMatchCrewState(crewEntry) {
+  if (!crewEntry) return null;
+  const parsed = parseRosterImportText(crewEntry.text);
+  const validation = validateMatchRoster(parsed);
+  const roster = buildMatchRosterFromParsedCrew(crewEntry, parsed);
+  return { parsed, validation, roster };
+}
+
+function encodeBase64Url(text) {
+  const bytes = new TextEncoder().encode(text);
+  let binary = "";
+  bytes.forEach(byte => {
+    binary += String.fromCharCode(byte);
+  });
+  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+}
+
+function decodeBase64Url(value) {
+  const normalized = String(value || "").replace(/-/g, "+").replace(/_/g, "/");
+  const padded = normalized + "=".repeat((4 - normalized.length % 4) % 4);
+  const binary = atob(padded);
+  const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
+  return new TextDecoder().decode(bytes);
+}
+
+function buildMatchPayloadCode(roster) {
+  const payload = {
+    type: "bmg-match-roster",
+    version: 1,
+    app: document.getElementById("appVersion")?.textContent?.trim() || "unknown",
+    createdAt: new Date().toISOString(),
+    roster
+  };
+  return `BMGMATCH:v1:${encodeBase64Url(JSON.stringify(payload))}`;
+}
+
+function parseMatchPayloadCode(rawCode) {
+  const code = String(rawCode || "").trim();
+  if (!code.startsWith("BMGMATCH:v1:")) {
+    throw new Error(t("match_payload_invalid"));
+  }
+  const json = decodeBase64Url(code.replace("BMGMATCH:v1:", ""));
+  const payload = JSON.parse(json);
+  if (!payload || payload.type !== "bmg-match-roster" || !payload.roster) {
+    throw new Error(t("match_payload_invalid"));
+  }
+  return payload;
+}
+
+function renderMatchSection() {
+  loadMyCrewsFromStorage();
+  const select = $("matchCrewSelect");
+  if (!select) return;
+
+  const sortedCrews = getSortedMyCrews();
+  if (matchSelectedCrewId && !myCrews.some(item => item.id === matchSelectedCrewId)) {
+    matchSelectedCrewId = null;
+  }
+
+  select.innerHTML = [
+    `<option value="">${escapeHtml(t("match_choose_placeholder"))}</option>`,
+    ...sortedCrews.map(crewEntry => `
+      <option value="${escapeAttribute(crewEntry.id)}" ${crewEntry.id === matchSelectedCrewId ? "selected" : ""}>
+        ${escapeHtml(crewEntry.title || crewEntry.faction || "Crew")} — ${escapeHtml(crewEntry.faction || "Unknown")}
+      </option>
+    `)
+  ].join("");
+
+  renderMatchCrewStatus();
+  renderMatchOpponentRoster();
+}
+
+function selectMatchCrew(crewId) {
+  matchSelectedCrewId = crewId || null;
+  matchCurrentPayloadCode = "";
+  const box = $("matchQrBox");
+  if (box) box.classList.add("hidden");
+  renderMatchCrewStatus();
+}
+
+function renderMatchCrewStatus() {
+  const status = $("matchCrewStatus");
+  const showButton = $("matchShowQrBtn");
+  const scanButton = $("matchScanQrBtn");
+  if (!status) return;
+
+  showButton.disabled = true;
+  scanButton.disabled = true;
+  matchCurrentPayloadCode = "";
+
+  if (!myCrews.length) {
+    status.innerHTML = `<div class="match-status-line is-warning">${t("match_no_crews")}</div>`;
+    return;
+  }
+
+  const crewEntry = getMatchSelectedCrewEntry();
+  if (!crewEntry) {
+    status.innerHTML = `<div class="match-status-line">${t("match_choose_placeholder")}</div>`;
+    return;
+  }
+
+  try {
+    const state = buildMatchCrewState(crewEntry);
+    const roster = state.roster;
+    const isLegal = state.validation.isLegal;
+    showButton.disabled = !isLegal;
+    scanButton.disabled = !isLegal;
+    if (isLegal) {
+      matchCurrentPayloadCode = buildMatchPayloadCode(roster);
+    }
+
+    const statusClass = isLegal ? "is-ok" : "is-warning";
+    const header = `
+      <div class="match-status-line ${statusClass}">
+        ${escapeHtml(isLegal ? t("match_roster_ok") : t("match_roster_invalid"))}
+      </div>
+      <div class="match-status-line">
+        ${escapeHtml(roster.faction)} • ${t("match_models")}: ${roster.modelCount} • ${t("match_cards")}: ${roster.cardCount}
+      </div>
+      <div class="match-status-line">
+        ${t("match_limits")}: REP ${roster.repLimit} / $${roster.fundingLimit}<br>
+        ${t("match_used")}: REP ${roster.usedRep} / $${roster.usedFunding}
+      </div>
+    `;
+    const messages = state.validation.messages
+      .map(message => `<div class="match-status-line ${isLegal ? "is-ok" : "is-warning"}">${escapeHtml(message)}</div>`)
+      .join("");
+    status.innerHTML = header + messages;
+  } catch (error) {
+    status.innerHTML = `<div class="match-status-line is-warning">${escapeHtml(error.message || t("match_roster_invalid"))}</div>`;
+  }
+}
+
+function getCurrentMatchStateOrAlert() {
+  const crewEntry = getMatchSelectedCrewEntry();
+  if (!crewEntry) {
+    alert(t("match_own_roster_required"));
+    return null;
+  }
+
+  try {
+    const state = buildMatchCrewState(crewEntry);
+    if (!state.validation.isLegal) {
+      alert(t("match_own_roster_required"));
+      return null;
+    }
+    return state;
+  } catch (error) {
+    alert(error.message || t("match_own_roster_required"));
+    return null;
+  }
+}
+
+function showMatchQr() {
+  const state = getCurrentMatchStateOrAlert();
+  if (!state) return;
+
+  matchCurrentPayloadCode = buildMatchPayloadCode(state.roster);
+  const box = $("matchQrBox");
+  const textarea = $("matchShareCode");
+  const canvas = $("matchQrCanvas");
+  if (!box || !textarea || !canvas) return;
+
+  textarea.value = matchCurrentPayloadCode;
+  box.classList.remove("hidden");
+
+  const qr = window.QRCode;
+  if (qr && typeof qr.toCanvas === "function") {
+    qr.toCanvas(canvas, matchCurrentPayloadCode, {
+      width: 280,
+      margin: 2,
+      errorCorrectionLevel: "L",
+      color: { dark: "#000000", light: "#ffffff" }
+    }, error => {
+      if (error) {
+        console.warn("QR render failed", error);
+        alert(t("match_qr_unavailable"));
+      }
+    });
+  } else {
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#111111";
+    ctx.font = "16px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("QR unavailable", canvas.width / 2, canvas.height / 2);
+    alert(t("match_qr_unavailable"));
+  }
+}
+
+function copyMatchCode() {
+  const code = matchCurrentPayloadCode || $("matchShareCode")?.value || "";
+  if (!code) return;
+  navigator.clipboard.writeText(code).then(() => {
+    alert(t("match_code_copied"));
+  }).catch(() => {
+    prompt(t("export_copy_prompt"), code);
+  });
+}
+
+function importMatchPayloadCode(code) {
+  const payload = parseMatchPayloadCode(code);
+  matchOpponentRoster = payload.roster;
+  saveMatchOpponentToStorage();
+  renderMatchOpponentRoster();
+}
+
+function importMatchCodeFromTextarea() {
+  if (!getCurrentMatchStateOrAlert()) return;
+  try {
+    importMatchPayloadCode($("matchImportCode")?.value || "");
+    if ($("matchImportCode")) $("matchImportCode").value = "";
+  } catch (error) {
+    alert(error.message || t("match_payload_invalid"));
+  }
+}
+
+function renderMatchOpponentRoster() {
+  const container = $("matchOpponentRoster");
+  if (!container) return;
+
+  if (!matchOpponentRoster) {
+    container.innerHTML = `<div class="match-status-line">${t("match_no_opponent")}</div>`;
+    return;
+  }
+
+  const roster = matchOpponentRoster;
+  const modelsHtml = (roster.models || [])
+    .map(model => `<div>• ${escapeHtml(model.name)}${model.rank ? ` [${escapeHtml(model.rank)}]` : ""}${model.equipment?.length ? ` — ${escapeHtml(model.equipment.join(", "))}` : ""}</div>`)
+    .join("") || `<div>—</div>`;
+  const cardsHtml = (roster.cards || [])
+    .map(card => `<div>• ${escapeHtml(card.name)}${card.count > 1 ? ` x${card.count}` : ""}</div>`)
+    .join("") || `<div>—</div>`;
+
+  container.innerHTML = `
+    <div class="match-roster-head">
+      <div class="match-roster-title">${escapeHtml(roster.title || "Crew")}</div>
+      <div class="match-roster-meta">${escapeHtml(roster.faction || "Unknown")}</div>
+    </div>
+    <div class="match-roster-meta">
+      ${t("match_limits")}: REP ${escapeHtml(roster.repLimit)} / $${escapeHtml(roster.fundingLimit)}
+      • ${t("match_used")}: REP ${escapeHtml(roster.usedRep)} / $${escapeHtml(roster.usedFunding)}
+    </div>
+    <div class="match-roster-list">
+      <div class="match-roster-list-title">${t("match_models")}: ${escapeHtml(roster.modelCount || roster.models?.length || 0)}</div>
+      ${modelsHtml}
+    </div>
+    <div class="match-roster-list">
+      <div class="match-roster-list-title">${t("match_cards")}: ${escapeHtml(roster.cardCount || 0)}</div>
+      ${cardsHtml}
+    </div>
+  `;
+}
+
+function closeMatchQrScanner() {
+  if (matchScannerState?.raf) {
+    cancelAnimationFrame(matchScannerState.raf);
+  }
+  if (matchScannerState?.stream) {
+    matchScannerState.stream.getTracks().forEach(track => track.stop());
+  }
+  matchScannerState = null;
+  document.getElementById("matchScannerModal")?.remove();
+}
+
+async function startMatchQrScanner() {
+  if (!getCurrentMatchStateOrAlert()) return;
+  if (!navigator.mediaDevices?.getUserMedia || (!("BarcodeDetector" in window) && typeof window.jsQR !== "function")) {
+    alert(t("match_camera_unavailable"));
+    return;
+  }
+
+  closeMatchQrScanner();
+
+  const modal = document.createElement("div");
+  modal.id = "matchScannerModal";
+  modal.className = "rank-select-modal";
+  modal.innerHTML = `
+    <div class="rank-select-content builder-exit-confirm">
+      <div class="rank-select-header">
+        ${t("match_scan_title")}
+        <div class="rank-select-close" onclick="closeMatchQrScanner()">×</div>
+      </div>
+      <div class="builder-exit-confirm-body">
+        <p>${t("match_scan_hint")}</p>
+        <video class="match-scanner-video" playsinline muted></video>
+        <canvas style="display:none" width="640" height="480"></canvas>
+      </div>
+      <div class="rank-select-buttons">
+        <button class="rank-select-btn cancel-exit-btn">${t("back")}</button>
+      </div>
+    </div>
+  `;
+
+  modal.querySelector(".cancel-exit-btn").onclick = closeMatchQrScanner;
+  modal.onclick = event => {
+    if (event.target === modal) closeMatchQrScanner();
+  };
+  document.body.appendChild(modal);
+
+  const video = modal.querySelector("video");
+  const canvas = modal.querySelector("canvas");
+  const context = canvas.getContext("2d");
+
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+    video.srcObject = stream;
+    await video.play();
+
+    const detector = "BarcodeDetector" in window ? new BarcodeDetector({ formats: ["qr_code"] }) : null;
+    matchScannerState = { stream, raf: null };
+
+    const scanFrame = async () => {
+      if (!matchScannerState) return;
+      try {
+        let code = "";
+        if (detector) {
+          const results = await detector.detect(video);
+          code = results[0]?.rawValue || "";
+        } else if (typeof window.jsQR === "function" && video.videoWidth && video.videoHeight) {
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+          const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+          const result = window.jsQR(imageData.data, imageData.width, imageData.height);
+          code = result?.data || "";
+        }
+
+        if (code) {
+          closeMatchQrScanner();
+          try {
+            importMatchPayloadCode(code);
+          } catch (error) {
+            alert(error.message || t("match_payload_invalid"));
+          }
+          return;
+        }
+      } catch (error) {
+        console.warn("QR scan failed", error);
+      }
+      if (matchScannerState) {
+        matchScannerState.raf = requestAnimationFrame(scanFrame);
+      }
+    };
+
+    scanFrame();
+  } catch (error) {
+    console.warn("Camera failed", error);
+    closeMatchQrScanner();
+    alert(t("match_camera_unavailable"));
+  }
+}
+
+function showMatch() {
+  currentMode = 'match';
+  closeMatchQrScanner();
+  $('mainMenu').style.display = 'none';
+  $('cardsSection').style.display = 'none';
+  $('builderSection').style.display = 'none';
+  $('myCrewsSection').style.display = 'none';
+  $('matchSection').style.display = 'block';
+  $('compendiumModal').classList.remove('active');
+  $('modelSearchModal').classList.remove('active');
+  loadMatchOpponentFromStorage();
+  renderMatchSection();
+}
+
 function showCards() {
   currentMode = 'cards';
+  closeMatchQrScanner();
   cardsContentMode = 'models';
   $('mainMenu').style.display = 'none';
   $('cardsSection').style.display = 'block';
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
+  $('matchSection').style.display = 'none';
   $('compendiumModal').classList.remove('active');
 
   // Сбрасываем фракцию и показываем вкладки
@@ -5881,12 +6477,14 @@ function showCards() {
 
 function showBuilder() {
   currentMode = 'builder';
+  closeMatchQrScanner();
   closeBuilderMoreMenu();
   builderContentMode = 'models';
   $('mainMenu').style.display = 'none';
   $('cardsSection').style.display = 'none';
   $('builderSection').style.display = 'block';
   $('myCrewsSection').style.display = 'none';
+  $('matchSection').style.display = 'none';
   $('factionSelect').style.display = 'block';
   $('builderMain').style.display = 'none';
   $('compendiumModal').classList.remove('active');
@@ -5897,20 +6495,24 @@ function showBuilder() {
 
 function showRules() {
   currentMode = 'rules';
+  closeMatchQrScanner();
   $('mainMenu').style.display = 'none';
   $('cardsSection').style.display = 'none';
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
+  $('matchSection').style.display = 'none';
   openCompendium();
 }
 
 function backToMenu() {
   currentMode = 'menu';
+  closeMatchQrScanner();
   closeBuilderMoreMenu();
   $('mainMenu').style.display = 'flex';
   $('cardsSection').style.display = 'none';
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
+  $('matchSection').style.display = 'none';
   $('compendiumModal').classList.remove('active');
   $('modelSearchModal').classList.remove('active');
   resetCrew();
@@ -8929,9 +9531,17 @@ function parseRosterImportText(text) {
   const faction = header.trim().replace("BMG CREW - ", "").trim();
   const crewNameLine = lines.find(line => line.trim().startsWith("Name: "));
   const crewName = crewNameLine ? crewNameLine.trim().replace("Name: ", "").trim() : "";
+  const limitsLine = lines.find(line => line.trim().startsWith("Limits: "));
+  const summaryLine = lines.find(line => line.trim().startsWith("Summary: "));
+  const repLimit = numericValue(limitsLine?.match(/Rep\s+(\d+)/i)?.[1], 350);
+  const fundingLimit = numericValue(limitsLine?.match(/Funding\s+\$?(\d+)/i)?.[1], 1500);
+  const usedRep = numericValue(summaryLine?.match(/Used Rep\s+(\d+)/i)?.[1], null);
+  const usedFunding = numericValue(summaryLine?.match(/Used Funding\s+\$?(\d+)/i)?.[1], null);
   const separator = /^═+$/;
   const cleanLines = lines.map(line => line.trim());
   const entries = [];
+  const cards = [];
+  const specialRules = [];
   let currentEntry = null;
   let importSection = "models";
 
@@ -8945,6 +9555,7 @@ function parseRosterImportText(text) {
     line.startsWith("TOTAL: ") ||
     line === "MODELS:" ||
     line === "CARDS:" ||
+    line === "SPECIAL RULES:" ||
     separator.test(line);
 
   const parseEquipmentList = equipmentText => equipmentText
@@ -8966,8 +9577,39 @@ function parseRosterImportText(text) {
       currentEntry = null;
       return;
     }
+    if (line === "SPECIAL RULES:") {
+      importSection = "specialRules";
+      currentEntry = null;
+      return;
+    }
     if (shouldSkipLine(line)) return;
-    if (importSection === "cards") return;
+
+    if (importSection === "cards" || importSection === "specialRules") {
+      if (!/^- /.test(line)) return;
+      const cardLine = line.replace(/^- /, "").trim();
+      const parts = cardLine.split(/\s+\|\s+/);
+      const record = {
+        name: (parts[0] || "").trim(),
+        type: "",
+        phase: "",
+        value: "",
+        mandatory: importSection === "specialRules"
+      };
+      parts.slice(1).forEach(part => {
+        const [keyRaw, ...valueParts] = part.split(/\s+/);
+        const key = String(keyRaw || "").toLowerCase();
+        const value = valueParts.join(" ").trim();
+        if (key === "type") record.type = value;
+        if (key === "phase") record.phase = value;
+        if (key === "value") record.value = value;
+        if (key === "mandatory") record.mandatory = true;
+      });
+      if (record.name) {
+        if (importSection === "cards") cards.push(record);
+        else specialRules.push(record);
+      }
+      return;
+    }
 
     if (/^Equipment:/i.test(line)) {
       if (!currentEntry) {
@@ -8979,7 +9621,7 @@ function parseRosterImportText(text) {
 
     if (/^- /.test(line)) {
       const modelLine = line.replace(/^- /, "").trim();
-      const modelMatch = modelLine.match(/^(.*?)(?:\s+\[([^\]]+)\])?(?:\s+\|\s+Rep\s+\d+\s+\|\s+Funding\s+\$\d+)?$/);
+      const modelMatch = modelLine.match(/^(.*?)(?:\s+\[([^\]]+)\])?(?:\s+\|\s+Rep\s+([^\|]+)\s+\|\s+Funding\s+\$?([^\|]+))?$/);
       if (!modelMatch) {
         throw new Error((currentLang === "ru" ? "Не удалось разобрать строку: " : "Could not parse line: ") + line);
       }
@@ -8987,6 +9629,8 @@ function parseRosterImportText(text) {
       currentEntry = {
         modelName: modelMatch[1].trim(),
         rank: modelMatch[2] ? modelMatch[2].trim() : null,
+        rep: modelMatch[3] ? numericValue(modelMatch[3].trim(), null) : null,
+        funding: modelMatch[4] ? numericValue(modelMatch[4].trim(), null) : null,
         equipment: []
       };
       entries.push(currentEntry);
@@ -9015,7 +9659,7 @@ function parseRosterImportText(text) {
     throw new Error(currentLang === "ru" ? "В файле не найдено ни одной модели." : "No models were found in the file.");
   }
 
-  return { faction, crewName, entries };
+  return { faction, crewName, repLimit, fundingLimit, usedRep, usedFunding, entries, cards, specialRules };
 }
 
 function getImportRankPriority(rank) {

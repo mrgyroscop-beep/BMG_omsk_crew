@@ -34,6 +34,10 @@
           <span class="btn-icon">🗂️</span>
           <span class="btn-text" data-i18n="my_crews">MY CREWS</span>
         </button>
+        <button class="menu-btn" onclick="showMatch()">
+          <span class="btn-icon">🎲</span>
+          <span class="btn-text" data-i18n="match">МАТЧ</span>
+        </button>
         <button class="menu-btn" onclick="showRules()">
           <span class="btn-icon">📖</span>
           <span class="btn-text" data-i18n="rules">RULES</span>
@@ -364,6 +368,54 @@
     <div id="myCrewsList" class="my-crews-list"></div>
   </div>
 
+  <!-- МАТЧ -->
+  <div id="matchSection" style="display:none;">
+    <div class="top-bar">
+      <div class="top-bar-content">
+        <h1 data-i18n="match_title">МАТЧ</h1>
+        <div class="header-buttons">
+          <div class="lang-switch header-lang-switch">
+            <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+          </div>
+          <button class="compendium-small-btn" onclick="backToMenu()">
+            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="match-layout">
+      <section class="match-panel">
+        <h2 data-i18n="match_my_roster">Моя банда</h2>
+        <label class="match-field-label" for="matchCrewSelect" data-i18n="match_select_crew">Выберите банду из Моих банд</label>
+        <select id="matchCrewSelect" class="match-select" onchange="selectMatchCrew(this.value)"></select>
+        <div id="matchCrewStatus" class="match-status"></div>
+        <div class="match-actions">
+          <button id="matchShowQrBtn" class="match-action-btn" type="button" onclick="showMatchQr()" disabled data-i18n="match_show_qr">Показать QR</button>
+          <button id="matchScanQrBtn" class="match-action-btn secondary" type="button" onclick="startMatchQrScanner()" disabled data-i18n="match_scan_qr">Сканировать QR</button>
+        </div>
+      </section>
+
+      <section class="match-panel">
+        <h2 data-i18n="match_exchange">Обмен</h2>
+        <div id="matchQrBox" class="match-qr-box hidden">
+          <canvas id="matchQrCanvas" class="match-qr-canvas" width="280" height="280"></canvas>
+          <textarea id="matchShareCode" class="match-code-textarea" readonly></textarea>
+          <button class="match-action-btn" type="button" onclick="copyMatchCode()" data-i18n="match_copy_code">Скопировать код</button>
+        </div>
+        <label class="match-field-label" for="matchImportCode" data-i18n="match_paste_code">Или вставьте код оппонента</label>
+        <textarea id="matchImportCode" class="match-code-textarea" placeholder="BMGMATCH:v1:..."></textarea>
+        <button class="match-action-btn secondary" type="button" onclick="importMatchCodeFromTextarea()" data-i18n="match_import_code">Добавить оппонента</button>
+      </section>
+
+      <section class="match-panel match-opponent-panel">
+        <h2 data-i18n="match_opponent">Оппонент</h2>
+        <div id="matchOpponentRoster" class="match-opponent-roster"></div>
+      </section>
+    </div>
+  </div>
+
   <!-- COMPENDIUM (ПРАВИЛА) -->
   <div id="compendiumModal" class="compendium-modal">
     <div class="compendium-header">
@@ -429,6 +481,8 @@
 
   <script src="data.js"></script>
   <script src="printable-models.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js" defer></script>
   <script src="script.js"></script>
 </body>
 </html>

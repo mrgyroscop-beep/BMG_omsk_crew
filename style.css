@@ -772,6 +772,194 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   background: #c62828;
 }
 
+.match-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(280px, 1fr);
+  gap: 16px;
+  width: min(1180px, calc(100vw - 28px));
+  margin: 18px auto 28px;
+}
+
+.match-panel {
+  background: #171717;
+  border: 2px solid #303030;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 6px 22px rgba(0,0,0,.45);
+}
+
+.match-opponent-panel {
+  grid-column: 1 / -1;
+}
+
+.match-panel h2 {
+  margin: 0 0 14px;
+  color: #ffd700;
+  font-size: 24px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.match-field-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #bfc1c8;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+}
+
+.match-select,
+.match-code-textarea {
+  width: 100%;
+  border: 2px solid #333;
+  border-radius: 8px;
+  background: #090909;
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  outline: none;
+}
+
+.match-select {
+  min-height: 48px;
+  padding: 0 12px;
+}
+
+.match-code-textarea {
+  min-height: 96px;
+  padding: 10px 12px;
+  resize: vertical;
+  font-family: Consolas, monospace;
+  line-height: 1.4;
+}
+
+.match-status {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0;
+  color: #ddd;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.match-status-line {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #101010;
+  border: 1px solid #292929;
+}
+
+.match-status-line.is-ok {
+  color: #44ff88;
+  border-color: rgba(68,255,136,.4);
+}
+
+.match-status-line.is-warning {
+  color: #ffd700;
+  border-color: rgba(255,215,0,.38);
+}
+
+.match-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.match-action-btn {
+  min-height: 46px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 22px;
+  background: #e94560;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 14px rgba(233,69,96,.38);
+}
+
+.match-action-btn.secondary {
+  background: #252525;
+  border: 2px solid #e94560;
+}
+
+.match-action-btn:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.match-qr-box {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.match-qr-box.hidden {
+  display: none;
+}
+
+.match-qr-canvas {
+  width: min(280px, 100%);
+  height: auto;
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.match-opponent-roster {
+  display: grid;
+  gap: 12px;
+  color: #e6e6e6;
+  font-size: 14px;
+}
+
+.match-roster-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  align-items: baseline;
+}
+
+.match-roster-title {
+  color: #ffd700;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.match-roster-meta {
+  color: #bfc1c8;
+}
+
+.match-roster-list {
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid #2d2d2d;
+  border-radius: 8px;
+  background: #101010;
+}
+
+.match-roster-list-title {
+  color: #e94560;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.match-scanner-video {
+  width: min(420px, 100%);
+  border: 2px solid #e94560;
+  border-radius: 8px;
+  background: #000;
+}
+
 .main-menu-footer {
   margin-top: 40px;
   text-align: center;
@@ -894,6 +1082,19 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   animation: waldoPop .45s ease-out both;
 }
 
+.dice-egg {
+  margin-top: 10px;
+  color: #ffd700;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 0 16px rgba(255,215,0,.65);
+  animation: waldoPop .45s ease-out both;
+}
+
+.dice-egg.hidden,
 .dice-waldo.hidden {
   display: none;
 }
@@ -953,6 +1154,21 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 
   .my-crew-meta {
     text-align: left;
+  }
+
+  .match-layout {
+    grid-template-columns: 1fr;
+    width: calc(100vw - 16px);
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .match-panel {
+    padding: 14px;
+  }
+
+  .match-action-btn {
+    width: 100%;
   }
 }
 
