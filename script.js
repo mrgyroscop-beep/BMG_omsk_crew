@@ -34,6 +34,10 @@ const printableModelKeys = window.PRINTABLE_MODEL_KEYS || new Set();
 const printableModelImageKeys = window.PRINTABLE_MODEL_IMAGE_KEYS || new Set();
 let myCrews = [];
 const MY_CREWS_STORAGE_KEY = 'bmg_my_crews_v1';
+let versionEasterClickCount = 0;
+let versionEasterClickTimer = null;
+let diceAnimationTimer = null;
+let diceFinishTimer = null;
 
 // Режимы просмотра
 let currentMode = 'menu'; // menu, cards, builder, my-crews, rules
@@ -5080,6 +5084,7 @@ function setCompendiumSearchMode(mode) {
 document.addEventListener('DOMContentLoaded', () => {
   const savedLang = localStorage.getItem('bmg_lang') || 'ru';
   setLanguage(savedLang);
+  initVersionEasterEgg();
 });
 
 const $ = id => document.getElementById(id);
@@ -5095,6 +5100,109 @@ function escapeHtml(value) {
 
 function escapeAttribute(value) {
   return escapeHtml(value);
+}
+
+const DICE_PIP_POSITIONS = {
+  1: [5],
+  2: [1, 9],
+  3: [1, 5, 9],
+  4: [1, 3, 7, 9],
+  5: [1, 3, 5, 7, 9],
+  6: [1, 3, 4, 6, 7, 9]
+};
+
+function renderDiceFace(value) {
+  const activePositions = DICE_PIP_POSITIONS[value] || DICE_PIP_POSITIONS[1];
+  return Array.from({ length: 9 }, (_, index) => {
+    const position = index + 1;
+    return `<span class="dice-pip ${activePositions.includes(position) ? "active" : ""}"></span>`;
+  }).join("");
+}
+
+function setDiceFace(modal, value) {
+  const face = modal?.querySelector(".dice-face");
+  if (face) face.innerHTML = renderDiceFace(value);
+}
+
+function initVersionEasterEgg() {
+  const version = document.getElementById("appVersion");
+  if (!version || version.dataset.easterEggReady === "true") return;
+  version.dataset.easterEggReady = "true";
+
+  const activate = () => handleVersionEasterClick();
+  version.addEventListener("click", activate);
+  version.addEventListener("keydown", event => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      activate();
+    }
+  });
+}
+
+function handleVersionEasterClick() {
+  versionEasterClickCount += 1;
+  clearTimeout(versionEasterClickTimer);
+
+  if (versionEasterClickCount >= 3) {
+    versionEasterClickCount = 0;
+    showDiceEasterEgg();
+    return;
+  }
+
+  versionEasterClickTimer = setTimeout(() => {
+    versionEasterClickCount = 0;
+  }, 1200);
+}
+
+function closeDiceEasterEgg() {
+  clearInterval(diceAnimationTimer);
+  clearTimeout(diceFinishTimer);
+  diceAnimationTimer = null;
+  diceFinishTimer = null;
+  document.getElementById("diceEasterEgg")?.remove();
+}
+
+function showDiceEasterEgg() {
+  closeDiceEasterEgg();
+
+  const finalValue = Math.floor(Math.random() * 6) + 1;
+  const modal = document.createElement("div");
+  modal.id = "diceEasterEgg";
+  modal.className = "dice-easter-egg";
+  modal.setAttribute("role", "dialog");
+  modal.setAttribute("aria-modal", "true");
+  modal.innerHTML = `
+    <div class="dice-easter-card">
+      <button class="dice-easter-close" type="button" onclick="closeDiceEasterEgg()" aria-label="Закрыть">×</button>
+      <div class="dice-cube rolling" aria-live="polite">
+        <div class="dice-face">${renderDiceFace(1)}</div>
+      </div>
+      <div class="dice-result">Бросок d6...</div>
+      <div class="dice-waldo hidden">ВАЛЬДО!</div>
+    </div>
+  `;
+
+  modal.addEventListener("click", event => {
+    if (event.target === modal) closeDiceEasterEgg();
+  });
+
+  document.body.appendChild(modal);
+
+  diceAnimationTimer = setInterval(() => {
+    setDiceFace(modal, Math.floor(Math.random() * 6) + 1);
+  }, 90);
+
+  diceFinishTimer = setTimeout(() => {
+    clearInterval(diceAnimationTimer);
+    diceAnimationTimer = null;
+    setDiceFace(modal, finalValue);
+    modal.querySelector(".dice-cube")?.classList.remove("rolling");
+    const result = modal.querySelector(".dice-result");
+    if (result) result.textContent = `Выпало: ${finalValue}`;
+    if (finalValue === 6) {
+      modal.querySelector(".dice-waldo")?.classList.remove("hidden");
+    }
+  }, 920);
 }
 
 const THREE_JOKERS_NAMES = [
