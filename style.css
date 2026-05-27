@@ -1023,6 +1023,22 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   color: #ffd700;
 }
 
+.mini-card.attached-form {
+  border-color: #4a4a4a;
+  opacity: .88;
+}
+
+.mini-card.attached-form .mini-rep {
+  color: #ffd700;
+}
+
+.match-game-form-note {
+  margin-top: 5px;
+  color: #ffd700;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
 .match-game-rule-note {
   margin-top: 5px;
   color: #ff4444;

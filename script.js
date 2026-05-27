@@ -291,6 +291,8 @@ const translations = {
     possessed_label: "ОДЕРЖИМОСТЬ:",
     possessed_status: "чужие Henchman: {used}/3",
     possessed_limit_exceeded: "Possessed позволяет нанять не более 3 Henchman с чужой Affiliation",
+    beast_boy_form_requires_main: "Эти формы нельзя нанять отдельно. Добавьте Beast Boy - Human (Teen Titans).",
+    beast_boy_form_badge: "Форма Beast Boy",
     print_filter_title: "Только модели с Print",
     faction_filter_title: "Только модели выбранной фракции",
     builder_more_title: "Дополнительные действия",
@@ -457,6 +459,8 @@ const translations = {
     possessed_label: "POSSESSED:",
     possessed_status: "any-affiliation Henchmen: {used}/3",
     possessed_limit_exceeded: "Possessed can recruit no more than 3 Henchmen with other Affiliation",
+    beast_boy_form_requires_main: "These forms cannot be recruited separately. Add Beast Boy - Human (Teen Titans).",
+    beast_boy_form_badge: "Beast Boy form",
     print_filter_title: "Only models with Print",
     faction_filter_title: "Only selected faction models",
     builder_more_title: "More actions",
@@ -5358,6 +5362,100 @@ function findCrewModel(model) {
 const hasInCrew = m => crew.some(x => isSameModel(x, m));
 const countInCrew = m => crew.filter(x => isSameModel(x, m)).length;
 
+const BEAST_BOY_MAIN_NAME = "Beast Boy - Human (Teen Titans)";
+const BEAST_BOY_FORM_ORDER = [
+  "Beast Boy - Tiger Teen Titans",
+  "Beast Boy - Gorilla Teen Titans",
+  "Beast Boy - Hawk Teen Titans"
+];
+
+function isRosterAttachment(model) {
+  return Boolean(model?.isRosterAttachment || model?.isShapeshiftForm);
+}
+
+function getRecruitedCrewModels() {
+  return crew.filter(model => !isRosterAttachment(model));
+}
+
+function getCrewAttachmentModels() {
+  return crew.filter(isRosterAttachment);
+}
+
+function isBeastBoyMainModel(model) {
+  return model?.name === BEAST_BOY_MAIN_NAME || getModelTraits(model).includes("Shapeshifting Human Progress");
+}
+
+function isBeastBoyShapeshiftFormName(name) {
+  return BEAST_BOY_FORM_ORDER.includes(String(name || ""));
+}
+
+function isBeastBoyShapeshiftForm(model) {
+  if (!model || isBeastBoyMainModel(model)) return false;
+  return isBeastBoyShapeshiftFormName(model.name)
+    || String(model.name || "").startsWith("Beast Boy - ")
+    && getModelTraits(model).some(trait => /^Shapeshifting .+ Progress$/.test(trait));
+}
+
+function hasBeastBoyMainInCrew() {
+  return getRecruitedCrewModels().some(isBeastBoyMainModel);
+}
+
+function getBeastBoyFormBaseModels() {
+  return BEAST_BOY_FORM_ORDER
+    .map(name => models.find(model => model.name === name))
+    .filter(Boolean);
+}
+
+function createCrewModelInstance(model, chosenRank, extra = {}) {
+  return {
+    ...model,
+    rep: numericValue(model.rep, model.rep),
+    funding: numericValue(model.funding, model.funding),
+    stats: { ...(model.stats || {}) },
+    traits: [...getModelTraits(model)],
+    rankUsed: chosenRank,
+    uniqueId: Date.now() + Math.random(),
+    equipment: [],
+    ...extra
+  };
+}
+
+function addBeastBoyShapeshiftForms(parentModel) {
+  if (!parentModel || !isBeastBoyMainModel(parentModel)) return;
+
+  const existingFormKeys = new Set(crew.filter(isBeastBoyShapeshiftForm).map(getModelIdentityKey));
+  const forms = getBeastBoyFormBaseModels()
+    .filter(model => !existingFormKeys.has(getModelIdentityKey(model)))
+    .map(model => createCrewModelInstance(model, "Henchman", {
+      isRosterAttachment: true,
+      isShapeshiftForm: true,
+      attachedToUniqueId: parentModel.uniqueId,
+      attachedToName: parentModel.name
+    }));
+
+  if (forms.length) {
+    crew.push(...forms);
+  }
+}
+
+function syncBeastBoyShapeshiftForms() {
+  const mainModel = getRecruitedCrewModels().find(isBeastBoyMainModel);
+  if (!mainModel) {
+    crew = crew.filter(model => !isBeastBoyShapeshiftForm(model));
+    return;
+  }
+
+  crew.forEach(model => {
+    if (!isBeastBoyShapeshiftForm(model)) return;
+    model.isRosterAttachment = true;
+    model.isShapeshiftForm = true;
+    model.attachedToUniqueId = mainModel.uniqueId;
+    model.attachedToName = mainModel.name;
+  });
+
+  addBeastBoyShapeshiftForms(mainModel);
+}
+
 function getMinionTraitValue(model) {
   const trait = getModelTraits(model).find(t => /^Minion \((.+)\)$/.test(t));
   return trait ? trait.match(/^Minion \((.+)\)$/)[1].trim() : null;
@@ -5607,6 +5705,7 @@ function canPassTraitRecruitmentRules(model) {
 
 function canUseRankForCurrentCrew(model, rank) {
   if (!currentFaction || !rank) return false;
+  if (isBeastBoyShapeshiftForm(model)) return false;
 
   const factionRules = factionCrewRules[currentFaction] || {};
   const modelRanks = getRanks(model);
@@ -6144,6 +6243,45 @@ function getMatchEquipmentLabel() {
   return currentLang === "ru" ? "Апдейты" : "Upgrades";
 }
 
+function makeMatchBeastBoyFormEntry(baseModel, parentEntry) {
+  return {
+    id: getMatchModelIndex(baseModel),
+    name: baseModel.name,
+    rank: "Henchman",
+    rep: baseModel.rep ?? 0,
+    funding: baseModel.funding ?? 0,
+    equipment: [],
+    isRosterAttachment: true,
+    isShapeshiftForm: true,
+    attachedToName: parentEntry?.name || BEAST_BOY_MAIN_NAME
+  };
+}
+
+function syncMatchRosterBeastBoyForms(roster) {
+  if (!roster || !Array.isArray(roster.models)) return roster;
+
+  const mainEntry = roster.models.find(model => isBeastBoyMainModel(model));
+  if (!mainEntry) {
+    roster.models = roster.models.filter(model => !isBeastBoyShapeshiftForm(model));
+    return roster;
+  }
+
+  roster.models.forEach(model => {
+    if (!isBeastBoyShapeshiftForm(model)) return;
+    model.isRosterAttachment = true;
+    model.isShapeshiftForm = true;
+    model.attachedToName = mainEntry.name;
+  });
+
+  const existingFormNames = new Set(roster.models.filter(isBeastBoyShapeshiftForm).map(model => model.name));
+  getBeastBoyFormBaseModels().forEach(formModel => {
+    if (existingFormNames.has(formModel.name)) return;
+    roster.models.push(makeMatchBeastBoyFormEntry(formModel, mainEntry));
+  });
+
+  return roster;
+}
+
 function getMatchRosterBossEntry(roster) {
   const rosterModels = Array.isArray(roster?.models) ? roster.models : [];
   return rosterModels.find(model => model.rank === "Leader")
@@ -6152,6 +6290,7 @@ function getMatchRosterBossEntry(roster) {
 }
 
 function isMatchRosterPossessedRecruit(roster, modelEntry) {
+  if (isRosterAttachment(modelEntry)) return false;
   if (!roster || !modelEntry || modelEntry.rank !== "Henchman") return false;
 
   const bossEntry = getMatchRosterBossEntry(roster);
@@ -6172,12 +6311,16 @@ function applyMatchRosterRuleEffects(roster) {
       ...model,
       equipment: getMatchModelEquipmentNames(model),
       hiredByPossessed: false,
+      isRosterAttachment: Boolean(model.isRosterAttachment || model.isShapeshiftForm),
+      isShapeshiftForm: Boolean(model.isShapeshiftForm),
       assumedFaction: null,
       possessedWillpowerPenalty: 0,
       ruleAddedTraits: [],
       ruleModifiedStats: {}
     }))
   };
+
+  syncMatchRosterBeastBoyForms(normalizedRoster);
 
   normalizedRoster.models.forEach(modelEntry => {
     if (!isMatchRosterPossessedRecruit(normalizedRoster, modelEntry)) return;
@@ -6195,6 +6338,9 @@ function applyMatchRosterRuleEffects(roster) {
       }
     }
   });
+
+  normalizedRoster.modelCount = normalizedRoster.models.filter(model => !isRosterAttachment(model)).length;
+  normalizedRoster.attachmentCount = normalizedRoster.models.filter(isRosterAttachment).length;
 
   return normalizedRoster;
 }
@@ -6833,7 +6979,8 @@ function renderMatchOpponentRoster() {
   const modelsHtml = (roster.models || [])
     .map(model => {
       const equipmentNames = getMatchModelEquipmentNames(model);
-      return `<div>• ${escapeHtml(model.name)}${model.rank ? ` [${escapeHtml(model.rank)}]` : ""}${equipmentNames.length ? ` — ${escapeHtml(getMatchEquipmentLabel())}: ${escapeHtml(equipmentNames.join(", "))}` : ""}</div>`;
+      const attachment = isRosterAttachment(model) ? ` — ${escapeHtml(t("beast_boy_form_badge"))}` : "";
+      return `<div>• ${escapeHtml(model.name)}${model.rank ? ` [${escapeHtml(model.rank)}]` : ""}${attachment}${equipmentNames.length ? ` — ${escapeHtml(getMatchEquipmentLabel())}: ${escapeHtml(equipmentNames.join(", "))}` : ""}</div>`;
     })
     .join("") || `<div>—</div>`;
   const cardsHtml = (roster.cards || [])
@@ -6967,6 +7114,28 @@ function showMatchGameModel(modelIndex) {
   showFullCard(buildMatchGameDisplayModel(modelEntry, roster));
 }
 
+function getMatchSortableModel(modelEntry, roster) {
+  const baseModel = getMatchRosterModelBase(roster, modelEntry);
+  return {
+    ...(baseModel || {}),
+    ...(modelEntry || {}),
+    name: modelEntry?.name || baseModel?.name || "",
+    rep: modelEntry?.rep ?? baseModel?.rep ?? 0,
+    rankUsed: modelEntry?.rank || modelEntry?.rankUsed || baseModel?.rankUsed || ""
+  };
+}
+
+function getSortedMatchRosterModelRefs(roster) {
+  const rosterModels = Array.isArray(roster?.models) ? roster.models : [];
+  return rosterModels
+    .map((modelEntry, index) => ({
+      modelEntry,
+      index,
+      sortModel: getMatchSortableModel(modelEntry, roster)
+    }))
+    .sort((a, b) => compareModelsByRankAndRep(a.sortModel, b.sortModel));
+}
+
 function renderMatchRankIcons(modelEntry, baseModel) {
   const ranks = modelEntry.rank ? [modelEntry.rank] : getRanks(baseModel || {});
   if (!ranks.length) return "";
@@ -6987,6 +7156,9 @@ function renderMatchGameModelCard(modelEntry, rosterIndex) {
   const equipment = equipmentNames.length
     ? `<div class="match-game-equipment"><span>${escapeHtml(getMatchEquipmentLabel())}:</span> ${escapeHtml(equipmentNames.join(", "))}</div>`
     : "";
+  const attachedBadge = isRosterAttachment(modelEntry)
+    ? `<div class="match-game-form-note">${escapeHtml(t("beast_boy_form_badge"))}</div>`
+    : "";
   const possessedBadge = modelEntry.hiredByPossessed
     ? `<div class="match-game-rule-note">Possessed: -1 Willpower • Self-Discipline</div>`
     : "";
@@ -6999,6 +7171,7 @@ function renderMatchGameModelCard(modelEntry, rosterIndex) {
         ${baseModel ? renderModelAffiliationLine(baseModel) : ""}
         ${renderMatchRankIcons(modelEntry, baseModel)}
         <div class="mini-rep">${escapeHtml(rep)} Rep • $${escapeHtml(funding)}</div>
+        ${attachedBadge}
         ${possessedBadge}
         ${equipment}
       </div>
@@ -7098,9 +7271,9 @@ function renderMatchGame() {
     </div>
   `;
 
-  const rosterModels = Array.isArray(roster.models) ? roster.models : [];
-  modelsContainer.innerHTML = rosterModels.length
-    ? rosterModels.map((modelEntry, index) => renderMatchGameModelCard(modelEntry, index)).join("")
+  const rosterModelRefs = getSortedMatchRosterModelRefs(roster);
+  modelsContainer.innerHTML = rosterModelRefs.length
+    ? rosterModelRefs.map(({ modelEntry, index }) => renderMatchGameModelCard(modelEntry, index)).join("")
     : `<div class="match-status-line is-warning">${t("match_game_empty")}</div>`;
   cardsContainer.innerHTML = renderMatchGameCards(roster);
 }
@@ -7326,7 +7499,7 @@ function backToFactionSelect() {
 }
 
 function hasUnsavedCrewSelection() {
-  return crew.length > 0 || crewCards.length > 0;
+  return getRecruitedCrewModels().length > 0 || crewCards.length > 0;
 }
 
 function closeBuilderExitModal() {
@@ -7452,6 +7625,9 @@ function passesBuilderFactionFilter(model) {
 }
 
 function canConsiderModelForCurrentBuilder(model) {
+  if (isBeastBoyShapeshiftForm(model)) {
+    return hasBeastBoyMainInCrew();
+  }
   return canHireInFaction(model, currentFaction) || canShowByPossessedRule(model);
 }
 
@@ -7694,10 +7870,11 @@ function normalizeBuilderCardRankText(value) {
 function getBuilderCardEligibleCrewModels(card) {
   const requiredModel = String(getBuilderCardRequiredModelName(card) || "").trim();
   const requiredRank = String(getBuilderCardRequiredRank(card) || "").trim();
-  if (!requiredModel && !requiredRank) return crew;
+  const recruitedCrew = getRecruitedCrewModels();
+  if (!requiredModel && !requiredRank) return recruitedCrew;
 
   const rankLoose = normalizeBuilderCardRankText(requiredRank);
-  return crew.filter(model => {
+  return recruitedCrew.filter(model => {
     if (requiredModel && !modelMatchesEquipmentName(model, requiredModel)) return false;
     if (!requiredRank) return true;
 
@@ -8085,6 +8262,11 @@ function selectFaction(faction) {
 
 // ======================== ОТРЯД (ТОЛЬКО ДЛЯ БИЛДЕРА) ========================
 const addToCrew = m => {
+  if (isBeastBoyShapeshiftForm(m)) {
+    alert(t("beast_boy_form_requires_main"));
+    return;
+  }
+
   // Проверка на Mercenary - автоматически считаем как Free Agent
   if (m.traits.includes("Mercenary")) {
     m.rankUsed = "Free Agent";
@@ -8217,6 +8399,11 @@ function addModelWithRank(model, chosenRank, options = {}) {
     return addThreeJokersToCrew();
   }
 
+  if (isBeastBoyShapeshiftForm(model)) {
+    alert(t("beast_boy_form_requires_main"));
+    return null;
+  }
+
   // Проверка на Treacherous - предупреждение
   if (model.traits.includes("Treacherous")) {
     alert(t("treacherous_warn"));
@@ -8255,16 +8442,7 @@ function addModelWithRank(model, chosenRank, options = {}) {
 
   const usePossessedRecruitment = needsPossessedRecruitment(model, chosenRank);
 
-  const cloned = {
-    ...model,
-    rep: numericValue(model.rep, model.rep),
-    funding: numericValue(model.funding, model.funding),
-    stats: { ...(model.stats || {}) },
-    traits: [...getModelTraits(model)],
-    rankUsed: chosenRank,
-    uniqueId: Date.now() + Math.random(),
-    equipment: []
-  };
+  const cloned = createCrewModelInstance(model, chosenRank);
 
   if (usePossessedRecruitment) {
     applyPossessedRecruitmentEffects(cloned);
@@ -8273,6 +8451,9 @@ function addModelWithRank(model, chosenRank, options = {}) {
   if (!bmgCanAddModel(cloned, { allowThreeJokersLeader })) return null;
   // ИЗМЕНЕНИЕ: используем unshift вместо push для добавления в начало массива
   crew.unshift(cloned);
+  if (isBeastBoyMainModel(cloned)) {
+    addBeastBoyShapeshiftForms(cloned);
+  }
   if (!BMG_BOSS && (chosenRank === "Leader" || chosenRank === "Sidekick")) {
     BMG_BOSS = cloned;
     BMG_AFFILIATIONS = getFactions(cloned);
@@ -8357,6 +8538,10 @@ function showRankSelectionModal(model, ranks) {
 };
 
 const removeFromCrew = m => {
+  if (isRosterAttachment(m)) {
+    return;
+  }
+
   if (isThreeJokersModel(m) && hasAnyThreeJokersInCrew()) {
     resetCrew();
     return;
@@ -8369,7 +8554,10 @@ const removeFromCrew = m => {
       BMG_BOSS = null;
       BMG_AFFILIATIONS = null;
       crew = [];  // Полностью очищаем отряд при удалении босса
+    } else if (isBeastBoyMainModel(m)) {
+      crew = crew.filter(model => !isBeastBoyShapeshiftForm(model));
     }
+    syncBeastBoyShapeshiftForms();
     updateCrewEquipmentCounts();
     modifiers = calculateModifiers();
     updateCrewBar();
@@ -8380,7 +8568,7 @@ const removeFromCrew = m => {
 // New: Recalculate crew-wide equipment counts
 function updateCrewEquipmentCounts() {
   crewEquipmentCounts = {};
-  crew.forEach(m => {
+  getRecruitedCrewModels().forEach(m => {
     m.equipment.forEach(eq => {
       crewEquipmentCounts[eq.name] = (crewEquipmentCounts[eq.name] || 0) + 1;
     });
@@ -8473,11 +8661,11 @@ function crewModelFundingTotal(model) {
 }
 
 function crewRepUsed() {
-  return crew.reduce((sum, model) => sum + crewModelRepTotal(model), 0);
+  return getRecruitedCrewModels().reduce((sum, model) => sum + crewModelRepTotal(model), 0);
 }
 
 function crewFundingUsed() {
-  return crew.reduce((sum, model) => sum + crewModelFundingTotal(model), 0);
+  return getRecruitedCrewModels().reduce((sum, model) => sum + crewModelFundingTotal(model), 0);
 }
 
 function canAffordModelInCurrentCrew(model) {
@@ -8486,7 +8674,7 @@ function canAffordModelInCurrentCrew(model) {
 }
 
 const updateCrewBar = () => {
-  $("crewCount").textContent = crew.length;
+  $("crewCount").textContent = getRecruitedCrewModels().length;
   let totalRep = crewRepUsed();
   let usedFunding = crewFundingUsed();
   $("totalRep").textContent = totalRep;
@@ -8538,7 +8726,7 @@ function calculateModifiers() {
     allowBetray: false
   };
 
-  crew.forEach(m => {
+  getRecruitedCrewModels().forEach(m => {
     m.traits.forEach(t => {
       // === Уже были ===
       if (t === "Business Agent") mods.extraFunding += 100;
@@ -8834,12 +9022,15 @@ const renderMiniCardsBuilder = debounce(() => {
     const canAddMoreCopies = getRecruitableRanksForCurrentCrew(item).length > 0;
     const minionLimit = getMinionLimit(item);
     const ranks = getRanks(item);
+    const isAttachedForm = isRosterAttachment(item);
 
     const div = document.createElement("div");
-    div.className = `mini-card ${item.inCrew ? "in-crew" : ""}`;
+    div.className = `mini-card ${item.inCrew ? "in-crew" : ""} ${isAttachedForm ? "attached-form" : ""}`;
 
     let buttons = '';
-    if (isMinionOrHorde) {
+    if (isAttachedForm) {
+      buttons = "";
+    } else if (isMinionOrHorde) {
       buttons = canAddMoreCopies
         ? `<button class="add-btn" onclick="event.stopPropagation();addToCrew(models[${item._id}])">+</button>`
         : "";
@@ -8862,9 +9053,9 @@ ${item.inCrew && BMG_BOSS && BMG_BOSS.name === item.name ? '<span class="boss-cr
   <div class="mini-ranks">
     ${ranks.map(rank => `<img src="img/${rank}.png" alt="${rank}" class="rank-icon" onerror="this.src='img/no.png'">`).join('')}
   </div>
-  <div class="mini-rep">${displayValue(item.rep)} Rep • $${displayValue(item.funding)} • ${getPrintableStatusText(item)}</div>
+  <div class="mini-rep">${displayValue(item.rep)} Rep • $${displayValue(item.funding)} • ${isAttachedForm ? t("beast_boy_form_badge") : getPrintableStatusText(item)}</div>
 </div>
-${item.inCrew ? '<div class="equipment-icon" onclick="event.stopPropagation(); openEquipmentMenu(models[' + item._id + '], this.closest(\'.mini-card\'))">⚙️</div>' : ''}
+${item.inCrew && !isAttachedForm ? '<div class="equipment-icon" onclick="event.stopPropagation(); openEquipmentMenu(models[' + item._id + '], this.closest(\'.mini-card\'))">⚙️</div>' : ''}
 `;
 
     div.onclick = () => showFullCard(item);
@@ -9455,7 +9646,7 @@ function bmgExtraSlots() {
 }
 
 function bmgRankCount(rank) {
-  return crew.filter(m => m.rankUsed === rank).length;
+  return getRecruitedCrewModels().filter(m => m.rankUsed === rank).length;
 }
 
 const POSSESSED_HENCHMAN_LIMIT = 3;
@@ -9477,7 +9668,7 @@ function hasForbiddenPossessedRecruitTrait(model) {
 }
 
 function bmgPossessedHenchmanCount() {
-  return crew.filter(model => model.hiredByPossessed).length;
+  return getRecruitedCrewModels().filter(model => model.hiredByPossessed).length;
 }
 
 function canBePossessedHenchman(model, chosenRank = null) {
@@ -9541,6 +9732,11 @@ function applyPossessedRecruitmentEffects(model, bossFactionsOverride = null) {
 
 function bmgCanAddModel(model, options = {}) {
   const { allowThreeJokersLeader = false } = options;
+
+  if (isBeastBoyShapeshiftForm(model)) {
+    alert(t("beast_boy_form_requires_main"));
+    return false;
+  }
 
   // Рассчитываем общую Rep и Funding с учетом оборудования
   let totalRep = crewRepUsed() + modelRepValue(model);
@@ -9630,7 +9826,7 @@ function bmgCanAddModel(model, options = {}) {
   // Проверка уникальности имени (realname)
   const realname = model.realname || "—";
   if (!factionRules.allowSameNameDifferentAlias && realname !== "Unknown" && realname !== "—") {
-    const existingWithSameRealname = crew.find(m => (m.realname || "—") === realname);
+    const existingWithSameRealname = getRecruitedCrewModels().find(m => (m.realname || "—") === realname);
     if (existingWithSameRealname) {
       alert(t("model_already_added", { name: realname }));
       return false;
@@ -9693,7 +9889,7 @@ function bmgCanAddModel(model, options = {}) {
     if (rank === "Henchman") {
       const hasMinionOrHorde = model.traits.some(t => t.startsWith("Minion") || t === "Horde");
       if (!hasMinionOrHorde) {
-        const sameNameCount = crew.filter(x => x.name === model.name && x.rankUsed === "Henchman").length;
+        const sameNameCount = getRecruitedCrewModels().filter(x => x.name === model.name && x.rankUsed === "Henchman").length;
         if (sameNameCount >= 1 + (modifiers.extraDuplicates || 0)) {
           alert(t("henchman_limit_exceeded"));
           return false;
@@ -9705,9 +9901,9 @@ function bmgCanAddModel(model, options = {}) {
         const eliteMatch = t.match(/^Elite \((.+)\)$/);
         if (eliteMatch) {
           const type = eliteMatch[1];
-          const count = crew.filter(m => m.traits.some(u => u.match(new RegExp(`^Elite \\(${type}\\)$`)))).length;
+          const count = getRecruitedCrewModels().filter(m => m.traits.some(u => u.match(new RegExp(`^Elite \\(${type}\\)$`)))).length;
           // Проверяем, есть ли в отряде Elite Boss этого типа
-          const hasEliteBoss = crew.some(m => m.traits.some(u => u === `Elite Boss (${type})`));
+          const hasEliteBoss = getRecruitedCrewModels().some(m => m.traits.some(u => u === `Elite Boss (${type})`));
           const limit = hasEliteBoss ? 99 : 1 + (modifiers.extraElites[type] || 0);
           if (count >= limit) {
             alert(t("elite_limit_exceeded", { type }));
@@ -9722,7 +9918,7 @@ function bmgCanAddModel(model, options = {}) {
         const veteranMatch = t.match(/^Veteran \((.+)\)$/);
         if (veteranMatch) {
           const type = veteranMatch[1];
-          const count = crew.filter(m => m.traits.some(u => u.match(new RegExp(`^Veteran \\(${type}\\)$`)))).length;
+          const count = getRecruitedCrewModels().filter(m => m.traits.some(u => u.match(new RegExp(`^Veteran \\(${type}\\)$`)))).length;
           if (count >= 1 + (modifiers.extraVeterans[type] || 0)) {
             alert(t("veteran_limit_exceeded", { type }));
             veteranExceeded = true;
@@ -9750,9 +9946,9 @@ function bmgCanAddModel(model, options = {}) {
     const eliteMatch = t.match(/^Elite \((.+)\)$/);
     if (eliteMatch) {
       const type = eliteMatch[1];
-      const count = crew.filter(m => m.traits.some(u => u.match(new RegExp(`^Elite \\(${type}\\)$`)))).length;
+      const count = getRecruitedCrewModels().filter(m => m.traits.some(u => u.match(new RegExp(`^Elite \\(${type}\\)$`)))).length;
       // Проверяем, есть ли в отряде Elite Boss этого типа
-      const hasEliteBoss = crew.some(m => m.traits.some(u => u === `Elite Boss (${type})`));
+      const hasEliteBoss = getRecruitedCrewModels().some(m => m.traits.some(u => u === `Elite Boss (${type})`));
       const limit = hasEliteBoss ? 99 : 1 + (modifiers.extraElites[type] || 0);
       if (count >= limit) {
         alert(t("elite_limit_exceeded", { type }));
@@ -10293,10 +10489,11 @@ function buildRosterExportText(rosterName = "") {
   const usedFunding = crewFundingUsed();
   const deckCards = getObjectiveDeckCards();
   const mandatoryCards = getBuilderMandatoryCardCatalog().filter(canShowBuilderCard);
-  exportText += `Summary: ${crew.length} models | ${deckCards.length} cards | Used Rep ${totalRep} | Used Funding $${usedFunding}\n\n`;
+  const recruitedCrew = getRecruitedCrewModels();
+  exportText += `Summary: ${recruitedCrew.length} models | ${deckCards.length} cards | Used Rep ${totalRep} | Used Funding $${usedFunding}\n\n`;
   exportText += `MODELS:\n`;
 
-  crew.forEach(m => {
+  recruitedCrew.forEach(m => {
     exportText += `- ${m.name}`;
     exportText += m.rankUsed ? ` [${m.rankUsed}]` : "";
     exportText += ` | Rep ${displayValue(m.rep)} | Funding $${displayValue(m.funding)}\n`;
@@ -10561,8 +10758,16 @@ function importRosterFromText(text) {
   }).sort((a, b) => getImportRankPriority(a.finalRank) - getImportRankPriority(b.finalRank));
 
   const importWarnings = [];
+  const importHasBeastBoyMain = pendingEntries.some(entry => isBeastBoyMainModel(entry.model));
 
   pendingEntries.forEach(entry => {
+    if (isBeastBoyShapeshiftForm(entry.model)) {
+      if (!importHasBeastBoyMain) {
+        importWarnings.push(`${entry.modelName}: ${t("beast_boy_form_requires_main")}`);
+      }
+      return;
+    }
+
     const importedModel = addModelWithRank(entry.model, entry.finalRank);
     if (!importedModel) {
       importWarnings.push(`${entry.modelName}${entry.rank ? ` [${entry.rank}]` : ""}`);
@@ -10721,7 +10926,7 @@ function importRoster() {
 }
 
 function exportRoster() {
-  if (crew.length === 0 && crewCards.length === 0) {
+  if (getRecruitedCrewModels().length === 0 && crewCards.length === 0) {
     alert(t("export_empty_roster"));
     return;
   }

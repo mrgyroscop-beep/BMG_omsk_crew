@@ -3614,6 +3614,15 @@ const models = [
       "Possessed",
       "Scientific",
       "The Song of the Sirens"
+    ],
+    "weapons": [
+      {
+        "name": "Sprinkling Spores",
+        "damage": "-",
+        "rof": "1+",
+        "ammo": "-",
+        "traits": "Expansive / Poison / Toxic (1)"
+      }
     ]
   },
   {
