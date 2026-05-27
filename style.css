@@ -377,6 +377,10 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 .builder-card-mandatory { border-color:#3fa66b !important; box-shadow:0 0 16px rgba(63,166,107,.28); }
 .builder-card-mandatory .builder-card-image-footer strong,
 .builder-card-mandatory .mini-rep { color:#44ff88; }
+.builder-card-requirement { color:#bfc3cc; font-family:Arial,sans-serif; font-size:12px; line-height:1.25; padding:6px 8px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:rgba(0,0,0,.28); }
+.builder-card-requirement.is-missing { color:#fff; border-color:#e94560; background:rgba(233,69,96,.22); }
+.builder-card-requirement-missing { border-color:#e94560 !important; box-shadow:0 0 16px rgba(233,69,96,.36) !important; }
+.builder-card-requirement-missing .builder-card-full-img { filter:saturate(.75) brightness(.82); }
 .builder-card-image-item { display:flex; flex-direction:column !important; align-items:stretch !important; gap:8px !important; width:100%; max-width:360px; margin:0 auto; padding:10px !important; }
 .builder-card-image-item .add-btn,
 .builder-card-image-item .remove-btn { position:absolute; top:12px; right:12px; margin-left:0; }

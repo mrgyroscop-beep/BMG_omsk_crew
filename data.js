@@ -20,9 +20,100 @@
 // Экспортируем для использования в script.js
 window.factionCrewRules = factionCrewRules;
 
+function speedforceCard(id, name, imgName, en, ru) {
+  return {
+    id: `speedforce-${id}`,
+    name,
+    img: `img/cards/speedforce/${imgName}.jpg`,
+    renderAsCardImage: true,
+    type: "Speedforce",
+    category: "speedforce",
+    mandatory: true,
+    countsForDeck: false,
+    requiredTrait: "Speedster",
+    showWhenRequirementMet: true,
+    showInlineText: false,
+    text: { en, ru }
+  };
+}
+
+const speedforceCards = [
+  speedforceCard(
+    "switch-timelines",
+    "SWITCH TIMELINES",
+    "switch-timelines",
+    "At the start of this model’s activation, Discard a card at random from your Objective hand.",
+    "В начале активации этой модели сбросьте случайную карту из вашей руки Objective."
+  ),
+  speedforceCard(
+    "what-happened",
+    "WH... WHAT HAPPENED?",
+    "what-happened",
+    "At the start of this model’s activation, the opponent may draw a card.",
+    "В начале активации этой модели оппонент может взять карту."
+  ),
+  speedforceCard(
+    "disorientated",
+    "DISORIENTATED",
+    "disoriented",
+    "Audacity only gives this model 2 Actions instead of 3.",
+    "Audacity дает этой модели только 2 Actions вместо 3."
+  ),
+  speedforceCard(
+    "exhausted-1",
+    "EXHAUSTED",
+    "exhausted-1",
+    "This model’s Basic Move Distance is reduced by 2.",
+    "Базовая дистанция движения этой модели уменьшается на 2."
+  ),
+  speedforceCard(
+    "exhausted-2",
+    "EXHAUSTED",
+    "exhausted-2",
+    "This model’s Basic Move Distance is reduced by 2.",
+    "Базовая дистанция движения этой модели уменьшается на 2."
+  ),
+  speedforceCard(
+    "fatigue-1",
+    "FATIGUE",
+    "fatigue-1",
+    "This model Effort Limit is reduced by 1.",
+    "Лимит Effort этой модели уменьшается на 1."
+  ),
+  speedforceCard(
+    "fatigue-2",
+    "FATIGUE",
+    "fatigue-2",
+    "This model Effort Limit is reduced by 1.",
+    "Лимит Effort этой модели уменьшается на 1."
+  ),
+  speedforceCard(
+    "surprised",
+    "SURPRISED",
+    "surprised",
+    "This model suffers -1 Defense.",
+    "Эта модель получает -1 Defense."
+  ),
+  speedforceCard(
+    "too-fast",
+    "TOO FAST...",
+    "too-fast",
+    "This model does not Recover ★ during Recount.",
+    "Эта модель не восстанавливает ★ во время Recount."
+  ),
+  speedforceCard(
+    "yesterday-again",
+    "HUH... YESTERDAY AGAIN?",
+    "yesterday-again",
+    "The opponent may place this model inside your DZ. Shuffle this card into the SpeedForce Deck.",
+    "Оппонент может разместить эту модель внутри вашей DZ. Замешайте эту карту в колоду SpeedForce."
+  )
+];
+
 // ======================== КАРТЫ ДЛЯ БИЛДЕРА ========================
 // Каталог пока наполняется постепенно. Названия карт оставляем как на оригинальной карте.
 const builderMandatoryCards = [
+  ...speedforceCards,
   {
     id: "vigilantes-special-rules",
     name: "VIGILANTES SPECIAL RULES",
@@ -256,7 +347,116 @@ const builderMandatoryCards = [
   }
 ];
 
+function characterObjectiveCard(id, name, imgName, requiredModel, requiredRank, value, maxPerDeck = 1) {
+  const card = {
+    id: `character-${id}`,
+    name,
+    img: `img/cards/characters/${imgName}.jpg`,
+    renderAsCardImage: true,
+    type: "Objective",
+    category: "character",
+    isGeneral: false,
+    value: `${value} VP`,
+    maxPerDeck,
+    requiredModel,
+    showInlineText: false,
+    text: {
+      en: "Character Objective. See the original card image for the full card text.",
+      ru: "Персональная карта цели. Полный текст смотрите на оригинальном изображении карты."
+    }
+  };
+
+  if (requiredRank) card.requiredRank = requiredRank;
+  return card;
+}
+
+const characterObjectiveCards = [
+  characterObjectiveCard("reinforce-bird", "REINFORCE", "reinforce-bird", "Bird", "Sidekick", 2, 1),
+  characterObjectiveCard("im-the-surgeon", "I'M THE SURGEON", "im-the-surgeon", "Batman Frank Miller", "Leader", 2, 1),
+  characterObjectiveCard("lord-of-the-pits", "LORD OF THE PITS", "lord-of-the-pits", "Ra's al Ghul", "Leader", 2, 1),
+  characterObjectiveCard("masters-duel", "MASTER'S DUEL", "masters-duel", "Lady Shiva", "Sidekick", 2, 1),
+  characterObjectiveCard("seeking-revenge", "SEEKING REVENGE", "seeking-revenge", "Jason Todd", "Free Agent", 2, 1),
+  characterObjectiveCard("regrowth", "REGROWTH", "regrowth", "Poison Ivy", ["Leader", "Sidekick"], 2, 1),
+  characterObjectiveCard("feed-me", "FEED ME", "feed-me", "Frank the Plant", "Henchman", 2, 1),
+  characterObjectiveCard("kataykuchi", "KATAYKUCHI", "kataykuchi", "Katana", "Free Agent", 2, 1),
+  characterObjectiveCard("netmaster", "NETMASTER", "netmaster", "Oracle", ["Sidekick", "Free Agent"], 3, 1),
+  characterObjectiveCard("deathmatch", "DEATHMATCH", "deathmatch", "Deathstroke", "Free Agent", 4, 1),
+  characterObjectiveCard("a-cat-has-its-needs", "A CAT HAS ITS NEEDS", "a-cat-has-its-needs", "Catwoman", "Free Agent", 2, 1),
+  characterObjectiveCard("justice", "JUSTICE", "justice", "Two-Face", "Leader", 2, 1),
+  characterObjectiveCard("riddles-everywhere", "RIDDLES EVERYWHERE", "riddles-everywhere", ["The Riddler", "Riddler"], "Leader", 2, 2),
+  characterObjectiveCard("diversion-tactic", "DIVERSION TACTIC", "diversion-tactic", ["Quelle", "Quell"], "Sidekick", 2, 2),
+  characterObjectiveCard("query-and-echo", "QUERY AND ECHO", "query-and-echo", "Query", "Henchman", 2, 1),
+  characterObjectiveCard("echo-and-query", "ECHO AND QUERY", "echo-and-query", "Echo", "Henchman", 2, 1),
+  characterObjectiveCard("this-ends-tonight", "THIS ENDS TONIGHT", "this-ends-tonight", "Arkham Knight", "Leader", 2, 1),
+  characterObjectiveCard("a-city-in-fear", "A CITY IN FEAR", "a-city-in-fear", "Scarecrow", "Leader", 2, 1),
+  characterObjectiveCard("my-house-my-rules", "MY HOUSE, MY RULES", "my-house-my-rules", "The Penguin", "Leader", 2, 1),
+  characterObjectiveCard("endless-greed", "ENDLESS GREED", "endless-greed", "Emperor Penguin", "Leader", 3, 1),
+  characterObjectiveCard("street-transaction", "STREET TRANSACTION", "street-transaction", "Loose Lips", "Sidekick", 2, 1),
+  characterObjectiveCard("plots-behind-plots", "PLOTS BEHIND PLOTS", "plots-behind-plots", "Lincoln March", ["Leader", "Henchman"], 3, 1),
+  characterObjectiveCard("the-courts-edict", "THE COURT'S EDICT", "the-courts-edict", "The Court", "Leader", 3, 1),
+  characterObjectiveCard("the-mission", "THE MISSION", "the-mission", "William Cobb", "Henchman", 2, 1),
+  characterObjectiveCard("escape-plan", "ESCAPE PLAN", "escape-plan", "Calvin Rose", "Free Agent", 3, 1),
+  characterObjectiveCard("osito", "OSITO", "osito", "Bane", "Leader", 2, 1),
+  characterObjectiveCard("emancipation", "EMANCIPATION", "emancipation", "Harley Quinn", "Free Agent", 2, 1),
+  characterObjectiveCard("cover-your-ears", "COVER YOUR EARS", "cover-your-ears", "Black Canary", "Sidekick", 2, 1),
+  characterObjectiveCard("vendetta", "VENDETTA", "vendetta", "Huntress", "Henchman", 2, 1),
+  characterObjectiveCard("gotham-is-mine", "GOTHAM IS MINE", "gotham-is-mine", "Bane", "Leader", 3, 1),
+  characterObjectiveCard("corrupted", "CORRUPTED", "corrupted", "The Batman Who Laughs", "Free Agent", 1, 3),
+  characterObjectiveCard("apex-predator", "APEX PREDATOR", "apex-predator", "The Batman Who Laughs", "Free Agent", 2, 3),
+  characterObjectiveCard("showtime", "SHOWTIME!", "showtime", "Joker", "Leader", 2, 1),
+  characterObjectiveCard("joker-o-meter", "JOKER-O-METER", "joker-o-meter", "Harley Quinn", "Sidekick", 2, 1),
+  characterObjectiveCard("one-million-dollar-shot", "ONE MILLION DOLLAR SHOT", "one-million-dollar-shot", "Deadshot", "Free Agent", 2, 1),
+  characterObjectiveCard("wrong-place-kid", "WRONG PLACE, KID", "wrong-place-kid", "Harvey Bullock", "Henchman", 2, 1),
+  characterObjectiveCard("back-to-arkham", "BACK TO ARKHAM", "back-to-arkham", "Bruce Wayne", "Leader", 2, 1),
+  characterObjectiveCard("one-good-cop", "ONE GOOD COP", "one-good-cop", "James W. Gordon", "Leader", 2, 1),
+  characterObjectiveCard("daughter-of-the-demon", "DAUGHTER OF THE DEMON", "daughter-of-the-demon", "Talia al Ghul", ["Leader", "Sidekick"], 2, 1),
+  characterObjectiveCard("my-life-for-the-league", "MY LIFE FOR THE LEAGUE", "my-life-for-the-league", "The Heretic", "Sidekick", 2, 1),
+  characterObjectiveCard("mortal-wound", "MORTAL WOUND", "mortal-wound", "Cheshire", "Free Agent", 2, 3),
+  characterObjectiveCard("searching-for-nora", "SEARCHING FOR NORA", "searching-for-nora", "Mr. Freeze", "Leader", 2, 1),
+  characterObjectiveCard("cold-as-ice", "COLD AS ICE", "cold-as-ice", "Killer Frost", "Sidekick", 2, 1),
+  characterObjectiveCard("the-don", "THE DON", "the-don", "Carmine Falcone", "Leader", 2, 1),
+  characterObjectiveCard("uncontrolled-brutality", "UNCONTROLLED BRUTALITY", "uncontrolled-brutality", "Salvatore Maroni", "Leader", 2, 1),
+  characterObjectiveCard("the-true-boss", "THE TRUE BOSS", "the-true-boss", "The Ventriloquist", "Leader", 2, 1),
+  characterObjectiveCard("pain-and-money", "PAIN AND MONEY", "pain-and-money", "Black Mask", "Leader", 2, 2),
+  characterObjectiveCard("not-so-much-sugar", "NOT SO MUCH SUGAR", "not-so-much-sugar", "Sugar", "Sidekick", 2, 1),
+  characterObjectiveCard("spice-it-a-little", "SPICE IT A LITTLE", "spice-it-a-little", "Spice", "Sidekick", 2, 1),
+  characterObjectiveCard("master-of-manipulation", "MASTER OF MANIPULATION", "master-of-manipulation", "Hush", "Free Agent", 3, 1),
+  characterObjectiveCard("yours-to-command", "YOURS TO COMMAND", "yours-to-command", "Ubu", "Henchman", 2, 1),
+  characterObjectiveCard("great-performance", "GREAT PERFORMANCE", "great-performance", "Nightwing", "Sidekick", 4, 1),
+  characterObjectiveCard("assistance", "ASSISTANCE", "assistance", "Robin", "Sidekick", 2, 2),
+  characterObjectiveCard("trick-shot", "TRICK SHOT", "trick-shot", "Green Arrow", "Sidekick", 2, 2),
+  characterObjectiveCard("justice-served", "JUSTICE SERVED", "justice-served", "Peacemaker", "Free Agent", 3, 1),
+  characterObjectiveCard("best-served-cold", "BEST SERVED COLD", "best-served-cold", "Nora Fries", "Sidekick", 2, 2),
+  characterObjectiveCard("bigger-picture", "BIGGER PICTURE", "bigger-picture", ["The Riddler", "Paul Dano"], "Leader", 2, 2),
+  characterObjectiveCard("freelance-assassin", "FREELANCE ASSASSIN", "freelance-assassin", "Raptor", "Free Agent", 4, 1),
+  characterObjectiveCard("vengeances-mission", "VENGEANCE'S MISSION", "vengeances-mission", "Vengeance", "Leader", 2, 1),
+  characterObjectiveCard("sewers-nightmare", "SEWER'S NIGHTMARE", "sewers-nightmare", "Killer Croc", "Free Agent", 2, 3),
+  characterObjectiveCard("the-best-act", "THE BEST ACT", "the-best-act", "Clayface", "Free Agent", 2, 2),
+  characterObjectiveCard("primary-instincts", "PRIMARY INSTINCTS", "primary-instincts", "Man-Bat", "Free Agent", 2, 1),
+  characterObjectiveCard("born-on-a-monday", "BORN ON A MONDAY", "born-on-a-monday", "Solomon Grundy", "Free Agent", 2, 1),
+  characterObjectiveCard("tally-marks", "TALLY MARKS", "tally-marks", "Victor Zsasz", "Free Agent", 3, 1),
+  characterObjectiveCard("this-is-the-evil", "THIS IS THE EVIL", "this-is-the-evil", "Deacon Blackfire", "Leader", 2, 3),
+  characterObjectiveCard("join-the-fold", "JOIN THE FOLD", "join-the-fold", "Young Woman", "Henchman", 2, 1),
+  characterObjectiveCard("the-unworthy", "THE UNWORTHY", "the-unworthy", "Jake Baker", "Sidekick", 2, 1),
+  characterObjectiveCard("the-evidence-mounts", "THE EVIDENCE MOUNTS", "the-evidence-mounts", "Batman Robert Pattinson", "Leader", 3, 1),
+  characterObjectiveCard("mother-of-strays", "MOTHER OF STRAYS", "mother-of-strays", "Catwoman", "Free Agent", 2, 1),
+  characterObjectiveCard("secure-the-drop", "SECURE THE DROP", "secure-the-drop", "The Penguin (Colin Farrell)", "Sidekick", 2, 1),
+  characterObjectiveCard("cover-up", "COVER UP", "cover-up", "Carmine Falcone", "Leader", 2, 1),
+  characterObjectiveCard("moth-signal", "MOTH SIGNAL", "moth-signal", "Killer Moth", "Henchman", 2, 1),
+  characterObjectiveCard("overwhelming-charisma", "OVERWHELMING CHARISMA", "overwhelming-charisma", "Kite-Man", "Henchman", 3, 1),
+  characterObjectiveCard("time-master", "TIME MASTER", "time-master", "Clock King", "Free Agent", 2, 1),
+  characterObjectiveCard("cold-as-death", "COLD AS DEATH", "cold-as-death", "Gentleman Ghost", "Free Agent", 2, 1),
+  characterObjectiveCard("calendar-crimes", "CALENDAR CRIMES", "calendar-crimes", "Calendar Man", "Henchman", 2, 1),
+  characterObjectiveCard("sauce-and-pickles", "SAUCE AND PICKLES", "sauce-and-pickles", "Condiment King", "Henchman", 2, 1),
+  characterObjectiveCard("kobra-viral-bomb", "KOBRA VIRAL BOMB", "kobra-viral-bomb", ["Kobra", "Jeffrey Franklin Burr"], "Leader", 3, 1),
+  characterObjectiveCard("strict-control", "STRICT CONTROL", "strict-control", "Lady Eve", "Sidekick", 2, 1),
+  characterObjectiveCard("state-of-fear", "STATE OF FEAR", "state-of-fear", "Scarecrow", "Leader", 2, 1),
+  characterObjectiveCard("new-compound", "NEW COMPOUND", "new-compound", "Linda Friitawa", "Sidekick", 2, 2),
+  characterObjectiveCard("deduction", "DEDUCTION", "deduction", "Hugo Strange", "Free Agent", 2, 1)
+];
+
 const builderCards = [
+  ...characterObjectiveCards,
   {
     id: "valuable-commodities",
     name: "VALUABLE COMMODITIES",
@@ -502,6 +702,279 @@ const builderCards = [
       cost: 0,
       en: "Set a WayneTech Event marker in contact with a friendly Suspect and place this card aside. Models within 4” of the WayneTech marker cannot make Efforts. Discard this card at the end of the Recount.",
       ru: "Разместите маркер события WayneTech в контакте с дружественным Suspect маркером и отложите эту карту. Модели в пределах 4” от маркера WayneTech не могут делать Effort. Сбросьте эту карту в конце Recount."
+    }
+  },
+  {
+    id: "law-forces-comb-through-everything",
+    name: "COMB THROUGH EVERYTHING",
+    img: "img/cards/law-forces/comb-through-everything.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["GCPD"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Gut Feeling • A friendly model Reveals an enemy Suspect.",
+      ru: "Gut Feeling • Дружественная модель раскрывает вражеский Suspect."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 0 • When an enemy model Reveals a friendly Suspect, place a new Suspect in contact with a friendly model that is not within 4” of that enemy model.",
+      ru: "Burn 0 • Когда вражеская модель раскрывает дружественный Suspect, разместите новый Suspect в контакте с дружественной моделью, которая не находится в пределах 4” от этой вражеской модели."
+    }
+  },
+  {
+    id: "law-forces-get-them-off-the-streets",
+    name: "GET THEM OFF THE STREETS",
+    img: "img/cards/law-forces/get-them-off-the-streets.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["GCPD"],
+    category: "crew",
+    phase: "III",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Gut Feeling • A friendly model performs the Arrest Special Action within 8” of a friendly Suspect.",
+      ru: "Gut Feeling • Дружественная модель выполняет Arrest Special Action в пределах 8” от дружественного Suspect."
+    },
+    resource: {
+      cost: 2,
+      en: "Burn 1 • Cancel an Objective card used as a Resource. That card is discarded.",
+      ru: "Burn 1 • Отмените Objective card, использованную как Resource. Эта карта сбрасывается."
+    }
+  },
+  {
+    id: "law-forces-snitch",
+    name: "SNITCH",
+    img: "img/cards/law-forces/snitch.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["GCPD"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Play when a friendly model Sets a Suspect. Until the end of the Round, that Suspect is also a Snitch marker that cannot be Revealed or removed.\n\nThere are no enemy models within 4” of the Snitch marker.",
+      ru: "Разыграйте, когда дружественная модель выставляет Suspect. До конца Round этот Suspect также является Snitch marker, который нельзя раскрыть или удалить.\n\nВ пределах 4” от Snitch marker нет вражеских моделей."
+    },
+    resource: {
+      cost: 0,
+      en: "A friendly model within 4” of a friendly Suspect adds 1 die to a Defense roll.",
+      ru: "Дружественная модель в пределах 4” от дружественного Suspect добавляет 1 кубик к Defense roll."
+    }
+  },
+  {
+    id: "law-forces-secure-the-perimeter",
+    name: "SECURE THE PERIMETER",
+    img: "img/cards/law-forces/secure-the-perimeter.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["GCPD"],
+    category: "crew",
+    phase: "IV",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Gut Feeling • At least 2 friendly Suspects are within 2” of an edge of the Gaming Area.\n\nThe opponent Moves 2 of these Suspects 4”.",
+      ru: "Gut Feeling • Как минимум 2 дружественных Suspect находятся в пределах 2” от края Gaming Area.\n\nОппонент передвигает 2 из этих Suspect на 4”."
+    },
+    resource: {
+      cost: 1,
+      en: "Target an enemy model within 4” of a friendly Suspect and perform a Ranged Attack with the following profile: ({BLOOD_ICON}{STUN_ICON} / +1 / Firearm).",
+      ru: "Выберите вражескую модель в пределах 4” от дружественного Suspect и выполните Ranged Attack со следующим профилем: ({BLOOD_ICON}{STUN_ICON} / +1 / Firearm)."
+    }
+  },
+  {
+    id: "law-forces-they-wont-see-me-coming",
+    name: "THEY WON'T SEE ME COMING",
+    img: "img/cards/law-forces/they-wont-see-me-coming.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["GCPD"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "A friendly model inflicts Damage on an enemy model that did not have LoS to the attacker at the start of the attacker's activation.",
+      ru: "Дружественная модель наносит Damage вражеской модели, у которой не было LoS до атакующего в начале активации атакующего."
+    },
+    resource: {
+      cost: 1,
+      en: "During a friendly model's activation with Rank: {RANK_LEADER_ICON}, {RANK_SIDEKICK_ICON} or {RANK_FREEAGENT_ICON}, it may perform a free Manipulate action.",
+      ru: "Во время активации дружественной модели с Rank: {RANK_LEADER_ICON}, {RANK_SIDEKICK_ICON} или {RANK_FREEAGENT_ICON}, она может выполнить бесплатное Manipulate action."
+    }
+  },
+  {
+    id: "law-forces-non-lethal-ammo",
+    name: "NON-LETHAL AMMO",
+    img: "img/cards/law-forces/non-lethal-ammo.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["GCPD"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "A friendly model within 8” of a friendly Suspect inflicts {BLOOD_ICON} with a Ranged Attack.\n\nChange all inflicted {BLOOD_ICON} to {STUN_ICON}.",
+      ru: "Дружественная модель в пределах 8” от дружественного Suspect наносит {BLOOD_ICON} с помощью Ranged Attack.\n\nЗамените все нанесенные {BLOOD_ICON} на {STUN_ICON}."
+    },
+    resource: {
+      cost: 0,
+      en: "The active friendly model can use this activation the Arrest trait as a Free action.",
+      ru: "Активная дружественная модель может в эту активацию использовать трейт Arrest как Free action."
+    }
+  },
+  {
+    id: "law-forces-finding-a-suspect",
+    name: "FINDING A SUSPECT",
+    img: "img/cards/law-forces/finding-a-suspect.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["GCPD"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "A friendly model with the Detective trait Reveals an enemy Suspect at least 10” away from the edge of the Gaming Area.",
+      ru: "Дружественная модель с трейтом Detective раскрывает вражеский Suspect на расстоянии как минимум 10” от края Gaming Area."
+    },
+    resource: {
+      cost: 1,
+      en: "Move two enemy Suspects 2D6” directly towards a friendly model with the Detective trait.",
+      ru: "Передвиньте два вражеских Suspect на 2D6” напрямую к дружественной модели с трейтом Detective."
+    }
+  },
+  {
+    id: "law-forces-wait-for-backup",
+    name: "WAIT FOR BACKUP",
+    img: "img/cards/law-forces/wait-for-backup.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["GCPD"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Play when a friendly model with the Cop trait Sets a Suspect. Target an edge of the Gaming Area and place a Timer 1D3+2 on this card.\n\nScore when the counter is reduced to 0 and that model is within 4” of the targeted edge not suffering KO.",
+      ru: "Разыграйте, когда дружественная модель с трейтом Cop выставляет Suspect. Выберите край Gaming Area и поместите Timer 1D3+2 на эту карту.\n\nЗасчитайте, когда counter снижен до 0, а эта модель находится в пределах 4” от выбранного края и не находится в KO."
+    },
+    resource: {
+      cost: 2,
+      en: "Choose 1 friendly model with Name: Unknown, Rank: {RANK_HENCHMAN_ICON}, and the Cop trait, that has been removed as a Casualty. Place that model in your DZ. It cannot activate this Round.",
+      ru: "Выберите 1 дружественную модель с Name: Unknown, Rank: {RANK_HENCHMAN_ICON} и трейтом Cop, которая была удалена как Casualty. Разместите эту модель в вашей DZ. Она не может активироваться в этот Round."
+    }
+  },
+  {
+    id: "law-forces-uncovered-truth",
+    name: "UNCOVERED TRUTH",
+    img: "img/cards/law-forces/uncovered-truth.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["GCPD"],
+    category: "crew",
+    phase: "II",
+    value: "3 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • Target a friendly model. When that model Reveals an enemy Suspect, place 2 {OBJECTIVE_CROSS_ICON} markers on this card.\n\nScore when this card has more {OBJECTIVE_CROSS_ICON} markers than enemy Suspects in play.",
+      ru: "Limited • Выберите дружественную модель. Когда эта модель раскрывает вражеский Suspect, положите 2 маркера {OBJECTIVE_CROSS_ICON} на эту карту.\n\nЗасчитайте, когда на этой карте больше маркеров {OBJECTIVE_CROSS_ICON}, чем вражеских Suspect в игре."
+    },
+    resource: {
+      cost: 1,
+      en: "Burn 0 • The active friendly model within 8” and LoS of a friendly Suspect gains a free Manipulate action.",
+      ru: "Burn 0 • Активная дружественная модель в пределах 8” и LoS от дружественного Suspect получает бесплатное Manipulate action."
+    }
+  },
+  {
+    id: "law-forces-following-the-clues",
+    name: "FOLLOWING THE CLUES",
+    img: "img/cards/law-forces/following-the-clues.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["GCPD"],
+    category: "crew",
+    phase: "III",
+    value: "3 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Target a friendly Suspect. It is also a Clue marker (place a Numeric Counter with a value equal to 4-X where X is the number of friendly scored Uncovered Truth Objective cards). A friendly model can Manipulate a Clue to reduce the value by 1. Then the opponent Moves it 8”.\n\nScore when the counter is reduced to 0 or an enemy removes it.",
+      ru: "Выберите дружественный Suspect. Он также является Clue marker: поместите Numeric Counter со значением 4-X, где X равен числу дружественных засчитанных Objective cards Uncovered Truth. Дружественная модель может выполнить Manipulate с Clue, чтобы снизить значение на 1. Затем оппонент передвигает его на 8”.\n\nЗасчитайте, когда counter снижен до 0 или враг убирает его."
+    },
+    resource: {
+      cost: 1,
+      en: "The active model gains a free Reveal Manipulate action.",
+      ru: "Активная модель получает бесплатное Reveal Manipulate action."
+    }
+  },
+  {
+    id: "law-forces-planting-evidence",
+    name: "PLANTING EVIDENCE",
+    img: "img/cards/law-forces/planting-evidence.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["GCPD"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 2,
+    text: {
+      en: "Gut Feeling • A friendly model with the Cop trait and without the Incorruptible trait Sets a Suspect within 8” of an enemy model and no other friendly model has LoS to the Suspect.",
+      ru: "Gut Feeling • Дружественная модель с трейтом Cop и без трейта Incorruptible выставляет Suspect в пределах 8” от вражеской модели, и ни одна другая дружественная модель не имеет LoS до этого Suspect."
+    },
+    resource: {
+      cost: 1,
+      en: "Look at the opponent's hand, and discard one of their cards.",
+      ru: "Посмотрите руку оппонента и сбросьте одну из его карт."
+    }
+  },
+  {
+    id: "law-forces-detective-work",
+    name: "DETECTIVE WORK",
+    img: "img/cards/law-forces/detective-work.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["GCPD"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Gut Feeling • A friendly model with the Detective trait Sets a Suspect completely within the enemy DZ.",
+      ru: "Gut Feeling • Дружественная модель с трейтом Detective выставляет Suspect полностью внутри вражеской DZ."
+    },
+    resource: {
+      cost: 0,
+      en: "Target an enemy model without a Suspect within 4”. The opponent chooses to either Set a Suspect in contact with the target or you gain 2 Resource points.",
+      ru: "Выберите вражескую модель, рядом с которой нет Suspect в пределах 4”. Оппонент выбирает: выставить Suspect в контакте с целью или вы получаете 2 Resource points."
+    }
+  },
+  {
+    id: "law-forces-monitoring",
+    name: "MONITORING",
+    img: "img/cards/law-forces/monitoring.jpg",
+    renderAsCardImage: true,
+    type: "Objective",
+    faction: ["GCPD"],
+    category: "crew",
+    phase: "III",
+    value: "2 VP",
+    maxPerDeck: 3,
+    text: {
+      en: "Limited • Play when an enemy model performs a Movement action. Place a {OBJECTIVE_CROSS_ICON} on this card when a friendly model Sets a Suspect within 8” of that enemy. Place 3 {OBJECTIVE_CROSS_ICON} instead if that friendly model has the Cop trait.\n\nScore when this card has at least 6 {OBJECTIVE_CROSS_ICON}.",
+      ru: "Limited • Разыграйте, когда вражеская модель выполняет Movement action. Положите {OBJECTIVE_CROSS_ICON} на эту карту, когда дружественная модель выставляет Suspect в пределах 8” от этого врага. Вместо этого положите 3 {OBJECTIVE_CROSS_ICON}, если у этой дружественной модели есть трейт Cop.\n\nЗасчитайте, когда на этой карте как минимум 6 {OBJECTIVE_CROSS_ICON}."
+    },
+    resource: {
+      cost: 1,
+      en: "At the end of an enemy model's activation, a friendly model gains 2 Defense dice.",
+      ru: "В конце активации вражеской модели дружественная модель получает 2 Defense dice."
     }
   },
   {

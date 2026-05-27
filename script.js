@@ -227,6 +227,8 @@ const translations = {
     builder_card_pack_too_large: "Этот комплект не помещается в колоду",
     builder_card_single_limit_reached: "В колоде может быть не больше 15 одиночных карт",
     builder_card_general_limit_reached: "Общих карт может быть не больше 15",
+    builder_card_missing_required_model: "Для использования нужна модель в ростере",
+    builder_card_requirement: "Нужна",
     builder_card_translation: "Перевод",
     builder_card_mandatory: "Обязательно",
     builder_card_type: "Тип",
@@ -242,6 +244,7 @@ const translations = {
     builder_deck_need_crew_specific: "Общих карт должно быть не больше, чем фракционных и персональных",
     builder_deck_need_single: "Одиночных карт может быть не больше половины колоды",
     builder_deck_need_copy_sets: "Карты с несколькими копиями должны быть добавлены полным комплектом",
+    builder_deck_need_character_requirements: "Некоторые персональные карты требуют модель в ростере",
     nothing_found: "Ничего не найдено",
     subtitle: "Batman: Gotham Chronicles<br>Конструктор отрядов",
     leader_first: "Первой моделью должен быть Leader для этой фракции!",
@@ -399,6 +402,8 @@ const translations = {
     builder_card_pack_too_large: "This copy set does not fit into the deck",
     builder_card_single_limit_reached: "The deck cannot include more than 15 single cards",
     builder_card_general_limit_reached: "The deck cannot include more than 15 general cards",
+    builder_card_missing_required_model: "Required model must be in the roster",
+    builder_card_requirement: "Requires",
     builder_card_translation: "Translation",
     builder_card_mandatory: "Mandatory",
     builder_card_type: "Type",
@@ -414,6 +419,7 @@ const translations = {
     builder_deck_need_crew_specific: "General cards cannot outnumber crew-specific and model cards",
     builder_deck_need_single: "Single cards cannot be more than half of the deck",
     builder_deck_need_copy_sets: "Cards with multiple copies must be added as a full copy set",
+    builder_deck_need_character_requirements: "Some character cards require a model in the roster",
     nothing_found: "Nothing found",
     subtitle: "Batman: Gotham Chronicles<br>Crew Builder",
     leader_first: "Leader must be the first model for this faction!",
@@ -6516,7 +6522,10 @@ function validateMatchRoster(parsed) {
     messages.push(matchText(`Не найдены карты: ${unknownCards.join(", ")}`, `Missing cards: ${unknownCards.join(", ")}`));
   }
 
-  const deckStats = getObjectiveDeckStats(getParsedRosterCardObjects(parsed));
+  const deckStats = getObjectiveDeckStats(getParsedRosterCardObjects(parsed), {
+    crewModels: getParsedRosterRequirementModels(parsed),
+    checkRequirements: true
+  });
   const deckWarnings = getObjectiveDeckWarnings(deckStats);
   if (!deckStats.isLegal) {
     isLegal = false;
@@ -7988,12 +7997,33 @@ function isBuilderCardSingle(card) {
   return getBuilderCardCopies(card) <= 1;
 }
 
+function normalizeBuilderCardArray(value) {
+  if (Array.isArray(value)) return value.flatMap(normalizeBuilderCardArray);
+  if (value === undefined || value === null || value === "") return [];
+  return String(value)
+    .replace(/ *& */gi, ",")
+    .replace(/ *\/ */g, ",")
+    .split(",")
+    .map(item => item.trim())
+    .filter(Boolean);
+}
+
+function getBuilderCardRequiredModelNames(card) {
+  return normalizeBuilderCardArray(
+    card?.requiredModels || card?.requiredModel || card?.requiredModelName || card?.modelName || card?.modelAlias || card?.subtitle
+  );
+}
+
 function getBuilderCardRequiredModelName(card) {
-  return card?.requiredModel || card?.requiredModelName || card?.modelName || card?.modelAlias || card?.subtitle || "";
+  return getBuilderCardRequiredModelNames(card).join(", ");
+}
+
+function getBuilderCardRequiredRanks(card) {
+  return normalizeBuilderCardArray(card?.requiredRanks || card?.requiredRank || card?.rank || card?.rankIcon);
 }
 
 function getBuilderCardRequiredRank(card) {
-  return card?.requiredRank || card?.rank || card?.rankIcon || "";
+  return getBuilderCardRequiredRanks(card).join(", ");
 }
 
 function normalizeBuilderCardRankText(value) {
@@ -8009,29 +8039,106 @@ function normalizeBuilderCardRankText(value) {
   return loose;
 }
 
-function getBuilderCardEligibleCrewModels(card) {
-  const requiredModel = String(getBuilderCardRequiredModelName(card) || "").trim();
-  const requiredRank = String(getBuilderCardRequiredRank(card) || "").trim();
-  const recruitedCrew = getRecruitedCrewModels();
-  if (!requiredModel && !requiredRank) return recruitedCrew;
+function builderCardModelMatchesRequirement(model, requiredModels = []) {
+  if (!requiredModels.length) return true;
+  return requiredModels.some(requiredModel => modelMatchesEquipmentName(model, requiredModel));
+}
 
-  const rankLoose = normalizeBuilderCardRankText(requiredRank);
-  return recruitedCrew.filter(model => {
-    if (requiredModel && !modelMatchesEquipmentName(model, requiredModel)) return false;
-    if (!requiredRank) return true;
+function builderCardRankMatchesRequirement(model, requiredRanks = []) {
+  if (!requiredRanks.length) return true;
 
-    const ranks = [model.rankUsed, ...getRanks(model)].filter(Boolean);
-    return ranks.some(rank => {
-      const currentLoose = normalizeBuilderCardRankText(rank);
-      return currentLoose === rankLoose || currentLoose.includes(rankLoose) || rankLoose.includes(currentLoose);
+  const requiredLoose = requiredRanks.map(normalizeBuilderCardRankText).filter(Boolean);
+  const ranks = model?.rankUsed ? [model.rankUsed] : getRanks(model).filter(Boolean);
+  return ranks.some(rank => {
+    const currentLoose = normalizeBuilderCardRankText(rank);
+    return requiredLoose.some(rankLoose =>
+      currentLoose === rankLoose || currentLoose.includes(rankLoose) || rankLoose.includes(currentLoose)
+    );
+  });
+}
+
+function getBuilderCardEligibleCrewModels(card, crewModels = getRecruitedCrewModels()) {
+  const requiredModels = getBuilderCardRequiredModelNames(card);
+  const requiredRanks = getBuilderCardRequiredRanks(card);
+  if (!requiredModels.length && !requiredRanks.length) return crewModels;
+
+  return crewModels.filter(model =>
+    builderCardModelMatchesRequirement(model, requiredModels) &&
+    builderCardRankMatchesRequirement(model, requiredRanks)
+  );
+}
+
+function getBuilderCardFactionAvailableModels(card, faction = currentFaction) {
+  const requiredModels = getBuilderCardRequiredModelNames(card);
+  const requiredRanks = getBuilderCardRequiredRanks(card);
+  if (!requiredModels.length || !faction) return [];
+
+  return models.filter(model => {
+    if (!builderCardModelMatchesRequirement(model, requiredModels)) return false;
+    if (!builderCardRankMatchesRequirement(model, requiredRanks)) return false;
+    return canHireInFaction(model, faction) || canViewInFaction(model, faction);
+  });
+}
+
+function builderCardHasCrewRequirement(card) {
+  return getBuilderCardRequiredModelNames(card).length > 0 || getBuilderCardRequiredRanks(card).length > 0;
+}
+
+function isBuilderCardRequirementMet(card, crewModels = getRecruitedCrewModels()) {
+  return !builderCardHasCrewRequirement(card) || getBuilderCardEligibleCrewModels(card, crewModels).length > 0;
+}
+
+function getBuilderCardRequirementText(card) {
+  const requiredModels = getBuilderCardRequiredModelNames(card);
+  const requiredRanks = getBuilderCardRequiredRanks(card);
+  const parts = [];
+
+  if (requiredModels.length) parts.push(requiredModels.join(" / "));
+  if (requiredRanks.length) parts.push(requiredRanks.map(localizeRank).join(" / "));
+
+  return parts.length ? `${t("builder_card_requirement")}: ${parts.join(" • ")}` : "";
+}
+
+function getParsedRosterRequirementModels(parsed) {
+  if (!parsed?.entries?.length) return [];
+
+  return parsed.entries.map((entry, index) => {
+    const baseModel = models.find(model => model.name === entry.modelName) || {};
+    const rankUsed = entry.rank || inferImportRank(baseModel, entry.rank, index === 0);
+    return {
+      ...baseModel,
+      name: entry.modelName || baseModel.name,
+      rankUsed
+    };
+  });
+}
+
+function getBuilderCardRequirementIssues(cards = crewCards, crewModels = getRecruitedCrewModels()) {
+  const issues = [];
+  const seen = new Set();
+
+  getObjectiveDeckCards(cards).forEach(card => {
+    if (!builderCardHasCrewRequirement(card) || isBuilderCardRequirementMet(card, crewModels)) return;
+    const key = getBuilderCardKey(card);
+    if (seen.has(key)) return;
+    seen.add(key);
+    issues.push({
+      name: getBuilderCardName(card),
+      requirement: getBuilderCardRequirementText(card)
     });
   });
+
+  return issues;
 }
 
 function canShowBuilderCard(card) {
   const factions = getBuilderCardFactionList(card);
+  const factionMatches = !factions.length || factions.includes(currentFaction) || factions.includes("Any") || factions.includes("All");
+  if (!factionMatches) return false;
 
-  return !factions.length || factions.includes(currentFaction) || factions.includes("Any") || factions.includes("All");
+  if (!getBuilderCardRequiredModelNames(card).length) return true;
+
+  return getBuilderCardFactionAvailableModels(card).length > 0;
 }
 
 function renderBuilderCardMeta(card) {
@@ -8118,9 +8225,13 @@ function renderBuilderCardThumb(card) {
   `;
 }
 
-function getObjectiveDeckStats(cards = crewCards) {
+function getObjectiveDeckStats(cards = crewCards, options = {}) {
   const deckCards = getObjectiveDeckCards(cards);
   const selectedMap = new Map();
+  const crewModels = options.crewModels || getRecruitedCrewModels();
+  const checkRequirements = options.checkRequirements !== undefined
+    ? Boolean(options.checkRequirements)
+    : cards === crewCards;
   deckCards.forEach((card, index) => {
     const key = getBuilderCardKey(card, index);
     const entry = selectedMap.get(key) || { card, count: 0 };
@@ -8134,6 +8245,7 @@ function getObjectiveDeckStats(cards = crewCards) {
     crewSpecific: 0,
     single: 0,
     copyRuleIssues: [],
+    requirementIssues: checkRequirements ? getBuilderCardRequirementIssues(deckCards, crewModels) : [],
     selectedMap
   };
 
@@ -8160,7 +8272,8 @@ function getObjectiveDeckStats(cards = crewCards) {
   stats.isLegal = stats.total === OBJECTIVE_DECK_SIZE
     && stats.general <= stats.crewSpecific
     && stats.single <= OBJECTIVE_DECK_MAX_SINGLE
-    && stats.copyRuleIssues.length === 0;
+    && stats.copyRuleIssues.length === 0
+    && stats.requirementIssues.length === 0;
   return stats;
 }
 
@@ -8170,6 +8283,7 @@ function getObjectiveDeckWarnings(stats = getObjectiveDeckStats()) {
   if (stats.general > stats.crewSpecific) warnings.push(t("builder_deck_need_crew_specific"));
   if (stats.single > OBJECTIVE_DECK_MAX_SINGLE) warnings.push(t("builder_deck_need_single"));
   if (stats.copyRuleIssues.length) warnings.push(t("builder_deck_need_copy_sets"));
+  if (stats.requirementIssues?.length) warnings.push(t("builder_deck_need_character_requirements"));
   return warnings;
 }
 
@@ -8229,9 +8343,14 @@ function getBuilderCardAddCheck(card) {
     return { ok: false, reason: t("builder_card_limit_reached") };
   }
 
-  const hasCrewRequirement = getBuilderCardRequiredModelName(card) || getBuilderCardRequiredRank(card);
-  if (hasCrewRequirement && getBuilderCardEligibleCrewModels(card).length === 0) {
-    return { ok: false, reason: t("builder_deck_need_crew_specific") };
+  if (builderCardHasCrewRequirement(card) && !isBuilderCardRequirementMet(card)) {
+    const requirement = getBuilderCardRequirementText(card);
+    return {
+      ok: false,
+      reason: requirement
+        ? `${t("builder_card_missing_required_model")}: ${requirement}`
+        : t("builder_card_missing_required_model")
+    };
   }
 
   const addCount = getBuilderCardAddCount(card);
@@ -8260,6 +8379,11 @@ function renderBuilderCardItem(card, options = {}) {
   const max = getBuilderCardMax(card);
   const limitText = max > 1 ? `0-${max}` : "0-1";
   const footerBadge = mandatory ? t("builder_card_mandatory") : limitText;
+  const requirementText = getBuilderCardRequirementText(card);
+  const requirementMissing = selected && builderCardHasCrewRequirement(card) && !isBuilderCardRequirementMet(card);
+  const requirementHTML = requirementText
+    ? `<div class="builder-card-requirement ${requirementMissing ? "is-missing" : ""}">${escapeHtml(requirementMissing ? `${t("builder_card_missing_required_model")}: ${requirementText}` : requirementText)}</div>`
+    : "";
   const button = viewOnly || mandatory
     ? ""
     : selected
@@ -8268,7 +8392,7 @@ function renderBuilderCardItem(card, options = {}) {
 
   if (card?.renderAsCardImage && card?.img) {
     return `
-      <div class="mini-card builder-card-item builder-card-image-item ${selected ? "in-crew" : ""} ${viewOnly || mandatory ? "builder-card-readonly" : ""} ${mandatory ? "builder-card-mandatory" : ""}">
+      <div class="mini-card builder-card-item builder-card-image-item ${selected ? "in-crew" : ""} ${requirementMissing ? "builder-card-requirement-missing" : ""} ${viewOnly || mandatory ? "builder-card-readonly" : ""} ${mandatory ? "builder-card-mandatory" : ""}">
         ${button}
         ${count > 1 ? `<span class="count">x${count}</span>` : ""}
         <img src="${escapeAttribute(card.img)}" class="builder-card-full-img" alt="${escapeAttribute(getBuilderCardName(card))}" onerror="this.src='img/no.png'">
@@ -8277,18 +8401,20 @@ function renderBuilderCardItem(card, options = {}) {
           <button class="builder-card-translation-btn" type="button" onclick="event.stopPropagation(); showBuilderCardTranslation('${key}')">${t("builder_card_translation")}</button>
           <strong>${footerBadge}</strong>
         </div>
+        ${requirementHTML}
       </div>
     `;
   }
 
   return `
-    <div class="mini-card builder-card-item ${selected ? "in-crew" : ""} ${viewOnly || mandatory ? "builder-card-readonly" : ""} ${mandatory ? "builder-card-mandatory" : ""}">
+    <div class="mini-card builder-card-item ${selected ? "in-crew" : ""} ${requirementMissing ? "builder-card-requirement-missing" : ""} ${viewOnly || mandatory ? "builder-card-readonly" : ""} ${mandatory ? "builder-card-mandatory" : ""}">
       ${button}
       ${count > 1 ? `<span class="count">x${count}</span>` : ""}
       ${renderBuilderCardThumb(card)}
       <div class="mini-info">
         <div class="mini-name">${escapeHtml(getBuilderCardName(card))}</div>
         ${renderBuilderCardMeta(card)}
+        ${requirementHTML}
         ${card?.showInlineText === false ? "" : renderBuilderCardText(card)}
         <button class="builder-card-translation-btn" type="button" onclick="event.stopPropagation(); showBuilderCardTranslation('${key}')">${t("builder_card_translation")}</button>
         <div class="mini-rep">${footerBadge}</div>
@@ -8457,6 +8583,7 @@ const addToCrew = m => {
   modifiers = calculateModifiers();
   updateCrewBar();
   renderMiniCardsBuilder();
+  if (builderContentMode === 'cards') renderBuilderCards();
 };
 
 function addThreeJokersToCrew() {
@@ -8605,6 +8732,7 @@ function addModelWithRank(model, chosenRank, options = {}) {
   if (!skipRefresh) {
     updateCrewBar();
     renderMiniCardsBuilder();
+    if (builderContentMode === 'cards') renderBuilderCards();
   }
   return cloned;
 }
@@ -8704,6 +8832,7 @@ const removeFromCrew = m => {
     modifiers = calculateModifiers();
     updateCrewBar();
     renderMiniCardsBuilder();
+    if (builderContentMode === 'cards') renderBuilderCards();
   }
 };
 
@@ -10931,6 +11060,19 @@ function importRosterFromText(text, options = {}) {
       if (!importedModel.equipment.some(eq => eq.name === equipment.name)) {
         importedModel.equipment.push(equipment);
       }
+    });
+  });
+
+  crewCards = [];
+  (parsed.cards || []).forEach((cardInfo, index) => {
+    const catalogCard = findBuilderCardByName(cardInfo.name);
+    if (!catalogCard) {
+      importWarnings.push(`${cardInfo.name}`);
+      return;
+    }
+    crewCards.push({
+      ...catalogCard,
+      uniqueId: Date.now() + Math.random() + index
     });
   });
 
