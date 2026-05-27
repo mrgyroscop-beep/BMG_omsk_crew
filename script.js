@@ -38,6 +38,9 @@ let matchSelectedCrewId = null;
 let matchCurrentPayloadCode = "";
 let matchOpponentRoster = null;
 let matchScannerState = null;
+let matchGameSide = "own";
+let matchGameRosters = null;
+let matchGameCardsExpanded = false;
 const MATCH_OPPONENT_STORAGE_KEY = 'bmg_match_opponent_roster_v1';
 let versionEasterClickCount = 0;
 let versionEasterClickTimer = null;
@@ -181,6 +184,15 @@ const translations = {
     match_used: "Использовано",
     match_scan_title: "Сканирование QR",
     match_scan_hint: "Наведите камеру на QR оппонента.",
+    match_start_game: "Игра",
+    match_game_title: "ИГРА",
+    match_my_side: "МОЯ",
+    match_opponent_side: "ОППОНЕНТ",
+    match_opponent_required: "Добавьте банду оппонента, чтобы начать игру.",
+    match_game_empty: "Ростер не выбран.",
+    match_cards_expand: "Показать карты",
+    match_cards_collapse: "Свернуть карты",
+    match_cards_collapsed_hint: "Карты свернуты. Нажмите, чтобы открыть список.",
     rules: "ПРАВИЛА",
     select_faction: "ВЫБОР ФРАКЦИИ",
     crew: "ОТРЯД",
@@ -336,6 +348,15 @@ const translations = {
     match_used: "Used",
     match_scan_title: "QR scan",
     match_scan_hint: "Point the camera at the opponent QR.",
+    match_start_game: "Play",
+    match_game_title: "PLAY",
+    match_my_side: "MINE",
+    match_opponent_side: "OPPONENT",
+    match_opponent_required: "Add the opponent crew to start the game.",
+    match_game_empty: "No roster selected.",
+    match_cards_expand: "Show cards",
+    match_cards_collapse: "Collapse cards",
+    match_cards_collapsed_hint: "Cards are collapsed. Tap to open the list.",
     rules: "RULES",
     select_faction: "SELECT FACTION",
     crew: "CREW",
@@ -538,6 +559,9 @@ function setLanguage(lang) {
   }
   if (currentMode === 'match') {
     renderMatchSection();
+  }
+  if (currentMode === 'match-game') {
+    renderMatchGame();
   }
 }
 
@@ -5805,6 +5829,7 @@ function showMyCrews() {
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'block';
   $('matchSection').style.display = 'none';
+  $('matchGameSection').style.display = 'none';
   $('compendiumModal').classList.remove('active');
   $('modelSearchModal').classList.remove('active');
   loadMyCrewsFromStorage();
@@ -6014,6 +6039,33 @@ function aggregateMatchCards(parsedCards) {
   return [...map.values()];
 }
 
+function findMatchRosterModel(entryOrName, faction = "") {
+  const name = typeof entryOrName === "string"
+    ? entryOrName
+    : (entryOrName?.modelName || entryOrName?.name || "");
+  const rank = typeof entryOrName === "object" ? (entryOrName?.rank || "") : "";
+  const matches = models.filter(model => model.name === name);
+  if (!matches.length) return null;
+
+  const isFactionMatch = model => {
+    const factions = getFactions(model);
+    return !faction || factions.includes(faction) || canHireInFaction(model, faction);
+  };
+  const isRankMatch = model => !rank || getRanks(model).includes(rank);
+
+  return matches.find(model => isFactionMatch(model) && isRankMatch(model))
+    || matches.find(isFactionMatch)
+    || matches.find(isRankMatch)
+    || matches[0];
+}
+
+function getMatchModelIndex(model) {
+  if (!model) return null;
+  if (model._id !== undefined && model._id !== null) return model._id;
+  const index = models.indexOf(model);
+  return index >= 0 ? index : null;
+}
+
 function buildMatchRosterFromParsedCrew(crewEntry, parsed) {
   const costs = getParsedRosterCosts(parsed);
   return {
@@ -6025,11 +6077,17 @@ function buildMatchRosterFromParsedCrew(crewEntry, parsed) {
     usedFunding: costs.usedFunding,
     modelCount: parsed.entries.length,
     cardCount: (parsed.cards || []).length,
-    models: parsed.entries.map(entry => ({
-      name: entry.modelName,
-      rank: entry.rank || "",
-      equipment: (entry.equipment || []).map(eq => eq.name).filter(Boolean)
-    })),
+    models: parsed.entries.map(entry => {
+      const catalogModel = findMatchRosterModel(entry, parsed.faction);
+      return {
+        id: getMatchModelIndex(catalogModel),
+        name: entry.modelName,
+        rank: entry.rank || "",
+        rep: entry.rep,
+        funding: entry.funding,
+        equipment: (entry.equipment || []).map(eq => eq.name).filter(Boolean)
+      };
+    }),
     cards: aggregateMatchCards(parsed.cards || [])
   };
 }
@@ -6095,6 +6153,9 @@ function buildMatchCrewState(crewEntry) {
   return { parsed, validation, roster };
 }
 
+const MATCH_PAYLOAD_PREFIX_V2 = "BMG2:";
+const MATCH_RANK_CODES = ["Leader", "Sidekick", "Henchman", "Free Agent", "Vehicle"];
+
 function encodeBase64Url(text) {
   const bytes = new TextEncoder().encode(text);
   let binary = "";
@@ -6113,27 +6174,158 @@ function decodeBase64Url(value) {
 }
 
 function buildMatchPayloadCode(roster) {
-  const payload = {
-    type: "bmg-match-roster",
-    version: 1,
-    app: document.getElementById("appVersion")?.textContent?.trim() || "unknown",
-    createdAt: new Date().toISOString(),
-    roster
+  return `${MATCH_PAYLOAD_PREFIX_V2}${encodeBase64Url(JSON.stringify(compactMatchRoster(roster)))}`;
+}
+
+function encodeMatchRank(rank) {
+  if (!rank) return "";
+  const index = MATCH_RANK_CODES.indexOf(rank);
+  return index >= 0 ? index : rank;
+}
+
+function decodeMatchRank(value, model) {
+  if (typeof value === "number") return MATCH_RANK_CODES[value] || "";
+  if (value !== undefined && value !== null && value !== "") return String(value);
+  const ranks = getRanks(model || {});
+  return ranks.length === 1 ? ranks[0] : "";
+}
+
+function getMatchEquipmentCatalog(faction) {
+  if (typeof equipmentByFaction === "undefined") return [];
+  return Array.isArray(equipmentByFaction[faction]) ? equipmentByFaction[faction] : [];
+}
+
+function encodeMatchEquipmentList(equipmentNames, faction) {
+  const catalog = getMatchEquipmentCatalog(faction);
+  return (equipmentNames || []).map(name => {
+    const index = catalog.findIndex(item => item.name === name);
+    return index >= 0 ? index : name;
+  });
+}
+
+function decodeMatchEquipmentList(equipmentRefs, faction) {
+  const catalog = getMatchEquipmentCatalog(faction);
+  return (equipmentRefs || []).map(ref => {
+    if (typeof ref === "number") return catalog[ref]?.name || "";
+    return String(ref || "");
+  }).filter(Boolean);
+}
+
+function getMatchCardCatalogIndex(card) {
+  const catalog = getAllMatchCardsCatalog();
+  const key = getBuilderCardKey(card);
+  const name = getBuilderCardName(card);
+  const index = catalog.findIndex(item => getBuilderCardKey(item) === key || getBuilderCardName(item) === name);
+  return index >= 0 ? index : null;
+}
+
+function getMatchCardByRef(ref) {
+  const catalog = getAllMatchCardsCatalog();
+  if (typeof ref === "number") return catalog[ref] || null;
+  return catalog.find(card => getBuilderCardKey(card) === ref || getBuilderCardName(card) === ref) || null;
+}
+
+function getMatchModelByRef(ref, fallbackName = "", faction = "") {
+  if (typeof ref === "number") return models[ref] || null;
+  const numericRef = String(ref || "").match(/^\d+$/) ? numericValue(ref, null) : null;
+  if (numericRef !== null && models[numericRef]) return models[numericRef];
+  return findMatchRosterModel(fallbackName || String(ref || ""), faction);
+}
+
+function compactMatchModel(model, faction) {
+  const catalogModel = typeof model.id === "number" ? models[model.id] : findMatchRosterModel(model, faction);
+  const ref = typeof model.id === "number" ? model.id : getMatchModelIndex(catalogModel);
+  const row = [ref !== null && ref !== undefined ? ref : (model.name || "")];
+  const rank = encodeMatchRank(model.rank);
+  const equipment = encodeMatchEquipmentList(model.equipment || [], faction);
+
+  if (rank !== "" || equipment.length) row.push(rank);
+  if (equipment.length) row.push(equipment);
+  return row;
+}
+
+function compactMatchCard(card) {
+  const ref = getMatchCardCatalogIndex(card);
+  const row = [ref !== null && ref !== undefined ? ref : (card.id || card.name || "")];
+  const count = numericValue(card.count, 1);
+  if (count !== 1) row.push(count);
+  return row;
+}
+
+function compactMatchRoster(roster) {
+  const faction = roster.faction || "Unknown";
+  return [
+    faction,
+    roster.repLimit || 350,
+    roster.fundingLimit || 1500,
+    roster.usedRep || 0,
+    roster.usedFunding || 0,
+    (roster.models || []).map(model => compactMatchModel(model, faction)),
+    (roster.cards || []).map(compactMatchCard)
+  ];
+}
+
+function expandMatchRosterV2(compactRoster) {
+  const faction = compactRoster[0] || "Unknown";
+  const modelsList = Array.isArray(compactRoster[5]) ? compactRoster[5] : [];
+  const cardsList = Array.isArray(compactRoster[6]) ? compactRoster[6] : [];
+  const expandedModels = modelsList.map(row => {
+    const modelRow = Array.isArray(row) ? row : [row];
+    const baseModel = getMatchModelByRef(modelRow[0], "", faction);
+    return {
+      id: getMatchModelIndex(baseModel),
+      name: baseModel?.name || String(modelRow[0] || ""),
+      rank: decodeMatchRank(modelRow[1], baseModel),
+      rep: baseModel?.rep ?? "",
+      funding: baseModel?.funding ?? "",
+      equipment: decodeMatchEquipmentList(Array.isArray(modelRow[2]) ? modelRow[2] : [], faction)
+    };
+  });
+  const expandedCards = cardsList.map(row => {
+    const cardRow = Array.isArray(row) ? row : [row];
+    const card = getMatchCardByRef(cardRow[0]);
+    const count = numericValue(cardRow[1], 1);
+    return {
+      id: card ? getBuilderCardKey(card) : String(cardRow[0] || ""),
+      name: card ? getBuilderCardName(card) : String(cardRow[0] || ""),
+      count,
+      type: card?.type || ""
+    };
+  });
+
+  return {
+    title: faction,
+    faction,
+    repLimit: compactRoster[1] || 350,
+    fundingLimit: compactRoster[2] || 1500,
+    usedRep: compactRoster[3] || 0,
+    usedFunding: compactRoster[4] || 0,
+    modelCount: expandedModels.length,
+    cardCount: expandedCards.reduce((sum, card) => sum + numericValue(card.count, 1), 0),
+    models: expandedModels,
+    cards: expandedCards
   };
-  return `BMGMATCH:v1:${encodeBase64Url(JSON.stringify(payload))}`;
+}
+
+function expandMatchRoster(compactRoster) {
+  if (!Array.isArray(compactRoster)) return null;
+  return expandMatchRosterV2(compactRoster);
 }
 
 function parseMatchPayloadCode(rawCode) {
   const code = String(rawCode || "").trim();
-  if (!code.startsWith("BMGMATCH:v1:")) {
+  if (!code.startsWith(MATCH_PAYLOAD_PREFIX_V2)) {
     throw new Error(t("match_payload_invalid"));
   }
-  const json = decodeBase64Url(code.replace("BMGMATCH:v1:", ""));
-  const payload = JSON.parse(json);
-  if (!payload || payload.type !== "bmg-match-roster" || !payload.roster) {
+  const payload = JSON.parse(decodeBase64Url(code.replace(MATCH_PAYLOAD_PREFIX_V2, "")));
+  if (!Array.isArray(payload)) {
     throw new Error(t("match_payload_invalid"));
   }
-  return payload;
+  return {
+    t: "bmg-match-roster",
+    v: 2,
+    roster: expandMatchRoster(payload)
+  };
 }
 
 function renderMatchSection() {
@@ -6157,6 +6349,7 @@ function renderMatchSection() {
 
   renderMatchCrewStatus();
   renderMatchOpponentRoster();
+  updateMatchStartGameButton();
 }
 
 function selectMatchCrew(crewId) {
@@ -6165,6 +6358,7 @@ function selectMatchCrew(crewId) {
   const box = $("matchQrBox");
   if (box) box.classList.add("hidden");
   renderMatchCrewStatus();
+  updateMatchStartGameButton();
 }
 
 function renderMatchCrewStatus() {
@@ -6173,18 +6367,20 @@ function renderMatchCrewStatus() {
   const scanButton = $("matchScanQrBtn");
   if (!status) return;
 
-  showButton.disabled = true;
-  scanButton.disabled = true;
+  if (showButton) showButton.disabled = true;
+  if (scanButton) scanButton.disabled = true;
   matchCurrentPayloadCode = "";
 
   if (!myCrews.length) {
     status.innerHTML = `<div class="match-status-line is-warning">${t("match_no_crews")}</div>`;
+    updateMatchStartGameButton();
     return;
   }
 
   const crewEntry = getMatchSelectedCrewEntry();
   if (!crewEntry) {
     status.innerHTML = `<div class="match-status-line">${t("match_choose_placeholder")}</div>`;
+    updateMatchStartGameButton();
     return;
   }
 
@@ -6192,8 +6388,8 @@ function renderMatchCrewStatus() {
     const state = buildMatchCrewState(crewEntry);
     const roster = state.roster;
     const isLegal = state.validation.isLegal;
-    showButton.disabled = !isLegal;
-    scanButton.disabled = !isLegal;
+    if (showButton) showButton.disabled = !isLegal;
+    if (scanButton) scanButton.disabled = !isLegal;
     if (isLegal) {
       matchCurrentPayloadCode = buildMatchPayloadCode(roster);
     }
@@ -6218,6 +6414,29 @@ function renderMatchCrewStatus() {
   } catch (error) {
     status.innerHTML = `<div class="match-status-line is-warning">${escapeHtml(error.message || t("match_roster_invalid"))}</div>`;
   }
+  updateMatchStartGameButton();
+}
+
+function getValidMatchOwnState() {
+  const crewEntry = getMatchSelectedCrewEntry();
+  if (!crewEntry) return null;
+
+  try {
+    const state = buildMatchCrewState(crewEntry);
+    return state.validation.isLegal ? state : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function canStartMatchGame() {
+  return Boolean(getValidMatchOwnState() && matchOpponentRoster);
+}
+
+function updateMatchStartGameButton() {
+  const button = $("matchStartGameBtn");
+  if (!button) return;
+  button.disabled = !canStartMatchGame();
 }
 
 function getCurrentMatchStateOrAlert() {
@@ -6240,6 +6459,53 @@ function getCurrentMatchStateOrAlert() {
   }
 }
 
+function renderMatchQrUnavailable(canvas) {
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#111111";
+  ctx.font = "16px sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("QR unavailable", canvas.width / 2, canvas.height / 2);
+}
+
+function renderMatchQrWithFallback(canvas, code, onFailure) {
+  const renderers = [
+    window.BMGLocalQRCode,
+    window.QRCode
+  ].filter(qr => qr && typeof qr.toCanvas === "function");
+
+  const tryRenderer = index => {
+    const qr = renderers[index];
+    if (!qr) {
+      renderMatchQrUnavailable(canvas);
+      if (typeof onFailure === "function") onFailure();
+      return;
+    }
+
+    try {
+      qr.toCanvas(canvas, code, {
+        width: 280,
+        margin: 2,
+        errorCorrectionLevel: "L",
+        color: { dark: "#000000", light: "#ffffff" }
+      }, error => {
+        if (error) {
+          console.warn("QR render failed", error);
+          tryRenderer(index + 1);
+        }
+      });
+    } catch (error) {
+      console.warn("QR render failed", error);
+      tryRenderer(index + 1);
+    }
+  };
+
+  tryRenderer(0);
+}
+
 function showMatchQr() {
   const state = getCurrentMatchStateOrAlert();
   if (!state) return;
@@ -6253,29 +6519,9 @@ function showMatchQr() {
   textarea.value = matchCurrentPayloadCode;
   box.classList.remove("hidden");
 
-  const qr = window.QRCode;
-  if (qr && typeof qr.toCanvas === "function") {
-    qr.toCanvas(canvas, matchCurrentPayloadCode, {
-      width: 280,
-      margin: 2,
-      errorCorrectionLevel: "L",
-      color: { dark: "#000000", light: "#ffffff" }
-    }, error => {
-      if (error) {
-        console.warn("QR render failed", error);
-        alert(t("match_qr_unavailable"));
-      }
-    });
-  } else {
-    const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#111111";
-    ctx.font = "16px sans-serif";
-    ctx.textAlign = "center";
-    ctx.fillText("QR unavailable", canvas.width / 2, canvas.height / 2);
+  renderMatchQrWithFallback(canvas, matchCurrentPayloadCode, () => {
     alert(t("match_qr_unavailable"));
-  }
+  });
 }
 
 function copyMatchCode() {
@@ -6293,6 +6539,7 @@ function importMatchPayloadCode(code) {
   matchOpponentRoster = payload.roster;
   saveMatchOpponentToStorage();
   renderMatchOpponentRoster();
+  updateMatchStartGameButton();
 }
 
 function importMatchCodeFromTextarea() {
@@ -6311,6 +6558,7 @@ function renderMatchOpponentRoster() {
 
   if (!matchOpponentRoster) {
     container.innerHTML = `<div class="match-status-line">${t("match_no_opponent")}</div>`;
+    updateMatchStartGameButton();
     return;
   }
 
@@ -6340,6 +6588,216 @@ function renderMatchOpponentRoster() {
       ${cardsHtml}
     </div>
   `;
+  updateMatchStartGameButton();
+}
+
+function startMatchGame() {
+  const ownState = getValidMatchOwnState();
+  if (!ownState) {
+    alert(t("match_own_roster_required"));
+    return;
+  }
+  if (!matchOpponentRoster) {
+    alert(t("match_opponent_required"));
+    return;
+  }
+
+  matchGameRosters = {
+    own: ownState.roster,
+    opponent: matchOpponentRoster
+  };
+  matchGameSide = "own";
+  matchGameCardsExpanded = false;
+
+  currentMode = 'match-game';
+  closeMatchQrScanner();
+  $('mainMenu').style.display = 'none';
+  $('cardsSection').style.display = 'none';
+  $('builderSection').style.display = 'none';
+  $('myCrewsSection').style.display = 'none';
+  $('matchSection').style.display = 'none';
+  $('matchGameSection').style.display = 'block';
+  $('compendiumModal').classList.remove('active');
+  $('modelSearchModal').classList.remove('active');
+  initMatchGameSwipe();
+  renderMatchGame();
+}
+
+function setMatchGameSide(side) {
+  const nextSide = side === "opponent" ? "opponent" : "own";
+  if (matchGameSide !== nextSide) {
+    matchGameCardsExpanded = false;
+  }
+  matchGameSide = nextSide;
+  renderMatchGame();
+}
+
+function getMatchGameRoster() {
+  if (!matchGameRosters) return null;
+  return matchGameSide === "opponent" ? matchGameRosters.opponent : matchGameRosters.own;
+}
+
+function findMatchGameBaseModel(modelEntry, faction = "") {
+  if (typeof modelEntry?.id === "number") return models[modelEntry.id] || null;
+  return findMatchRosterModel(modelEntry, faction);
+}
+
+function renderMatchRankIcons(modelEntry, baseModel) {
+  const ranks = modelEntry.rank ? [modelEntry.rank] : getRanks(baseModel || {});
+  if (!ranks.length) return "";
+  return `
+    <div class="mini-ranks">
+      ${ranks.map(rank => `<img src="img/${escapeAttribute(rank)}.png" alt="${escapeAttribute(rank)}" class="rank-icon" onerror="this.src='img/no.png'">`).join("")}
+    </div>
+  `;
+}
+
+function renderMatchGameModelCard(modelEntry) {
+  const roster = getMatchGameRoster();
+  const baseModel = findMatchGameBaseModel(modelEntry, roster?.faction || "");
+  const modelIndex = getMatchModelIndex(baseModel);
+  const img = baseModel?.img || "img/no.png";
+  const rep = displayValue(modelEntry.rep ?? baseModel?.rep, 0);
+  const funding = displayValue(modelEntry.funding ?? baseModel?.funding, 0);
+  const equipment = Array.isArray(modelEntry.equipment) && modelEntry.equipment.length
+    ? `<div class="match-game-equipment">${escapeHtml(modelEntry.equipment.join(", "))}</div>`
+    : "";
+  const fullCardClick = modelIndex !== null && modelIndex >= 0 ? ` onclick="showFullCard(models[${modelIndex}])"` : "";
+
+  return `
+    <div class="mini-card in-crew match-game-model-card"${fullCardClick}>
+      <img src="${escapeAttribute(img)}" onerror="this.src='img/no.png'">
+      <div class="mini-info">
+        <div class="mini-name">${escapeHtml(modelEntry.name)}</div>
+        ${baseModel ? renderModelAffiliationLine(baseModel) : ""}
+        ${renderMatchRankIcons(modelEntry, baseModel)}
+        <div class="mini-rep">${escapeHtml(rep)} Rep • $${escapeHtml(funding)}</div>
+        ${equipment}
+      </div>
+    </div>
+  `;
+}
+
+function renderMatchGameCards(roster) {
+  const cards = Array.isArray(roster?.cards) ? roster.cards : [];
+  const totalCards = roster?.cardCount || cards.reduce((sum, card) => sum + numericValue(card.count, 1), 0);
+  if (!cards.length) {
+    return `
+      <div class="match-roster-list">
+        <div class="match-roster-list-title">${t("match_cards")}: 0</div>
+        <div>—</div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="match-roster-list match-game-card-list ${matchGameCardsExpanded ? "is-open" : ""}">
+      <button class="match-game-cards-toggle" type="button" onclick="toggleMatchGameCards()">
+        <span>${t("match_cards")}: ${escapeHtml(totalCards)}</span>
+        <span>${matchGameCardsExpanded ? t("match_cards_collapse") : t("match_cards_expand")}</span>
+      </button>
+      ${matchGameCardsExpanded
+        ? cards.map(card => `
+          <button class="match-game-card-row" type="button" onclick="showMatchGameCard('${encodeURIComponent(card.name)}')">
+            <span>${escapeHtml(card.name)}${card.count > 1 ? ` x${escapeHtml(card.count)}` : ""}</span>
+            ${card.type ? `<small>${escapeHtml(card.type)}</small>` : ""}
+          </button>
+        `).join("")
+        : `<div class="match-cards-collapsed-hint">${t("match_cards_collapsed_hint")}</div>`
+      }
+    </div>
+  `;
+}
+
+function toggleMatchGameCards() {
+  matchGameCardsExpanded = !matchGameCardsExpanded;
+  renderMatchGame();
+}
+
+function showMatchGameCard(encodedCardName) {
+  const cardName = decodeURIComponent(encodedCardName || "");
+  const card = findBuilderCardByName(cardName);
+
+  if (!card) {
+    showTraitPopup(cardName || t("match_cards"), `<div>${escapeHtml(cardName || "—")}</div>`);
+    return;
+  }
+
+  const imageHtml = card.img
+    ? `<img src="${escapeAttribute(card.img)}" alt="${escapeAttribute(getBuilderCardName(card))}" class="match-card-preview-img" onerror="this.style.display='none'">`
+    : "";
+  const textHtml = getBuilderCardTranslationHTML(card) || renderBuilderCardMeta(card) || "";
+
+  showTraitPopup(
+    getBuilderCardName(card),
+    `<div class="match-card-preview">${imageHtml}${textHtml ? `<div class="match-card-preview-text">${textHtml}</div>` : ""}</div>`
+  );
+}
+
+function renderMatchGame() {
+  const roster = getMatchGameRoster();
+  const ownButton = $("matchGameOwnBtn");
+  const opponentButton = $("matchGameOpponentBtn");
+  if (ownButton) {
+    ownButton.classList.toggle("active", matchGameSide === "own");
+    ownButton.setAttribute("aria-pressed", matchGameSide === "own" ? "true" : "false");
+  }
+  if (opponentButton) {
+    opponentButton.classList.toggle("active", matchGameSide === "opponent");
+    opponentButton.setAttribute("aria-pressed", matchGameSide === "opponent" ? "true" : "false");
+  }
+
+  const summary = $("matchGameSummary");
+  const modelsContainer = $("matchGameModels");
+  const cardsContainer = $("matchGameCards");
+  if (!summary || !modelsContainer || !cardsContainer) return;
+
+  if (!roster) {
+    summary.innerHTML = `<div class="match-status-line is-warning">${t("match_game_empty")}</div>`;
+    modelsContainer.innerHTML = "";
+    cardsContainer.innerHTML = "";
+    return;
+  }
+
+  summary.innerHTML = `
+    <div class="match-roster-head">
+      <div class="match-roster-title">${escapeHtml(roster.title || "Crew")}</div>
+      <div class="match-roster-meta">${escapeHtml(roster.faction || "Unknown")}</div>
+    </div>
+    <div class="match-roster-meta">
+      ${t("match_limits")}: REP ${escapeHtml(roster.repLimit)} / $${escapeHtml(roster.fundingLimit)}
+      • ${t("match_used")}: REP ${escapeHtml(roster.usedRep)} / $${escapeHtml(roster.usedFunding)}
+    </div>
+  `;
+
+  const rosterModels = Array.isArray(roster.models) ? roster.models : [];
+  modelsContainer.innerHTML = rosterModels.length
+    ? rosterModels.map(renderMatchGameModelCard).join("")
+    : `<div class="match-status-line is-warning">${t("match_game_empty")}</div>`;
+  cardsContainer.innerHTML = renderMatchGameCards(roster);
+}
+
+function initMatchGameSwipe() {
+  const area = $("matchGameSwipeArea");
+  if (!area || area.dataset.swipeReady === "true") return;
+  area.dataset.swipeReady = "true";
+
+  let startX = 0;
+  let startY = 0;
+
+  area.addEventListener("touchstart", event => {
+    const touch = event.touches[0];
+    startX = touch.clientX;
+    startY = touch.clientY;
+  }, { passive: true });
+
+  area.addEventListener("touchend", event => {
+    const touch = event.changedTouches[0];
+    const dx = touch.clientX - startX;
+    const dy = touch.clientY - startY;
+    if (Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy) * 1.25) return;
+    setMatchGameSide(dx < 0 ? "opponent" : "own");
+  }, { passive: true });
 }
 
 function closeMatchQrScanner() {
@@ -6449,6 +6907,7 @@ function showMatch() {
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
   $('matchSection').style.display = 'block';
+  $('matchGameSection').style.display = 'none';
   $('compendiumModal').classList.remove('active');
   $('modelSearchModal').classList.remove('active');
   loadMatchOpponentFromStorage();
@@ -6464,6 +6923,7 @@ function showCards() {
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
   $('matchSection').style.display = 'none';
+  $('matchGameSection').style.display = 'none';
   $('compendiumModal').classList.remove('active');
 
   // Сбрасываем фракцию и показываем вкладки
@@ -6485,6 +6945,7 @@ function showBuilder() {
   $('builderSection').style.display = 'block';
   $('myCrewsSection').style.display = 'none';
   $('matchSection').style.display = 'none';
+  $('matchGameSection').style.display = 'none';
   $('factionSelect').style.display = 'block';
   $('builderMain').style.display = 'none';
   $('compendiumModal').classList.remove('active');
@@ -6501,6 +6962,7 @@ function showRules() {
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
   $('matchSection').style.display = 'none';
+  $('matchGameSection').style.display = 'none';
   openCompendium();
 }
 
@@ -6513,6 +6975,7 @@ function backToMenu() {
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
   $('matchSection').style.display = 'none';
+  $('matchGameSection').style.display = 'none';
   $('compendiumModal').classList.remove('active');
   $('modelSearchModal').classList.remove('active');
   resetCrew();

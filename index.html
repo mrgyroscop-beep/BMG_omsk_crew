@@ -394,6 +394,7 @@
         <div class="match-actions">
           <button id="matchShowQrBtn" class="match-action-btn" type="button" onclick="showMatchQr()" disabled data-i18n="match_show_qr">Показать QR</button>
           <button id="matchScanQrBtn" class="match-action-btn secondary" type="button" onclick="startMatchQrScanner()" disabled data-i18n="match_scan_qr">Сканировать QR</button>
+          <button id="matchStartGameBtn" class="match-action-btn match-play-btn" type="button" onclick="startMatchGame()" disabled data-i18n="match_start_game">Игра</button>
         </div>
       </section>
 
@@ -413,6 +414,34 @@
         <h2 data-i18n="match_opponent">Оппонент</h2>
         <div id="matchOpponentRoster" class="match-opponent-roster"></div>
       </section>
+    </div>
+  </div>
+
+  <!-- ИГРА: ПРОСМОТР ДВУХ РОСТЕРОВ -->
+  <div id="matchGameSection" style="display:none;">
+    <div class="top-bar">
+      <div class="top-bar-content">
+        <h1 data-i18n="match_game_title">ИГРА</h1>
+        <div class="header-buttons">
+          <div class="lang-switch header-lang-switch">
+            <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+          </div>
+          <button class="compendium-small-btn" onclick="showMatch()">
+            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="builder-content-switch match-game-switch" role="tablist" aria-label="Match rosters">
+        <button id="matchGameOwnBtn" class="builder-content-switch-btn active" type="button" onclick="setMatchGameSide('own')" data-i18n="match_my_side">МОЯ</button>
+        <button id="matchGameOpponentBtn" class="builder-content-switch-btn" type="button" onclick="setMatchGameSide('opponent')" data-i18n="match_opponent_side">ОППОНЕНТ</button>
+      </div>
+    </div>
+
+    <div id="matchGameSwipeArea" class="match-game-area">
+      <div id="matchGameSummary" class="match-game-summary"></div>
+      <div id="matchGameModels" class="models-list match-game-models"></div>
+      <div id="matchGameCards" class="match-game-cards"></div>
     </div>
   </div>
 
@@ -481,6 +510,7 @@
 
   <script src="data.js"></script>
   <script src="printable-models.js"></script>
+  <script src="local-qrcode.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js" defer></script>
   <script src="script.js"></script>

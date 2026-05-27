@@ -960,6 +960,147 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   background: #000;
 }
 
+.match-play-btn:not(:disabled) {
+  background: #ffd700;
+  color: #000;
+  box-shadow: 0 0 22px rgba(255,215,0,.5);
+}
+
+.match-game-area {
+  width: min(1040px, calc(100vw - 20px));
+  margin: 0 auto 28px;
+  padding-top: 10px;
+  touch-action: pan-y;
+}
+
+.match-game-summary {
+  display: grid;
+  gap: 8px;
+  margin: 10px 10px 4px;
+  padding: 14px;
+  border: 2px solid #303030;
+  border-radius: 8px;
+  background: #171717;
+  box-shadow: 0 6px 22px rgba(0,0,0,.4);
+}
+
+.match-game-switch {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.match-game-models .mini-card {
+  border-color: #303030;
+}
+
+.match-game-models .mini-card:hover {
+  border-color: #e94560;
+}
+
+.match-game-equipment {
+  margin-top: 5px;
+  color: #bfc1c8;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.match-game-cards {
+  margin: 0 10px 22px;
+}
+
+.match-game-card-list {
+  gap: 8px;
+}
+
+.match-game-cards-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: #151515;
+  color: #ffd700;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.match-game-cards-toggle span:last-child {
+  color: #e94560;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.match-game-card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  min-height: 42px;
+  padding: 9px 10px;
+  border: 1px solid #303030;
+  border-radius: 8px;
+  background: #181818;
+  color: #fff;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  text-align: left;
+}
+
+.match-game-card-row:hover {
+  border-color: #e94560;
+  color: #ffd700;
+}
+
+.match-game-card-row small {
+  color: #bfc1c8;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.match-cards-collapsed-hint {
+  color: #8f949e;
+  font-size: 13px;
+  line-height: 1.35;
+  padding: 4px 2px 2px;
+}
+
+.match-card-preview {
+  display: grid;
+  gap: 14px;
+}
+
+.match-card-preview-img {
+  width: min(100%, 320px);
+  margin: 0 auto;
+  border-radius: 8px;
+  background: #111;
+  box-shadow: 0 8px 24px rgba(0,0,0,.38);
+}
+
+.match-card-preview-text {
+  color: #f4f4f4;
+  padding: 10px 12px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: #101010;
+  line-height: 1.5;
+}
+
+.match-card-preview-text div {
+  color: #ffd700;
+}
+
 .main-menu-footer {
   margin-top: 40px;
   text-align: center;
