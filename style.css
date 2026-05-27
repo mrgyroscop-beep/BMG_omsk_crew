@@ -288,6 +288,7 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 .weapon-trait-chip:hover { background:#fff; }
 .official-traits-grid { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-top:2px; padding:2px 18px; }
 .official-trait { background:#ffd700; color:#000; padding:11px 14px; border-radius:30px; font-weight:bold; font-size:12.5px; cursor:pointer; box-shadow:0 4px 10px rgba(0,0,0,.3); transition:all .25s; }
+.official-trait.rule-added-trait-highlight { background:#ff4444 !important; color:#fff !important; border:2px solid #ff8a8a !important; text-shadow:0 0 10px rgba(255,255,255,.25); box-shadow:0 0 14px rgba(255,68,68,.55) !important; }
 .official-trait:hover { background:#fff; }
 .official-trait.special { background:#000; color:#fff; border:2px solid #ffd700; box-shadow:0 4px 15px rgba(139,0,255,0.6); }
 .official-trait.special:hover { background:#a020f0; transform:translateY(-2px); }
@@ -1016,6 +1017,18 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
   color: #bfc1c8;
   font-size: 12px;
   line-height: 1.35;
+}
+
+.match-game-equipment span {
+  color: #ffd700;
+}
+
+.match-game-rule-note {
+  margin-top: 5px;
+  color: #ff4444;
+  font-size: 12px;
+  line-height: 1.35;
+  text-shadow: 0 0 10px rgba(255,68,68,.45);
 }
 
 .match-game-cards {

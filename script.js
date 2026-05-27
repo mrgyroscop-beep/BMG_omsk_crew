@@ -5998,7 +5998,7 @@ function matchText(ru, en) {
 function loadMatchOpponentFromStorage() {
   try {
     const raw = localStorage.getItem(MATCH_OPPONENT_STORAGE_KEY);
-    matchOpponentRoster = raw ? JSON.parse(raw) : null;
+    matchOpponentRoster = raw ? applyMatchRosterRuleEffects(JSON.parse(raw)) : null;
   } catch (error) {
     console.warn("Failed to load opponent roster", error);
     matchOpponentRoster = null;
@@ -6103,9 +6103,105 @@ function getMatchModelIndex(model) {
   return index >= 0 ? index : null;
 }
 
+function getMatchRosterModelBase(roster, modelEntry) {
+  if (typeof modelEntry?.id === "number") return models[modelEntry.id] || null;
+  return findMatchRosterModel(modelEntry, roster?.faction || "");
+}
+
+function getEquipmentEntryName(entry) {
+  if (!entry) return "";
+  if (typeof entry === "string") return entry.trim();
+  if (typeof entry.name === "string") return entry.name.trim();
+  if (typeof entry.equipmentName === "string") return entry.equipmentName.trim();
+  if (typeof entry.title === "string") return entry.title.trim();
+  return "";
+}
+
+function getMatchModelEquipmentNames(modelEntry) {
+  if (!modelEntry) return [];
+  const names = [];
+  const addName = entry => {
+    if (Array.isArray(entry)) {
+      entry.forEach(addName);
+      return;
+    }
+
+    const name = getEquipmentEntryName(entry).replace(/\s+/g, " ").trim();
+    if (!name) return;
+    const key = normalizeEquipmentMatchName(name);
+    if (!names.some(existing => normalizeEquipmentMatchName(existing) === key)) {
+      names.push(name);
+    }
+  };
+
+  addName(modelEntry.equipment);
+  addName(modelEntry.upgrades);
+  addName(modelEntry.equipmentNames);
+  return names;
+}
+
+function getMatchEquipmentLabel() {
+  return currentLang === "ru" ? "Апдейты" : "Upgrades";
+}
+
+function getMatchRosterBossEntry(roster) {
+  const rosterModels = Array.isArray(roster?.models) ? roster.models : [];
+  return rosterModels.find(model => model.rank === "Leader")
+    || rosterModels.find(model => model.rank === "Sidekick")
+    || null;
+}
+
+function isMatchRosterPossessedRecruit(roster, modelEntry) {
+  if (!roster || !modelEntry || modelEntry.rank !== "Henchman") return false;
+
+  const bossEntry = getMatchRosterBossEntry(roster);
+  const bossModel = getMatchRosterModelBase(roster, bossEntry);
+  if (!bossModel || !hasTrait(bossModel, "Possessed")) return false;
+
+  const baseModel = getMatchRosterModelBase(roster, modelEntry);
+  if (!baseModel || hasForbiddenPossessedRecruitTrait(baseModel)) return false;
+
+  return !canHireInFaction(baseModel, roster.faction);
+}
+
+function applyMatchRosterRuleEffects(roster) {
+  if (!roster) return roster;
+  const normalizedRoster = {
+    ...roster,
+    models: (roster.models || []).map(model => ({
+      ...model,
+      equipment: getMatchModelEquipmentNames(model),
+      hiredByPossessed: false,
+      assumedFaction: null,
+      possessedWillpowerPenalty: 0,
+      ruleAddedTraits: [],
+      ruleModifiedStats: {}
+    }))
+  };
+
+  normalizedRoster.models.forEach(modelEntry => {
+    if (!isMatchRosterPossessedRecruit(normalizedRoster, modelEntry)) return;
+    modelEntry.hiredByPossessed = true;
+    modelEntry.assumedFaction = normalizedRoster.faction;
+    modelEntry.possessedWillpowerPenalty = 1;
+    modelEntry.ruleModifiedStats.Willpower = {
+      source: "Possessed",
+      delta: -1
+    };
+    const baseModel = getMatchRosterModelBase(normalizedRoster, modelEntry);
+    if (baseModel && !hasTrait(baseModel, "Self-Discipline")) {
+      if (!modelEntry.ruleAddedTraits.includes("Self-Discipline")) {
+        modelEntry.ruleAddedTraits.push("Self-Discipline");
+      }
+    }
+  });
+
+  return normalizedRoster;
+}
+
 function buildMatchRosterFromParsedCrew(crewEntry, parsed) {
   const costs = getParsedRosterCosts(parsed);
-  return {
+  const roster = {
     title: crewEntry.title || parsed.crewName || parsed.faction || "Crew",
     faction: parsed.faction,
     repLimit: parsed.repLimit || 350,
@@ -6127,6 +6223,7 @@ function buildMatchRosterFromParsedCrew(crewEntry, parsed) {
     }),
     cards: aggregateMatchCards(parsed.cards || [])
   };
+  return applyMatchRosterRuleEffects(roster);
 }
 
 function validateMatchRoster(parsed) {
@@ -6362,7 +6459,7 @@ function encodeMatchPayloadBytes(roster) {
     writeMatchCatalogRef(bytes, modelIndex, model.name || catalogModel?.name || "");
     writeMatchRankRef(bytes, model.rank || "");
 
-    const equipment = Array.isArray(model.equipment) ? model.equipment : [];
+    const equipment = getMatchModelEquipmentNames(model);
     const equipmentCatalog = getMatchEquipmentCatalog(faction);
     writeMatchVarint(bytes, equipment.length);
     equipment.forEach(name => {
@@ -6443,7 +6540,7 @@ function decodeMatchPayloadBytes(body) {
     });
   }
 
-  return {
+  return applyMatchRosterRuleEffects({
     title: faction,
     faction,
     repLimit,
@@ -6454,7 +6551,7 @@ function decodeMatchPayloadBytes(body) {
     cardCount: expandedCards.reduce((sum, card) => sum + numericValue(card.count, 1), 0),
     models: expandedModels,
     cards: expandedCards
-  };
+  });
 }
 
 function normalizeMatchPayloadCode(rawCode) {
@@ -6697,7 +6794,7 @@ function copyMatchCode() {
 
 function importMatchPayloadCode(code) {
   const payload = parseMatchPayloadCode(code);
-  matchOpponentRoster = payload.roster;
+  matchOpponentRoster = applyMatchRosterRuleEffects(payload.roster);
   saveMatchOpponentToStorage();
   renderMatchOpponentRoster();
   updateMatchStartGameButton();
@@ -6734,7 +6831,10 @@ function renderMatchOpponentRoster() {
 
   const roster = matchOpponentRoster;
   const modelsHtml = (roster.models || [])
-    .map(model => `<div>• ${escapeHtml(model.name)}${model.rank ? ` [${escapeHtml(model.rank)}]` : ""}${model.equipment?.length ? ` — ${escapeHtml(model.equipment.join(", "))}` : ""}</div>`)
+    .map(model => {
+      const equipmentNames = getMatchModelEquipmentNames(model);
+      return `<div>• ${escapeHtml(model.name)}${model.rank ? ` [${escapeHtml(model.rank)}]` : ""}${equipmentNames.length ? ` — ${escapeHtml(getMatchEquipmentLabel())}: ${escapeHtml(equipmentNames.join(", "))}` : ""}</div>`;
+    })
     .join("") || `<div>—</div>`;
   const cardsHtml = (roster.cards || [])
     .map(card => `<div>• ${escapeHtml(card.name)}${card.count > 1 ? ` x${card.count}` : ""}</div>`)
@@ -6773,8 +6873,8 @@ function startMatchGame() {
   }
 
   matchGameRosters = {
-    own: ownState.roster,
-    opponent: matchOpponentRoster
+    own: applyMatchRosterRuleEffects(ownState.roster),
+    opponent: applyMatchRosterRuleEffects(matchOpponentRoster)
   };
   matchGameSide = "own";
   matchGameCardsExpanded = false;
@@ -6812,6 +6912,61 @@ function findMatchGameBaseModel(modelEntry, faction = "") {
   return findMatchRosterModel(modelEntry, faction);
 }
 
+function getMatchEquipmentObjects(equipmentNames, faction) {
+  const catalog = getMatchEquipmentCatalog(faction);
+  return getMatchModelEquipmentNames({ equipment: equipmentNames }).map(name => {
+    const equipment = catalog.find(item => item.name === name);
+    return equipment ? { ...equipment } : { name, effects: [] };
+  });
+}
+
+function buildMatchGameDisplayModel(modelEntry, roster) {
+  const baseModel = findMatchGameBaseModel(modelEntry, roster?.faction || "");
+  const displayModel = baseModel
+    ? {
+        ...baseModel,
+        stats: { ...(baseModel.stats || {}) },
+        traits: [...getModelTraits(baseModel)],
+        weapons: Array.isArray(baseModel.weapons) ? baseModel.weapons.map(weapon => ({ ...weapon })) : [],
+        faction: Array.isArray(baseModel.faction) ? [...baseModel.faction] : baseModel.faction,
+        rivals: Array.isArray(baseModel.rivals) ? [...baseModel.rivals] : baseModel.rivals
+      }
+    : {
+        name: modelEntry?.name || "Unknown",
+        realname: "—",
+        base: "30mm",
+        img: "img/no.png",
+        stats: {},
+        traits: [],
+        weapons: [],
+        faction: roster?.faction ? [roster.faction] : []
+      };
+
+  displayModel._matchDisplayModel = true;
+  displayModel.rank = modelEntry.rank || displayModel.rank;
+  displayModel.rankUsed = modelEntry.rank || displayModel.rankUsed;
+  displayModel.rep = modelEntry.rep ?? displayModel.rep;
+  displayModel.funding = modelEntry.funding ?? displayModel.funding;
+  displayModel.equipment = getMatchEquipmentObjects(getMatchModelEquipmentNames(modelEntry), roster?.faction || "");
+  const entryRuleAddedTraits = Array.isArray(modelEntry.ruleAddedTraits) ? [...modelEntry.ruleAddedTraits] : [];
+  displayModel.ruleAddedTraits = [];
+  displayModel.ruleModifiedStats = modelEntry.ruleModifiedStats ? { ...modelEntry.ruleModifiedStats } : {};
+  entryRuleAddedTraits.forEach(trait => addRuleAddedTrait(displayModel, trait, "Rule"));
+
+  if (modelEntry.hiredByPossessed) {
+    applyPossessedRecruitmentEffects(displayModel, [roster?.faction || "Unknown"]);
+  }
+
+  return displayModel;
+}
+
+function showMatchGameModel(modelIndex) {
+  const roster = getMatchGameRoster();
+  const modelEntry = Array.isArray(roster?.models) ? roster.models[modelIndex] : null;
+  if (!modelEntry) return;
+  showFullCard(buildMatchGameDisplayModel(modelEntry, roster));
+}
+
 function renderMatchRankIcons(modelEntry, baseModel) {
   const ranks = modelEntry.rank ? [modelEntry.rank] : getRanks(baseModel || {});
   if (!ranks.length) return "";
@@ -6822,26 +6977,29 @@ function renderMatchRankIcons(modelEntry, baseModel) {
   `;
 }
 
-function renderMatchGameModelCard(modelEntry) {
+function renderMatchGameModelCard(modelEntry, rosterIndex) {
   const roster = getMatchGameRoster();
   const baseModel = findMatchGameBaseModel(modelEntry, roster?.faction || "");
-  const modelIndex = getMatchModelIndex(baseModel);
   const img = baseModel?.img || "img/no.png";
   const rep = displayValue(modelEntry.rep ?? baseModel?.rep, 0);
   const funding = displayValue(modelEntry.funding ?? baseModel?.funding, 0);
-  const equipment = Array.isArray(modelEntry.equipment) && modelEntry.equipment.length
-    ? `<div class="match-game-equipment">${escapeHtml(modelEntry.equipment.join(", "))}</div>`
+  const equipmentNames = getMatchModelEquipmentNames(modelEntry);
+  const equipment = equipmentNames.length
+    ? `<div class="match-game-equipment"><span>${escapeHtml(getMatchEquipmentLabel())}:</span> ${escapeHtml(equipmentNames.join(", "))}</div>`
     : "";
-  const fullCardClick = modelIndex !== null && modelIndex >= 0 ? ` onclick="showFullCard(models[${modelIndex}])"` : "";
+  const possessedBadge = modelEntry.hiredByPossessed
+    ? `<div class="match-game-rule-note">Possessed: -1 Willpower • Self-Discipline</div>`
+    : "";
 
   return `
-    <div class="mini-card in-crew match-game-model-card"${fullCardClick}>
+    <div class="mini-card in-crew match-game-model-card" onclick="showMatchGameModel(${rosterIndex})">
       <img src="${escapeAttribute(img)}" onerror="this.src='img/no.png'">
       <div class="mini-info">
         <div class="mini-name">${escapeHtml(modelEntry.name)}</div>
         ${baseModel ? renderModelAffiliationLine(baseModel) : ""}
         ${renderMatchRankIcons(modelEntry, baseModel)}
         <div class="mini-rep">${escapeHtml(rep)} Rep • $${escapeHtml(funding)}</div>
+        ${possessedBadge}
         ${equipment}
       </div>
     </div>
@@ -6942,7 +7100,7 @@ function renderMatchGame() {
 
   const rosterModels = Array.isArray(roster.models) ? roster.models : [];
   modelsContainer.innerHTML = rosterModels.length
-    ? rosterModels.map(renderMatchGameModelCard).join("")
+    ? rosterModels.map((modelEntry, index) => renderMatchGameModelCard(modelEntry, index)).join("")
     : `<div class="match-status-line is-warning">${t("match_game_empty")}</div>`;
   cardsContainer.innerHTML = renderMatchGameCards(roster);
 }
@@ -8718,19 +8876,26 @@ ${item.inCrew ? '<div class="equipment-icon" onclick="event.stopPropagation(); o
 }, 100);
 
 // ======================== ПОЛНАЯ КАРТОЧКА ========================
-function renderTraits(traits) {
+function renderTraits(traits, ruleAddedTraits = []) {
   if (!traits || !traits.length) return '';
 
   const traitsArray = Array.isArray(traits) ? traits : [traits];
+  const ruleAddedTraitNames = new Set((ruleAddedTraits || []).map(trait => getCleanName(trait)));
 
   return traitsArray.map(trait => {
     const traitText = String(trait);
     const isSpecial = isSpecialTrait(traitText);
+    const isRuleAdded = ruleAddedTraitNames.has(getCleanName(traitText));
     const content = replaceIcons(translateDisplayText(traitText));
-    const highlightClass = isSpecial ? 'special-trait-highlight' : '';
+    const highlightClass = [
+      isSpecial ? 'special-trait-highlight' : '',
+      isRuleAdded ? 'rule-added-trait-highlight' : ''
+    ].filter(Boolean).join(" ");
+    const title = isRuleAdded ? ` title="${escapeAttribute("Added by a rule")}"` : "";
 
     return `
       <div class="official-trait ${highlightClass}"
+           ${title}
            onclick="event.stopPropagation(); showTraitDesc('${traitText.replace(/'/g, "\\'")}')">
         ${content}
       </div>
@@ -8770,14 +8935,40 @@ function rerenderOpenFullCard() {
   }
 }
 
+function getRuleModifiedStatMeta(model, statName) {
+  if (!model) return null;
+  const direct = model.ruleModifiedStats?.[statName];
+  if (direct) return direct;
+  if (statName === "Willpower" && model.hiredByPossessed && model.possessedWillpowerPenalty) {
+    return {
+      source: "Possessed",
+      delta: -numericValue(model.possessedWillpowerPenalty, 1),
+      original: model.possessedOriginalWillpower
+    };
+  }
+  return null;
+}
+
+function renderOfficialStatValue(model, statName) {
+  const meta = getRuleModifiedStatMeta(model, statName);
+  const value = model?.stats?.[statName] || "-";
+  const className = meta ? "official-value possessed-stat-penalty" : "official-value";
+  const title = meta
+    ? ` title="${escapeAttribute(`${meta.source || "Rule"}: ${meta.delta > 0 ? "+" : ""}${meta.delta || ""} ${statName}`)}"`
+    : "";
+  return `<span class="${className}"${title}>${value}</span>`;
+}
+
 const showFullCard = model => {
-  const crewInstance = model?.instance || findCrewModel(model);
-  currentFullCardModel =
-    crewInstance ||
-    models[model?._id] ||
-    (model?.id ? models.find(m => m.id === model.id) : null) ||
-    models.find(m => m.name === model?.name) ||
-    model;
+  const isDisplayModel = model?._matchDisplayModel || model?._ruleAdjustedDisplayModel;
+  const crewInstance = isDisplayModel ? null : (model?.instance || findCrewModel(model));
+  currentFullCardModel = isDisplayModel
+    ? model
+    : (crewInstance ||
+      models[model?._id] ||
+      (model?.id ? models.find(m => m.id === model.id) : null) ||
+      models.find(m => m.name === model?.name) ||
+      model);
   model = currentFullCardModel;
 
   const realName = model.realname || "—";
@@ -8807,11 +8998,6 @@ const showFullCard = model => {
 
   const factionIconsHTML = renderFactionIcons(mainFactions);
   const rivalsIconsHTML = renderFactionIcons(rivalFactions);
-  const willpowerPenaltyClass = model.hiredByPossessed && model.possessedWillpowerPenalty ? " possessed-stat-penalty" : "";
-  const willpowerPenaltyTitle = model.hiredByPossessed && model.possessedWillpowerPenalty
-    ? ` title="Possessed: -${model.possessedWillpowerPenalty} Willpower"`
-    : "";
-
   // --- Оружие и трейты ---
 const weaponsHTML = model.weapons?.length ? model.weapons.map(w => {
     if (!w || Object.keys(w).length === 0) return "";
@@ -8830,31 +9016,36 @@ const weaponsHTML = model.weapons?.length ? model.weapons.map(w => {
 
   // ИСПРАВЛЕНО: Используем новую функцию renderTraits для отображения трейтов с иконками и специальными стилями
   const traitsHTML = model.traits?.length
-    ? `<div class="official-section yellow"><div class="official-section-title">${uiText("section_traits")}</div><div class="official-traits-grid">${renderTraits(model.traits)}</div></div>`
+    ? `<div class="official-section yellow"><div class="official-section-title">${uiText("section_traits")}</div><div class="official-traits-grid">${renderTraits(model.traits, model.ruleAddedTraits || [])}</div></div>`
     : "";
 
   // Новый блок: equipment (только если есть в crewModel)
-  const crewModel = findCrewModel(model); // Находим экземпляр в crew
+  const crewModel = isDisplayModel ? model : findCrewModel(model); // Находим экземпляр в crew
   let equipmentHTML = '';
   if (crewModel && crewModel.equipment && crewModel.equipment.length > 0) {
     equipmentHTML = `
       <div class="official-section-title">${uiText("section_equipment")}</div>
       <div class="official-traits-grid">
-        ${crewModel.equipment.map(eq => `
+        ${crewModel.equipment.map(eq => {
+          const equipmentName = getEquipmentEntryName(eq);
+          if (!equipmentName) return "";
+          const equipmentEffects = Array.isArray(eq.effects) ? eq.effects : [];
+          return `
           <div style="position: relative;">
             <button 
               class="official-trait equipment-chip" 
-              onclick="showTraitPopup('${translateDisplayText(eq.name).replace(/'/g, "\\'")}', '${translateSentence(eq.effects.join("<br>")).replace(/'/g, "\\'")}')">
-              ${translateDisplayText(eq.name)} 
-              <small>($${eq.fundingCost || 0}${eq.repCost ? ` +${eq.repCost} Rep` : ''})</small>
+              onclick="showTraitPopup('${translateDisplayText(equipmentName).replace(/'/g, "\\'")}', '${translateSentence(equipmentEffects.join("<br>")).replace(/'/g, "\\'")}')">
+              ${translateDisplayText(equipmentName)} 
+              ${typeof eq === "string" ? "" : `<small>($${eq.fundingCost || 0}${eq.repCost ? ` +${eq.repCost} Rep` : ''})</small>`}
             </button>
-            <span 
+            ${isDisplayModel ? "" : `<span 
               class="remove-eq" 
-              onclick="event.stopPropagation(); removeEquipmentFromModel(${model._id}, '${eq.name}')">
+              onclick="event.stopPropagation(); removeEquipmentFromModel(${model._id}, '${equipmentName.replace(/'/g, "\\'")}')">
               ×
-            </span>
+            </span>`}
           </div>
-        `).join("")}
+        `;
+        }).join("")}
       </div>
     `;
   }
@@ -8882,12 +9073,12 @@ const weaponsHTML = model.weapons?.length ? model.weapons.map(w => {
           <img src="${model.img}" class="official-img" onerror="this.src='img/no.png'">
         </div>
         <div class="official-stats">
-          <div class="official-stat vertical-stat"><span class="official-value${willpowerPenaltyClass}"${willpowerPenaltyTitle}>${model.stats.Willpower || "-"}</span><span class="official-label">${uiText("stat_willpower")}</span></div>
-          <div class="official-stat vertical-stat"><span class="official-value">${model.stats.Endurance || "-"}</span><span class="official-label">${uiText("stat_endurance")}</span></div>
-          <div class="official-stat"><span class="official-value">${model.stats.Attack || "-"}</span><span class="official-label"><img src="img/Attack.png" class="stat-icon"></span></div>
-          <div class="official-stat"><span class="official-value">${model.stats.Defense || "-"}</span><span class="official-label"><img src="img/Defense.png" class="stat-icon"></span></div>
-          <div class="official-stat"><span class="official-value">${model.stats.Strength || "-"}</span><span class="official-label"><img src="img/Strength.png" class="stat-icon"></span></div>
-          <div class="official-stat"><span class="official-value">${model.stats.Movement || "-"}</span><span class="official-label"><img src="img/Movement.png" class="stat-icon"></span></div>
+          <div class="official-stat vertical-stat">${renderOfficialStatValue(model, "Willpower")}<span class="official-label">${uiText("stat_willpower")}</span></div>
+          <div class="official-stat vertical-stat">${renderOfficialStatValue(model, "Endurance")}<span class="official-label">${uiText("stat_endurance")}</span></div>
+          <div class="official-stat">${renderOfficialStatValue(model, "Attack")}<span class="official-label"><img src="img/Attack.png" class="stat-icon"></span></div>
+          <div class="official-stat">${renderOfficialStatValue(model, "Defense")}<span class="official-label"><img src="img/Defense.png" class="stat-icon"></span></div>
+          <div class="official-stat">${renderOfficialStatValue(model, "Strength")}<span class="official-label"><img src="img/Strength.png" class="stat-icon"></span></div>
+          <div class="official-stat">${renderOfficialStatValue(model, "Movement")}<span class="official-label"><img src="img/Movement.png" class="stat-icon"></span></div>
         </div>
       </div>
 
@@ -9304,10 +9495,29 @@ function canShowByPossessedRule(model) {
   return needsPossessedRecruitment(model);
 }
 
-function applyPossessedRecruitmentEffects(model) {
+function addRuleAddedTrait(model, traitName, source = "") {
+  if (!model || !traitName) return;
+  model.traits = [...getModelTraits(model)];
+  const cleanTraitName = getCleanName(traitName);
+  const alreadyHadTrait = model.traits.some(trait => getCleanName(trait) === cleanTraitName);
+  if (!alreadyHadTrait) {
+    model.traits.push(traitName);
+  }
+  if (!model.ruleAddedTraits) model.ruleAddedTraits = [];
+  if (!alreadyHadTrait && !model.ruleAddedTraits.some(trait => getCleanName(trait) === cleanTraitName)) {
+    model.ruleAddedTraits.push(traitName);
+  }
+  if (source) {
+    if (!model.ruleAddedTraitSources) model.ruleAddedTraitSources = {};
+    model.ruleAddedTraitSources[cleanTraitName] = source;
+  }
+}
+
+function applyPossessedRecruitmentEffects(model, bossFactionsOverride = null) {
   model.hiredByPossessed = true;
   model.originalFaction = getFactions(model);
-  const bossFactions = BMG_AFFILIATIONS?.length ? BMG_AFFILIATIONS : getFactions(BMG_BOSS);
+  const bossFactions = bossFactionsOverride
+    || (BMG_AFFILIATIONS?.length ? BMG_AFFILIATIONS : getFactions(BMG_BOSS));
   model.faction = [...bossFactions];
 
   model.stats = { ...(model.stats || {}) };
@@ -9316,12 +9526,17 @@ function applyPossessedRecruitmentEffects(model) {
     model.possessedOriginalWillpower = willpower;
     model.possessedWillpowerPenalty = 1;
     model.stats.Willpower = Math.max(0, willpower - 1);
+    model.ruleModifiedStats = {
+      ...(model.ruleModifiedStats || {}),
+      Willpower: {
+        source: "Possessed",
+        delta: -1,
+        original: willpower
+      }
+    };
   }
 
-  model.traits = [...getModelTraits(model)];
-  if (!hasTrait(model, "Self-Discipline")) {
-    model.traits.push("Self-Discipline");
-  }
+  addRuleAddedTrait(model, "Self-Discipline", "Possessed");
 }
 
 function bmgCanAddModel(model, options = {}) {
@@ -10191,8 +10406,27 @@ function parseRosterImportText(text) {
     line === "SPECIAL RULES:" ||
     separator.test(line);
 
-  const parseEquipmentList = equipmentText => equipmentText
-    .split(/\s*,\s*/)
+  const splitEquipmentItems = equipmentText => {
+    const result = [];
+    let current = "";
+    let depth = 0;
+
+    String(equipmentText || "").split("").forEach(char => {
+      if (char === "(") depth++;
+      if (char === ")") depth = Math.max(0, depth - 1);
+      if (char === "," && depth === 0) {
+        if (current.trim()) result.push(current.trim());
+        current = "";
+        return;
+      }
+      current += char;
+    });
+
+    if (current.trim()) result.push(current.trim());
+    return result;
+  };
+
+  const parseEquipmentList = equipmentText => splitEquipmentItems(equipmentText)
     .map(item => {
       const cleaned = item.replace(/\s*\([^)]*\)\s*$/,"").replace(/\$(\d+)$/,"").trim();
       return { name: cleaned };
