@@ -5383,6 +5383,87 @@ function findBaseModel(model) {
   return models.find(m => isSameModel(m, model)) || null;
 }
 
+function normalizeRosterModelIdentityValue(value) {
+  return normalizeEquipmentMatchName(String(value || ""));
+}
+
+function getRosterEntryModelName(entryOrName) {
+  return typeof entryOrName === "string"
+    ? entryOrName
+    : (entryOrName?.modelName || entryOrName?.name || "");
+}
+
+function rosterModelMatchesIdentityField(modelValue, entryValue) {
+  if (!entryValue) return true;
+  return normalizeRosterModelIdentityValue(modelValue) === normalizeRosterModelIdentityValue(entryValue);
+}
+
+function findRosterModelByEntry(entryOrName, faction = "") {
+  if (!entryOrName) return null;
+
+  if (typeof entryOrName === "object") {
+    const stableId = entryOrName.modelId || entryOrName.modelID || entryOrName.stableId;
+    if (stableId) {
+      const byStableId = models.find(model => String(model.id || "") === String(stableId));
+      if (byStableId) return byStableId;
+    }
+
+    if (typeof entryOrName.id === "number") {
+      return models[entryOrName.id] || null;
+    }
+
+    if (typeof entryOrName.id === "string" && entryOrName.id) {
+      const byEntryId = models.find(model => String(model.id || "") === entryOrName.id);
+      if (byEntryId) return byEntryId;
+    }
+  }
+
+  const name = getRosterEntryModelName(entryOrName);
+  const normalizedName = normalizeRosterModelIdentityValue(name);
+  if (!normalizedName) return null;
+
+  let matches = models.filter(model => normalizeRosterModelIdentityValue(model.name) === normalizedName);
+  if (!matches.length) return null;
+  if (matches.length === 1) return matches[0];
+
+  const entry = typeof entryOrName === "object" ? entryOrName : {};
+  const realname = entry.realname || entry.realName || entry.modelRealname || "";
+  const base = entry.base || entry.modelBase || "";
+  const rank = entry.rank || entry.rankUsed || "";
+  const rep = entry.rep !== undefined && entry.rep !== null ? numericValue(entry.rep, null) : null;
+  const funding = entry.funding !== undefined && entry.funding !== null ? numericValue(entry.funding, null) : null;
+
+  const identityMatches = matches.filter(model =>
+    rosterModelMatchesIdentityField(model.realname, realname) &&
+    rosterModelMatchesIdentityField(model.base, base)
+  );
+  if (identityMatches.length) {
+    matches = identityMatches;
+    if (matches.length === 1) return matches[0];
+  }
+
+  const isFactionMatch = model => {
+    if (!faction) return true;
+    const factions = getFactions(model);
+    return factions.includes(faction) || canHireInFaction(model, faction);
+  };
+  const isRankMatch = model => !rank || getRanks(model).includes(rank);
+  const isCostMatch = model => {
+    const modelRep = numericValue(model.rep, null);
+    const modelFunding = numericValue(model.funding, null);
+    return (rep === null || modelRep === rep) && (funding === null || modelFunding === funding);
+  };
+
+  return matches.find(model => isFactionMatch(model) && isRankMatch(model) && isCostMatch(model))
+    || matches.find(model => isFactionMatch(model) && isRankMatch(model))
+    || matches.find(model => isFactionMatch(model) && isCostMatch(model))
+    || matches.find(model => isRankMatch(model) && isCostMatch(model))
+    || matches.find(isFactionMatch)
+    || matches.find(isRankMatch)
+    || matches.find(isCostMatch)
+    || matches[0];
+}
+
 function findCrewModel(model) {
   return crew.find(m => isSameModel(m, model)) || null;
 }
@@ -6303,6 +6384,9 @@ function aggregateMatchCards(parsedCards) {
 }
 
 function findMatchRosterModel(entryOrName, faction = "") {
+  const preciseMatch = findRosterModelByEntry(entryOrName, faction);
+  if (preciseMatch) return preciseMatch;
+
   const name = typeof entryOrName === "string"
     ? entryOrName
     : (entryOrName?.modelName || entryOrName?.name || "");
@@ -6487,7 +6571,10 @@ function buildMatchRosterFromParsedCrew(crewEntry, parsed) {
       const catalogModel = findMatchRosterModel(entry, parsed.faction);
       return {
         id: getMatchModelIndex(catalogModel),
-        name: entry.modelName,
+        modelId: catalogModel?.id || entry.modelId || "",
+        name: catalogModel?.name || entry.modelName,
+        realname: catalogModel?.realname || entry.realname || "",
+        base: catalogModel?.base || entry.base || "",
         rank: entry.rank || "",
         rep: entry.rep,
         funding: entry.funding,
@@ -6509,7 +6596,7 @@ function validateMatchRoster(parsed) {
   }
 
   const missingModels = parsed.entries
-    .filter(entry => !models.some(model => model.name === entry.modelName))
+    .filter(entry => !findRosterModelByEntry(entry, parsed.faction))
     .map(entry => entry.modelName);
   if (missingModels.length) {
     isLegal = false;
@@ -6793,7 +6880,10 @@ function decodeMatchPayloadBytes(body) {
 
     expandedModels.push({
       id: getMatchModelIndex(baseModel),
+      modelId: baseModel?.id || "",
       name: baseModel?.name || modelRef.text || "",
+      realname: baseModel?.realname || "",
+      base: baseModel?.base || "",
       rank,
       rep: baseModel?.rep ?? "",
       funding: baseModel?.funding ?? "",
@@ -7280,7 +7370,7 @@ function renderMatchRankIcons(modelEntry, baseModel) {
 function renderMatchGameModelCard(modelEntry, rosterIndex) {
   const roster = getMatchGameRoster();
   const baseModel = findMatchGameBaseModel(modelEntry, roster?.faction || "");
-  const img = baseModel?.img || "img/no.png";
+  const imageModel = baseModel ? { ...baseModel, name: modelEntry.name || baseModel.name } : modelEntry;
   const rep = displayValue(modelEntry.rep ?? baseModel?.rep, 0);
   const funding = displayValue(modelEntry.funding ?? baseModel?.funding, 0);
   const equipmentNames = getMatchModelEquipmentNames(modelEntry);
@@ -7296,7 +7386,7 @@ function renderMatchGameModelCard(modelEntry, rosterIndex) {
 
   return `
     <div class="mini-card in-crew match-game-model-card" onclick="showMatchGameModel(${rosterIndex})">
-      <img src="${escapeAttribute(img)}" onerror="this.src='img/no.png'">
+      ${renderMiniModelImage(imageModel)}
       <div class="mini-info">
         <div class="mini-name">${escapeHtml(modelEntry.name)}</div>
         ${baseModel ? renderModelAffiliationLine(baseModel) : ""}
@@ -7760,10 +7850,15 @@ document.addEventListener("click", event => {
 
 function updateBuilderPrintFilterButton() {
   const button = $("builderPrintFilterBtn");
-  if (!button) return;
-  button.classList.toggle("active", builderPrintOnly);
-  button.setAttribute("aria-pressed", builderPrintOnly ? "true" : "false");
-  button.title = t("print_filter_title");
+  if (button) {
+    button.classList.toggle("active", builderPrintOnly);
+    button.setAttribute("aria-pressed", builderPrintOnly ? "true" : "false");
+    button.title = t("print_filter_title");
+  }
+  document.querySelectorAll(".builder-mobile-print-menu-item").forEach(item => {
+    item.classList.toggle("active", builderPrintOnly);
+    item.setAttribute("aria-pressed", builderPrintOnly ? "true" : "false");
+  });
 }
 
 function toggleBuilderPrintFilter() {
@@ -7795,10 +7890,15 @@ function canConsiderModelForCurrentBuilder(model) {
 
 function updateBuilderFactionFilterButton() {
   const button = $("builderFactionFilterBtn");
-  if (!button) return;
-  button.classList.toggle("active", builderFactionOnly);
-  button.setAttribute("aria-pressed", builderFactionOnly ? "true" : "false");
-  button.title = t("faction_filter_title");
+  if (button) {
+    button.classList.toggle("active", builderFactionOnly);
+    button.setAttribute("aria-pressed", builderFactionOnly ? "true" : "false");
+    button.title = t("faction_filter_title");
+  }
+  document.querySelectorAll(".builder-mobile-faction-menu-item").forEach(item => {
+    item.classList.toggle("active", builderFactionOnly);
+    item.setAttribute("aria-pressed", builderFactionOnly ? "true" : "false");
+  });
 }
 
 function toggleBuilderFactionFilter() {
@@ -7835,6 +7935,9 @@ function updateBuilderContentModeButtons() {
   if (searchButton) searchButton.style.display = isCardsMode ? "none" : "";
   if (printButton) printButton.style.display = isCardsMode ? "none" : "";
   if (factionButton) factionButton.style.display = isCardsMode ? "none" : "";
+  document.querySelectorAll(".builder-models-only-menu-item").forEach(item => {
+    item.style.display = isCardsMode ? "none" : "";
+  });
   updateBuilderPrintFilterButton();
   updateBuilderFactionFilterButton();
 }
@@ -8151,11 +8254,13 @@ function getParsedRosterRequirementModels(parsed) {
   if (!parsed?.entries?.length) return [];
 
   return parsed.entries.map((entry, index) => {
-    const baseModel = models.find(model => model.name === entry.modelName) || {};
+    const baseModel = findRosterModelByEntry(entry, parsed.faction) || {};
     const rankUsed = entry.rank || inferImportRank(baseModel, entry.rank, index === 0);
     return {
       ...baseModel,
       name: entry.modelName || baseModel.name,
+      realname: entry.realname || baseModel.realname,
+      base: entry.base || baseModel.base,
       rankUsed
     };
   });
@@ -9262,6 +9367,27 @@ function sortModelsByRankAndRep(modelList) {
   return [...modelList].sort(compareModelsByRankAndRep);
 }
 
+function hasUsableModelImage(model) {
+  const src = String(model?.img || "").trim();
+  return Boolean(src) && !/^(?:\.\/)?img\/no\.png$/i.test(src) && !/\/no\.png$/i.test(src);
+}
+
+function renderMiniModelImage(model, extraClass = "") {
+  const label = `${model?.name || "Model"}${model?.realname ? `, ${model.realname}` : ""}`;
+  const src = hasUsableModelImage(model) ? String(model.img).trim() : "";
+  const missingClass = src ? "" : " is-missing";
+  const image = src
+    ? `<img class="mini-model-img" src="${escapeAttribute(src)}" alt="${escapeAttribute(label)}" onerror="this.closest('.mini-image-wrap')?.classList.add('is-missing'); this.remove();">`
+    : "";
+
+  return `
+    <div class="mini-image-wrap ${extraClass}${missingClass}">
+      ${image}
+      <div class="mini-image-fallback" aria-hidden="true"><span></span></div>
+    </div>
+  `;
+}
+
 const INCORRUPTIBLE_BLOCKED_FACTIONS = [
   "Joker",
   "Bane",
@@ -9380,7 +9506,7 @@ const renderMiniCardsView = debounce(() => {
     div.className = `mini-card`;
 
     div.innerHTML = `
-<img src="${model.img}" onerror="this.src='img/no.png'">
+${renderMiniModelImage(model)}
 <div class="mini-info">
   <div class="mini-name">${model.name}</div>
   ${renderModelAffiliationLine(model)}
@@ -9468,7 +9594,7 @@ const renderMiniCardsBuilder = debounce(() => {
     div.innerHTML = `
 ${buttons}
 ${item.inCrew && BMG_BOSS && BMG_BOSS.name === item.name ? '<span class="boss-crown">👑</span>' : ''}
-<img src="${item.img}" onerror="this.src='img/no.png'">
+${renderMiniModelImage(item)}
 <div class="mini-info">
   <div class="mini-name">${item.name}</div>
   ${renderModelAffiliationLine(item)}
@@ -9800,7 +9926,7 @@ function renderModelsSearch(query) {
     return `
       <div class="comp-entry model-search-card" onclick="showFullCard(models[${m._id}])">
         ${canShowAddButton ? `<button class="add-btn search-add-btn" onclick="event.stopPropagation(); addModelFromSearch(${m._id})">+</button>` : ""}
-        <img class="model-search-img" src="${m.img}" alt="${escapeAttribute(m.name)}" onerror="this.src='img/no.png'">
+        ${renderMiniModelImage(m, "model-search-image-wrap")}
         <div class="model-search-info">
           <div class="model-search-name">${escapeHtml(m.name)}</div>
           ${renderModelAffiliationLine(m)}
@@ -10931,7 +11057,11 @@ function buildRosterExportText(rosterName = "") {
   recruitedCrew.forEach(m => {
     exportText += `- ${m.name}`;
     exportText += m.rankUsed ? ` [${m.rankUsed}]` : "";
-    exportText += ` | Rep ${displayValue(m.rep)} | Funding $${displayValue(m.funding)}\n`;
+    exportText += ` | Rep ${displayValue(m.rep)} | Funding $${displayValue(m.funding)}`;
+    if (m.id) exportText += ` | ID ${m.id}`;
+    if (m.realname) exportText += ` | Realname ${m.realname}`;
+    if (m.base) exportText += ` | Base ${m.base}`;
+    exportText += `\n`;
 
     if (m.equipment && m.equipment.length > 0) {
       const eqList = m.equipment.map(eq => {
@@ -11065,6 +11195,39 @@ function parseRosterImportText(text) {
     })
     .filter(item => item.name);
 
+  const parseRosterModelEntryLine = modelLine => {
+    const parts = String(modelLine || "").split(/\s+\|\s+/);
+    const identityPart = (parts.shift() || "").trim();
+    const identityMatch = identityPart.match(/^(.*?)(?:\s+\[([^\]]+)\])?$/);
+    if (!identityMatch) return null;
+
+    const entry = {
+      modelName: identityMatch[1].trim(),
+      rank: identityMatch[2] ? identityMatch[2].trim() : null,
+      rep: null,
+      funding: null,
+      modelId: "",
+      realname: "",
+      base: "",
+      equipment: []
+    };
+
+    parts.forEach(part => {
+      const trimmed = part.trim();
+      const fieldMatch = trimmed.match(/^(Rep|Funding|ID|Model ID|Realname|Real Name|Real|Base)\s+(.+)$/i);
+      if (!fieldMatch) return;
+      const key = fieldMatch[1].trim().toLowerCase().replace(/\s+/g, "");
+      const value = fieldMatch[2].trim();
+      if (key === "rep") entry.rep = numericValue(value, null);
+      if (key === "funding") entry.funding = numericValue(value.replace(/^\$/, ""), null);
+      if (key === "id" || key === "modelid") entry.modelId = value;
+      if (key === "realname" || key === "real") entry.realname = value;
+      if (key === "base") entry.base = value;
+    });
+
+    return entry.modelName ? entry : null;
+  };
+
   cleanLines.forEach(line => {
     if (line === "MODELS:") {
       importSection = "models";
@@ -11120,18 +11283,12 @@ function parseRosterImportText(text) {
 
     if (/^- /.test(line)) {
       const modelLine = line.replace(/^- /, "").trim();
-      const modelMatch = modelLine.match(/^(.*?)(?:\s+\[([^\]]+)\])?(?:\s+\|\s+Rep\s+([^\|]+)\s+\|\s+Funding\s+\$?([^\|]+))?$/);
-      if (!modelMatch) {
+      const parsedEntry = parseRosterModelEntryLine(modelLine);
+      if (!parsedEntry) {
         throw new Error((currentLang === "ru" ? "Не удалось разобрать строку: " : "Could not parse line: ") + line);
       }
 
-      currentEntry = {
-        modelName: modelMatch[1].trim(),
-        rank: modelMatch[2] ? modelMatch[2].trim() : null,
-        rep: modelMatch[3] ? numericValue(modelMatch[3].trim(), null) : null,
-        funding: modelMatch[4] ? numericValue(modelMatch[4].trim(), null) : null,
-        equipment: []
-      };
+      currentEntry = parsedEntry;
       entries.push(currentEntry);
       return;
     }
@@ -11183,7 +11340,7 @@ function importRosterFromText(text, options = {}) {
   selectFaction(parsed.faction);
 
   const pendingEntries = parsed.entries.map((entry, index) => {
-    const model = models.find(item => item.name === entry.modelName);
+    const model = findRosterModelByEntry(entry, parsed.faction);
     if (!model) {
       throw new Error((currentLang === "ru" ? "Модель не найдена: " : "Model not found: ") + entry.modelName);
     }
