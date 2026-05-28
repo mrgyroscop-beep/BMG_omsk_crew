@@ -612,12 +612,15 @@ const localizedUi = {
     stat_endurance: "Стойкость",
     equipment_for_model: "Экипировка для",
     available_funding: "Доступно",
+    available_rep: "Доступно REP",
     total_limit: "из",
     requires: "Требует:",
     in_crew_suffix: "в банде",
     insufficient_funds: "Недостаточно средств",
+    insufficient_rep: "Недостаточно REP",
     special_badge: "SPECIAL",
     equipment_funding_error: "Недостаточно Funding для этой экипировки!",
+    equipment_rep_error: "Недостаточно REP для этой экипировки!",
     description_not_found: "Описание отсутствует в Compendium."
   },
   en: {
@@ -630,12 +633,15 @@ const localizedUi = {
     stat_endurance: "Endurance",
     equipment_for_model: "Equipment for",
     available_funding: "Available",
+    available_rep: "Available REP",
     total_limit: "of",
     requires: "Requires:",
     in_crew_suffix: "in crew",
     insufficient_funds: "Insufficient funds",
+    insufficient_rep: "Insufficient REP",
     special_badge: "SPECIAL",
     equipment_funding_error: "Insufficient Funding for this equipment!",
+    equipment_rep_error: "Insufficient REP for this equipment!",
     description_not_found: "Description not found in Compendium."
   }
 };
@@ -9123,6 +9129,21 @@ function equipmentFundingValue(eq) {
   return numericValue(eq?.fundingCost, 0);
 }
 
+function getEquipmentAffordability(eq) {
+  const availableRep = BMG_REP_LIMIT - crewRepUsed();
+  const availableFunding = bmgFundingLimit() - crewFundingUsed();
+  const repCost = equipmentRepValue(eq);
+  const fundingCost = equipmentFundingValue(eq);
+
+  return {
+    availableRep,
+    availableFunding,
+    canAffordRep: availableRep >= repCost,
+    canAffordFunding: availableFunding >= fundingCost,
+    canAfford: availableRep >= repCost && availableFunding >= fundingCost
+  };
+}
+
 function normalizeEquipmentConditionName(condition) {
   return String(condition || "")
     .replace(/^Alias:\s*/i, "")
@@ -9826,12 +9847,18 @@ const weaponsHTML = model.weapons?.length ? model.weapons.map(w => {
       ${equipmentHTML}
     </div>`;
 
-  $("fullCard").classList.add("active");
+  const fullCard = $("fullCard");
+  fullCard.scrollTop = 0;
+  fullCard.classList.add("active");
+  document.documentElement.classList.add("full-card-open");
+  document.body.classList.add("full-card-open");
 };
 
 const closeFullCard = () => {
   currentFullCardModel = null;
   $("fullCard").classList.remove("active");
+  document.documentElement.classList.remove("full-card-open");
+  document.body.classList.remove("full-card-open");
 };
 
 // ======================== COMPENDIUM ========================
@@ -10915,6 +10942,8 @@ function openEquipmentMenu(model, cardElement) {
   overlay.className = "rank-select-modal";
 
   // Считаем доступный бюджет
+  const usedRep = crewRepUsed();
+  const availableRep = BMG_REP_LIMIT - usedRep;
   const usedFunding = crewFundingUsed();
   const availableFunding = bmgFundingLimit() - usedFunding;
 
@@ -10934,13 +10963,18 @@ function openEquipmentMenu(model, cardElement) {
         <div class="rank-select-close" onclick="this.closest('.rank-select-modal').remove()">×</div>
       </div>
       <div style="background:#222; padding:10px; text-align:center; border-bottom:2px solid #e94560;">
+        <span style="color:#ffd700; font-weight:bold;">${uiText("available_rep")}: ${availableRep}</span>
         <span style="color:#ffd700; font-weight:bold;">${uiText("available_funding")}: $${availableFunding}</span>
-        <span style="color:#aaa; font-size:12px; margin-left:10px;">(${uiText("total_limit")} $${bmgFundingLimit()})</span>
+        <span style="color:#aaa; font-size:12px; margin-left:10px;">(${uiText("total_limit")} ${BMG_REP_LIMIT} REP / $${bmgFundingLimit()})</span>
       </div>
       <div class="rank-select-buttons" style="max-height: 50vh; overflow-y: auto;">
         ${availableEq.length ? availableEq.map(eq => {
-          const canAfford = availableFunding >= equipmentFundingValue(eq);
-          const insufficientFundsText = `! ${uiText("insufficient_funds")}`;
+          const affordability = getEquipmentAffordability(eq);
+          const canAfford = affordability.canAfford;
+          const affordabilityWarnings = [
+            !affordability.canAffordRep ? `! ${uiText("insufficient_rep")}` : "",
+            !affordability.canAffordFunding ? `! ${uiText("insufficient_funds")}` : ""
+          ].filter(Boolean);
           const isSpecial = isSpecialEquipment(eq);
           const specialBadge = isSpecial ? `<span style="color:#ffd700; font-size:11px; margin-left:6px;">* ${uiText("special_badge")}</span>` : "";
 
@@ -10966,7 +11000,7 @@ function openEquipmentMenu(model, cardElement) {
           <button class="rank-select-btn" data-eq-name="${eq.name}" ${!canAfford ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''}>
             ${translateDisplayText(eq.name)} ($${equipmentFundingValue(eq)}${equipmentRepValue(eq) ? ` +${equipmentRepValue(eq)} Rep` : ""})${specialBadge}
             <small style="display:block; opacity:0.8; font-size:12px;">${replaceIcons(translateSentence(eq.effects.join(" � ")))}</small>
-            ${!canAfford ? `<span style="color:#ff4444; font-size:11px;">${insufficientFundsText}</span>` : ''}
+            ${affordabilityWarnings.length ? `<span style="color:#ff4444; font-size:11px;">${affordabilityWarnings.join(" / ")}</span>` : ''}
             ${reqText}
           </button>
         `}).join("") : `<p style='text-align:center; color:#aaa;'>${t("no_available_equipment")}</p>`}
@@ -10983,9 +11017,12 @@ function openEquipmentMenu(model, cardElement) {
       if (!eq) return;
 
       // Проверка бюджета
-      const usedFunding = crewFundingUsed();
-      const availableFunding = bmgFundingLimit() - usedFunding;
-      if (availableFunding < equipmentFundingValue(eq)) {
+      const affordability = getEquipmentAffordability(eq);
+      if (!affordability.canAffordRep) {
+        alert(uiText("equipment_rep_error"));
+        return;
+      }
+      if (!affordability.canAffordFunding) {
         alert(uiText("equipment_funding_error"));
         return;
       }
