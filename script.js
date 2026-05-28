@@ -299,6 +299,7 @@ const translations = {
     possessed_label: "ОДЕРЖИМОСТЬ:",
     possessed_status: "чужие Henchman: {used}/3",
     possessed_limit_exceeded: "Possessed позволяет нанять не более 3 Henchman с чужой Affiliation",
+    speedster_limit_exceeded: "В отряде может быть только 1 модель с трейтом Speedster.",
     beast_boy_form_requires_main: "Эти формы нельзя нанять отдельно. Добавьте Beast Boy - Human (Teen Titans).",
     beast_boy_form_badge: "Форма Beast Boy",
     print_filter_title: "Только модели с Print",
@@ -474,6 +475,7 @@ const translations = {
     possessed_label: "POSSESSED:",
     possessed_status: "any-affiliation Henchmen: {used}/3",
     possessed_limit_exceeded: "Possessed can recruit no more than 3 Henchmen with other Affiliation",
+    speedster_limit_exceeded: "A crew can recruit only 1 model with the Speedster trait.",
     beast_boy_form_requires_main: "These forms cannot be recruited separately. Add Beast Boy - Human (Teen Titans).",
     beast_boy_form_badge: "Beast Boy form",
     print_filter_title: "Only models with Print",
@@ -5745,6 +5747,7 @@ function canUseRankForCurrentCrew(model, rank) {
 
   const usePossessedRecruitment = needsPossessedRecruitment(model, rank);
   if (usePossessedRecruitment && bmgPossessedHenchmanCount() >= POSSESSED_HENCHMAN_LIMIT) return false;
+  if (modelHasSpeedsterTrait(model) && crewHasSpeedster()) return false;
 
   if (!checkModelDependency(model) || checkAversionHidden(model) || !canAffordModelInCurrentCrew(model)) {
     return false;
@@ -7990,7 +7993,9 @@ function isBuilderCardGeneral(card) {
     && !card.modelName
     && !card.modelAlias
     && !card.requiredModel
-    && !card.requiredModelName;
+    && !card.requiredModelName
+    && !card.requiredTrait
+    && !card.requiredTraits;
 }
 
 function isBuilderCardSingle(card) {
@@ -8026,6 +8031,10 @@ function getBuilderCardRequiredRank(card) {
   return getBuilderCardRequiredRanks(card).join(", ");
 }
 
+function getBuilderCardRequiredTraits(card) {
+  return normalizeBuilderCardArray(card?.requiredTraits || card?.requiredTrait || card?.traitRequirement || card?.traitsRequired);
+}
+
 function normalizeBuilderCardRankText(value) {
   const loose = normalizeEquipmentMatchName(String(value || "")
     .replace(/[{}]/g, "")
@@ -8057,31 +8066,60 @@ function builderCardRankMatchesRequirement(model, requiredRanks = []) {
   });
 }
 
+function normalizeBuilderCardTraitText(value) {
+  return normalizeEquipmentMatchName(getCleanName(String(value || "")).split("(")[0].trim());
+}
+
+function builderCardTraitMatchesRequirement(model, requiredTraits = []) {
+  if (!requiredTraits.length) return true;
+
+  const requiredLoose = requiredTraits.map(normalizeBuilderCardTraitText).filter(Boolean);
+  const modelTraits = getModelTraits(model).map(trait => ({
+    full: normalizeEquipmentMatchName(getCleanName(trait)),
+    base: normalizeBuilderCardTraitText(trait)
+  }));
+
+  return requiredLoose.some(requiredTrait =>
+    modelTraits.some(({ full, base }) =>
+      requiredTrait === full ||
+      requiredTrait === base ||
+      full.includes(requiredTrait) ||
+      base.includes(requiredTrait)
+    )
+  );
+}
+
 function getBuilderCardEligibleCrewModels(card, crewModels = getRecruitedCrewModels()) {
   const requiredModels = getBuilderCardRequiredModelNames(card);
   const requiredRanks = getBuilderCardRequiredRanks(card);
-  if (!requiredModels.length && !requiredRanks.length) return crewModels;
+  const requiredTraits = getBuilderCardRequiredTraits(card);
+  if (!requiredModels.length && !requiredRanks.length && !requiredTraits.length) return crewModels;
 
   return crewModels.filter(model =>
     builderCardModelMatchesRequirement(model, requiredModels) &&
-    builderCardRankMatchesRequirement(model, requiredRanks)
+    builderCardRankMatchesRequirement(model, requiredRanks) &&
+    builderCardTraitMatchesRequirement(model, requiredTraits)
   );
 }
 
 function getBuilderCardFactionAvailableModels(card, faction = currentFaction) {
   const requiredModels = getBuilderCardRequiredModelNames(card);
   const requiredRanks = getBuilderCardRequiredRanks(card);
-  if (!requiredModels.length || !faction) return [];
+  const requiredTraits = getBuilderCardRequiredTraits(card);
+  if ((!requiredModels.length && !requiredRanks.length && !requiredTraits.length) || !faction) return [];
 
   return models.filter(model => {
     if (!builderCardModelMatchesRequirement(model, requiredModels)) return false;
     if (!builderCardRankMatchesRequirement(model, requiredRanks)) return false;
+    if (!builderCardTraitMatchesRequirement(model, requiredTraits)) return false;
     return canHireInFaction(model, faction) || canViewInFaction(model, faction);
   });
 }
 
 function builderCardHasCrewRequirement(card) {
-  return getBuilderCardRequiredModelNames(card).length > 0 || getBuilderCardRequiredRanks(card).length > 0;
+  return getBuilderCardRequiredModelNames(card).length > 0 ||
+    getBuilderCardRequiredRanks(card).length > 0 ||
+    getBuilderCardRequiredTraits(card).length > 0;
 }
 
 function isBuilderCardRequirementMet(card, crewModels = getRecruitedCrewModels()) {
@@ -8091,10 +8129,12 @@ function isBuilderCardRequirementMet(card, crewModels = getRecruitedCrewModels()
 function getBuilderCardRequirementText(card) {
   const requiredModels = getBuilderCardRequiredModelNames(card);
   const requiredRanks = getBuilderCardRequiredRanks(card);
+  const requiredTraits = getBuilderCardRequiredTraits(card);
   const parts = [];
 
   if (requiredModels.length) parts.push(requiredModels.join(" / "));
   if (requiredRanks.length) parts.push(requiredRanks.map(localizeRank).join(" / "));
+  if (requiredTraits.length) parts.push(requiredTraits.map(translateDisplayText).join(" / "));
 
   return parts.length ? `${t("builder_card_requirement")}: ${parts.join(" • ")}` : "";
 }
@@ -8136,7 +8176,10 @@ function canShowBuilderCard(card) {
   const factionMatches = !factions.length || factions.includes(currentFaction) || factions.includes("Any") || factions.includes("All");
   if (!factionMatches) return false;
 
-  if (!getBuilderCardRequiredModelNames(card).length) return true;
+  if (!builderCardHasCrewRequirement(card)) return true;
+  if (card?.showWhenRequirementMet && currentMode === "builder") {
+    return isBuilderCardRequirementMet(card);
+  }
 
   return getBuilderCardFactionAvailableModels(card).length > 0;
 }
@@ -9930,6 +9973,14 @@ function hasTrait(model, traitName) {
   return getModelTraits(model).some(trait => getCleanName(trait) === traitName);
 }
 
+function modelHasSpeedsterTrait(model) {
+  return hasTrait(model, "Speedster");
+}
+
+function crewHasSpeedster() {
+  return getRecruitedCrewModels().some(modelHasSpeedsterTrait);
+}
+
 function hasPossessedBoss() {
   return !!(BMG_BOSS && hasTrait(BMG_BOSS, "Possessed"));
 }
@@ -10022,6 +10073,10 @@ function bmgCanAddModel(model, options = {}) {
   const usePossessedRecruitment = model.hiredByPossessed === true;
   if (usePossessedRecruitment && bmgPossessedHenchmanCount() >= POSSESSED_HENCHMAN_LIMIT) {
     alert(t("possessed_limit_exceeded"));
+    return false;
+  }
+  if (modelHasSpeedsterTrait(model) && crewHasSpeedster()) {
+    alert(t("speedster_limit_exceeded"));
     return false;
   }
 

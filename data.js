@@ -6283,6 +6283,51 @@ const models = [
     ]
   },
   {
+    "name": "Kid Flash",
+    "realname": "Wally West",
+    "base": "30mm",
+    "rep": 50,
+    "funding": 0,
+    "rank": ["Henchman"],
+    "faction": ["Bat Family"],
+    "img": "img/no.png",
+    "stats": {
+      "Attack": 3,
+      "Defense": 5,
+      "Strength": "3+",
+      "Movement": 10,
+      "Willpower": 5,
+      "Endurance": 5
+    },
+    "traits": [
+      "Always on the Move",
+      "Dodge",
+      "Drop It!",
+      "Fast (4)",
+      "Molecular Control (1)",
+      "Speed Force Master (1)",
+      "Speedster",
+      "Super Speed (2)",
+      "Teen Titans"
+    ],
+    "weapons": [
+      {
+        "name": "Speed Force Bolts",
+        "damage": "★",
+        "rof": 3,
+        "ammo": 5,
+        "traits": "Beam / S. Range / Silencer / Throwing / Speed Attack (2) / Fast Combo (1)"
+      },
+      {
+        "name": "Speed Attack",
+        "damage": "★",
+        "rof": "-",
+        "ammo": "-",
+        "traits": "Crushing / Overwhelming / Fast Combo (1)"
+      }
+    ]
+  },
+  {
     "name": "Batman The Gotham City Knight",
     "realname": "Bruce Wayne",
     "base": "40mm",
