@@ -220,6 +220,10 @@ const translations = {
     builder_cards_selected: "Карты в колоде",
     builder_cards_available: "Доступные карты",
     builder_cards_mandatory: "Обязательные правила",
+    builder_cards_group_general: "Общие карты",
+    builder_cards_group_crew: "Карты банды",
+    builder_cards_group_character: "Персональные карты",
+    builder_cards_group_other: "Другие карты",
     builder_cards_empty: "Каталог карт пуст",
     builder_cards_no_available: "Нет доступных карт",
     builder_card_limit_reached: "Достигнут лимит этой карты",
@@ -396,6 +400,10 @@ const translations = {
     builder_cards_selected: "Cards in deck",
     builder_cards_available: "Available cards",
     builder_cards_mandatory: "Mandatory rules",
+    builder_cards_group_general: "General cards",
+    builder_cards_group_crew: "Crew cards",
+    builder_cards_group_character: "Character cards",
+    builder_cards_group_other: "Other cards",
     builder_cards_empty: "Card catalog is empty",
     builder_cards_no_available: "No available cards",
     builder_card_limit_reached: "Card limit reached",
@@ -8466,6 +8474,83 @@ function renderBuilderCardItem(card, options = {}) {
   `;
 }
 
+function getBuilderCardGroupKey(card) {
+  const category = String(card?.category || card?.deckType || "").toLowerCase();
+
+  if (category === "character" || getBuilderCardRequiredModelNames(card).length) {
+    return "character";
+  }
+  if (category === "crew" || category === "faction" || getBuilderCardFactionList(card).length) {
+    return "crew";
+  }
+  if (isBuilderCardGeneral(card)) {
+    return "general";
+  }
+
+  return "other";
+}
+
+function getBuilderCardGroupTitle(groupKey) {
+  const labels = {
+    general: t("builder_cards_group_general"),
+    crew: t("builder_cards_group_crew"),
+    character: t("builder_cards_group_character"),
+    other: t("builder_cards_group_other")
+  };
+  return labels[groupKey] || labels.other;
+}
+
+function groupBuilderCardEntries(entries) {
+  const order = ["general", "crew", "character", "other"];
+  const groups = new Map(order.map(key => [key, []]));
+
+  entries.forEach(entry => {
+    const key = getBuilderCardGroupKey(entry.card || entry);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(entry);
+  });
+
+  return order
+    .map(key => ({ key, entries: groups.get(key) || [] }))
+    .filter(group => group.entries.length > 0);
+}
+
+function getBuilderCardEntryCount(entry) {
+  return Math.max(1, numericValue(entry?.count, 1));
+}
+
+function renderBuilderCardSpoiler(title, html, count, options = {}) {
+  const { open = false, emptyText = "" } = options;
+  const content = html || (emptyText ? `<div class="builder-cards-empty">${emptyText}</div>` : "");
+  if (!content) return "";
+
+  return `
+    <details class="builder-cards-spoiler" ${open ? "open" : ""}>
+      <summary>
+        <span>${escapeHtml(title)}</span>
+        <strong>${count}</strong>
+      </summary>
+      <div class="builder-cards-spoiler-body">${content}</div>
+    </details>
+  `;
+}
+
+function renderGroupedBuilderCards(entries, renderEntry, options = {}) {
+  const { openFirst = false } = options;
+  return groupBuilderCardEntries(entries)
+    .map((group, index) => {
+      const html = group.entries.map(renderEntry).join("");
+      const count = group.entries.reduce((sum, entry) => sum + getBuilderCardEntryCount(entry), 0);
+      return renderBuilderCardSpoiler(
+        getBuilderCardGroupTitle(group.key),
+        html,
+        count,
+        { open: openFirst && index === 0 }
+      );
+    })
+    .join("");
+}
+
 function renderCardsCatalogView() {
   const grid = $("cardsGridCards");
   if (!grid) return;
@@ -8480,11 +8565,21 @@ function renderCardsCatalogView() {
   const sections = [];
 
   if (mandatoryCards.length) {
-    sections.push(`<div class="builder-cards-section-title">${t("builder_cards_mandatory")}</div>${mandatoryCards.map(card => renderBuilderCardItem(card, { viewOnly: true, mandatory: true })).join("")}`);
+    sections.push(renderBuilderCardSpoiler(
+      t("builder_cards_mandatory"),
+      mandatoryCards.map(card => renderBuilderCardItem(card, { viewOnly: true, mandatory: true })).join(""),
+      mandatoryCards.length,
+      { open: false }
+    ));
   }
 
   if (catalog.length) {
-    sections.push(`<div class="builder-cards-section-title">${t("builder_cards_available")}</div>${catalog.map(card => renderBuilderCardItem(card, { viewOnly: true })).join("")}`);
+    sections.push(`<div class="builder-cards-section-title">${t("builder_cards_available")}</div>`);
+    sections.push(renderGroupedBuilderCards(
+      catalog.map(card => ({ card })),
+      entry => renderBuilderCardItem(entry.card, { viewOnly: true }),
+      { openFirst: false }
+    ));
   }
 
   grid.innerHTML = sections.length ? sections.join("") : `<div class="builder-cards-empty">${t("builder_cards_empty")}</div>`;
@@ -8498,27 +8593,40 @@ function renderBuilderCards() {
   const mandatoryCards = getBuilderMandatoryCardCatalog().filter(canShowBuilderCard);
   const deckStats = getObjectiveDeckStats();
 
-  const selectedCardsHTML = [...deckStats.selectedMap.values()]
-    .map(entry => renderBuilderCardItem(entry.card, { selected: true, count: entry.count }))
-    .join("");
+  const selectedEntries = [...deckStats.selectedMap.values()];
 
   const availableCards = catalog.filter(card => getBuilderCardAddCheck(card).ok);
-  const availableCardsHTML = availableCards
-    .map(card => renderBuilderCardItem(card))
-    .join("");
 
   const sections = [renderObjectiveDeckSummary()];
 
   if (mandatoryCards.length) {
-    sections.push(`<div class="builder-cards-section-title">${t("builder_cards_mandatory")}</div>${mandatoryCards.map(card => renderBuilderCardItem(card, { viewOnly: true, mandatory: true })).join("")}`);
+    sections.push(renderBuilderCardSpoiler(
+      t("builder_cards_mandatory"),
+      mandatoryCards.map(card => renderBuilderCardItem(card, { viewOnly: true, mandatory: true })).join(""),
+      mandatoryCards.length,
+      { open: false }
+    ));
   }
 
-  if (selectedCardsHTML) {
-    sections.push(`<div class="builder-cards-section-title">${t("builder_cards_selected")}</div>${selectedCardsHTML}`);
+  if (selectedEntries.length) {
+    sections.push(`<div class="builder-cards-section-title">${t("builder_cards_selected")}</div>`);
+    sections.push(renderGroupedBuilderCards(
+      selectedEntries,
+      entry => renderBuilderCardItem(entry.card, { selected: true, count: entry.count }),
+      { openFirst: true }
+    ));
   }
 
   if (catalog.length) {
-    sections.push(`<div class="builder-cards-section-title">${t("builder_cards_available")}</div>${availableCardsHTML || `<div class="builder-cards-empty">${t("builder_cards_no_available")}</div>`}`);
+    sections.push(`<div class="builder-cards-section-title">${t("builder_cards_available")}</div>`);
+    sections.push(availableCards.length
+      ? renderGroupedBuilderCards(
+        availableCards.map(card => ({ card })),
+        entry => renderBuilderCardItem(entry.card),
+        { openFirst: false }
+      )
+      : `<div class="builder-cards-empty">${t("builder_cards_no_available")}</div>`
+    );
   } else {
     sections.push(`<div class="builder-cards-empty">${t("builder_cards_empty")}</div>`);
   }

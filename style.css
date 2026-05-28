@@ -370,6 +370,16 @@ body { background:#000; color:#fff; font-family:'Oswald',sans-serif; min-height:
 .builder-deck-rules-btn { padding:4px 10px; }
 .objective-deck-rules { display:grid; gap:10px; text-align:left; }
 .builder-cards-section-title { color:#e94560; font-size:13px; font-weight:bold; letter-spacing:1px; padding:8px 4px 0; text-transform:uppercase; }
+.builder-cards-spoiler { background:#101010; border:1px solid #303030; border-radius:8px; margin:10px 0; overflow:hidden; }
+.builder-cards-spoiler[open] { border-color:#e94560; box-shadow:0 0 14px rgba(233,69,96,.18); }
+.builder-cards-spoiler summary { list-style:none; display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:48px; padding:10px 14px; color:#ffd700; cursor:pointer; font-family:'Oswald',sans-serif; font-size:18px; font-weight:bold; letter-spacing:1px; text-transform:uppercase; user-select:none; }
+.builder-cards-spoiler summary::-webkit-details-marker { display:none; }
+.builder-cards-spoiler summary::before { content:"›"; flex:0 0 auto; color:#e94560; font-size:28px; line-height:1; transform:rotate(0deg); transition:transform .18s ease; }
+.builder-cards-spoiler[open] summary::before { transform:rotate(90deg); }
+.builder-cards-spoiler summary span { flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.builder-cards-spoiler summary strong { flex:0 0 auto; min-width:34px; padding:2px 8px; border-radius:999px; background:#e94560; color:#fff; font-size:14px; line-height:1.4; text-align:center; box-shadow:0 0 12px rgba(233,69,96,.35); }
+.builder-cards-spoiler-body { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px; padding:0 10px 12px; }
+.builder-cards-spoiler-body > .builder-cards-empty { grid-column:1/-1; }
 .builder-cards-empty { background:#111; border:1px dashed #3a3a3a; border-radius:8px; color:#8f949e; padding:22px 12px; text-align:center; font-size:14px; }
 .builder-card-item { min-height:96px; }
 .builder-card-readonly { cursor:default; }
