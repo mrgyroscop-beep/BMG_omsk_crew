@@ -29,6 +29,8 @@ let specialTraitNames = new Set(); // Кэш специальных трейто
 let compendiumCacheByLang = {};
 let i18nNodeCache = null;
 let currentFullCardModel = null;
+let fullCardCloseTimer = null;
+let mobileTopbarOffsetFrame = null;
 const printableModelNames = window.PRINTABLE_MODEL_NAMES || new Set();
 const printableModelKeys = window.PRINTABLE_MODEL_KEYS || new Set();
 const printableModelImageKeys = window.PRINTABLE_MODEL_IMAGE_KEYS || new Set();
@@ -599,6 +601,7 @@ function setLanguage(lang) {
   if (currentMode === 'match-game') {
     renderMatchGame();
   }
+  updateMobileFixedTopbarOffsets();
 }
 
 const localizedUi = {
@@ -5217,6 +5220,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const $ = id => document.getElementById(id);
 
+function updateMobileFixedTopbarOffsets() {
+  if (mobileTopbarOffsetFrame) {
+    cancelAnimationFrame(mobileTopbarOffsetFrame);
+  }
+
+  mobileTopbarOffsetFrame = requestAnimationFrame(() => {
+    mobileTopbarOffsetFrame = null;
+    const isMobile = window.matchMedia && window.matchMedia("(max-width: 480px)").matches;
+    [
+      ["cardsSection", "#cardsSection > .top-bar"],
+      ["builderMain", "#builderMain > .top-bar"]
+    ].forEach(([sectionId, headerSelector]) => {
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+      if (!isMobile) {
+        section.style.removeProperty("--mobile-fixed-topbar-height");
+        return;
+      }
+
+      const header = document.querySelector(headerSelector);
+      const height = header ? Math.ceil(header.getBoundingClientRect().height) : 0;
+      if (height > 0) {
+        section.style.setProperty("--mobile-fixed-topbar-height", `${height}px`);
+      }
+    });
+  });
+}
+
 function escapeHtml(value) {
   return String(value ?? "")
     .replace(/&/g, "&amp;")
@@ -7663,6 +7694,7 @@ function showCards(options = {}) {
   updateCardsContentModeButtons();
   $('cardsTabsContainer').classList.remove('hidden');
   initTabs();
+  updateMobileFixedTopbarOffsets();
 }
 
 function showBuilder(options = {}) {
@@ -7683,6 +7715,7 @@ function showBuilder(options = {}) {
   $('builderFactionCards').classList.remove('hidden'); // Показываем вкладки фракций
   updateBuilderContentModeButtons();
   initTabs(); // Инициализация табов для выбора фракции
+  updateMobileFixedTopbarOffsets();
 }
 
 function showRules(options = {}) {
@@ -7946,6 +7979,7 @@ function updateBuilderContentModeButtons() {
   });
   updateBuilderPrintFilterButton();
   updateBuilderFactionFilterButton();
+  updateMobileFixedTopbarOffsets();
 }
 
 function setBuilderContentMode(mode) {
@@ -8030,6 +8064,7 @@ function updateCardsContentModeButtons() {
   if (factionButton) factionButton.style.display = isCardsMode ? "none" : "";
   updateCardsPrintFilterButton();
   updateCardsFactionFilterButton();
+  updateMobileFixedTopbarOffsets();
 }
 
 function setCardsContentMode(mode) {
@@ -8788,6 +8823,7 @@ function selectFaction(faction) {
   updateBuilderPrintFilterButton();
   setBuilderContentMode('models');
   updateCrewBar();
+  updateMobileFixedTopbarOffsets();
 }
 
 // ======================== ОТРЯД (ТОЛЬКО ДЛЯ БИЛДЕРА) ========================
@@ -9259,6 +9295,7 @@ const updateCrewBar = () => {
   } else {
     possessedIndicator.style.display = "none";
   }
+  updateMobileFixedTopbarOffsets();
 };
 
 function calculateModifiers() {
@@ -9695,6 +9732,10 @@ function rerenderOpenFullCard() {
   }
 }
 
+function shouldAnimateFullCardDrawer() {
+  return window.matchMedia && window.matchMedia("(max-width: 480px)").matches;
+}
+
 function getRuleModifiedStatMeta(model, statName) {
   if (!model) return null;
   const direct = model.ruleModifiedStats?.[statName];
@@ -9848,6 +9889,11 @@ const weaponsHTML = model.weapons?.length ? model.weapons.map(w => {
     </div>`;
 
   const fullCard = $("fullCard");
+  if (fullCardCloseTimer) {
+    clearTimeout(fullCardCloseTimer);
+    fullCardCloseTimer = null;
+  }
+  fullCard.classList.remove("closing");
   fullCard.scrollTop = 0;
   fullCard.classList.add("active");
   document.documentElement.classList.add("full-card-open");
@@ -9855,8 +9901,27 @@ const weaponsHTML = model.weapons?.length ? model.weapons.map(w => {
 };
 
 const closeFullCard = () => {
+  const fullCard = $("fullCard");
   currentFullCardModel = null;
-  $("fullCard").classList.remove("active");
+
+  if (fullCardCloseTimer) {
+    clearTimeout(fullCardCloseTimer);
+    fullCardCloseTimer = null;
+  }
+
+  if (shouldAnimateFullCardDrawer() && fullCard.classList.contains("active")) {
+    fullCard.classList.add("closing");
+    fullCard.classList.remove("active");
+    fullCardCloseTimer = setTimeout(() => {
+      fullCard.classList.remove("closing");
+      document.documentElement.classList.remove("full-card-open");
+      document.body.classList.remove("full-card-open");
+      fullCardCloseTimer = null;
+    }, 260);
+    return;
+  }
+
+  fullCard.classList.remove("active", "closing");
   document.documentElement.classList.remove("full-card-open");
   document.body.classList.remove("full-card-open");
 };
@@ -10117,12 +10182,14 @@ function initTabs() {
           renderMiniCardsBuilder();
         }
       }
+      updateMobileFixedTopbarOffsets();
     });
   });
 }
 
 // ======================== ИНИЦИАЛИЗАЦИЯ ========================
 window.addEventListener("load", () => {
+  window.addEventListener("resize", updateMobileFixedTopbarOffsets);
   const normalizeModelData = model => {
     model.rep = numericValue(model.rep, model.rep);
     model.funding = numericValue(model.funding, model.funding);

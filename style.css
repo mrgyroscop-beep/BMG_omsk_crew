@@ -582,15 +582,83 @@ body.full-card-open {
     font-size: 10px;
   }
   .full-inner {
-    padding-top: 68px;
+    padding-top: 74px;
+    transform: translateX(100%);
+    transition: transform .224s cubic-bezier(.22, .61, .36, 1);
+    will-change: transform;
+  }
+  .full-card {
+    display: block;
+    visibility: hidden;
+    pointer-events: none;
+    transition: none;
+  }
+  .full-card.active,
+  .full-card.closing {
+    visibility: visible;
+  }
+  .full-card.active {
+    pointer-events: auto;
+    transition: none;
+  }
+  .full-card.closing {
+    pointer-events: none;
+  }
+  .full-card.active .full-inner {
+    transform: translateX(0);
+  }
+  .full-card.closing .full-inner {
+    transform: translateX(100%);
+  }
+  .full-card::before {
+    height: 74px;
+    z-index: 24;
+    background: linear-gradient(#000 0%, rgba(0,0,0,.95) 72%, rgba(0,0,0,0));
   }
   .close-full {
-    top: 12px;
-    right: 18px;
+    top: max(12px, env(safe-area-inset-top));
+    left: 12px;
+    right: auto;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255,255,255,.85);
+    border-radius: 50%;
+    background: #e94560;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(233,69,96,.55);
+    font-size: 0;
+    line-height: 1;
+    z-index: 30;
+  }
+  .close-full::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    border-left: 4px solid currentColor;
+    border-bottom: 4px solid currentColor;
+    transform: translate(-36%, -50%) rotate(45deg);
+  }
+  .close-full::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 18px;
+    height: 4px;
+    border-radius: 999px;
+    background: currentColor;
+    transform: translate(-36%, -50%);
   }
   .full-card-lang-switch {
-    top: 12px;
-    right: 70px;
+    top: max(12px, env(safe-area-inset-top));
+    right: 12px;
+    z-index: 30;
   }
   .full-card-lang-switch .lang-btn {
     padding: 5px 10px;
@@ -1535,6 +1603,31 @@ body.full-card-open {
 @media (max-width: 480px) {
   .top-bar {
     padding: 10px 8px 8px;
+  }
+
+  #cardsSection > .top-bar,
+  #builderMain > .top-bar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1200;
+    transform: translateZ(0);
+  }
+
+  #cardsSection {
+    padding-top: var(--mobile-fixed-topbar-height, 124px);
+    scroll-padding-top: var(--mobile-fixed-topbar-height, 124px);
+  }
+
+  #builderMain {
+    padding-top: var(--mobile-fixed-topbar-height, 156px);
+    scroll-padding-top: var(--mobile-fixed-topbar-height, 156px);
+  }
+
+  #builderMain .builder-more-menu {
+    z-index: 1300;
   }
 
   .funds {
