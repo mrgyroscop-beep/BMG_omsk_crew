@@ -53,11 +53,51 @@ let diceAnimationTimer = null;
 let diceFinishTimer = null;
 
 // Режимы просмотра
-let currentMode = 'menu'; // menu, cards, builder, my-crews, match, match-game, rules
+let currentMode = 'menu'; // menu, cards, builder, my-crews, wargame-day, match, match-game, rules
 let navigationHistory = [];
 const OBJECTIVE_DECK_SIZE = 30;
 const OBJECTIVE_DECK_MAX_GENERAL = 15;
 const OBJECTIVE_DECK_MAX_SINGLE = 15;
+const WARGAME_DAY_CREWS = [
+  {
+    id: "wargame_day_crew_1",
+    title: "GCPD День варгейма",
+    faction: "GCPD",
+    text: [
+      "BMG CREW - GCPD",
+      "Name: GCPD День варгейма",
+      "Limits: Rep 200 | Funding $500",
+      "Summary: 3 models | 0 cards | Used Rep 200 | Used Funding $500",
+      "",
+      "MODELS:",
+      "- SWAT QRT 3 [Henchman] | Rep 35 | Funding $400 | ID swat-qrt-3-qrt-3-30mm | Realname QRT 3 | Base 30mm",
+      "- Beat Cop [Henchman] | Rep 35 | Funding $0 | ID beat-cop-unknown-30mm | Realname Unknown | Base 30mm",
+      "  Equipment: Handcuffs ($100)",
+      "- Batman The Gotham City Knight [Leader] | Rep 130 | Funding $0 | ID batman-the-gotham-city-knight-bruce-wayne-40mm | Realname Bruce Wayne | Base 40mm",
+      "",
+      "TOTAL: Rep 200 | Funding $500"
+    ].join("\n")
+  },
+  {
+    id: "wargame_day_crew_2",
+    title: "Joker День варгейма",
+    faction: "Joker",
+    text: [
+      "BMG CREW - Joker",
+      "Name: Joker День варгейма",
+      "Limits: Rep 200 | Funding $500",
+      "Summary: 4 models | 0 cards | Used Rep 190 | Used Funding $500",
+      "",
+      "MODELS:",
+      "- Blunderbuss Clown [Henchman] | Rep 16 | Funding $200 | ID blunderbuss-clown-unknown-30mm | Realname Unknown | Base 30mm",
+      "- Axe Clown [Henchman] | Rep 17 | Funding $100 | ID axe-clown-unknown-30mm | Realname Unknown | Base 30mm",
+      "- Harley Quinn (& The Boys) [Sidekick] | Rep 80 | Funding $200 | ID harley-quinn-the-boys-dr-harleen-frances-quinzel-40mm | Realname Dr. Harleen Frances Quinzel | Base 40mm",
+      "- Joker (Explosive Arrival) [Leader] | Rep 77 | Funding $0 | ID joker-explosive-arrival-unknown-40mm | Realname Unknown | Base 40mm",
+      "",
+      "TOTAL: Rep 190 | Funding $500"
+    ].join("\n")
+  }
+];
 
 // ======================== ИКОНКИ ========================
 const ICON_MAP = {
@@ -146,6 +186,13 @@ const translations = {
   ru: {
     cards: "КАРТОЧКИ",
     crews: "БАНДЫ",
+    wargame_day: "ДЕНЬ ВАРГЕЙМА",
+    wargame_day_title: "ДЕНЬ ВАРГЕЙМА",
+    wargame_day_roster_1: "Учебная банда 1",
+    wargame_day_roster_2: "Учебная банда 2",
+    wargame_day_pending: "Ростер будет добавлен позже.",
+    wargame_day_pending_faction: "Скоро",
+    wargame_day_fixed_note: "Стабильный ростер для обучения",
     my_crews: "МОИ БАНДЫ",
     my_crews_title: "БАНДЫ",
     my_crews_create: "НОВАЯ БАНДА",
@@ -330,6 +377,13 @@ const translations = {
   en: {
     cards: "CARDS",
     crews: "CREWS",
+    wargame_day: "WARGAME DAY",
+    wargame_day_title: "WARGAME DAY",
+    wargame_day_roster_1: "Training crew 1",
+    wargame_day_roster_2: "Training crew 2",
+    wargame_day_pending: "Roster will be added later.",
+    wargame_day_pending_faction: "Soon",
+    wargame_day_fixed_note: "Stable teaching roster",
     my_crews: "MY CREWS",
     my_crews_title: "CREWS",
     my_crews_create: "NEW CREW",
@@ -602,6 +656,9 @@ function setLanguage(lang) {
 
   if (currentMode === 'my-crews') {
     renderMyCrews();
+  }
+  if (currentMode === 'wargame-day') {
+    renderWargameDay();
   }
   if (currentMode === 'match') {
     renderMatchSection();
@@ -6181,6 +6238,174 @@ function renderMyCrews() {
   });
 }
 
+function getWargameDayCrewEntries() {
+  return WARGAME_DAY_CREWS.map((slot, index) => {
+    const text = normalizeRosterText(slot.text);
+    const fallbackTitle = index === 0 ? t("wargame_day_roster_1") : t("wargame_day_roster_2");
+
+    if (!text) {
+      return {
+        id: slot.id,
+        title: slot.title || fallbackTitle,
+        faction: slot.faction || t("wargame_day_pending_faction"),
+        modelCount: 0,
+        addedAt: "",
+        text: "",
+        pending: true
+      };
+    }
+
+    try {
+      const record = createMyCrewRecordFromText(text);
+      return {
+        ...record,
+        id: slot.id,
+        title: slot.title || record.title || fallbackTitle,
+        faction: slot.faction || record.faction,
+        addedAt: slot.addedAt || record.addedAt,
+        fixed: true
+      };
+    } catch (error) {
+      return {
+        id: slot.id,
+        title: slot.title || fallbackTitle,
+        faction: slot.faction || "Unknown",
+        modelCount: 0,
+        addedAt: "",
+        text,
+        error: error.message || t("my_crews_import_failed")
+      };
+    }
+  });
+}
+
+function getWargameDayCrewById(crewId) {
+  return getWargameDayCrewEntries().find(item => item.id === crewId) || null;
+}
+
+function getWargameDayOpponentCrew(crewId) {
+  return getWargameDayCrewEntries().find(item =>
+    item.id !== crewId && item.text && !item.pending && !item.error
+  ) || null;
+}
+
+function canPlayWargameDayCrew(crewEntry) {
+  try {
+    return Boolean(buildMatchCrewState(crewEntry, { allowEmptyDeck: true })?.validation?.isLegal)
+      && Boolean(getWargameDayOpponentCrew(crewEntry.id));
+  } catch (error) {
+    return false;
+  }
+}
+
+function renderWargameDay() {
+  const container = $("wargameDayList");
+  if (!container) return;
+
+  container.innerHTML = getWargameDayCrewEntries().map(crewEntry => {
+    const isReady = Boolean(crewEntry.text && !crewEntry.pending && !crewEntry.error);
+    const canPlay = isReady && canPlayWargameDayCrew(crewEntry);
+    const preview = crewEntry.error
+      ? crewEntry.error
+      : (isReady ? crewEntry.text.split("\n").slice(0, 6).join("\n") : t("wargame_day_pending"));
+
+    return `
+      <div class="my-crew-card wargame-day-card ${isReady ? "" : "is-pending"}" data-wargame-day-crew-id="${escapeAttribute(crewEntry.id)}">
+        <div class="my-crew-card-head">
+          <div>
+            <div class="my-crew-title">${escapeHtml(crewEntry.title || "Crew")}</div>
+            <div class="my-crew-subtitle">${t("my_crews_faction")}: ${escapeHtml(crewEntry.faction || "Unknown")}</div>
+          </div>
+          <div class="my-crew-meta">
+            <div>${escapeHtml(String(crewEntry.modelCount || 0))} ${t("my_crews_models")}</div>
+            <div>${escapeHtml(t("wargame_day_fixed_note"))}</div>
+          </div>
+        </div>
+        <pre class="my-crew-preview">${escapeHtml(preview)}</pre>
+        ${isReady ? `
+          <div class="my-crew-actions">
+            ${canPlay ? `<button class="my-crew-action-btn" data-wargame-day-play="${escapeAttribute(crewEntry.id)}">${t("my_crews_play")}</button>` : ""}
+            <button class="my-crew-action-btn" data-wargame-day-open="${escapeAttribute(crewEntry.id)}">${t("my_crews_open")}</button>
+            <button class="my-crew-action-btn" data-wargame-day-download="${escapeAttribute(crewEntry.id)}">${t("my_crews_download")}</button>
+          </div>
+        ` : ""}
+      </div>
+    `;
+  }).join("");
+
+  container.querySelectorAll("[data-wargame-day-play]").forEach(button => {
+    button.addEventListener("click", () => playWargameDayCrew(button.dataset.wargameDayPlay));
+  });
+  container.querySelectorAll("[data-wargame-day-open]").forEach(button => {
+    button.addEventListener("click", () => openWargameDayCrew(button.dataset.wargameDayOpen));
+  });
+  container.querySelectorAll("[data-wargame-day-download]").forEach(button => {
+    button.addEventListener("click", () => downloadWargameDayCrew(button.dataset.wargameDayDownload));
+  });
+}
+
+function playWargameDayCrew(crewId) {
+  const ownEntry = getWargameDayCrewById(crewId);
+  const opponentEntry = getWargameDayOpponentCrew(crewId);
+  if (!ownEntry || !opponentEntry) {
+    alert(t("match_roster_invalid"));
+    return;
+  }
+
+  try {
+    const ownState = buildMatchCrewState(ownEntry, { allowEmptyDeck: true });
+    const opponentState = buildMatchCrewState(opponentEntry, { allowEmptyDeck: true });
+    if (!ownState.validation.isLegal || !opponentState.validation.isLegal) {
+      alert(t("match_roster_invalid"));
+      return;
+    }
+
+    matchGameRosters = {
+      own: applyMatchRosterRuleEffects(ownState.roster),
+      opponent: applyMatchRosterRuleEffects(opponentState.roster)
+    };
+    matchGameSide = "own";
+    matchGameCardsExpanded = false;
+
+    rememberNavigation("match-game");
+    currentMode = "match-game";
+    closeMatchQrScanner();
+    $("mainMenu").style.display = "none";
+    $("cardsSection").style.display = "none";
+    $("builderSection").style.display = "none";
+    $("myCrewsSection").style.display = "none";
+    $("wargameDaySection").style.display = "none";
+    $("matchSection").style.display = "none";
+    $("matchGameSection").style.display = "block";
+    $("compendiumModal").classList.remove("active");
+    $("modelSearchModal").classList.remove("active");
+    initMatchGameSwipe();
+    renderMatchGame();
+  } catch (error) {
+    alert(error.message || t("match_roster_invalid"));
+  }
+}
+
+function openWargameDayCrew(crewId) {
+  const crewEntry = getWargameDayCrewById(crewId);
+  if (!crewEntry || !crewEntry.text || crewEntry.error) return;
+
+  try {
+    importRosterFromText(crewEntry.text, {
+      builderRosterTitle: crewEntry.title
+    });
+  } catch (error) {
+    alert(error.message || (currentLang === "ru" ? "Не удалось открыть ростер." : "Failed to open roster."));
+  }
+}
+
+function downloadWargameDayCrew(crewId) {
+  const crewEntry = getWargameDayCrewById(crewId);
+  if (!crewEntry || !crewEntry.text || crewEntry.error) return;
+
+  downloadTextFile(`bmg_wargame_day_${getSafeRosterFileToken(crewEntry.title || crewEntry.faction || "crew")}.txt`, crewEntry.text);
+}
+
 function playSavedMyCrew(crewId) {
   const crewEntry = myCrews.find(item => item.id === crewId);
   if (!crewEntry) return;
@@ -6207,12 +6432,29 @@ function showMyCrews(options = {}) {
   $('cardsSection').style.display = 'none';
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'block';
+  $('wargameDaySection').style.display = 'none';
   $('matchSection').style.display = 'none';
   $('matchGameSection').style.display = 'none';
   $('compendiumModal').classList.remove('active');
   $('modelSearchModal').classList.remove('active');
   loadMyCrewsFromStorage();
   renderMyCrews();
+}
+
+function showWargameDay(options = {}) {
+  rememberNavigation('wargame-day', options);
+  currentMode = 'wargame-day';
+  closeMatchQrScanner();
+  $('mainMenu').style.display = 'none';
+  $('cardsSection').style.display = 'none';
+  $('builderSection').style.display = 'none';
+  $('myCrewsSection').style.display = 'none';
+  $('wargameDaySection').style.display = 'block';
+  $('matchSection').style.display = 'none';
+  $('matchGameSection').style.display = 'none';
+  $('compendiumModal').classList.remove('active');
+  $('modelSearchModal').classList.remove('active');
+  renderWargameDay();
 }
 
 function createNewCrewFromMyCrews() {
@@ -6631,9 +6873,10 @@ function buildMatchRosterFromParsedCrew(crewEntry, parsed) {
   return applyMatchRosterRuleEffects(roster);
 }
 
-function validateMatchRoster(parsed) {
+function validateMatchRoster(parsed, options = {}) {
   const messages = [];
   let isLegal = true;
+  const allowEmptyDeck = Boolean(options.allowEmptyDeck && !(parsed.cards || []).length);
 
   if (!parsed.entries.length) {
     isLegal = false;
@@ -6670,7 +6913,7 @@ function validateMatchRoster(parsed) {
     checkRequirements: true
   });
   const deckWarnings = getObjectiveDeckWarnings(deckStats);
-  if (!deckStats.isLegal) {
+  if (!allowEmptyDeck && !deckStats.isLegal) {
     isLegal = false;
     messages.push(...deckWarnings);
   }
@@ -6687,10 +6930,10 @@ function validateMatchRoster(parsed) {
   };
 }
 
-function buildMatchCrewState(crewEntry) {
+function buildMatchCrewState(crewEntry, options = {}) {
   if (!crewEntry) return null;
   const parsed = parseRosterImportText(crewEntry.text);
-  const validation = validateMatchRoster(parsed);
+  const validation = validateMatchRoster(parsed, options);
   const roster = buildMatchRosterFromParsedCrew(crewEntry, parsed);
   return { parsed, validation, roster };
 }
@@ -7298,6 +7541,7 @@ function startMatchGame() {
   $('cardsSection').style.display = 'none';
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
+  $('wargameDaySection').style.display = 'none';
   $('matchSection').style.display = 'none';
   $('matchGameSection').style.display = 'block';
   $('compendiumModal').classList.remove('active');
@@ -7674,6 +7918,7 @@ function showMatch(options = {}) {
   $('cardsSection').style.display = 'none';
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
+  $('wargameDaySection').style.display = 'none';
   $('matchSection').style.display = 'block';
   $('matchGameSection').style.display = 'none';
   $('compendiumModal').classList.remove('active');
@@ -7691,6 +7936,7 @@ function showCards(options = {}) {
   $('cardsSection').style.display = 'block';
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
+  $('wargameDaySection').style.display = 'none';
   $('matchSection').style.display = 'none';
   $('matchGameSection').style.display = 'none';
   $('compendiumModal').classList.remove('active');
@@ -7715,6 +7961,7 @@ function showBuilder(options = {}) {
   $('cardsSection').style.display = 'none';
   $('builderSection').style.display = 'block';
   $('myCrewsSection').style.display = 'none';
+  $('wargameDaySection').style.display = 'none';
   $('matchSection').style.display = 'none';
   $('matchGameSection').style.display = 'none';
   $('factionSelect').style.display = 'block';
@@ -7734,6 +7981,7 @@ function showRules(options = {}) {
   $('cardsSection').style.display = 'none';
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
+  $('wargameDaySection').style.display = 'none';
   $('matchSection').style.display = 'none';
   $('matchGameSection').style.display = 'none';
   openCompendium();
@@ -7750,6 +7998,7 @@ function showScreen(mode, options = {}) {
   if (mode === 'cards') return showCards(options);
   if (mode === 'builder') return showBuilder(options);
   if (mode === 'my-crews') return showMyCrews(options);
+  if (mode === 'wargame-day') return showWargameDay(options);
   if (mode === 'match') return showMatch(options);
   if (mode === 'rules') return showRules(options);
   return backToMenu(options);
@@ -7769,6 +8018,7 @@ function backToMenu(options = {}) {
   $('cardsSection').style.display = 'none';
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
+  $('wargameDaySection').style.display = 'none';
   $('matchSection').style.display = 'none';
   $('matchGameSection').style.display = 'none';
   $('compendiumModal').classList.remove('active');

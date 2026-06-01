@@ -34,6 +34,10 @@
           <span class="btn-icon">🎲</span>
           <span class="btn-text" data-i18n="match">МАТЧ</span>
         </button>
+        <button class="menu-btn" onclick="showWargameDay()">
+          <span class="btn-icon">🏆</span>
+          <span class="btn-text" data-i18n="wargame_day">ДЕНЬ ВАРГЕЙМА</span>
+        </button>
         <button class="menu-btn" onclick="showRules()">
           <span class="btn-icon">📖</span>
           <span class="btn-text" data-i18n="rules">RULES</span>
@@ -402,6 +406,26 @@
     </div>
 
     <div id="myCrewsList" class="my-crews-list"></div>
+  </div>
+
+  <!-- ДЕНЬ ВАРГЕЙМА -->
+  <div id="wargameDaySection" style="display:none;">
+    <div class="top-bar">
+      <div class="top-bar-content">
+        <h1 data-i18n="wargame_day_title">ДЕНЬ ВАРГЕЙМА</h1>
+        <div class="header-buttons">
+          <div class="lang-switch header-lang-switch">
+            <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+          </div>
+          <button class="compendium-small-btn" onclick="navigateBack()">
+            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="wargameDayList" class="my-crews-list wargame-day-list"></div>
   </div>
 
   <!-- МАТЧ -->

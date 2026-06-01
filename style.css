@@ -950,6 +950,20 @@ body.full-card-open {
   overflow: hidden;
 }
 
+.wargame-day-list {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.wargame-day-card {
+  border-color: rgba(255, 215, 0, .35);
+}
+
+.wargame-day-card.is-pending {
+  border-style: dashed;
+  opacity: .82;
+}
+
 .my-crew-card-head {
   display: flex;
   justify-content: space-between;
