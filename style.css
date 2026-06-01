@@ -117,6 +117,43 @@ body.full-card-open {
 #possessedIndicator { white-space:nowrap; }
 #charismaticIndicator span,
 #possessedIndicator span { margin:0 2px; }
+.game-size-switch { display:flex; justify-content:center; gap:8px; padding:8px 8px 0; }
+.game-size-btn {
+  min-width:118px;
+  min-height:38px;
+  border:1px solid #3a3a3a;
+  border-radius:8px;
+  background:#151515;
+  color:#cfd2d8;
+  font-family:'Oswald',sans-serif;
+  font-size:12px;
+  font-weight:bold;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  cursor:pointer;
+  display:grid;
+  place-items:center;
+  gap:1px;
+  padding:5px 10px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,0.03);
+  transition:all .2s ease;
+}
+.game-size-btn strong,
+.game-size-btn small {
+  margin:0;
+  color:#ffd700;
+  line-height:1.05;
+}
+.game-size-btn strong { font-size:12px; }
+.game-size-btn small { font-size:11px; color:#aaa; }
+.game-size-btn.active {
+  background:#e94560;
+  color:#fff;
+  border-color:#ff6b86;
+  box-shadow:0 0 16px rgba(233,69,96,.45);
+}
+.game-size-btn.active strong,
+.game-size-btn.active small { color:#fff; }
 .builder-content-switch { display:flex; justify-content:center; gap:8px; padding:10px 4px 0; }
 .builder-content-switch-btn { min-height:36px; min-width:112px; border:1px solid #3a3a3a; border-radius:999px; background:#151515; color:#cfd2d8; font-family:'Oswald',sans-serif; font-size:13px; font-weight:bold; letter-spacing:1px; cursor:pointer; box-shadow:inset 0 0 0 1px rgba(255,255,255,0.03); transition:all .2s ease; }
 .builder-content-switch-btn.active { background:#e94560; color:#fff; border-color:#ff6b86; box-shadow:0 0 16px rgba(233,69,96,.45); }
@@ -1633,6 +1670,29 @@ body.full-card-open {
   .funds {
     font-size: 12px;
     line-height: 1.5;
+  }
+
+  .game-size-switch {
+    gap: 6px;
+    padding: 8px 0 0;
+  }
+
+  .game-size-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 42px;
+    padding: 5px 4px;
+    border-radius: 10px;
+    font-size: 10px;
+    letter-spacing: .4px;
+  }
+
+  .game-size-btn strong {
+    font-size: 11px;
+  }
+
+  .game-size-btn small {
+    font-size: 10px;
   }
 
   .builder-content-switch {

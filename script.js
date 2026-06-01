@@ -219,6 +219,10 @@ const translations = {
     search_rules_title: "ПОИСК ПРАВИЛ",
     builder_models_tab: "МОДЕЛИ",
     builder_cards_tab: "КАРТЫ",
+    game_size_title: "Размер игры",
+    game_size_short: "Короткая",
+    game_size_standard: "Стандарт",
+    game_size_long: "Продолжительная",
     builder_cards_selected: "Карты в колоде",
     builder_cards_available: "Доступные карты",
     builder_cards_mandatory: "Обязательные правила",
@@ -399,6 +403,10 @@ const translations = {
     search_rules_title: "RULE SEARCH",
     builder_models_tab: "MODELS",
     builder_cards_tab: "CARDS",
+    game_size_title: "Game size",
+    game_size_short: "Short",
+    game_size_standard: "Standard",
+    game_size_long: "Long",
     builder_cards_selected: "Cards in deck",
     builder_cards_available: "Available cards",
     builder_cards_mandatory: "Mandatory rules",
@@ -9295,6 +9303,7 @@ const updateCrewBar = () => {
   } else {
     possessedIndicator.style.display = "none";
   }
+  updateGameSizeButtons();
   updateMobileFixedTopbarOffsets();
 };
 
@@ -10230,27 +10239,7 @@ window.addEventListener("load", () => {
   if (repLimitInput) {
     repLimitInput.value = BMG_REP_LIMIT; // показываем текущий лимит
     repLimitInput.onchange = function() {
-      const newLimit = parseInt(this.value) || 350;
-      if (newLimit < 100) {
-        alert(t("min_limit_100"));
-        this.value = BMG_REP_LIMIT;
-        return;
-      }
-      BMG_REP_LIMIT = newLimit;
-      this.value = newLimit;
-
-      // Пересчитываем модификаторы и обновляем интерфейс
-      modifiers = calculateModifiers();
-      updateCrewBar();
-      if (currentMode === 'builder') {
-        renderMiniCardsBuilder();
-      }
-
-      // Опционально: предупреждение, если текущий отряд превышает новый лимит
-      const currentRep = crewRepUsed();
-      if (currentRep > BMG_REP_LIMIT) {
-        alert(t("rep_exceeds", { current: currentRep, new: BMG_REP_LIMIT }));
-      }
+      setRepLimitValue(this.value);
     };
   }
 
@@ -10280,7 +10269,53 @@ let BMG_AFFILIATIONS = null;
  * BMG HELPERS
  *************************/
 function bmgFundingLimit() {
+  if (BMG_REP_LIMIT === 200) return 500 + numericValue(modifiers.extraFunding, 0);
+  if (BMG_REP_LIMIT === 350 || BMG_REP_LIMIT === 450) return 1500 + numericValue(modifiers.extraFunding, 0);
   return Math.ceil(BMG_REP_LIMIT / 150) * 500 + numericValue(modifiers.extraFunding, 0);
+}
+
+function updateGameSizeButtons() {
+  document.querySelectorAll(".game-size-btn").forEach(button => {
+    const isActive = numericValue(button.dataset.gameRep, 0) === BMG_REP_LIMIT;
+    button.classList.toggle("active", isActive);
+    button.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+}
+
+function setRepLimitValue(value, options = {}) {
+  const { warn = true } = options;
+  const nextLimit = parseInt(value, 10) || 350;
+  const repLimitInput = document.getElementById("repLimit");
+
+  if (nextLimit < 100) {
+    alert(t("min_limit_100"));
+    if (repLimitInput) repLimitInput.value = BMG_REP_LIMIT;
+    return false;
+  }
+
+  BMG_REP_LIMIT = nextLimit;
+  if (repLimitInput) repLimitInput.value = BMG_REP_LIMIT;
+
+  modifiers = calculateModifiers();
+  updateCrewBar();
+
+  if (currentMode === "builder") {
+    renderMiniCardsBuilder();
+    if (builderContentMode === "cards") {
+      renderBuilderCards();
+    }
+  }
+
+  const currentRep = crewRepUsed();
+  if (warn && currentRep > BMG_REP_LIMIT) {
+    alert(t("rep_exceeds", { current: currentRep, new: BMG_REP_LIMIT }));
+  }
+
+  return true;
+}
+
+function setGameSizeLimit(repLimit) {
+  setRepLimitValue(repLimit);
 }
 
 function bmgExtraSlots() {

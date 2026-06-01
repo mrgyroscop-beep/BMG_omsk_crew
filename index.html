@@ -337,6 +337,23 @@
           <span id="charismaticIndicator" style="margin-left:15px; color:#ffd700; font-weight:bold; display:none;"><span id="charismaticLabel">CHARISMATIC:</span> <span id="charismaticStatus">1 additional Free Agent available</span></span>
           <span id="possessedIndicator" style="margin-left:15px; color:#ffd700; font-weight:bold; display:none;"><span id="possessedLabel">POSSESSED:</span> <span id="possessedStatus">any-affiliation Henchmen 0/3</span></span>
         </div>
+        <div class="game-size-switch" role="group" data-i18n-title="game_size_title" title="Размер игры">
+          <button id="gameSizeShortBtn" class="game-size-btn" type="button" data-game-rep="200" onclick="setGameSizeLimit(200)">
+            <span data-i18n="game_size_short">Короткая</span>
+            <strong>200 REP</strong>
+            <small>$500</small>
+          </button>
+          <button id="gameSizeStandardBtn" class="game-size-btn active" type="button" data-game-rep="350" onclick="setGameSizeLimit(350)">
+            <span data-i18n="game_size_standard">Стандарт</span>
+            <strong>350 REP</strong>
+            <small>$1500</small>
+          </button>
+          <button id="gameSizeLongBtn" class="game-size-btn" type="button" data-game-rep="450" onclick="setGameSizeLimit(450)">
+            <span data-i18n="game_size_long">Продолжительная</span>
+            <strong>450 REP</strong>
+            <small>$1500</small>
+          </button>
+        </div>
         <div class="builder-content-switch" role="tablist" aria-label="Builder content">
           <button id="builderModelsTabBtn" class="builder-content-switch-btn active" type="button" onclick="setBuilderContentMode('models')" data-i18n="builder_models_tab">МОДЕЛИ</button>
           <button id="builderCardsTabBtn" class="builder-content-switch-btn" type="button" onclick="setBuilderContentMode('cards')" data-i18n="builder_cards_tab">КАРТЫ</button>
