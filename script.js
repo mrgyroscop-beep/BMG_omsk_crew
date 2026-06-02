@@ -6,6 +6,10 @@ let modelSearchMode = 'models';
 let compendiumSearchMode = 'rules';
 let builderPrintOnly = false;
 let builderFactionOnly = false;
+let builderModelQuery = "";
+let builderQuickFilter = "all";
+let builderCardQuery = "";
+let builderCardQuickFilter = "all";
 let cardsPrintOnly = false;
 let cardsFactionOnly = false;
 let builderContentMode = 'models';
@@ -35,6 +39,10 @@ const printableModelNames = window.PRINTABLE_MODEL_NAMES || new Set();
 const printableModelKeys = window.PRINTABLE_MODEL_KEYS || new Set();
 const printableModelImageKeys = window.PRINTABLE_MODEL_IMAGE_KEYS || new Set();
 let myCrews = [];
+let myCrewsQuery = "";
+let myCrewsFactionFilter = "all";
+let myCrewsPlayFilter = "all";
+let myCrewsSortMode = "updated";
 const MY_CREWS_STORAGE_KEY = 'bmg_my_crews_v1';
 let builderEditingCrewId = null;
 let builderRosterTitle = "";
@@ -176,7 +184,7 @@ function hasPrintableFile(model) {
 }
 
 function getPrintableStatusText(model) {
-  return `Print - ${hasPrintableFile(model) ? "yes" : "no"}`;
+  return hasPrintableFile(model) ? t("print_yes") : t("print_no");
 }
 
 // ======================== ЛОКАЛИЗАЦИЯ ========================
@@ -199,6 +207,17 @@ const translations = {
     my_crews_add_txt: "ДОБАВИТЬ ИЗ TXT",
     my_crews_export_all: "СОХРАНИТЬ ВСЕ TXT",
     my_crews_empty: "Пока нет сохранённых банд. Нажмите +, чтобы собрать новую, или импортируйте TXT-файл ростера.",
+    my_crews_search_placeholder: "Поиск по названию, фракции, моделям...",
+    my_crews_filter_count: "Показано: {count} из {total}",
+    my_crews_filter_empty: "Под этот поиск нет сохранённых банд.",
+    my_crews_filter_all_factions: "Все фракции",
+    my_crews_filter_play_all: "Все",
+    my_crews_filter_play_ready: "Валидные",
+    my_crews_filter_play_draft: "Черновики",
+    my_crews_sort_updated: "Недавние",
+    my_crews_sort_name: "Название",
+    my_crews_sort_faction: "Фракция",
+    my_crews_sort_models: "Модели",
     my_crews_play: "Играть",
     my_crews_open: "Открыть в билдере",
     my_crews_download: "Скачать TXT",
@@ -279,6 +298,16 @@ const translations = {
     builder_cards_group_other: "Другие карты",
     builder_cards_empty: "Каталог карт пуст",
     builder_cards_no_available: "Нет доступных карт",
+    builder_card_search_placeholder: "Поиск карт: название, тип, текст...",
+    builder_card_search_count: "Карт: {count}",
+    builder_card_search_empty: "Под этот поиск нет карт. Очистите фильтры или измените запрос.",
+    builder_card_filter_all: "Все",
+    builder_card_filter_available: "Доступные",
+    builder_card_filter_selected: "В колоде",
+    builder_card_filter_general: "Общие",
+    builder_card_filter_crew: "Банда",
+    builder_card_filter_character: "Персонажи",
+    builder_card_filter_missing: "Не хватает",
     builder_card_limit_reached: "Достигнут лимит этой карты",
     builder_card_deck_full: "В колоде уже 30 карт",
     builder_card_pack_too_large: "Этот комплект не помещается в колоду",
@@ -365,6 +394,22 @@ const translations = {
     builder_save: "Сохранить",
     builder_save_done: "Банда сохранена.",
     builder_save_failed: "Не удалось сохранить банду.",
+    builder_status_limit: "Лимит",
+    builder_status_rep: "REP",
+    builder_status_funding: "Funding",
+    builder_status_remaining: "Осталось: {amount}",
+    builder_status_over: "Превышение: {amount}",
+    builder_quick_search_placeholder: "Поиск: имя, realname, фракция, трейт...",
+    builder_filter_all: "Все",
+    builder_filter_available: "Доступные",
+    builder_filter_crew: "В банде",
+    builder_filter_leaders: "Лидеры",
+    builder_filter_henchmen: "Henchmen",
+    builder_filter_print: "Print",
+    builder_search_count: "Найдено: {count}",
+    builder_search_empty: "Под этот поиск нет моделей. Сбросьте фильтры или измените запрос.",
+    print_yes: "Print",
+    print_no: "No print",
     builder_more_compendium: "Справочник",
     builder_more_import: "Импорт ростера",
     builder_more_export: "Экспорт ростера",
@@ -390,6 +435,17 @@ const translations = {
     my_crews_add_txt: "ADD FROM TXT",
     my_crews_export_all: "SAVE ALL TXT",
     my_crews_empty: "No saved crews yet. Press + to build a new one, or import a roster TXT file.",
+    my_crews_search_placeholder: "Search title, faction, models...",
+    my_crews_filter_count: "Showing: {count} of {total}",
+    my_crews_filter_empty: "No saved crews match this search.",
+    my_crews_filter_all_factions: "All factions",
+    my_crews_filter_play_all: "All",
+    my_crews_filter_play_ready: "Valid",
+    my_crews_filter_play_draft: "Drafts",
+    my_crews_sort_updated: "Recent",
+    my_crews_sort_name: "Name",
+    my_crews_sort_faction: "Faction",
+    my_crews_sort_models: "Models",
     my_crews_play: "Play",
     my_crews_open: "Open in builder",
     my_crews_download: "Download TXT",
@@ -470,6 +526,16 @@ const translations = {
     builder_cards_group_other: "Other cards",
     builder_cards_empty: "Card catalog is empty",
     builder_cards_no_available: "No available cards",
+    builder_card_search_placeholder: "Search cards: name, type, text...",
+    builder_card_search_count: "Cards: {count}",
+    builder_card_search_empty: "No cards match this search. Clear filters or change the query.",
+    builder_card_filter_all: "All",
+    builder_card_filter_available: "Available",
+    builder_card_filter_selected: "In deck",
+    builder_card_filter_general: "General",
+    builder_card_filter_crew: "Crew",
+    builder_card_filter_character: "Characters",
+    builder_card_filter_missing: "Missing req.",
     builder_card_limit_reached: "Card limit reached",
     builder_card_deck_full: "The deck already has 30 cards",
     builder_card_pack_too_large: "This copy set does not fit into the deck",
@@ -556,6 +622,22 @@ const translations = {
     builder_save: "Save",
     builder_save_done: "Crew saved.",
     builder_save_failed: "Failed to save crew.",
+    builder_status_limit: "Limit",
+    builder_status_rep: "REP",
+    builder_status_funding: "Funding",
+    builder_status_remaining: "Remaining: {amount}",
+    builder_status_over: "Over: {amount}",
+    builder_quick_search_placeholder: "Search: name, realname, faction, trait...",
+    builder_filter_all: "All",
+    builder_filter_available: "Available",
+    builder_filter_crew: "In crew",
+    builder_filter_leaders: "Leaders",
+    builder_filter_henchmen: "Henchmen",
+    builder_filter_print: "Print",
+    builder_search_count: "Found: {count}",
+    builder_search_empty: "No models match this search. Clear filters or change the query.",
+    print_yes: "Print",
+    print_no: "No print",
     builder_more_compendium: "Compendium",
     builder_more_import: "Import Roster",
     builder_more_export: "Export Roster",
@@ -574,6 +656,43 @@ function t(key, params = {}) {
     text = text.replace(new RegExp(`\\{${param}\\}`, 'g'), value);
   }
   return text;
+}
+
+function getAppNoticeRegion() {
+  let region = document.getElementById("appNoticeRegion");
+  if (!region) {
+    region = document.createElement("div");
+    region.id = "appNoticeRegion";
+    region.className = "app-notice-region";
+    region.setAttribute("aria-live", "polite");
+    region.setAttribute("aria-atomic", "false");
+    document.body.appendChild(region);
+  }
+  return region;
+}
+
+function showAppNotice(message, type = "info", duration = 3200) {
+  const text = String(message || "").trim();
+  if (!text) return;
+
+  const region = getAppNoticeRegion();
+  const notice = document.createElement("div");
+  notice.className = `app-notice is-${type}`;
+  notice.textContent = text;
+  region.appendChild(notice);
+
+  const close = () => {
+    notice.style.opacity = "0";
+    notice.style.transform = "translateY(-8px)";
+    setTimeout(() => notice.remove(), 180);
+  };
+
+  notice.addEventListener("click", close, { once: true });
+  setTimeout(close, duration);
+}
+
+function showBuilderWarning(message) {
+  showAppNotice(message, "warning");
 }
 
 function getI18nNodeCache() {
@@ -645,8 +764,14 @@ function setLanguage(lang) {
   }
 
   updateBuilderPrintFilterButton();
+  updateBuilderQuickFilterUi();
+  updateBuilderCardFilterUi();
+  updateCrewBar();
   updateBuilderContentModeButtons();
   updateCardsContentModeButtons();
+  if (currentMode === 'builder' && builderContentMode === 'models') {
+    renderMiniCardsBuilder();
+  }
   if (currentMode === 'builder' && builderContentMode === 'cards') {
     renderBuilderCards();
   }
@@ -679,6 +804,15 @@ const localizedUi = {
     stat_willpower: "Сила воли",
     stat_endurance: "Стойкость",
     equipment_for_model: "Экипировка для",
+    equipment_search_placeholder: "Поиск экипировки...",
+    equipment_available_count: "Доступно: {count}",
+    equipment_equipped_count: "У модели: {count}",
+    equipment_manage: "Экипировка",
+    equipment_add: "Добавить экипировку",
+    equipment_locked: "Недоступно",
+    equipment_none_equipped: "Экипировка ещё не куплена.",
+    equipment_none_for_model: "Для этой модели сейчас нет доступной экипировки.",
+    equipment_filter_empty: "Под этот поиск нет экипировки.",
     available_funding: "Доступно",
     available_rep: "Доступно REP",
     total_limit: "из",
@@ -700,6 +834,15 @@ const localizedUi = {
     stat_willpower: "Willpower",
     stat_endurance: "Endurance",
     equipment_for_model: "Equipment for",
+    equipment_search_placeholder: "Search equipment...",
+    equipment_available_count: "Available: {count}",
+    equipment_equipped_count: "Equipped: {count}",
+    equipment_manage: "Equipment",
+    equipment_add: "Add equipment",
+    equipment_locked: "Locked",
+    equipment_none_equipped: "No equipment purchased yet.",
+    equipment_none_for_model: "No equipment is currently available for this model.",
+    equipment_filter_empty: "No equipment matches this search.",
     available_funding: "Available",
     available_rep: "Available REP",
     total_limit: "of",
@@ -4628,6 +4771,14 @@ function uiText(key) {
   return (localizedUi[currentLang] && localizedUi[currentLang][key]) || localizedUi.en[key] || key;
 }
 
+function uiTextFormat(key, params = {}) {
+  let text = uiText(key);
+  for (const [param, value] of Object.entries(params)) {
+    text = text.replace(new RegExp(`\\{${param}\\}`, "g"), value);
+  }
+  return text;
+}
+
 const normalizedExactDictionaryCache = new WeakMap();
 
 function normalizeExactKey(text) {
@@ -6125,7 +6276,7 @@ function clearBuilderSaveState() {
 
 function saveBuilderCrew() {
   if (!hasBuilderRosterContent()) {
-    alert(t("export_empty_roster"));
+    showAppNotice(t("export_empty_roster"), "warning");
     return false;
   }
 
@@ -6172,10 +6323,10 @@ function saveBuilderCrew() {
 
     saveMyCrewsToStorage();
     markBuilderRosterClean(record.title, text);
-    alert(t("builder_save_done"));
+    showAppNotice(t("builder_save_done"), "success");
     return true;
   } catch (error) {
-    alert(error.message || t("builder_save_failed"));
+    showAppNotice(error.message || t("builder_save_failed"), "error");
     return false;
   }
 }
@@ -6188,16 +6339,166 @@ function canPlaySavedMyCrew(crewEntry) {
   }
 }
 
+function getMyCrewSearchHaystack(crewEntry) {
+  return [
+    crewEntry?.title,
+    crewEntry?.faction,
+    crewEntry?.modelCount,
+    crewEntry?.text
+  ]
+    .filter(value => value !== undefined && value !== null)
+    .join(" ")
+    .toLowerCase();
+}
+
+function myCrewMatchesSearch(crewEntry, query) {
+  const terms = String(query || "")
+    .toLowerCase()
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+
+  if (!terms.length) return true;
+  const haystack = getMyCrewSearchHaystack(crewEntry);
+  return terms.every(term => haystack.includes(term));
+}
+
+function getMyCrewUpdatedValue(crewEntry) {
+  return crewEntry?.updatedAt || crewEntry?.addedAt || "";
+}
+
+function compareMyCrewText(a, b) {
+  return String(a || "").localeCompare(String(b || ""), currentLang === "ru" ? "ru" : "en", {
+    numeric: true,
+    sensitivity: "base"
+  });
+}
+
+function getMyCrewFactionOptions() {
+  return [...new Set(myCrews.map(crewEntry => String(crewEntry?.faction || "").trim()).filter(Boolean))]
+    .sort(compareMyCrewText);
+}
+
+function updateMyCrewsControls() {
+  const factionSelect = $("myCrewsFactionFilter");
+  if (factionSelect) {
+    const factions = getMyCrewFactionOptions();
+    if (myCrewsFactionFilter !== "all" && !factions.includes(myCrewsFactionFilter)) {
+      myCrewsFactionFilter = "all";
+    }
+
+    factionSelect.innerHTML = [
+      `<option value="all">${escapeHtml(t("my_crews_filter_all_factions"))}</option>`,
+      ...factions.map(faction => `<option value="${escapeAttribute(faction)}">${escapeHtml(faction)}</option>`)
+    ].join("");
+    factionSelect.value = myCrewsFactionFilter;
+  }
+
+  const playSelect = $("myCrewsPlayFilter");
+  if (playSelect) playSelect.value = myCrewsPlayFilter;
+
+  const sortSelect = $("myCrewsSortSelect");
+  if (sortSelect) sortSelect.value = myCrewsSortMode;
+}
+
+function myCrewPassesFilters(crewEntry) {
+  if (myCrewsFactionFilter !== "all" && crewEntry?.faction !== myCrewsFactionFilter) return false;
+
+  const canPlay = canPlaySavedMyCrew(crewEntry);
+  if (myCrewsPlayFilter === "ready") return canPlay;
+  if (myCrewsPlayFilter === "draft") return !canPlay;
+  return true;
+}
+
+function sortMyCrewEntries(entries) {
+  const sorted = [...entries];
+  sorted.sort((a, b) => {
+    if (myCrewsSortMode === "name") {
+      return compareMyCrewText(a?.title || a?.faction || "Crew", b?.title || b?.faction || "Crew")
+        || compareMyCrewText(a?.faction, b?.faction);
+    }
+
+    if (myCrewsSortMode === "faction") {
+      return compareMyCrewText(a?.faction || "Unknown", b?.faction || "Unknown")
+        || compareMyCrewText(a?.title || "Crew", b?.title || "Crew");
+    }
+
+    if (myCrewsSortMode === "models") {
+      return numericValue(b?.modelCount, 0) - numericValue(a?.modelCount, 0)
+        || compareMyCrewText(a?.title || "Crew", b?.title || "Crew");
+    }
+
+    return String(getMyCrewUpdatedValue(b)).localeCompare(String(getMyCrewUpdatedValue(a)))
+      || compareMyCrewText(a?.title || "Crew", b?.title || "Crew");
+  });
+  return sorted;
+}
+
+function updateMyCrewsSearchUi(count = null, total = myCrews.length) {
+  const input = $("myCrewsSearchInput");
+  if (input && input.value !== myCrewsQuery) input.value = myCrewsQuery;
+
+  const clearButton = $("myCrewsSearchClear");
+  if (clearButton) {
+    clearButton.classList.toggle("is-visible", Boolean(myCrewsQuery.trim()));
+  }
+
+  const meta = $("myCrewsSearchMeta");
+  if (meta && count !== null) {
+    meta.textContent = total > 0 ? t("my_crews_filter_count", { count, total }) : "";
+  }
+}
+
+function setMyCrewsQuery(value) {
+  myCrewsQuery = String(value || "");
+  renderMyCrews();
+}
+
+function clearMyCrewsSearch() {
+  myCrewsQuery = "";
+  updateMyCrewsSearchUi();
+  renderMyCrews();
+}
+
+function setMyCrewsFactionFilter(value) {
+  const factions = new Set(getMyCrewFactionOptions());
+  myCrewsFactionFilter = value === "all" || factions.has(value) ? value : "all";
+  renderMyCrews();
+}
+
+function setMyCrewsPlayFilter(value) {
+  const allowed = new Set(["all", "ready", "draft"]);
+  myCrewsPlayFilter = allowed.has(value) ? value : "all";
+  renderMyCrews();
+}
+
+function setMyCrewsSortMode(value) {
+  const allowed = new Set(["updated", "name", "faction", "models"]);
+  myCrewsSortMode = allowed.has(value) ? value : "updated";
+  renderMyCrews();
+}
+
 function renderMyCrews() {
   const container = $('myCrewsList');
   if (!container) return;
+  updateMyCrewsControls();
 
   if (!myCrews.length) {
+    updateMyCrewsSearchUi(0, 0);
     container.innerHTML = `<div class="my-crews-empty">${t("my_crews_empty")}</div>`;
     return;
   }
 
-  const sortedCrews = [...myCrews].sort((a, b) => String(b.addedAt || "").localeCompare(String(a.addedAt || "")));
+  const sortedCrews = sortMyCrewEntries(myCrews
+    .filter(crewEntry => myCrewMatchesSearch(crewEntry, myCrewsQuery))
+    .filter(myCrewPassesFilters));
+
+  updateMyCrewsSearchUi(sortedCrews.length, myCrews.length);
+
+  if (!sortedCrews.length) {
+    container.innerHTML = `<div class="my-crews-empty">${t("my_crews_filter_empty")}</div>`;
+    return;
+  }
 
   container.innerHTML = sortedCrews.map(crewEntry => {
     const canPlay = canPlaySavedMyCrew(crewEntry);
@@ -6612,7 +6913,7 @@ function saveMatchOpponentToStorage() {
 }
 
 function getSortedMyCrews() {
-  return [...myCrews].sort((a, b) => String(b.addedAt || "").localeCompare(String(a.addedAt || "")));
+  return [...myCrews].sort((a, b) => String(getMyCrewUpdatedValue(b)).localeCompare(String(getMyCrewUpdatedValue(a))));
 }
 
 function getMatchSelectedCrewEntry() {
@@ -8143,6 +8444,9 @@ document.addEventListener("click", event => {
   if (!event.target.closest(".builder-more-actions")) {
     closeBuilderMoreMenu();
   }
+  if (!event.target.closest(".builder-limit-wrap")) {
+    closeGameSizeMenu();
+  }
 });
 
 function updateBuilderPrintFilterButton() {
@@ -8185,6 +8489,107 @@ function canConsiderModelForCurrentBuilder(model) {
   return canHireInFaction(model, currentFaction) || canShowByPossessedRule(model);
 }
 
+function getModelSearchHaystack(model) {
+  const weapons = Array.isArray(model?.weapons)
+    ? model.weapons.map(weapon => [
+      weapon?.name,
+      weapon?.damage,
+      weapon?.traits
+    ].filter(Boolean).join(" "))
+    : [];
+
+  return [
+    model?.name,
+    model?.realname,
+    model?.id,
+    model?.base,
+    getRanks(model).join(" "),
+    getFactions(model).join(" "),
+    getRivals(model).join(" "),
+    getModelTraits(model).join(" "),
+    weapons.join(" "),
+    hasPrintableFile(model) ? "print printable yes" : "no print"
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+}
+
+function modelMatchesSearchQuery(model, query) {
+  const terms = String(query || "")
+    .toLowerCase()
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+
+  if (!terms.length) return true;
+  const haystack = getModelSearchHaystack(model);
+  return terms.every(term => haystack.includes(term));
+}
+
+function passesBuilderQuickFilter(item) {
+  if (!item) return false;
+  if (!modelMatchesSearchQuery(item, builderModelQuery)) return false;
+
+  const ranks = item.rankUsed ? [item.rankUsed] : getRanks(item);
+  if (builderQuickFilter === "available") return !item.inCrew;
+  if (builderQuickFilter === "crew") return Boolean(item.inCrew);
+  if (builderQuickFilter === "leader") return ranks.includes("Leader");
+  if (builderQuickFilter === "henchman") return ranks.includes("Henchman");
+  if (builderQuickFilter === "print") return hasPrintableFile(item);
+  return true;
+}
+
+function updateBuilderQuickFilterUi(count = null) {
+  document.querySelectorAll("[data-builder-filter]").forEach(button => {
+    const active = button.dataset.builderFilter === builderQuickFilter;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+
+  const input = $("builderQuickSearchInput");
+  if (input && input.value !== builderModelQuery) input.value = builderModelQuery;
+
+  const clearButton = $("builderQuickSearchClear");
+  if (clearButton) {
+    clearButton.classList.toggle("is-visible", Boolean(builderModelQuery.trim()));
+  }
+
+  const meta = $("builderSearchMeta");
+  if (meta && count !== null) {
+    meta.textContent = t("builder_search_count", { count });
+  }
+}
+
+function setBuilderModelQuery(value) {
+  builderModelQuery = String(value || "");
+  if (currentMode === "builder" && builderContentMode === "models") {
+    renderMiniCardsBuilder();
+  }
+  if ($("modelSearchModal")?.classList.contains("active")) {
+    renderUnifiedSearch();
+  }
+}
+
+function clearBuilderModelSearch() {
+  builderModelQuery = "";
+  const input = $("builderQuickSearchInput");
+  if (input) input.value = "";
+  updateBuilderQuickFilterUi();
+  if (currentMode === "builder" && builderContentMode === "models") {
+    renderMiniCardsBuilder();
+  }
+}
+
+function setBuilderQuickFilter(filter) {
+  const allowed = new Set(["all", "available", "crew", "leader", "henchman", "print"]);
+  builderQuickFilter = allowed.has(filter) ? filter : "all";
+  updateBuilderQuickFilterUi();
+  if (currentMode === "builder" && builderContentMode === "models") {
+    renderMiniCardsBuilder();
+  }
+}
+
 function updateBuilderFactionFilterButton() {
   const button = $("builderFactionFilterBtn");
   if (button) {
@@ -8218,6 +8623,7 @@ function updateBuilderContentModeButtons() {
   const searchButton = $("builderModelSearchBtn");
   const printButton = $("builderPrintFilterBtn");
   const factionButton = $("builderFactionFilterBtn");
+  const quickSearch = $("builderQuickSearch");
 
   if (modelsButton) {
     modelsButton.classList.toggle("active", !isCardsMode);
@@ -8232,6 +8638,7 @@ function updateBuilderContentModeButtons() {
   if (searchButton) searchButton.style.display = isCardsMode ? "none" : "";
   if (printButton) printButton.style.display = isCardsMode ? "none" : "";
   if (factionButton) factionButton.style.display = isCardsMode ? "none" : "";
+  if (quickSearch) quickSearch.style.display = isCardsMode ? "none" : "grid";
   document.querySelectorAll(".builder-models-only-menu-item").forEach(item => {
     item.style.display = isCardsMode ? "none" : "";
   });
@@ -8835,7 +9242,9 @@ function renderBuilderCardItem(card, options = {}) {
   const limitText = max > 1 ? `0-${max}` : "0-1";
   const footerBadge = mandatory ? t("builder_card_mandatory") : limitText;
   const requirementText = getBuilderCardRequirementText(card);
-  const requirementMissing = selected && builderCardHasCrewRequirement(card) && !isBuilderCardRequirementMet(card);
+  const requirementMissing = (selected || (!viewOnly && builderCardQuickFilter === "missing")) &&
+    builderCardHasCrewRequirement(card) &&
+    !isBuilderCardRequirementMet(card);
   const requirementHTML = requirementText
     ? `<div class="builder-card-requirement ${requirementMissing ? "is-missing" : ""}">${escapeHtml(requirementMissing ? `${t("builder_card_missing_required_model")}: ${requirementText}` : requirementText)}</div>`
     : "";
@@ -8844,12 +9253,16 @@ function renderBuilderCardItem(card, options = {}) {
     : selected
       ? `<button class="remove-btn" onclick="event.stopPropagation(); removeBuilderCard('${key}')">−</button>`
       : `<button class="add-btn" onclick="event.stopPropagation(); addBuilderCard('${key}')">+</button>`;
+  const countBadge = count > 1 ? `<span class="count">x${count}</span>` : "";
+  const actions = button || countBadge
+    ? `<div class="mini-card-actions">${countBadge}${button}</div>`
+    : "";
 
   if (card?.renderAsCardImage && card?.img) {
     return `
       <div class="mini-card builder-card-item builder-card-image-item ${selected ? "in-crew" : ""} ${requirementMissing ? "builder-card-requirement-missing" : ""} ${viewOnly || mandatory ? "builder-card-readonly" : ""} ${mandatory ? "builder-card-mandatory" : ""}">
         ${button}
-        ${count > 1 ? `<span class="count">x${count}</span>` : ""}
+        ${countBadge}
         <img src="${escapeAttribute(card.img)}" class="builder-card-full-img" alt="${escapeAttribute(getBuilderCardName(card))}" onerror="this.src='img/no.png'">
         <div class="builder-card-image-footer">
           <span>${escapeHtml(getBuilderCardName(card))}</span>
@@ -8863,8 +9276,6 @@ function renderBuilderCardItem(card, options = {}) {
 
   return `
     <div class="mini-card builder-card-item ${selected ? "in-crew" : ""} ${requirementMissing ? "builder-card-requirement-missing" : ""} ${viewOnly || mandatory ? "builder-card-readonly" : ""} ${mandatory ? "builder-card-mandatory" : ""}">
-      ${button}
-      ${count > 1 ? `<span class="count">x${count}</span>` : ""}
       ${renderBuilderCardThumb(card)}
       <div class="mini-info">
         <div class="mini-name">${escapeHtml(getBuilderCardName(card))}</div>
@@ -8874,6 +9285,7 @@ function renderBuilderCardItem(card, options = {}) {
         <button class="builder-card-translation-btn" type="button" onclick="event.stopPropagation(); showBuilderCardTranslation('${key}')">${t("builder_card_translation")}</button>
         <div class="mini-rep">${footerBadge}</div>
       </div>
+      ${actions}
     </div>
   `;
 }
@@ -8902,6 +9314,108 @@ function getBuilderCardGroupTitle(groupKey) {
     other: t("builder_cards_group_other")
   };
   return labels[groupKey] || labels.other;
+}
+
+function getBuilderCardSearchHaystack(card) {
+  const resourceText = getLocalizedCardField(card?.resource?.text || card?.resource);
+  const groupKey = getBuilderCardGroupKey(card);
+  return [
+    getBuilderCardName(card),
+    card?.id,
+    card?.key,
+    card?.type,
+    card?.phase,
+    card?.value,
+    card?.category,
+    card?.deckType,
+    getLocalizedCardField(card?.text || card?.description || card?.objective),
+    resourceText,
+    card?.resource?.cost,
+    getBuilderCardRequirementText(card),
+    getBuilderCardRequiredModelNames(card).join(" "),
+    getBuilderCardRequiredRanks(card).join(" "),
+    getBuilderCardRequiredTraits(card).join(" "),
+    getBuilderCardFactionList(card).join(" "),
+    groupKey,
+    getBuilderCardGroupTitle(groupKey)
+  ]
+    .filter(value => value !== undefined && value !== null)
+    .join(" ")
+    .toLowerCase();
+}
+
+function builderCardMatchesSearch(card, query) {
+  const terms = String(query || "")
+    .toLowerCase()
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+
+  if (!terms.length) return true;
+  const haystack = getBuilderCardSearchHaystack(card);
+  return terms.every(term => haystack.includes(term));
+}
+
+function passesBuilderCardQuickFilter(card, options = {}) {
+  if (!builderCardMatchesSearch(card, builderCardQuery)) return false;
+
+  const selected = Boolean(options.selected);
+  const available = Boolean(options.available);
+  const groupKey = getBuilderCardGroupKey(card);
+  if (builderCardQuickFilter === "available") return available;
+  if (builderCardQuickFilter === "selected") return selected;
+  if (builderCardQuickFilter === "general") return groupKey === "general";
+  if (builderCardQuickFilter === "crew") return groupKey === "crew";
+  if (builderCardQuickFilter === "character") return groupKey === "character";
+  if (builderCardQuickFilter === "missing") {
+    return builderCardHasCrewRequirement(card) && !isBuilderCardRequirementMet(card);
+  }
+  return true;
+}
+
+function updateBuilderCardFilterUi(count = null) {
+  document.querySelectorAll("[data-builder-card-filter]").forEach(button => {
+    const active = button.dataset.builderCardFilter === builderCardQuickFilter;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+
+  const input = $("builderCardSearchInput");
+  if (input && input.value !== builderCardQuery) input.value = builderCardQuery;
+
+  const clearButton = $("builderCardSearchClear");
+  if (clearButton) {
+    clearButton.classList.toggle("is-visible", Boolean(builderCardQuery.trim()));
+  }
+
+  const meta = $("builderCardSearchMeta");
+  if (meta && count !== null) {
+    meta.textContent = t("builder_card_search_count", { count });
+  }
+}
+
+function setBuilderCardQuery(value) {
+  builderCardQuery = String(value || "");
+  if (currentMode === "builder" && builderContentMode === "cards") {
+    renderBuilderCards();
+  }
+}
+
+function clearBuilderCardSearch() {
+  builderCardQuery = "";
+  updateBuilderCardFilterUi();
+  if (currentMode === "builder" && builderContentMode === "cards") {
+    renderBuilderCards();
+  }
+}
+
+function setBuilderCardQuickFilter(filter) {
+  const allowed = new Set(["all", "available", "selected", "general", "crew", "character", "missing"]);
+  builderCardQuickFilter = allowed.has(filter) ? filter : "all";
+  updateBuilderCardFilterUi();
+  if (currentMode === "builder" && builderContentMode === "cards") {
+    renderBuilderCards();
+  }
 }
 
 function groupBuilderCardEntries(entries) {
@@ -8994,14 +9508,37 @@ function renderBuilderCards() {
   if (!grid) return;
 
   const catalog = getBuilderCardCatalog().filter(canShowBuilderCard);
-  const mandatoryCards = getBuilderMandatoryCardCatalog().filter(canShowBuilderCard);
+  const mandatoryCards = getBuilderMandatoryCardCatalog()
+    .filter(canShowBuilderCard)
+    .filter(card => passesBuilderCardQuickFilter(card, { mandatory: true }));
   const deckStats = getObjectiveDeckStats();
 
-  const selectedEntries = [...deckStats.selectedMap.values()];
+  const selectedEntries = [...deckStats.selectedMap.values()]
+    .filter(entry => passesBuilderCardQuickFilter(entry.card, { selected: true }));
 
-  const availableCards = catalog.filter(card => getBuilderCardAddCheck(card).ok);
+  const catalogEntries = catalog.map(card => ({
+    card,
+    addCheck: getBuilderCardAddCheck(card)
+  }));
+  const visibleCatalogEntries = catalogEntries.filter(entry => {
+    const available = Boolean(entry.addCheck.ok);
+    if (builderCardQuickFilter !== "missing" && !available) return false;
+    return passesBuilderCardQuickFilter(entry.card, { available });
+  });
+  const hasActiveFilter = Boolean(builderCardQuery.trim()) || builderCardQuickFilter !== "all";
+  const visibleCount = mandatoryCards.length +
+    visibleCatalogEntries.length +
+    selectedEntries.reduce((sum, entry) => sum + getBuilderCardEntryCount(entry), 0);
 
+  updateBuilderCardFilterUi(visibleCount);
   const sections = [renderObjectiveDeckSummary()];
+  const hasVisibleCards = mandatoryCards.length || selectedEntries.length || visibleCatalogEntries.length;
+
+  if (!hasVisibleCards && hasActiveFilter) {
+    sections.push(`<div class="builder-cards-empty">${t("builder_card_search_empty")}</div>`);
+    grid.innerHTML = sections.join("");
+    return;
+  }
 
   if (mandatoryCards.length) {
     sections.push(renderBuilderCardSpoiler(
@@ -9022,16 +9559,18 @@ function renderBuilderCards() {
   }
 
   if (catalog.length) {
-    sections.push(`<div class="builder-cards-section-title">${t("builder_cards_available")}</div>`);
-    sections.push(availableCards.length
+    if (visibleCatalogEntries.length || !hasActiveFilter) {
+      sections.push(`<div class="builder-cards-section-title">${t("builder_cards_available")}</div>`);
+      sections.push(visibleCatalogEntries.length
       ? renderGroupedBuilderCards(
-        availableCards.map(card => ({ card })),
+        visibleCatalogEntries.map(entry => ({ card: entry.card })),
         entry => renderBuilderCardItem(entry.card),
         { openFirst: false }
       )
       : `<div class="builder-cards-empty">${t("builder_cards_no_available")}</div>`
-    );
-  } else {
+      );
+    }
+  } else if (!mandatoryCards.length && !selectedEntries.length) {
     sections.push(`<div class="builder-cards-empty">${t("builder_cards_empty")}</div>`);
   }
 
@@ -9046,7 +9585,7 @@ function addBuilderCard(cardKey) {
 
   const check = getBuilderCardAddCheck(card);
   if (!check.ok) {
-    alert(check.reason);
+    showAppNotice(check.reason, "warning");
     return;
   }
 
@@ -9087,7 +9626,7 @@ function selectFaction(faction) {
 // ======================== ОТРЯД (ТОЛЬКО ДЛЯ БИЛДЕРА) ========================
 const addToCrew = m => {
   if (isBeastBoyShapeshiftForm(m)) {
-    alert(t("beast_boy_form_requires_main"));
+    showBuilderWarning(t("beast_boy_form_requires_main"));
     return;
   }
 
@@ -9114,7 +9653,7 @@ const addToCrew = m => {
     let ranks = getRecruitableRanksForCurrentCrew(m);
 
     if (!ranks.length) {
-      alert(t("model_cannot_be_hired"));
+      showBuilderWarning(t("model_cannot_be_hired"));
       return;
     }
 
@@ -9132,7 +9671,7 @@ const addToCrew = m => {
     } else if (ranks.length > 1) {
       showRankSelectionModal(m, ranks);
     } else {
-      alert(t("rank_not_found"));
+      showBuilderWarning(t("rank_not_found"));
     }
   }
 
@@ -9225,25 +9764,25 @@ function addModelWithRank(model, chosenRank, options = {}) {
   }
 
   if (isBeastBoyShapeshiftForm(model)) {
-    alert(t("beast_boy_form_requires_main"));
+    showBuilderWarning(t("beast_boy_form_requires_main"));
     return null;
   }
 
   // Проверка на Treacherous - предупреждение
   if (model.traits.includes("Treacherous")) {
-    alert(t("treacherous_warn"));
+    showBuilderWarning(t("treacherous_warn"));
   }
 
   const factionRules = factionCrewRules[currentFaction] || {};
   // Специальное правило для Cults: первым (Leader) может быть только Deacon Blackfire или Kobra
   if (currentFaction === "Cults" && !BMG_BOSS && chosenRank === "Leader") {
     if (!["Deacon Blackfire", "Kobra"].includes(model.name)) {
-      alert(t("leader_cults"));
+      showBuilderWarning(t("leader_cults"));
       return;
     }
   }
   if (!BMG_BOSS && factionRules.mustHaveLeaderAsBoss && chosenRank !== "Leader") {
-    alert(t("leader_first"));
+    showBuilderWarning(t("leader_first"));
     return;
   }
 
@@ -9251,7 +9790,7 @@ function addModelWithRank(model, chosenRank, options = {}) {
   if (BMG_BOSS && BMG_BOSS.rankUsed === "Sidekick") {
     const modelRanks = getRanks(model);
     if (modelRanks.includes("Leader") && modelRanks.includes("Sidekick") && chosenRank === "Leader") {
-      alert(t("boss_sidekick"));
+      showBuilderWarning(t("boss_sidekick"));
       return;
     }
   }
@@ -9260,7 +9799,7 @@ function addModelWithRank(model, chosenRank, options = {}) {
   if (model.name === "Henry Ducard" && chosenRank === "Sidekick") {
     const hasRasGhulDecoyAsLeader = BMG_BOSS && BMG_BOSS.name === "Ra's al Ghul Decoy" && BMG_BOSS.rankUsed === "Leader";
     if (!hasRasGhulDecoyAsLeader) {
-      alert(t("henry_ducard_sidekick_requires_ras"));
+      showBuilderWarning(t("henry_ducard_sidekick_requires_ras"));
       return;
     }
   }
@@ -9298,7 +9837,7 @@ function showRankSelectionModal(model, ranks) {
   // Если босс — Sidekick, и модель имеет оба ранга (Leader и Sidekick), показываем только Sidekick
   let availableRanks = ranks.filter(rank => getRecruitableRanksForCurrentCrew(model).includes(rank));
   if (!availableRanks.length) {
-    alert(t("model_cannot_be_hired"));
+    showBuilderWarning(t("model_cannot_be_hired"));
     return;
   }
   if (BMG_BOSS && BMG_BOSS.rankUsed === "Sidekick") {
@@ -9486,6 +10025,54 @@ function isEquipmentCharacterCondition(condition) {
   return true;
 }
 
+function normalizeEquipmentTraitValue(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/\bmk\s*iii\b/g, "mk3")
+    .replace(/\bmk\s*ii\b/g, "mk2")
+    .replace(/\bmk\s*i\b/g, "mk1")
+    .replace(/[-_]+/g, " ")
+    .replace(/[().,'"]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function equipmentTraitValueMatches(current, expected) {
+  const currentParts = String(current || "").split("/").map(normalizeEquipmentTraitValue).filter(Boolean);
+  const expectedParts = String(expected || "").split("/").map(normalizeEquipmentTraitValue).filter(Boolean);
+  if (!currentParts.length || !expectedParts.length) return false;
+
+  return expectedParts.some(expectedPart =>
+    currentParts.some(currentPart =>
+      currentPart === expectedPart ||
+      currentPart.startsWith(expectedPart + " ") ||
+      currentPart.startsWith(expectedPart + "(")
+    )
+  );
+}
+
+function modelHasEquipmentTrait(model, traitName) {
+  return getModelTraits(model).some(trait => equipmentTraitValueMatches(trait, traitName));
+}
+
+function modelHasEquipmentWeaponTrait(model, traitName) {
+  if (!Array.isArray(model?.weapons)) return false;
+  return model.weapons.some(weapon =>
+    String(weapon?.traits || "")
+      .split("/")
+      .some(trait => equipmentTraitValueMatches(trait, traitName))
+  );
+}
+
+function equipmentTargetMatches(eq, crewModel) {
+  const targets = Array.isArray(eq?.targetModels) ? eq.targetModels : [];
+  if (!targets.length) return true;
+  return targets.some(target =>
+    target === crewModel?.rankUsed ||
+    modelMatchesEquipmentName(crewModel, target)
+  );
+}
+
 function modelRepValue(model) {
   return numericValue(model?.rep, 0);
 }
@@ -9515,12 +10102,42 @@ function canAffordModelInCurrentCrew(model) {
     && crewFundingUsed() + modelFundingValue(model) <= bmgFundingLimit();
 }
 
+function updateBuilderMeter(meterId, barId, noteId, used, limit) {
+  const meter = $(meterId);
+  const bar = $(barId);
+  const note = $(noteId);
+  const safeLimit = Math.max(0, numericValue(limit, 0));
+  const safeUsed = Math.max(0, numericValue(used, 0));
+  const percent = safeLimit > 0 ? Math.min(100, (safeUsed / safeLimit) * 100) : 0;
+  const remaining = safeLimit - safeUsed;
+
+  if (bar) bar.style.width = `${percent}%`;
+  if (meter) {
+    meter.classList.toggle("is-warning", safeLimit > 0 && safeUsed <= safeLimit && safeUsed / safeLimit >= 0.85);
+    meter.classList.toggle("is-over", safeLimit > 0 && safeUsed > safeLimit);
+  }
+  if (note) {
+    note.textContent = remaining >= 0
+      ? t("builder_status_remaining", { amount: remaining })
+      : t("builder_status_over", { amount: Math.abs(remaining) });
+  }
+}
+
+function updateBuilderStatusPanel(totalRep, usedFunding) {
+  const repLimitText = $("builderRepLimitText");
+  if (repLimitText) repLimitText.textContent = BMG_REP_LIMIT;
+
+  updateBuilderMeter("builderRepMeter", "builderRepMeterBar", "builderRepRemaining", totalRep, BMG_REP_LIMIT);
+  updateBuilderMeter("builderFundingMeter", "builderFundingMeterBar", "builderFundingRemaining", usedFunding, bmgFundingLimit());
+}
+
 const updateCrewBar = () => {
   $("crewCount").textContent = getRecruitedCrewModels().length;
   let totalRep = crewRepUsed();
   let usedFunding = crewFundingUsed();
   $("totalRep").textContent = totalRep;
   $("totalFunding").textContent = `${usedFunding} / ${bmgFundingLimit()}`;
+  updateBuilderStatusPanel(totalRep, usedFunding);
   
   // Обновляем индикатор Charismatic
   const hasCharismatic = crew.some(m => m.traits && m.traits.includes("Charismatic"));
@@ -9529,7 +10146,7 @@ const updateCrewBar = () => {
   const status = $("charismaticStatus");
   
   if (hasCharismatic) {
-    indicator.style.display = "inline";
+    indicator.style.display = "inline-flex";
     label.textContent = t("charismatic_label");
     if (modifiers.charismaticUsed) {
       status.textContent = t("charismatic_used");
@@ -9546,7 +10163,7 @@ const updateCrewBar = () => {
   const possessedLabel = $("possessedLabel");
   const possessedStatus = $("possessedStatus");
   if (hasPossessedBoss()) {
-    possessedIndicator.style.display = "inline";
+    possessedIndicator.style.display = "inline-flex";
     possessedLabel.textContent = t("possessed_label");
     possessedStatus.textContent = t("possessed_status", { used: bmgPossessedHenchmanCount() });
     possessedStatus.style.color = bmgPossessedHenchmanCount() >= POSSESSED_HENCHMAN_LIMIT ? "#ff4444" : "#44ff44";
@@ -9705,6 +10322,21 @@ function renderMiniModelImage(model, extraClass = "") {
   `;
 }
 
+function renderMiniMetaBadges(model, options = {}) {
+  const note = options.note ? String(options.note) : "";
+  const printable = hasPrintableFile(model);
+  const printClass = printable ? "mini-badge-print" : "mini-badge-no-print";
+  const printLabel = note || getPrintableStatusText(model);
+
+  return `
+    <div class="mini-badges">
+      <span class="mini-badge mini-badge-rep">${displayValue(model?.rep)} REP</span>
+      <span class="mini-badge mini-badge-funding">$${displayValue(model?.funding)}</span>
+      <span class="mini-badge ${note ? "mini-badge-note" : printClass}">${escapeHtml(printLabel)}</span>
+    </div>
+  `;
+}
+
 const INCORRUPTIBLE_BLOCKED_FACTIONS = [
   "Joker",
   "Bane",
@@ -9825,12 +10457,12 @@ const renderMiniCardsView = debounce(() => {
     div.innerHTML = `
 ${renderMiniModelImage(model)}
 <div class="mini-info">
-  <div class="mini-name">${model.name}</div>
+  <div class="mini-name">${escapeHtml(model.name)}</div>
   ${renderModelAffiliationLine(model)}
   <div class="mini-ranks">
     ${ranks.map(rank => `<img src="img/${rank}.png" alt="${rank}" class="rank-icon" onerror="this.src='img/no.png'">`).join('')}
   </div>
-  <div class="mini-rep">${displayValue(model.rep)} Rep • $${displayValue(model.funding)} • ${getPrintableStatusText(model)}</div>
+  ${renderMiniMetaBadges(model)}
 </div>
 `;
 
@@ -9845,40 +10477,13 @@ ${renderMiniModelImage(model)}
 // Версия для билдера (с +/-)
 const renderMiniCardsBuilder = debounce(() => {
   const grid = $("modelsGridBuilder");
-  
-  // ИЗМЕНЕНИЕ: Создаем массив для рендеринга - сначала отряд, затем все остальные модели
-  let renderArray = [];
-  
-  // Сначала добавляем все модели из отряда (в порядке как они есть в crew)
-  renderArray.push(...sortModelsByRankAndRep(crew.map(m => {
-    const originalModel = findBaseModel(m) || m;
-    return { 
-      ...originalModel, 
-      ...m,
-      inCrew: true, 
-      count: countInCrew(originalModel),
-      instance: m // ссылка на экземпляр в отряде
-    };
-  })));
-  
-  // === ИСПРАВЛЕНО: используем canHireInFaction для режима билдера ===
-  let filteredModels = models.filter(m =>
-    canConsiderModelForCurrentBuilder(m) &&
-    passesBuilderFactionFilter(m) &&
-    !hasInCrew(m) &&
-    getRecruitableRanksForCurrentCrew(m).length > 0
-  );
+  const renderArray = getBuilderCardItems().filter(passesBuilderQuickFilter);
+  updateBuilderQuickFilterUi(renderArray.length);
 
-  if (builderPrintOnly) {
-    filteredModels = filteredModels.filter(m => hasPrintableFile(m));
+  if (!renderArray.length) {
+    grid.innerHTML = `<div class="builder-cards-empty">${t("builder_search_empty")}</div>`;
+    return;
   }
-
-  // Добавляем отфильтрованные модели в renderArray
-  renderArray.push(...sortModelsByRankAndRep(filteredModels).map(m => ({
-    ...m,
-    inCrew: false,
-    count: 0
-  })));
 
   const fragment = document.createDocumentFragment();
 
@@ -9907,20 +10512,25 @@ const renderMiniCardsBuilder = debounce(() => {
     } else {
       buttons = `<button class="${item.inCrew ? "remove-btn" : "add-btn"}" onclick="event.stopPropagation();addToCrew(models[${item._id}])">${item.inCrew ? "−" : "+"}</button>`;
     }
+    const equipmentButton = item.inCrew && !isAttachedForm
+      ? `<button class="equipment-icon" type="button" title="${escapeAttribute(uiText("equipment_manage"))}" onclick="event.stopPropagation(); openEquipmentMenu(models[${item._id}], this.closest('.mini-card'))">⚙️</button>`
+      : "";
+    const actions = buttons || equipmentButton
+      ? `<div class="mini-card-actions">${buttons}${equipmentButton}</div>`
+      : "";
 
     div.innerHTML = `
-${buttons}
 ${item.inCrew && BMG_BOSS && BMG_BOSS.name === item.name ? '<span class="boss-crown">👑</span>' : ''}
 ${renderMiniModelImage(item)}
 <div class="mini-info">
-  <div class="mini-name">${item.name}</div>
+  <div class="mini-name">${escapeHtml(item.name)}</div>
   ${renderModelAffiliationLine(item)}
   <div class="mini-ranks">
     ${ranks.map(rank => `<img src="img/${rank}.png" alt="${rank}" class="rank-icon" onerror="this.src='img/no.png'">`).join('')}
   </div>
-  <div class="mini-rep">${displayValue(item.rep)} Rep • $${displayValue(item.funding)} • ${isAttachedForm ? t("beast_boy_form_badge") : getPrintableStatusText(item)}</div>
+  ${renderMiniMetaBadges(item, { note: isAttachedForm ? t("beast_boy_form_badge") : "" })}
 </div>
-${item.inCrew && !isAttachedForm ? '<div class="equipment-icon" onclick="event.stopPropagation(); openEquipmentMenu(models[' + item._id + '], this.closest(\'.mini-card\'))">⚙️</div>' : ''}
+${actions}
 `;
 
     div.onclick = () => showFullCard(item);
@@ -10019,6 +10629,62 @@ function renderOfficialStatValue(model, statName) {
   return `<span class="${className}"${title}>${value}</span>`;
 }
 
+function openEquipmentMenuFromFullCard(sourceEvent) {
+  if (!currentFullCardModel) return;
+  openEquipmentMenu(currentFullCardModel, null, sourceEvent);
+}
+
+function renderFullCardEquipmentSection(model, crewModel, isDisplayModel) {
+  if (!crewModel) return "";
+
+  const equipmentItems = Array.isArray(crewModel.equipment) ? crewModel.equipment : [];
+  const availableCount = !isDisplayModel ? getAvailableEquipmentForCrewModel(crewModel).length : 0;
+  const blockedReason = !isDisplayModel ? getEquipmentBlockedReason(crewModel) : "";
+  const canManage = !isDisplayModel;
+
+  if (!equipmentItems.length && !canManage) return "";
+
+  const equippedHtml = equipmentItems.length
+    ? `<div class="official-equipment-list">
+        ${equipmentItems.map(eq => {
+          const equipmentName = getEquipmentEntryName(eq);
+          if (!equipmentName) return "";
+          const equipmentEffects = Array.isArray(eq.effects) ? eq.effects : [];
+          return `
+            <div class="official-equipment-item">
+              <button
+                class="official-trait equipment-chip"
+                onclick="showTraitPopup('${translateDisplayText(equipmentName).replace(/'/g, "\\'")}', '${translateSentence(equipmentEffects.join("<br>")).replace(/'/g, "\\'")}')">
+                <span>${translateDisplayText(equipmentName)}</span>
+                ${typeof eq === "string" ? "" : `<small>${equipmentCostText(eq)}</small>`}
+              </button>
+              ${isDisplayModel ? "" : `<span
+                class="remove-eq"
+                onclick="event.stopPropagation(); removeEquipmentFromModel(${model._id}, '${equipmentName.replace(/'/g, "\\'")}')">
+                ×
+              </span>`}
+            </div>
+          `;
+        }).join("")}
+      </div>`
+    : `<div class="official-equipment-empty">${uiText("equipment_none_equipped")}</div>`;
+
+  const manageHtml = canManage
+    ? `<button class="official-equipment-manage" type="button" onclick="openEquipmentMenuFromFullCard(event)">
+        <span>${uiText("equipment_add")}</span>
+        <strong>${blockedReason ? uiText("equipment_locked") : uiTextFormat("equipment_available_count", { count: availableCount })}</strong>
+      </button>`
+    : "";
+
+  return `
+    <div class="official-section official-equipment-section">
+      <div class="official-section-title">${uiText("section_equipment")}</div>
+      ${equippedHtml}
+      ${manageHtml}
+    </div>
+  `;
+}
+
 const showFullCard = model => {
   const isDisplayModel = model?._matchDisplayModel || model?._ruleAdjustedDisplayModel;
   const crewInstance = isDisplayModel ? null : (model?.instance || findCrewModel(model));
@@ -10081,34 +10747,7 @@ const weaponsHTML = model.weapons?.length ? model.weapons.map(w => {
 
   // Новый блок: equipment (только если есть в crewModel)
   const crewModel = isDisplayModel ? model : findCrewModel(model); // Находим экземпляр в crew
-  let equipmentHTML = '';
-  if (crewModel && crewModel.equipment && crewModel.equipment.length > 0) {
-    equipmentHTML = `
-      <div class="official-section-title">${uiText("section_equipment")}</div>
-      <div class="official-traits-grid">
-        ${crewModel.equipment.map(eq => {
-          const equipmentName = getEquipmentEntryName(eq);
-          if (!equipmentName) return "";
-          const equipmentEffects = Array.isArray(eq.effects) ? eq.effects : [];
-          return `
-          <div style="position: relative;">
-            <button 
-              class="official-trait equipment-chip" 
-              onclick="showTraitPopup('${translateDisplayText(equipmentName).replace(/'/g, "\\'")}', '${translateSentence(equipmentEffects.join("<br>")).replace(/'/g, "\\'")}')">
-              ${translateDisplayText(equipmentName)} 
-              ${typeof eq === "string" ? "" : `<small>($${eq.fundingCost || 0}${eq.repCost ? ` +${eq.repCost} Rep` : ''})</small>`}
-            </button>
-            ${isDisplayModel ? "" : `<span 
-              class="remove-eq" 
-              onclick="event.stopPropagation(); removeEquipmentFromModel(${model._id}, '${equipmentName.replace(/'/g, "\\'")}')">
-              ×
-            </span>`}
-          </div>
-        `;
-        }).join("")}
-      </div>
-    `;
-  }
+  const equipmentHTML = renderFullCardEquipmentSection(model, crewModel, isDisplayModel);
   
   // --- Финальная сборка карточки ---
   $("fullCardContent").innerHTML = `
@@ -10247,7 +10886,7 @@ function renderModelsSearch(query) {
         ? canConsiderModelForCurrentBuilder(m)
         : canShowInFactionCards(m, currentFaction);
 
-      if (!visibleInCurrentMode || !m.name.toLowerCase().includes(normalizedQuery)) {
+      if (!visibleInCurrentMode || !modelMatchesSearchQuery(m, normalizedQuery)) {
         return false;
       }
       if (isBuilderSearch && !passesBuilderFactionFilter(m)) {
@@ -10282,7 +10921,7 @@ function renderModelsSearch(query) {
           <div class="model-search-name">${escapeHtml(m.name)}</div>
           ${renderModelAffiliationLine(m)}
           <div class="model-search-rank">${localizeRank(m.rank || "Free Agent")}</div>
-          <div class="model-search-cost">${displayValue(m.rep)} Rep • $${displayValue(m.funding)} • ${getPrintableStatusText(m)}</div>
+          ${renderMiniMetaBadges(m)}
         </div>
       </div>`;
   }).join("") : `<div style="text-align:center;color:#888;padding:100px;font-size:18px">${t("nothing_found")}</div>`;
@@ -10530,6 +11169,33 @@ function updateGameSizeButtons() {
     button.classList.toggle("active", isActive);
     button.setAttribute("aria-pressed", isActive ? "true" : "false");
   });
+
+  const toggleText = $("gameSizeToggleText");
+  if (toggleText) {
+    const presetLabels = {
+      200: t("game_size_short"),
+      350: t("game_size_standard"),
+      450: t("game_size_long")
+    };
+    const label = presetLabels[BMG_REP_LIMIT] || t("builder_status_limit");
+    toggleText.textContent = `${label} ${BMG_REP_LIMIT} REP`;
+  }
+}
+
+function closeGameSizeMenu() {
+  const menu = $("gameSizeMenu");
+  const button = $("gameSizeToggleBtn");
+  if (menu) menu.classList.remove("active");
+  if (button) button.setAttribute("aria-expanded", "false");
+}
+
+function toggleGameSizeMenu(event) {
+  if (event) event.stopPropagation();
+  const menu = $("gameSizeMenu");
+  const button = $("gameSizeToggleBtn");
+  if (!menu) return;
+  const isActive = menu.classList.toggle("active");
+  if (button) button.setAttribute("aria-expanded", isActive ? "true" : "false");
 }
 
 function setRepLimitValue(value, options = {}) {
@@ -10538,7 +11204,7 @@ function setRepLimitValue(value, options = {}) {
   const repLimitInput = document.getElementById("repLimit");
 
   if (nextLimit < 100) {
-    alert(t("min_limit_100"));
+    showAppNotice(t("min_limit_100"), "warning");
     if (repLimitInput) repLimitInput.value = BMG_REP_LIMIT;
     return false;
   }
@@ -10558,7 +11224,7 @@ function setRepLimitValue(value, options = {}) {
 
   const currentRep = crewRepUsed();
   if (warn && currentRep > BMG_REP_LIMIT) {
-    alert(t("rep_exceeds", { current: currentRep, new: BMG_REP_LIMIT }));
+    showAppNotice(t("rep_exceeds", { current: currentRep, new: BMG_REP_LIMIT }), "warning");
   }
 
   return true;
@@ -10566,6 +11232,7 @@ function setRepLimitValue(value, options = {}) {
 
 function setGameSizeLimit(repLimit) {
   setRepLimitValue(repLimit);
+  closeGameSizeMenu();
 }
 
 function bmgExtraSlots() {
@@ -10669,7 +11336,7 @@ function bmgCanAddModel(model, options = {}) {
   const { allowThreeJokersLeader = false } = options;
 
   if (isBeastBoyShapeshiftForm(model)) {
-    alert(t("beast_boy_form_requires_main"));
+    showBuilderWarning(t("beast_boy_form_requires_main"));
     return false;
   }
 
@@ -10679,24 +11346,24 @@ function bmgCanAddModel(model, options = {}) {
 
   const rank = model.rankUsed;
   if (!rank) {
-    alert(t("rank_not_selected"));
+    showBuilderWarning(t("rank_not_selected"));
     return false;
   }
 
   const usePossessedRecruitment = model.hiredByPossessed === true;
   if (usePossessedRecruitment && bmgPossessedHenchmanCount() >= POSSESSED_HENCHMAN_LIMIT) {
-    alert(t("possessed_limit_exceeded"));
+    showBuilderWarning(t("possessed_limit_exceeded"));
     return false;
   }
   if (modelHasSpeedsterTrait(model) && crewHasSpeedster()) {
-    alert(t("speedster_limit_exceeded"));
+    showBuilderWarning(t("speedster_limit_exceeded"));
     return false;
   }
 
   // Проверка зависимостей моделей (например, Robin Who Laughs требует The Batman Who Laughs)
   const unmetDependency = getUnmetDependency(model);
   if (unmetDependency) {
-    alert(t("model_requires_other", { model: model.name, required: unmetDependency }));
+    showBuilderWarning(t("model_requires_other", { model: model.name, required: unmetDependency }));
     return false;
   }
 
@@ -10706,18 +11373,18 @@ function bmgCanAddModel(model, options = {}) {
 
   // Проверка лимитов Rep и Funding
   if (totalRep > BMG_REP_LIMIT) {
-    alert(t("rep_exceeded"));
+    showBuilderWarning(t("rep_exceeded"));
     return false;
   }
   if (usedFunding > bmgFundingLimit()) {
-    alert(t("funding_insufficient"));
+    showBuilderWarning(t("funding_insufficient"));
     return false;
   }
 
   // Проверка первого Босса
   if (!BMG_BOSS) {
     if (model.rankUsed !== "Leader") {
-      alert(t("leader_required", { rank: "Leader" }));
+      showBuilderWarning(t("leader_required", { rank: "Leader" }));
       return false;
     }
   }
@@ -10730,19 +11397,19 @@ function bmgCanAddModel(model, options = {}) {
     if (factionRules.onlyAffiliationMembers) {
       // Для Batman Who Laughs: только члены аффилиации
       if (!modelFactions.some(a => bossFactions.includes(a))) {
-        alert(t("model_not_affiliation"));
+        showBuilderWarning(t("model_not_affiliation"));
         return false;
       }
     } else if (factionRules.onlyBossAffiliationOrNoAffiliation) {
       // Для Bat Family и Cults: только аффилиация Босса или без аффилиации
       if (!modelFactions.includes("Unknown") && !modelFactions.some(a => bossFactions.includes(a))) {
-        alert(t("model_not_match_affiliation"));
+        showBuilderWarning(t("model_not_match_affiliation"));
         return false;
       }
     } else {
       // Стандартная проверка
       if (!modelFactions.includes("Unknown") && !modelFactions.some(a => bossFactions.includes(a))) {
-        alert(t("model_not_match"));
+        showBuilderWarning(t("model_not_match"));
         return false;
       }
     }
@@ -10757,7 +11424,7 @@ function bmgCanAddModel(model, options = {}) {
     }
 
     if (requiredTrait && !model.traits.includes(requiredTrait)) {
-      alert(t("leader_trait_required", { leader: BMG_BOSS.name, trait: requiredTrait }));
+      showBuilderWarning(t("leader_trait_required", { leader: BMG_BOSS.name, trait: requiredTrait }));
       return false;
     }
   }
@@ -10767,13 +11434,13 @@ function bmgCanAddModel(model, options = {}) {
   if (!factionRules.allowSameNameDifferentAlias && realname !== "Unknown" && realname !== "—") {
     const existingWithSameRealname = getRecruitedCrewModels().find(m => (m.realname || "—") === realname);
     if (existingWithSameRealname) {
-      alert(t("model_already_added", { name: realname }));
+      showBuilderWarning(t("model_already_added", { name: realname }));
       return false;
     }
   }
 
   if (rank === "Henchman" && isMinionLimitReached(model)) {
-    alert(t("minion_limit_exceeded", { type: getMinionTraitValue(model) || "" }));
+    showBuilderWarning(t("minion_limit_exceeded", { type: getMinionTraitValue(model) || "" }));
     return false;
   }
 
@@ -10793,22 +11460,22 @@ function bmgCanAddModel(model, options = {}) {
 
       // Если уже есть Leader — нельзя добавить ещё одного
       if (bmgRankCount("Leader") >= 1 && !allowExtraThreeJokersLeader) {
-        alert(t("only_one_leader"));
+        showBuilderWarning(t("only_one_leader"));
         return false;
       }
       // Если босс — Sidekick, и у текущей модели есть только Leader (без Sidekick) — нельзя добавить
       if (BMG_BOSS && BMG_BOSS.rankUsed === "Sidekick" && !getRanks(model).includes("Sidekick")) {
-        alert(t("leader_already_added"));
+        showBuilderWarning(t("leader_already_added"));
         return false;
       }
     }
     if (rank === "Sidekick") {
       if (bmgRankCount("Leader") === 0 && bmgRankCount("Sidekick") >= 2) {
-        alert(t("max_2_sidekick"));
+        showBuilderWarning(t("max_2_sidekick"));
         return false;
       }
       if (bmgRankCount("Leader") >= 1 && bmgRankCount("Sidekick") >= 1) {
-        alert(t("max_1_sidekick_with_leader"));
+        showBuilderWarning(t("max_1_sidekick_with_leader"));
         return false;
       }
     }
@@ -10817,27 +11484,27 @@ function bmgCanAddModel(model, options = {}) {
       if (canUseCharismatic) {
         modifiers.charismaticUsed = true;
       } else {
-        alert(t("fa_limit_exceeded"));
+        showBuilderWarning(t("fa_limit_exceeded"));
         return false;
       }
     }
     if (rank === "Vehicle" && bmgRankCount("Vehicle") >= 1 + extras + (modifiers.extraVehicles || 0)) {
-      alert(t("vehicle_limit_exceeded"));
+      showBuilderWarning(t("vehicle_limit_exceeded"));
       return false;
     }
     if (rank === "Henchman") {
-      const hasMinionOrHorde = model.traits.some(t => t.startsWith("Minion") || t === "Horde");
+      const hasMinionOrHorde = model.traits.some(trait => trait.startsWith("Minion") || trait === "Horde");
       if (!hasMinionOrHorde) {
         const sameNameCount = getRecruitedCrewModels().filter(x => x.name === model.name && x.rankUsed === "Henchman").length;
         if (sameNameCount >= 1 + (modifiers.extraDuplicates || 0)) {
-          alert(t("henchman_limit_exceeded"));
+          showBuilderWarning(t("henchman_limit_exceeded"));
           return false;
         }
       }
       // Проверка Elite, Veteran, Minion
       let eliteExceeded = false;
-      model.traits.forEach(t => {
-        const eliteMatch = t.match(/^Elite \((.+)\)$/);
+      model.traits.forEach(trait => {
+        const eliteMatch = trait.match(/^Elite \((.+)\)$/);
         if (eliteMatch) {
           const type = eliteMatch[1];
           const count = getRecruitedCrewModels().filter(m => m.traits.some(u => u.match(new RegExp(`^Elite \\(${type}\\)$`)))).length;
@@ -10845,7 +11512,7 @@ function bmgCanAddModel(model, options = {}) {
           const hasEliteBoss = getRecruitedCrewModels().some(m => m.traits.some(u => u === `Elite Boss (${type})`));
           const limit = hasEliteBoss ? 99 : 1 + (modifiers.extraElites[type] || 0);
           if (count >= limit) {
-            alert(t("elite_limit_exceeded", { type }));
+            showBuilderWarning(t("elite_limit_exceeded", { type }));
             eliteExceeded = true;
           }
         }
@@ -10853,13 +11520,13 @@ function bmgCanAddModel(model, options = {}) {
       if (eliteExceeded) return false;
 
       let veteranExceeded = false;
-      model.traits.forEach(t => {
-        const veteranMatch = t.match(/^Veteran \((.+)\)$/);
+      model.traits.forEach(trait => {
+        const veteranMatch = trait.match(/^Veteran \((.+)\)$/);
         if (veteranMatch) {
           const type = veteranMatch[1];
           const count = getRecruitedCrewModels().filter(m => m.traits.some(u => u.match(new RegExp(`^Veteran \\(${type}\\)$`)))).length;
           if (count >= 1 + (modifiers.extraVeterans[type] || 0)) {
-            alert(t("veteran_limit_exceeded", { type }));
+            showBuilderWarning(t("veteran_limit_exceeded", { type }));
             veteranExceeded = true;
           }
         }
@@ -10867,10 +11534,10 @@ function bmgCanAddModel(model, options = {}) {
       if (veteranExceeded) return false;
 
       let minionExceeded = false;
-      model.traits.forEach(t => {
-        const minionMatch = t.match(/^Minion \((.+)\)$/);
+      model.traits.forEach(trait => {
+        const minionMatch = trait.match(/^Minion \((.+)\)$/);
         if (minionMatch && isMinionLimitReached(model)) {
-          alert(t("minion_limit_exceeded", { type: minionMatch[1].trim() }));
+          showBuilderWarning(t("minion_limit_exceeded", { type: minionMatch[1].trim() }));
           minionExceeded = true;
         }
       });
@@ -10880,9 +11547,9 @@ function bmgCanAddModel(model, options = {}) {
 
   // НОВЫЕ ПРОВЕРКИ НА ТРЕЙТЫ
   let exceeded = false;
-  model.traits.forEach(t => {
+  model.traits.forEach(trait => {
     // Elite (X): Проверяем с учётом Elite Boss
-    const eliteMatch = t.match(/^Elite \((.+)\)$/);
+    const eliteMatch = trait.match(/^Elite \((.+)\)$/);
     if (eliteMatch) {
       const type = eliteMatch[1];
       const count = getRecruitedCrewModels().filter(m => m.traits.some(u => u.match(new RegExp(`^Elite \\(${type}\\)$`)))).length;
@@ -10890,33 +11557,33 @@ function bmgCanAddModel(model, options = {}) {
       const hasEliteBoss = getRecruitedCrewModels().some(m => m.traits.some(u => u === `Elite Boss (${type})`));
       const limit = hasEliteBoss ? 99 : 1 + (modifiers.extraElites[type] || 0);
       if (count >= limit) {
-        alert(t("elite_limit_exceeded", { type }));
+        showBuilderWarning(t("elite_limit_exceeded", { type }));
         exceeded = true;
       }
     }
 
     // Horde: Если модель имеет Horde, игнор лимита миньонов на +3
-    if (t === "Horde" && bmgRankCount("Henchman") >= 5 + (modifiers.extraMinions["All"] || 0)) {
-      alert(t("horde_limit_exceeded"));
+    if (trait === "Horde" && bmgRankCount("Henchman") >= 5 + (modifiers.extraMinions["All"] || 0)) {
+      showBuilderWarning(t("horde_limit_exceeded"));
       exceeded = true;
     }
 
     // Hates (X): Нельзя добавлять если X в отряде
-    const hatesMatch = t.match(/^Hates \((.+)\)$/);
+    const hatesMatch = trait.match(/^Hates \((.+)\)$/);
     if (hatesMatch) {
       const hated = hatesMatch[1];
       if (crew.some(m => m.name === hated || getFactions(m).includes(hated))) {
-        alert(t("hates_cannot_add", { hated }));
+        showBuilderWarning(t("hates_cannot_add", { hated }));
         exceeded = true;
       }
     }
 
     // Aversion (X): Нельзя добавлять если X в отряде
-    const aversionMatch = t.match(/^Aversion \((.+)\)$/);
+    const aversionMatch = trait.match(/^Aversion \((.+)\)$/);
     if (aversionMatch) {
       const averted = aversionMatch[1];
       if (crew.some(m => m.name === averted || getFactions(m).includes(averted))) {
-        alert(t("avert_cannot_add", { averted }));
+        showBuilderWarning(t("avert_cannot_add", { averted }));
         exceeded = true;
       }
     }
@@ -10927,7 +11594,7 @@ function bmgCanAddModel(model, options = {}) {
       const conflictingModel = crew.find(m => aversionList.includes(m.name));
       if (conflictingModel) {
         const aversionNames = aversionList.join(", ");
-        alert(t("avert_cannot_add", { averted: aversionNames }));
+        showBuilderWarning(t("avert_cannot_add", { averted: aversionNames }));
         exceeded = true;
       }
     }
@@ -10936,14 +11603,14 @@ function bmgCanAddModel(model, options = {}) {
     for (const crewModel of crew) {
       const crewAversionList = window.modelAversionRules?.[crewModel.name];
       if (crewAversionList && Array.isArray(crewAversionList) && crewAversionList.includes(model.name)) {
-        alert(t("avert_cannot_add", { averted: crewModel.name }));
+        showBuilderWarning(t("avert_cannot_add", { averted: crewModel.name }));
         exceeded = true;
         break;
       }
     }
 
     // Required (X): Требует X в отряде (поддержка нескольких имён через "or")
-    const requiredMatch = t.match(/^Required \((.+)\)$/);
+    const requiredMatch = trait.match(/^Required \((.+)\)$/);
     if (requiredMatch) {
       const required = requiredMatch[1];
       // Разбиваем на варианты по " or " (например: "Dr. Hugo Strange or SCARECROW")
@@ -10953,61 +11620,61 @@ function bmgCanAddModel(model, options = {}) {
         crew.some(m => m.name === req || m.name.includes(req) || getFactions(m).includes(req))
       );
       if (!hasRequired) {
-        alert(t("required_cannot_add", { required }));
+        showBuilderWarning(t("required_cannot_add", { required }));
         exceeded = true;
       }
     }
 
     // Incorruptible: Нельзя в злые фракции (если фракция villain)
-    if (t === "Incorruptible" && ["Joker", "Bane", "Penguin", "Mr. Freeze", "Scarecrow", "Two-Face", "The Riddler", "Organized Crime", "Suicide Squad", "Batman Who Laughs", "Cults"].includes(currentFaction)) {
-      alert(t("incorruptible_cannot_add"));
+    if (trait === "Incorruptible" && ["Joker", "Bane", "Penguin", "Mr. Freeze", "Scarecrow", "Two-Face", "The Riddler", "Organized Crime", "Suicide Squad", "Batman Who Laughs", "Cults"].includes(currentFaction)) {
+      showBuilderWarning(t("incorruptible_cannot_add"));
       exceeded = true;
     }
 
     // Freed / He Freed Me: модели Batman Who Laughs требуют The Batman Who Laughs в отряде
-    if (t === "Freed" || t === "He Freed Me") {
+    if (trait === "Freed" || trait === "He Freed Me") {
       if (!crew.some(m => m.name === "The Batman Who Laughs")) {
-        alert(t("model_requires_other", { model: model.name, required: "The Batman Who Laughs" }));
+        showBuilderWarning(t("model_requires_other", { model: model.name, required: "The Batman Who Laughs" }));
         exceeded = true;
       }
     }
 
     // My Idol!: Требует idol в отряде
-    if (t === "My Idol!") {
+    if (trait === "My Idol!") {
       if (!BMG_BOSS || BMG_BOSS.name !== "Joker") {
-        alert(t("requires_idol"));
+        showBuilderWarning(t("requires_idol"));
         exceeded = true;
       }
     }
 
     // Possessed сам по себе не запрещает нанимать модель в ее напечатанную фракцию.
     const isPrintedFaction = getFactions(model).includes(currentFaction);
-    if (t === "Possessed" && !isPrintedFaction && !["Cults", "Batman Who Laughs"].includes(currentFaction)) {
-      alert(t("possessed_only_supernatural"));
+    if (trait === "Possessed" && !isPrintedFaction && !["Cults", "Batman Who Laughs"].includes(currentFaction)) {
+      showBuilderWarning(t("possessed_only_supernatural"));
       exceeded = true;
     }
 
     // Meet Goliath!: Требует Goliath
-    if (t === "Meet Goliath!") {
+    if (trait === "Meet Goliath!") {
       if (!crew.some(m => m.name === "Goliath")) {
-        alert(t("requires_goliath"));
+        showBuilderWarning(t("requires_goliath"));
         exceeded = true;
       }
     }
 
     // The Sidekick: Лимит 1, требует Leader
-    if (t === "The Sidekick" && bmgRankCount("Sidekick") >= 1) {
-      alert(t("sidekick_limit_exceeded"));
+    if (trait === "The Sidekick" && bmgRankCount("Sidekick") >= 1) {
+      showBuilderWarning(t("sidekick_limit_exceeded"));
       exceeded = true;
     }
-    if (t === "The Sidekick" && !BMG_BOSS) {
-      alert(t("leader_required_for_sidekick"));
+    if (trait === "The Sidekick" && !BMG_BOSS) {
+      showBuilderWarning(t("leader_required_for_sidekick"));
       exceeded = true;
     }
 
     // Amazon Lineage: Только в amazon фракциях
-    if (t === "Amazon Lineage" && currentFaction !== "Birds of Prey") {
-      alert(t("amazon_lineage"));
+    if (trait === "Amazon Lineage" && currentFaction !== "Birds of Prey") {
+      showBuilderWarning(t("amazon_lineage"));
       exceeded = true;
     }
   });
@@ -11018,385 +11685,352 @@ function bmgCanAddModel(model, options = {}) {
 }
 
 
-function openEquipmentMenu(model, cardElement) {
-  event.stopPropagation();
+function getCrewModelForEquipment(model) {
+  return crew.find(item => isSameModel(item, model) && item.rankUsed) || null;
+}
 
-  // Находим экземпляр модели в банде
-  const crewModel = crew.find(m => isSameModel(m, model) && m.rankUsed);
-  if (!crewModel) return;
+function getEquipmentBlockedReason(crewModel) {
+  if (!crewModel) return "";
+  const traits = getModelTraits(crewModel);
 
-  // Модели с трейтом Animal не могут покупать оборудование
-  if (crewModel.traits && crewModel.traits.some(t => t.includes("Animal"))) {
-    alert(t("animal_no_equipment"));
-    return;
+  if (traits.some(trait => trait.includes("Animal"))) return t("animal_no_equipment");
+  if (traits.some(trait => trait.includes("Fully Equipped"))) return t("fully_equipped_no_equipment");
+  if (traits.some(trait => trait.includes("Limited Equipment")) && (crewModel.equipment || []).length >= 1) {
+    return t("limited_equipment_max_reached");
   }
 
-  // Модели с трейтом Fully Equipped не могут покупать оборудование
-  if (crewModel.traits && crewModel.traits.some(t => t.includes("Fully Equipped"))) {
-    alert(t("fully_equipped_no_equipment"));
-    return;
-  }
-
-  // Модели с трейтом Limited Equipment могут купить только 1 единицу оборудования
-  if (crewModel.traits && crewModel.traits.some(t => t.includes("Limited Equipment"))) {
-    const currentEquipmentCount = (crewModel.equipment || []).length;
-    if (currentEquipmentCount >= 1) {
-      alert(t("limited_equipment_max_reached"));
-      return;
-    }
-  }
-
-  // ПРАВКА 1: Leader не может покупать equipment, если явно не разрешено в targetModels
   if (crewModel.rankUsed === "Leader") {
-    // Проверяем, есть ли equipment с targetModels, разрешающим Leader
-    const faction = currentFaction;
-    const hasLeaderPermission = (equipmentByFaction[faction] || []).some(eq => 
+    const hasLeaderPermission = (equipmentByFaction[currentFaction] || []).some(eq =>
       eq.targetModels && eq.targetModels.includes("Leader")
     );
     if (!hasLeaderPermission) {
-      alert(currentLang === 'ru' ? "Leader не может покупать оборудование!" : "Leader cannot purchase equipment!");
-      return;
+      return currentLang === "ru" ? "Leader не может покупать оборудование!" : "Leader cannot purchase equipment!";
     }
   }
 
-  const faction = currentFaction;
-  const availableEq = (equipmentByFaction[faction] || []).filter(eq => {
-    // ПРАВКА 2: Проверка maxPerCrew (ограничение на количество предметов в отряде)
-    const currentCount = crew.flatMap(m => m.equipment || []).filter(e => e.name === eq.name).length;
-    if (currentCount >= (eq.maxPerCrew || Infinity)) return false;
+  return "";
+}
 
-    // ПРАВКА 3: Модель не может иметь одно и то же оборудование дважды
-    if (crewModel.equipment && crewModel.equipment.some(e => e.name === eq.name)) {
+function isSpecialEquipmentAvailable(eq) {
+  return !!(eq?.conditions && eq.conditions.some(cond =>
+    isEquipmentCharacterCondition(cond) && crewHasEquipmentModelCondition(cond)
+  ));
+}
+
+function equipmentRequirementText(eq) {
+  const conditions = Array.isArray(eq?.conditions) ? eq.conditions : [];
+  const reqTrait = conditions.find(condition =>
+    condition.endsWith(" in crew") &&
+    !condition.startsWith("Alias:") &&
+    !crewHasEquipmentModelCondition(condition)
+  )?.replace(" in crew", "").trim();
+
+  if (reqTrait) {
+    return `${uiText("requires")} ${translateDisplayText(reqTrait)} ${uiText("in_crew_suffix")}`;
+  }
+
+  const reqCharacterCondition = isSpecialEquipmentAvailable(eq)
+    ? conditions.find(condition => isEquipmentCharacterCondition(condition) && crewHasEquipmentModelCondition(condition))
+    : null;
+  const reqCharacter = reqCharacterCondition ? normalizeEquipmentConditionName(reqCharacterCondition) : "";
+
+  return reqCharacter ? `${uiText("requires")} ${reqCharacter}` : "";
+}
+
+function equipmentCostText(eq) {
+  const funding = equipmentFundingValue(eq);
+  const rep = equipmentRepValue(eq);
+  return `$${funding}${rep ? ` +${rep} REP` : ""}`;
+}
+
+function equipmentSearchText(eq) {
+  return [
+    eq?.name,
+    equipmentCostText(eq),
+    ...(Array.isArray(eq?.effects) ? eq.effects : []),
+    ...(Array.isArray(eq?.conditions) ? eq.conditions : []),
+    equipmentRequirementText(eq)
+  ].filter(Boolean).join(" ").toLowerCase();
+}
+
+function canShowEquipmentForCrewModel(eq, crewModel) {
+  const currentCount = crew.flatMap(model => model.equipment || []).filter(item => item.name === eq.name).length;
+  if (currentCount >= (eq.maxPerCrew || Infinity)) return false;
+
+  if (crewModel.equipment && crewModel.equipment.some(item => item.name === eq.name)) {
+    return false;
+  }
+
+  if (crewModel.equipment && Array.isArray(eq.conflictsWith) && eq.conflictsWith.some(name =>
+    crewModel.equipment.some(item => item.name === name)
+  )) {
+    return false;
+  }
+
+  if (!equipmentTargetMatches(eq, crewModel)) return false;
+
+  const hasTraitInCrewCondition = eq.conditions && eq.conditions.some(condition =>
+    condition.endsWith(" in crew") && !condition.startsWith("Alias:") && !crewHasEquipmentModelCondition(condition)
+  );
+
+  if (hasTraitInCrewCondition) {
+    const hasRequiredTrait = eq.conditions.some(condition => {
+      if (condition.endsWith(" in crew") && !condition.startsWith("Alias:") && !crewHasEquipmentModelCondition(condition)) {
+        const traitName = condition.replace(" in crew", "").trim();
+        return crew.some(model => getModelTraits(model).some(trait => trait.includes(traitName)));
+      }
       return false;
-    }
+    });
 
-    // ПРАВКА 4: Проверка targetModels (ограничение на какие модели можно купить)
-    // По умолчанию только Henchman могут покупать equipment
-    // Все остальные ранги (Leader, Sidekick, Free Agent) могут покупать только если явно разрешено
+    if (!hasRequiredTrait) return false;
+  } else {
+    const isSpecialEquipment = isSpecialEquipmentAvailable(eq);
 
-    // Проверяем, является ли это Equipment с условием на трейт в банде (например, "Vampire Queen in crew")
-    // Такое оборудование доступно ВСЕМ моделям независимо от ранга, если требуемый трейт есть в банде
-    const hasTraitInCrewCondition = eq.conditions && eq.conditions.some(cond =>
-      cond.endsWith(' in crew') && !cond.startsWith('Alias:') && !crewHasEquipmentModelCondition(cond)
-    );
-
-    if (hasTraitInCrewCondition) {
-      // Проверяем наличие требуемого трейта в банде
-      const hasRequiredTrait = eq.conditions.some(cond => {
-        if (cond.endsWith(' in crew') && !cond.startsWith('Alias:') && !crewHasEquipmentModelCondition(cond)) {
-          const traitName = cond.replace(' in crew', '').trim();
-          // Проверяем, есть ли в банде модель с таким трейтом
-          return crew.some(m => m.traits && m.traits.some(t => t.includes(traitName)));
-        }
-        return false;
+    if (isSpecialEquipment) {
+      const hasRequiredCharacter = eq.conditions.some(condition => {
+        const modelName = condition.replace("Alias: ", "").replace(" in crew", "").trim();
+        return modelName ? crewHasEquipmentModelCondition(modelName) : false;
       });
+      if (!hasRequiredCharacter) return false;
+    } else if (crewModel.rankUsed !== "Henchman") {
+      if (!eq.targetModels || !eq.targetModels.length) return false;
 
-      if (!hasRequiredTrait) {
-        return false; // Требуемый трейт отсутствует в банде
-      }
-      // Если трейт есть в банде, оборудование доступно всем моделям — пропускаем проверку ранга
-    } else {
-      // Это не Equipment с условием на трейт в банде, применяем обычные правила
-      // Сначала проверяем, является ли это Special Equipment (требует персонажа в отряде)
-      const isSpecialEquipment = eq.conditions && eq.conditions.some(cond =>
-        isEquipmentCharacterCondition(cond) && crewHasEquipmentModelCondition(cond)
-      );
-
-      if (isSpecialEquipment) {
-        // Это Special Equipment — проверяем только наличие требуемого персонажа в отряде
-        const hasRequiredCharacter = eq.conditions.some(cond => {
-          let modelName = '';
-          // Правильный порядок замен: сначала убираем "Alias: ", потом " in crew"
-          modelName = cond.replace('Alias: ', '').replace(' in crew', '').trim();
-
-          if (modelName) {
-            // Проверяем точное совпадение или совпадение по базовому имени
-            // Например, "Scarecrow" должен совпадать с "Scarecrow (The Worst Nightmare)"
-            return crewHasEquipmentModelCondition(modelName);
-          }
-          return false;
-        });
-
-        if (!hasRequiredCharacter) {
-          return false; // Требуемый персонаж отсутствует в отряде
-        }
-        // Если персонаж есть, Special Equipment доступно независимо от ранга — пропускаем дальше
-      } else {
-        // Это не Special Equipment, применяем обычные правила
-        if (crewModel.rankUsed !== "Henchman") {
-          // Модель не Henchman, проверяем есть ли разрешение в targetModels
-          if (!eq.targetModels || !eq.targetModels.length) {
-            return false; // Нет targetModels — не Henchman не могут покупать
-          }
-
-          const allowedByName = eq.targetModels.some(t => modelMatchesEquipmentName(crewModel, t));
-          const allowedByRank = eq.targetModels.some(t => t === crewModel.rankUsed);
-
-          if (!allowedByName && !allowedByRank) {
-            return false; // Модель не соответствует targetModels
-          }
-        }
-      }
+      if (!equipmentTargetMatches(eq, crewModel)) return false;
     }
-
-    // ПРАВКА 5: Проверка условий (conditions)
-    if (eq.conditions && eq.conditions.length) {
-      const allConditionsMet = eq.conditions.every(cond => {
-        const trimmed = cond.trim();
-
-        // Проверка на наличие трейта в банде: "Vampire Queen in crew"
-        if (trimmed.endsWith(' in crew')) {
-          if (trimmed.startsWith('Alias:')) {
-            return crewHasEquipmentModelCondition(trimmed);
-          }
-          const traitName = trimmed.replace(' in crew', '').trim();
-          // Проверяем, есть ли в банде модель с таким трейтом
-          return crew.some(m => m.traits && m.traits.some(t => t.includes(traitName)));
-        }
-
-        // Пропускаем условия "Alias: X in crew", так как они уже были проверены в isSpecialEquipment
-        if (trimmed.startsWith('Alias:')) {
-          return true;
-        }
-
-        // Ограничение покупки конкретной моделью: "Name: Dr. Pamela Lillian Isley"
-        if (/^Name:\s*/i.test(trimmed)) {
-          const requiredName = trimmed.replace(/^Name:\s*/i, '').trim();
-          return modelMatchesEquipmentName(crewModel, requiredName);
-        }
-
-        // Сейчас в билдере нет отдельного переключателя Eternal Option, но условие должно
-        // оставаться в данных и компедиуме, не превращая Passage в недоступный апдейт.
-        if (trimmed === 'Eternal Option Required') {
-          return true;
-        }
-
-        // Отрицательное условие: "Model has X trait cannot purchase"
-        if (trimmed.match(/Model has \w+ trait cannot purchase/i)) {
-          const traitMatch = trimmed.match(/Model has (\w+) trait cannot purchase/i);
-          if (traitMatch) {
-            const forbiddenTrait = traitMatch[1];
-            // Если у модели есть запрещённый трейт — условие не выполнено
-            if (crewModel.traits && crewModel.traits.some(t => t === forbiddenTrait)) {
-              return false;
-            }
-            return true;
-          }
-        }
-
-        // Положительное условие: "Model has X trait"
-        if (trimmed.match(/Model has \w+ trait$/i)) {
-          const traitMatch = trimmed.match(/Model has (\w+) trait$/i);
-          if (traitMatch) {
-            const requiredTrait = traitMatch[1];
-            // Если у модели есть требуемый трейт — условие выполнено
-            return crewModel.traits && crewModel.traits.some(t => t === requiredTrait);
-          }
-        }
-
-        // Отрицательное условие: "Nightmares cannot buy" или "Plants cannot purchase"
-        if (trimmed.match(/cannot (buy|purchase)/i)) {
-          const forbiddenTrait = trimmed.replace(/.*?(Nightmares|Plants|Animals|Bots).*?/i, '$1').trim();
-          // Нормализуем имена трейтов: "Nightmares" -> "Nightmare", "Plants" -> "Plant", etc.
-          const normalizedForbiddenTrait = forbiddenTrait === 'Nightmares' ? 'Nightmare' :
-                                           forbiddenTrait === 'Plants' ? 'Plant' :
-                                           forbiddenTrait === 'Animals' ? 'Animal' :
-                                           forbiddenTrait === 'Bots' ? 'Bot' : forbiddenTrait;
-          // Если у модели есть запрещённый трейт — условие не выполнено
-          if (crewModel.traits && crewModel.traits.some(t => t.includes(normalizedForbiddenTrait))) {
-            return false;
-          }
-          return true;
-        }
-
-        // "Only Plants", "Only Animals", "Only Nightmares" — требуется трейт
-        if (trimmed.startsWith('Only ')) {
-          const requiredTrait = trimmed.replace('Only ', '').trim();
-          // Поддержка множественных трейтов через "/"
-          const traits = requiredTrait.split('/').map(t => t.trim());
-          // Нормализуем имена трейтов: "Nightmares" -> "Nightmare", "Plants" -> "Plant", "Animals" -> "Animal", "Bots" -> "Bot"
-          const normalizedTraits = traits.map(t => {
-            if (t === 'Nightmares') return 'Nightmare';
-            if (t === 'Plants') return 'Plant';
-            if (t === 'Animals') return 'Animal';
-            if (t === 'Bots') return 'Bot';
-            return t;
-          });
-          return crewModel.traits && normalizedTraits.some(t => crewModel.traits.some(trait => {
-            const normalizedTrait = String(trait || "").replace(/\.$/, "");
-            const normalizedRequired = String(t || "").replace(/\.$/, "");
-            return normalizedTrait === normalizedRequired ||
-              normalizedTrait.startsWith(normalizedRequired + " ") ||
-              normalizedTrait.startsWith(normalizedRequired + "(");
-          }));
-        }
-
-        // "Only Arkham Asylum Dr." — проверка на трейт с точкой
-        if (trimmed.startsWith('Only Arkham Asylum Dr')) {
-          return crewModel.traits && crewModel.traits.some(t => t.startsWith('Arkham Asylum Dr'));
-        }
-
-        // "Only Henchman/Free Agents" — проверка по рангу
-        if (trimmed.startsWith('Only Henchman') || trimmed.startsWith('Only Free Agent')) {
-          const allowedRanks = trimmed.replace('Only ', '').split('/').map(r => r.trim());
-          return allowedRanks.some(r => crewModel.rankUsed && crewModel.rankUsed.includes(r));
-        }
-
-        // "Model has Elite (SWAT) trait"
-        if (trimmed.startsWith('Model has ') && trimmed.endsWith(' trait')) {
-          const trait = trimmed.replace('Model has ', '').replace(' trait', '').trim();
-          return crewModel.traits && crewModel.traits.some(t => t === trait);
-        }
-
-        // "Model has Bot trait"
-        if (trimmed.startsWith('Model has ') && trimmed.endsWith(' trait')) {
-          const trait = trimmed.replace('Model has ', '').replace(' trait', '').trim();
-          return crewModel.traits && crewModel.traits.some(t => t.includes(trait));
-        }
-
-        // Простое имя модели — наличие в crew (SPECIAL EQUIPMENT)
-        return crewHasEquipmentModelCondition(trimmed);
-      });
-
-      if (!allConditionsMet) return false;
-    }
-
-    // ПРАВКА 6: Проверка на дублирование трейтов от equipment
-    // Если equipment даёт трейт, проверяем, нет ли уже такого трейта у модели
-    if (eq.effects && eq.effects.length) {
-      // Извлекаем названия трейтов из effects
-      for (const effect of eq.effects) {
-        // Паттерны для извлечения трейтов: "Model gains the X rule/trait"
-        const gainsMatch = effect.match(/Model gains (?:the )?([^(.]+?)(?: rule| trait|\.)$/i);
-        if (gainsMatch) {
-          const gainedTrait = gainsMatch[1].trim();
-          // Проверяем, есть ли уже такой трейт у модели
-          if (crewModel.traits && crewModel.traits.some(t => t.includes(gainedTrait))) {
-            return false; // Трейт уже есть, нельзя добавить ещё раз
-          }
-        }
-        // Паттерн для "Model gains X rule/trait" (без "the")
-        const gainsDirectMatch = effect.match(/Model gains ([^(]+?)(?: rule| trait|\.)$/i);
-        if (gainsDirectMatch) {
-          const gainedTrait = gainsDirectMatch[1].trim();
-          if (crewModel.traits && crewModel.traits.some(t => t.includes(gainedTrait))) {
-            return false;
-          }
-        }
-      }
-    }
-
-    return true;
-  });
-
-  // Создаём модальное окно
-  const overlay = document.createElement("div");
-  overlay.className = "rank-select-modal";
-
-  // Считаем доступный бюджет
-  const usedRep = crewRepUsed();
-  const availableRep = BMG_REP_LIMIT - usedRep;
-  const usedFunding = crewFundingUsed();
-  const availableFunding = bmgFundingLimit() - usedFunding;
-
-  // Функция для определения Special Equipment
-  function isSpecialEquipment(eq) {
-    // Special Equipment имеет conditions с именем персонажа или "Alias: X in crew".
-    // Equipment с условием на трейт (например, "Vampire Queen in crew") не считается Special Equipment.
-    return !!(eq.conditions && eq.conditions.some(cond =>
-      isEquipmentCharacterCondition(cond) && crewHasEquipmentModelCondition(cond)
-    ));
   }
+
+  if (eq.conditions && eq.conditions.length) {
+    const allConditionsMet = eq.conditions.every(condition => {
+      const trimmed = condition.trim();
+
+      if (trimmed.endsWith(" in crew")) {
+        if (trimmed.startsWith("Alias:")) return crewHasEquipmentModelCondition(trimmed);
+        const traitName = trimmed.replace(" in crew", "").trim();
+        return crew.some(model => getModelTraits(model).some(trait => trait.includes(traitName)));
+      }
+
+      if (trimmed.startsWith("Alias:")) return true;
+
+      if (/^Name:\s*/i.test(trimmed)) {
+        const requiredName = trimmed.replace(/^Name:\s*/i, "").trim();
+        return modelMatchesEquipmentName(crewModel, requiredName);
+      }
+
+      if (trimmed === "Eternal Option Required") return true;
+
+      const forbiddenTraitMatch = trimmed.match(/^Model has (.+?) trait cannot purchase$/i);
+      if (forbiddenTraitMatch) {
+        return !modelHasEquipmentTrait(crewModel, forbiddenTraitMatch[1]);
+      }
+
+      if (trimmed.match(/Model has \w+ trait cannot purchase/i)) {
+        const traitMatch = trimmed.match(/Model has (\w+) trait cannot purchase/i);
+        if (traitMatch) {
+          const forbiddenTrait = traitMatch[1];
+          return !modelHasEquipmentTrait(crewModel, forbiddenTrait);
+        }
+      }
+
+      if (trimmed.match(/cannot (buy|purchase)/i)) {
+        const forbiddenTrait = trimmed.replace(/.*?(Nightmares|Plants|Animals|Bots).*?/i, "$1").trim();
+        const normalizedForbiddenTrait = forbiddenTrait === "Nightmares" ? "Nightmare" :
+          forbiddenTrait === "Plants" ? "Plant" :
+          forbiddenTrait === "Animals" ? "Animal" :
+          forbiddenTrait === "Bots" ? "Bot" : forbiddenTrait;
+        return !getModelTraits(crewModel).some(trait => trait.includes(normalizedForbiddenTrait));
+      }
+
+      if (trimmed.startsWith("Only ")) {
+        const requiredTrait = trimmed.replace("Only ", "").trim();
+        const traits = requiredTrait.split("/").map(item => item.trim());
+        const normalizedTraits = traits.map(item => {
+          if (item === "Nightmares") return "Nightmare";
+          if (item === "Plants") return "Plant";
+          if (item === "Animals") return "Animal";
+          if (item === "Bots") return "Bot";
+          return item;
+        });
+        return normalizedTraits.some(item => getModelTraits(crewModel).some(trait => {
+          const normalizedTrait = String(trait || "").replace(/\.$/, "");
+          const normalizedRequired = String(item || "").replace(/\.$/, "");
+          return normalizedTrait === normalizedRequired ||
+            normalizedTrait.startsWith(normalizedRequired + " ") ||
+            normalizedTrait.startsWith(normalizedRequired + "(");
+        }));
+      }
+
+      if (trimmed.startsWith("Only Arkham Asylum Dr")) {
+        return getModelTraits(crewModel).some(trait => trait.startsWith("Arkham Asylum Dr"));
+      }
+
+      if (trimmed.startsWith("Only Henchman") || trimmed.startsWith("Only Free Agent")) {
+        const allowedRanks = trimmed.replace("Only ", "").split("/").map(rank => rank.trim());
+        return allowedRanks.some(rank => crewModel.rankUsed && crewModel.rankUsed.includes(rank));
+      }
+
+      const weaponTraitMatch = trimmed.match(/^(?:Model has weapon with|Weapon has)\s+(.+?)\s+trait$/i);
+      if (weaponTraitMatch) {
+        return modelHasEquipmentWeaponTrait(crewModel, weaponTraitMatch[1]);
+      }
+
+      if (trimmed.startsWith("Model has ") && trimmed.endsWith(" trait")) {
+        const trait = trimmed.replace("Model has ", "").replace(" trait", "").trim();
+        return modelHasEquipmentTrait(crewModel, trait);
+      }
+
+      return crewHasEquipmentModelCondition(trimmed);
+    });
+
+    if (!allConditionsMet) return false;
+  }
+
+  if (eq.effects && eq.effects.length) {
+    for (const effect of eq.effects) {
+      const gainsMatch = effect.match(/Model gains (?:the )?([^(.]+?)(?: rule| trait|\.)$/i);
+      if (gainsMatch) {
+        const gainedTrait = gainsMatch[1].trim();
+        if (modelHasEquipmentTrait(crewModel, gainedTrait)) return false;
+      }
+
+      const gainsDirectMatch = effect.match(/Model gains ([^(]+?)(?: rule| trait|\.)$/i);
+      if (gainsDirectMatch) {
+        const gainedTrait = gainsDirectMatch[1].trim();
+        if (modelHasEquipmentTrait(crewModel, gainedTrait)) return false;
+      }
+    }
+  }
+
+  return true;
+}
+
+function getAvailableEquipmentForCrewModel(crewModel) {
+  if (!crewModel || getEquipmentBlockedReason(crewModel)) return [];
+  return (equipmentByFaction[currentFaction] || []).filter(eq => canShowEquipmentForCrewModel(eq, crewModel));
+}
+
+function openEquipmentMenu(model, cardElement = null, sourceEvent = null) {
+  const clickEvent = sourceEvent || (typeof event !== "undefined" ? event : null);
+  if (clickEvent?.stopPropagation) clickEvent.stopPropagation();
+
+  const crewModel = getCrewModelForEquipment(model);
+  if (!crewModel) return;
+
+  const blockedReason = getEquipmentBlockedReason(crewModel);
+  if (blockedReason) {
+    showBuilderWarning(blockedReason);
+    return;
+  }
+
+  const availableEq = getAvailableEquipmentForCrewModel(crewModel);
+  const availableRep = BMG_REP_LIMIT - crewRepUsed();
+  const availableFunding = bmgFundingLimit() - crewFundingUsed();
+  const equippedCount = (crewModel.equipment || []).length;
+  const overlay = document.createElement("div");
+  overlay.className = "rank-select-modal equipment-menu-modal";
 
   overlay.innerHTML = `
-    <div class="rank-select-content">
-      <div class="rank-select-header">
-        ${uiText("equipment_for_model")} <strong>${model.name}</strong>
+    <div class="rank-select-content equipment-menu-content">
+      <div class="rank-select-header equipment-menu-header">
+        <span>${uiText("equipment_for_model")}</span>
+        <strong>${escapeHtml(model.name)}</strong>
         <div class="rank-select-close" onclick="this.closest('.rank-select-modal').remove()">×</div>
       </div>
-      <div style="background:#222; padding:10px; text-align:center; border-bottom:2px solid #e94560;">
-        <span style="color:#ffd700; font-weight:bold;">${uiText("available_rep")}: ${availableRep}</span>
-        <span style="color:#ffd700; font-weight:bold;">${uiText("available_funding")}: $${availableFunding}</span>
-        <span style="color:#aaa; font-size:12px; margin-left:10px;">(${uiText("total_limit")} ${BMG_REP_LIMIT} REP / $${bmgFundingLimit()})</span>
+      <div class="equipment-menu-summary">
+        <span>${uiText("available_rep")}: <strong>${availableRep}</strong></span>
+        <span>${uiText("available_funding")}: <strong>$${availableFunding}</strong></span>
+        <span>${uiTextFormat("equipment_equipped_count", { count: equippedCount })}</span>
       </div>
-      <div class="rank-select-buttons" style="max-height: 50vh; overflow-y: auto;">
+      <label class="builder-search-field equipment-menu-search" for="equipmentSearchInput">
+        <svg class="builder-search-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input id="equipmentSearchInput" type="search" autocomplete="off" placeholder="${escapeAttribute(uiText("equipment_search_placeholder"))}">
+      </label>
+      <div id="equipmentSearchMeta" class="builder-search-meta">${uiTextFormat("equipment_available_count", { count: availableEq.length })}</div>
+      <div class="equipment-options-list">
         ${availableEq.length ? availableEq.map(eq => {
           const affordability = getEquipmentAffordability(eq);
-          const canAfford = affordability.canAfford;
-          const affordabilityWarnings = [
-            !affordability.canAffordRep ? `! ${uiText("insufficient_rep")}` : "",
-            !affordability.canAffordFunding ? `! ${uiText("insufficient_funds")}` : ""
+          const warnings = [
+            !affordability.canAffordRep ? uiText("insufficient_rep") : "",
+            !affordability.canAffordFunding ? uiText("insufficient_funds") : ""
           ].filter(Boolean);
-          const isSpecial = isSpecialEquipment(eq);
-          const specialBadge = isSpecial ? `<span style="color:#ffd700; font-size:11px; margin-left:6px;">* ${uiText("special_badge")}</span>` : "";
-
-          // Проверяем условие на трейт в банде (например, "Vampire Queen in crew")
-          const reqTrait = eq.conditions ? eq.conditions.find(c => 
-            c.endsWith(' in crew') && !c.startsWith('Alias:') &&
-            !crewHasEquipmentModelCondition(c)
-          )?.replace(' in crew', '').trim() : null;
-          
-          // Проверяем условие по имени персонажа (Special Equipment)
-          const reqCharacterCondition = isSpecial && eq.conditions ? eq.conditions.find(c =>
-            isEquipmentCharacterCondition(c) && crewHasEquipmentModelCondition(c)
-          ) : null;
-          const reqCharacter = reqCharacterCondition ? normalizeEquipmentConditionName(reqCharacterCondition) : null;
-
-          const reqText = reqTrait
-            ? `<br><small style="color:#ffd700;">${uiText("requires")} ${translateDisplayText(reqTrait)} ${uiText("in_crew_suffix")}</small>`
-            : reqCharacter
-              ? `<br><small style="color:#ffd700;">${uiText("requires")} ${reqCharacter}</small>`
-              : '';
+          const requirement = equipmentRequirementText(eq);
+          const effects = Array.isArray(eq.effects) ? eq.effects.join(" • ") : "";
+          const isSpecial = isSpecialEquipmentAvailable(eq);
 
           return `
-          <button class="rank-select-btn" data-eq-name="${eq.name}" ${!canAfford ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : ''}>
-            ${translateDisplayText(eq.name)} ($${equipmentFundingValue(eq)}${equipmentRepValue(eq) ? ` +${equipmentRepValue(eq)} Rep` : ""})${specialBadge}
-            <small style="display:block; opacity:0.8; font-size:12px;">${replaceIcons(translateSentence(eq.effects.join(" � ")))}</small>
-            ${affordabilityWarnings.length ? `<span style="color:#ff4444; font-size:11px;">${affordabilityWarnings.join(" / ")}</span>` : ''}
-            ${reqText}
-          </button>
-        `}).join("") : `<p style='text-align:center; color:#aaa;'>${t("no_available_equipment")}</p>`}
+            <button class="equipment-option-card ${!affordability.canAfford ? "is-disabled" : ""}" type="button" data-eq-name="${escapeAttribute(eq.name)}" data-search="${escapeAttribute(equipmentSearchText(eq))}" ${!affordability.canAfford ? "disabled" : ""}>
+              <span class="equipment-option-top">
+                <strong>${translateDisplayText(eq.name)}</strong>
+                <span class="equipment-option-cost">${equipmentCostText(eq)}</span>
+              </span>
+              <span class="equipment-option-meta">
+                ${isSpecial ? `<span>${uiText("special_badge")}</span>` : ""}
+                ${eq.maxPerCrew ? `<span>0-${eq.maxPerCrew}</span>` : ""}
+                ${requirement ? `<span>${escapeHtml(requirement)}</span>` : ""}
+              </span>
+              <span class="equipment-option-effect">${replaceIcons(translateSentence(effects || uiText("description_not_found")))}</span>
+              ${warnings.length ? `<span class="equipment-option-warning">${warnings.join(" / ")}</span>` : ""}
+            </button>
+          `;
+        }).join("") : `<div class="equipment-empty">${uiText("equipment_none_for_model")}</div>`}
+        <div id="equipmentFilterEmpty" class="equipment-empty" style="display:none;">${uiText("equipment_filter_empty")}</div>
       </div>
     </div>
   `;
 
-  overlay.querySelectorAll(".rank-select-btn").forEach(btn => {
-    btn.onclick = () => {
-      if (btn.disabled) return;
-      
-      const eqName = btn.dataset.eqName;
-      const eq = availableEq.find(e => e.name === eqName);
+  const searchInput = overlay.querySelector("#equipmentSearchInput");
+  const meta = overlay.querySelector("#equipmentSearchMeta");
+  const empty = overlay.querySelector("#equipmentFilterEmpty");
+  const optionCards = Array.from(overlay.querySelectorAll(".equipment-option-card"));
+  const updateFilter = () => {
+    const terms = String(searchInput?.value || "").toLowerCase().trim().split(/\s+/).filter(Boolean);
+    let visibleCount = 0;
+    optionCards.forEach(card => {
+      const visible = !terms.length || terms.every(term => String(card.dataset.search || "").includes(term));
+      card.classList.toggle("is-hidden", !visible);
+      if (visible) visibleCount += 1;
+    });
+    if (meta) meta.textContent = uiTextFormat("equipment_available_count", { count: visibleCount });
+    if (empty) empty.style.display = availableEq.length && visibleCount === 0 ? "block" : "none";
+  };
+
+  if (searchInput) searchInput.addEventListener("input", updateFilter);
+
+  optionCards.forEach(button => {
+    button.addEventListener("click", () => {
+      if (button.disabled) return;
+
+      const eq = availableEq.find(item => item.name === button.dataset.eqName);
       if (!eq) return;
 
-      // Проверка бюджета
       const affordability = getEquipmentAffordability(eq);
       if (!affordability.canAffordRep) {
-        alert(uiText("equipment_rep_error"));
+        showAppNotice(uiText("equipment_rep_error"), "warning");
         return;
       }
       if (!affordability.canAffordFunding) {
-        alert(uiText("equipment_funding_error"));
+        showAppNotice(uiText("equipment_funding_error"), "warning");
         return;
       }
 
-      // Добавляем equipment к модели
       if (!crewModel.equipment) crewModel.equipment = [];
       crewModel.equipment.push(eq);
 
-      // Обновляем счётчики и интерфейс
       updateCrewEquipmentCounts();
       modifiers = calculateModifiers();
       updateCrewBar();
       renderMiniCardsBuilder();
+      if ($("fullCard")?.classList.contains("active")) {
+        rerenderOpenFullCard();
+      }
 
-      // Закрываем и открываем заново для обновления списка
       overlay.remove();
       openEquipmentMenu(model, cardElement);
-    };
+    });
   });
 
-  overlay.onclick = e => e.target === overlay && overlay.remove();
+  overlay.onclick = event => event.target === overlay && overlay.remove();
   document.body.appendChild(overlay);
+  if (searchInput) setTimeout(() => searchInput.focus(), 80);
 }
 
 function resetCrew() {

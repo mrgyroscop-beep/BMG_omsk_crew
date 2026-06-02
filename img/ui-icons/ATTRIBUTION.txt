@@ -1,0 +1,19 @@
+UI icon assets are from the Game Icons icon set, downloaded through the Iconify API.
+
+Sources:
+- https://game-icons.net/
+- https://icon-sets.iconify.design/game-icons/
+
+License:
+- Creative Commons Attribution 3.0 Unported (CC BY 3.0)
+- https://creativecommons.org/licenses/by/3.0/
+
+Local files:
+- cards.svg: game-icons:card-joker
+- crews.svg: game-icons:police-badge
+- match.svg: game-icons:dice-six-faces-six
+- wargame-day.svg: game-icons:bat-mask
+- rules.svg: game-icons:book-cover
+- new-crew.svg: game-icons:police-badge
+- import.svg: game-icons:card-draw
+- export.svg: game-icons:card-discard

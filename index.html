@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BMG Crew Builder</title>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
@@ -23,23 +23,23 @@
       </div>
       <div class="menu-buttons">
         <button class="menu-btn" onclick="showCards()">
-          <span class="btn-icon">🃏</span>
+          <span class="btn-icon"><img src="img/ui-icons/cards.svg" alt="" aria-hidden="true"></span>
           <span class="btn-text" data-i18n="cards">CARDS</span>
         </button>
         <button class="menu-btn" onclick="showMyCrews()">
-          <span class="btn-icon">👥</span>
+          <span class="btn-icon"><img src="img/ui-icons/crews.svg" alt="" aria-hidden="true"></span>
           <span class="btn-text" data-i18n="crews">CREWS</span>
         </button>
         <button class="menu-btn" onclick="showMatch()">
-          <span class="btn-icon">🎲</span>
+          <span class="btn-icon"><img src="img/ui-icons/match.svg" alt="" aria-hidden="true"></span>
           <span class="btn-text" data-i18n="match">МАТЧ</span>
         </button>
         <button class="menu-btn" onclick="showWargameDay()">
-          <span class="btn-icon">🏆</span>
+          <span class="btn-icon"><img src="img/ui-icons/wargame-day.svg" alt="" aria-hidden="true"></span>
           <span class="btn-text" data-i18n="wargame_day">ДЕНЬ ВАРГЕЙМА</span>
         </button>
         <button class="menu-btn" onclick="showRules()">
-          <span class="btn-icon">📖</span>
+          <span class="btn-icon"><img src="img/ui-icons/rules.svg" alt="" aria-hidden="true"></span>
           <span class="btn-text" data-i18n="rules">RULES</span>
         </button>
       </div>
@@ -336,27 +336,78 @@
             </button>
           </div>
         </div>
-        <div class="funds">
-          <span data-i18n="crew">ОТРЯД</span>: <span id="crewCount">0</span> | <span data-i18n="rep">REP</span>: <span id="totalRep">0</span> / <input id="repLimit" type="number" value="350" style="width:50px; background:#222; color:#fff; border:1px solid #e94560;"> | $<span id="totalFunding">0 / 1500</span>
-          <span id="charismaticIndicator" style="margin-left:15px; color:#ffd700; font-weight:bold; display:none;"><span id="charismaticLabel">CHARISMATIC:</span> <span id="charismaticStatus">1 additional Free Agent available</span></span>
-          <span id="possessedIndicator" style="margin-left:15px; color:#ffd700; font-weight:bold; display:none;"><span id="possessedLabel">POSSESSED:</span> <span id="possessedStatus">any-affiliation Henchmen 0/3</span></span>
+        <div class="funds builder-status-panel">
+          <div class="builder-status-overview">
+            <div class="builder-status-count">
+              <span data-i18n="crew">ОТРЯД</span>
+              <strong id="crewCount">0</strong>
+            </div>
+            <div class="builder-limit-wrap">
+              <label class="builder-limit-control" for="repLimit">
+                <span data-i18n="builder_status_limit">Лимит</span>
+                <input id="repLimit" type="number" value="350">
+              </label>
+              <button id="gameSizeToggleBtn" class="game-size-toggle" type="button" onclick="toggleGameSizeMenu(event)" data-i18n-title="game_size_title" title="Размер игры" aria-expanded="false" aria-controls="gameSizeMenu">
+                <span id="gameSizeToggleText">Стандарт 350 REP</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+              </button>
+              <div id="gameSizeMenu" class="game-size-switch" role="group" data-i18n-title="game_size_title" title="Размер игры">
+                <button id="gameSizeShortBtn" class="game-size-btn" type="button" data-game-rep="200" onclick="setGameSizeLimit(200)">
+                  <span data-i18n="game_size_short">Короткая</span>
+                  <strong>200 REP</strong>
+                  <small>$500</small>
+                </button>
+                <button id="gameSizeStandardBtn" class="game-size-btn active" type="button" data-game-rep="350" onclick="setGameSizeLimit(350)">
+                  <span data-i18n="game_size_standard">Стандарт</span>
+                  <strong>350 REP</strong>
+                  <small>$1500</small>
+                </button>
+                <button id="gameSizeLongBtn" class="game-size-btn" type="button" data-game-rep="450" onclick="setGameSizeLimit(450)">
+                  <span data-i18n="game_size_long">Продолжительная</span>
+                  <strong>450 REP</strong>
+                  <small>$1500</small>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="builder-meter-grid">
+            <div id="builderRepMeter" class="builder-meter">
+              <div class="builder-meter-head">
+                <span data-i18n="builder_status_rep">REP</span>
+                <strong><span id="totalRep">0</span> / <span id="builderRepLimitText">350</span></strong>
+              </div>
+              <div class="builder-meter-track"><span id="builderRepMeterBar"></span></div>
+              <div id="builderRepRemaining" class="builder-meter-note"></div>
+            </div>
+            <div id="builderFundingMeter" class="builder-meter">
+              <div class="builder-meter-head">
+                <span data-i18n="builder_status_funding">Funding</span>
+                <strong>$<span id="totalFunding">0 / 1500</span></strong>
+              </div>
+              <div class="builder-meter-track"><span id="builderFundingMeterBar"></span></div>
+              <div id="builderFundingRemaining" class="builder-meter-note"></div>
+            </div>
+          </div>
+          <div class="builder-rule-indicators">
+            <span id="charismaticIndicator"><span id="charismaticLabel">CHARISMATIC:</span> <span id="charismaticStatus">1 additional Free Agent available</span></span>
+            <span id="possessedIndicator"><span id="possessedLabel">POSSESSED:</span> <span id="possessedStatus">any-affiliation Henchmen 0/3</span></span>
+          </div>
         </div>
-        <div class="game-size-switch" role="group" data-i18n-title="game_size_title" title="Размер игры">
-          <button id="gameSizeShortBtn" class="game-size-btn" type="button" data-game-rep="200" onclick="setGameSizeLimit(200)">
-            <span data-i18n="game_size_short">Короткая</span>
-            <strong>200 REP</strong>
-            <small>$500</small>
-          </button>
-          <button id="gameSizeStandardBtn" class="game-size-btn active" type="button" data-game-rep="350" onclick="setGameSizeLimit(350)">
-            <span data-i18n="game_size_standard">Стандарт</span>
-            <strong>350 REP</strong>
-            <small>$1500</small>
-          </button>
-          <button id="gameSizeLongBtn" class="game-size-btn" type="button" data-game-rep="450" onclick="setGameSizeLimit(450)">
-            <span data-i18n="game_size_long">Продолжительная</span>
-            <strong>450 REP</strong>
-            <small>$1500</small>
-          </button>
+        <div id="builderQuickSearch" class="builder-quick-search">
+          <label class="builder-search-field" for="builderQuickSearchInput">
+            <svg class="builder-search-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input id="builderQuickSearchInput" type="search" autocomplete="off" data-i18n-placeholder="builder_quick_search_placeholder" placeholder="Поиск по имени, фракции, трейту..." oninput="setBuilderModelQuery(this.value)">
+            <button id="builderQuickSearchClear" class="builder-search-clear" type="button" onclick="clearBuilderModelSearch()" aria-label="Clear search">×</button>
+          </label>
+          <div class="builder-filter-chips" role="group" aria-label="Model filters">
+            <button class="builder-filter-chip active" type="button" data-builder-filter="all" onclick="setBuilderQuickFilter('all')" data-i18n="builder_filter_all">Все</button>
+            <button class="builder-filter-chip" type="button" data-builder-filter="available" onclick="setBuilderQuickFilter('available')" data-i18n="builder_filter_available">Доступные</button>
+            <button class="builder-filter-chip" type="button" data-builder-filter="crew" onclick="setBuilderQuickFilter('crew')" data-i18n="builder_filter_crew">В банде</button>
+            <button class="builder-filter-chip" type="button" data-builder-filter="leader" onclick="setBuilderQuickFilter('leader')" data-i18n="builder_filter_leaders">Лидеры</button>
+            <button class="builder-filter-chip" type="button" data-builder-filter="henchman" onclick="setBuilderQuickFilter('henchman')" data-i18n="builder_filter_henchmen">Henchmen</button>
+            <button class="builder-filter-chip" type="button" data-builder-filter="print" onclick="setBuilderQuickFilter('print')" data-i18n="builder_filter_print">Print</button>
+          </div>
+          <div id="builderSearchMeta" class="builder-search-meta" aria-live="polite"></div>
         </div>
         <div class="builder-content-switch" role="tablist" aria-label="Builder content">
           <button id="builderModelsTabBtn" class="builder-content-switch-btn active" type="button" onclick="setBuilderContentMode('models')" data-i18n="builder_models_tab">МОДЕЛИ</button>
@@ -368,6 +419,23 @@
         <div id="modelsGridBuilder" class="models-list"></div>
       </div>
       <div id="builderCardsPanel" style="display:none;">
+        <div id="builderCardTools" class="builder-card-tools">
+          <label class="builder-search-field builder-card-search-field" for="builderCardSearchInput">
+            <svg class="builder-search-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+            <input id="builderCardSearchInput" type="search" autocomplete="off" data-i18n-placeholder="builder_card_search_placeholder" placeholder="Поиск карт: название, тип, текст..." oninput="setBuilderCardQuery(this.value)">
+            <button id="builderCardSearchClear" class="builder-search-clear" type="button" onclick="clearBuilderCardSearch()" aria-label="Clear card search">×</button>
+          </label>
+          <div class="builder-filter-chips builder-card-filter-chips" role="group" aria-label="Objective card filters">
+            <button class="builder-filter-chip active" type="button" data-builder-card-filter="all" onclick="setBuilderCardQuickFilter('all')" data-i18n="builder_card_filter_all">Все</button>
+            <button class="builder-filter-chip" type="button" data-builder-card-filter="available" onclick="setBuilderCardQuickFilter('available')" data-i18n="builder_card_filter_available">Доступные</button>
+            <button class="builder-filter-chip" type="button" data-builder-card-filter="selected" onclick="setBuilderCardQuickFilter('selected')" data-i18n="builder_card_filter_selected">В колоде</button>
+            <button class="builder-filter-chip" type="button" data-builder-card-filter="general" onclick="setBuilderCardQuickFilter('general')" data-i18n="builder_card_filter_general">Общие</button>
+            <button class="builder-filter-chip" type="button" data-builder-card-filter="crew" onclick="setBuilderCardQuickFilter('crew')" data-i18n="builder_card_filter_crew">Банда</button>
+            <button class="builder-filter-chip" type="button" data-builder-card-filter="character" onclick="setBuilderCardQuickFilter('character')" data-i18n="builder_card_filter_character">Персонажи</button>
+            <button class="builder-filter-chip" type="button" data-builder-card-filter="missing" onclick="setBuilderCardQuickFilter('missing')" data-i18n="builder_card_filter_missing">Не хватает</button>
+          </div>
+          <div id="builderCardSearchMeta" class="builder-search-meta" aria-live="polite"></div>
+        </div>
         <div id="builderCardsGrid" class="models-list builder-cards-list"></div>
       </div>
     </div>
@@ -392,17 +460,41 @@
 
     <div class="my-crews-toolbar">
       <button class="menu-btn my-crews-action-btn my-crews-create-btn" onclick="createNewCrewFromMyCrews()" data-i18n-title="my_crews_create" title="Новая банда">
-        <span class="btn-icon">+</span>
+        <span class="btn-icon"><img src="img/ui-icons/new-crew.svg" alt="" aria-hidden="true"></span>
         <span class="btn-text" data-i18n="my_crews_create">НОВАЯ БАНДА</span>
       </button>
       <button class="menu-btn my-crews-action-btn" onclick="importMyCrewFromTxt()">
-        <span class="btn-icon">📥</span>
+        <span class="btn-icon"><img src="img/ui-icons/import.svg" alt="" aria-hidden="true"></span>
         <span class="btn-text" data-i18n="my_crews_add_txt">ДОБАВИТЬ ИЗ TXT</span>
       </button>
       <button class="menu-btn my-crews-action-btn" onclick="exportAllMyCrewsTxt()">
-        <span class="btn-icon">💾</span>
+        <span class="btn-icon"><img src="img/ui-icons/export.svg" alt="" aria-hidden="true"></span>
         <span class="btn-text" data-i18n="my_crews_export_all">СОХРАНИТЬ ВСЕ TXT</span>
       </button>
+    </div>
+    <div class="my-crews-search-panel">
+      <label class="builder-search-field my-crews-search-field" for="myCrewsSearchInput">
+        <svg class="builder-search-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input id="myCrewsSearchInput" type="search" autocomplete="off" data-i18n-placeholder="my_crews_search_placeholder" placeholder="Поиск по названию, фракции, моделям..." oninput="setMyCrewsQuery(this.value)">
+        <button id="myCrewsSearchClear" class="builder-search-clear" type="button" onclick="clearMyCrewsSearch()" aria-label="Clear search">×</button>
+      </label>
+      <div class="my-crews-controls">
+        <select id="myCrewsFactionFilter" class="my-crews-select" onchange="setMyCrewsFactionFilter(this.value)" aria-label="Faction filter">
+          <option value="all" data-i18n="my_crews_filter_all_factions">Все фракции</option>
+        </select>
+        <select id="myCrewsPlayFilter" class="my-crews-select" onchange="setMyCrewsPlayFilter(this.value)" aria-label="Roster status filter">
+          <option value="all" data-i18n="my_crews_filter_play_all">Все</option>
+          <option value="ready" data-i18n="my_crews_filter_play_ready">Валидные</option>
+          <option value="draft" data-i18n="my_crews_filter_play_draft">Черновики</option>
+        </select>
+        <select id="myCrewsSortSelect" class="my-crews-select" onchange="setMyCrewsSortMode(this.value)" aria-label="Sort crews">
+          <option value="updated" data-i18n="my_crews_sort_updated">Недавние</option>
+          <option value="name" data-i18n="my_crews_sort_name">Название</option>
+          <option value="faction" data-i18n="my_crews_sort_faction">Фракция</option>
+          <option value="models" data-i18n="my_crews_sort_models">Модели</option>
+        </select>
+      </div>
+      <div id="myCrewsSearchMeta" class="builder-search-meta" aria-live="polite"></div>
     </div>
 
     <div id="myCrewsList" class="my-crews-list"></div>

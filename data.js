@@ -3859,6 +3859,27 @@ const equipmentByFaction = {
     { name: "Sergeant Training", fundingCost: 50, repCost: 0, maxPerCrew: 2, conditions: ["James Gordon"], effects: ["Model gains the Order rule."], isUnaffectedByBroken: true }
   ],
   "Bat Family": [
+    { name: "Always Prepared", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Henchman"], effects: ["When this model sets a Suspect, you may set a Thwart within 4\" of that Suspect."] },
+    { name: "Batclaw", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Model gains the Batclaw/Grapple-gun trait."] },
+    { name: "Handcuffs", fundingCost: 300, repCost: 0, maxPerCrew: 2, conditions: [], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Model gains the Arrest trait."] },
+    { name: "Investigator", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Model gains the Investigator trait."] },
+    { name: "Magazine", fundingCost: 300, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Model gains one Ammunition for one weapon."] },
+    { name: "Moment of Glory", fundingCost: 150, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Once per game, at the start of the activation of this model, you may use Moment of Glory. This model benefits from the Boss's Inspire trait exactly as if it held Rank: Henchman until the end of the round."] },
+    { name: "Reconnaissance", fundingCost: 300, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Model gains the Undercover trait."] },
+    { name: "Heroic Jump", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Bruce Wayne", "Model has Teen Titans trait cannot purchase"], targetModels: ["Henchman"], effects: ["Model gains the Super Jump trait."] },
+    { name: "Upgraded Batsuit", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Bruce Wayne"], targetModels: ["Bruce Wayne"], effects: ["Model gains +1 Endurance."] },
+    { name: "Batman Inc.", fundingCost: 200, repCost: 3, maxPerCrew: 1, conditions: ["Bruce Wayne"], targetModels: ["Sidekick", "Free Agent"], effects: ["Model gains the Bat-Armor MKII trait. A model cannot have more than one Bat-Armor trait."] },
+    { name: "Martial Arts Training", fundingCost: 100, repCost: 2, maxPerCrew: 1, conditions: ["Bruce Wayne"], targetModels: ["Sidekick", "Free Agent"], effects: ["Model gains the Martial Artist trait."] },
+    { name: "Mentor", fundingCost: 100, repCost: 3, maxPerCrew: 1, conditions: ["Bruce Wayne"], targetModels: ["Sidekick", "Free Agent"], effects: ["Model gains the Hidden Boss trait."] },
+    { name: "Circus Training", fundingCost: 200, repCost: 5, maxPerCrew: 1, conditions: ["Dick Grayson"], targetModels: ["Sidekick", "Free Agent"], effects: ["Model gains the Acrobat trait."] },
+    { name: "Command Center Support", fundingCost: 250, repCost: 0, maxPerCrew: 1, conditions: ["Oliver Queen"], targetModels: ["Henchman"], effects: ["Model gains the Scheming (2) trait."] },
+    { name: "Tactical Gloves", fundingCost: 50, repCost: 0, maxPerCrew: 1, conditions: ["Oliver Queen"], targetModels: ["Oliver Queen"], effects: ["Model gains the Reinforced Gloves trait."] },
+    { name: "The Leader", fundingCost: 0, repCost: 0, maxPerCrew: 1, conditions: ["Alias: Batman (Multiverse) in crew"], targetModels: ["Batman Multiverse"], conflictsWith: ["The Shadows"], effects: ["Model gains the I'm a Symbol, Investigator, Stay in Formation, and Protect The Shadows traits."] },
+    { name: "The Shadows", fundingCost: 0, repCost: 0, maxPerCrew: 1, conditions: ["Alias: Batman (Multiverse) in crew"], targetModels: ["Batman Multiverse"], conflictsWith: ["The Leader"], effects: ["Model gains the Bat Beacon, Master of Stealth, Shadowed Nightmare, and Shadows Agent traits."] },
+    { name: "Improved Bat-Armor", fundingCost: 0, repCost: 0, maxPerCrew: 1, conditions: ["Lucius Fox", "Model has Bat-Armor MK II trait"], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["This model gains +1 to its Defense rolls while it also benefits from the Bat-Armor MKII trait."] },
+    { name: "Improved Batclaw", fundingCost: 0, repCost: 0, maxPerCrew: 1, conditions: ["Lucius Fox", "Model has Batclaw/Grapple Gun trait"], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["This model's Batclaw/Grapple Gun trait provides +8\" when used instead of +6\"."] },
+    { name: "Improved Batlings", fundingCost: 0, repCost: 0, maxPerCrew: 1, conditions: ["Lucius Fox", "Weapon has Throwing trait"], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["When this model attacks with a weapon with the Throwing trait, it gains +1 to Hit and the Mechanical trait."] },
+    { name: "Improved Reinforced Gloves", fundingCost: 0, repCost: 0, maxPerCrew: 1, conditions: ["Lucius Fox", "Model has Reinforced Gloves trait"], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["When this model attacks unarmed and uses the Reinforced Gloves trait, its attacks gain the Overwhelming trait."] },
     { name: "The Turning", fundingCost: 200, repCost: 10, maxPerCrew: 4, conditions: ["Vampire Queen in crew"], effects: ["Model gains the Vampire rule."] }
   ],
   "Joker": [
