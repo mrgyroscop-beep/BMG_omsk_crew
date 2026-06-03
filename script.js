@@ -8,6 +8,7 @@ let builderPrintOnly = false;
 let builderFactionOnly = false;
 let builderModelQuery = "";
 let builderQuickFilter = "all";
+let builderAvailableOnly = false;
 let builderCardQuery = "";
 let builderCardQuickFilter = "all";
 let cardsPrintOnly = false;
@@ -8465,6 +8466,7 @@ function updateBuilderPrintFilterButton() {
 function toggleBuilderPrintFilter() {
   builderPrintOnly = !builderPrintOnly;
   updateBuilderPrintFilterButton();
+  updateBuilderQuickFilterUi();
   if (currentMode === "builder") {
     renderMiniCardsBuilder();
   }
@@ -8531,18 +8533,27 @@ function passesBuilderQuickFilter(item) {
   if (!item) return false;
   if (!modelMatchesSearchQuery(item, builderModelQuery)) return false;
 
-  const ranks = item.rankUsed ? [item.rankUsed] : getRanks(item);
-  if (builderQuickFilter === "available") return !item.inCrew;
+  if (builderAvailableOnly && item.inCrew) return false;
+  if (builderPrintOnly && !hasPrintableFile(item)) return false;
+
+  const ranks = item.inCrew
+    ? (item.rankUsed ? [item.rankUsed] : getRanks(item))
+    : (builderAvailableOnly ? getRecruitableRanksForCurrentCrew(item) : getRanks(item));
+
   if (builderQuickFilter === "crew") return Boolean(item.inCrew);
   if (builderQuickFilter === "leader") return ranks.includes("Leader");
   if (builderQuickFilter === "henchman") return ranks.includes("Henchman");
-  if (builderQuickFilter === "print") return hasPrintableFile(item);
   return true;
 }
 
 function updateBuilderQuickFilterUi(count = null) {
   document.querySelectorAll("[data-builder-filter]").forEach(button => {
-    const active = button.dataset.builderFilter === builderQuickFilter;
+    const filter = button.dataset.builderFilter;
+    const active = filter === "available"
+      ? builderAvailableOnly
+      : filter === "print"
+        ? builderPrintOnly
+        : filter === builderQuickFilter;
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", active ? "true" : "false");
   });
@@ -8579,14 +8590,37 @@ function clearBuilderModelSearch() {
   if (currentMode === "builder" && builderContentMode === "models") {
     renderMiniCardsBuilder();
   }
+  if ($("modelSearchModal")?.classList.contains("active")) {
+    renderUnifiedSearch();
+  }
 }
 
 function setBuilderQuickFilter(filter) {
-  const allowed = new Set(["all", "available", "crew", "leader", "henchman", "print"]);
-  builderQuickFilter = allowed.has(filter) ? filter : "all";
+  const primaryFilters = new Set(["all", "crew", "leader", "henchman"]);
+
+  if (filter === "available") {
+    builderAvailableOnly = !builderAvailableOnly;
+    if (builderAvailableOnly && builderQuickFilter === "crew") {
+      builderQuickFilter = "all";
+    }
+  } else if (filter === "print") {
+    builderPrintOnly = !builderPrintOnly;
+    updateBuilderPrintFilterButton();
+  } else if (primaryFilters.has(filter)) {
+    builderQuickFilter = filter;
+    if (filter === "crew" && builderAvailableOnly) {
+      builderAvailableOnly = false;
+    }
+  } else {
+    builderQuickFilter = "all";
+  }
+
   updateBuilderQuickFilterUi();
   if (currentMode === "builder" && builderContentMode === "models") {
     renderMiniCardsBuilder();
+  }
+  if ($("modelSearchModal")?.classList.contains("active")) {
+    renderUnifiedSearch();
   }
 }
 
@@ -10420,10 +10454,6 @@ function getBuilderCardItems() {
     getRecruitableRanksForCurrentCrew(m).length > 0
   );
 
-  if (builderPrintOnly) {
-    filteredModels = filteredModels.filter(m => hasPrintableFile(m));
-  }
-
   renderArray.push(...sortModelsByRankAndRep(filteredModels).map(m => ({
     ...m,
     inCrew: false,
@@ -10899,6 +10929,9 @@ function renderModelsSearch(query) {
         return false;
       }
       if (isBuilderSearch && getRecruitableRanksForCurrentCrew(m).length === 0) {
+        return false;
+      }
+      if (isBuilderSearch && builderAvailableOnly && hasInCrew(m)) {
         return false;
       }
       if (isBuilderSearch && builderPrintOnly && !hasPrintableFile(m)) {
