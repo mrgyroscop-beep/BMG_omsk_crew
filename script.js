@@ -55,6 +55,8 @@ let matchScannerState = null;
 let matchGameSide = "own";
 let matchGameRosters = null;
 let matchGameCardsExpanded = false;
+let matchGameObjectiveState = null;
+let matchGameNextCardInstanceId = 1;
 const MATCH_OPPONENT_STORAGE_KEY = 'bmg_match_opponent_roster_v1';
 let versionEasterClickCount = 0;
 let versionEasterClickTimer = null;
@@ -70,11 +72,11 @@ const OBJECTIVE_DECK_MAX_SINGLE = 15;
 const WARGAME_DAY_CREWS = [
   {
     id: "wargame_day_crew_1",
-    title: "GCPD День варгейма",
+    title: "GCPD Пробная партия",
     faction: "GCPD",
     text: [
       "BMG CREW - GCPD",
-      "Name: GCPD День варгейма",
+      "Name: GCPD Пробная партия",
       "Limits: Rep 200 | Funding $500",
       "Summary: 3 models | 0 cards | Used Rep 200 | Used Funding $500",
       "",
@@ -89,11 +91,11 @@ const WARGAME_DAY_CREWS = [
   },
   {
     id: "wargame_day_crew_2",
-    title: "Joker День варгейма",
+    title: "Joker Пробная партия",
     faction: "Joker",
     text: [
       "BMG CREW - Joker",
-      "Name: Joker День варгейма",
+      "Name: Joker Пробная партия",
       "Limits: Rep 200 | Funding $500",
       "Summary: 4 models | 0 cards | Used Rep 190 | Used Funding $500",
       "",
@@ -195,8 +197,8 @@ const translations = {
   ru: {
     cards: "КАРТОЧКИ",
     crews: "БАНДЫ",
-    wargame_day: "ДЕНЬ ВАРГЕЙМА",
-    wargame_day_title: "ДЕНЬ ВАРГЕЙМА",
+    wargame_day: "ПРОБНАЯ ПАРТИЯ",
+    wargame_day_title: "ПРОБНАЯ ПАРТИЯ",
     wargame_day_roster_1: "Учебная банда 1",
     wargame_day_roster_2: "Учебная банда 2",
     wargame_day_pending: "Ростер будет добавлен позже.",
@@ -269,6 +271,26 @@ const translations = {
     match_cards_expand: "Показать карты",
     match_cards_collapse: "Свернуть карты",
     match_cards_collapsed_hint: "Карты свернуты. Нажмите, чтобы открыть список.",
+    match_objectives_title: "Карты целей",
+    match_objectives_draw_hand: "Набрать руку",
+    match_objectives_shuffle_deck: "Перемешать",
+    match_objectives_hand: "Рука",
+    match_objectives_declared: "Заявлены",
+    match_objectives_scored: "Выполнены",
+    match_objectives_deck: "Колода",
+    match_objectives_vp: "VP",
+    match_objectives_no_deck: "В ростере нет колоды целей.",
+    match_objectives_empty_hand: "Рука пуста.",
+    match_objectives_empty_declared: "Нет заявленных целей.",
+    match_objectives_empty_scored: "Нет выполненных целей.",
+    match_objectives_action_resource: "Ресурс",
+    match_objectives_action_score: "Цель",
+    match_objectives_action_declare: "Заявить",
+    match_objectives_action_discard: "Сброс",
+    match_objectives_action_complete: "Выполнена",
+    match_objectives_action_fail: "Не выполнена",
+    match_objectives_resource_cost: "Ресурс",
+    match_objectives_card_value: "Ценность",
     rules: "ПРАВИЛА",
     select_faction: "ВЫБОР ФРАКЦИИ",
     crew: "ОТРЯД",
@@ -423,8 +445,8 @@ const translations = {
   en: {
     cards: "CARDS",
     crews: "CREWS",
-    wargame_day: "WARGAME DAY",
-    wargame_day_title: "WARGAME DAY",
+    wargame_day: "TRIAL GAME",
+    wargame_day_title: "TRIAL GAME",
     wargame_day_roster_1: "Training crew 1",
     wargame_day_roster_2: "Training crew 2",
     wargame_day_pending: "Roster will be added later.",
@@ -497,6 +519,26 @@ const translations = {
     match_cards_expand: "Show cards",
     match_cards_collapse: "Collapse cards",
     match_cards_collapsed_hint: "Cards are collapsed. Tap to open the list.",
+    match_objectives_title: "Objective cards",
+    match_objectives_draw_hand: "Draw hand",
+    match_objectives_shuffle_deck: "Shuffle",
+    match_objectives_hand: "Hand",
+    match_objectives_declared: "Declared",
+    match_objectives_scored: "Scored",
+    match_objectives_deck: "Deck",
+    match_objectives_vp: "VP",
+    match_objectives_no_deck: "This roster has no objective deck.",
+    match_objectives_empty_hand: "Hand is empty.",
+    match_objectives_empty_declared: "No declared objectives.",
+    match_objectives_empty_scored: "No scored objectives.",
+    match_objectives_action_resource: "Resource",
+    match_objectives_action_score: "Objective",
+    match_objectives_action_declare: "Declare",
+    match_objectives_action_discard: "Discard",
+    match_objectives_action_complete: "Scored",
+    match_objectives_action_fail: "Failed",
+    match_objectives_resource_cost: "Resource",
+    match_objectives_card_value: "Value",
     rules: "RULES",
     select_faction: "SELECT FACTION",
     crew: "CREW",
@@ -6668,6 +6710,7 @@ function playWargameDayCrew(crewId) {
     };
     matchGameSide = "own";
     matchGameCardsExpanded = false;
+    resetMatchGameObjectiveState();
 
     rememberNavigation("match-game");
     currentMode = "match-game";
@@ -6964,6 +7007,9 @@ function aggregateMatchCards(parsedCards) {
       id: key,
       name: catalogCard ? getBuilderCardName(catalogCard) : cardInfo.name,
       type: catalogCard?.type || cardInfo.type || "",
+      phase: catalogCard?.phase || cardInfo.phase || "",
+      value: catalogCard?.value ?? cardInfo.value ?? "",
+      resourceCost: catalogCard?.resource?.cost ?? catalogCard?.resourceCost ?? cardInfo.resourceCost ?? "",
       count: 0
     };
     entry.count += 1;
@@ -7835,6 +7881,7 @@ function startMatchGame() {
   };
   matchGameSide = "own";
   matchGameCardsExpanded = false;
+  resetMatchGameObjectiveState();
 
   rememberNavigation('match-game');
   currentMode = 'match-game';
@@ -7994,8 +8041,10 @@ function renderMatchGameModelCard(modelEntry, rosterIndex) {
 function renderMatchGameCards(roster) {
   const cards = Array.isArray(roster?.cards) ? roster.cards : [];
   const totalCards = roster?.cardCount || cards.reduce((sum, card) => sum + numericValue(card.count, 1), 0);
+  const objectivePlayArea = renderMatchObjectivePlayArea(roster);
   if (!cards.length) {
     return `
+      ${objectivePlayArea}
       <div class="match-roster-list">
         <div class="match-roster-list-title">${t("match_cards")}: 0</div>
         <div>—</div>
@@ -8004,6 +8053,7 @@ function renderMatchGameCards(roster) {
   }
 
   return `
+    ${objectivePlayArea}
     <div class="match-roster-list match-game-card-list ${matchGameCardsExpanded ? "is-open" : ""}">
       <button class="match-game-cards-toggle" type="button" onclick="toggleMatchGameCards()">
         <span>${t("match_cards")}: ${escapeHtml(totalCards)}</span>
@@ -8045,6 +8095,281 @@ function showMatchGameCard(encodedCardName) {
     getBuilderCardName(card),
     `<div class="match-card-preview">${imageHtml}${textHtml ? `<div class="match-card-preview-text">${textHtml}</div>` : ""}</div>`
   );
+}
+
+function resetMatchGameObjectiveState() {
+  matchGameNextCardInstanceId = 1;
+  matchGameObjectiveState = {
+    own: createMatchObjectiveSideState(matchGameRosters?.own, "own"),
+    opponent: createMatchObjectiveSideState(matchGameRosters?.opponent, "opponent")
+  };
+}
+
+function createMatchObjectiveSideState(roster, side) {
+  return {
+    side,
+    deck: shuffleMatchObjectiveDeck(buildMatchObjectiveDeck(roster, side)),
+    hand: [],
+    declared: [],
+    scored: []
+  };
+}
+
+function buildMatchObjectiveDeck(roster, side) {
+  const cards = Array.isArray(roster?.cards) ? roster.cards : [];
+  const deck = [];
+  cards.forEach((cardInfo, cardIndex) => {
+    const count = Math.max(1, numericValue(cardInfo.count, 1));
+    for (let copyIndex = 0; copyIndex < count; copyIndex += 1) {
+      deck.push(createMatchObjectiveCardInstance(cardInfo, side, cardIndex, copyIndex));
+    }
+  });
+  return deck;
+}
+
+function createMatchObjectiveCardInstance(cardInfo, side, cardIndex, copyIndex) {
+  const catalogCard = findBuilderCardByName(cardInfo?.name || "");
+  const name = catalogCard ? getBuilderCardName(catalogCard) : String(cardInfo?.name || "Objective");
+  const key = catalogCard ? getBuilderCardKey(catalogCard) : normalizeEquipmentMatchName(name);
+  const resourceCost = catalogCard?.resource?.cost ?? catalogCard?.resourceCost ?? cardInfo?.resourceCost ?? "";
+  return {
+    instanceId: `objective-${side}-${matchGameNextCardInstanceId++}`,
+    key,
+    name,
+    type: catalogCard?.type || cardInfo?.type || "",
+    phase: catalogCard?.phase || cardInfo?.phase || "",
+    value: catalogCard?.value ?? cardInfo?.value ?? "",
+    resourceCost,
+    img: catalogCard?.img || cardInfo?.img || "",
+    cardIndex,
+    copyIndex
+  };
+}
+
+function shuffleMatchObjectiveDeck(deck) {
+  const shuffled = [...deck];
+  for (let i = shuffled.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+function getMatchObjectiveState(side = matchGameSide) {
+  const normalizedSide = side === "opponent" ? "opponent" : "own";
+  if (!matchGameObjectiveState) resetMatchGameObjectiveState();
+  if (!matchGameObjectiveState[normalizedSide]) {
+    matchGameObjectiveState[normalizedSide] = createMatchObjectiveSideState(matchGameRosters?.[normalizedSide], normalizedSide);
+  }
+  return matchGameObjectiveState[normalizedSide];
+}
+
+function drawMatchObjectiveCard(state) {
+  if (!state || !state.deck.length) return null;
+  const card = state.deck.shift();
+  state.hand.push(card);
+  return card;
+}
+
+function fillMatchObjectiveHand(side = matchGameSide) {
+  const state = getMatchObjectiveState(side);
+  while (state.hand.length < 4 && state.deck.length > 0) {
+    drawMatchObjectiveCard(state);
+  }
+}
+
+function drawMatchObjectiveHand() {
+  fillMatchObjectiveHand(matchGameSide);
+  renderMatchGame();
+}
+
+function shuffleMatchObjectiveDrawPile() {
+  const state = getMatchObjectiveState(matchGameSide);
+  state.deck = shuffleMatchObjectiveDeck(state.deck);
+  renderMatchGame();
+}
+
+function removeMatchObjectiveCardFromPile(pile, instanceId) {
+  const index = pile.findIndex(card => card.instanceId === instanceId);
+  if (index < 0) return null;
+  const [card] = pile.splice(index, 1);
+  return card;
+}
+
+function playMatchObjectiveHandCard(instanceId, action) {
+  const state = getMatchObjectiveState(matchGameSide);
+  const card = removeMatchObjectiveCardFromPile(state.hand, instanceId);
+  if (!card) return;
+
+  if (action === "resource" || action === "discard") {
+    // Bottom first, then draw from the top of the deck.
+    state.deck.push(card);
+  } else if (action === "score") {
+    state.scored.push(card);
+  } else if (action === "declare") {
+    state.declared.push(card);
+  } else {
+    state.hand.push(card);
+  }
+
+  fillMatchObjectiveHand(matchGameSide);
+  renderMatchGame();
+}
+
+function resolveMatchObjectiveDeclaredCard(instanceId, result) {
+  const state = getMatchObjectiveState(matchGameSide);
+  const card = removeMatchObjectiveCardFromPile(state.declared, instanceId);
+  if (!card) return;
+
+  if (result === "complete") {
+    state.scored.push(card);
+  } else {
+    state.deck.push(card);
+  }
+
+  renderMatchGame();
+}
+
+function getMatchObjectiveCatalogCard(card) {
+  return findBuilderCardByName(card?.name || "") || null;
+}
+
+function getMatchObjectiveValueText(card) {
+  const catalogCard = getMatchObjectiveCatalogCard(card);
+  const value = catalogCard?.value ?? card?.value ?? "";
+  return value === undefined || value === null || value === "" ? "0 VP" : String(value);
+}
+
+function getMatchObjectiveValueNumber(card) {
+  const match = getMatchObjectiveValueText(card).match(/-?\d+/);
+  return match ? numericValue(match[0], 0) : 0;
+}
+
+function getMatchObjectiveResourceCostText(card) {
+  const catalogCard = getMatchObjectiveCatalogCard(card);
+  const cost = catalogCard?.resource?.cost ?? catalogCard?.resourceCost ?? card?.resourceCost;
+  return cost === undefined || cost === null || cost === "" ? "—" : String(cost);
+}
+
+function getMatchObjectiveVpTotal(state) {
+  return (state?.scored || []).reduce((sum, card) => sum + getMatchObjectiveValueNumber(card), 0);
+}
+
+function findMatchObjectiveCardInstance(instanceId) {
+  const sides = ["own", "opponent"];
+  for (const side of sides) {
+    const state = getMatchObjectiveState(side);
+    const card = [...state.hand, ...state.declared, ...state.scored, ...state.deck]
+      .find(item => item.instanceId === instanceId);
+    if (card) return card;
+  }
+  return null;
+}
+
+function showMatchObjectiveCard(instanceId) {
+  const card = findMatchObjectiveCardInstance(instanceId);
+  if (!card) return;
+  showMatchGameCard(encodeURIComponent(card.name));
+}
+
+function renderMatchObjectiveCard(card, zone) {
+  const valueText = getMatchObjectiveValueText(card);
+  const resourceCost = getMatchObjectiveResourceCostText(card);
+  const imageContent = card.img
+    ? `<img class="match-objective-card-img" src="${escapeAttribute(card.img)}" alt="" aria-hidden="true" onerror="this.style.display='none'">`
+    : `<div class="match-objective-card-img is-empty" aria-hidden="true"></div>`;
+  const imageHtml = `
+    <button class="match-objective-card-thumb" type="button" onclick="showMatchObjectiveCard('${escapeAttribute(card.instanceId)}')" aria-label="${escapeAttribute(card.name)}">
+      ${imageContent}
+    </button>
+  `;
+  const handActions = zone === "hand"
+    ? `
+      <div class="match-objective-card-actions">
+        <button type="button" onclick="playMatchObjectiveHandCard('${escapeAttribute(card.instanceId)}','resource')">${t("match_objectives_action_resource")}</button>
+        <button type="button" onclick="playMatchObjectiveHandCard('${escapeAttribute(card.instanceId)}','score')">${t("match_objectives_action_score")}</button>
+        <button type="button" onclick="playMatchObjectiveHandCard('${escapeAttribute(card.instanceId)}','declare')">${t("match_objectives_action_declare")}</button>
+        <button type="button" onclick="playMatchObjectiveHandCard('${escapeAttribute(card.instanceId)}','discard')">${t("match_objectives_action_discard")}</button>
+      </div>
+    `
+    : "";
+  const declaredActions = zone === "declared"
+    ? `
+      <div class="match-objective-card-actions">
+        <button type="button" onclick="resolveMatchObjectiveDeclaredCard('${escapeAttribute(card.instanceId)}','complete')">${t("match_objectives_action_complete")}</button>
+        <button type="button" onclick="resolveMatchObjectiveDeclaredCard('${escapeAttribute(card.instanceId)}','fail')">${t("match_objectives_action_fail")}</button>
+      </div>
+    `
+    : "";
+
+  return `
+    <article class="match-objective-card">
+      ${imageHtml}
+      <div class="match-objective-card-body">
+        <button class="match-objective-card-title" type="button" onclick="showMatchObjectiveCard('${escapeAttribute(card.instanceId)}')">
+          ${escapeHtml(card.name)}
+        </button>
+        <div class="match-objective-card-meta">
+          <span>${escapeHtml(t("match_objectives_card_value"))}: ${escapeHtml(valueText)}</span>
+          <span>${escapeHtml(t("match_objectives_resource_cost"))}: ${escapeHtml(resourceCost)}</span>
+        </div>
+        ${handActions}
+        ${declaredActions}
+      </div>
+    </article>
+  `;
+}
+
+function renderMatchObjectiveZone(title, countText, cards, emptyText, zone) {
+  return `
+    <section class="match-objective-zone match-objective-zone-${zone}">
+      <div class="match-objective-zone-head">
+        <h3>${escapeHtml(title)}</h3>
+        <span>${escapeHtml(countText)}</span>
+      </div>
+      <div class="match-objective-zone-list">
+        ${cards.length ? cards.map(card => renderMatchObjectiveCard(card, zone)).join("") : `<div class="match-objective-empty">${escapeHtml(emptyText)}</div>`}
+      </div>
+    </section>
+  `;
+}
+
+function renderMatchObjectivePlayArea(roster) {
+  const state = getMatchObjectiveState(matchGameSide);
+  const totalCards = roster?.cardCount || (roster?.cards || []).reduce((sum, card) => sum + numericValue(card.count, 1), 0);
+  const vpTotal = getMatchObjectiveVpTotal(state);
+  const hasAnyCards = totalCards > 0 || state.hand.length || state.declared.length || state.scored.length || state.deck.length;
+
+  return `
+    <div class="match-objective-panel">
+      <div class="match-objective-panel-head">
+        <div>
+          <div class="match-objective-title">${escapeHtml(t("match_objectives_title"))}</div>
+          <div class="match-objective-stats">
+            <span>${escapeHtml(t("match_objectives_deck"))}: ${escapeHtml(state.deck.length)}</span>
+            <span>${escapeHtml(t("match_objectives_hand"))}: ${escapeHtml(state.hand.length)}/4</span>
+            <span>${escapeHtml(t("match_objectives_vp"))}: ${escapeHtml(vpTotal)}</span>
+          </div>
+        </div>
+        <div class="match-objective-panel-actions">
+          <button class="match-objective-draw-btn" type="button" onclick="drawMatchObjectiveHand()" ${state.hand.length >= 4 || !state.deck.length ? "disabled" : ""}>
+            ${escapeHtml(t("match_objectives_draw_hand"))}
+          </button>
+          <button class="match-objective-draw-btn is-secondary" type="button" onclick="shuffleMatchObjectiveDrawPile()" ${state.deck.length < 2 ? "disabled" : ""}>
+            ${escapeHtml(t("match_objectives_shuffle_deck"))}
+          </button>
+        </div>
+      </div>
+      ${hasAnyCards
+        ? `<div class="match-objective-grid">
+            ${renderMatchObjectiveZone(t("match_objectives_hand"), `${state.hand.length}/4`, state.hand, t("match_objectives_empty_hand"), "hand")}
+            ${renderMatchObjectiveZone(t("match_objectives_declared"), String(state.declared.length), state.declared, t("match_objectives_empty_declared"), "declared")}
+            ${renderMatchObjectiveZone(t("match_objectives_scored"), `${state.scored.length} • ${vpTotal} ${t("match_objectives_vp")}`, state.scored, t("match_objectives_empty_scored"), "scored")}
+          </div>`
+        : `<div class="match-objective-empty is-panel-empty">${escapeHtml(t("match_objectives_no_deck"))}</div>`
+      }
+    </div>
+  `;
 }
 
 function renderMatchGame() {
