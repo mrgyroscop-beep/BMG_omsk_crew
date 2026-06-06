@@ -2392,6 +2392,58 @@ body.full-card-open {
   color: #c8ccd5;
 }
 
+.match-objective-actions-menu {
+  min-width: 0;
+}
+
+.match-objective-actions-menu summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 32px;
+  padding: 6px 9px;
+  border: 1px solid #343434;
+  border-radius: 6px;
+  background: #101010;
+  color: #ffd700;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  list-style: none;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.match-objective-actions-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.match-objective-actions-menu summary::after {
+  content: "›";
+  flex: 0 0 auto;
+  color: #e94560;
+  font-size: 18px;
+  line-height: 1;
+  transform: rotate(90deg);
+  transition: transform .16s ease;
+}
+
+.match-objective-actions-menu[open] summary {
+  border-color: #e94560;
+  color: #fff;
+}
+
+.match-objective-actions-menu[open] summary::after {
+  transform: rotate(-90deg);
+}
+
+.match-objective-actions-menu .match-objective-card-actions {
+  margin-top: 6px;
+}
+
 .match-objective-card-actions {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

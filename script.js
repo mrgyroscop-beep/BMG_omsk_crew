@@ -287,6 +287,7 @@ const translations = {
     match_objectives_action_score: "Цель",
     match_objectives_action_declare: "Заявить",
     match_objectives_action_discard: "Сброс",
+    match_objectives_actions_menu: "Действия",
     match_objectives_action_complete: "Выполнена",
     match_objectives_action_fail: "Не выполнена",
     match_objectives_resource_cost: "Ресурс",
@@ -535,6 +536,7 @@ const translations = {
     match_objectives_action_score: "Objective",
     match_objectives_action_declare: "Declare",
     match_objectives_action_discard: "Discard",
+    match_objectives_actions_menu: "Actions",
     match_objectives_action_complete: "Scored",
     match_objectives_action_fail: "Failed",
     match_objectives_resource_cost: "Resource",
@@ -8285,12 +8287,15 @@ function renderMatchObjectiveCard(card, zone) {
   `;
   const handActions = zone === "hand"
     ? `
-      <div class="match-objective-card-actions">
-        <button type="button" onclick="playMatchObjectiveHandCard('${escapeAttribute(card.instanceId)}','resource')">${t("match_objectives_action_resource")}</button>
-        <button type="button" onclick="playMatchObjectiveHandCard('${escapeAttribute(card.instanceId)}','score')">${t("match_objectives_action_score")}</button>
-        <button type="button" onclick="playMatchObjectiveHandCard('${escapeAttribute(card.instanceId)}','declare')">${t("match_objectives_action_declare")}</button>
-        <button type="button" onclick="playMatchObjectiveHandCard('${escapeAttribute(card.instanceId)}','discard')">${t("match_objectives_action_discard")}</button>
-      </div>
+      <details class="match-objective-actions-menu">
+        <summary>${escapeHtml(t("match_objectives_actions_menu"))}</summary>
+        <div class="match-objective-card-actions">
+          <button type="button" onclick="playMatchObjectiveHandCard('${escapeAttribute(card.instanceId)}','resource')">${t("match_objectives_action_resource")}</button>
+          <button type="button" onclick="playMatchObjectiveHandCard('${escapeAttribute(card.instanceId)}','score')">${t("match_objectives_action_score")}</button>
+          <button type="button" onclick="playMatchObjectiveHandCard('${escapeAttribute(card.instanceId)}','declare')">${t("match_objectives_action_declare")}</button>
+          <button type="button" onclick="playMatchObjectiveHandCard('${escapeAttribute(card.instanceId)}','discard')">${t("match_objectives_action_discard")}</button>
+        </div>
+      </details>
     `
     : "";
   const declaredActions = zone === "declared"
