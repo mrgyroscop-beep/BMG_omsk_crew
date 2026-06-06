@@ -1,4 +1,4 @@
-﻿const factionCrewRules = {
+const factionCrewRules = {
   "Batman Who Laughs": {
     ignoreStandardRankRequirements: true, // Игнорирует стандартные требования к рангам
     allowSameNameDifferentAlias: true, // Разрешает одинаковые имена с разными псевдонимами
@@ -20,3735 +20,12 @@
 // Экспортируем для использования в script.js
 window.factionCrewRules = factionCrewRules;
 
-function speedforceCard(id, name, imgName, en, ru) {
-  return {
-    id: `speedforce-${id}`,
-    name,
-    img: `img/cards/speedforce/${imgName}.jpg`,
-    renderAsCardImage: true,
-    type: "Speedforce",
-    category: "speedforce",
-    mandatory: true,
-    countsForDeck: false,
-    requiredTrait: "Speedster",
-    showWhenRequirementMet: true,
-    showInlineText: false,
-    text: { en, ru }
-  };
-}
-
-const speedforceCards = [
-  speedforceCard(
-    "switch-timelines",
-    "SWITCH TIMELINES",
-    "switch-timelines",
-    "At the start of this model’s activation, Discard a card at random from your Objective hand.",
-    "В начале активации этой модели сбросьте случайную карту из вашей руки Objective."
-  ),
-  speedforceCard(
-    "what-happened",
-    "WH... WHAT HAPPENED?",
-    "what-happened",
-    "At the start of this model’s activation, the opponent may draw a card.",
-    "В начале активации этой модели оппонент может взять карту."
-  ),
-  speedforceCard(
-    "disorientated",
-    "DISORIENTATED",
-    "disoriented",
-    "Audacity only gives this model 2 Actions instead of 3.",
-    "Audacity дает этой модели только 2 Actions вместо 3."
-  ),
-  speedforceCard(
-    "exhausted-1",
-    "EXHAUSTED",
-    "exhausted-1",
-    "This model’s Basic Move Distance is reduced by 2.",
-    "Базовая дистанция движения этой модели уменьшается на 2."
-  ),
-  speedforceCard(
-    "exhausted-2",
-    "EXHAUSTED",
-    "exhausted-2",
-    "This model’s Basic Move Distance is reduced by 2.",
-    "Базовая дистанция движения этой модели уменьшается на 2."
-  ),
-  speedforceCard(
-    "fatigue-1",
-    "FATIGUE",
-    "fatigue-1",
-    "This model Effort Limit is reduced by 1.",
-    "Лимит Effort этой модели уменьшается на 1."
-  ),
-  speedforceCard(
-    "fatigue-2",
-    "FATIGUE",
-    "fatigue-2",
-    "This model Effort Limit is reduced by 1.",
-    "Лимит Effort этой модели уменьшается на 1."
-  ),
-  speedforceCard(
-    "surprised",
-    "SURPRISED",
-    "surprised",
-    "This model suffers -1 Defense.",
-    "Эта модель получает -1 Defense."
-  ),
-  speedforceCard(
-    "too-fast",
-    "TOO FAST...",
-    "too-fast",
-    "This model does not Recover ★ during Recount.",
-    "Эта модель не восстанавливает ★ во время Recount."
-  ),
-  speedforceCard(
-    "yesterday-again",
-    "HUH... YESTERDAY AGAIN?",
-    "yesterday-again",
-    "The opponent may place this model inside your DZ. Shuffle this card into the SpeedForce Deck.",
-    "Оппонент может разместить эту модель внутри вашей DZ. Замешайте эту карту в колоду SpeedForce."
-  )
-];
-
-// ======================== КАРТЫ ДЛЯ БИЛДЕРА ========================
-// Каталог пока наполняется постепенно. Названия карт оставляем как на оригинальной карте.
-const builderMandatoryCards = [
-  ...speedforceCards,
-  {
-    id: "vigilantes-special-rules",
-    name: "VIGILANTES SPECIAL RULES",
-    img: "img/cards/vigilantes/vigilantes-special-rules.jpg",
-    renderAsCardImage: true,
-    type: "Special Rules",
-    faction: ["Bat Family"],
-    category: "crew",
-    mandatory: true,
-    countsForDeck: false,
-    text: {
-      en: "THWART\n\nAfter placing the Sewers and Lampposts, Set 8 friendly THWART! markers in Play.\n\nYou cannot have more than 8 friendly THWART! markers in Play at the same time.\n\nIf an Objective card refers to a THWART!, it only refers to a friendly THWART!.\n\nWhen a model places a Suspect within 4” of a THWART! the owner of that model may Move that THWART! 4”.\n\nWhen a THWART! is Moved or Placed, it cannot end within 4” of an Edge of the Gaming Area.",
-      ru: "THWART\n\nПосле размещения Sewers и Lampposts выставьте в игру 8 дружественных маркеров THWART!.\n\nУ вас не может быть больше 8 дружественных маркеров THWART! в игре одновременно.\n\nЕсли карта цели ссылается на THWART!, это относится только к дружественному THWART!.\n\nКогда модель размещает Suspect в пределах 4” от THWART!, владелец этой модели может передвинуть этот THWART! на 4”.\n\nКогда THWART! передвигается или размещается, он не может закончить это перемещение в пределах 4” от края Gaming Area."
-    }
-  },
-  {
-    id: "harley-quinn-friends-special-rules",
-    name: "HARLEY QUINN & FRIENDS SPECIAL RULES",
-    img: "img/cards/harley-quinn-friends/harley-quinn-friends-special-rules.jpg",
-    renderAsCardImage: true,
-    type: "Special Rules",
-    faction: ["Birds of Prey"],
-    category: "crew",
-    mandatory: true,
-    countsForDeck: false,
-    text: {
-      en: "VANDALIZED!\n\nWhen you score this Objective, use a counter to mark a Scenery Element, Lamppost, or Sewer within 4” of the Active model as Vandalized!. That is now considered a Vandalized element.\n\nSPRAY CAN\n\nA model equipped with a Spray Can when it Sets a Suspect may expend 1 of its Spray Cans to Vandalize a scenery element, Streetlamp or Sewer in contact with that Suspect.",
-      ru: "VANDALIZED!\n\nКогда вы засчитываете эту Objective, используйте counter, чтобы отметить Scenery Element, Lamppost или Sewer в пределах 4” от активной модели как Vandalized!. Теперь это считается Vandalized элементом.\n\nSPRAY CAN\n\nМодель со Spray Can, когда она выставляет Suspect, может потратить 1 Spray Can, чтобы сделать Vandalized элементом scenery element, Streetlamp или Sewer в контакте с этим Suspect."
-    }
-  },
-  {
-    id: "penguin-business-counters",
-    name: "BUSINESS COUNTERS",
-    img: "img/cards/penguin/business-counters-1.jpg",
-    renderAsCardImage: true,
-    type: "Special Rules",
-    faction: ["Penguin"],
-    category: "crew",
-    mandatory: true,
-    countsForDeck: false,
-    text: {
-      en: "Any time one of the following happens, place a counter near this card to represent the Business counters.\n\n• A friendly model suffers KO or is removed as a Casualty.\n• Your opponent scores an Objective card.\n\nA friendly Boss can only have up to 6 Business counters at any time.\n\nYou may not spend Business counters if your Boss is suffering KO.\n\nIf your Boss is removed as a Casualty, all Business counters are lost and your new Boss will start gaining counters as normal.",
-      ru: "Каждый раз, когда происходит одно из следующих событий, положите counter рядом с этой картой, чтобы обозначить Business counters.\n\n• Дружественная модель получает KO или удаляется как Casualty.\n• Ваш оппонент засчитывает Objective card.\n\nУ дружественного Boss может быть не больше 6 Business counters одновременно.\n\nВы не можете тратить Business counters, если ваш Boss находится в KO.\n\nЕсли ваш Boss удален как Casualty, все Business counters теряются, а новый Boss начинает получать counters как обычно."
-    }
-  },
-  {
-    id: "penguin-business-counters-continued",
-    name: "BUSINESS COUNTERS CONTINUED",
-    img: "img/cards/penguin/business-counters-2.jpg",
-    renderAsCardImage: true,
-    type: "Special Rules",
-    faction: ["Penguin"],
-    category: "crew",
-    mandatory: true,
-    countsForDeck: false,
-    text: {
-      en: "You may spend 1 Business counter during a friendly model's activation that did not have Audacity to perform an additional action.\n\nIt cannot be an action it has already performed this turn.\n\nWithout revealing, remove the top card from your Objective deck and place it aside face down. At the end of Recount, reveal each face down card.\n\nFor each card revealed, the opponent chooses one of your {RANK_HENCHMAN_ICON} to suffer the Enervating (X) Status. Where X is equal to the revealed card's Resource cost. Discard those cards.",
-      ru: "Вы можете потратить 1 Business counter во время активации дружественной модели, у которой не было Audacity, чтобы выполнить дополнительное действие.\n\nЭто не может быть действие, которое она уже выполняла в этот ход.\n\nНе раскрывая, уберите верхнюю карту из вашей Objective deck и отложите ее лицом вниз. В конце Recount раскройте каждую карту, лежащую лицом вниз.\n\nЗа каждую раскрытую карту оппонент выбирает одну вашу модель ранга {RANK_HENCHMAN_ICON}, которая получает Enervating (X) Status. X равен Resource cost раскрытой карты. Сбросьте эти карты."
-    }
-  },
-  {
-    id: "scarecrow-the-fear",
-    name: "THE FEAR",
-    img: "img/cards/scarecrow/the-fear.jpg",
-    renderAsCardImage: true,
-    type: "Special Rules",
-    faction: ["Scarecrow"],
-    category: "crew",
-    mandatory: true,
-    countsForDeck: false,
-    text: {
-      en: "If your Objective deck includes Objective cards that has Affiliation: {AFF_SCARECROW_ICON}, place 12 Fear cards aside forming your Fear Pile, shuffled and face down.\n\nWhen a rule instructs you to place a Fear card into your Objective deck, add the top card from your Fear Pile and shuffle your Objective deck.\n\nWhen a Fear card is drawn from your Objective deck or Discarded from your hand or Objective deck, reveal it and resolve its effects. Return it to the bottom of your Fear Pile.",
-      ru: "Если ваша Objective deck включает Objective cards с Affiliation: {AFF_SCARECROW_ICON}, отложите 12 Fear cards, сформировав Fear Pile, перемешанную и лежащую лицом вниз.\n\nКогда правило указывает поместить Fear card в вашу Objective deck, добавьте верхнюю карту из Fear Pile и перемешайте Objective deck.\n\nКогда Fear card взята из Objective deck или Discarded из вашей руки или Objective deck, раскройте ее и разрешите ее эффект. Верните ее вниз Fear Pile."
-    }
-  },
-  {
-    id: "scarecrow-objective-cards-keywords",
-    name: "OBJECTIVE CARDS KEYWORDS",
-    img: "img/cards/scarecrow/objective-cards-keywords.jpg",
-    renderAsCardImage: true,
-    type: "Special Rules",
-    faction: ["Scarecrow"],
-    category: "crew",
-    mandatory: true,
-    countsForDeck: false,
-    text: {
-      en: "Burn X: You can play this Resource by paying X Resource points to discard this card from your hand, placing it at the bottom of your Objective deck.\n\nException (In Play): This Resource is not played in the usual way. This Resource may only be used while this card is in play as an Objective and does not go to the Spent Resources pile when used.\n\nException (When Scoring): This Resource is not played in the usual way. The effect of this Resource is used when this card is scored.\n\nException (Scored Pile): This Resource is not played in the usual way. The effect of this Resource applies while this card is scored.\n\nLimited: Only 1 card with this name can be in play at a time.\n\nOpening: If this card is included in your Objective deck, you must put it aside before the game starts. At the end of step 4 of Prepare the Game, you must play this card as an Objective. If a card with this keyword is going to be discarded, remove it from the game instead.",
-      ru: "Burn X: Вы можете разыграть этот Resource, заплатив X Resource points, чтобы сбросить эту карту из руки и положить ее вниз Objective deck.\n\nException (In Play): Этот Resource разыгрывается не обычным способом. Его можно использовать только пока эта карта находится в игре как Objective, и при использовании он не отправляется в Spent Resources pile.\n\nException (When Scoring): Этот Resource разыгрывается не обычным способом. Его эффект применяется, когда эта карта засчитывается.\n\nException (Scored Pile): Этот Resource разыгрывается не обычным способом. Его эффект действует, пока эта карта засчитана.\n\nLimited: Только 1 карта с этим названием может быть в игре одновременно.\n\nOpening: Если эта карта включена в вашу Objective deck, вы должны отложить ее перед началом игры. В конце шага 4 Prepare the Game вы должны разыграть эту карту как Objective. Если карта с этим ключевым словом должна быть сброшена, вместо этого удалите ее из игры."
-    }
-  },
-  {
-    id: "scarecrow-fear-audacity-stun",
-    name: "FEAR: AUDACITY STUN",
-    img: "img/cards/scarecrow/fear-audacity-stun.jpg",
-    renderAsCardImage: true,
-    type: "Fear Card",
-    faction: ["Scarecrow"],
-    category: "crew",
-    mandatory: true,
-    countsForDeck: false,
-    maxPerDeck: 2,
-    text: {
-      en: "The opponent chooses one of their models with Audacity to suffer 2 {STUN_ICON}.",
-      ru: "Оппонент выбирает одну из своих моделей с Audacity. Эта модель получает 2 {STUN_ICON}."
-    }
-  },
-  {
-    id: "scarecrow-fear-move-enemy",
-    name: "FEAR: MOVE ENEMY",
-    img: "img/cards/scarecrow/fear-move-enemy.jpg",
-    renderAsCardImage: true,
-    type: "Fear Card",
-    faction: ["Scarecrow"],
-    category: "crew",
-    mandatory: true,
-    countsForDeck: false,
-    maxPerDeck: 2,
-    text: {
-      en: "You Move target enemy model 4” directly away from the closest enemy model.",
-      ru: "Вы передвигаете выбранную вражескую модель на 4” напрямую от ближайшей вражеской модели."
-    }
-  },
-  {
-    id: "scarecrow-fear-attack-bonus",
-    name: "FEAR: ATTACK BONUS",
-    img: "img/cards/scarecrow/fear-attack-bonus.jpg",
-    renderAsCardImage: true,
-    type: "Fear Card",
-    faction: ["Scarecrow"],
-    category: "crew",
-    mandatory: true,
-    countsForDeck: false,
-    maxPerDeck: 2,
-    text: {
-      en: "A friendly model within 4” of an enemy model gains 1 {+ATT_ICON}.",
-      ru: "Дружественная модель в пределах 4” от вражеской модели получает 1 {+ATT_ICON}."
-    }
-  },
-  {
-    id: "scarecrow-fear-terror-status",
-    name: "FEAR: TERROR STATUS",
-    img: "img/cards/scarecrow/fear-terror-status.jpg",
-    renderAsCardImage: true,
-    type: "Fear Card",
-    faction: ["Scarecrow"],
-    category: "crew",
-    mandatory: true,
-    countsForDeck: false,
-    maxPerDeck: 2,
-    text: {
-      en: "An enemy model within 4” of a friendly Suspect suffers the Terror Status.",
-      ru: "Вражеская модель в пределах 4” от дружественного Suspect получает Terror Status."
-    }
-  },
-  {
-    id: "scarecrow-fear-move-suspect",
-    name: "FEAR: MOVE SUSPECT",
-    img: "img/cards/scarecrow/fear-move-suspect.jpg",
-    renderAsCardImage: true,
-    type: "Fear Card",
-    faction: ["Scarecrow"],
-    category: "crew",
-    mandatory: true,
-    countsForDeck: false,
-    maxPerDeck: 2,
-    text: {
-      en: "Move a Suspect 4”.",
-      ru: "Передвиньте Suspect на 4”."
-    }
-  },
-  {
-    id: "scarecrow-fear-scared-status",
-    name: "FEAR: SCARED STATUS",
-    img: "img/cards/scarecrow/fear-scared-status.jpg",
-    renderAsCardImage: true,
-    type: "Fear Card",
-    faction: ["Scarecrow"],
-    category: "crew",
-    mandatory: true,
-    countsForDeck: false,
-    maxPerDeck: 2,
-    text: {
-      en: "An enemy model within 4” of a friendly Suspect suffers the Scared Status.",
-      ru: "Вражеская модель в пределах 4” от дружественного Suspect получает Scared Status."
-    }
-  },
-  {
-    id: "two-face-the-coin-good-side",
-    name: "THE COIN GOOD SIDE",
-    img: "img/cards/two-face/the-coin-good-side.png",
-    renderAsCardImage: true,
-    type: "Side Card",
-    faction: ["Two-Face"],
-    category: "crew",
-    mandatory: true,
-    countsForDeck: false,
-    text: {
-      en: "If your Boss has Affiliation: Two-Face, you must keep this card aside, and after you draw your initial hand of Objective cards, choose 1 Side card and place it somewhere visible. Then shuffle the other Side card into your Objective deck.\n\nA card that has a Good Side or Twisted Side on its requirement can only be scored if it matches the active The Coin Side card. If a card has both Good Side and Twisted Side requirements, you can complete only those matching The Coin side in play. The Resource effect applied is the one that matches The Coin Side in play. You may play a The Coin card as any other Objective card, discarding the other in play (it doesn't count as an Objective being played).\n\nIf your Boss has Affiliation: Two-Face, your deck must include at least 7 Objective cards with either Good Side or Twisted Side (not both).",
-      ru: "Если у вашего Boss Affiliation: Two-Face, вы должны отложить эту карту. После того как вы возьмете начальную руку Objective cards, выберите 1 Side card и положите ее на видное место. Затем замешайте другую Side card в вашу Objective deck.\n\nКарта, у которой в требовании указан Good Side или Twisted Side, может быть засчитана только если она совпадает с активной The Coin Side card. Если у карты есть требования и Good Side, и Twisted Side, вы можете выполнить только те, что совпадают с The Coin side в игре. Применяется тот Resource effect, который совпадает с The Coin Side в игре. Вы можете разыграть The Coin card как любую другую Objective card, сбросив другую карту в игре; это не считается розыгрышем Objective.\n\nЕсли у вашего Boss Affiliation: Two-Face, ваша колода должна включать как минимум 7 Objective cards с Good Side или Twisted Side, но не с обеими сторонами сразу."
-    }
-  },
-  {
-    id: "two-face-the-coin-twisted-side",
-    name: "THE COIN TWISTED SIDE",
-    img: "img/cards/two-face/the-coin-twisted-side.jpg",
-    renderAsCardImage: true,
-    type: "Side Card",
-    faction: ["Two-Face"],
-    category: "crew",
-    mandatory: true,
-    countsForDeck: false,
-    text: {
-      en: "If your Boss has Affiliation: Two-Face, you must keep this card aside, and after you draw your initial hand of Objective cards, choose 1 Side card and place it somewhere visible. Then shuffle the other Side card into your Objective deck.\n\nA card that has a Good Side or Twisted Side on its requirement can only be scored if it matches the active The Coin Side card. If a card has both Good Side and Twisted Side requirements, you can complete only those matching The Coin side in play. The Resource effect applied is the one that matches The Coin Side in play. You may play a The Coin card as any other Objective card, discarding the other in play (it doesn't count as an Objective being played).\n\nIf your Boss has Affiliation: Two-Face, your deck must include at least 7 Objective cards with either Good Side or Twisted Side (not both).",
-      ru: "Если у вашего Boss Affiliation: Two-Face, вы должны отложить эту карту. После того как вы возьмете начальную руку Objective cards, выберите 1 Side card и положите ее на видное место. Затем замешайте другую Side card в вашу Objective deck.\n\nКарта, у которой в требовании указан Good Side или Twisted Side, может быть засчитана только если она совпадает с активной The Coin Side card. Если у карты есть требования и Good Side, и Twisted Side, вы можете выполнить только те, что совпадают с The Coin side в игре. Применяется тот Resource effect, который совпадает с The Coin Side в игре. Вы можете разыграть The Coin card как любую другую Objective card, сбросив другую карту в игре; это не считается розыгрышем Objective.\n\nЕсли у вашего Boss Affiliation: Two-Face, ваша колода должна включать как минимум 7 Objective cards с Good Side или Twisted Side, но не с обеими сторонами сразу."
-    }
-  },
-  {
-    id: "batman-who-laughs-special-rules",
-    name: "BWL SPECIAL RULES",
-    img: "img/cards/batman-who-laughs/bwl-special-rules.jpg",
-    renderAsCardImage: true,
-    type: "Special Rules",
-    faction: ["Batman Who Laughs"],
-    category: "crew",
-    mandatory: true,
-    countsForDeck: false,
-    text: {
-      en: "INFECTED\n\nWhen a model gains an Infected counter, that model discards any previously gained Infected counters.\n\nFREED\n\nRemove an Infected counter from an enemy model. Place up to 2 models with the Freed trait previously removed as Casualty. Place them within 4” of a friendly model (Alias: Batman Who Laughs). If the enemy model has the Rank: {RANK_LEADER_ICON} or {RANK_SIDEKICK_ICON}, you may increase the cost of this Resource to 1 to place a model with He Freed Me trait instead.\n\nA model placed this way may be activated as normal if it did not already activate earlier in this Round. The opponent gains a Pass marker for each model placed.",
-      ru: "INFECTED\n\nКогда модель получает Infected counter, она сбрасывает все ранее полученные Infected counters.\n\nFREED\n\nУберите Infected counter с вражеской модели. Разместите до 2 моделей с трейтом Freed, ранее удаленных как Casualty. Разместите их в пределах 4” от дружественной модели (Alias: Batman Who Laughs). Если вражеская модель имеет Rank: {RANK_LEADER_ICON} или {RANK_SIDEKICK_ICON}, вы можете увеличить стоимость этого Resource до 1, чтобы вместо этого разместить модель с трейтом He Freed Me.\n\nМодель, размещенная таким образом, может активироваться как обычно, если она еще не активировалась ранее в этом Round. Оппонент получает Pass marker за каждую размещенную модель."
-    }
-  }
-];
-
-const characterObjectiveTextRu = {
-  "reinforce-bird": `Условие: дружественная модель находится в пределах 4" от другой дружественной модели с трейтом Veteran и получает не больше 2 Damage от Attack.
-
-Ресурс 1: дружественные модели с трейтом Veteran в пределах 4" от дружественной модели с Alias: Bird получают 2 маркера с карты.`,
-  "im-the-surgeon": `Условие: разыграйте, когда дружественная активная модель находится в контакте с вражеским Boss. Переместите все остальные модели в пределах 4" от Boss на 4" прямо от него. Потратьте Melee Attack action.
-
-Засчитайте, если эта Melee Attack наносит KO вражескому Boss.
-
-Ресурс 1: разыграйте, когда дружественная модель с Alias: Batman становится целью Melee Attack. За каждый успешный Defense die она наносит ★★★.`,
-  "lord-of-the-pits": `Условие: разыграйте, когда дружественный активный Boss находится в пределах 8" от вражеского Boss. Разместите дружественного Boss в контакте с вражеским Boss и потратьте Melee Attack action.
-
-Засчитайте, если эта Attack удаляет вражеского Boss как Casualty.
-
-Ресурс 2: разместите дружественную модель с Alias: Ra's Al Ghul, ранее удаленную как Casualty, в дружественной DZ. Она не может активироваться в этот раунд.`,
-  "masters-duel": `Условие: дружественная модель заставляет вражескую модель с большей Reputation cost получить KO.
-
-Ресурс 1: при разрешении атаки модели с Alias: Lady Shiva замените все маркеры ★ на маркеры с карты.`,
-  "seeking-revenge": `Условие: нанесите как минимум 3 попадания оружием, которое наносит Damage типа ★, по вражеской модели с самой высокой Reputation cost. Если в игре есть вражеская модель с Alias: Joker, целью должна быть она.
-
-Ресурс 1: во время этой активации дружественная модель с Name: Jason Todd игнорирует ограничение once per game трейта One Shot Gun.`,
-  "regrowth": `Условие: в пределах 4" от активной дружественной модели есть 2 дружественных Suspects, и хотя бы один из них находится в пределах 4" от вражеской модели.
-
-Ресурс 1: во время активации дружественной модели выберите дружественную модель с Plant trait в пределах 8" от дружественной модели с Alias: Poison Ivy. Разместите выбранную модель в контакте с дружественным Suspect.`,
-  "feed-me": `Условие: вражеская модель проваливает Endurance roll, пока находится под Devoured.
-
-Ресурс 0: во время активации дружественной модели с Alias: Frank the Plant Devoured enemy model выполняет Slow Digestion Endurance roll. Если он провален, модель получает 1 дополнительный Damage.`,
-  "kataykuchi": `Условие: когда вражеская модель удаляет дружественную модель как Casualty, выберите эту вражескую модель и дружественную модель.
-
-Засчитайте, когда эта дружественная модель наносит Damage выбранной вражеской модели.
-
-Burn 1, Exception (In Play): модель с Alias: Katana получает 2 Free Efforts в эту активацию во время Attacking или Defending.`,
-  "netmaster": `Условие: выберите дружественную модель. У выбранной модели есть 6 дружественных Suspects в пределах 8".
-
-Ресурс 1: выберите все markers в пределах 10" от дружественной модели с Alias: Oracle. Передвиньте их на 2".`,
-  "deathmatch": `Условие: дружественная модель с Alias: Deathstroke удаляет врага с самой высокой Reputation cost как Casualty. Уберите эту дружественную модель из игры.
-
-Ресурс 1: выберите вражескую модель в пределах 8" от дружественной модели с Alias: Deathstroke. Цель нельзя переместить дальше чем на 8" от этой дружественной модели в этот раунд.`,
-  "a-cat-has-its-needs": `Условие: дружественная модель Reveals вражеский Suspect, и в пределах 4" от этого Suspect есть дружественный Cat marker.
-
-Burn 1: разыграйте, когда дружественная модель с Alias: Catwoman удаляет выбранную вражескую модель как Casualty. Поставьте дружественный Cat marker в контакт с целью.`,
-  "justice": `Opening: каждый раз, когда вражеская модель удаляется как Casualty with the Judgement trait, поместите 1 маркер на эту карту.
-
-Засчитайте, когда на карте 2 маркера.
-
-Ресурс 1, Exception (In Play): когда дружественная модель использует Judgement trait, выберите результат вместо броска.`,
-  "riddles-everywhere": `Условие: в игре есть 2 Riddle markers.
-
-Burn 1: выставьте до 3 Riddle markers в пределах 8" от дружественной модели с Alias: Riddler.`,
-  "diversion-tactic": `Условие: в игре меньше 5 вражеских Suspects.
-
-Ресурс *, Trap: перед удалением Suspect, который активировал эту карту, вы можете разместить дружественную модель с Affiliation: ? в контакте с ним.`,
-  "query-and-echo": `Условие: дружественная модель Reveals вражеский Suspect, который находится в пределах 2" от дружественного Suspect.
-
-Ресурс 1: дружественная модель с Alias: Echo получает 2 Free Efforts на текущую активацию, если она находится в пределах 6" от дружественной модели с Alias: Query.`,
-  "echo-and-query": `Условие: вражеская модель Reveals дружественный Suspect, который находится в пределах 2" от вражеского Suspect.
-
-Ресурс 1: дружественная модель с Alias: Query получает 2 Free Efforts на текущую активацию, если она находится в пределах 6" от дружественной модели с Alias: Echo.`,
-  "this-ends-tonight": `Условие: вражеский Boss удален как Casualty в пределах 8" от активной дружественной модели.
-
-Ресурс 2: дружественная модель с Alias: Arkham Knight получает Free Action.`,
-  "a-city-in-fear": `Условие: как минимум 3 модели страдают от Scared Status.
-
-Ресурс 0: разыграйте в Phase II. Выберите вражескую модель, чтобы она выполнила Willpower roll. Если бросок провален, модель получает Scared Status.`,
-  "my-house-my-rules": `Условие: выберите вражескую модель в пределах 8" от дружественного Boss. Когда цель Sets a Suspect, получает KO или удаляет модель как Casualty, поместите 1 маркер на эту карту.
-
-Засчитайте, когда на карте 3 маркера.
-
-Ресурс 0, Exception (In Play): во время активации дружественной модели с Alias: The Penguin выполните одно из действий: передвиньте дружественную модель на 4"; другая дружественная модель Sets a Suspect; посмотрите Objective hand оппонента и сбросьте из нее карту.`,
-  "endless-greed": `Условие: когда дружественный Boss наносит Damage вражескому Boss, в игре больше дружественных Suspects, чем вражеских.
-
-Ресурс 1: дружественные модели в пределах 8" от дружественной модели с Alias: Emperor Penguin и в пределах 4" от вражеского Suspect получают 2 ★.`,
-  "street-transaction": `Условие: дружественная модель Reveals вражеский Suspect в пределах 6" от дружественного Suspect и дружественного маркера с иконкой карты.
-
-Ресурс 2: дружественные модели в пределах 8" от дружественной модели с Alias: Loose Lips и в пределах 4" от дружественного Suspect могут получить 2 маркера с карты.`,
-  "plots-behind-plots": `Условие: выставьте 3 Shadow Event markers в пределах 8" от вражеских моделей. Тайно выберите 1 Shadow как Secret Objective. Модель может выполнить Manipulate Shadow, чтобы убрать его.
-
-The Secret Objective is in play. В начале активации вы можете разместить дружественную модель с Reanimated Owl trait в контакте с Shadow и убрать этот marker.
-
-Ресурс 1: во время этой активации при выборе Prey с помощью Attack action нельзя делать Efforts.`,
-  "the-courts-edict": `Условие: когда Prey удаляется как Casualty, поместите 1 маркер на эту карту. У этой карты есть 2 маркера.
-
-Ресурс 1: выберите дружественную модель с Reanimated Owl trait, ранее удаленную как Casualty, и разместите ее в пределах 4" от дружественной модели с Alias: The Court. Эта модель не может активироваться в этот раунд.`,
-  "the-mission": `Условие: выберите модель с Reanimated Owl trait.
-
-Засчитайте, если эта модель наносит Damage текущему вражескому Boss или модели с самой высокой Reputation cost.
-
-Ресурс 0: выберите вражескую модель в пределах 4" от дружественной модели с Name: William Cobb и дружественного Suspect. Эта модель становится marked as a Prey. Верните эту карту в колоду и перемешайте ее. Если вы уже отметили вражескую модель, предыдущая модель теряет mark.`,
-  "escape-plan": `Условие: выберите дружественную модель.
-
-Засчитайте, если эта модель находится в игре в конце игры.
-
-Ресурс 0, Exception (In Play): дружественная модель, которая становится целью Attack в пределах 8" от дружественной модели с Name: Calvin Rose, добавляет 3 dice к своему Defense roll.`,
-  "osito": `Условие: разыграйте, когда вражеская модель Sets a Suspect. Разместите Osito Event marker в контакте с этим Suspect по Loot rules. Дружественная модель с Alias: Bane получает +1 к Attack dice rolls против вражеской модели, контролирующей Osito или находящейся в пределах 4" от Osito.
-
-Засчитайте, если дружественная модель контролирует Osito в конце игры. Эту Objective нельзя разыграть после 3-го раунда.
-
-Ресурс 1, Exception (In Play): выберите вражескую модель в пределах 6" от дружественной модели с Alias: Bane. Она получает Scared Status.`,
-  "emancipation": `Условие: дружественная модель наносит Damage вражескому Boss, пока в пределах 6" от любой из этих моделей нет других дружественных моделей.
-
-Ресурс 1: выберите дружественный Suspect в пределах 4" от активной дружественной модели с Alias: Harley Quinn. Поставьте Explosive template на этот Suspect. Выберите направление и передвиньте template на полные 2D6". Модели, задетые template в конце движения, получают ★★. Затем уберите template.`,
-  "cover-your-ears": `Условие: выберите дружественную модель. У выбранной модели есть другая дружественная модель в пределах 4".
-
-Ресурс 1: активная дружественная модель с Alias: Black Canary наносит Push (4) каждой вражеской модели и marker в пределах 8".`,
-  "vendetta": `Условие: выберите вражескую модель с Reputation выше 50. Если нет врагов с Reputation выше 50, можно выбрать дружественную модель.
-
-Засчитайте, если дружественная модель наносит Damage этой вражеской модели.
-
-Ресурс 1: когда дружественная модель с Alias: Huntress выполняет Ranged Attack, замените 1 attack die на Strength die.`,
-  "gotham-is-mine": `Условие: все вражеские модели с указанными иконками получают KO или удалены как Casualty.
-
-Ресурс 1: разыграйте в начале активации дружественной модели. Вражеские модели не могут проводить LoS к дружественной модели с Alias: Bane.`,
-  "corrupted": `Условие: как минимум 5 моделей страдают от Poison Status и/или имеют Infected counter.
-
-Ресурс 1: когда Attack наносит Damage, цель получает Poison Status.`,
-  "apex-predator": `Условие: вражеская модель в пределах 4" от 2 Suspects получает Damage.
-
-Ресурс 1: если дружественная модель в пределах 8" от дружественного Boss наносит Damage Melee Attack, замените ★ на Damage с карты.`,
-  "showtime": `Условие: выберите дружественного Boss и положите на эту карту Timer 1D3+2. Разместите до такого количества вражеских Suspects в пределах 18" от цели в контакте с ней.
-
-Засчитайте, если counter уменьшился до 0 и любой из этих Suspects находится в контакте с целью.
-
-Ресурс 1: бросьте 1D6 за каждый дружественный Suspect в пределах 20" от дружественной модели с Alias: Joker. Положите на Suspect Numeric counter с результатом броска и отложите эту карту. Когда выполняется dice roll, вы должны убрать 1 из этих Numeric counters и заменить один из результатов броска на его значение. Когда все Numeric Counters убраны, сбросьте эту карту.`,
-  "joker-o-meter": `Условие: когда карта разыграна, выберите активную дружественную модель. Когда другая модель в пределах 4" выбрасывает две натуральные 1 и не удалена из игры, разместите цель в контакте с ней. Выполните Free Melee Attack по этой модели.
-
-Засчитайте, если эта Attack наносит Damage. Если нет, сбросьте эту карту.
-
-Ресурс 2: модель с Alias: Harley Quinn получает +1 extra Strength die в эту активацию.`,
-  "one-million-dollar-shot": `Условие: вражеская модель с указанными иконками получает KO или удалена как Casualty с помощью Ranged Attack.
-
-Ресурс 1: во время этой активации модель с Alias: Deadshot получает +1 die к Attack по модели вне Effective range.`,
-  "wrong-place-kid": `Условие: дружественная модель с Cop trait Reveals вражеский Suspect как минимум в 6" от другой дружественной модели с Cop trait.
-
-Ресурс 1: модель с Alias: Sgt. Harvey Bullock получает +1 die к Ranged Attack action. Оппонент Sets one of their Suspects в контакт с целью этой Attack, игнорируя minimum distance rules.`,
-  "back-to-arkham": `Условие: дружественная модель с Alias: Batman наносит KO вражеской модели или удаляет ее как Casualty.
-
-Ресурс 1: разыграйте, когда дружественная модель с Name: Bruce Wayne наносит KO вражеской модели с Rank: Henchman, Free Agent или Sidekick; вместо этого удалите ее как Casualty.`,
-  "one-good-cop": `Условие: дружественная модель получает Damage в пределах 8" от другой дружественной модели с Cop trait и не получает KO или не удаляется как Casualty.
-
-Ресурс 1: дружественные модели с Cop trait в пределах 8" от дружественной модели с Name: James W. Gordon убирают 1 ★.`,
-  "daughter-of-the-demon": `Условие: в пределах 4" от вражеских моделей больше дружественных Suspects, чем вражеских моделей в игре.
-
-Ресурс 2: выберите все дружественные Suspects в пределах 20" от дружественной модели с Alias: Talia. Они также являются Imminent Threat markers. Чтобы Reveal an Imminent Threat, оппонент должен сначала убрать дружественный Suspect.`,
-  "my-life-for-the-league": `Условие: выберите дружественную модель. Каждый раз, когда эта модель становится целью Attack, поместите 1 маркер на эту карту.
-
-Засчитайте, если на карте 2 маркера.
-
-Ресурс 1, Exception (In Play): если дружественный Boss получает любое количество hits, дружественная модель с Alias: The Heretic в пределах 6" получает эти hits вместо него.`,
-  "mortal-wound": `Условие: вражеская модель проваливает Poison roll.
-
-Ресурс 1: вражеская модель в пределах 4" от модели с Alias: Cheshire, страдающей от Poison Status, выполняет Poison roll.`,
-  "searching-for-nora": `Условие: выберите 2 Scenery Elements, затем оппонент выбирает еще один. Разместите Nora Research Event marker в пределах 2" от каждого Scenery Element, на расстоянии минимум 4" друг от друга. Модель может выполнить Manipulate these Events, чтобы передвинуть их на 4". Уберите Nora Research, когда она в контакте с дружественным Boss.
-
-Засчитайте, когда все 3 Nora Research удалены.
-
-Ресурс 1, Exception (In Play): дружественная модель с Alias: Mr. Freeze получает Free Movement action.`,
-  "cold-as-ice": `Условие: когда дружественная модель должна нанести достаточно Damage, чтобы удалить модель как Casualty, проигнорируйте этот Damage, и вместо этого модель получает Freeze Status.
-
-Ресурс 1: дружественная модель с Alias: Killer Frost получает Free Action.`,
-  "the-don": `Условие, Black Money: дружественный Boss находится в пределах 6" от вражеского Boss.
-
-Ресурс 0: во время активации дружественной модели выберите до 2 дружественных моделей в пределах 8" от дружественной Carmine Falcone и передвиньте их на 6".`,
-  "uncontrolled-brutality": `Условие, Black Money: вражеская модель с самой высокой Reputation cost в пределах 6" от 2 дружественных Suspects получает Damage, равный минимум половине ее Endurance.
-
-Ресурс 1: когда Ranged Attack наносит Damage, цель уменьшает свои Attack и Defense skills на 1 до конца раунда.`,
-  "the-true-boss": `Условие, Black Money: каждый раз, когда дружественная модель выполняет Manipulate, поместите маркер на эту карту. Каждый раз, когда вражеская модель выполняет Manipulate, поместите другой маркер на эту карту.
-
-У этой карты больше дружественных маркеров, чем вражеских.
-
-Ресурс 1: разыграйте, когда дружественная модель с Alias: The Ventriloquist получает Damage. Разместите ее в контакте с дружественным Suspect в пределах 4". Игнорируйте Damage и Status. Уберите этот Suspect.`,
-  "pain-and-money": `Условие, Limited: каждый раз, когда дружественная модель наносит Damage с указанным типом, поместите маркер на эту карту.
-
-Засчитайте, если дружественных маркеров на этой карте больше, чем вражеских Suspects.
-
-Ресурс 1: активная дружественная модель получает 1 Damage и 2 ★.`,
-  "not-so-much-sugar": `Условие: Set a Sugar Cube Event marker with Timer 1D6 within 4" of an enemy model. When the counter is reduced to 0, roll 2D6 plus 1D6 for each friendly model within 4" of the Sugar Cube, and remove 1D6 for each enemy model within 4" of the Sugar Cube.
-
-Засчитайте, если любые 2 dice results совпадают.
-
-Ресурс 1: уберите Suspect в пределах 8" от активной дружественной модели. Если это был дружественный Suspect, сбросьте Objective card. Если нет, оппонент сбрасывает Objective card.`,
-  "spice-it-a-little": `Условие: дружественная модель выполняет successful hit по 2 вражеским моделям одной Attack action.
-
-Ресурс 1: выберите одно: дружественные модели в пределах 8" от дружественной модели с Alias: Spice получают 2 маркера с карты; или вражеские модели в пределах 8" от дружественной модели с Alias: Spice получают 4 маркера с карты.`,
-  "master-of-manipulation": `Условие: каждый раз, когда вы разыгрываете Resource, поместите дружественный маркер на эту карту. Каждый раз, когда оппонент разыгрывает Resource, поместите вражеский маркер на эту карту.
-
-Засчитайте, если дружественных маркеров на карте больше, чем вражеских.
-
-Ресурс 0: дружественная модель с Alias: Hush находится в пределах 8" от вражеской модели. Оппонент выбирает: потерять 1 Resource или вы получаете 1 Resource.`,
-  "yours-to-command": `Условие: дружественная модель не получает KO или не удаляется как Casualty от атаки, которая имеет как минимум 4 successful hits до Defense roll.
-
-Ресурс 0: когда дружественная модель в пределах 4" от дружественной модели с Alias: Ubu получает любое количество hits, Ubu получает эти hits вместо нее.`,
-  "great-performance": `Opening: выберите дружественную модель с Alias: Nightwing. Положите 1 маркер на эту карту, когда цель Sets a Suspect в пределах 4" от вражеской модели. Положите 1 маркер на эту карту, когда цель наносит KO.
-
-Засчитайте, если цель находится в игре в конце игры и на этой карте есть 1 маркер каждого типа.
-
-Ресурс 1, Exception (In Play): когда модель с Acrobat trait становится целью Attack и не получает KO, передвиньте ее на 4".`,
-  "assistance": `Условие: выберите Enemy Boss, когда он выполняет Action. Дружественная модель с Alias: Robin Sets a Suspect в пределах 4" от цели.
-
-Ресурс 1: разыграйте во время активации дружественного Boss с Alias: Batman. Передвиньте дружественную модель с Alias: Robin на 8".`,
-  "trick-shot": `Условие: активная дружественная модель Moves, затем засчитывает как минимум 1 successful hit with a Ranged attack. Если разыграно во время активации модели с Alias: Green Arrow, она может выполнить free Ranged Attack action без траты action.
-
-Ресурс 1: дружественная модель с Alias: Green Arrow, выполняющая Ranged Attack, может считать свою цель дружественным Suspect within LoS.`,
-  "justice-served": `Условие: вражеская модель с Quarry (X) Status получает KO или удалена как Casualty дружественной моделью с Justice trait.
-
-Burn 0: разыграйте во время активации дружественной модели с Alias: Peacemaker. Передвиньте вражескую модель с Quarry (X) Status на 4".`,
-  "best-served-cold": `Условие: разыграйте, когда Objective card оппонента помещается под Ice Age card.
-
-Засчитайте, если другая карта помещена под Ice Age card до того, как вражеская модель Sets a Suspect в пределах 4" от дружественной модели.
-
-Ресурс 1: дружественная модель в пределах 8" от дружественной модели с Alias: Mrs. Freeze игнорирует S. Range weapon trait в эту активацию.`,
-  "bigger-picture": `Условие: вражеский Boss находится в пределах 4" от дружественного Suspect и уже активировался в этом раунде.
-
-Burn 0, Trap: передвиньте вражеский Suspect на 4".`,
-  "freelance-assassin": `Opening: выберите вражескую модель и дружественную модель.
-
-Засчитайте, когда эта дружественная модель удаляет выбранную вражескую модель как Casualty.
-
-Ресурс 1, Exception (In Play): выберите дружественную модель со Stealth trait. Разместите ее в пределах 8" от вражеской модели и 4" от дружественного Suspect.`,
-  "vengeances-mission": `Opening: выберите вражескую модель и дружественную модель с Alias: Vengeance.
-
-Засчитайте, когда эта дружественная модель удаляет выбранную вражескую модель как Casualty.
-
-Ресурс 1, Exception (In Play): выбранная вражеская модель получает Scared Status.`,
-  "sewers-nightmare": `Условие: вражеская модель удалена как Casualty в пределах 4" от Sewer marker.
-
-Ресурс 1: активная модель может продолжить Move после использования Sewer.`,
-  "the-best-act": `Условие: разместите выбранную модель, которая была удалена как Casualty, в контакт с дружественной моделью с Alias: Clayface. Уберите Clayface из игры.
-
-Цель все еще находится в игре. Затем уберите ее из игры. В этот раунд цель считается дружественной. Если цель удалена из игры, разместите Clayface в контакте до ее удаления.
-
-Ресурс 1: разместите активную дружественную модель с Alias: Clayface в контакте с моделью.`,
-  "primary-instincts": `Условие: нанесите Damage вражеской модели, которая не имела LoS к атакующему в начале активации атакующего.
-
-Ресурс 1: разыграйте, когда дружественная модель в пределах 8" от дружественной модели с Alias: Man-Bat становится целью Attack. Она бросает 2 дополнительных Defense dice. Если она не получает KO, передвиньте ее на 2".`,
-  "born-on-a-monday": `Условие: выберите дружественную модель в пределах 4" от вражеского Suspect. В конце хода уберите эту активацию и 1 маркер на этой карте, если в пределах 4" нет вражеских моделей.
-
-Засчитайте, когда на карте 3 маркера.
-
-Ресурс 1: разместите дружественную модель с Alias: Solomon Grundy, ранее удаленную как Casualty, в пределах 4" от 2 дружественных Suspects.`,
-  "tally-marks": `Opening: каждый раз, когда дружественная модель с Alias: Zsasz удаляет вражескую модель как Casualty, поместите 1 маркер на эту карту.
-
-Засчитайте, если на карте 3 маркера.
-
-Ресурс 0, Exception (In Play): разыграйте, когда дружественная модель с Alias: Victor Zsasz удаляет вражескую модель как Casualty. Victor Zsasz получает 1 Damage и удаляется из игры. Вы можете позже вернуть его в игру по Shadowed Nightmare trait.`,
-  "this-is-the-evil": `Условие, Limited: когда дружественная модель получает Faith в пределах 4" от Blackfire Totem, поместите 1 маркер на эту карту.
-
-Засчитайте, когда на карте 4 маркера.
-
-Ресурс 1, Exception (In Play): вражеская модель в пределах 4" от Blackfire Totem получает Enervating (1) Status. За 3 маркера эта модель вместо этого получает Enervating (3) Status.`,
-  "join-the-fold": `Условие: разыграйте, когда дружественная модель удаляет вражескую модель как Casualty. Эта дружественная модель Sets a Suspect в пределах 4" от дружественной модели с указанными иконками.
-
-Ресурс 2: во время активации дружественной модели выберите вражескую модель в пределах 8" от дружественной модели с Alias: Young Woman. Передвиньте ее на 4". За 2 маркера цель также получает Enervating (2) Status.`,
-  "the-unworthy": `Условие: выберите вражескую модель. Эта модель удалена как Casualty.
-
-Ресурс 2: вражеский model within 8" of a friendly Suspect получает Quarry (2) Status. За 2 маркера вместо этого получает Quarry (4).`,
-  "the-evidence-mounts": `Условие: выберите 3 enemy Suspects. Set a Search Event marker in contact with each Suspect. В пределах 4" от Search нет вражеских Suspects.
-
-Ресурс 1: дружественная модель с Alias: Batman получает 2 Free Efforts в эту активацию во время Attacking или Defending.`,
-  "mother-of-strays": `Условие: выберите дружественную модель, когда она Reveals an enemy Suspect, который нельзя разыграть в Round 4.
-
-Засчитайте, если цель находится в игре в конце следующей Recount Phase.
-
-Ресурс 1: во время активации дружественной модели выберите дружественную модель в пределах 8" от дружественной модели с Alias: Catwoman. Передвиньте ее на 4".`,
-  "secure-the-drop": `Условие: выберите 3 friendly Suspects. Set a Drop Event marker in contact with each Suspect.
-
-В пределах 4" от 2 Drop markers больше дружественных моделей, чем вражеских.
-
-Ресурс 1: дружественная модель теряет Black Money Equipment, а вы получаете $100 Black Money.`,
-  "cover-up": `Условие: выберите 3 friendly Suspects. Эти Suspects являются Evidence markers. Дружественная модель находится в контакте с Evidence.
-
-Ресурс 1: отмените Objective card, использованную как Resource. Эта карта сбрасывается. Затем оппонент убирает 1 ваш Suspect.`,
-  "moth-signal": `Условие: выберите Scenery element в пределах 4" от дружественной модели и минимум 8" вне дружественной DZ.
-
-В пределах 4" от этого Scenery element есть дружественный Suspect и дружественная модель.
-
-Ресурс 1: разместите дружественную модель с Alias: Killer Moth в контакте с дружественным Suspect, который находится в пределах 4" от другой дружественной модели. Затем уберите этот Suspect.`,
-  "overwhelming-charisma": `Условие: выберите вражескую модель и дружественную модель. Каждый раз, когда эта дружественная модель Reveals a Suspect, поместите дружественный маркер на эту карту. Каждый раз, когда эта вражеская модель Reveals a Suspect, поместите вражеский маркер на эту карту.
-
-На этой карте больше дружественных маркеров, чем вражеских.
-
-Burn 1: вражеская модель, выполняющая Willpower roll в пределах 4" от дружественной модели с Alias: Kite-Man, добавляет 2 к броску.`,
-  "time-master": `Условие: оппонент выбирает до 3 своих Suspects. Эти Suspects удалены или в пределах 4" от них есть дружественный Suspect.
-
-Ресурс 1: активная дружественная модель в пределах 4" от дружественной модели с Alias: Clock King Sets a Time Warp Event marker в контакт. В конце активации разместите эту модель в контакте с Time Warp.`,
-  "cold-as-death": `Условие: как минимум 4 модели получают movement penalty.
-
-Ресурс 1: выберите до 3 friendly Suspects в пределах 6" от дружественной модели с Alias: Gentleman Ghost. Выберите модель в пределах 4" от каждого Suspect, чтобы она получила Slow (4) Status.`,
-  "calendar-crimes": `Условие: каждый раз, когда дружественная модель Sets a Suspect, поместите дружественный маркер на эту карту. Каждый раз, когда вражеская модель Sets or Reveals a Suspect, поместите вражеский маркер на эту карту.
-
-На карте больше дружественных маркеров, чем вражеских.
-
-Ресурс 1: когда дружественная модель Reveals an enemy Suspect, Set a friendly Suspect within 4". Если эта модель имеет Alias: Calendar Man, поставьте его в пределах 12" вместо 4".`,
-  "sauce-and-pickles": `Условие: дружественная модель Reveals an enemy Suspect в пределах 4" от вражеской модели, страдающей как минимум от 2 Status.
-
-Ресурс 1: во время этой активации дружественная модель с Alias: Condiment King получает +1 to hit. Если любой hit засчитан, цель получает Push (4) и Scared Status.`,
-  "kobra-viral-bomb": `Условие: Set a Kobra Bomb Event marker в пределах 4" от Suspect. Затем Set 3 Detonator Event markers в пределах 8" от Kobra Bomb. Модель может Manipulate a Detonator, чтобы убрать его. При удалении бросьте 1D6: на 1 Kobra Bomb detonates. Если остались Detonators, во время Recount Kobra Bomb detonates. При взрыве все модели в пределах 2" от Kobra Bomb получают 2 Damage и Poison Status. Затем уберите Kobra Bomb.
-
-Засчитайте, если вражеская модель получила Damage в результате.
-
-Ресурс 1: выбранная модель в пределах 8" от дружественной модели с Alias: Kobra убирает 2 Damage.
-
-Ресурс 2: цель также убирает все Status.`,
-  "strict-control": `Условие: вражеская модель в пределах 4" от дружественной модели с Rank: Leader или Free Agent проваливает Willpower or Endurance roll.
-
-Ресурс 3: разместите модель с Alias: Kobra Hybrid, ранее удаленную как Casualty, в пределах 2" от активной дружественной модели. Затем уберите активную модель из игры. Kobra Hybrid может выполнить 1 action.
-
-Ресурс 5: вместо этого Kobra Hybrid может выполнить 3 separate actions.`,
-  "state-of-fear": `Opening: каждый раз, когда Fear card возвращается в Fear Pile, поместите маркер на эту карту. Один раз за Round сбросьте верхнюю карту вашей Objective deck.
-
-Засчитайте, если количество маркеров на этой карте совпадает с типом сброшенной карты: 1-2 с первым типом, 3-4 со вторым типом, 5-6 с третьим типом.
-
-Ресурс *, Exception (Scored Pile): каждый раз, когда Fear card добавляется в вашу Objective deck, сбросьте верхнюю карту вашей Objective deck.`,
-  "new-compound": `Условие, Limited: когда карта добавляется в вашу Terror Pile, поместите 1 маркер на эту карту.
-
-Засчитайте, когда на этой карте 5 маркеров.
-
-Ресурс 1: когда выбираете карту для добавления в Terror Pile, добавьте обе карты вместо одной.`,
-  "deduction": `Условие: каждый раз, когда игрок разыгрывает Resource указанного типа Objective card, поместите 1 маркер на эту карту.
-
-Засчитайте, когда на этой карте 5 маркеров.
-
-Ресурс 1, Exception (In Play): дружественная модель с Alias: Hugo Strange находится в пределах 8" от Suspect и вражеской модели. Найдите в Objective deck карту указанного типа и добавьте ее в руку.`
-};
-
-function characterObjectiveCard(id, name, imgName, requiredModel, requiredRank, value, maxPerDeck = 1) {
-  const translatedText = characterObjectiveTextRu[id];
-  const card = {
-    id: `character-${id}`,
-    name,
-    img: `img/cards/characters/${imgName}.jpg`,
-    renderAsCardImage: true,
-    type: "Objective",
-    category: "character",
-    isGeneral: false,
-    value: `${value} VP`,
-    maxPerDeck,
-    requiredModel,
-    showInlineText: false,
-    text: {
-      en: "Character Objective. See the original card image for the full card text.",
-      ru: translatedText || "Персональная карта цели. Полный текст смотрите на оригинальном изображении карты."
-    }
-  };
-
-  if (requiredRank) card.requiredRank = requiredRank;
-  return card;
-}
-
-const characterObjectiveCards = [
-  characterObjectiveCard("reinforce-bird", "REINFORCE", "reinforce-bird", "Bird", "Sidekick", 2, 1),
-  characterObjectiveCard("im-the-surgeon", "I'M THE SURGEON", "im-the-surgeon", "Batman Frank Miller", "Leader", 2, 1),
-  characterObjectiveCard("lord-of-the-pits", "LORD OF THE PITS", "lord-of-the-pits", "Ra's al Ghul", "Leader", 2, 1),
-  characterObjectiveCard("masters-duel", "MASTER'S DUEL", "masters-duel", "Lady Shiva", "Sidekick", 2, 1),
-  characterObjectiveCard("seeking-revenge", "SEEKING REVENGE", "seeking-revenge", "Jason Todd", "Free Agent", 2, 1),
-  characterObjectiveCard("regrowth", "REGROWTH", "regrowth", "Poison Ivy", ["Leader", "Sidekick"], 2, 1),
-  characterObjectiveCard("feed-me", "FEED ME", "feed-me", "Frank the Plant", "Henchman", 2, 1),
-  characterObjectiveCard("kataykuchi", "KATAYKUCHI", "kataykuchi", "Katana", "Free Agent", 2, 1),
-  characterObjectiveCard("netmaster", "NETMASTER", "netmaster", "Oracle", ["Sidekick", "Free Agent"], 3, 1),
-  characterObjectiveCard("deathmatch", "DEATHMATCH", "deathmatch", "Deathstroke", "Free Agent", 4, 1),
-  characterObjectiveCard("a-cat-has-its-needs", "A CAT HAS ITS NEEDS", "a-cat-has-its-needs", "Catwoman", "Free Agent", 2, 1),
-  characterObjectiveCard("justice", "JUSTICE", "justice", "Two-Face", "Leader", 2, 1),
-  characterObjectiveCard("riddles-everywhere", "RIDDLES EVERYWHERE", "riddles-everywhere", ["The Riddler", "Riddler"], "Leader", 2, 2),
-  characterObjectiveCard("diversion-tactic", "DIVERSION TACTIC", "diversion-tactic", ["Quelle", "Quell"], "Sidekick", 2, 2),
-  characterObjectiveCard("query-and-echo", "QUERY AND ECHO", "query-and-echo", "Query", "Henchman", 2, 1),
-  characterObjectiveCard("echo-and-query", "ECHO AND QUERY", "echo-and-query", "Echo", "Henchman", 2, 1),
-  characterObjectiveCard("this-ends-tonight", "THIS ENDS TONIGHT", "this-ends-tonight", "Arkham Knight", "Leader", 2, 1),
-  characterObjectiveCard("a-city-in-fear", "A CITY IN FEAR", "a-city-in-fear", "Scarecrow", "Leader", 2, 1),
-  characterObjectiveCard("my-house-my-rules", "MY HOUSE, MY RULES", "my-house-my-rules", "The Penguin", "Leader", 2, 1),
-  characterObjectiveCard("endless-greed", "ENDLESS GREED", "endless-greed", "Emperor Penguin", "Leader", 3, 1),
-  characterObjectiveCard("street-transaction", "STREET TRANSACTION", "street-transaction", "Loose Lips", "Sidekick", 2, 1),
-  characterObjectiveCard("plots-behind-plots", "PLOTS BEHIND PLOTS", "plots-behind-plots", "Lincoln March", ["Leader", "Henchman"], 3, 1),
-  characterObjectiveCard("the-courts-edict", "THE COURT'S EDICT", "the-courts-edict", "The Court", "Leader", 3, 1),
-  characterObjectiveCard("the-mission", "THE MISSION", "the-mission", "William Cobb", "Henchman", 2, 1),
-  characterObjectiveCard("escape-plan", "ESCAPE PLAN", "escape-plan", "Calvin Rose", "Free Agent", 3, 1),
-  characterObjectiveCard("osito", "OSITO", "osito", "Bane", "Leader", 2, 1),
-  characterObjectiveCard("emancipation", "EMANCIPATION", "emancipation", "Harley Quinn", "Free Agent", 2, 1),
-  characterObjectiveCard("cover-your-ears", "COVER YOUR EARS", "cover-your-ears", "Black Canary", "Sidekick", 2, 1),
-  characterObjectiveCard("vendetta", "VENDETTA", "vendetta", "Huntress", "Henchman", 2, 1),
-  characterObjectiveCard("gotham-is-mine", "GOTHAM IS MINE", "gotham-is-mine", "Bane", "Leader", 3, 1),
-  characterObjectiveCard("corrupted", "CORRUPTED", "corrupted", "The Batman Who Laughs", "Free Agent", 1, 3),
-  characterObjectiveCard("apex-predator", "APEX PREDATOR", "apex-predator", "The Batman Who Laughs", "Free Agent", 2, 3),
-  characterObjectiveCard("showtime", "SHOWTIME!", "showtime", "Joker", "Leader", 2, 1),
-  characterObjectiveCard("joker-o-meter", "JOKER-O-METER", "joker-o-meter", "Harley Quinn", "Sidekick", 2, 1),
-  characterObjectiveCard("one-million-dollar-shot", "ONE MILLION DOLLAR SHOT", "one-million-dollar-shot", "Deadshot", "Free Agent", 2, 1),
-  characterObjectiveCard("wrong-place-kid", "WRONG PLACE, KID", "wrong-place-kid", "Harvey Bullock", "Henchman", 2, 1),
-  characterObjectiveCard("back-to-arkham", "BACK TO ARKHAM", "back-to-arkham", "Bruce Wayne", "Leader", 2, 1),
-  characterObjectiveCard("one-good-cop", "ONE GOOD COP", "one-good-cop", "James W. Gordon", "Leader", 2, 1),
-  characterObjectiveCard("daughter-of-the-demon", "DAUGHTER OF THE DEMON", "daughter-of-the-demon", "Talia al Ghul", ["Leader", "Sidekick"], 2, 1),
-  characterObjectiveCard("my-life-for-the-league", "MY LIFE FOR THE LEAGUE", "my-life-for-the-league", "The Heretic", "Sidekick", 2, 1),
-  characterObjectiveCard("mortal-wound", "MORTAL WOUND", "mortal-wound", "Cheshire", "Free Agent", 2, 3),
-  characterObjectiveCard("searching-for-nora", "SEARCHING FOR NORA", "searching-for-nora", "Mr. Freeze", "Leader", 2, 1),
-  characterObjectiveCard("cold-as-ice", "COLD AS ICE", "cold-as-ice", "Killer Frost", "Sidekick", 2, 1),
-  characterObjectiveCard("the-don", "THE DON", "the-don", "Carmine Falcone", "Leader", 2, 1),
-  characterObjectiveCard("uncontrolled-brutality", "UNCONTROLLED BRUTALITY", "uncontrolled-brutality", "Salvatore Maroni", "Leader", 2, 1),
-  characterObjectiveCard("the-true-boss", "THE TRUE BOSS", "the-true-boss", "The Ventriloquist", "Leader", 2, 1),
-  characterObjectiveCard("pain-and-money", "PAIN AND MONEY", "pain-and-money", "Black Mask", "Leader", 2, 2),
-  characterObjectiveCard("not-so-much-sugar", "NOT SO MUCH SUGAR", "not-so-much-sugar", "Sugar", "Sidekick", 2, 1),
-  characterObjectiveCard("spice-it-a-little", "SPICE IT A LITTLE", "spice-it-a-little", "Spice", "Sidekick", 2, 1),
-  characterObjectiveCard("master-of-manipulation", "MASTER OF MANIPULATION", "master-of-manipulation", "Hush", "Free Agent", 3, 1),
-  characterObjectiveCard("yours-to-command", "YOURS TO COMMAND", "yours-to-command", "Ubu", "Henchman", 2, 1),
-  characterObjectiveCard("great-performance", "GREAT PERFORMANCE", "great-performance", "Nightwing", "Sidekick", 4, 1),
-  characterObjectiveCard("assistance", "ASSISTANCE", "assistance", "Robin", "Sidekick", 2, 2),
-  characterObjectiveCard("trick-shot", "TRICK SHOT", "trick-shot", "Green Arrow", "Sidekick", 2, 2),
-  characterObjectiveCard("justice-served", "JUSTICE SERVED", "justice-served", "Peacemaker", "Free Agent", 3, 1),
-  characterObjectiveCard("best-served-cold", "BEST SERVED COLD", "best-served-cold", "Nora Fries", "Sidekick", 2, 2),
-  characterObjectiveCard("bigger-picture", "BIGGER PICTURE", "bigger-picture", ["The Riddler", "Paul Dano"], "Leader", 2, 2),
-  characterObjectiveCard("freelance-assassin", "FREELANCE ASSASSIN", "freelance-assassin", "Raptor", "Free Agent", 4, 1),
-  characterObjectiveCard("vengeances-mission", "VENGEANCE'S MISSION", "vengeances-mission", "Vengeance", "Leader", 2, 1),
-  characterObjectiveCard("sewers-nightmare", "SEWER'S NIGHTMARE", "sewers-nightmare", "Killer Croc", "Free Agent", 2, 3),
-  characterObjectiveCard("the-best-act", "THE BEST ACT", "the-best-act", "Clayface", "Free Agent", 2, 2),
-  characterObjectiveCard("primary-instincts", "PRIMARY INSTINCTS", "primary-instincts", "Man-Bat", "Free Agent", 2, 1),
-  characterObjectiveCard("born-on-a-monday", "BORN ON A MONDAY", "born-on-a-monday", "Solomon Grundy", "Free Agent", 2, 1),
-  characterObjectiveCard("tally-marks", "TALLY MARKS", "tally-marks", "Victor Zsasz", "Free Agent", 3, 1),
-  characterObjectiveCard("this-is-the-evil", "THIS IS THE EVIL", "this-is-the-evil", "Deacon Blackfire", "Leader", 2, 3),
-  characterObjectiveCard("join-the-fold", "JOIN THE FOLD", "join-the-fold", "Young Woman", "Henchman", 2, 1),
-  characterObjectiveCard("the-unworthy", "THE UNWORTHY", "the-unworthy", "Jake Baker", "Sidekick", 2, 1),
-  characterObjectiveCard("the-evidence-mounts", "THE EVIDENCE MOUNTS", "the-evidence-mounts", "Batman Robert Pattinson", "Leader", 3, 1),
-  characterObjectiveCard("mother-of-strays", "MOTHER OF STRAYS", "mother-of-strays", "Catwoman", "Free Agent", 2, 1),
-  characterObjectiveCard("secure-the-drop", "SECURE THE DROP", "secure-the-drop", "The Penguin (Colin Farrell)", "Sidekick", 2, 1),
-  characterObjectiveCard("cover-up", "COVER UP", "cover-up", "Carmine Falcone", "Leader", 2, 1),
-  characterObjectiveCard("moth-signal", "MOTH SIGNAL", "moth-signal", "Killer Moth", "Henchman", 2, 1),
-  characterObjectiveCard("overwhelming-charisma", "OVERWHELMING CHARISMA", "overwhelming-charisma", "Kite-Man", "Henchman", 3, 1),
-  characterObjectiveCard("time-master", "TIME MASTER", "time-master", "Clock King", "Free Agent", 2, 1),
-  characterObjectiveCard("cold-as-death", "COLD AS DEATH", "cold-as-death", "Gentleman Ghost", "Free Agent", 2, 1),
-  characterObjectiveCard("calendar-crimes", "CALENDAR CRIMES", "calendar-crimes", "Calendar Man", "Henchman", 2, 1),
-  characterObjectiveCard("sauce-and-pickles", "SAUCE AND PICKLES", "sauce-and-pickles", "Condiment King", "Henchman", 2, 1),
-  characterObjectiveCard("kobra-viral-bomb", "KOBRA VIRAL BOMB", "kobra-viral-bomb", ["Kobra", "Jeffrey Franklin Burr"], "Leader", 3, 1),
-  characterObjectiveCard("strict-control", "STRICT CONTROL", "strict-control", "Lady Eve", "Sidekick", 2, 1),
-  characterObjectiveCard("state-of-fear", "STATE OF FEAR", "state-of-fear", "Scarecrow", "Leader", 2, 1),
-  characterObjectiveCard("new-compound", "NEW COMPOUND", "new-compound", "Linda Friitawa", "Sidekick", 2, 2),
-  characterObjectiveCard("deduction", "DEDUCTION", "deduction", "Hugo Strange", "Free Agent", 2, 1)
-];
-
-const builderCards = [
-  ...characterObjectiveCards,
-  {
-    id: "valuable-commodities",
-    name: "VALUABLE COMMODITIES",
-    img: "img/cards/valuable-commodities.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 1,
-    text: {
-      en: "Play when a friendly model Sets a Suspect. Set a Valuables Event marker with the Loot rules in contact with that model.\n\nScore if a friendly model is in control of the Valuables at the end of the game.\n\nThis Objective cannot be played after the third round.",
-      ru: "Разыграйте, когда дружественная модель выставляет Suspect маркер. Разместите маркер события Valuables с правилами Loot в контакте с этой моделью.\n\nЗасчитайте, если дружественная модель контролирует Valuables в конце игры.\n\nЭту карту цели нельзя разыграть после третьего раунда."
-    },
-    resource: {
-      cost: 2,
-      en: "Draw 3 cards.",
-      ru: "Возьмите 3 карты."
-    }
-  },
-  {
-    id: "catch-a-bullet",
-    name: "CATCH A BULLET",
-    img: "img/cards/catch-a-bullet.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    phase: "III",
-    value: "1 VP",
-    maxPerDeck: 1,
-    text: {
-      en: "A friendly model inflicts at least 6 Damage with a single Ranged attack.",
-      ru: "Дружественная модель наносит не менее 6 Damage одной Ranged атакой."
-    },
-    resource: {
-      cost: 0,
-      en: "Set an Ammo Crate Event marker in contact with a friendly Suspect and place this card aside. During a friendly model's activation, it may remove an Ammo Crate in contact to restore an Ammo Magazine and discard this card.",
-      ru: "Разместите маркер события Ammo Crate в контакте с дружественным Suspect маркером и отложите эту карту. Во время активации дружественной модели она может убрать Ammo Crate в контакте, чтобы восстановить Ammo Magazine, затем сбросьте эту карту."
-    }
-  },
-  {
-    id: "call-an-ambulance",
-    name: "CALL AN AMBULANCE!",
-    img: "img/cards/call-an-ambulance.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    phase: "II",
-    value: "1 VP",
-    maxPerDeck: 1,
-    text: {
-      en: "Play and target a friendly model when it suffers Damage from an Attack.\n\nScore if the target has Damage removed as a result of this card.\n\nAn active friendly model in contact with the target may suffer 2 Damage. Remove 1 Damage from the target.",
-      ru: "Разыграйте и выберите дружественную модель, когда она получает Damage от Attack.\n\nЗасчитайте, если в результате этой карты с цели был снят Damage.\n\nАктивная дружественная модель в контакте с целью может получить 2 Damage. Снимите 1 Damage с цели."
-    },
-    resource: {
-      cost: 0,
-      en: "Set a Medical Supplies Event marker in contact with a friendly Suspect and place this card aside. During a friendly model's activation, it may remove a Medical Supplies in contact to remove 3 Damage and discard this card.",
-      ru: "Разместите маркер события Medical Supplies в контакте с дружественным Suspect маркером и отложите эту карту. Во время активации дружественной модели она может убрать Medical Supplies в контакте, чтобы снять 3 Damage, затем сбросьте эту карту."
-    }
-  },
-  {
-    id: "dirty-job",
-    name: "DIRTY JOB",
-    img: "img/cards/dirty-job.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    phase: "III",
-    value: "1 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "During a friendly model's activation, an enemy model suffers KO or is removed as a Casualty.",
-      ru: "Во время активации дружественной модели вражеская модель получает KO или удаляется как Casualty."
-    },
-    resource: {
-      cost: 1,
-      en: "A friendly model suffers {BLOOD_ICON} and adds 1 die to a Melee Attack.",
-      ru: "Дружественная модель получает {BLOOD_ICON} и добавляет 1 кубик к Melee Attack."
-    }
-  },
-  {
-    id: "they-must-know-pain",
-    name: "THEY MUST KNOW PAIN",
-    img: "img/cards/they-must-know-pain.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    phase: "III",
-    value: "1 VP",
-    maxPerDeck: 1,
-    text: {
-      en: "A friendly model inflicts at least 6 Damage with a single Melee attack.",
-      ru: "Дружественная модель наносит не менее 6 Damage одной Melee атакой."
-    },
-    resource: {
-      cost: 1,
-      en: "During a friendly model's activation, it may remove up to 2 Damage or target a friendly model within 4” to automatically recover from KO.",
-      ru: "Во время активации дружественной модели она может снять до 2 Damage или выбрать дружественную модель в пределах 4”, чтобы та автоматически восстановилась от KO."
-    }
-  },
-  {
-    id: "confusion",
-    name: "CONFUSION",
-    img: "img/cards/confusion.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    phase: "III",
-    value: "1 VP",
-    maxPerDeck: 1,
-    text: {
-      en: "A friendly model Reveals an enemy Suspect within 8” of an enemy DZ.",
-      ru: "Дружественная модель раскрывает вражеский Suspect маркер в пределах 8” от вражеской DZ."
-    },
-    resource: {
-      cost: 1,
-      en: "During a friendly model's activation, you can Move another friendly model 3”.",
-      ru: "Во время активации дружественной модели вы можете переместить другую дружественную модель на 3”."
-    }
-  },
-  {
-    id: "im-feeling-weird",
-    name: "I'M FEELING... WEIRD",
-    img: "img/cards/im-feeling-weird.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    phase: "III",
-    value: "1 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Inflict a Status on an enemy model.",
-      ru: "Наложите Status на вражескую модель."
-    },
-    resource: {
-      cost: 1,
-      en: "Remove a Status from a friendly model.",
-      ru: "Снимите Status с дружественной модели."
-    }
-  },
-  {
-    id: "stick-to-the-plan",
-    name: "STICK TO THE PLAN",
-    img: "img/cards/stick-to-the-plan.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    phase: "IV",
-    value: "1 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "There are more friendly Suspects than enemy Suspects in play.",
-      ru: "В игре больше дружественных Suspect маркеров, чем вражеских."
-    },
-    resource: {
-      cost: 1,
-      en: "Target a friendly {RANK_HENCHMAN_ICON} within 4” of a friendly Suspect. That model gains +4 basic move distance.",
-      ru: "Выберите дружественную модель ранга {RANK_HENCHMAN_ICON} в пределах 4” от дружественного Suspect маркера. Эта модель получает +4 к базовой дистанции перемещения."
-    }
-  },
-  {
-    id: "overdrive",
-    name: "OVERDRIVE",
-    img: "img/cards/overdrive.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    phase: "III",
-    value: "1 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "An enemy model makes an Effort when defending against a Melee Attack and the friendly attacking model did not make an Effort.",
-      ru: "Вражеская модель делает Effort при защите от Melee Attack, а дружественная атакующая модель не делала Effort."
-    },
-    resource: {
-      cost: 0,
-      en: "Set a Venom Container Event marker in contact with a friendly Suspect and place this card aside. During a friendly model's activation, it may remove a Venom Container in contact to gain a Venom Dose and discard this card.",
-      ru: "Разместите маркер события Venom Container в контакте с дружественным Suspect маркером и отложите эту карту. Во время активации дружественной модели она может убрать Venom Container в контакте, чтобы получить Venom Dose, затем сбросьте эту карту."
-    }
-  },
-  {
-    id: "flanking",
-    name: "FLANKING",
-    img: "img/cards/flanking.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    phase: "IV",
-    value: "1 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Remove a friendly Suspect within 4” of a corner of the Gaming Area.",
-      ru: "Уберите дружественный Suspect маркер в пределах 4” от угла Gaming Area."
-    },
-    resource: {
-      cost: 1,
-      en: "A friendly model gains 1 Defense die when defending against a Melee Attack.",
-      ru: "Дружественная модель получает 1 Defense кубик при защите от Melee Attack."
-    }
-  },
-  {
-    id: "disturbance",
-    name: "DISTURBANCE",
-    img: "img/cards/disturbance.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    phase: "III",
-    value: "1 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "A friendly model Reveals an enemy Suspect. After revealing, there are more friendly Suspects than enemy Suspects in play.",
-      ru: "Дружественная модель раскрывает вражеский Suspect маркер. После раскрытия в игре больше дружественных Suspect маркеров, чем вражеских."
-    },
-    resource: {
-      cost: 0,
-      en: "At the start of an enemy activation, target a Sewer. That marker cannot be used this activation.",
-      ru: "В начале вражеской активации выберите Sewer. Этот маркер нельзя использовать в этой активации."
-    }
-  },
-  {
-    id: "stake-your-claim",
-    name: "STAKE YOUR CLAIM",
-    img: "img/cards/stake-your-claim.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    phase: "III",
-    value: "1 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "A friendly model Sets a Suspect in an enemy DZ.",
-      ru: "Дружественная модель выставляет Suspect маркер во вражеской DZ."
-    },
-    resource: {
-      cost: 0,
-      en: "Target a friendly Suspect and place this card aside. A model that reveals this marker this round suffers the Enervating (2) Status. You can discard this card at any time.",
-      ru: "Выберите дружественный Suspect маркер и отложите эту карту. Модель, которая раскрывает этот маркер в этом раунде, получает Enervating (2) Status. Вы можете сбросить эту карту в любое время."
-    }
-  },
-  {
-    id: "die-hard",
-    name: "DIE HARD",
-    img: "img/cards/die-hard.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    phase: "I",
-    value: "1 VP",
-    maxPerDeck: 1,
-    text: {
-      en: "Target a friendly model that is not a Boss.\n\nThat model is still in play.",
-      ru: "Выберите дружественную модель, которая не является Boss.\n\nЭта модель всё ещё находится в игре."
-    },
-    resource: {
-      cost: 0,
-      en: "Set a WayneTech Event marker in contact with a friendly Suspect and place this card aside. Models within 4” of the WayneTech marker cannot make Efforts. Discard this card at the end of the Recount.",
-      ru: "Разместите маркер события WayneTech в контакте с дружественным Suspect маркером и отложите эту карту. Модели в пределах 4” от маркера WayneTech не могут делать Effort. Сбросьте эту карту в конце Recount."
-    }
-  },
-  {
-    id: "law-forces-comb-through-everything",
-    name: "COMB THROUGH EVERYTHING",
-    img: "img/cards/law-forces/comb-through-everything.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["GCPD"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Gut Feeling • A friendly model Reveals an enemy Suspect.",
-      ru: "Gut Feeling • Дружественная модель раскрывает вражеский Suspect."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 0 • When an enemy model Reveals a friendly Suspect, place a new Suspect in contact with a friendly model that is not within 4” of that enemy model.",
-      ru: "Burn 0 • Когда вражеская модель раскрывает дружественный Suspect, разместите новый Suspect в контакте с дружественной моделью, которая не находится в пределах 4” от этой вражеской модели."
-    }
-  },
-  {
-    id: "law-forces-get-them-off-the-streets",
-    name: "GET THEM OFF THE STREETS",
-    img: "img/cards/law-forces/get-them-off-the-streets.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["GCPD"],
-    category: "crew",
-    phase: "III",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Gut Feeling • A friendly model performs the Arrest Special Action within 8” of a friendly Suspect.",
-      ru: "Gut Feeling • Дружественная модель выполняет Arrest Special Action в пределах 8” от дружественного Suspect."
-    },
-    resource: {
-      cost: 2,
-      en: "Burn 1 • Cancel an Objective card used as a Resource. That card is discarded.",
-      ru: "Burn 1 • Отмените Objective card, использованную как Resource. Эта карта сбрасывается."
-    }
-  },
-  {
-    id: "law-forces-snitch",
-    name: "SNITCH",
-    img: "img/cards/law-forces/snitch.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["GCPD"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Play when a friendly model Sets a Suspect. Until the end of the Round, that Suspect is also a Snitch marker that cannot be Revealed or removed.\n\nThere are no enemy models within 4” of the Snitch marker.",
-      ru: "Разыграйте, когда дружественная модель выставляет Suspect. До конца Round этот Suspect также является Snitch marker, который нельзя раскрыть или удалить.\n\nВ пределах 4” от Snitch marker нет вражеских моделей."
-    },
-    resource: {
-      cost: 0,
-      en: "A friendly model within 4” of a friendly Suspect adds 1 die to a Defense roll.",
-      ru: "Дружественная модель в пределах 4” от дружественного Suspect добавляет 1 кубик к Defense roll."
-    }
-  },
-  {
-    id: "law-forces-secure-the-perimeter",
-    name: "SECURE THE PERIMETER",
-    img: "img/cards/law-forces/secure-the-perimeter.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["GCPD"],
-    category: "crew",
-    phase: "IV",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Gut Feeling • At least 2 friendly Suspects are within 2” of an edge of the Gaming Area.\n\nThe opponent Moves 2 of these Suspects 4”.",
-      ru: "Gut Feeling • Как минимум 2 дружественных Suspect находятся в пределах 2” от края Gaming Area.\n\nОппонент передвигает 2 из этих Suspect на 4”."
-    },
-    resource: {
-      cost: 1,
-      en: "Target an enemy model within 4” of a friendly Suspect and perform a Ranged Attack with the following profile: ({BLOOD_ICON}{STUN_ICON} / +1 / Firearm).",
-      ru: "Выберите вражескую модель в пределах 4” от дружественного Suspect и выполните Ranged Attack со следующим профилем: ({BLOOD_ICON}{STUN_ICON} / +1 / Firearm)."
-    }
-  },
-  {
-    id: "law-forces-they-wont-see-me-coming",
-    name: "THEY WON'T SEE ME COMING",
-    img: "img/cards/law-forces/they-wont-see-me-coming.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["GCPD"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "A friendly model inflicts Damage on an enemy model that did not have LoS to the attacker at the start of the attacker's activation.",
-      ru: "Дружественная модель наносит Damage вражеской модели, у которой не было LoS до атакующего в начале активации атакующего."
-    },
-    resource: {
-      cost: 1,
-      en: "During a friendly model's activation with Rank: {RANK_LEADER_ICON}, {RANK_SIDEKICK_ICON} or {RANK_FREEAGENT_ICON}, it may perform a free Manipulate action.",
-      ru: "Во время активации дружественной модели с Rank: {RANK_LEADER_ICON}, {RANK_SIDEKICK_ICON} или {RANK_FREEAGENT_ICON}, она может выполнить бесплатное Manipulate action."
-    }
-  },
-  {
-    id: "law-forces-non-lethal-ammo",
-    name: "NON-LETHAL AMMO",
-    img: "img/cards/law-forces/non-lethal-ammo.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["GCPD"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "A friendly model within 8” of a friendly Suspect inflicts {BLOOD_ICON} with a Ranged Attack.\n\nChange all inflicted {BLOOD_ICON} to {STUN_ICON}.",
-      ru: "Дружественная модель в пределах 8” от дружественного Suspect наносит {BLOOD_ICON} с помощью Ranged Attack.\n\nЗамените все нанесенные {BLOOD_ICON} на {STUN_ICON}."
-    },
-    resource: {
-      cost: 0,
-      en: "The active friendly model can use this activation the Arrest trait as a Free action.",
-      ru: "Активная дружественная модель может в эту активацию использовать трейт Arrest как Free action."
-    }
-  },
-  {
-    id: "law-forces-finding-a-suspect",
-    name: "FINDING A SUSPECT",
-    img: "img/cards/law-forces/finding-a-suspect.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["GCPD"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "A friendly model with the Detective trait Reveals an enemy Suspect at least 10” away from the edge of the Gaming Area.",
-      ru: "Дружественная модель с трейтом Detective раскрывает вражеский Suspect на расстоянии как минимум 10” от края Gaming Area."
-    },
-    resource: {
-      cost: 1,
-      en: "Move two enemy Suspects 2D6” directly towards a friendly model with the Detective trait.",
-      ru: "Передвиньте два вражеских Suspect на 2D6” напрямую к дружественной модели с трейтом Detective."
-    }
-  },
-  {
-    id: "law-forces-wait-for-backup",
-    name: "WAIT FOR BACKUP",
-    img: "img/cards/law-forces/wait-for-backup.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["GCPD"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Play when a friendly model with the Cop trait Sets a Suspect. Target an edge of the Gaming Area and place a Timer 1D3+2 on this card.\n\nScore when the counter is reduced to 0 and that model is within 4” of the targeted edge not suffering KO.",
-      ru: "Разыграйте, когда дружественная модель с трейтом Cop выставляет Suspect. Выберите край Gaming Area и поместите Timer 1D3+2 на эту карту.\n\nЗасчитайте, когда counter снижен до 0, а эта модель находится в пределах 4” от выбранного края и не находится в KO."
-    },
-    resource: {
-      cost: 2,
-      en: "Choose 1 friendly model with Name: Unknown, Rank: {RANK_HENCHMAN_ICON}, and the Cop trait, that has been removed as a Casualty. Place that model in your DZ. It cannot activate this Round.",
-      ru: "Выберите 1 дружественную модель с Name: Unknown, Rank: {RANK_HENCHMAN_ICON} и трейтом Cop, которая была удалена как Casualty. Разместите эту модель в вашей DZ. Она не может активироваться в этот Round."
-    }
-  },
-  {
-    id: "law-forces-uncovered-truth",
-    name: "UNCOVERED TRUTH",
-    img: "img/cards/law-forces/uncovered-truth.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["GCPD"],
-    category: "crew",
-    phase: "II",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • Target a friendly model. When that model Reveals an enemy Suspect, place 2 {OBJECTIVE_CROSS_ICON} markers on this card.\n\nScore when this card has more {OBJECTIVE_CROSS_ICON} markers than enemy Suspects in play.",
-      ru: "Limited • Выберите дружественную модель. Когда эта модель раскрывает вражеский Suspect, положите 2 маркера {OBJECTIVE_CROSS_ICON} на эту карту.\n\nЗасчитайте, когда на этой карте больше маркеров {OBJECTIVE_CROSS_ICON}, чем вражеских Suspect в игре."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 0 • The active friendly model within 8” and LoS of a friendly Suspect gains a free Manipulate action.",
-      ru: "Burn 0 • Активная дружественная модель в пределах 8” и LoS от дружественного Suspect получает бесплатное Manipulate action."
-    }
-  },
-  {
-    id: "law-forces-following-the-clues",
-    name: "FOLLOWING THE CLUES",
-    img: "img/cards/law-forces/following-the-clues.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["GCPD"],
-    category: "crew",
-    phase: "III",
-    value: "3 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Target a friendly Suspect. It is also a Clue marker (place a Numeric Counter with a value equal to 4-X where X is the number of friendly scored Uncovered Truth Objective cards). A friendly model can Manipulate a Clue to reduce the value by 1. Then the opponent Moves it 8”.\n\nScore when the counter is reduced to 0 or an enemy removes it.",
-      ru: "Выберите дружественный Suspect. Он также является Clue marker: поместите Numeric Counter со значением 4-X, где X равен числу дружественных засчитанных Objective cards Uncovered Truth. Дружественная модель может выполнить Manipulate с Clue, чтобы снизить значение на 1. Затем оппонент передвигает его на 8”.\n\nЗасчитайте, когда counter снижен до 0 или враг убирает его."
-    },
-    resource: {
-      cost: 1,
-      en: "The active model gains a free Reveal Manipulate action.",
-      ru: "Активная модель получает бесплатное Reveal Manipulate action."
-    }
-  },
-  {
-    id: "law-forces-planting-evidence",
-    name: "PLANTING EVIDENCE",
-    img: "img/cards/law-forces/planting-evidence.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["GCPD"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Gut Feeling • A friendly model with the Cop trait and without the Incorruptible trait Sets a Suspect within 8” of an enemy model and no other friendly model has LoS to the Suspect.",
-      ru: "Gut Feeling • Дружественная модель с трейтом Cop и без трейта Incorruptible выставляет Suspect в пределах 8” от вражеской модели, и ни одна другая дружественная модель не имеет LoS до этого Suspect."
-    },
-    resource: {
-      cost: 1,
-      en: "Look at the opponent's hand, and discard one of their cards.",
-      ru: "Посмотрите руку оппонента и сбросьте одну из его карт."
-    }
-  },
-  {
-    id: "law-forces-detective-work",
-    name: "DETECTIVE WORK",
-    img: "img/cards/law-forces/detective-work.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["GCPD"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Gut Feeling • A friendly model with the Detective trait Sets a Suspect completely within the enemy DZ.",
-      ru: "Gut Feeling • Дружественная модель с трейтом Detective выставляет Suspect полностью внутри вражеской DZ."
-    },
-    resource: {
-      cost: 0,
-      en: "Target an enemy model without a Suspect within 4”. The opponent chooses to either Set a Suspect in contact with the target or you gain 2 Resource points.",
-      ru: "Выберите вражескую модель, рядом с которой нет Suspect в пределах 4”. Оппонент выбирает: выставить Suspect в контакте с целью или вы получаете 2 Resource points."
-    }
-  },
-  {
-    id: "law-forces-monitoring",
-    name: "MONITORING",
-    img: "img/cards/law-forces/monitoring.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["GCPD"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • Play when an enemy model performs a Movement action. Place a {OBJECTIVE_CROSS_ICON} on this card when a friendly model Sets a Suspect within 8” of that enemy. Place 3 {OBJECTIVE_CROSS_ICON} instead if that friendly model has the Cop trait.\n\nScore when this card has at least 6 {OBJECTIVE_CROSS_ICON}.",
-      ru: "Limited • Разыграйте, когда вражеская модель выполняет Movement action. Положите {OBJECTIVE_CROSS_ICON} на эту карту, когда дружественная модель выставляет Suspect в пределах 8” от этого врага. Вместо этого положите 3 {OBJECTIVE_CROSS_ICON}, если у этой дружественной модели есть трейт Cop.\n\nЗасчитайте, когда на этой карте как минимум 6 {OBJECTIVE_CROSS_ICON}."
-    },
-    resource: {
-      cost: 1,
-      en: "At the end of an enemy model's activation, a friendly model gains 2 Defense dice.",
-      ru: "В конце активации вражеской модели дружественная модель получает 2 Defense dice."
-    }
-  },
-  {
-    id: "seeking-the-trail",
-    name: "SEEKING THE TRAIL",
-    img: "img/cards/vigilantes/seeking-the-trail.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bat Family"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 4,
-    text: {
-      en: "A friendly model Sets a Suspect within 4” of an enemy model that is within 8” of a THWART!. Then remove that THWART!.",
-      ru: "Дружественная модель выставляет Suspect в пределах 4” от вражеской модели, которая находится в пределах 8” от THWART!. Затем уберите этот THWART!."
-    },
-    resource: {
-      cost: 1,
-      en: "An active friendly model within 4” of a THWART! Moves 4”.",
-      ru: "Активная дружественная модель в пределах 4” от THWART! передвигается на 4”."
-    }
-  },
-  {
-    id: "solving-the-puzzle",
-    name: "SOLVING THE PUZZLE",
-    img: "img/cards/vigilantes/solving-the-puzzle.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bat Family"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 4,
-    text: {
-      en: "A friendly model Reveals a Suspect within 4” of an enemy model that is within 8” of a THWART!, then remove that THWART! marker.",
-      ru: "Дружественная модель раскрывает Suspect в пределах 4” от вражеской модели, которая находится в пределах 8” от THWART!, затем уберите этот маркер THWART!."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 0 • If you have fewer than 5 THWART! in play, cancel an Objective card used as a Resource. That card is discarded.",
-      ru: "Burn 0 • Если у вас в игре меньше 5 THWART!, отмените карту цели, использованную как Resource. Эта карта сбрасывается."
-    }
-  },
-  {
-    id: "attempt-thwarted",
-    name: "ATTEMPT THWARTED",
-    img: "img/cards/vigilantes/attempt-thwarted.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bat Family"],
-    category: "crew",
-    phase: "II",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Each time a friendly model starts its activation within 4” of a THWART!, place a success marker on this card if it Sets a Suspect that activation. If it does not, place a failure marker.\n\nScore when this card has 3 success markers. Discard when this card has 3 failure markers.\n\nWhen scored, the opponent removes a THWART!.",
-      ru: "Каждый раз, когда дружественная модель начинает активацию в пределах 4” от THWART!, положите на эту карту маркер успеха, если она выставила Suspect в этой активации. Если нет, положите маркер провала.\n\nЗасчитайте, когда на этой карте 3 маркера успеха. Сбросьте, когда на этой карте 3 маркера провала.\n\nКогда карта засчитана, оппонент убирает THWART!."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 0 • Move a THWART! 4”.",
-      ru: "Burn 0 • Передвиньте THWART! на 4”."
-    }
-  },
-  {
-    id: "undercover-action",
-    name: "UNDERCOVER ACTION",
-    img: "img/cards/vigilantes/undercover-action.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bat Family"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "A friendly model Sets a Suspect in the enemy DZ and within 4” of a THWART!. Then remove that THWART!.",
-      ru: "Дружественная модель выставляет Suspect во вражеской DZ и в пределах 4” от THWART!. Затем уберите этот THWART!."
-    },
-    resource: {
-      cost: 1,
-      en: "Remove a THWART! within 4” of the friendly active model. Look at the opponent's Objective hand. Discard 1 card from their hand or yours.",
-      ru: "Уберите THWART! в пределах 4” от активной дружественной модели. Посмотрите руку карт целей оппонента. Сбросьте 1 карту из его руки или из вашей."
-    }
-  },
-  {
-    id: "ending-your-villany",
-    name: "ENDING YOUR VILLANY",
-    img: "img/cards/vigilantes/ending-your-villany.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bat Family"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "An enemy model suffers KO within 4” of a THWART!. Then remove that THWART!.",
-      ru: "Вражеская модель получает KO в пределах 4” от THWART!. Затем уберите этот THWART!."
-    },
-    resource: {
-      cost: 1,
-      en: "Play at the start of an activation. Target model gains 2 Free Efforts during this activation.",
-      ru: "Разыграйте в начале активации. Выбранная модель получает 2 Free Efforts на время этой активации."
-    }
-  },
-  {
-    id: "secure-the-zone",
-    name: "SECURE THE ZONE",
-    img: "img/cards/vigilantes/secure-the-zone.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bat Family"],
-    category: "crew",
-    phase: "IV",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "2 opposite edges of the Gaming Area have a friendly Suspect within 4”.\n\nThe opponent Moves those Suspects 4”, and removes 1 THWART!.",
-      ru: "У двух противоположных краев Gaming Area есть дружественный Suspect в пределах 4”.\n\nОппонент передвигает эти Suspects на 4” и убирает 1 THWART!."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 0 • Move a friendly marker 4”.",
-      ru: "Burn 0 • Передвиньте дружественный маркер на 4”."
-    }
-  },
-  {
-    id: "teamwork-action",
-    name: "TEAMWORK ACTION",
-    img: "img/cards/vigilantes/teamwork-action.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bat Family"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • Play this card when an enemy model makes a Tactical action and target it. Each activation in which a friendly model Sets a Suspect within 4” of the target or targets it with an Attack, place a success marker on this card.\n\nScore when this card has 2 success markers.\n\nWhen scored, the opponent removes a THWART!.",
-      ru: "Limited • Разыграйте эту карту, когда вражеская модель выполняет Tactical action, и выберите ее целью. В каждой активации, где дружественная модель выставляет Suspect в пределах 4” от цели или выбирает ее целью Attack, положите на эту карту маркер успеха.\n\nЗасчитайте, когда на этой карте 2 маркера успеха.\n\nКогда карта засчитана, оппонент убирает THWART!."
-    },
-    resource: {
-      cost: 0,
-      en: "A friendly model within 4” of another friendly model and a THWART! adds 1 die during a Melee Attack or Defense roll.",
-      ru: "Дружественная модель в пределах 4” от другой дружественной модели и THWART! добавляет 1 кубик во время Melee Attack или Defense roll."
-    }
-  },
-  {
-    id: "informant",
-    name: "INFORMANT",
-    img: "img/cards/vigilantes/informant.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bat Family"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Play when a friendly model Sets a Suspect. Until the end of the Round, that Suspect is also an Informant marker and cannot be Revealed or removed this round.\n\nScore if there are no enemy models within 4” of the Informant marker, or if it has 2 THWARTS! within 4”. If scored this way, remove both THWARTS!.",
-      ru: "Разыграйте, когда дружественная модель выставляет Suspect. До конца раунда этот Suspect также является маркером Informant и не может быть Revealed или удален в этом раунде.\n\nЗасчитайте, если в пределах 4” от маркера Informant нет вражеских моделей, или если в пределах 4” от него есть 2 THWARTS!. Если засчитано этим способом, уберите оба THWARTS!."
-    },
-    resource: {
-      cost: "*",
-      en: "Exception (When Scoring) • Set a THWART! within 4” of the Informant marker.",
-      ru: "Exception (When Scoring) • Выставьте THWART! в пределах 4” от маркера Informant."
-    }
-  },
-  {
-    id: "patrol-report",
-    name: "PATROL REPORT",
-    img: "img/cards/vigilantes/patrol-report.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bat Family"],
-    category: "crew",
-    phase: "III",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Target a friendly model. When the target Sets a Suspect, place a Numeric counter on this card, and add an additional counter if the Suspect is placed within 4” of an enemy model and a THWART!. A friendly Boss may spend a Special Action to roll 1D6.\n\nScore if the result matches a Numeric counter on this card.",
-      ru: "Выберите дружественную модель. Когда цель выставляет Suspect, положите на эту карту Numeric counter и добавьте дополнительный counter, если Suspect размещен в пределах 4” от вражеской модели и THWART!. Дружественный Boss может потратить Special Action, чтобы бросить 1D6.\n\nЗасчитайте, если результат совпадает с Numeric counter на этой карте."
-    },
-    resource: {
-      cost: "*",
-      en: "Burn 1 • Exception (When Scoring) • Set a THWART! within 4” of the target.",
-      ru: "Burn 1 • Exception (When Scoring) • Выставьте THWART! в пределах 4” от цели."
-    }
-  },
-  {
-    id: "unveiling-the-truth",
-    name: "UNVEILING THE TRUTH",
-    img: "img/cards/vigilantes/unveiling-the-truth.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bat Family"],
-    category: "crew",
-    phase: "II",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • Target a friendly model within 4” of a THWART! or a model that has the Detective trait. When that model reveals an enemy Suspect, place 2 success markers on this card.\n\nScore when this card has more success markers than enemy Suspects in play.",
-      ru: "Limited • Выберите дружественную модель в пределах 4” от THWART! или модель с трейтом Detective. Когда эта модель раскрывает вражеский Suspect, положите 2 маркера успеха на эту карту.\n\nЗасчитайте, когда на этой карте больше маркеров успеха, чем вражеских Suspects в игре."
-    },
-    resource: {
-      cost: 1,
-      en: "A friendly model within 8” and LoS of a THWART! gains a free Manipulate action.",
-      ru: "Дружественная модель в пределах 8” и LoS от THWART! получает бесплатное действие Manipulate."
-    }
-  },
-  {
-    id: "we-are-the-night",
-    name: "WE ARE THE NIGHT",
-    img: "img/cards/vigilantes/we-are-the-night.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bat Family"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "A friendly model within 4” of a THWART! Turns Off a Lamppost.",
-      ru: "Дружественная модель в пределах 4” от THWART! выключает Lamppost."
-    },
-    resource: {
-      cost: 1,
-      en: "An enemy model suffering KO that is in contact with a friendly model and within 4” of a THWART! is removed as a Casualty.",
-      ru: "Вражеская модель в KO, находящаяся в контакте с дружественной моделью и в пределах 4” от THWART!, удаляется как Casualty."
-    }
-  },
-  {
-    id: "none-of-you-are-safe",
-    name: "NONE OF YOU ARE SAFE",
-    img: "img/cards/vigilantes/none-of-you-are-safe.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bat Family"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 4,
-    text: {
-      en: "A friendly model inflicts Damage on an enemy model that is not within 4” of a THWART! but is within 4” of a friendly Suspect.\n\nChange all inflicted {BLOOD_ICON} to {STUN_ICON}.",
-      ru: "Дружественная модель наносит Damage вражеской модели, которая не находится в пределах 4” от THWART!, но находится в пределах 4” от дружественного Suspect.\n\nЗамените все нанесенные {BLOOD_ICON} на {STUN_ICON}."
-    },
-    resource: {
-      cost: "*",
-      en: "Burn 1 • Exception (When Scoring) • Set a THWART! within 4” of the target.",
-      ru: "Burn 1 • Exception (When Scoring) • Выставьте THWART! в пределах 4” от цели."
-    }
-  },
-  {
-    id: "closing-the-trigons-portal",
-    name: "CLOSING THE TRIGON'S PORTAL",
-    img: "img/cards/vigilantes/closing-the-trigons-portal.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bat Family"],
-    category: "crew",
-    phase: "I",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Set a Trigon's Portal Event marker within 4” of a Suspect and an enemy.\n\nScore if there are more THWARTS! and friendly models than enemy models within 4” of the Trigon's Portal.",
-      ru: "Разместите маркер события Trigon's Portal в пределах 4” от Suspect и врага.\n\nЗасчитайте, если в пределах 4” от Trigon's Portal больше THWARTS! и дружественных моделей, чем вражеских моделей."
-    },
-    resource: {
-      cost: "*",
-      en: "Burn 1 • Exception (When Scoring) • Set a THWART! within 4” of the Trigon's Portal before removing it.",
-      ru: "Burn 1 • Exception (When Scoring) • Выставьте THWART! в пределах 4” от Trigon's Portal перед его удалением."
-    }
-  },
-  {
-    id: "stubborn-resilience",
-    name: "STUBBORN RESILIENCE",
-    img: "img/cards/vigilantes/stubborn-resilience.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bat Family"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 4,
-    text: {
-      en: "Limited • Target a friendly model within 4” of a THWART! and a friendly Suspect. Place a Timer 1D3+2 on this card.\n\nWhen the counter is reduced to 0, the target is within 4” of a THWART!.",
-      ru: "Limited • Выберите дружественную модель в пределах 4” от THWART! и дружественного Suspect. Положите на эту карту Timer 1D3+2.\n\nКогда counter снижается до 0, цель находится в пределах 4” от THWART!."
-    },
-    resource: {
-      cost: "*",
-      en: "Burn 1 • Exception (When Scoring) • Set a THWART! within 4” of the target.",
-      ru: "Burn 1 • Exception (When Scoring) • Выставьте THWART! в пределах 4” от цели."
-    }
-  },
-  {
-    id: "containing-the-threat",
-    name: "CONTAINING THE THREAT",
-    img: "img/cards/vigilantes/containing-the-threat.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bat Family"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "A friendly model within 4” of a THWART! blocks at least 2 successful hits.",
-      ru: "Дружественная модель в пределах 4” от THWART! блокирует как минимум 2 успешных попадания."
-    },
-    resource: {
-      cost: 2,
-      en: "Burn 1 • Play when a friendly model suffers {BLOOD_ICON}. Roll 1D6. On a result of 6+ the model ignores that {BLOOD_ICON}.\n\nAdd 1 to the result for each THWART! within 4”. If the roll is successful, remove 1 of those THWARTS!.",
-      ru: "Burn 1 • Разыграйте, когда дружественная модель получает {BLOOD_ICON}. Бросьте 1D6. При результате 6+ модель игнорирует этот {BLOOD_ICON}.\n\nДобавьте 1 к результату за каждый THWART! в пределах 4”. Если бросок успешен, уберите 1 из этих THWARTS!."
-    }
-  },
-  {
-    id: "much-to-prove",
-    name: "MUCH TO PROVE",
-    img: "img/cards/vigilantes/much-to-prove.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bat Family"],
-    category: "crew",
-    phase: "III",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • Target the active friendly model. Each time the target inflicts Damage on an enemy model, if that friendly model is within 4” of a THWART!, place a success marker on this card. Then the opponent Moves that THWART! 4”.\n\nScore when this card has 2 success markers.",
-      ru: "Limited • Выберите активную дружественную модель. Каждый раз, когда цель наносит Damage вражеской модели, если эта дружественная модель находится в пределах 4” от THWART!, положите на эту карту маркер успеха. Затем оппонент передвигает этот THWART! на 4”.\n\nЗасчитайте, когда на этой карте 2 маркера успеха."
-    },
-    resource: {
-      cost: 1,
-      en: "A model without Audacity within 8” of a THWART! gains a free Attack action.",
-      ru: "Модель без Audacity в пределах 8” от THWART! получает бесплатное действие Attack."
-    }
-  },
-  {
-    id: "tonight-we-are-the-law",
-    name: "TONIGHT, WE ARE THE LAW",
-    img: "img/cards/vigilantes/tonight-we-are-the-law.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bat Family"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "A friendly model with the The Dark Knight Returns trait inflicts KO on an enemy that is within 4” of a THWART!. Then remove all {BLOOD_ICON} on that enemy model.",
-      ru: "Дружественная модель с трейтом The Dark Knight Returns наносит KO врагу, который находится в пределах 4” от THWART!. Затем уберите все {BLOOD_ICON} с этой вражеской модели."
-    },
-    resource: {
-      cost: 1,
-      en: "An active friendly model with the The Dark Knight Returns trait within 8” of a THWART! removes up to 2 Damage.",
-      ru: "Активная дружественная модель с трейтом The Dark Knight Returns в пределах 8” от THWART! снимает до 2 Damage."
-    }
-  },
-  {
-    id: "attack-the-system",
-    name: "ATTACK THE SYSTEM",
-    img: "img/cards/harley-quinn-friends/attack-the-system.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Birds of Prey"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Vandalized! • A friendly model inflicts 2 Damage to an enemy model with Audacity. If the active model is within 4” of a Vandalized element, Move a marker 4”.",
-      ru: "Vandalized! • Дружественная модель наносит 2 Damage вражеской модели с Audacity. Если активная модель находится в пределах 4” от Vandalized элемента, передвиньте marker на 4”."
-    },
-    resource: {
-      cost: 1,
-      en: "The active model performs a Free Special action. It cannot perform the same Special more than once.",
-      ru: "Активная модель выполняет Free Special action. Она не может выполнить тот же Special более одного раза."
-    }
-  },
-  {
-    id: "fight-in-the-shadows",
-    name: "FIGHT IN THE SHADOWS",
-    img: "img/cards/harley-quinn-friends/fight-in-the-shadows.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Birds of Prey"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Vandalized! • A friendly model performs a successful hit on 2 enemy models with the same Attack action. If the active model is within 4” of a Vandalized element, remove up to 2 Damage from it.",
-      ru: "Vandalized! • Дружественная модель успешно попадает по 2 вражеским моделям одной Attack action. Если активная модель находится в пределах 4” от Vandalized элемента, снимите с нее до 2 Damage."
-    },
-    resource: {
-      cost: 1,
-      en: "When declaring an Attack action gain 2 Free Efforts.",
-      ru: "При объявлении Attack action получите 2 Free Efforts."
-    }
-  },
-  {
-    id: "blitzkrieg",
-    name: "BLITZKRIEG",
-    img: "img/cards/harley-quinn-friends/blitzkrieg.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Birds of Prey"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Vandalized! • The friendly active model has Moved 8” at least from its starting position and KOed or removed as a Casualty an enemy model. If the active model is within 4” of a Vandalized element, Move the active model 4”.",
-      ru: "Vandalized! • Активная дружественная модель переместилась минимум на 8” от своей стартовой позиции и нанесла KO или удалила как Casualty вражескую модель. Если активная модель находится в пределах 4” от Vandalized элемента, передвиньте активную модель на 4”."
-    },
-    resource: {
-      cost: 0,
-      en: "Burn 1 • When targeted by an Attack action, gain 2 Free Efforts.",
-      ru: "Burn 1 • Когда модель выбрана целью Attack action, получите 2 Free Efforts."
-    }
-  },
-  {
-    id: "riots-in-the-streets",
-    name: "RIOTS IN THE STREETS",
-    img: "img/cards/harley-quinn-friends/riots-in-the-streets.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Birds of Prey"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Vandalized! • A friendly model Sets a Suspect in contact with a Lamppost or Sewer that is not already a Vandalized element. The target for Vandalized! must be that Lamppost or Sewer.",
-      ru: "Vandalized! • Дружественная модель выставляет Suspect в контакте с Lamppost или Sewer, который еще не является Vandalized элементом. Целью для Vandalized! должен быть этот Lamppost или Sewer."
-    },
-    resource: {
-      cost: 1,
-      en: "The active friendly model gains +4 to its Basic move distance this activation.",
-      ru: "Активная дружественная модель получает +4 к Basic move distance на эту активацию."
-    }
-  },
-  {
-    id: "match-day",
-    name: "MATCH DAY",
-    img: "img/cards/harley-quinn-friends/match-day.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Birds of Prey"],
-    category: "crew",
-    phase: "III",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • Play when the active friendly model Sets a Suspect. The opponent Sets a Match Ball Event marker on Ground Level within 8” of the Suspect. A model may Manipulate the Match Ball to Move it 8”. If it ends within 4” of a Vandalized element, Move it an additional 2” (Triggers once per Manipulate).\n\nScore if the Match Ball ends a Move in the opponent's DZ.",
-      ru: "Limited • Разыграйте, когда активная дружественная модель выставляет Suspect. Оппонент выставляет маркер события Match Ball на Ground Level в пределах 8” от Suspect. Модель может выполнить Manipulate с Match Ball, чтобы передвинуть его на 8”. Если он заканчивает движение в пределах 4” от Vandalized элемента, передвиньте его еще на 2” (срабатывает один раз за Manipulate).\n\nЗасчитайте, если Match Ball заканчивает движение в DZ оппонента."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 0 • An active model within 4” of a friendly Suspect gains 1 Spray Can.",
-      ru: "Burn 0 • Активная модель в пределах 4” от дружественного Suspect получает 1 Spray Can."
-    }
-  },
-  {
-    id: "the-revolt-has-begun",
-    name: "THE REVOLT HAS BEGUN",
-    img: "img/cards/harley-quinn-friends/the-revolt-has-begun.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Birds of Prey"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Play this Objective when you Vandalize an element.\n\nScore if there are more Vandalized elements than enemy Suspects in play.",
-      ru: "Разыграйте эту Objective, когда вы делаете элемент Vandalized.\n\nЗасчитайте, если в игре больше Vandalized элементов, чем вражеских Suspects."
-    },
-    resource: {
-      cost: 0,
-      en: "Burn 1 • When a friendly model is targeted by a Melee attack and is within 4” of a Vandalized element, the attacking model suffers the Enervating (1) Status.",
-      ru: "Burn 1 • Когда дружественная модель выбрана целью Melee attack и находится в пределах 4” от Vandalized элемента, атакующая модель получает Status Enervating (1)."
-    }
-  },
-  {
-    id: "selfie",
-    name: "SELFIE!",
-    img: "img/cards/harley-quinn-friends/selfie.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Birds of Prey"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "A friendly model Reveals an enemy Suspect within 4” of a Vandalized element.",
-      ru: "Дружественная модель раскрывает вражеский Suspect в пределах 4” от Vandalized элемента."
-    },
-    resource: {
-      cost: 0,
-      en: "Until the end of the activation of the active enemy model, target friendly model rolls 2 additional Defense dice.",
-      ru: "До конца активации активной вражеской модели выбранная дружественная модель бросает 2 дополнительных Defense dice."
-    }
-  },
-  {
-    id: "take-back-what-is-ours",
-    name: "TAKE BACK WHAT IS OURS",
-    img: "img/cards/harley-quinn-friends/take-back-what-is-ours.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Birds of Prey"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Play when a friendly model Sets a Suspect. Set a Spoils Event marker with the Loot rules in contact with that model.\n\nScore if a friendly model is in control of the Spoils.\n\nThis card can only be played during your first two activations of the Round.",
-      ru: "Разыграйте, когда дружественная модель выставляет Suspect. Разместите маркер события Spoils с правилами Loot в контакте с этой моделью.\n\nЗасчитайте, если дружественная модель контролирует Spoils.\n\nЭту карту можно разыграть только во время ваших первых двух активаций раунда."
-    },
-    resource: {
-      cost: 1,
-      en: "The active model uses a Spray Can to mark a Scenery Element, Lamppost, or Sewer within 4” as Vandalized!.",
-      ru: "Активная модель использует Spray Can, чтобы отметить Scenery Element, Lamppost или Sewer в пределах 4” как Vandalized!."
-    }
-  },
-  {
-    id: "ecoterrorism",
-    name: "ECOTERRORISM",
-    img: "img/cards/harley-quinn-friends/ecoterrorism.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Birds of Prey"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • Each time a Scenery Element, Lamppost, or Sewer becomes Vandalized, place a success marker on this card.\n\nScore when this card has 4 success markers.",
-      ru: "Limited • Каждый раз, когда Scenery Element, Lamppost или Sewer становится Vandalized, положите на эту карту маркер успеха.\n\nЗасчитайте, когда на этой карте 4 маркера успеха."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 0 • A model within 4” of a Vandalized element spends its Attack action to mark a Scenery Element in contact as Vandalized!.",
-      ru: "Burn 0 • Модель в пределах 4” от Vandalized элемента тратит свое действие Attack, чтобы отметить Scenery Element в контакте как Vandalized!."
-    }
-  },
-  {
-    id: "outstanding-move",
-    name: "OUTSTANDING MOVE",
-    img: "img/cards/harley-quinn-friends/outstanding-move.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Birds of Prey"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "A friendly model Sets a Suspect in the opponent's DZ.",
-      ru: "Дружественная модель выставляет Suspect в DZ оппонента."
-    },
-    resource: {
-      cost: 0,
-      en: "A model within 4” of a Vandalized element may Set or Reveal a Suspect marker within 3” and LoS instead of in contact this activation.",
-      ru: "Модель в пределах 4” от Vandalized элемента может Set или Reveal Suspect marker в пределах 3” и LoS вместо контакта в этой активации."
-    }
-  },
-  {
-    id: "poison-the-supply",
-    name: "POISON THE SUPPLY",
-    img: "img/cards/harley-quinn-friends/poison-the-supply.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Birds of Prey"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "A model uses a Sewer and a Scenery Element, Lamppost, or Sewer became Vandalized this activation.",
-      ru: "Модель использует Sewer, и Scenery Element, Lamppost или Sewer стал Vandalized в этой активации."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 1 • Place a friendly model with the Plant trait within 4” of a Vandalized element.",
-      ru: "Burn 1 • Разместите дружественную модель с трейтом Plant в пределах 4” от Vandalized элемента."
-    }
-  },
-  {
-    id: "analog-hacking",
-    name: "ANALOG HACKING",
-    img: "img/cards/harley-quinn-friends/analog-hacking.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Birds of Prey"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 4,
-    text: {
-      en: "Target friendly model that has the Plant Trait or that at the beginning of its activation no enemy model can see, Reveals an enemy Suspect.",
-      ru: "Выбранная дружественная модель, у которой есть Plant Trait или которую в начале ее активации не видит ни одна вражеская модель, Reveals вражеский Suspect."
-    },
-    resource: {
-      cost: 1,
-      en: "The active friendly model spends its Manipulate action and another friendly model within 8” performs the action instead.",
-      ru: "Активная дружественная модель тратит свое действие Manipulate, а другая дружественная модель в пределах 8” выполняет это действие вместо нее."
-    }
-  },
-  {
-    id: "so-long-its-been-a-gas",
-    name: "SO LONG... IT'S BEEN A GAS!",
-    img: "img/cards/joker/so-long-its-been-a-gas.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Joker"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "When a model Reveals an enemy Suspect, the owner of the model targets one of their models. Set a Suspect in contact ignoring the minimum distance rules and that model suffers Enervating (2).",
-      ru: "Когда модель раскрывает вражеский Suspect, владелец этой модели выбирает одну из своих моделей. Разместите Suspect в контакте, игнорируя правила минимальной дистанции, и эта модель получает Enervating (2)."
-    },
-    resource: {
-      cost: 0,
-      en: "When a Suspect is Revealed, before removing, Set a Gas Canister marker and place this card aside. Any model within 4” of this marker during its activation suffers the Poison Status.\n\nA model in contact may Manipulate the Canister marker to remove it, then discard this card.",
-      ru: "Когда Suspect раскрыт, перед удалением разместите маркер Gas Canister и отложите эту карту. Любая модель в пределах 4” от этого маркера во время своей активации получает Poison Status.\n\nМодель в контакте может выполнить Manipulate с маркером Canister, чтобы убрать его, затем сбросьте эту карту."
-    }
-  },
-  {
-    id: "bite-the-dust",
-    name: "BITE THE DUST!",
-    img: "img/cards/joker/bite-the-dust.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Joker"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 4,
-    text: {
-      en: "Chaos • Play when a friendly model Sets a Suspect. It is also an Explosive Teeth marker with Timer 1D6. At the end of each subsequent model's activation Move this marker a full 1D6” directly towards that model. When the numeric counter is reduced to 0 or the Suspect would be removed, center an Explosive template over this marker. Models affected suffer {BLOOD_ICON}. Remove the Suspect.\n\nScore if the counter is reduced to 0 and a model suffers {BLOOD_ICON} damage as a result.",
-      ru: "Chaos • Разыграйте, когда дружественная модель выставляет Suspect. Он также является маркером Explosive Teeth с Timer 1D6. В конце активации каждой следующей модели передвиньте этот маркер на полные 1D6” прямо к этой модели. Когда numeric counter снижается до 0 или Suspect должен быть удален, поместите Explosive template по центру этого маркера. Затронутые модели получают {BLOOD_ICON}. Уберите Suspect.\n\nЗасчитайте, если counter снижается до 0 и модель получает {BLOOD_ICON} damage в результате."
-    },
-    resource: {
-      cost: 0,
-      en: "Discard your Objective hand.",
-      ru: "Сбросьте свою руку Objective-карт."
-    }
-  },
-  {
-    id: "let-them-in-on-the-joke",
-    name: "LET THEM IN ON THE JOKE",
-    img: "img/cards/joker/let-them-in-on-the-joke.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Joker"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Chaos • A friendly model with the Trickster trait Sets a Suspect within 4” of an enemy model.",
-      ru: "Chaos • Дружественная модель с трейтом Trickster выставляет Suspect в пределах 4” от вражеской модели."
-    },
-    resource: {
-      cost: 1,
-      en: "Increase or decrease a Numeric counter by a value of 1 or 2.",
-      ru: "Увеличьте или уменьшите Numeric counter на 1 или 2."
-    }
-  },
-  {
-    id: "it-doesnt-look-fresh",
-    name: "IT DOESN'T LOOK FRESH",
-    img: "img/cards/joker/it-doesnt-look-fresh.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Joker"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Play when a friendly model Sets a Suspect. That Suspect is also a Poisoned Fish. A model that Reveals a Poisoned Fish suffers the Poison Status.\n\nScore while the marker is in play.",
-      ru: "Разыграйте, когда дружественная модель выставляет Suspect. Этот Suspect также является Poisoned Fish. Модель, которая раскрывает Poisoned Fish, получает Poison Status.\n\nЗасчитайте, пока маркер находится в игре."
-    },
-    resource: {
-      cost: 1,
-      en: "When a model takes a Poison Endurance roll, add 1D6 to the result.",
-      ru: "Когда модель проходит Poison Endurance roll, добавьте 1D6 к результату."
-    }
-  },
-  {
-    id: "lets-dance",
-    name: "LET'S DANCE!",
-    img: "img/cards/joker/lets-dance.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Joker"],
-    category: "crew",
-    phase: "I",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "A friendly Leader, Free Agent, Sidekick, or Henchman suffers Damage from an enemy action during this Round.",
-      ru: "Дружественная модель ранга Leader, Free Agent, Sidekick или Henchman получает Damage от вражеского действия в этом раунде."
-    },
-    resource: {
-      cost: 1,
-      en: "Choose 1 friendly model with 1 or more Damage. Exchange the {STUN_ICON} Damage for {BLOOD_ICON} Damage or vice versa. You cannot do this if the model would become KO or be removed as a Casualty as a result.",
-      ru: "Выберите 1 дружественную модель с 1 или более Damage. Замените {STUN_ICON} Damage на {BLOOD_ICON} Damage или наоборот. Нельзя сделать это, если в результате модель станет KO или будет удалена как Casualty."
-    }
-  },
-  {
-    id: "youre-expendable",
-    name: "YOU'RE EXPENDABLE",
-    img: "img/cards/joker/youre-expendable.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Joker"],
-    category: "crew",
-    phase: "III",
-    value: "1 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Chaos • A friendly model with the Trickster trait becomes KO or is removed as a Casualty.",
-      ru: "Chaos • Дружественная модель с трейтом Trickster получает KO или удаляется как Casualty."
-    },
-    resource: {
-      cost: 1,
-      en: "An enemy model Reveals a friendly Suspect. Place a friendly model with the Trickster trait in contact with that marker before removing it.",
-      ru: "Вражеская модель раскрывает дружественный Suspect. Разместите дружественную модель с трейтом Trickster в контакте с этим маркером перед его удалением."
-    }
-  },
-  {
-    id: "seasoning-the-mix",
-    name: "SEASONING THE MIX",
-    img: "img/cards/joker/seasoning-the-mix.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Joker"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Chaos • A model with the Poison Status is removed as a Casualty.",
-      ru: "Chaos • Модель с Poison Status удаляется как Casualty."
-    },
-    resource: {
-      cost: 1,
-      en: "At the start of a model's activation, Move up to 2 friendly Suspects 4”.",
-      ru: "В начале активации модели передвиньте до 2 дружественных Suspects на 4”."
-    }
-  },
-  {
-    id: "let-them-do-their-thing",
-    name: "LET THEM DO THEIR THING",
-    img: "img/cards/joker/let-them-do-their-thing.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Joker"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "When a friendly model Sets a Suspect, center an Explosive template on the Suspect. Choose a direction and roll 2D6. Place the template that many inches in the chosen direction. Models affected by the template suffer {STUN_ICON}{STUN_ICON}.\n\nScore if this inflicts Damage on a model.",
-      ru: "Когда дружественная модель выставляет Suspect, поместите Explosive template по центру Suspect. Выберите направление и бросьте 2D6. Разместите шаблон на столько дюймов в выбранном направлении. Модели, затронутые шаблоном, получают {STUN_ICON}{STUN_ICON}.\n\nЗасчитайте, если это наносит Damage модели."
-    },
-    resource: {
-      cost: 1,
-      en: "Target a model with the Poison Status. Other models within 4” suffer the Poison Status.",
-      ru: "Выберите модель с Poison Status. Другие модели в пределах 4” получают Poison Status."
-    }
-  },
-  {
-    id: "psychopaths",
-    name: "PSYCHOPATHS",
-    img: "img/cards/joker/psychopaths.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Joker"],
-    category: "crew",
-    phase: "II",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Each time a model is removed from the game as Casualty or becomes KO, place a success marker on this card. Each time an enemy model Sets a Suspect, place a failure marker on this card.\n\nScore if there are more success markers than failure markers on this card.",
-      ru: "Каждый раз, когда модель удаляется из игры как Casualty или получает KO, положите на эту карту маркер успеха. Каждый раз, когда вражеская модель выставляет Suspect, положите на эту карту маркер провала.\n\nЗасчитайте, если на этой карте больше маркеров успеха, чем маркеров провала."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 1 • When a model suffers {BLOOD_ICON} Damage, you can use this Resource and a friendly model gains 2 {STUN_ICON}.",
-      ru: "Burn 1 • Когда модель получает {BLOOD_ICON} Damage, вы можете использовать этот Resource, и дружественная модель получает 2 {STUN_ICON}."
-    }
-  },
-  {
-    id: "the-first-laugh",
-    name: "THE FIRST LAUGH",
-    img: "img/cards/joker/the-first-laugh.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Joker"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Chaos • A model suffers a Status and 5 other models are suffering a Status.",
-      ru: "Chaos • Модель получает Status, и 5 других моделей уже имеют Status."
-    },
-    resource: {
-      cost: 1,
-      en: "When a model takes a Poison Endurance roll, add 1D6 to the result.",
-      ru: "Когда модель проходит Poison Endurance roll, добавьте 1D6 к результату."
-    }
-  },
-  {
-    id: "poisoning-gotham",
-    name: "POISONING GOTHAM",
-    img: "img/cards/joker/poisoning-gotham.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Joker"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Limited • Chaos • When a friendly model Sets a Suspect within 4” of a Sewer, place a success marker on this card. This card starts with 1 success marker for each friendly It Doesn't Look Fresh objective card scored.\n\nScore when this card has 4 success markers.",
-      ru: "Limited • Chaos • Когда дружественная модель выставляет Suspect в пределах 4” от Sewer, положите на эту карту маркер успеха. Эта карта начинает с 1 маркером успеха за каждую засчитанную дружественную карту цели It Doesn't Look Fresh.\n\nЗасчитайте, когда на этой карте 4 маркера успеха."
-    },
-    resource: {
-      cost: 0,
-      en: "When a player discards an Objective card, they must discard their whole hand.",
-      ru: "Когда игрок сбрасывает Objective card, он должен сбросить всю руку."
-    }
-  },
-  {
-    id: "ace-chemicals-barrel",
-    name: "ACE CHEMICAL'S BARREL",
-    img: "img/cards/joker/ace-chemicals-barrel.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Joker"],
-    category: "crew",
-    phase: "II",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Set a Poison Barrel Event marker (it also counts as an enemy model suffering KO) in contact with a friendly Suspect. A friendly model may spend an Attack action in contact to Move this marker 6”.\n\nScore if the Poison Barrel is in contact with an enemy model.",
-      ru: "Разместите маркер события Poison Barrel (он также считается вражеской моделью в KO) в контакте с дружественным Suspect. Дружественная модель в контакте может потратить Attack action, чтобы передвинуть этот маркер на 6”.\n\nЗасчитайте, если Poison Barrel находится в контакте с вражеской моделью."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 0 • Exception (In Play) • Target a model within 4” of a friendly Poison Barrel. Its owner chooses if it suffers Enervating (3) or the Poison Status.",
-      ru: "Burn 0 • Exception (In Play) • Выберите модель в пределах 4” от дружественного Poison Barrel. Ее владелец выбирает, получает ли она Enervating (3) или Poison Status."
-    }
-  },
-  {
-    id: "stage-play",
-    name: "STAGE PLAY",
-    img: "img/cards/joker/stage-play.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Joker"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • Set 2 Stage Event markers at least 10” away from an edge of the Gaming Area and 10” from each other. When a model with Audacity declares 2 actions within 4” of a Stage during its activation, place a success marker on this card.\n\nScore when this card has 4 success markers.",
-      ru: "Limited • Разместите 2 маркера события Stage как минимум в 10” от края Gaming Area и в 10” друг от друга. Когда модель с Audacity объявляет 2 действия в пределах 4” от Stage во время своей активации, положите на эту карту маркер успеха.\n\nЗасчитайте, когда на этой карте 4 маркера успеха."
-    },
-    resource: {
-      cost: 2,
-      en: "Burn 1 • Treat the active friendly model as if it has Audacity this activation.",
-      ru: "Burn 1 • Считайте активную дружественную модель имеющей Audacity на эту активацию."
-    }
-  },
-  {
-    id: "search-and-destroy",
-    name: "SEARCH & DESTROY",
-    img: "img/cards/soldiers-of-fortune/search-and-destroy.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bane"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "An enemy model suffers 2 hits during an Attack action where the friendly model Efforted at least twice.",
-      ru: "Вражеская модель получает 2 попадания во время Attack action, в которой дружественная модель Efforted как минимум дважды."
-    },
-    resource: {
-      cost: 1,
-      en: "Play when a friendly model uses a Venom Dose, it gains {+DEF_ICON}4.",
-      ru: "Разыграйте, когда дружественная модель использует Venom Dose: она получает {+DEF_ICON}4."
-    }
-  },
-  {
-    id: "hardpoint",
-    name: "HARDPOINT",
-    img: "img/cards/soldiers-of-fortune/hardpoint.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bane"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "A friendly model is within 8” of another friendly model with the Veteran trait and blocks 2 successful hits.",
-      ru: "Дружественная модель находится в пределах 8” от другой дружественной модели с трейтом Veteran и блокирует 2 успешных попадания."
-    },
-    resource: {
-      cost: 0,
-      en: "A friendly model in contact with a friendly Suspect or ending a Move within 4” of a friendly Suspect gains 1 Venom Dose.",
-      ru: "Дружественная модель в контакте с дружественным Suspect или заканчивающая Move в пределах 4” от дружественного Suspect получает 1 Venom Dose."
-    }
-  },
-  {
-    id: "ground-war",
-    name: "GROUND WAR",
-    img: "img/cards/soldiers-of-fortune/ground-war.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bane"],
-    category: "crew",
-    phase: "IV",
-    value: "3 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "You have at least 2 friendly models within 4” of the same Scenery element that's within 8” (or inside) the opponent's DZ.",
-      ru: "У вас есть как минимум 2 дружественные модели в пределах 4” от одного и того же Scenery element, который находится в пределах 8” от DZ оппонента или внутри нее."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 1 • Target a friendly Suspect and place this card aside. It is also an Advantage Position marker. Friendly models within 4” benefit from Cover.\n\nIf this marker is removed discard this card.",
-      ru: "Burn 1 • Выберите дружественный Suspect и отложите эту карту. Он также является маркером Advantage Position. Дружественные модели в пределах 4” получают Cover.\n\nЕсли этот маркер удален, сбросьте эту карту."
-    }
-  },
-  {
-    id: "invasion",
-    name: "INVASION",
-    img: "img/cards/soldiers-of-fortune/invasion.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bane"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Play when a friendly model Sets a Suspect within 4” of a Scenery Element that is within 4” of an enemy model. Place a Timer 4 on that Suspect.\n\nScore if the counter is reduced to 0.",
-      ru: "Разыграйте, когда дружественная модель выставляет Suspect в пределах 4” от Scenery Element, который находится в пределах 4” от вражеской модели. Положите Timer 4 на этот Suspect.\n\nЗасчитайте, если counter снижен до 0."
-    },
-    resource: {
-      cost: 1,
-      en: "Place this card aside. Enemy Suspects within 2” of a target friendly model with the Veteran trait are not considered friendly to the opponent.\n\nIf an enemy Sets a Suspect within 4” of the target discard this card.",
-      ru: "Отложите эту карту. Вражеские Suspects в пределах 2” от выбранной дружественной модели с трейтом Veteran не считаются дружественными для оппонента.\n\nЕсли враг выставляет Suspect в пределах 4” от выбранной модели, сбросьте эту карту."
-    }
-  },
-  {
-    id: "domination",
-    name: "DOMINATION",
-    img: "img/cards/soldiers-of-fortune/domination.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bane"],
-    category: "crew",
-    phase: "I",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Set a Domination Event marker in contact with an enemy model. Any model may Manipulate it to Move it 4”.\n\nAt the end of the round you have more friendly models than enemy models within 4” of the Domination.",
-      ru: "Разместите маркер события Domination в контакте с вражеской моделью. Любая модель может выполнить Manipulate с ним, чтобы передвинуть его на 4”.\n\nВ конце раунда у вас больше дружественных моделей, чем вражеских, в пределах 4” от Domination."
-    },
-    resource: {
-      cost: 1,
-      en: "At the start of a model's activation, Move a Suspect or friendly Drone marker 4”.",
-      ru: "В начале активации модели передвиньте Suspect или дружественный Drone marker на 4”."
-    }
-  },
-  {
-    id: "free-for-all",
-    name: "FREE-FOR-ALL",
-    img: "img/cards/soldiers-of-fortune/free-for-all.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bane"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Have more friendly models than enemy models within 4” of the center of the Gaming Area.",
-      ru: "У вас больше дружественных моделей, чем вражеских, в пределах 4” от центра Gaming Area."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 1 • Place this card aside.\nFriendly models while under the effect of a Dose gains 1 Free Effort while Defending.\n\nThis card is discarded when a friendly model is removed as a Casualty.",
-      ru: "Burn 1 • Отложите эту карту.\nДружественные модели под эффектом Dose получают 1 Free Effort при защите.\n\nЭта карта сбрасывается, когда дружественная модель удаляется как Casualty."
-    }
-  },
-  {
-    id: "black-ops",
-    name: "BLACK OPS",
-    img: "img/cards/soldiers-of-fortune/black-ops.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bane"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 4,
-    text: {
-      en: "A friendly model Sets a Suspect within 8” of an enemy model that cannot draw LoS to the friendly model or the Suspect.",
-      ru: "Дружественная модель выставляет Suspect в пределах 8” от вражеской модели, которая не может провести LoS к дружественной модели или к Suspect."
-    },
-    resource: {
-      cost: 0,
-      en: "Target friendly Suspect is treated as a Sewer this activation.",
-      ru: "Выбранный дружественный Suspect считается Sewer на эту активацию."
-    }
-  },
-  {
-    id: "global-offensive",
-    name: "GLOBAL OFFENSIVE",
-    img: "img/cards/soldiers-of-fortune/global-offensive.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bane"],
-    category: "crew",
-    phase: "III",
-    value: "3 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Have more friendly models with the Veteran trait in play than there are enemy Suspects.",
-      ru: "У вас в игре больше дружественных моделей с трейтом Veteran, чем вражеских Suspects."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 0 • A friendly model suffering KO is Moved 4” directly towards the nearest friendly model with the Veteran trait.",
-      ru: "Burn 0 • Дружественная модель в KO передвигается на 4” напрямую к ближайшей дружественной модели с трейтом Veteran."
-    }
-  },
-  {
-    id: "cyber-attack",
-    name: "CYBER ATTACK",
-    img: "img/cards/soldiers-of-fortune/cyber-attack.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bane"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Play when a friendly model Sets a Suspect within 8” of an enemy Suspect. Place a Timer 1D3+2 on this card.\n\nScore if the Numeric counter is reduced to 0 and either Suspect is still in play.",
-      ru: "Разыграйте, когда дружественная модель выставляет Suspect в пределах 8” от вражеского Suspect. Положите Timer 1D3+2 на эту карту.\n\nЗасчитайте, если Numeric counter снижен до 0 и любой из этих Suspects все еще в игре."
-    },
-    resource: {
-      cost: 2,
-      en: "Burn 1 • Set a friendly Drone event marker within 4” of a friendly Suspect and place this card aside. Attack actions targeting an enemy model within 4” of a Drone gain +1 to Attack dice rolls.\n\nYou may remove the Drone event marker at any time, then discard this card.",
-      ru: "Burn 1 • Разместите дружественный Drone event marker в пределах 4” от дружественного Suspect и отложите эту карту. Attack actions, выбирающие целью вражескую модель в пределах 4” от Drone, получают +1 к Attack dice rolls.\n\nВы можете убрать Drone event marker в любой момент, затем сбросьте эту карту."
-    }
-  },
-  {
-    id: "triangulation",
-    name: "TRIANGULATION",
-    img: "img/cards/soldiers-of-fortune/triangulation.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bane"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "At the start of Recount, place the Expansive template.\n\nThe Expansive template affects 3 Suspects and at least 1 is a friendly Suspect.",
-      ru: "В начале Recount разместите Expansive template.\n\nExpansive template затрагивает 3 Suspects, и как минимум 1 из них является дружественным Suspect."
-    },
-    resource: {
-      cost: 1,
-      en: "Play at the start of an enemy model's activation. If that model ends a Move or Place within 4” of a friendly Suspect, Move a friendly model 4” directly towards it.",
-      ru: "Разыграйте в начале активации вражеской модели. Если эта модель заканчивает Move или Place в пределах 4” от дружественного Suspect, передвиньте дружественную модель на 4” напрямую к ней."
-    }
-  },
-  {
-    id: "suppressing-fire",
-    name: "SUPPRESSING FIRE",
-    img: "img/cards/soldiers-of-fortune/suppressing-fire.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bane"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "A friendly model inflicts Damage with a Ranged Attack targeting at least 2 models. Change all Damage and Status to Enervating (2).",
-      ru: "Дружественная модель наносит Damage с помощью Ranged Attack, выбирающей целью как минимум 2 модели. Замените весь Damage и Status на Enervating (2)."
-    },
-    resource: {
-      cost: 0,
-      en: "At the start of a friendly model's activation, target an enemy model within 12” and LoS to it. The friendly model Spends 1 Ammo and the opponent chooses one of the following. The target suffers Slow (4) or suffers {BLOOD_ICON}{BLOOD_ICON}{BLOOD_ICON}.",
-      ru: "В начале активации дружественной модели выберите вражескую модель в пределах 12” и LoS к ней. Дружественная модель тратит 1 Ammo, а оппонент выбирает один из вариантов. Цель получает Slow (4) или получает {BLOOD_ICON}{BLOOD_ICON}{BLOOD_ICON}."
-    }
-  },
-  {
-    id: "military-coordination",
-    name: "MILITARY COORDINATION",
-    img: "img/cards/soldiers-of-fortune/military-coordination.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bane"],
-    category: "crew",
-    phase: "II",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Assign Numerical counters 1, 2, 3, and 4 to different friendly models (or up to the friendly models currently in play). These counters cannot be modified.\n\nScore if those models activated in order (1, 2, 3, 4).",
-      ru: "Назначьте Numerical counters 1, 2, 3 и 4 разным дружественным моделям или всем дружественным моделям, которые сейчас в игре, если их меньше. Эти counters нельзя изменять.\n\nЗасчитайте, если эти модели активировались по порядку (1, 2, 3, 4)."
-    },
-    resource: {
-      cost: 0,
-      en: "Burn 0 • Exception (In Play) • A model activating in order gains 1 {+ATT_ICON} or {+DEF_ICON}.",
-      ru: "Burn 0 • Exception (In Play) • Модель, активирующаяся по порядку, получает 1 {+ATT_ICON} или {+DEF_ICON}."
-    }
-  },
-  {
-    id: "enhanced-soldiers",
-    name: "ENHANCED SOLDIERS",
-    img: "img/cards/soldiers-of-fortune/enhanced-soldiers.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Bane"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Target a friendly model.\n\nFor each {STUN_ICON} that model receives from Efforting, place a success marker on this card. If the model is under the effects of a Dose during that action, place 1 additional success marker.\n\nScore when this card has 4 success markers.",
-      ru: "Выберите дружественную модель.\n\nЗа каждый {STUN_ICON}, который эта модель получает от Efforting, положите маркер успеха на эту карту. Если модель находится под эффектом Dose во время этого действия, положите 1 дополнительный маркер успеха.\n\nЗасчитайте, когда на этой карте 4 маркера успеха."
-    },
-    resource: {
-      cost: "*",
-      en: "Burn 1 • Exception (When Scoring) • A friendly model gains a Venom Dose.",
-      ru: "Burn 1 • Exception (When Scoring) • Дружественная модель получает Venom Dose."
-    }
-  },
-  {
-    id: "eradicate-the-order",
-    name: "ERADICATE THE ORDER",
-    img: "img/cards/league-of-assassins/eradicate-the-order.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["League of Shadows"],
-    category: "crew",
-    phase: "IV",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "There are more friendly Suspects than enemy Suspects in play.",
-      ru: "В игре больше дружественных Suspects, чем вражеских Suspects."
-    },
-    resource: {
-      cost: 0,
-      en: "The active model ignores the Smoke rule until the end of the Round.",
-      ru: "Активная модель игнорирует правило Smoke до конца раунда."
-    }
-  },
-  {
-    id: "under-their-noses",
-    name: "UNDER THEIR NOSES",
-    img: "img/cards/league-of-assassins/under-their-noses.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["League of Shadows"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 4,
-    text: {
-      en: "A friendly model Sets a Suspect within 4” of an enemy Suspect.",
-      ru: "Дружественная модель выставляет Suspect в пределах 4” от вражеского Suspect."
-    },
-    resource: {
-      cost: 1,
-      en: "Set a Smoke Special Event marker in contact with the active friendly model. Place this card aside and Discard during Recount.\n\nIf an enemy model Sets a Suspect within 4” of this Smoke Event marker, remove it and discard this card.",
-      ru: "Разместите маркер Smoke Special Event в контакте с активной дружественной моделью. Отложите эту карту и сбросьте ее во время Recount.\n\nЕсли вражеская модель выставляет Suspect в пределах 4” от этого Smoke Event marker, уберите его и сбросьте эту карту."
-    }
-  },
-  {
-    id: "do-not-deviate-from-the-plan",
-    name: "DO NOT DEVIATE FROM THE PLAN",
-    img: "img/cards/league-of-assassins/do-not-deviate-from-the-plan.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["League of Shadows"],
-    category: "crew",
-    phase: "IV",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • Shadow's Plan is at Level 2 or above.\n\nWhen a friendly model Sets a Suspect you may play this as III. If you do, change the scoring text to \"Shadow's Plan is at Level 3.\"",
-      ru: "Limited • Shadow's Plan на уровне 2 или выше.\n\nКогда дружественная модель выставляет Suspect, вы можете разыграть эту карту как III. Если вы это делаете, измените условие выполнения на «Shadow's Plan на уровне 3»."
-    },
-    resource: {
-      cost: "*",
-      en: "Burn 0 • Exception (When Scoring) • Place a friendly model in a position where no enemy model can draw LoS to it.",
-      ru: "Burn 0 • Exception (When Scoring) • Разместите дружественную модель в позиции, где ни одна вражеская модель не может провести к ней LoS."
-    }
-  },
-  {
-    id: "from-the-shadows",
-    name: "FROM THE SHADOWS",
-    img: "img/cards/league-of-assassins/from-the-shadows.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["League of Shadows"],
-    category: "crew",
-    phase: "I",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Target an enemy model.\n\nThat model is the next enemy model removed as a Casualty.\n\nIf Shadow's Plan is at Level 3 you may play this as III.",
-      ru: "Выберите вражескую модель.\n\nЭта модель должна стать следующей вражеской моделью, удаленной как Casualty.\n\nЕсли Shadow's Plan на уровне 3, вы можете разыграть эту карту как III."
-    },
-    resource: {
-      cost: 2,
-      en: "Burn 1 • Play at the start of a friendly {RANK_HENCHMAN_ICON} activation. Spend a Movement action to Place itself within 4” of a friendly Suspect instead of moving.",
-      ru: "Burn 1 • Разыграйте в начале активации дружественной модели ранга {RANK_HENCHMAN_ICON}. Потратьте Movement action, чтобы разместить эту модель в пределах 4” от дружественного Suspect вместо движения."
-    }
-  },
-  {
-    id: "blood-for-blood",
-    name: "BLOOD FOR BLOOD",
-    img: "img/cards/league-of-assassins/blood-for-blood.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["League of Shadows"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "A friendly model with the Assassin trait within 6” of a friendly Suspect, inflicts {BLOOD_ICON} on an enemy model.",
-      ru: "Дружественная модель с трейтом Assassin в пределах 6” от дружественного Suspect наносит {BLOOD_ICON} вражеской модели."
-    },
-    resource: {
-      cost: 2,
-      en: "Burn 0 • Center an Explosive template on each friendly Suspect. Any model affected by a template suffer {STUN_ICON}{BLOOD_ICON}. Then remove those Suspects.",
-      ru: "Burn 0 • Поместите Explosive template по центру каждого дружественного Suspect. Любая модель, затронутая шаблоном, получает {STUN_ICON}{BLOOD_ICON}. Затем уберите эти Suspects."
-    }
-  },
-  {
-    id: "reclaim-the-lazarus-pit",
-    name: "RECLAIM THE LAZARUS PIT",
-    img: "img/cards/league-of-assassins/reclaim-the-lazarus-pit.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["League of Shadows"],
-    category: "crew",
-    phase: "II",
-    value: "3 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Set a Lazarus Pit Event marker (40mm) within 4” of the center of the Board.\n\nThere are 3 friendly Suspects within 4” of the Lazarus Pit.",
-      ru: "Разместите маркер события Lazarus Pit (40 мм) в пределах 4” от центра поля.\n\nВ пределах 4” от Lazarus Pit находятся 3 дружественных Suspects."
-    },
-    resource: {
-      cost: "*",
-      en: "Burn 1 • Exception (When Scoring) • Before removing the Lazarus Pit, choose a friendly {RANK_HENCHMAN_ICON} that has been removed as a Casualty. Place it in contact with the Lazarus Pit.",
-      ru: "Burn 1 • Exception (When Scoring) • Перед удалением Lazarus Pit выберите дружественную модель ранга {RANK_HENCHMAN_ICON}, которая была удалена как Casualty. Разместите ее в контакте с Lazarus Pit."
-    }
-  },
-  {
-    id: "we-cannot-be-defeated",
-    name: "WE CANNOT BE DEFEATED",
-    img: "img/cards/league-of-assassins/we-cannot-be-defeated.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["League of Shadows"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Play when a friendly model Sets a Suspect.\n\nThat Suspect is within 6” of another 2 friendly Suspects.\n\nThe opponent may Move those 3 Suspects 4”.",
-      ru: "Разыграйте, когда дружественная модель выставляет Suspect.\n\nЭтот Suspect находится в пределах 6” от еще 2 дружественных Suspects.\n\nОппонент может передвинуть эти 3 Suspects на 4”."
-    },
-    resource: {
-      cost: 0,
-      en: "The active model can Set or Reveal a Suspect within X”. Where X is equal to the Level of Shadow's Plan x2.",
-      ru: "Активная модель может Set или Reveal Suspect в пределах X”. X равен уровню Shadow's Plan x2."
-    }
-  },
-  {
-    id: "the-fire-rises",
-    name: "THE FIRE RISES",
-    img: "img/cards/league-of-assassins/the-fire-rises.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["League of Shadows"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "A friendly model Reveals an enemy Suspect within 6” of a friendly Boss and Shadow's Plan is at Level 2 or higher.",
-      ru: "Дружественная модель Reveals вражеский Suspect в пределах 6” от дружественного Boss, и Shadow's Plan находится на уровне 2 или выше."
-    },
-    resource: {
-      cost: 0,
-      en: "Burn 0 • A friendly model with the Assassin Trait adds 3 dice to an Attack roll. After resolving that Attack action, remove that model as a Casualty.",
-      ru: "Burn 0 • Дружественная модель с трейтом Assassin добавляет 3 кубика к Attack roll. После разрешения этой Attack action удалите эту модель как Casualty."
-    }
-  },
-  {
-    id: "multiple-threats",
-    name: "MULTIPLE THREATS",
-    img: "img/cards/league-of-assassins/multiple-threats.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["League of Shadows"],
-    category: "crew",
-    phase: "III",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • Target up to 6 friendly Suspects. Place a Numeric counter on each. Place a Timer 6-X on this card (X is equal to the Level of Shadow's Plan). When the counter is reduced to 0, roll 1D6.\n\nScore if the result matches any of the Numeric counters, remove those counters.",
-      ru: "Limited • Выберите до 6 дружественных Suspects. Положите Numeric counter на каждого. Положите Timer 6-X на эту карту, где X равен уровню Shadow's Plan. Когда counter снижен до 0, бросьте 1D6.\n\nЗасчитайте, если результат совпадает с любым из Numeric counters, затем уберите эти counters."
-    },
-    resource: {
-      cost: 1,
-      en: "A friendly model within 4” of a friendly Suspect gains +X” to its Basic Move Distance (X is equal to the Level of Shadow's Plan x2).",
-      ru: "Дружественная модель в пределах 4” от дружественного Suspect получает +X” к Basic Move Distance, где X равен уровню Shadow's Plan x2."
-    }
-  },
-  {
-    id: "a-step-ahead",
-    name: "A STEP AHEAD",
-    img: "img/cards/league-of-assassins/a-step-ahead.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["League of Shadows"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Each time a friendly model Sets a Suspect and no enemy model can draw LoS to it, place a success marker on this card. If that friendly model has the Assassin (X) trait, place an additional success marker.\n\nScore when this card has 4 success markers.",
-      ru: "Каждый раз, когда дружественная модель выставляет Suspect и ни одна вражеская модель не может провести к нему LoS, положите маркер успеха на эту карту. Если у этой дружественной модели есть трейт Assassin (X), положите дополнительный маркер успеха.\n\nЗасчитайте, когда на этой карте 4 маркера успеха."
-    },
-    resource: {
-      cost: 1,
-      en: "At the start of a friendly model's activation, enemy models reduce their Effort limit by the current Level of Shadow's Plan during this activation.",
-      ru: "В начале активации дружественной модели вражеские модели уменьшают свой лимит Effort на текущий уровень Shadow's Plan на время этой активации."
-    }
-  },
-  {
-    id: "where-ends-everything",
-    name: "WHERE ENDS EVERYTHING",
-    img: "img/cards/league-of-assassins/where-ends-everything.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["League of Shadows"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • Play when a friendly model Sets a Suspect within 4” of a Scenery Element that is completely within 6” of an enemy DZ.\n\nThere are 2 friendly Suspects within 4” of that Scenery Element.",
-      ru: "Limited • Разыграйте, когда дружественная модель выставляет Suspect в пределах 4” от Scenery Element, который полностью находится в пределах 6” от вражеской DZ.\n\nВ пределах 4” от этого Scenery Element находятся 2 дружественных Suspects."
-    },
-    resource: {
-      cost: "*",
-      en: "Burn (1) • Exception (Scored Pile) • The distance friendly models are affected by the Night Rule is reduced by 2.",
-      ru: "Burn (1) • Exception (Scored Pile) • Дистанция, на которой дружественные модели подвержены Night Rule, уменьшается на 2."
-    }
-  },
-  {
-    id: "shadows-feint",
-    name: "SHADOW'S FEINT",
-    img: "img/cards/league-of-assassins/shadows-feint.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["League of Shadows"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Score a Critical result and do not apply the Critical effect.",
-      ru: "Получите Critical result и не применяйте Critical effect."
-    },
-    resource: {
-      cost: 0,
-      en: "When declaring an Attack action gain X Free Efforts. Where X is equal to the Level of Shadow's Plan.",
-      ru: "При объявлении Attack action получите X Free Efforts, где X равен уровню Shadow's Plan."
-    }
-  },
-  {
-    id: "well-rounded-mind",
-    name: "WELL ROUNDED MIND",
-    img: "img/cards/league-of-assassins/well-rounded-mind.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["League of Shadows"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Plot • Play when a friendly model Sets a Suspect within 4” of an enemy model. When you play a card as an Objective or Resource, you may Reveal another card from your hand with the same card Type and place it under this card.\n\nScore when this card has 1 of each Type under it ({OT_PROTECTION_ICON} - {OT_CONTROL_ICON} - {OT_MENACE_ICON} - {OT_VIOLENCE_ICON}).",
-      ru: "Plot • Разыграйте, когда дружественная модель выставляет Suspect в пределах 4” от вражеской модели. Когда вы разыгрываете карту как Objective или Resource, вы можете Reveal другую карту из руки с тем же Type карты и положить ее под эту карту.\n\nЗасчитайте, когда под этой картой лежит по 1 карте каждого Type ({OT_PROTECTION_ICON} - {OT_CONTROL_ICON} - {OT_MENACE_ICON} - {OT_VIOLENCE_ICON})."
-    },
-    resource: {
-      cost: 0,
-      en: "Play this card in the Play Area with another card from your hand under it. In a friendly model's activation, discard this card and return the other to your hand.",
-      ru: "Разыграйте эту карту в Play Area, положив под нее другую карту из руки. Во время активации дружественной модели сбросьте эту карту и верните другую карту в руку."
-    }
-  },
-  {
-    id: "smuggled-goods",
-    name: "SMUGGLED GOODS",
-    img: "img/cards/penguin/smuggled-goods.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Penguin"],
-    category: "crew",
-    phase: "II",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Set a Goods Event marker within 8” of an enemy DZ. Enemy models may Manipulate it to Move it 4”. Friendly models may Manipulate it to Move it 2+X inches. Where X is equal to the number of friendly Business counters.\n\nThe Goods is closer to your DZ than the opponent's DZ.",
-      ru: "Разместите маркер события Goods в пределах 8” от вражеской DZ. Вражеские модели могут выполнить Manipulate с ним, чтобы передвинуть его на 4”. Дружественные модели могут выполнить Manipulate с ним, чтобы передвинуть его на 2+X дюймов, где X равен количеству дружественных Business counters.\n\nGoods находится ближе к вашей DZ, чем к DZ оппонента."
-    },
-    resource: {
-      cost: 1,
-      en: "The active friendly model Moves 4”.",
-      ru: "Активная дружественная модель Moves на 4”."
-    }
-  },
-  {
-    id: "territory-fight",
-    name: "TERRITORY FIGHT",
-    img: "img/cards/penguin/territory-fight.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Penguin"],
-    category: "crew",
-    phase: "III",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • The opponent Sets 2 Territory Event markers on Ground Level outside of any DZ and 5” away from the Edge of the Gaming Area. Then you Set 2 more. They must be 12” away from each other.\n\nHave a friendly Suspect or model within 4” of each Territory.",
-      ru: "Limited • Оппонент выставляет 2 Territory Event markers на Ground Level вне любой DZ и в 5” от края Gaming Area. Затем вы выставляете еще 2. Они должны быть в 12” друг от друга.\n\nУ вас есть дружественный Suspect или модель в пределах 4” от каждого Territory."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 1 • Mark a friendly Suspect and set this card aside. While it is in play, enemy models cannot make Efforts within 4”.\n\nWhen this Suspect is removed, discard this card.",
-      ru: "Burn 1 • Отметьте дружественный Suspect и отложите эту карту. Пока она в игре, вражеские модели не могут делать Efforts в пределах 4”.\n\nКогда этот Suspect удален, сбросьте эту карту."
-    }
-  },
-  {
-    id: "this-is-mine",
-    name: "THIS IS MINE!",
-    img: "img/cards/penguin/this-is-mine.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Penguin"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 4,
-    text: {
-      en: "A friendly model Reveals an enemy Suspect.",
-      ru: "Дружественная модель Reveals вражеский Suspect."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 0 • Move an enemy Suspect 4”.",
-      ru: "Burn 0 • Передвиньте вражеский Suspect на 4”."
-    }
-  },
-  {
-    id: "not-buying-dont-touch",
-    name: "NOT BUYING? DON'T TOUCH!",
-    img: "img/cards/penguin/not-buying-dont-touch.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Penguin"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Target an enemy model when it either removes a friendly Suspect or removes a model as a Casualty.\n\nA friendly Suspect is within 4” of the target.",
-      ru: "Выберите вражескую модель, когда она удаляет дружественный Suspect или удаляет модель как Casualty.\n\nДружественный Suspect находится в пределах 4” от цели."
-    },
-    resource: {
-      cost: 1,
-      en: "Spend X Business. Target model gains X+1 free Efforts while Attacking or Defending this activation, where X is the amount of Business spent.",
-      ru: "Потратьте X Business. Выбранная модель получает X+1 free Efforts при атаке или защите в эту активацию, где X равен количеству потраченного Business."
-    }
-  },
-  {
-    id: "profitable-negotiation",
-    name: "PROFITABLE NEGOTIATION",
-    img: "img/cards/penguin/profitable-negotiation.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Penguin"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Limited • Play when a friendly model Sets a Suspect within 4” of an enemy model. Look at the opponent's Objective hand and choose a III card. Place a Timer 2D6 on this card. Reduce the counter by the number of Business you have to a minimum of 1.\n\nScore if the counter is reduced to 0 and the opponent has not Scored a card with the name of the chosen card while this card is in play.",
-      ru: "Limited • Разыграйте, когда дружественная модель выставляет Suspect в пределах 4” от вражеской модели. Посмотрите Objective hand оппонента и выберите карту III. Положите Timer 2D6 на эту карту. Уменьшите counter на количество Business, которое у вас есть, минимум до 1.\n\nЗасчитайте, если counter снижен до 0 и оппонент не Scored карту с названием выбранной карты, пока эта карта была в игре."
-    },
-    resource: {
-      cost: 1,
-      en: "When a friendly model Sets a Suspect, Set an Information Event marker in contact with the Suspect, target an enemy model and place this card aside. While this Event is in play, the target must be the last model in its crew to activate.\n\nModels may Manipulate an Information marker to remove it, then discard this card.",
-      ru: "Когда дружественная модель выставляет Suspect, разместите Information Event marker в контакте с Suspect, выберите вражескую модель и отложите эту карту. Пока этот Event в игре, выбранная модель должна активироваться последней моделью своей команды.\n\nМодели могут выполнить Manipulate с Information marker, чтобы убрать его, затем сбросьте эту карту."
-    }
-  },
-  {
-    id: "secret-equipment-bases",
-    name: "SECRET EQUIPMENT BASES",
-    img: "img/cards/penguin/secret-equipment-bases.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Penguin"],
-    category: "crew",
-    phase: "II",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Target 2 Scenery elements that are 8” away from each other and any DZ.\n\nThere are friendly Suspects within 4” of both elements.\n\nIf there are not enough scenery elements more than 8” away from all DZs, choose any two scenery elements 8” apart and not in any DZs.",
-      ru: "Выберите 2 Scenery elements, которые находятся в 8” друг от друга и от любой DZ.\n\nВ пределах 4” от обоих элементов находятся дружественные Suspects.\n\nЕсли недостаточно scenery elements дальше чем на 8” от всех DZ, выберите любые два scenery elements в 8” друг от друга и не в любой DZ."
-    },
-    resource: {
-      cost: 1,
-      en: "The next time a model Sets a Suspect this activation, Set it within 4” instead of in contact.",
-      ru: "В следующий раз, когда модель выставляет Suspect в эту активацию, выставьте его в пределах 4” вместо контакта."
-    }
-  },
-  {
-    id: "goods-raid",
-    name: "GOODS RAID",
-    img: "img/cards/penguin/goods-raid.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Penguin"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "A friendly model Sets a Suspect in an enemy DZ.",
-      ru: "Дружественная модель выставляет Suspect во вражеской DZ."
-    },
-    resource: {
-      cost: 1,
-      en: "An active friendly model within 4” of a Suspect recovers 1 Ammo previously spent.",
-      ru: "Активная дружественная модель в пределах 4” от Suspect восстанавливает 1 ранее потраченный Ammo."
-    }
-  },
-  {
-    id: "everyone-has-a-price",
-    name: "EVERYONE HAS A PRICE",
-    img: "img/cards/penguin/everyone-has-a-price.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Penguin"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "An enemy model that is outnumbered receives at least 2 Successful hits.",
-      ru: "Вражеская модель, которая находится в меньшинстве, получает как минимум 2 Successful hits."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 1 • When a friendly model is removed as a Casualty, before removing it, interrupt the action and perform an Attack action with it.",
-      ru: "Burn 1 • Когда дружественная модель удаляется как Casualty, перед удалением прервите действие и выполните этой моделью Attack action."
-    }
-  },
-  {
-    id: "unlimited-funds",
-    name: "UNLIMITED FUNDS",
-    img: "img/cards/penguin/unlimited-funds.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Penguin"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Limited • When a friendly model performs a Ranged Attack, place a success marker on this card.\n\nScore when this card has 3 success markers.",
-      ru: "Limited • Когда дружественная модель выполняет Ranged Attack, положите маркер успеха на эту карту.\n\nЗасчитайте, когда на этой карте 3 маркера успеха."
-    },
-    resource: {
-      cost: 1,
-      en: "Spend 1 Business to gain a Free Set action this activation.",
-      ru: "Потратьте 1 Business, чтобы получить Free Set action в эту активацию."
-    }
-  },
-  {
-    id: "get-it-fast",
-    name: "GET IT, FAST!",
-    img: "img/cards/penguin/get-it-fast.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Penguin"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Play when a friendly model Sets a Suspect. Place a Timer 2D6 on that Suspect. Reduce the counter by the number of Business you have to a minimum of one.\n\nScore if the counter is reduced to 0.",
-      ru: "Разыграйте, когда дружественная модель выставляет Suspect. Положите Timer 2D6 на этот Suspect. Уменьшите counter на количество Business, которое у вас есть, минимум до 1.\n\nЗасчитайте, если counter снижен до 0."
-    },
-    resource: {
-      cost: 0,
-      en: "Gain 1 Business if the active model Reveals a Suspect.",
-      ru: "Получите 1 Business, если активная модель Reveals Suspect."
-    }
-  },
-  {
-    id: "a-collector-of-goods",
-    name: "A COLLECTOR OF GOODS",
-    img: "img/cards/penguin/a-collector-of-goods.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Penguin"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Limited • Plot • Play when a friendly model Sets a Suspect within 4” of an enemy model. When a friendly model Reveals a Suspect, you may Reveal a card from your hand and place it under this card.\n\nScore when this card has 1 of each Type under it ({OT_PROTECTION_ICON} - {OT_CONTROL_ICON} - {OT_MENACE_ICON} - {OT_VIOLENCE_ICON}).",
-      ru: "Limited • Plot • Разыграйте, когда дружественная модель выставляет Suspect в пределах 4” от вражеской модели. Когда дружественная модель Reveals Suspect, вы можете Reveal карту из руки и положить ее под эту карту.\n\nЗасчитайте, когда под этой картой лежит по 1 карте каждого Type ({OT_PROTECTION_ICON} - {OT_CONTROL_ICON} - {OT_MENACE_ICON} - {OT_VIOLENCE_ICON})."
-    },
-    resource: {
-      cost: 0,
-      en: "Target a friendly Suspect, the opponent may not Discard cards from your hand as long as this Suspect is in play.",
-      ru: "Выберите дружественный Suspect. Оппонент не может Discard карты из вашей руки, пока этот Suspect находится в игре."
-    }
-  },
-  {
-    id: "the-long-game",
-    name: "THE LONG GAME",
-    img: "img/cards/penguin/the-long-game.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Penguin"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 4,
-    text: {
-      en: "A friendly model Sets a Suspect and you have at least 2 more Suspects than your opponent in play.",
-      ru: "Дружественная модель выставляет Suspect, и у вас в игре как минимум на 2 Suspects больше, чем у оппонента."
-    },
-    resource: {
-      cost: 2,
-      en: "Burn 1 • Choose 1 friendly model with Rank: {RANK_HENCHMAN_ICON}, and the Mobster trait, that has been removed as a Casualty. Place that model in your DZ. It cannot activate this round.",
-      ru: "Burn 1 • Выберите 1 дружественную модель ранга {RANK_HENCHMAN_ICON} с трейтом Mobster, которая была удалена как Casualty. Разместите эту модель в вашей DZ. Она не может активироваться в этом раунде."
-    }
-  },
-  {
-    id: "boo",
-    name: "BOO!",
-    img: "img/cards/scarecrow/boo.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Scarecrow"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 4,
-    text: {
-      en: "A Fear card is added to your Objective deck.",
-      ru: "Fear card добавляется в вашу Objective deck."
-    },
-    resource: {
-      cost: 1,
-      en: "When a model takes a Willpower roll, roll 1D6 and add it to the results.",
-      ru: "Когда модель проходит Willpower roll, бросьте 1D6 и добавьте его к результатам."
-    }
-  },
-  {
-    id: "deepest-fears",
-    name: "DEEPEST FEARS",
-    img: "img/cards/scarecrow/deepest-fears.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Scarecrow"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 4,
-    text: {
-      en: "A friendly model Sets a Suspect within 4” of an enemy model suffering a Status.",
-      ru: "Дружественная модель выставляет Suspect в пределах 4” от вражеской модели, имеющей Status."
-    },
-    resource: {
-      cost: "*",
-      en: "Burn 0 • Exception (Scored Pile) • The Range for the Tangible Fear and Inspire Fear traits on friendly models increase by 1”.",
-      ru: "Burn 0 • Exception (Scored Pile) • Range трейтов Tangible Fear и Inspire Fear у дружественных моделей увеличивается на 1”."
-    }
-  },
-  {
-    id: "what-do-you-fear",
-    name: "WHAT DO YOU FEAR?",
-    img: "img/cards/scarecrow/what-do-you-fear.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Scarecrow"],
-    category: "crew",
-    phase: "III",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • When a Fear card is returned to the Fear pile, place a success marker on this card.\n\nScore when this card has 4 success markers.",
-      ru: "Limited • Когда Fear card возвращается в Fear pile, положите маркер успеха на эту карту.\n\nЗасчитайте, когда на этой карте 4 маркера успеха."
-    },
-    resource: {
-      cost: 0,
-      en: "Burn 1 • The active model may measure LoS and Range from a friendly Suspect when using the Inspire Fear trait this activation.",
-      ru: "Burn 1 • Активная модель может измерять LoS и Range от дружественного Suspect при использовании трейта Inspire Fear в эту активацию."
-    }
-  },
-  {
-    id: "endless-torment",
-    name: "ENDLESS TORMENT",
-    img: "img/cards/scarecrow/endless-torment.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Scarecrow"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "An enemy model suffering the Scared Status is removed as a Casualty.",
-      ru: "Вражеская модель со Scared Status удаляется как Casualty."
-    },
-    resource: {
-      cost: 1,
-      en: "An enemy model within 8” and LoS of a friendly model suffers the Scared Status.",
-      ru: "Вражеская модель в пределах 8” и LoS от дружественной модели получает Scared Status."
-    }
-  },
-  {
-    id: "fear-makes-you-predictable",
-    name: "FEAR MAKES YOU PREDICTABLE",
-    img: "img/cards/scarecrow/fear-makes-you-predictable.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Scarecrow"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "A friendly model Reveals an enemy Suspect within 4” of an enemy model suffering a Status.\n\nWhen scored the opponent chooses one of the following: You add 2 Fear cards to your Objective deck or you search your Objective deck for a copy of this card.",
-      ru: "Дружественная модель Reveals вражеский Suspect в пределах 4” от вражеской модели, имеющей Status.\n\nКогда карта засчитана, оппонент выбирает одно из следующего: вы добавляете 2 Fear cards в вашу Objective deck или ищете в Objective deck копию этой карты."
-    },
-    resource: {
-      cost: 1,
-      en: "Discard X cards from your Objective deck, where X is equal to the number of cards in your Terror pile.",
-      ru: "Discard X карт из вашей Objective deck, где X равен количеству карт в вашей Terror pile."
-    }
-  },
-  {
-    id: "living-nightmare",
-    name: "LIVING NIGHTMARE",
-    img: "img/cards/scarecrow/living-nightmare.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Scarecrow"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "An enemy model resolves a Willpower, Attack, or Defense roll and there is still a card in your Terror pile.",
-      ru: "Вражеская модель разрешает Willpower, Attack или Defense roll, и в вашей Terror pile все еще есть карта."
-    },
-    resource: {
-      cost: 1,
-      en: "A model with CRT (True Fear) gains True Fear on its Attack actions this activation.",
-      ru: "Модель с CRT (True Fear) получает True Fear на свои Attack actions в эту активацию."
-    }
-  },
-  {
-    id: "darkness-embrace",
-    name: "DARKNESS' EMBRACE",
-    img: "img/cards/scarecrow/darkness-embrace.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Scarecrow"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Set a Darkness' Embrace Event marker in contact with an enemy model.\n\nThere are more friendly models with the Nightmare trait than enemy models within 4” of the Darkness' Embrace.",
-      ru: "Разместите маркер события Darkness' Embrace в контакте с вражеской моделью.\n\nВ пределах 4” от Darkness' Embrace больше дружественных моделей с трейтом Nightmare, чем вражеских моделей."
-    },
-    resource: {
-      cost: 1,
-      en: "The active model removes X Damage, where X is equal to the number of enemy models suffering the Scared Status within 8” and LoS.",
-      ru: "Активная модель снимает X Damage, где X равен количеству вражеских моделей со Scared Status в пределах 8” и LoS."
-    }
-  },
-  {
-    id: "its-ok-to-be-afraid",
-    name: "IT'S OK TO BE AFRAID!",
-    img: "img/cards/scarecrow/its-ok-to-be-afraid.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Scarecrow"],
-    category: "crew",
-    phase: "III",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • When a friendly model Sets a Suspect, target that Suspect.\n\nScore if that Suspect is still in play when you return a Fear card to the Fear pile.",
-      ru: "Limited • Когда дружественная модель выставляет Suspect, выберите этот Suspect.\n\nЗасчитайте, если этот Suspect все еще в игре, когда вы возвращаете Fear card в Fear pile."
-    },
-    resource: {
-      cost: 0,
-      en: "Play this Resource when a model performs a Willpower roll (before rolling). If it is affected by the Insidious trait, it must make an Effort or fail the Willpower roll by 5.",
-      ru: "Разыграйте этот Resource, когда модель выполняет Willpower roll, до броска. Если она находится под действием трейта Insidious, она должна сделать Effort или провалить Willpower roll на 5."
-    }
-  },
-  {
-    id: "intoxicated-by-fear",
-    name: "INTOXICATED BY FEAR",
-    img: "img/cards/scarecrow/intoxicated-by-fear.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Scarecrow"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "When the opponent would resolve a Fear card, they target one of your models instead.",
-      ru: "Когда оппонент должен разрешить Fear card, вместо этого он выбирает целью одну из ваших моделей."
-    },
-    resource: {
-      cost: 1,
-      en: "An enemy model within 4” of a friendly model with the Nightmare trait suffers the Terror Status.",
-      ru: "Вражеская модель в пределах 4” от дружественной модели с трейтом Nightmare получает Terror Status."
-    }
-  },
-  {
-    id: "the-dawn-comes",
-    name: "THE DAWN COMES",
-    img: "img/cards/scarecrow/the-dawn-comes.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Scarecrow"],
-    category: "crew",
-    phase: "IV",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Your Fear pile has fewer than 12 cards.",
-      ru: "В вашей Fear pile меньше 12 карт."
-    },
-    resource: {
-      cost: "*",
-      en: "Burn 1 • Exception (Scored Pile) • Friendly models with the Nightmare trait gain +1 to Strength.",
-      ru: "Burn 1 • Exception (Scored Pile) • Дружественные модели с трейтом Nightmare получают +1 к Strength."
-    }
-  },
-  {
-    id: "test-patients",
-    name: "TEST PATIENTS",
-    img: "img/cards/scarecrow/test-patients.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Scarecrow"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • Each time a friendly model with the Nightmare trait inflicts Damage with an attack, place a success marker on this card.\n\nScore when this card has 5 success markers.",
-      ru: "Limited • Каждый раз, когда дружественная модель с трейтом Nightmare наносит Damage атакой, положите маркер успеха на эту карту.\n\nЗасчитайте, когда на этой карте 5 маркеров успеха."
-    },
-    resource: {
-      cost: 1,
-      en: "Move an enemy model suffering the Scared Status 4” towards a friendly model with the Psychologist trait.",
-      ru: "Передвиньте вражескую модель со Scared Status на 4” к дружественной модели с трейтом Psychologist."
-    }
-  },
-  {
-    id: "spooky-presence",
-    name: "SPOOKY PRESENCE",
-    img: "img/cards/scarecrow/spooky-presence.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Scarecrow"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "A friendly model with the Criminal or Psychiatrist trait that no enemy model can see at the start of its activation Reveals an enemy Suspect.",
-      ru: "Дружественная модель с трейтом Criminal или Psychiatrist, которую не видит ни одна вражеская модель в начале ее активации, Reveals вражеский Suspect."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 1 • Place a friendly model with Rank {RANK_HENCHMAN_ICON} and the Criminal or Psychiatrist trait, that has been removed as a Casualty in contact with a target friendly model with the Nightmare trait. Remove the target from the game permanently.",
-      ru: "Burn 1 • Разместите дружественную модель ранга {RANK_HENCHMAN_ICON} с трейтом Criminal или Psychiatrist, которая была удалена как Casualty, в контакте с выбранной дружественной моделью с трейтом Nightmare. Удалите выбранную модель из игры навсегда."
-    }
-  },
-  {
-    id: "kill-them-twice",
-    name: "KILL THEM TWICE",
-    img: "img/cards/two-face/kill-them-twice.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Two-Face"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Twisted Side • A friendly model with a friendly Suspect within 4” inflicts KO or removes an enemy model as a Casualty.",
-      ru: "Twisted Side • Дружественная модель с дружественным Suspect в пределах 4” наносит KO или удаляет вражескую модель как Casualty."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 1 • Search your Objective deck and Reveal a Coin card. Shuffle your deck and play that Coin card.",
-      ru: "Burn 1 • Найдите в Objective deck и Reveal Coin card. Перемешайте колоду и разыграйте эту Coin card."
-    }
-  },
-  {
-    id: "two-make-this-better",
-    name: "TWO MAKE THIS BETTER",
-    img: "img/cards/two-face/two-make-this-better.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Two-Face"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Good Side • A friendly model Sets a Suspect within 4” of an enemy model and another friendly Suspect is within 4” of an enemy model.",
-      ru: "Good Side • Дружественная модель выставляет Suspect в пределах 4” от вражеской модели, и другой дружественный Suspect находится в пределах 4” от вражеской модели."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 1 • Search your Objective deck and Reveal a Coin card. Shuffle your deck and play that Coin card.",
-      ru: "Burn 1 • Найдите в Objective deck и Reveal Coin card. Перемешайте колоду и разыграйте эту Coin card."
-    }
-  },
-  {
-    id: "the-gamble",
-    name: "THE GAMBLE",
-    img: "img/cards/two-face/the-gamble.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Two-Face"],
-    category: "crew",
-    phase: "III",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • Set 2 Gamble Event markers on Ground Level outside of any DZ and more than 5” away from the edge of the Gaming Area and at least 10” away between them. Place a Timer 1D6 on this card. When it is reduced to 0:\n\nGood Side • Score if each Gamble marker has a friendly Suspect within 4”.\n\nTwisted Side • Score if there are no enemy Suspects within 4” of either Gamble marker.",
-      ru: "Limited • Разместите 2 Gamble Event markers на Ground Level вне любой DZ, дальше чем на 5” от края Gaming Area и на расстоянии как минимум 10” друг от друга. Положите Timer 1D6 на эту карту. Когда он снижен до 0:\n\nGood Side • Засчитайте, если у каждого Gamble marker есть дружественный Suspect в пределах 4”.\n\nTwisted Side • Засчитайте, если в пределах 4” от любого Gamble marker нет вражеских Suspects."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 1 • Active model gains 1 Extra Special Action. Cannot repeat the same Special Action.",
-      ru: "Burn 1 • Активная модель получает 1 Extra Special Action. Нельзя повторить тот же Special Action."
-    }
-  },
-  {
-    id: "heads-or-heads",
-    name: "HEADS OR HEADS",
-    img: "img/cards/two-face/heads-or-heads.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Two-Face"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Twisted Side • A friendly model inflicts 4 Damage targeting a model that has Audacity.",
-      ru: "Twisted Side • Дружественная модель наносит 4 Damage, выбирая целью модель с Audacity."
-    },
-    resource: {
-      cost: 1,
-      en: "Good Side • The active model may place or reveal a Suspect marker within 3” and LoS instead of in contact this activation.\n\nTwisted Side • A model within 4” of a friendly Suspect counts as having waited 1 round for the purpose of the Reload trait.",
-      ru: "Good Side • Активная модель может place или reveal Suspect marker в пределах 3” и LoS вместо контакта в эту активацию.\n\nTwisted Side • Модель в пределах 4” от дружественного Suspect считается ожидавшей 1 раунд для целей трейта Reload."
-    }
-  },
-  {
-    id: "the-balance-of-justice",
-    name: "THE BALANCE OF JUSTICE",
-    img: "img/cards/two-face/the-balance-of-justice.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Two-Face"],
-    category: "crew",
-    phase: "II",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Twisted Side • An even number of models (not 0) are removed from the game as Casualties this round.\n\nGood Side • There is an even number of enemy Suspects in Play.",
-      ru: "Twisted Side • Четное количество моделей, но не 0, удалено из игры как Casualties в этом раунде.\n\nGood Side • В игре четное количество вражеских Suspects."
-    },
-    resource: {
-      cost: 1,
-      en: "Good Side • Move a marker 4”.\n\nTwisted Side • Cancel an Objective card used as a Resource.",
-      ru: "Good Side • Передвиньте marker на 4”.\n\nTwisted Side • Отмените Objective card, использованную как Resource."
-    }
-  },
-  {
-    id: "time-bomb",
-    name: "TIME BOMB",
-    img: "img/cards/two-face/time-bomb.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Two-Face"],
-    category: "crew",
-    phase: "III",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Twisted Side • When a friendly model Reveals an enemy Suspect, place an Explosive template on a Suspect and another on a friendly Suspect. Affected models suffer {BLOOD_ICON}.\n\nScore if both templates inflict Damage on enemy models.",
-      ru: "Twisted Side • Когда дружественная модель Reveals вражеский Suspect, поместите Explosive template на Suspect и еще один на дружественный Suspect. Затронутые модели получают {BLOOD_ICON}.\n\nЗасчитайте, если оба шаблона наносят Damage вражеским моделям."
-    },
-    resource: {
-      cost: 1,
-      en: "After you make a dice roll, change the result of one of the dice to match another die in the same roll.",
-      ru: "После того как вы сделали dice roll, измените результат одного кубика так, чтобы он совпал с другим кубиком в этом же броске."
-    }
-  },
-  {
-    id: "closing-argument",
-    name: "CLOSING ARGUMENT",
-    img: "img/cards/two-face/closing-argument.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Two-Face"],
-    category: "crew",
-    phase: "III",
-    value: "3 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Good Side • Play when a friendly model Sets a Suspect. Place a Timer 1D6 on 2 friendly Suspects that are within 4” of a Sewer or Lamppost. Roll only once.\n\nScore if both Numeric counters are reduced to 0.",
-      ru: "Good Side • Разыграйте, когда дружественная модель выставляет Suspect. Положите Timer 1D6 на 2 дружественных Suspects, которые находятся в пределах 4” от Sewer или Lamppost. Бросок делается только один раз.\n\nЗасчитайте, если оба Numeric counters снижены до 0."
-    },
-    resource: {
-      cost: 1,
-      en: "A model with a friendly Suspect within 4” adds 1 die to a Ranged Attack dice roll.",
-      ru: "Модель с дружественным Suspect в пределах 4” добавляет 1 кубик к Ranged Attack dice roll."
-    }
-  },
-  {
-    id: "two-faces-of-the-coin",
-    name: "TWO FACES OF THE COIN",
-    img: "img/cards/two-face/two-faces-of-the-coin.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Two-Face"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Good Side • Have an even number of friendly Suspects in play.",
-      ru: "Good Side • В игре четное количество дружественных Suspects."
-    },
-    resource: {
-      cost: 1,
-      en: "Burn 1 • Set a Coin Event marker in contact with a model and place this card aside. Models within 4” of the marker gain:\n\nGood Side • Friendly models roll 2 additional dice while Defending.\n\nTwisted Side • Enemy models roll 2 fewer dice while Defending.\n\nWhen an enemy model Sets a Suspect in contact with this Event remove it and discard this card.",
-      ru: "Burn 1 • Разместите Coin Event marker в контакте с моделью и отложите эту карту. Модели в пределах 4” от маркера получают:\n\nGood Side • Дружественные модели бросают 2 дополнительных кубика при защите.\n\nTwisted Side • Вражеские модели бросают на 2 кубика меньше при защите.\n\nКогда вражеская модель выставляет Suspect в контакте с этим Event, уберите его и сбросьте эту карту."
-    }
-  },
-  {
-    id: "double-or-nothing",
-    name: "DOUBLE OR NOTHING",
-    img: "img/cards/two-face/double-or-nothing.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Two-Face"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Good Side • A friendly model with an Audacity marker Sets a Suspect within 4” of 2 enemy models.",
-      ru: "Good Side • Дружественная модель с Audacity marker выставляет Suspect в пределах 4” от 2 вражеских моделей."
-    },
-    resource: {
-      cost: 2,
-      en: "Burn 0 • When scoring an Objective, treat the Coin card as the other side.",
-      ru: "Burn 0 • Когда засчитываете Objective, считайте Coin card другой стороной."
-    }
-  },
-  {
-    id: "fast-allegation",
-    name: "FAST ALLEGATION",
-    img: "img/cards/two-face/fast-allegation.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Two-Face"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 4,
-    text: {
-      en: "Good Side • The active friendly model Sets a Suspect more than 4” from its original position.\n\nTwisted Side • The active friendly model Moves, then scores at least 1 successful hit with a Ranged attack.",
-      ru: "Good Side • Активная дружественная модель выставляет Suspect дальше чем на 4” от своей исходной позиции.\n\nTwisted Side • Активная дружественная модель Moves, затем получает как минимум 1 successful hit Ranged attack."
-    },
-    resource: {
-      cost: 1,
-      en: "Search your Objective deck and Reveal a Coin card. Shuffle your deck and play that Coin card.",
-      ru: "Найдите в Objective deck и Reveal Coin card. Перемешайте колоду и разыграйте эту Coin card."
-    }
-  },
-  {
-    id: "punishment",
-    name: "PUNISHMENT",
-    img: "img/cards/two-face/punishment.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Two-Face"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Twisted Side • Limited • Place a success marker on this card for each enemy model removed as Casualty from the game (max of 4). When a friendly model Reveals an enemy Suspect or removes an enemy model as a Casualty, add 1 success marker.\n\nScore when this card has 6 success markers.",
-      ru: "Twisted Side • Limited • Положите маркер успеха на эту карту за каждую вражескую модель, удаленную из игры как Casualty, максимум 4. Когда дружественная модель Reveals вражеский Suspect или удаляет вражескую модель как Casualty, добавьте 1 маркер успеха.\n\nЗасчитайте, когда на этой карте 6 маркеров успеха."
-    },
-    resource: {
-      cost: 0,
-      en: "Target a non active model. Target may play a Resource in his next activation without paying its Resource Cost.",
-      ru: "Выберите неактивную модель. Цель может разыграть Resource в своей следующей активации без оплаты Resource Cost."
-    }
-  },
-  {
-    id: "the-odds",
-    name: "THE ODDS",
-    img: "img/cards/two-face/the-odds.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Two-Face"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • When you play a Side card, place a success marker if it is the Good Side or a failure marker if it is the Twisted Side.\n\nGood Side • Score if this card has at least 3 success markers.\n\nTwisted Side • Score if this card has at least 3 failure markers.",
-      ru: "Limited • Когда вы разыгрываете Side card, положите маркер успеха, если это Good Side, или маркер провала, если это Twisted Side.\n\nGood Side • Засчитайте, если на этой карте как минимум 3 маркера успеха.\n\nTwisted Side • Засчитайте, если на этой карте как минимум 3 маркера провала."
-    },
-    resource: {
-      cost: 1,
-      en: "Reveal and Discard the top card of your Objective deck. If it has Good Side on it the active model gains 1 {+DEF_ICON}. If it has Twisted Side on it the active model gains +1 to Ranged Attack dice rolls this activation.",
-      ru: "Reveal и Discard верхнюю карту вашей Objective deck. Если на ней есть Good Side, активная модель получает 1 {+DEF_ICON}. Если на ней есть Twisted Side, активная модель получает +1 к Ranged Attack dice rolls в эту активацию."
-    }
-  },
-  {
-    id: "dark-multiverse-corruption",
-    name: "DARK MULTIVERSE CORRUPTION",
-    img: "img/cards/batman-who-laughs/dark-multiverse-corruption.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Batman Who Laughs"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Play when a friendly model Sets a Suspect. That Suspect is also a Corruption marker.\n\nThe marker is in play.\n\nA model that Reveals a Corruption marker gains an Infected counter.",
-      ru: "Разыграйте, когда дружественная модель выставляет Suspect. Этот Suspect также считается Corruption marker.\n\nЭтот marker находится в игре.\n\nМодель, которая Reveals Corruption marker, получает Infected counter."
-    },
-    resource: {
-      cost: 2,
-      en: "An enemy with an Infected counter within 8” and LoS of the active friendly model suffers the Hypnotize Status.",
-      ru: "Вражеская модель с Infected counter в пределах 8” и LoS от активной дружественной модели получает Hypnotize Status."
-    }
-  },
-  {
-    id: "whispered-words",
-    name: "WHISPERED WORDS",
-    img: "img/cards/batman-who-laughs/whispered-words.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Batman Who Laughs"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 4,
-    text: {
-      en: "A friendly model Sets a Suspect within 4” of an enemy model. Then that enemy gains an Infected counter.",
-      ru: "Дружественная модель выставляет Suspect в пределах 4” от вражеской модели. Затем эта вражеская модель получает Infected counter."
-    },
-    resource: {
-      cost: 0,
-      en: "Burn 1 • Remove an Infected counter from an enemy within 4” of the active model. The active model removes 2 Damage.",
-      ru: "Burn 1 • Уберите Infected counter с врага в пределах 4” от активной модели. Активная модель убирает 2 Damage."
-    }
-  },
-  {
-    id: "my-sons-kill",
-    name: "MY SONS... KILL!",
-    img: "img/cards/batman-who-laughs/my-sons-kill.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Batman Who Laughs"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 4,
-    text: {
-      en: "A friendly model without Audacity inflicts Damage on an enemy model with Audacity.\n\nThat enemy model gains an Infected counter.",
-      ru: "Дружественная модель без Audacity наносит Damage вражеской модели с Audacity.\n\nЭта вражеская модель получает Infected counter."
-    },
-    resource: {
-      cost: 1,
-      en: "A model without an Audacity may perform an additional Action (cannot repeat the same action).",
-      ru: "Модель без Audacity может выполнить дополнительное Action. Нельзя повторить то же самое action."
-    }
-  },
-  {
-    id: "crow",
-    name: "CROW",
-    img: "img/cards/batman-who-laughs/crow.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Batman Who Laughs"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "During a friendly model's activation, an enemy model with {BLOOD_ICON} Damage is targeted with an Attack and suffers KO. That model removes all {BLOOD_ICON} Damage.\n\nThat enemy model gains an Infected counter.",
-      ru: "Во время активации дружественной модели вражеская модель с {BLOOD_ICON} Damage становится целью Attack и получает KO. Эта модель убирает весь {BLOOD_ICON} Damage.\n\nЭта вражеская модель получает Infected counter."
-    },
-    resource: {
-      cost: 1,
-      en: "During a friendly model's activation, target a friendly model with Audacity that has not activated. The target gives its Audacity to a friendly model that has already activated and did not have Audacity. The target immediately performs a Movement and an Attack action in that order.",
-      ru: "Во время активации дружественной модели выберите дружественную модель с Audacity, которая еще не активировалась. Цель передает свою Audacity дружественной модели, которая уже активировалась и не имела Audacity. Цель немедленно выполняет Movement и Attack action в этом порядке."
-    }
-  },
-  {
-    id: "something-twisted-and-wrong",
-    name: "SOMETHING TWISTED AND WRONG",
-    img: "img/cards/batman-who-laughs/something-twisted-and-wrong.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Batman Who Laughs"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Limited • When an enemy model receives an Infected counter, place a {OBJECTIVE_CROSS_ICON} on this card.\n\nScore when this card has 4 {OBJECTIVE_CROSS_ICON}.",
-      ru: "Limited • Когда вражеская модель получает Infected counter, положите {OBJECTIVE_CROSS_ICON} на эту карту.\n\nЗасчитайте, когда на этой карте 4 {OBJECTIVE_CROSS_ICON}."
-    },
-    resource: {
-      cost: "0*",
-      en: "Burn 1 • Freed",
-      ru: "Burn 1 • Freed"
-    }
-  },
-  {
-    id: "im-you",
-    name: "I'M YOU",
-    img: "img/cards/batman-who-laughs/im-you.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Batman Who Laughs"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Play when a friendly model Reveals an enemy Suspect.\n\nThat model is within the enemy DZ.\n\nWhen scored, an enemy model gains an Infected counter.",
-      ru: "Разыграйте, когда дружественная модель Reveals вражеский Suspect.\n\nЭта модель находится во вражеской DZ.\n\nКогда карта засчитана, вражеская модель получает Infected counter."
-    },
-    resource: {
-      cost: "0*",
-      en: "Burn 1 • Freed",
-      ru: "Burn 1 • Freed"
-    }
-  },
-  {
-    id: "sleeper-agents",
-    name: "SLEEPER AGENTS",
-    img: "img/cards/batman-who-laughs/sleeper-agents.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Batman Who Laughs"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "Play when a friendly model Sets a Suspect. It is also a Sleeper Agent marker with Timer 1D3+2. At the end of each subsequent model's activation Move this marker a full 1D6” directly towards that model. When this numeric counter is reduced to 0 or this Suspect would be removed, target an enemy model within 2” of it. That model gains an Infected counter.\n\nScore if a model is targeted and the counter is reduced to 0.",
-      ru: "Разыграйте, когда дружественная модель выставляет Suspect. Он также считается Sleeper Agent marker с Timer 1D3+2. В конце каждой последующей активации модели Move этот marker на полный 1D6” прямо к этой модели. Когда этот numeric counter снижен до 0 или этот Suspect должен быть удален, выберите вражескую модель в пределах 2” от него. Эта модель получает Infected counter.\n\nЗасчитайте, если модель была выбрана целью и counter снижен до 0."
-    },
-    resource: {
-      cost: 1,
-      en: "At the start of a friendly model's activation, place it where no enemy model can draw LoS and is not affected by the Illuminated rule.",
-      ru: "В начале активации дружественной модели разместите ее там, где ни одна вражеская модель не может провести LoS, и она не находится под действием Illuminated rule."
-    }
-  },
-  {
-    id: "big-cosmic-joke",
-    name: "BIG COSMIC JOKE",
-    img: "img/cards/batman-who-laughs/big-cosmic-joke.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Batman Who Laughs"],
-    category: "crew",
-    phase: "III",
-    value: "3 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Limited • When a model without Audacity does not perform an Attack action during its activation, place an O marker on this card. When an enemy model with Audacity performs a Manipulate action, place a {OBJECTIVE_CROSS_ICON} on this card.\n\nThis card has more O markers than {OBJECTIVE_CROSS_ICON}.",
-      ru: "Limited • Когда модель без Audacity не выполняет Attack action во время своей активации, положите O marker на эту карту. Когда вражеская модель с Audacity выполняет Manipulate action, положите {OBJECTIVE_CROSS_ICON} на эту карту.\n\nНа этой карте больше O markers, чем {OBJECTIVE_CROSS_ICON}."
-    },
-    resource: {
-      cost: 1,
-      en: "Target an enemy model with the Poison Status. It immediately takes a Poison roll.",
-      ru: "Выберите вражескую модель с Poison Status. Она немедленно выполняет Poison roll."
-    }
-  },
-  {
-    id: "a-world-that-shouldnt-exist",
-    name: "A WORLD THAT SHOULDN'T EXIST",
-    img: "img/cards/batman-who-laughs/a-world-that-shouldnt-exist.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Batman Who Laughs"],
-    category: "crew",
-    phase: "II",
-    value: "3 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Target a friendly model without Audacity.\n\nThat model is within 4” of a Suspect.\n\nIt may be played at the start of an enemy's activation as a Phase III card, but the target is chosen by the opponent.",
-      ru: "Выберите дружественную модель без Audacity.\n\nЭта модель находится в пределах 4” от Suspect.\n\nЭту карту можно разыграть в начале активации врага как Phase III card, но цель выбирает оппонент."
-    },
-    resource: {
-      cost: "0*",
-      en: "Burn 1 • Freed",
-      ru: "Burn 1 • Freed"
-    }
-  },
-  {
-    id: "lights-fault",
-    name: "LIGHT'S FAULT",
-    img: "img/cards/batman-who-laughs/lights-fault.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Batman Who Laughs"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Limited • Play when an enemy model gains an Infected counter.\n\nScore if there are more models with Infected counters than enemy models without Infected counters.",
-      ru: "Limited • Разыграйте, когда вражеская модель получает Infected counter.\n\nЗасчитайте, если моделей с Infected counters больше, чем вражеских моделей без Infected counters."
-    },
-    resource: {
-      cost: 1,
-      en: "Target a Suspect within 4” of an enemy model with an Infected counter. Move it 4”.",
-      ru: "Выберите Suspect в пределах 4” от вражеской модели с Infected counter. Move его на 4”."
-    }
-  },
-  {
-    id: "you-dont-trust-anything",
-    name: "YOU DON'T TRUST ANYTHING",
-    img: "img/cards/batman-who-laughs/you-dont-trust-anything.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Batman Who Laughs"],
-    category: "crew",
-    phase: "II",
-    value: "2 VP",
-    maxPerDeck: 2,
-    text: {
-      en: "Assign numerical counters 1, 2, and 3 to enemy models. (These counters cannot be modified).\n\nScore if those models do not activate in ascending order (1, 2, 3).\n\nEach model that activates in ascending order gains an Infected counter.",
-      ru: "Назначьте numerical counters 1, 2 и 3 вражеским моделям. Эти counters нельзя изменять.\n\nЗасчитайте, если эти модели не активируются в возрастающем порядке (1, 2, 3).\n\nКаждая модель, которая активируется в возрастающем порядке, получает Infected counter."
-    },
-    resource: {
-      cost: 1,
-      en: "Exception (In Play) • Models with Audacity cannot make Efforts this activation.",
-      ru: "Exception (In Play) • Модели с Audacity не могут делать Efforts в эту активацию."
-    }
-  },
-  {
-    id: "take-a-good-look",
-    name: "TAKE A GOOD LOOK",
-    img: "img/cards/batman-who-laughs/take-a-good-look.jpg",
-    renderAsCardImage: true,
-    type: "Objective",
-    faction: ["Batman Who Laughs"],
-    category: "crew",
-    phase: "III",
-    value: "2 VP",
-    maxPerDeck: 3,
-    text: {
-      en: "A friendly model Reveals an enemy Suspect within 4” of an enemy model with an Infected counter.",
-      ru: "Дружественная модель Reveals вражеский Suspect в пределах 4” от вражеской модели с Infected counter."
-    },
-    resource: {
-      cost: 1,
-      en: "An active friendly model without Audacity Moves 4”.\n\nReduce the cost by 1 of this Resource if the active model is within 8” of an enemy with an Infected counter.",
-      ru: "Активная дружественная модель без Audacity Moves на 4”.\n\nУменьшите стоимость этого Resource на 1, если активная модель находится в пределах 8” от врага с Infected counter."
-    }
-  }
-];
-
-window.BMG_BUILDER_MANDATORY_CARDS = builderMandatoryCards;
-window.BMG_BUILDER_CARDS = builderCards;
-
 // ======================== ПРАВИЛА ЗАВИСИМОСТЕЙ МОДЕЛЕЙ ========================
 // Структура: { "Модель": { requiredModel: "Требуемая модель", trait: "Требуемый трейт (опционально)" } }
 // Модель будет скрыта в поиске и не может быть добавлена, пока не выполнена зависимость
 // Для сложных условий (or) можно указать requiredModels — массив требуемых моделей (нужна хотя бы одна)
 const modelDependencyRules = {
   // Batman Who Laughs
-  "Infected Who Laughs": { requiredModel: "The Batman Who Laughs" },
   "Robin Who Laughs": { requiredModel: "The Batman Who Laughs" },
   
   // Dark Knight Rises
@@ -3769,7 +46,7 @@ const modelDependencyRules = {
   "Gilda Dent": { requiredModel: "Two-Face" },
   
   // The Riddler (Jim Carrey / Riddler 1995)
-  "Two-Face": { requiredModel: "The Riddler", faction: "The Riddler" },
+  "Two-Face": { requiredModel: "The Riddler" },
   
   // Batman Michael Keaton
   "Catwoman Michelle Pfeiffer": { requiredModel: "Batman Michael Keaton" },
@@ -3859,27 +136,6 @@ const equipmentByFaction = {
     { name: "Sergeant Training", fundingCost: 50, repCost: 0, maxPerCrew: 2, conditions: ["James Gordon"], effects: ["Model gains the Order rule."], isUnaffectedByBroken: true }
   ],
   "Bat Family": [
-    { name: "Always Prepared", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Henchman"], effects: ["When this model sets a Suspect, you may set a Thwart within 4\" of that Suspect."] },
-    { name: "Batclaw", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Model gains the Batclaw/Grapple-gun trait."] },
-    { name: "Handcuffs", fundingCost: 300, repCost: 0, maxPerCrew: 2, conditions: [], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Model gains the Arrest trait."] },
-    { name: "Investigator", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Model gains the Investigator trait."] },
-    { name: "Magazine", fundingCost: 300, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Model gains one Ammunition for one weapon."] },
-    { name: "Moment of Glory", fundingCost: 150, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Once per game, at the start of the activation of this model, you may use Moment of Glory. This model benefits from the Boss's Inspire trait exactly as if it held Rank: Henchman until the end of the round."] },
-    { name: "Reconnaissance", fundingCost: 300, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Model gains the Undercover trait."] },
-    { name: "Heroic Jump", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Bruce Wayne", "Model has Teen Titans trait cannot purchase"], targetModels: ["Henchman"], effects: ["Model gains the Super Jump trait."] },
-    { name: "Upgraded Batsuit", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Bruce Wayne"], targetModels: ["Bruce Wayne"], effects: ["Model gains +1 Endurance."] },
-    { name: "Batman Inc.", fundingCost: 200, repCost: 3, maxPerCrew: 1, conditions: ["Bruce Wayne"], targetModels: ["Sidekick", "Free Agent"], effects: ["Model gains the Bat-Armor MKII trait. A model cannot have more than one Bat-Armor trait."] },
-    { name: "Martial Arts Training", fundingCost: 100, repCost: 2, maxPerCrew: 1, conditions: ["Bruce Wayne"], targetModels: ["Sidekick", "Free Agent"], effects: ["Model gains the Martial Artist trait."] },
-    { name: "Mentor", fundingCost: 100, repCost: 3, maxPerCrew: 1, conditions: ["Bruce Wayne"], targetModels: ["Sidekick", "Free Agent"], effects: ["Model gains the Hidden Boss trait."] },
-    { name: "Circus Training", fundingCost: 200, repCost: 5, maxPerCrew: 1, conditions: ["Dick Grayson"], targetModels: ["Sidekick", "Free Agent"], effects: ["Model gains the Acrobat trait."] },
-    { name: "Command Center Support", fundingCost: 250, repCost: 0, maxPerCrew: 1, conditions: ["Oliver Queen"], targetModels: ["Henchman"], effects: ["Model gains the Scheming (2) trait."] },
-    { name: "Tactical Gloves", fundingCost: 50, repCost: 0, maxPerCrew: 1, conditions: ["Oliver Queen"], targetModels: ["Oliver Queen"], effects: ["Model gains the Reinforced Gloves trait."] },
-    { name: "The Leader", fundingCost: 0, repCost: 0, maxPerCrew: 1, conditions: ["Alias: Batman (Multiverse) in crew"], targetModels: ["Batman Multiverse"], conflictsWith: ["The Shadows"], effects: ["Model gains the I'm a Symbol, Investigator, Stay in Formation, and Protect The Shadows traits."] },
-    { name: "The Shadows", fundingCost: 0, repCost: 0, maxPerCrew: 1, conditions: ["Alias: Batman (Multiverse) in crew"], targetModels: ["Batman Multiverse"], conflictsWith: ["The Leader"], effects: ["Model gains the Bat Beacon, Master of Stealth, Shadowed Nightmare, and Shadows Agent traits."] },
-    { name: "Improved Bat-Armor", fundingCost: 0, repCost: 0, maxPerCrew: 1, conditions: ["Lucius Fox", "Model has Bat-Armor MK II trait"], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["This model gains +1 to its Defense rolls while it also benefits from the Bat-Armor MKII trait."] },
-    { name: "Improved Batclaw", fundingCost: 0, repCost: 0, maxPerCrew: 1, conditions: ["Lucius Fox", "Model has Batclaw/Grapple Gun trait"], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["This model's Batclaw/Grapple Gun trait provides +8\" when used instead of +6\"."] },
-    { name: "Improved Batlings", fundingCost: 0, repCost: 0, maxPerCrew: 1, conditions: ["Lucius Fox", "Weapon has Throwing trait"], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["When this model attacks with a weapon with the Throwing trait, it gains +1 to Hit and the Mechanical trait."] },
-    { name: "Improved Reinforced Gloves", fundingCost: 0, repCost: 0, maxPerCrew: 1, conditions: ["Lucius Fox", "Model has Reinforced Gloves trait"], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["When this model attacks unarmed and uses the Reinforced Gloves trait, its attacks gain the Overwhelming trait."] },
     { name: "The Turning", fundingCost: 200, repCost: 10, maxPerCrew: 4, conditions: ["Vampire Queen in crew"], effects: ["Model gains the Vampire rule."] }
   ],
   "Joker": [
@@ -4017,24 +273,24 @@ const equipmentByFaction = {
   ],
   "Birds of Prey": [
     { name: "Spray Can", fundingCost: 150, repCost: 0, maxPerCrew: 2, conditions: [], effects: ["Model gains 1 Spray Can."] },
-    { name: "Grapple-gun", fundingCost: 300, repCost: 0, maxPerCrew: 1, conditions: ["Plants cannot purchase"], effects: ["Model gains the Batclaw/Grapple-gun trait."] },
-    { name: "Camo Vest", fundingCost: 300, repCost: 0, maxPerCrew: 1, conditions: ["Plants cannot purchase"], effects: ["Model gains the Stealth rule."] },
-    { name: "Adaptive Planning", fundingCost: 200, repCost: 2, maxPerCrew: 2, conditions: ["Plants cannot purchase"], effects: ["Model gains the Adaptable trait."] },
+    { name: "Grapple-gun", fundingCost: 300, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Grapple-gun rule."] },
+    { name: "Camo Vest", fundingCost: 300, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Stealth rule."] },
+    { name: "Adaptive Planning", fundingCost: 150, repCost: 2, maxPerCrew: 2, conditions: [], effects: ["Model gains the Adaptable trait."] },
     { name: "Titanic Mutation", fundingCost: 150, repCost: 0, maxPerCrew: 2, conditions: [], effects: ["Model gains one Titan Dose."] },
-    { name: "Sense Mutation", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: ["Only Plants"], effects: ["Model gains the Night Vision trait."] },
+    { name: "Sense Mutation", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Night Vision rule."] },
     { name: "Extra Spores", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: ["Only Plants"], effects: ["+1 to Ammunition for one weapon."] },
     { name: "Spikes Mutation", fundingCost: 200, repCost: 0, maxPerCrew: 2, conditions: ["Only Plants"], effects: ["Model gains the Claws rule."] },
     { name: "Luminescent Mutation", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: ["Only Plants"], effects: ["Model gains the Lantern rule."] },
-    { name: "Large Roots", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Only Plants"], effects: ["Models moving within this model's action radius suffer Impaired Movement."] },
-    { name: "Smash 'n Grab", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Dr. Harleen Frances Quinzel", "Plants cannot purchase"], effects: ["Close Combat attacks gain the Steal trait."] },
-    { name: "Corrosive Blood", fundingCost: 50, repCost: 0, maxPerCrew: 3, conditions: ["Dr. Pamela Lillian Isley"], effects: ["When this model becomes a Casualty, all models in Contact must pass an Endurance roll or receive {BLOOD_ICON} Damage."] },
-    { name: "Mutation Serum", fundingCost: 200, repCost: 3, maxPerCrew: 1, conditions: ["Dr. Pamela Lillian Isley", "Plants cannot purchase"], effects: ["Model gains the Tough Skin and Desensitized traits."] },
-    { name: "Modified Pheromone", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: ["Dr. Pamela Lillian Isley", "Name: Dr. Pamela Lillian Isley"], effects: ["When this model uses the Control Pheromones trait, the targeted model adds 1 additional dice and adds all the 3 results together while taking that Hypnotize Willpower roll. If the target Efforts to add an additional die to the Willpower roll, then they must roll 4D6 and then choose 3 of them."] },
-    { name: "Ancient Plant", fundingCost: 200, repCost: 30, maxPerCrew: 1, conditions: ["Dr. Pamela Lillian Isley", "Only Plants"], effects: ["Invulnerability (1), Tough Skin, +1 skills (except Endurance), +3 Endurance, 6\" action radius."], isUnaffectedByBroken: true },
-    { name: "Watch Tower", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Barbara Gordon", "Plants cannot purchase"], effects: ["Model gains Exhaustive Planner rule."] },
-    { name: "Radio", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Barbara Gordon", "Plants cannot purchase"], effects: ["This model is always treated as though it were within range of it's Boss's Inspire trait."] },
-    { name: "Pitch Perfect Vocals", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Dinah Lance", "Name: Dinah Lance"], targetModels: ["Dinah Lance"], effects: ["Model gains the Mixed Combat Style trait."] },
-    { name: "Passage", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Alec Holland", "Eternal Option Required"], effects: ["Model gains the Undercover trait."] }
+    { name: "Large Roots", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Only Plants"], effects: ["Models within action radius suffer Impaired Movement."] },
+    { name: "Smash 'n Grab", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Dr. Harleen Quinzel"], effects: ["Close Combat attacks gain the Steal trait."] },
+    { name: "Corrosive Blood", fundingCost: 50, repCost: 0, maxPerCrew: 3, conditions: ["Dr. Pamela Lilian Isley"], effects: ["On casualty, contact models take 🩸 if fail Endurance."] },
+    { name: "Mutation Serum", fundingCost: 200, repCost: 3, maxPerCrew: 1, conditions: ["Dr. Pamela Lilian Isley"], effects: ["Model gains Tough Skin and Desensitized traits."] },
+    { name: "Modified Pheromones", fundingCost: 150, repCost: 5, maxPerCrew: 1, conditions: ["Dr. Pamela Lilian Isley"], targetModels: ["Leader", "Sidekick", "Free Agent"], effects: ["Control Pheromones targets 2 enemies."] },
+    { name: "Ancient Plants", fundingCost: 200, repCost: 40, maxPerCrew: 1, conditions: ["Dr. Pamela Lilian Isley"], effects: ["Invulnerability (1), Tough Skin, +1 skills (except Endurance), +3 Endurance, 6\" action radius."], isUnaffectedByBroken: true },
+    { name: "Watch Tower", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Barbara Gordon"], targetModels: ["Barbara Gordon"], effects: ["Model gains Exhaustive Planner rule."] },
+    { name: "Radio", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Barbara Gordon"], effects: ["Always within Boss's Inspire range."] },
+    { name: "Pitch Perfect Vocals", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Dinah Lance"], targetModels: ["Dinah Lance"], effects: ["Model gains the Mixed Combat Style trait."] },
+    { name: "Passage", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Alec Holland"], effects: ["Model gains the Undercover rule."] }
   ],
   "Organized Crime": [
     { name: "Magazine", fundingCost: 150, repCost: 0, maxPerCrew: 3, conditions: [], effects: ["+1 to Ammunition for one weapon."] },
@@ -4113,7 +369,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["GCPD"],
-    "img": "img/BatmanBushi.png",
+    "img": "https://veland55.github.io/btb/img/BatmanBushi.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -4144,6 +400,53 @@ const models = [
     ]
   },
 
+//New Models 18.05
+
+  {
+    "name": "The Penguin Crime Lord Rising",
+    "realname": "Oswald Chesterfield Cobblepot",
+    "base": "40mm",
+    "rep": 74,
+    "funding": 0,
+    "rank": ["Leader"],
+    "faction": ["Penguin"],
+    "img": "https://veland55.github.io/btb/img/ThePenguinCrimeLordRising.png",
+    "stats": {
+      "Attack": "3",
+      "Defense": "3",
+      "Strength": "5+",
+      "Movement": "8",
+      "Willpower": "7",
+      "Endurance": "7"
+    },
+    "traits": [
+      "Business Agent",
+      "Criminal Bonds",
+      "Drop It!",
+      "Empire of Lies",
+      "Handyman",
+      "Manipulative",
+      "Tough Guy",
+      "Underworld King",
+      "Protect Me!"
+    ],
+    "weapons": [
+      {
+        "name": "SMG",
+        "damage": "🩸🩸",
+        "rof": "4",
+        "ammo": "2",
+        "traits": "Firearm / S. Range"
+      },
+      {
+        "name": "Torture Tools",
+        "damage": "🩸★",
+        "rof": "-",
+        "ammo": "-",
+        "traits": "Handy / Steal"
+      }
+    ]
+  },
 
 //New Models 20.04
 
@@ -4155,7 +458,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Joker"],
-    "img": "img/HarleyQuinnArkhamKnight.png",
+    "img": "https://veland55.github.io/btb/img/HarleyQuinnArkhamKnight.png",
     "stats": {
       "Attack": "4",
       "Defense": "4",
@@ -4201,7 +504,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader", "Sidekick"],
     "faction": ["League of Shadows", "GCPD"],
-    "img": "img/WardenSharp.png",
+    "img": "https://veland55.github.io/btb/img/WardenSharp.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -4230,7 +533,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["Bat Family", "GCPD"],
-    "img": "img/DamienDarhk.png",
+    "img": "https://veland55.github.io/btb/img/DamienDarhk.png",
     "stats": {
       "Attack": 4,
       "Defense": 5,
@@ -4276,7 +579,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Joker"],
-    "img": "img/JokermobileArkhamKnight.png",
+    "img": "https://veland55.github.io/btb/img/JokermobileArkhamKnight.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -4321,7 +624,7 @@ const models = [
     "funding": 850,
     "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/HarleyQuinnGatlingBrute.png",
+    "img": "https://veland55.github.io/btb/img/HarleyQuinnGatlingBrute.png",
     "stats": {
       "Attack": "3",
       "Defense": "3",
@@ -4364,7 +667,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Bat Family"],
-    "img": "img/NightwingArkhamKnight.png",
+    "img": "https://veland55.github.io/btb/img/NightwingArkhamKnight.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -4412,7 +715,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Birds of Prey"],
-    "img": "img/PoisonIvyArkhamCity.png",
+    "img": "https://veland55.github.io/btb/img/PoisonIvyArkhamCity.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -4426,21 +729,10 @@ const models = [
       "Chlorokinesis",
       "Control Pheromones",
       "Elite Boss (Plants)",
-      "Gotham City Siren",
       "Mortal Kiss",
       "Poison Immunity",
       "Possessed",
-      "Scientific",
-      "The Song of the Sirens"
-    ],
-    "weapons": [
-      {
-        "name": "Sprinkling Spores",
-        "damage": "-",
-        "rof": "1+",
-        "ammo": "-",
-        "traits": "Expansive / Poison / Toxic (1)"
-      }
+      "Scientific"
     ]
   },
   {
@@ -4451,7 +743,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["GCPD"],
-    "img": "img/BatmanDarkKnightRises.png",
+    "img": "https://veland55.github.io/btb/img/BatmanDarkKnightRises.png",
     "stats": {
       "Attack": 4,
       "Defense": 5,
@@ -4493,7 +785,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/HarleyThug1.png",
+    "img": "https://veland55.github.io/btb/img/HarleyThug1.png",
     "stats": {
       "Attack": "3",
       "Defense": "2",
@@ -4526,7 +818,7 @@ const models = [
     "funding": 200,
     "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/HarleyThug2.png",
+    "img": "https://veland55.github.io/btb/img/HarleyThug2.png",
     "stats": {
       "Attack": "3",
       "Defense": "2",
@@ -4558,7 +850,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/HarleyThug3.png",
+    "img": "https://veland55.github.io/btb/img/HarleyThug3.png",
     "stats": {
       "Attack": "3",
       "Defense": "2",
@@ -4590,7 +882,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/HarleyThug4.png",
+    "img": "https://veland55.github.io/btb/img/HarleyThug4.png",
     "stats": {
       "Attack": "3",
       "Defense": "2",
@@ -4622,7 +914,7 @@ const models = [
     "funding": 250,
     "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/HarleyThug5.png",
+    "img": "https://veland55.github.io/btb/img/HarleyThug5.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -4653,7 +945,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/HarleyThug6.png",
+    "img": "https://veland55.github.io/btb/img/HarleyThug6.png",
     "stats": {
       "Attack": "3",
       "Defense": "2",
@@ -4686,7 +978,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/HarleyThug7.png",
+    "img": "https://veland55.github.io/btb/img/HarleyThug7.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -4718,7 +1010,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/BatmobileArkhamKnight.png",
+    "img": "https://veland55.github.io/btb/img/BatmobileArkhamKnight.png",
     "stats": {
       "Attack": "4",
       "Defense": "3",
@@ -4764,7 +1056,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["GCPD", "Unknown"],
     "rivals": ["Bat Family"],
-    "img": "img/CatwomanDarkKnightRises.png",
+    "img": "https://veland55.github.io/btb/img/CatwomanDarkKnightRises.png",
     "stats": {
       "Attack": "4",
       "Defense": "5",
@@ -4808,7 +1100,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/BatmanArkhamKnight.png",
+    "img": "https://veland55.github.io/btb/img/BatmanArkhamKnight.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -4856,7 +1148,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/BatmanArkhamCity.png",
+    "img": "https://veland55.github.io/btb/img/BatmanArkhamCity.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -4868,7 +1160,7 @@ const models = [
     "traits": [
       "Bat Cape",
       "Bat Family",
-      "Bat-Armor MK I",
+      "Bat-Armor MKI",
       "Batclaw",
       "Counter Attack",
       "Detective",
@@ -4904,7 +1196,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Bane"],
-    "img": "img/MirandaTate.png",
+    "img": "https://veland55.github.io/btb/img/MirandaTate.png",
     "stats": {
       "Attack": "4",
       "Defense": "4",
@@ -4941,7 +1233,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["GCPD"],
-    "img": "img/GreenArrowArrow.png",
+    "img": "https://veland55.github.io/btb/img/GreenArrowArrow.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -4988,7 +1280,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bane"],
-    "img": "img/ArkhamKnight.png",
+    "img": "https://veland55.github.io/btb/img/ArkhamKnight.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -5034,7 +1326,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["Bat Family", "GCPD"],
-    "img": "img/MadHatterArkhamKnight.png",
+    "img": "https://veland55.github.io/btb/img/MadHatterArkhamKnight.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -5073,7 +1365,7 @@ const models = [
   "funding": 200,
   "rank": ["Henchman"],
   "faction": ["League of Shadows"],
-  "img": "img/RebelArmoredAssassin.png",
+  "img": "https://veland55.github.io/btb/img/RebelArmoredAssassin.png",
   "stats": {
     "Attack": 3,
     "Defense": 4,
@@ -5115,7 +1407,7 @@ const models = [
   "funding": 0,
   "rank": ["Henchman"],
   "faction": ["League of Shadows"],
-  "img": "img/RebelMaskedAssassin2.png",
+  "img": "https://veland55.github.io/btb/img/RebelMaskedAssassin2.png",
   "stats": {
     "Attack": 3,
     "Defense": 4,
@@ -5149,7 +1441,7 @@ const models = [
   "funding": 0,
   "rank": ["Henchman"],
   "faction": ["League of Shadows"],
-  "img": "img/RebelMonk.png",
+  "img": "https://veland55.github.io/btb/img/RebelMonk.png",
   "stats": {
     "Attack": 3,
     "Defense": 3,
@@ -5184,7 +1476,7 @@ const models = [
   "funding": 150,
   "rank": ["Henchman"],
   "faction": ["League of Shadows"],
-  "img": "img/RebelMaskedAssassin1.png",
+  "img": "https://veland55.github.io/btb/img/RebelMaskedAssassin1.png",
   "stats": {
     "Attack": 3,
     "Defense": 4,
@@ -5225,7 +1517,7 @@ const models = [
   "funding": 0,
   "rank": ["Henchman"],
   "faction": ["League of Shadows"],
-  "img": "img/ShadowArmoredAssassin.png",
+  "img": "https://veland55.github.io/btb/img/ShadowArmoredAssassin.png",
   "stats": {
     "Attack": 3,
     "Defense": 3,
@@ -5260,7 +1552,7 @@ const models = [
   "funding": 200,
   "rank": ["Henchman"],
   "faction": ["League of Shadows"],
-  "img": "img/ArmoredAssassin.png",
+  "img": "https://veland55.github.io/btb/img/ArmoredAssassin.png",
   "stats": {
     "Attack": 3,
     "Defense": 3,
@@ -5301,7 +1593,7 @@ const models = [
   "funding": 0,
   "rank": ["Henchman"],
   "faction": ["League of Shadows"],
-  "img": "img/GuardianMonk.png",
+  "img": "https://veland55.github.io/btb/img/GuardianMonk.png",
   "stats": {
     "Attack": 3,
     "Defense": 3,
@@ -5337,7 +1629,7 @@ const models = [
   "funding": 0,
   "rank": ["Leader"],
   "faction": ["League of Shadows"],
-  "img": "img/NyssaAlGhulArkhamKnight.png",
+  "img": "https://veland55.github.io/btb/img/NyssaAlGhulArkhamKnight.png",
   "stats": {
     "Attack": 4,
     "Defense": 4,
@@ -5384,7 +1676,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader", "Sidekick"],
     "faction": ["League of Shadows"],
-    "img": "img/HenryDucard.png",
+    "img": "https://veland55.github.io/btb/img/HenryDucard.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -5427,7 +1719,7 @@ const models = [
     "funding": 200,
     "rank": ["Henchman"],
     "faction": ["Bat Family"],
-    "img": "img/RavenTrigonDaughter.png",
+    "img": "https://veland55.github.io/btb/img/RavenTrigonDaughter.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -5472,7 +1764,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["League of Shadows"],
-    "img": "img/RasalGhulDecoy.png",
+    "img": "https://veland55.github.io/btb/img/RasalGhulDecoy.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -5508,7 +1800,7 @@ const models = [
   "funding": 100,
   "rank": ["Henchman"],
   "faction": ["League of Shadows"],
-  "img": "img/LeagueOfShadowsNinja1.png",
+  "img": "https://veland55.github.io/btb/img/LeagueOfShadowsNinja1.png",
   "stats": {
     "Attack": 4,
     "Defense": 4,
@@ -5548,7 +1840,7 @@ const models = [
   "funding": 300,
   "rank": ["Henchman"],
   "faction": ["League of Shadows"],
-  "img": "img/LeagueOfShadowsNinja3.png",
+  "img": "https://veland55.github.io/btb/img/LeagueOfShadowsNinja3.png",
   "stats": {
     "Attack": 3,
     "Defense": 4,
@@ -5589,7 +1881,7 @@ const models = [
   "funding": 0,
   "rank": ["Henchman"],
   "faction": ["League of Shadows"],
-  "img": "img/BruceBatmanBegins.png",
+  "img": "https://veland55.github.io/btb/img/BruceBatmanBegins.png",
   "stats": {
     "Attack": 4,
     "Defense": 5,
@@ -5626,7 +1918,7 @@ const models = [
   "funding": 300,
   "rank": ["Sidekick"],
   "faction": ["GCPD"],
-  "img": "img/GordonInfiltrate.png",
+  "img": "https://veland55.github.io/btb/img/GordonInfiltrate.png",
   "stats": {
     "Attack": 3,
     "Defense": 3,
@@ -5667,7 +1959,7 @@ const models = [
   "funding": 0,
   "rank": ["Henchman"],
   "faction": ["League of Shadows"],
-  "img": "img/LeagueOfShadowsNinja2.png",
+  "img": "https://veland55.github.io/btb/img/LeagueOfShadowsNinja2.png",
   "stats": {
     "Attack": 4,
     "Defense": 4,
@@ -5705,7 +1997,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["GCPD"],
-    "img": "img/TheDrifterRobertPattinson.png",
+    "img": "https://veland55.github.io/btb/img/TheDrifterRobertPattinson.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -5736,7 +2028,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["GCPD"],
-    "img": "img/BatmanYearOne.png",
+    "img": "https://veland55.github.io/btb/img/BatmanYearOne.png",
     "stats": {
       "Attack": 4,
       "Defense": 5,
@@ -5782,7 +2074,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["GCPD"],
-    "img": "img/BatmanRobertPattinson.png",
+    "img": "https://veland55.github.io/btb/img/BatmanRobertPattinson.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -5828,7 +2120,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["GCPD"],
-    "img": "img/BatmanOnBikeRobertPattinson.png",
+    "img": "https://veland55.github.io/btb/img/BatmanOnBikeRobertPattinson.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -5868,7 +2160,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["GCPD"],
-    "img": "img/Batman1997.png",
+    "img": "https://veland55.github.io/btb/img/Batman1997.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -5913,7 +2205,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["GCPD"],
-    "img": "img/BatmanMichaelKeaton.png",
+    "img": "https://veland55.github.io/btb/img/BatmanMichaelKeaton.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -5959,7 +2251,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["GCPD"],
-    "img": "img/BatmanRedRain.png",
+    "img": "https://veland55.github.io/btb/img/BatmanRedRain.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -5999,7 +2291,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["GCPD"],
-    "img": "img/BatmanAdamWest.png",
+    "img": "https://veland55.github.io/btb/img/BatmanAdamWest.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -6043,7 +2335,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["GCPD"],
-    "img": "img/TheWhiteKnight.png",
+    "img": "https://veland55.github.io/btb/img/TheWhiteKnight.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -6070,7 +2362,7 @@ const models = [
     "funding": 150,
     "rank": ["Sidekick"],
     "faction": ["GCPD"],
-    "img": "img/AaronCash.png",
+    "img": "https://veland55.github.io/btb/img/AaronCash.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -6114,7 +2406,7 @@ const models = [
     "funding": 300,
     "rank": ["Sidekick"],
     "faction": ["GCPD"],
-    "img": "img/GreenArrowRebirth.png",
+    "img": "https://veland55.github.io/btb/img/GreenArrowRebirth.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -6151,7 +2443,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["GCPD"],
-    "img": "img/BatmanGaslight.png",
+    "img": "https://veland55.github.io/btb/img/BatmanGaslight.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -6192,7 +2484,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["GCPD"],
-    "img": "img/CommissionerGordon.png",
+    "img": "https://veland55.github.io/btb/img/CommissionerGordon.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -6232,7 +2524,7 @@ const models = [
     "funding": 100,
     "rank": ["Sidekick"],
     "faction": ["GCPD"],
-    "img": "img/RobinBurtWard.png",
+    "img": "https://veland55.github.io/btb/img/RobinBurtWard.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -6270,7 +2562,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["GCPD"],
-    "img": "img/BatmanDarkKnightRisesBatpod.png",
+    "img": "https://veland55.github.io/btb/img/BatmanDarkKnightRisesBatpod.png",
     "stats": {
       "Attack": 3,
       "Defense": 5,
@@ -6315,7 +2607,7 @@ const models = [
     "funding": 200,
     "rank": ["Sidekick"],
     "faction": ["GCPD"],
-    "img": "img/ChiefMackenzie.png",
+    "img": "https://veland55.github.io/btb/img/ChiefMackenzie.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -6349,7 +2641,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["GCPD"],
-    "img": "img/Robin1997.png",
+    "img": "https://veland55.github.io/btb/img/Robin1997.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -6389,7 +2681,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/BatmanMultiverse.png",
+    "img": "https://veland55.github.io/btb/img/BatmanMultiverse.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -6427,7 +2719,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bat Family"],
-    "img": "img/BatmanViking.png",
+    "img": "https://veland55.github.io/btb/img/BatmanViking.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -6465,7 +2757,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/BatmanFrankMillerOnPowerArmor.png",
+    "img": "https://veland55.github.io/btb/img/BatmanFrankMillerOnPowerArmor.png",
     "stats": {
       "Attack": 4,
       "Defense": 2,
@@ -6505,7 +2797,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bat Family"],
-    "img": "img/BatmanTheAnimatedSeries.png",
+    "img": "https://veland55.github.io/btb/img/BatmanTheAnimatedSeries.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -6549,7 +2841,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/BATMAN.png",
+    "img": "https://veland55.github.io/btb/img/Batman.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -6590,7 +2882,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick", "Free Agent"],
     "faction": ["Bat Family", "Free Agent"],
-    "img": "img/RobinTeenTitans.png",
+    "img": "https://veland55.github.io/btb/img/RobinTeenTitans.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -6628,51 +2920,6 @@ const models = [
     ]
   },
   {
-    "name": "Kid Flash",
-    "realname": "Wally West",
-    "base": "30mm",
-    "rep": 50,
-    "funding": 0,
-    "rank": ["Henchman"],
-    "faction": ["Bat Family"],
-    "img": "img/no.png",
-    "stats": {
-      "Attack": 3,
-      "Defense": 5,
-      "Strength": "3+",
-      "Movement": 10,
-      "Willpower": 5,
-      "Endurance": 5
-    },
-    "traits": [
-      "Always on the Move",
-      "Dodge",
-      "Drop It!",
-      "Fast (4)",
-      "Molecular Control (1)",
-      "Speed Force Master (1)",
-      "Speedster",
-      "Super Speed (2)",
-      "Teen Titans"
-    ],
-    "weapons": [
-      {
-        "name": "Speed Force Bolts",
-        "damage": "★",
-        "rof": 3,
-        "ammo": 5,
-        "traits": "Beam / S. Range / Silencer / Throwing / Speed Attack (2) / Fast Combo (1)"
-      },
-      {
-        "name": "Speed Attack",
-        "damage": "★",
-        "rof": "-",
-        "ammo": "-",
-        "traits": "Crushing / Overwhelming / Fast Combo (1)"
-      }
-    ]
-  },
-  {
     "name": "Batman The Gotham City Knight",
     "realname": "Bruce Wayne",
     "base": "40mm",
@@ -6680,7 +2927,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/BatmanTheGothamCityKnight.png",
+    "img": "https://veland55.github.io/btb/img/BatmanTheGothamCityKnight.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -6719,7 +2966,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bat Family"],
-    "img": "img/BatmanDeathMetal.png",
+    "img": "https://veland55.github.io/btb/img/BatmanDeathMetal.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -6767,7 +3014,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/BatmanFrankMillerOnHorse.png",
+    "img": "https://veland55.github.io/btb/img/BatmanFrankMillerOnHorse.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -6808,7 +3055,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/BatmanBeyond.png",
+    "img": "https://veland55.github.io/btb/img/BatmanBeyond.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -6855,7 +3102,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/BatmanClassic.png",
+    "img": "https://veland55.github.io/btb/img/BatmanClassic.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -6896,7 +3143,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/GreenArrowDKR.png",
+    "img": "https://veland55.github.io/btb/img/GreenArrowDKR.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -6942,7 +3189,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/BatmanFrankMiller.png",
+    "img": "https://veland55.github.io/btb/img/BatmanFrankMiller.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -6983,7 +3230,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick", "Leader"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/Batwoman.png",
+    "img": "https://veland55.github.io/btb/img/Batwoman.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -7033,7 +3280,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Bat Family", "Unknown"],
     "rivals": ["GCPD", "Joker"],
-    "img": "img/Catwoman.png",
+    "img": "https://veland55.github.io/btb/img/Catwoman.png",
     "stats": {
       "Attack": 4,
       "Defense": 5,
@@ -7070,7 +3317,7 @@ const models = [
     "funding": 0,
     "rank": ["Free Agent"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/RedHoodRebirth.png",
+    "img": "https://veland55.github.io/btb/img/RedHoodRebirth.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -7114,7 +3361,7 @@ const models = [
     "funding": 100,
     "rank": ["Sidekick"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/RobinClassic.png",
+    "img": "https://veland55.github.io/btb/img/RobinClassic.png",
     "stats": {
       "Attack": 3,
       "Defense": 5,
@@ -7146,14 +3393,14 @@ const models = [
     ]
   },
   {
-    "name": "Robin",
+    "name": "Robin [Jason Todd]",
     "realname": "Jason Todd",
     "base": "30mm",
     "rep": 40,
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/RobinJasonTodd.png",
+    "img": "https://veland55.github.io/btb/img/RobinJasonTodd.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -7195,7 +3442,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Bat Family"],
-    "img": "img/WonderGirl.png",
+    "img": "https://veland55.github.io/btb/img/WonderGirl.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -7241,7 +3488,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/MrWayneBeyond.png",
+    "img": "https://veland55.github.io/btb/img/MrWayneBeyond.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -7278,7 +3525,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Bat Family", "Unknown"],
     "rivals": ["GCPD"],
-    "img": "img/Clayface.png",
+    "img": "https://veland55.github.io/btb/img/Clayface.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -7317,14 +3564,14 @@ const models = [
     ]
   },
   {
-    "name": "Robin",
+    "name": "Robin [Carrie Kelley]",
     "realname": "Carrie Kelley",
     "base": "30mm",
     "rep": 54,
     "funding": 100,
     "rank": ["Sidekick"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/RobinCarrieKelley.png",
+    "img": "https://veland55.github.io/btb/img/RobinCarrieKelley.png",
     "stats": {
       "Attack": 3,
       "Defense": 5,
@@ -7360,7 +3607,7 @@ const models = [
     "funding": 400,
     "rank": ["Sidekick"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/RedHoodTheOutlaw.png",
+    "img": "https://veland55.github.io/btb/img/RedHoodTheOutlaw.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -7407,7 +3654,7 @@ const models = [
     "funding": 300,
     "rank": ["Free Agent"],
     "faction": ["Bat Family"],
-    "img": "img/StarfireTeenTitans.png",
+    "img": "https://veland55.github.io/btb/img/StarfireTeenTitans.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -7450,7 +3697,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/NightwingRebirth.png",
+    "img": "https://veland55.github.io/btb/img/NightwingRebirth.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -7497,7 +3744,7 @@ const models = [
     "funding": 300,
     "rank": ["Sidekick"],
     "faction": ["Bat Family"],
-    "img": "img/GreenArrowAnimated.png",
+    "img": "https://veland55.github.io/btb/img/GreenArrowAnimated.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -7539,7 +3786,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bat Family"],
-    "img": "img/SonOfBatman3.png",
+    "img": "https://veland55.github.io/btb/img/SonOfBatman3.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -7567,7 +3814,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bat Family"],
-    "img": "img/Ace.png",
+    "img": "https://veland55.github.io/btb/img/Ace.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -7608,7 +3855,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bat Family"],
-    "img": "img/AlfredPennyworth.png",
+    "img": "https://veland55.github.io/btb/img/AlfredPennyworth.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -7645,7 +3892,7 @@ const models = [
     "funding": 300,
     "rank": ["Free Agent"],
     "faction": ["Bat Family"],
-    "img": "img/HuntressClassic.png",
+    "img": "https://veland55.github.io/btb/img/HuntressClassic.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -7689,7 +3936,7 @@ const models = [
     "funding": 200,
     "rank": ["Henchman"],
     "faction": ["Bat Family"],
-    "img": "img/Raven.png",
+    "img": "https://veland55.github.io/btb/img/Raven.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -7733,7 +3980,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Bat Family"],
-    "img": "img/SonOfBatman2.png",
+    "img": "https://veland55.github.io/btb/img/SonOfBatman2.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -7775,7 +4022,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bat Family"],
-    "img": "img/Clownhunter.png",
+    "img": "https://veland55.github.io/btb/img/Clownhunter.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -7810,7 +4057,7 @@ const models = [
     "funding": 200,
     "rank": ["Free Agent"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/RedRobin.png",
+    "img": "https://veland55.github.io/btb/img/RedRobin.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -7856,7 +4103,7 @@ const models = [
     "funding": 100,
     "rank": ["Henchman"],
     "faction": ["Bat Family"],
-    "img": "img/SonOfBatman1.png",
+    "img": "https://veland55.github.io/btb/img/SonOfBatman1.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -7897,7 +4144,7 @@ const models = [
     "funding": 0,
     "rank": ["Free Agent"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/AzraelGodsPunishment.png",
+    "img": "https://veland55.github.io/btb/img/AzraelGodsPunishment.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -7936,14 +4183,14 @@ const models = [
     ]
   },
   {
-    "name": "Robin Tim Drake",
+    "name": "Robin [Tim Drake]",
     "realname": "Tim Drake",
     "base": "40mm",
     "rep": 50,
     "funding": 200,
     "rank": ["Free Agent"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/RobinTimDrake.png",
+    "img": "https://veland55.github.io/btb/img/RobinTimDrake.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -7985,7 +4232,7 @@ const models = [
     "funding": 0,
     "rank": ["Free Agent"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/LuciusFox.png",
+    "img": "https://veland55.github.io/btb/img/LuciusFox.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -8012,7 +4259,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bat Family"],
-    "img": "img/CatwomanAnimated.png",
+    "img": "https://veland55.github.io/btb/img/CatwomanAnimated.png",
     "stats": {
       "Attack": 3,
       "Defense": 5,
@@ -8046,7 +4293,7 @@ const models = [
     "funding": 100,
     "rank": ["Henchman"],
     "faction": ["Bat Family"],
-    "img": "img/BatgirlAnimated.png",
+    "img": "https://veland55.github.io/btb/img/BatgirlAnimated.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -8089,7 +4336,7 @@ const models = [
     "funding": 100,
     "rank": ["Henchman"],
     "faction": ["Bat Family"],
-    "img": "img/HarleyQuinnAnimated.png",
+    "img": "https://veland55.github.io/btb/img/HarleyQuinnAnimated.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -8124,7 +4371,7 @@ const models = [
     "funding": 100,
     "rank": ["Henchman"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/RobinBeyond.png",
+    "img": "https://veland55.github.io/btb/img/RobinBeyond.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -8167,7 +4414,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bat Family", "Suicide Squad"],
-    "img": "img/RavagerVanguardTeam.png",
+    "img": "https://veland55.github.io/btb/img/RavagerVanguardTeam.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -8201,7 +4448,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bat Family"],
-    "img": "img/BlackCanaryAnimated.png",
+    "img": "https://veland55.github.io/btb/img/BlackCanaryAnimated.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -8241,7 +4488,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/ReneeMontoya.png",
+    "img": "https://veland55.github.io/btb/img/ReneeMontoya.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -8283,7 +4530,7 @@ const models = [
     "funding": 200,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/HomicideDetective.png",
+    "img": "https://veland55.github.io/btb/img/HomicideDetective.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -8317,7 +4564,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/GCPDMountedCop.png",
+    "img": "https://veland55.github.io/btb/img/GCPDMountedCop.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -8351,7 +4598,7 @@ const models = [
     "funding": 400,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/SWATQRT3.png",
+    "img": "https://veland55.github.io/btb/img/SWATQRT3.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -8392,7 +4639,7 @@ const models = [
     "funding": 200,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/OfficerMartinez.png",
+    "img": "https://veland55.github.io/btb/img/OfficerMartinez.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -8425,7 +4672,7 @@ const models = [
     "funding": 350,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/SWATQRT2.png",
+    "img": "https://veland55.github.io/btb/img/SWATQRT2.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -8466,7 +4713,7 @@ const models = [
     "funding": 150,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/ReinforcementCop.png",
+    "img": "https://veland55.github.io/btb/img/ReinforcementCop.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -8499,7 +4746,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/GCPDOfficer1.png",
+    "img": "https://veland55.github.io/btb/img/GCPDOfficer1.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -8532,7 +4779,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/GildaDent.png",
+    "img": "https://veland55.github.io/btb/img/GildaDent.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -8557,7 +4804,7 @@ const models = [
     "funding": 100,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/SWATQRT1.png",
+    "img": "https://veland55.github.io/btb/img/SWATQRT1.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -8597,7 +4844,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/GCPDOfficer2.png",
+    "img": "https://veland55.github.io/btb/img/GCPDOfficer2.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -8621,7 +4868,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/BeatCop.png",
+    "img": "https://veland55.github.io/btb/img/BeatCop.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -8655,7 +4902,7 @@ const models = [
     "funding": 200,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/SgtHarveyBullock.png",
+    "img": "https://veland55.github.io/btb/img/SgtHarveyBullock.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -8690,7 +4937,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/GCPDDetective.png",
+    "img": "https://veland55.github.io/btb/img/GCPDDetective.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -8723,7 +4970,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/Sierra.png",
+    "img": "https://veland55.github.io/btb/img/Sierra.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -8757,7 +5004,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/GCPDCop1.png",
+    "img": "https://veland55.github.io/btb/img/GCPDCop1.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -8789,7 +5036,7 @@ const models = [
     "funding": 200,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/LtGordonYearOne.png",
+    "img": "https://veland55.github.io/btb/img/LtGordonYearOne.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -8832,7 +5079,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/GCPDCop2.png",
+    "img": "https://veland55.github.io/btb/img/GCPDCop2.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -8863,7 +5110,7 @@ const models = [
     "funding": 200,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/LtGordonJeffreyWright.png",
+    "img": "https://veland55.github.io/btb/img/LtGordonJeffreyWright.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -8900,7 +5147,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/Agent1.png",
+    "img": "https://veland55.github.io/btb/img/Agent1.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -8939,7 +5186,7 @@ const models = [
     "funding": 100,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/OfficerMerkel.png",
+    "img": "https://veland55.github.io/btb/img/OfficerMerkel.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -8971,7 +5218,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/Agent2.png",
+    "img": "https://veland55.github.io/btb/img/Agent2.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -9009,7 +5256,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/Agent3.png",
+    "img": "https://veland55.github.io/btb/img/Agent3.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -9041,7 +5288,7 @@ const models = [
     "funding": 200,
 	  "rank": ["Henchman"],
     "faction": ["GCPD", "Organized Crime"],
-    "img": "img/DetectiveFlassYearOne.png",
+    "img": "https://veland55.github.io/btb/img/DetectiveFlassYearOne.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -9083,7 +5330,7 @@ const models = [
     "funding": 450,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/Lerida.png",
+    "img": "https://veland55.github.io/btb/img/Lerida.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -9116,7 +5363,7 @@ const models = [
     "funding": 200,
     "rank": ["Henchman"],
     "faction": ["GCPD"],
-    "img": "img/Foxtrot.png",
+    "img": "https://veland55.github.io/btb/img/Foxtrot.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -9158,7 +5405,7 @@ const models = [
     "funding": 0,
     "rank": ["Free Agent"],
     "faction": ["GCPD"],
-    "img": "img/AttorneyHarveyDent.png",
+    "img": "https://veland55.github.io/btb/img/AttorneyHarveyDent.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -9198,7 +5445,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/Bouncer1.png",
+    "img": "https://veland55.github.io/btb/img/Bouncer1.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -9230,7 +5477,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/Bouncer2.png",
+    "img": "https://veland55.github.io/btb/img/Bouncer2.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -9262,7 +5509,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/Bouncer3.png",
+    "img": "https://veland55.github.io/btb/img/Bouncer3.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -9294,7 +5541,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/BlackMaskThug6.png",
+    "img": "https://veland55.github.io/btb/img/BlackMaskThug6.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -9333,7 +5580,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/TheTwin1.png",
+    "img": "https://veland55.github.io/btb/img/TheTwin1.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -9367,7 +5614,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/TheTwin2.png",
+    "img": "https://veland55.github.io/btb/img/TheTwin2.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -9401,7 +5648,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/KillerCrocThug.png",
+    "img": "https://veland55.github.io/btb/img/KillerCrocThug.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -9437,7 +5684,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/DetectiveKenzie.png",
+    "img": "https://veland55.github.io/btb/img/DetectiveKenzie.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -9479,7 +5726,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/TheFixer.png",
+    "img": "https://veland55.github.io/btb/img/TheFixer.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -9521,7 +5768,7 @@ const models = [
     "funding": 400,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/BlackMaskThug7.png",
+    "img": "https://veland55.github.io/btb/img/BlackMaskThug7.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -9553,7 +5800,7 @@ const models = [
     "funding": 350,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/MafiaThug.png",
+    "img": "https://veland55.github.io/btb/img/MafiaThug.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -9594,7 +5841,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/BlackMaskThug4.png",
+    "img": "https://veland55.github.io/btb/img/BlackMaskThug4.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -9626,7 +5873,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/BlackMaskThug2.png",
+    "img": "https://veland55.github.io/btb/img/BlackMaskThug2.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -9658,7 +5905,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/TheTailor.png",
+    "img": "https://veland55.github.io/btb/img/TheTailor.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -9684,7 +5931,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/BlackMaskThug1.png",
+    "img": "https://veland55.github.io/btb/img/BlackMaskThug1.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -9717,7 +5964,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/Malatesta.png",
+    "img": "https://veland55.github.io/btb/img/Malatesta.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -9756,7 +6003,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/TroySins.png",
+    "img": "https://veland55.github.io/btb/img/TroySins.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -9787,7 +6034,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/BlackMaskThug5.png",
+    "img": "https://veland55.github.io/btb/img/BlackMaskThug5.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -9820,7 +6067,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/BlackMaskThug3.png",
+    "img": "https://veland55.github.io/btb/img/BlackMaskThug3.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -9852,7 +6099,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/TheBull.png",
+    "img": "https://veland55.github.io/btb/img/TheBull.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -9876,7 +6123,7 @@ const models = [
     "funding": 350,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/Showtime.png",
+    "img": "https://veland55.github.io/btb/img/Showtime.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -9908,7 +6155,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/Vipera.png",
+    "img": "https://veland55.github.io/btb/img/Vipera.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -9940,7 +6187,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Organized Crime"],
-    "img": "img/BlackMask.png",
+    "img": "https://veland55.github.io/btb/img/BlackMask.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -9984,7 +6231,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Organized Crime"],
-    "img": "img/LexLuthor.png",
+    "img": "https://veland55.github.io/btb/img/LexLuthor.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -10023,7 +6270,7 @@ const models = [
     "funding": 400,
     "rank": ["Sidekick"],
     "faction": ["Organized Crime"],
-    "img": "img/AlexandraKosov.png",
+    "img": "https://veland55.github.io/btb/img/AlexandraKosov.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -10066,7 +6313,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Organized Crime"],
-    "img": "img/SalMaroni.png",
+    "img": "https://veland55.github.io/btb/img/SalMaroni.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -10102,7 +6349,7 @@ const models = [
     "funding": 150,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/FatJohnny.png",
+    "img": "https://veland55.github.io/btb/img/FatJohnny.png",
     "stats": {
       "Attack": 4,
       "Defense": 2,
@@ -10141,7 +6388,7 @@ const models = [
     "funding": 250,
     "rank": ["Henchman"],
     "faction": ["Organized Crime"],
-    "img": "img/Battista.png",
+    "img": "https://veland55.github.io/btb/img/Battista.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -10173,7 +6420,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Organized Crime"],
-    "img": "img/TheRoman.png",
+    "img": "https://veland55.github.io/btb/img/TheRoman.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -10205,7 +6452,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Organized Crime"],
-    "img": "img/TheVentriloquist.png",
+    "img": "https://veland55.github.io/btb/img/TheVentriloquist.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -10242,7 +6489,7 @@ const models = [
     "funding": 350,
     "rank": ["Sidekick"],
     "faction": ["Organized Crime"],
-    "img": "img/TheHolidayKiller.png",
+    "img": "https://veland55.github.io/btb/img/TheHolidayKiller.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -10278,7 +6525,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Organized Crime"],
-    "img": "img/CarmineFalconeTurturro.png",
+    "img": "https://veland55.github.io/btb/img/CarmineFalconeTurturro.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -10315,7 +6562,7 @@ const models = [
     "funding": 300,
     "rank": ["Sidekick"],
     "faction": ["Organized Crime"],
-    "img": "img/Fright.png",
+    "img": "https://veland55.github.io/btb/img/Fright.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -10353,7 +6600,7 @@ const models = [
     "funding": 300,
     "rank": ["Sidekick"],
     "faction": ["Organized Crime"],
-    "img": "img/ThePenguinFarrell.png",
+    "img": "https://veland55.github.io/btb/img/ThePenguinFarrell.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -10392,7 +6639,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bat Family"],
-    "img": "img/BeastBoyTiger.png",
+    "img": "https://veland55.github.io/btb/img/BeastBoyTiger.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -10427,7 +6674,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bat Family"],
-    "img": "img/BeastBoyGorrila.png",
+    "img": "https://veland55.github.io/btb/img/BeastBoyGorrila.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -10463,7 +6710,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bat Family"],
-    "img": "img/BeastBoyHawk.png",
+    "img": "https://veland55.github.io/btb/img/BeastBoyHawk.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -10490,7 +6737,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bat Family"],
-    "img": "img/BeastBoy_Human.png",
+    "img": "https://veland55.github.io/btb/img/BeastBoy_Human.png",
     "stats": {
       "Attack": 3,
       "Defense": 5,
@@ -10516,7 +6763,7 @@ const models = [
     "funding": 200,
     "rank": ["Leader"],
     "faction": ["Doom Patrol", "GCPD"],
-    "img": "img/The_Chief.png",
+    "img": "https://veland55.github.io/btb/img/The_Chief.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -10552,7 +6799,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Doom Patrol", "GCPD"],
-    "img": "img/ElastiGirl.png",
+    "img": "https://veland55.github.io/btb/img/ElastiGirl.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -10580,7 +6827,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Doom Patrol", "GCPD"],
-    "img": "img/Crazy_Jane.png",
+    "img": "https://veland55.github.io/btb/img/Crazy_Jane.png",
     "stats": {
       "Attack": 3,
       "Defense": 5,
@@ -10618,7 +6865,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Doom Patrol", "GCPD"],
-    "img": "img/Negative_Man.png",
+    "img": "https://veland55.github.io/btb/img/Negative_Man.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -10650,7 +6897,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Doom Patrol", "GCPD"],
-    "img": "img/Robotman.png",
+    "img": "https://veland55.github.io/btb/img/Robotman.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -10683,7 +6930,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bane"],
-    "img": "img/BaneUnleashed.png",
+    "img": "https://veland55.github.io/btb/img/BaneUnleashed.png",
     "stats": {
       "Attack": 6,
       "Defense": 2,
@@ -10723,7 +6970,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Bane"],
-    "img": "img/BatmanSword.png",
+    "img": "https://veland55.github.io/btb/img/BatmanSword.png",
     "stats": {
       "Attack": 5,
       "Defense": 4,
@@ -10764,7 +7011,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bane"],
-    "img": "img/BaneTitan.png",
+    "img": "https://veland55.github.io/btb/img/BaneTitan.png",
     "stats": {
       "Attack": 5,
       "Defense": 2,
@@ -10778,7 +7025,6 @@ const models = [
       "Huge",
       "Recover the Titan",
       "Titan Addict",
-      "Titan Dose (4)",
       "Tough Guy",
       "Veteran",
       "Desensitized",
@@ -10804,7 +7050,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bane"],
-    "img": "img/MedicOP.png",
+    "img": "https://veland55.github.io/btb/img/MedicOP.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -10836,7 +7082,7 @@ const models = [
     "funding": 300,
     "rank": ["Sidekick"],
     "faction": ["Bane"],
-    "img": "img/BirdClassic.png",
+    "img": "https://veland55.github.io/btb/img/BirdClassic.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -10878,7 +7124,7 @@ const models = [
     "funding": 100,
     "rank": ["Sidekick"],
     "faction": ["Bane"],
-    "img": "img/Bird.png",
+    "img": "https://veland55.github.io/btb/img/Bird.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -10922,7 +7168,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bane"],
-    "img": "img/BaneRebirth.png",
+    "img": "https://veland55.github.io/btb/img/BaneRebirth.png",
     "stats": {
       "Attack": 6,
       "Defense": 3,
@@ -10955,7 +7201,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bane"],
-    "img": "img/Vengeance.png",
+    "img": "https://veland55.github.io/btb/img/Vengeance.png",
     "stats": {
       "Attack": 5,
       "Defense": 4,
@@ -10987,7 +7233,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bane"],
-    "img": "img/BaneTheBat.png",
+    "img": "https://veland55.github.io/btb/img/BaneTheBat.png",
     "stats": {
       "Attack": 6,
       "Defense": 3,
@@ -11028,7 +7274,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bane"],
-    "img": "img/DreadnoughtOP.png",
+    "img": "https://veland55.github.io/btb/img/DreadnoughtOP.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -11061,7 +7307,7 @@ const models = [
     "funding": 600,
     "rank": ["Henchman"],
     "faction": ["Bane"],
-    "img": "img/EliteOP.png",
+    "img": "https://veland55.github.io/btb/img/EliteOP.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -11095,7 +7341,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Bane"],
-    "img": "img/BaneCommander.png",
+    "img": "https://veland55.github.io/btb/img/BaneCommander.png",
     "stats": {
       "Attack": 5,
       "Defense": 3,
@@ -11128,7 +7374,7 @@ const models = [
     "funding": 100,
     "rank": ["Henchman"],
     "faction": ["Bane"],
-    "img": "img/LieutenantOP.png",
+    "img": "https://veland55.github.io/btb/img/LieutenantOP.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -11168,7 +7414,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bane"],
-    "img": "img/Cuchillo.png",
+    "img": "https://veland55.github.io/btb/img/Cuchillo.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -11202,7 +7448,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bane"],
-    "img": "img/StealthOP.png",
+    "img": "https://veland55.github.io/btb/img/StealthOP.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -11237,7 +7483,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Bane"],
-    "img": "img/InfiltrateOP.png",
+    "img": "https://veland55.github.io/btb/img/InfiltrateOP.png",
     "stats": {
       "Attack": 3,
       "Defense": 5,
@@ -11271,7 +7517,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bane"],
-    "img": "img/Macgregor.png",
+    "img": "https://veland55.github.io/btb/img/Macgregor.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -11304,7 +7550,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Bane"],
-    "img": "img/Clover.png",
+    "img": "https://veland55.github.io/btb/img/Clover.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -11336,7 +7582,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Bane"],
-    "img": "img/SharpShooter.png",
+    "img": "https://veland55.github.io/btb/img/SharpShooter.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -11369,7 +7615,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bane"],
-    "img": "img/Malicia.png",
+    "img": "https://veland55.github.io/btb/img/Malicia.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -11398,7 +7644,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bane"],
-    "img": "img/TheBuilder.png",
+    "img": "https://veland55.github.io/btb/img/TheBuilder.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -11433,7 +7679,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bane"],
-    "img": "img/Smash.png",
+    "img": "https://veland55.github.io/btb/img/Smash.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -11474,7 +7720,7 @@ const models = [
     "funding": 250,
     "rank": ["Henchman"],
     "faction": ["Bane"],
-    "img": "img/TedHunter.png",
+    "img": "https://veland55.github.io/btb/img/TedHunter.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -11516,7 +7762,7 @@ const models = [
     "funding": 400,
     "rank": ["Henchman"],
     "faction": ["Bane"],
-    "img": "img/Schoolboy.png",
+    "img": "https://veland55.github.io/btb/img/Schoolboy.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -11548,7 +7794,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Bane"],
-    "img": "img/SupportOP.png",
+    "img": "https://veland55.github.io/btb/img/SupportOP.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -11589,7 +7835,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bane"],
-    "img": "img/RedBastard.png",
+    "img": "https://veland55.github.io/btb/img/RedBastard.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -11629,7 +7875,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/Grumpy.png",
+    "img": "https://veland55.github.io/btb/img/Grumpy.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -11663,7 +7909,7 @@ const models = [
     "funding": 0,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/Happy.png",
+    "img": "https://veland55.github.io/btb/img/Happy.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -11696,7 +7942,7 @@ const models = [
     "funding": 0,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/GaggyRebirth.png",
+    "img": "https://veland55.github.io/btb/img/GaggyRebirth.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -11732,7 +7978,7 @@ const models = [
     "funding": 0,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/JokersBiker2.png",
+    "img": "https://veland55.github.io/btb/img/JokersBiker2.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -11766,7 +8012,7 @@ const models = [
     "funding": 150,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/JokersBusDriver.png",
+    "img": "https://veland55.github.io/btb/img/JokersBusDriver.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -11800,7 +8046,7 @@ const models = [
     "funding": 500,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/JokersParaMilitary2.png",
+    "img": "https://veland55.github.io/btb/img/JokersParaMilitary2.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -11841,7 +8087,7 @@ const models = [
     "funding": 400,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/JokersParaMilitary3.png",
+    "img": "https://veland55.github.io/btb/img/JokersParaMilitary3.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -11882,7 +8128,7 @@ const models = [
     "funding": 0,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/JokersParaMilitary1.png",
+    "img": "https://veland55.github.io/btb/img/JokersParaMilitary1.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -11916,7 +8162,7 @@ const models = [
     "funding": 200,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/Chuckcles.png",
+    "img": "https://veland55.github.io/btb/img/Chuckcles.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -11949,7 +8195,7 @@ const models = [
     "funding": 200,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/BlunderbussClown.png",
+    "img": "https://veland55.github.io/btb/img/BlunderbussClown.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -11980,7 +8226,7 @@ const models = [
     "funding": 0,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/JokersVictim1.png",
+    "img": "https://veland55.github.io/btb/img/JokersVictim1.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -12014,7 +8260,7 @@ const models = [
     "funding": 0,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/JokersVictim2.png",
+    "img": "https://veland55.github.io/btb/img/JokersVictim2.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -12048,7 +8294,7 @@ const models = [
     "funding": 0,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/StreetJester2.png",
+    "img": "https://veland55.github.io/btb/img/StreetJester2.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -12080,7 +8326,7 @@ const models = [
     "funding": 200,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/StreetJester3.png",
+    "img": "https://veland55.github.io/btb/img/StreetJester3.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -12112,7 +8358,7 @@ const models = [
     "funding": 100,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/AxeClown.png",
+    "img": "https://veland55.github.io/btb/img/AxeClown.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -12143,7 +8389,7 @@ const models = [
     "funding": 100,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/BarrelClown.png",
+    "img": "https://veland55.github.io/btb/img/BarrelClown.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -12175,7 +8421,7 @@ const models = [
     "funding": 0,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/StreetJester4.png",
+    "img": "https://veland55.github.io/btb/img/StreetJester4.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -12208,7 +8454,7 @@ const models = [
     "funding": 350,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/ChainsawClown.png",
+    "img": "https://veland55.github.io/btb/img/ChainsawClown.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -12239,7 +8485,7 @@ const models = [
     "funding": 200,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/StreetJester1.png",
+    "img": "https://veland55.github.io/btb/img/StreetJester1.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -12274,7 +8520,7 @@ const models = [
     "funding": 0,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/Thorgon.png",
+    "img": "https://veland55.github.io/btb/img/Thorgon.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -12311,7 +8557,7 @@ const models = [
     "funding": 0,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/JokersVictim3.png",
+    "img": "https://veland55.github.io/btb/img/JokersVictim3.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -12345,7 +8591,7 @@ const models = [
     "funding": 0,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/Dynamite.png",
+    "img": "https://veland55.github.io/btb/img/Dynamite.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -12377,7 +8623,7 @@ const models = [
     "funding": 0,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/GasPuppet3.png",
+    "img": "https://veland55.github.io/btb/img/GasPuppet3.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -12412,7 +8658,7 @@ const models = [
     "funding": 0,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/GasPuppet1.png",
+    "img": "https://veland55.github.io/btb/img/GasPuppet1.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -12447,7 +8693,7 @@ const models = [
     "funding": 350,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/JokersBiker1.png",
+    "img": "https://veland55.github.io/btb/img/JokersBiker1.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -12481,7 +8727,7 @@ const models = [
     "funding": 200,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/Bouffon.png",
+    "img": "https://veland55.github.io/btb/img/Bouffon.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -12512,7 +8758,7 @@ const models = [
     "funding": 200,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/WhiteFace.png",
+    "img": "https://veland55.github.io/btb/img/WhiteFace.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -12550,7 +8796,7 @@ const models = [
     "funding": 0,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/GasPuppet2.png",
+    "img": "https://veland55.github.io/btb/img/GasPuppet2.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -12585,7 +8831,7 @@ const models = [
     "funding": 600,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/Rastaclow.png",
+    "img": "https://veland55.github.io/btb/img/Rastaclow.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -12616,7 +8862,7 @@ const models = [
     "funding": 0,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/BorgonTheCursed.png",
+    "img": "https://veland55.github.io/btb/img/BorgonTheCursed.png",
     "stats": {
       "Attack": 4,
       "Defense": 2,
@@ -12652,7 +8898,7 @@ const models = [
     "funding": 0,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/HoboClown.png",
+    "img": "https://veland55.github.io/btb/img/HoboClown.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -12683,7 +8929,7 @@ const models = [
     "funding": 0,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/AceOfSpades.png",
+    "img": "https://veland55.github.io/btb/img/AceOfSpades.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -12715,7 +8961,7 @@ const models = [
     "funding": 200,
 	  "rank": ["Henchman"],
     "faction": ["Joker"],
-    "img": "img/SlingyClown.png",
+    "img": "https://veland55.github.io/btb/img/SlingyClown.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -12747,7 +8993,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Joker"],
-    "img": "img/JokerArkhamAsylum.png",
+    "img": "https://veland55.github.io/btb/img/JokerArkhamAsylum.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -12782,7 +9028,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Joker"],
-    "img": "img/JokerDarkKnightRises.png",
+    "img": "https://veland55.github.io/btb/img/JokerDarkKnightRises.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -12817,7 +9063,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Joker"],
-    "img": "img/JokerRedHood.png",
+    "img": "https://veland55.github.io/btb/img/JokerRedHood.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -12845,7 +9091,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Joker"],
-    "img": "img/JokerClassic.png",
+    "img": "https://veland55.github.io/btb/img/JokerClassic.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -12880,7 +9126,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Joker"],
-    "img": "img/JokerCesarRomero.png",
+    "img": "https://veland55.github.io/btb/img/JokerCesarRomero.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -12908,7 +9154,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Joker"],
-    "img": "img/JokerTheCriminal.png",
+    "img": "https://veland55.github.io/btb/img/JokerTheCriminal.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -12943,7 +9189,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Joker"],
-    "img": "img/JokerTheClown.png",
+    "img": "https://veland55.github.io/btb/img/JokerTheClown.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -12978,7 +9224,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Joker"],
-    "img": "img/JokerTheComedian.png",
+    "img": "https://veland55.github.io/btb/img/JokerTheComedian.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -13013,7 +9259,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Joker"],
-    "img": "img/JokerTitan.png",
+    "img": "https://veland55.github.io/btb/img/JokerTitan.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -13041,7 +9287,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Joker"],
-    "img": "img/JokerChristmas.png",
+    "img": "https://veland55.github.io/btb/img/JokerChristmas.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -13076,7 +9322,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Joker"],
-    "img": "img/JokerHavingFun.png",
+    "img": "https://veland55.github.io/btb/img/JokerHavingFun.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -13111,7 +9357,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Joker"],
-    "img": "img/JokerExplosiveArrival.png",
+    "img": "https://veland55.github.io/btb/img/JokerExplosiveArrival.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -13146,7 +9392,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Joker"],
-    "img": "img/JokerBatArmor.png",
+    "img": "https://veland55.github.io/btb/img/JokerBatArmor.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -13181,7 +9427,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Joker"],
-    "img": "img/Gaggy.png",
+    "img": "https://veland55.github.io/btb/img/Gaggy.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -13210,7 +9456,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Joker"],
-    "img": "img/Archie.png",
+    "img": "https://veland55.github.io/btb/img/Archie.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -13230,7 +9476,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Joker"],
-    "img": "img/HarleyQuinnBTG.png",
+    "img": "https://veland55.github.io/btb/img/HarleyQuinnBTG.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -13258,7 +9504,7 @@ const models = [
     "funding": 100,
     "rank": ["Sidekick"],
     "faction": ["Joker"],
-    "img": "img/Punchline.png",
+    "img": "https://veland55.github.io/btb/img/Punchline.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -13293,7 +9539,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Joker"],
-    "img": "img/HarleyQuinnArkhamAsylum.png",
+    "img": "https://veland55.github.io/btb/img/HarleyQuinnArkhamAsylum.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -13321,7 +9567,7 @@ const models = [
     "funding": 200,
     "rank": ["Sidekick"],
     "faction": ["Joker"],
-    "img": "img/HarleyQuinnAndTheBoys.png",
+    "img": "https://veland55.github.io/btb/img/HarleyQuinnAndTheBoys.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -13356,7 +9602,7 @@ const models = [
     "funding": 250,
     "rank": ["Free Agent"],
     "faction": ["Joker"],
-    "img": "img/TwoFaceDarkKnight.png",
+    "img": "https://veland55.github.io/btb/img/TwoFaceDarkKnight.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -13384,7 +9630,7 @@ const models = [
     "funding": 0,
     "rank": ["Free Agent"],
     "faction": ["Joker"],
-    "img": "img/RiddlerFrankGorshin.png",
+    "img": "https://veland55.github.io/btb/img/RiddlerFrankGorshin.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -13419,7 +9665,7 @@ const models = [
     "funding": 100,
     "rank": ["Free Agent"],
     "faction": ["Joker"],
-    "img": "img/PenguinBurgessMeredith.png",
+    "img": "https://veland55.github.io/btb/img/PenguinBurgessMeredith.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -13461,7 +9707,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Mr. Freeze"],
-    "img": "img/MrFreeze1997.png",
+    "img": "https://veland55.github.io/btb/img/MrFreeze1997.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -13508,7 +9754,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Mr. Freeze"],
-    "img": "img/FreezeThug1.png",
+    "img": "https://veland55.github.io/btb/img/FreezeThug1.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -13541,7 +9787,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Mr. Freeze"],
-    "img": "img/FreezeThug2.png",
+    "img": "https://veland55.github.io/btb/img/FreezeThug2.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -13574,7 +9820,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Mr. Freeze"],
-    "img": "img/FreezeEngineer.png",
+    "img": "https://veland55.github.io/btb/img/FreezeEngineer.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -13609,7 +9855,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Mr. Freeze"],
-    "img": "img/FreezeThug5.png",
+    "img": "https://veland55.github.io/btb/img/FreezeThug5.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -13648,7 +9894,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Mr. Freeze"],
-    "img": "img/CombatPolarBear.png",
+    "img": "https://veland55.github.io/btb/img/CombatPolarBear.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -13688,7 +9934,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Mr. Freeze"],
-    "img": "img/FreezeThug4.png",
+    "img": "https://veland55.github.io/btb/img/FreezeThug4.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -13722,7 +9968,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Mr. Freeze"],
-    "img": "img/FreezeThug3.png",
+    "img": "https://veland55.github.io/btb/img/FreezeThug3.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -13755,7 +10001,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Mr. Freeze"],
-    "img": "img/MrFreezeCryoArmor.png",
+    "img": "https://veland55.github.io/btb/img/MrFreezeCryoArmor.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -13795,7 +10041,7 @@ const models = [
     "funding": 200,
     "rank": ["Sidekick"],
     "faction": ["Mr. Freeze"],
-    "img": "img/MrsFreeze.png",
+    "img": "https://veland55.github.io/btb/img/MrsFreeze.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -13838,7 +10084,7 @@ const models = [
     "funding": 400,
     "rank": ["Henchman"],
     "faction": ["Mr. Freeze"],
-    "img": "img/RangedPolarBear.png",
+    "img": "https://veland55.github.io/btb/img/RangedPolarBear.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -13877,7 +10123,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Mr. Freeze"],
-	"img": "img/KillerFrost_Rebirth.png",
+	"img": "https://veland55.github.io/btb/img/KillerFrost_Rebirth.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -13920,7 +10166,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["The Riddler"],
-    "img": "img/Quiz5.png",
+    "img": "https://veland55.github.io/btb/img/Quiz5.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -13953,7 +10199,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["The Riddler"],
-    "img": "img/Quiz7.png",
+    "img": "https://veland55.github.io/btb/img/Quiz7.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -13985,7 +10231,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["The Riddler"],
-    "img": "img/Echo.png",
+    "img": "https://veland55.github.io/btb/img/Echo.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -14013,7 +10259,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["The Riddler"],
-    "img": "img/Quiz8.png",
+    "img": "https://veland55.github.io/btb/img/Quiz8.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -14042,7 +10288,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["The Riddler"],
-    "img": "img/TheRiddlerPaulDano.png",
+    "img": "https://veland55.github.io/btb/img/TheRiddlerPaulDano.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -14081,7 +10327,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["The Riddler"],
-    "img": "img/TheRiddler.png",
+    "img": "https://veland55.github.io/btb/img/TheRiddler.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -14119,7 +10365,7 @@ const models = [
     "funding": 350,
     "rank": ["Henchman"],
     "faction": ["The Riddler"],
-    "img": "img/RiddlerFollower1.png",
+    "img": "https://veland55.github.io/btb/img/RiddlerFollower1.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -14151,7 +10397,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["The Riddler"],
-    "img": "img/Quiz4.png",
+    "img": "https://veland55.github.io/btb/img/Quiz4.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -14187,7 +10433,7 @@ const models = [
     "funding": 400,
     "rank": ["Henchman"],
     "faction": ["The Riddler"],
-    "img": "img/Query.png",
+    "img": "https://veland55.github.io/btb/img/Query.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -14221,7 +10467,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["The Riddler"],
-    "img": "img/Quiz2.png",
+    "img": "https://veland55.github.io/btb/img/Quiz2.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -14253,7 +10499,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["The Riddler"],
-    "img": "img/TheRiddlerModernAge.png",
+    "img": "https://veland55.github.io/btb/img/TheRiddlerModernAge.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -14290,7 +10536,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["The Riddler"],
-    "img": "img/Quiz6.png",
+    "img": "https://veland55.github.io/btb/img/Quiz6.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -14321,7 +10567,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["The Riddler"],
-    "img": "img/RiddlerFollower2.png",
+    "img": "https://veland55.github.io/btb/img/RiddlerFollower2.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -14353,7 +10599,7 @@ const models = [
     "funding": 300,
     "rank": ["Free Agent"],
     "faction": ["The Riddler"],
-    "img": "img/TwoFaceTommyLeeJones.png",
+    "img": "https://veland55.github.io/btb/img/TwoFaceTommyLeeJones.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -14391,7 +10637,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["The Riddler"],
-    "img": "img/Quiz3.png",
+    "img": "https://veland55.github.io/btb/img/Quiz3.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -14422,7 +10668,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["The Riddler"],
-    "img": "img/TheRiddlerJimCarrey.png",
+    "img": "https://veland55.github.io/btb/img/TheRiddlerJimCarrey.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -14459,7 +10705,7 @@ const models = [
     "funding": 200,
     "rank": ["Sidekick"],
     "faction": ["The Riddler"],
-    "img": "img/Quelle.png",
+    "img": "https://veland55.github.io/btb/img/Quelle.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -14496,7 +10742,7 @@ const models = [
     "funding": 350,
     "rank": ["Henchman"],
     "faction": ["The Riddler"],
-    "img": "img/Quiz1.png",
+    "img": "https://veland55.github.io/btb/img/Quiz1.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -14534,7 +10780,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["The Riddler"],
-    "img": "img/RiddlerFollower3.png",
+    "img": "https://veland55.github.io/btb/img/RiddlerFollower3.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -14573,7 +10819,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["GCPD", "Penguin"],
     "rivals": "Bat Family",
-    "img": "img/CatwomanMichellePfeiffer.png",
+    "img": "https://veland55.github.io/btb/img/CatwomanMichellePfeiffer.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -14618,7 +10864,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/PenguinThug1.png",
+    "img": "https://veland55.github.io/btb/img/PenguinThug1.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -14650,7 +10896,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Penguin"],
-    "img": "img/ThePenguinDannyDeVito.png",
+    "img": "https://veland55.github.io/btb/img/ThePenguinDannyDeVito.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -14694,7 +10940,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Penguin"],
-    "img": "img/ThePenguinNew52.png",
+    "img": "https://veland55.github.io/btb/img/ThePenguinNew52.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -14739,7 +10985,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/Lark.png",
+    "img": "https://veland55.github.io/btb/img/Lark.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -14773,7 +11019,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Penguin"],
-    "img": "img/ThePenguinArkhamCity.png",
+    "img": "https://veland55.github.io/btb/img/ThePenguinArkhamCity.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -14817,7 +11063,7 @@ const models = [
     "funding": 50,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/RocketLauncherPenguin.png",
+    "img": "https://veland55.github.io/btb/img/RocketLauncherPenguin.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -14850,7 +11096,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/StreetDemonzBiker1.png",
+    "img": "https://veland55.github.io/btb/img/StreetDemonzBiker1.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -14886,7 +11132,7 @@ const models = [
     "funding": 200,
     "rank": ["Sidekick"],
     "faction": ["Penguin"],
-    "img": "img/LooseLips.png",
+    "img": "https://veland55.github.io/btb/img/LooseLips.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -14929,7 +11175,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Penguin"],
-    "img": "img/EmperorPenguinUnchained.png",
+    "img": "https://veland55.github.io/btb/img/EmperorPenguinUnchained.png",
     "stats": {
       "Attack": 5,
       "Defense": 4,
@@ -14968,7 +11214,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/PenguinEliteThug.png",
+    "img": "https://veland55.github.io/btb/img/PenguinEliteThug.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -15001,7 +11247,7 @@ const models = [
     "funding": 50,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/MinigunPenguin.png",
+    "img": "https://veland55.github.io/btb/img/MinigunPenguin.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -15035,7 +11281,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/ExplosivePenguin.png",
+    "img": "https://veland55.github.io/btb/img/ExplosivePenguin.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -15062,7 +11308,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/PenguinLieutenant.png",
+    "img": "https://veland55.github.io/btb/img/PenguinLieutenant.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -15090,7 +11336,7 @@ const models = [
     "funding": 200,
     "rank": ["Free Agent"],
     "faction": ["Penguin"],
-    "img": "img/MrToxic.png",
+    "img": "https://veland55.github.io/btb/img/MrToxic.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -15124,7 +11370,7 @@ const models = [
     "funding": 600,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/PenguinThug2.png",
+    "img": "https://veland55.github.io/btb/img/PenguinThug2.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -15156,7 +11402,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Penguin"],
-    "img": "img/ThePenguinPenguinsDuck.png",
+    "img": "https://veland55.github.io/btb/img/ThePenguinPenguinsDuck.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -15202,7 +11448,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Penguin"],
-    "img": "img/ThePenguinArkhamKnight.png",
+    "img": "https://veland55.github.io/btb/img/ThePenguinArkhamKnight.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -15249,7 +11495,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/StreetDemonz4.png",
+    "img": "https://veland55.github.io/btb/img/StreetDemonz4.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -15290,7 +11536,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/MrCombustible.png",
+    "img": "https://veland55.github.io/btb/img/MrCombustible.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -15323,7 +11569,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/Hypnotic.png",
+    "img": "https://veland55.github.io/btb/img/Hypnotic.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -15348,7 +11594,7 @@ const models = [
     "funding": 150,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/StreetDemonz1.png",
+    "img": "https://veland55.github.io/btb/img/StreetDemonz1.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -15387,7 +11633,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/StreetDemonzBiker2.png",
+    "img": "https://veland55.github.io/btb/img/StreetDemonzBiker2.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -15423,7 +11669,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/StreetDemonzBiker3.png",
+    "img": "https://veland55.github.io/btb/img/StreetDemonzBiker3.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -15459,7 +11705,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/StreetDemonz3.png",
+    "img": "https://veland55.github.io/btb/img/StreetDemonz3.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -15491,7 +11737,7 @@ const models = [
     "funding": 200,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/StreetDemonz2.png",
+    "img": "https://veland55.github.io/btb/img/StreetDemonz2.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -15524,7 +11770,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Penguin"],
-    "img": "img/ImperceptibleMan.png",
+    "img": "https://veland55.github.io/btb/img/ImperceptibleMan.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -15556,7 +11802,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["League of Shadows"],
-    "img": "img/LeagueAcolyte1.png",
+    "img": "https://veland55.github.io/btb/img/LeagueAcolyte1.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -15588,7 +11834,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["League of Shadows", "Bane"],
-    "img": "img/Mercenary1.png",
+    "img": "https://veland55.github.io/btb/img/Mercenary1.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -15620,7 +11866,7 @@ const models = [
     "funding": 250,
     "rank": ["Henchman"],
     "faction": ["League of Shadows", "Bane"],
-    "img": "img/Mercenary2.png",
+    "img": "https://veland55.github.io/btb/img/Mercenary2.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -15654,7 +11900,7 @@ const models = [
     "funding": 100,
     "rank": ["Henchman"],
     "faction": ["League of Shadows"],
-    "img": "img/LeagueAcolyte2.png",
+    "img": "https://veland55.github.io/btb/img/LeagueAcolyte2.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -15693,7 +11939,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["League of Shadows"],
-    "img": "img/Ubu.png",
+    "img": "https://veland55.github.io/btb/img/Ubu.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -15728,7 +11974,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["League of Shadows"],
-    "img": "img/Hassassin4.png",
+    "img": "https://veland55.github.io/btb/img/Hassassin4.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -15768,7 +12014,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Bat Family", "GCPD", "League of Shadows"],
-    "img": "img/Goliath.png",
+    "img": "https://veland55.github.io/btb/img/Goliath.png",
     "stats": {
       "Attack": 4,
       "Defense": 2,
@@ -15807,7 +12053,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["League of Shadows"],
-    "img": "img/Hassassin1.png",
+    "img": "https://veland55.github.io/btb/img/Hassassin1.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -15838,7 +12084,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader", "Sidekick"],
     "faction": ["League of Shadows"],
-    "img": "img/TaliaRebirth.png",
+    "img": "https://veland55.github.io/btb/img/TaliaRebirth.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -15877,7 +12123,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["League of Shadows"],
-    "img": "img/TheHeretic.png",
+    "img": "https://veland55.github.io/btb/img/TheHeretic.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -15914,7 +12160,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["League of Shadows"],
-    "img": "img/LeagueAcolyte3.png",
+    "img": "https://veland55.github.io/btb/img/LeagueAcolyte3.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -15953,7 +12199,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["League of Shadows"],
-    "img": "img/LeagueAcolyte4.png",
+    "img": "https://veland55.github.io/btb/img/LeagueAcolyte4.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -15992,7 +12238,7 @@ const models = [
     "funding": 100,
     "rank": ["Henchman"],
     "faction": ["League of Shadows"],
-    "img": "img/Hassassin3.png",
+    "img": "https://veland55.github.io/btb/img/Hassassin3.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -16030,7 +12276,7 @@ const models = [
     "funding": 0,
     "rank": ["Free Agent"],
     "faction": ["League of Shadows"],
-    "img": "img/Cheshire.png",
+    "img": "https://veland55.github.io/btb/img/Cheshire.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -16073,7 +12319,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["League of Shadows"],
-    "img": "img/Hassassin2.png",
+    "img": "https://veland55.github.io/btb/img/Hassassin2.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -16105,7 +12351,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["League of Shadows", "Bane"],
-    "img": "img/BaneDKR.png",
+    "img": "https://veland55.github.io/btb/img/BaneDKR.png",
     "stats": {
       "Attack": 5,
       "Defense": 4,
@@ -16135,7 +12381,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["League of Shadows"],
-    "img": "img/RasAlGhul.png",
+    "img": "https://veland55.github.io/btb/img/RasAlGhul.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -16176,7 +12422,7 @@ const models = [
     "funding": 600,
     "rank": ["Henchman"],
     "faction": ["League of Shadows", "Bane"],
-    "img": "img/Barsad.png",
+    "img": "https://veland55.github.io/btb/img/Barsad.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -16214,7 +12460,7 @@ const models = [
     "funding": 450,
     "rank": ["Henchman"],
     "faction": ["Two-Face"],
-    "img": "img/Gangster1.png",
+    "img": "https://veland55.github.io/btb/img/Gangster1.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -16248,7 +12494,7 @@ const models = [
     "funding": 350,
     "rank": ["Henchman"],
     "faction": ["Two-Face"],
-    "img": "img/Gangster3.png",
+    "img": "https://veland55.github.io/btb/img/Gangster3.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -16283,7 +12529,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Two-Face"],
-    "img": "img/Sugar.png",
+    "img": "https://veland55.github.io/btb/img/Sugar.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -16321,7 +12567,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Two-Face"],
-    "img": "img/TwoFaceTommyLeeJones.png",
+    "img": "https://veland55.github.io/btb/img/TwoFaceTommyLeeJones.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -16359,7 +12605,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Two-Face"],
-    "img": "img/Gangster5.png",
+    "img": "https://veland55.github.io/btb/img/Gangster5.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -16394,7 +12640,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Two-Face"],
-    "img": "img/TwoFace.png",
+    "img": "https://veland55.github.io/btb/img/TwoFace.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -16435,7 +12681,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Two-Face"],
-    "img": "img/Spice.png",
+    "img": "https://veland55.github.io/btb/img/Spice.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -16480,7 +12726,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Two-Face"],
-    "img": "img/TheHitman.png",
+    "img": "https://veland55.github.io/btb/img/TheHitman.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -16522,7 +12768,7 @@ const models = [
     "funding": 200,
     "rank": ["Henchman"],
     "faction": ["Two-Face"],
-    "img": "img/Gangster7.png",
+    "img": "https://veland55.github.io/btb/img/Gangster7.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -16556,7 +12802,7 @@ const models = [
     "funding": 450,
     "rank": ["Henchman"],
     "faction": ["Two-Face"],
-    "img": "img/Gangster6.png",
+    "img": "https://veland55.github.io/btb/img/Gangster6.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -16590,7 +12836,7 @@ const models = [
     "funding": 200,
     "rank": ["Henchman"],
     "faction": ["Two-Face"],
-    "img": "img/Gangster2.png",
+    "img": "https://veland55.github.io/btb/img/Gangster2.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -16624,7 +12870,7 @@ const models = [
     "funding": 150,
     "rank": ["Henchman"],
     "faction": ["Two-Face"],
-    "img": "img/Gangster4.png",
+    "img": "https://veland55.github.io/btb/img/Gangster4.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -16658,7 +12904,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Two-Face"],
-    "img": "img/TwoFaceArkhamCity.png",
+    "img": "https://veland55.github.io/btb/img/TwoFaceArkhamCity.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -16696,7 +12942,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Two-Face"],
-    "img": "img/KillerCrocThug.png",
+    "img": "https://veland55.github.io/btb/img/KillerCrocThug.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -16732,7 +12978,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Two-Face"],
-    "img": "img/BigJohn.png",
+    "img": "https://veland55.github.io/btb/img/BigJohn.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -16772,7 +13018,7 @@ const models = [
   "funding": 0,
   "rank": ["Leader"],
   "faction": ["Birds of Prey"],
-  "img": "img/PoisonIvy_1997.png",
+  "img": "https://veland55.github.io/btb/img/PoisonIvy_1997.png",
   "stats": {
     "Attack": 3,
     "Defense": 3,
@@ -16818,7 +13064,7 @@ const models = [
   "funding": 0,
   "rank": ["Sidekick", "Leader"],
   "faction": ["Birds of Prey"],
-  "img": "img/HarleyQuinn_RollerDerby.png",
+  "img": "https://veland55.github.io/btb/img/HarleyQuinn_RollerDerby.png",
   "stats": {
     "Attack": 4,
     "Defense": 4,
@@ -16856,7 +13102,7 @@ const models = [
   "funding": 0,
   "rank": ["Sidekick"],
   "faction": ["Birds of Prey"],
-  "img": "img/HarleyQuinn_Kaboom.png",
+  "img": "https://veland55.github.io/btb/img/HarleyQuinn_Kaboom.png",
   "stats": {
     "Attack": 4,
     "Defense": 4,
@@ -16894,7 +13140,7 @@ const models = [
   "funding": 0,
   "rank": ["Sidekick", "Leader"],
   "faction": ["Birds of Prey"],
-  "img": "img/PoisonIvy.png",
+  "img": "https://veland55.github.io/btb/img/PoisonIvy.png",
   "stats": {
     "Attack": 3,
     "Defense": 3,
@@ -16941,7 +13187,7 @@ const models = [
   "funding": 0,
   "rank": ["Free Agent"],
   "faction": ["GCPD", "Birds of Prey"],
-  "img": "img/BlackCanary_Rebirth.png",
+  "img": "https://veland55.github.io/btb/img/BlackCanary_Rebirth.png",
   "stats": {
     "Attack": 4,
     "Defense": 4,
@@ -16980,7 +13226,7 @@ const models = [
   "funding": 0,
   "rank": ["Free Agent"],
   "faction": ["Birds of Prey", "Suicide Squad"],
-  "img": "img/HarleyQuinn.png",
+  "img": "https://veland55.github.io/btb/img/HarleyQuinn.png",
   "stats": {
     "Attack": 4,
     "Defense": 4,
@@ -17017,7 +13263,7 @@ const models = [
   "funding": 100,
   "rank": ["Free Agent"],
   "faction": ["GCPD", ["Suicide Squad"], "Birds of Prey"],
-  "img": "img/Katana_Rebirth.png",
+  "img": "https://veland55.github.io/btb/img/Katana_Rebirth.png",
   "stats": {
     "Attack": 4,
     "Defense": 4,
@@ -17061,7 +13307,7 @@ const models = [
   "funding": 0,
   "rank": ["Sidekick"],
   "faction": ["Birds of Prey"],
-  "img": "img/BlackCanary.png",
+  "img": "https://veland55.github.io/btb/img/BlackCanary.png",
   "stats": {
     "Attack": 4,
     "Defense": 4,
@@ -17104,7 +13350,7 @@ const models = [
   "funding": 0,
   "rank": ["Sidekick"],
   "faction": ["League of Shadows", "Birds of Prey"],
-  "img": "img/LadyShiva.png",
+  "img": "https://veland55.github.io/btb/img/LadyShiva.png",
   "stats": {
     "Attack": 4,
     "Defense": 4,
@@ -17136,7 +13382,7 @@ const models = [
   "funding": 0,
   "rank": ["Sidekick", "Free Agent"],
   "faction": ["Bat Family", "GCPD", "Birds of Prey"],
-  "img": "img/Oracle.png",
+  "img": "https://veland55.github.io/btb/img/Oracle.png",
   "stats": {
     "Attack": 3,
     "Defense": 3,
@@ -17171,7 +13417,7 @@ const models = [
   "funding": 0,
   "rank": ["Sidekick"],
   "faction": ["Birds of Prey"],
-  "img": "img/FloronicMan.png",
+  "img": "https://veland55.github.io/btb/img/FloronicMan.png",
   "stats": {
     "Attack": 3,
     "Defense": 3,
@@ -17209,7 +13455,7 @@ const models = [
   "funding": 100,
   "rank": ["Henchman"],
   "faction": [["Suicide Squad"], "Birds of Prey"],
-  "img": "img/KillerFrost_Rebirth.png",
+  "img": "https://veland55.github.io/btb/img/KillerFrost_Rebirth.png",
   "stats": {
     "Attack": 3,
     "Defense": 4,
@@ -17244,7 +13490,7 @@ const models = [
   "funding": 0,
   "rank": ["Henchman"],
   "faction": ["Birds of Prey"],
-  "img": "img/RabidPlant1.png",
+  "img": "https://veland55.github.io/btb/img/RabidPlant1.png",
   "stats": {
     "Attack": 3,
     "Defense": 2,
@@ -17279,7 +13525,7 @@ const models = [
   "rank": ["Henchman"],
   "faction": ["Birds of Prey"],
   "rivals": "GCPD",
-  "img": "img/RollerDerbyThug4.png",
+  "img": "https://veland55.github.io/btb/img/RollerDerbyThug4.png",
   "stats": {
     "Attack": 3,
     "Defense": 3,
@@ -17313,7 +13559,7 @@ const models = [
   "rank": ["Henchman"],
   "faction": ["Birds of Prey"],
   "rivals": "GCPD",
-  "img": "img/RollerDerbyThug1.png",
+  "img": "https://veland55.github.io/btb/img/RollerDerbyThug1.png",
   "stats": {
     "Attack": 3,
     "Defense": 3,
@@ -17353,7 +13599,7 @@ const models = [
   "rank": ["Henchman"],
   "faction": ["Birds of Prey"],
   "rivals": "GCPD",
-  "img": "img/RollerDerbyThug2.png",
+  "img": "https://veland55.github.io/btb/img/RollerDerbyThug2.png",
   "stats": {
     "Attack": 2,
     "Defense": 3,
@@ -17386,7 +13632,7 @@ const models = [
   "funding": 0,
   "rank": ["Henchman"],
   "faction": ["Birds of Prey"],
-  "img": "img/RabidPlant2.png",
+  "img": "https://veland55.github.io/btb/img/RabidPlant2.png",
   "stats": {
     "Attack": 3,
     "Defense": 2,
@@ -17420,7 +13666,7 @@ const models = [
   "funding": 400,
   "rank": ["Henchman"],
   "faction": ["Birds of Prey"],
-  "img": "img/Huntress.png",
+  "img": "https://veland55.github.io/btb/img/Huntress.png",
   "stats": {
     "Attack": 4,
     "Defense": 4,
@@ -17456,7 +13702,7 @@ const models = [
   "rank": ["Henchman"],
   "faction": ["Birds of Prey"],
   "rivals": "GCPD",
-  "img": "img/RollerDerbyThug3.png",
+  "img": "https://veland55.github.io/btb/img/RollerDerbyThug3.png",
   "stats": {
     "Attack": 2,
     "Defense": 2,
@@ -17498,7 +13744,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Bat Family", "Birds of Prey"],
     "rivals": "",
-    "img": "img/Hawk.png",
+    "img": "https://veland55.github.io/btb/img/Hawk.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -17536,7 +13782,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Bat Family", "Birds of Prey"],
     "rivals": "",
-    "img": "img/Dove.png",
+    "img": "https://veland55.github.io/btb/img/Dove.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -17573,7 +13819,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Birds of Prey"],
     "rivals": "",
-    "img": "img/BruceTheHyena.png",
+    "img": "https://veland55.github.io/btb/img/BruceTheHyena.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -17602,7 +13848,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Birds of Prey"],
     "rivals": "",
-    "img": "img/MutatedPlant2.png",
+    "img": "https://veland55.github.io/btb/img/MutatedPlant2.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -17636,7 +13882,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Birds of Prey"],
     "rivals": "",
-    "img": "img/CassandraCain.png",
+    "img": "https://veland55.github.io/btb/img/CassandraCain.png",
     "stats": {
       "Attack": 3,
       "Defense": 5,
@@ -17663,7 +13909,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Bat Family", "GCPD", "Birds of Prey"],
     "rivals": "",
-    "img": "img/BatgirlRebirth.png",
+    "img": "https://veland55.github.io/btb/img/BatgirlRebirth.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -17701,7 +13947,7 @@ const models = [
     "rank": ["Leader"],
     "faction": ["Bat Family", "GCPD",],
     "rivals": "",
-    "img": "img/BatgirlVampireQueen.png",
+    "img": "https://veland55.github.io/btb/img/BatgirlVampireQueen.png",
     "stats": {
       "Attack": 4,
       "Defense": 5,
@@ -17750,7 +13996,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Birds of Prey"],
     "rivals": "",
-    "img": "img/MutatedPlant1.png",
+    "img": "https://veland55.github.io/btb/img/MutatedPlant1.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -17784,7 +14030,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Birds of Prey"],
     "rivals": "",
-    "img": "img/FrankThePlant.png",
+    "img": "https://veland55.github.io/btb/img/FrankThePlant.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -17820,7 +14066,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Birds of Prey"],
     "rivals": "",
-    "img": "img/DetectiveMontoya.png",
+    "img": "https://veland55.github.io/btb/img/DetectiveMontoya.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -17863,7 +14109,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Bat Family", "GCPD", "Birds of Prey"],
     "rivals": "",
-    "img": "img/BatgirlClassic.png",
+    "img": "https://veland55.github.io/btb/img/BatgirlClassic.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -17905,7 +14151,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Court of Owls", "Birds of Prey"],
     "rivals": "",
-    "img": "img/Strix.png",
+    "img": "https://veland55.github.io/btb/img/Strix.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -17949,7 +14195,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Birds of Prey"],
     "rivals": "",
-    "img": "img/MutatedPlant3.png",
+    "img": "https://veland55.github.io/btb/img/MutatedPlant3.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -17985,7 +14231,7 @@ const models = [
   "funding": 0,
   "rank": ["Leader"],
   "faction": ["Scarecrow"],
-  "img": "img/ScarecrowTheWorstNightmare.png",
+  "img": "https://veland55.github.io/btb/img/ScarecrowTheWorstNightmare.png",
   "stats": {
     "Attack": 3,
     "Defense": 4,
@@ -18020,7 +14266,7 @@ const models = [
   "funding": 0,
   "rank": ["Sidekick"],
   "faction": ["Scarecrow"],
-  "img": "img/DrFriitawa.png",
+  "img": "https://veland55.github.io/btb/img/DrFriitawa.png",
   "stats": {
     "Attack": 2,
     "Defense": 2,
@@ -18048,7 +14294,7 @@ const models = [
   "funding": 0,
   "rank": ["Henchman"],
   "faction": ["Scarecrow"],
-  "img": "img/NightmareOfFear.png",
+  "img": "https://veland55.github.io/btb/img/NightmareOfFear.png",
   "stats": {
     "Attack": 2,
     "Defense": 2,
@@ -18076,7 +14322,7 @@ const models = [
   "funding": 0,
   "rank": ["Henchman"],
   "faction": ["Scarecrow"],
-  "img": "img/NightmareOfDemotivation.png",
+  "img": "https://veland55.github.io/btb/img/NightmareOfDemotivation.png",
   "stats": {
     "Attack": 2,
     "Defense": 2,
@@ -18104,7 +14350,7 @@ const models = [
   "funding": 0,
   "rank": ["Henchman"],
   "faction": ["Scarecrow"],
-  "img": "img/NightmareOfAnger.png",
+  "img": "https://veland55.github.io/btb/img/NightmareOfAnger.png",
   "stats": {
     "Attack": 2,
     "Defense": 2,
@@ -18132,7 +14378,7 @@ const models = [
   "funding": 0,
   "rank": ["Henchman"],
   "faction": ["Scarecrow"],
-  "img": "img/NightmareOfInsignificance.png",
+  "img": "https://veland55.github.io/btb/img/NightmareOfInsignificance.png",
   "stats": {
     "Attack": 2,
     "Defense": 2,
@@ -18160,7 +14406,7 @@ const models = [
   "funding": 0,
   "rank": ["Henchman"],
   "faction": ["Scarecrow"],
-  "img": "img/FearbeastNightmare.png",
+  "img": "https://veland55.github.io/btb/img/FearbeastNightmare.png",
   "stats": {
     "Attack": 3,
     "Defense": 2,
@@ -18188,7 +14434,7 @@ const models = [
   "funding": 100,
   "rank": ["Henchman"],
   "faction": ["Scarecrow"],
-  "img": "img/LittleNightmare.png",
+  "img": "https://veland55.github.io/btb/img/LittleNightmare.png",
   "stats": {
     "Attack": 2,
     "Defense": 2,
@@ -18220,7 +14466,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Court of Owls"],
-    "img": "img/TheCourt.png",
+    "img": "https://veland55.github.io/btb/img/TheCourt.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -18257,7 +14503,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Court of Owls"],
-    "img": "img/1890sTalon.png",
+    "img": "https://veland55.github.io/btb/img/1890sTalon.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -18298,7 +14544,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": [["Suicide Squad"], "Court of Owls"],
-    "img": "img/TheTalon.png",
+    "img": "https://veland55.github.io/btb/img/TheTalon.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -18341,7 +14587,7 @@ const models = [
     "funding": 0,
     "rank": ["Free Agent"],
     "faction": ["Court of Owls"],
-    "img": "img/GothamButcher.png",
+    "img": "https://veland55.github.io/btb/img/GothamButcher.png",
     "stats": {
       "Attack": 5,
       "Defense": 3,
@@ -18370,7 +14616,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader", "Henchman"],
     "faction": ["Court of Owls"],
-    "img": "img/LincolnMarch.png",
+    "img": "https://veland55.github.io/btb/img/LincolnMarch.png",
     "stats": {
       "Attack": 5,
       "Defense": 4,
@@ -18409,7 +14655,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Court of Owls"],
-    "img": "img/OMalleysGrandfather.png",
+    "img": "https://veland55.github.io/btb/img/OMalleysGrandfather.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -18450,7 +14696,7 @@ const models = [
     "funding": 0,
     "rank": ["Free Agent"],
     "faction": ["Court of Owls", "Bat Family"],
-    "img": "img/Talon.png",
+    "img": "https://veland55.github.io/btb/img/Talon.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -18488,7 +14734,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Court of Owls"],
-    "img": "img/OMalleysFather.png",
+    "img": "https://veland55.github.io/btb/img/OMalleysFather.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -18530,7 +14776,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Court of Owls"],
-    "img": "img/Dementor.png",
+    "img": "https://veland55.github.io/btb/img/Dementor.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -18574,7 +14820,7 @@ const models = [
     "funding": 0,
     "rank": ["Free Agent"],
     "faction": ["Court of Owls", "Cults"],
-    "img": "img/Raptor.png",
+    "img": "https://veland55.github.io/btb/img/Raptor.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -18617,7 +14863,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Court of Owls"],
-    "img": "img/1880sTalon.png",
+    "img": "https://veland55.github.io/btb/img/1880sTalon.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -18651,7 +14897,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["League of Shadows", "Court of Owls"],
-    "img": "img/RobinDamian.png",
+    "img": "https://veland55.github.io/btb/img/RobinDamian.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -18687,14 +14933,14 @@ const models = [
     ]
   },
   {
-    "name": "Robin",
+    "name": "Robin [Damian Wayne]",
     "realname": "Damian Wayne",
     "base": "30mm",
     "rep": 50,
     "funding": 0,
     "rank": ["Sidekick", "Henchman"],
     "faction": ["Bat Family", "GCPD"],
-    "img": "img/RobinDamian.png",
+    "img": "https://veland55.github.io/btb/img/RobinDamian.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -18739,7 +14985,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Court of Owls"],
-    "img": "img/OMalleysSon.png",
+    "img": "https://veland55.github.io/btb/img/OMalleysSon.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -18779,7 +15025,7 @@ const models = [
     "funding": 100,
     "rank": ["Henchman"],
     "faction": ["Court of Owls"],
-    "img": "img/EphraimNewhouse.png",
+    "img": "https://veland55.github.io/btb/img/EphraimNewhouse.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -18826,7 +15072,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Royal Flush"],
-    "img": "img/KingOfSpades.png",
+    "img": "https://veland55.github.io/btb/img/KingOfSpades.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -18861,7 +15107,7 @@ const models = [
     "funding": 100,
     "rank": ["Henchman"],
     "faction": ["Royal Flush"],
-    "img": "img/10OfSpades.png",
+    "img": "https://veland55.github.io/btb/img/10OfSpades.png",
     "stats": {
       "Attack": 3,
       "Defense": 5,
@@ -18901,7 +15147,7 @@ const models = [
     "funding": 400,
     "rank": ["SFree Agent"],
     "faction": ["Royal Flush"],
-    "img": "img/JackOfSpades.png",
+    "img": "https://veland55.github.io/btb/img/JackOfSpades.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -18942,7 +15188,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Royal Flush"],
-    "img": "img/AceOfSpades.png",
+    "img": "https://veland55.github.io/btb/img/AceOfSpades.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -18976,7 +15222,7 @@ const models = [
     "funding": 200,
     "rank": ["Sidekick"],
     "faction": ["Royal Flush"],
-    "img": "img/QueenOfSpades.png",
+    "img": "https://veland55.github.io/btb/img/QueenOfSpades.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -19017,7 +15263,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Royal Flush"],
-    "img": "img/5OfSpades.png",
+    "img": "https://veland55.github.io/btb/img/5OfSpades.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -19062,7 +15308,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Suicide Squad"],
     "rivals": ["Bat Family", "GCPD", "League of Shadows"],
-    "img": "img/SlipknotSuicideSquad.png",
+    "img": "https://veland55.github.io/btb/img/SlipknotSuicideSquad.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -19096,7 +15342,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Suicide Squad"],
-    "img": "img/PolkaDotManTheSuicideSquad.png",
+    "img": "https://veland55.github.io/btb/img/PolkaDotManTheSuicideSquad.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -19130,7 +15376,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Suicide Squad"],
-    "img": "img/WeaselTheSuicideSquad.png",
+    "img": "https://veland55.github.io/btb/img/WeaselTheSuicideSquad.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -19160,7 +15406,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Suicide Squad", "Unknown"],
     "rivals": ["Bat Family", "GCPD"],
-    "img": "img/KillerMoth.png",
+    "img": "https://veland55.github.io/btb/img/KillerMoth.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -19201,7 +15447,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Suicide Squad"],
-    "img": "img/JohnEconomos.png",
+    "img": "https://veland55.github.io/btb/img/JohnEconomos.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -19233,7 +15479,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Suicide Squad"],
-    "img": "img/EmiliaHarcourt.png",
+    "img": "https://veland55.github.io/btb/img/EmiliaHarcourt.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -19273,7 +15519,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Suicide Squad"],
     "rivals": ["Bat Family", "GCPD"],
-    "img": "img/KillerCrocSuicideSquad.png",
+    "img": "https://veland55.github.io/btb/img/KillerCrocSuicideSquad.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -19300,7 +15546,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Suicide Squad", "Unknown"],
     "rivals": ["Bat Family", "GCPD"],
-    "img": "img/PolkaDotMan.png",
+    "img": "https://veland55.github.io/btb/img/PolkaDotMan.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -19334,7 +15580,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Suicide Squad"],
-    "img": "img/ThinkerTheSuicideSquad.png",
+    "img": "https://veland55.github.io/btb/img/ThinkerTheSuicideSquad.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -19360,7 +15606,7 @@ const models = [
     "funding": 200,
     "rank": ["Henchman"],
     "faction": ["Suicide Squad"],
-    "img": "img/DiabloSuicideSquad.png",
+    "img": "https://veland55.github.io/btb/img/DiabloSuicideSquad.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -19404,7 +15650,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Suicide Squad"],
-    "img": "img/KatanaSuicideSquad.png",
+    "img": "https://veland55.github.io/btb/img/KatanaSuicideSquad.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -19447,7 +15693,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Suicide Squad", "Unknown"],
     "rivals": ["Bat Family", "GCPD"],
-    "img": "img/SebastianTheRatTheSuicideSquad.png",
+    "img": "https://veland55.github.io/btb/img/SebastianTheRatTheSuicideSquad.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -19484,7 +15730,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Suicide Squad"],
-    "img": "img/Eagly.png",
+    "img": "https://veland55.github.io/btb/img/Eagly.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -19514,7 +15760,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Suicide Squad", "Unknown"],
     "rivals": ["Bat Family", "GCPD"],
-    "img": "img/KingSharkTheSuicideSquad.png",
+    "img": "https://veland55.github.io/btb/img/KingSharkTheSuicideSquad.png",
     "stats": {
       "Attack": 5,
       "Defense": 3,
@@ -19553,7 +15799,7 @@ const models = [
     "funding": 200,
     "rank": ["Free Agent"],
     "faction": ["Suicide Squad"],
-    "img": "img/PoisonIvy.png",
+    "img": "https://veland55.github.io/btb/img/PoisonIvy.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -19597,7 +15843,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Suicide Squad", "Unknown"],
     "rivals": ["Bat Family", "GCPD", "Bane"],
-    "img": "img/KillerCrocArkhamAsylum.png",
+    "img": "https://veland55.github.io/btb/img/KillerCrocArkhamAsylum.png",
     "stats": {
       "Attack": 5,
       "Defense": 3,
@@ -19637,7 +15883,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Suicide Squad"],
-    "img": "img/TDKTheSuicideSquad.png",
+    "img": "https://veland55.github.io/btb/img/TDKTheSuicideSquad.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -19671,7 +15917,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Suicide Squad", "Unknown"],
     "rivals": ["Bat Family", "GCPD"],
-    "img": "img/DeathstrokeVanguardTeam.png",
+    "img": "https://veland55.github.io/btb/img/DeathstrokeVanguardTeam.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -19715,7 +15961,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Suicide Squad"],
-    "img": "img/TheRiddlerModernAge.png",
+    "img": "https://veland55.github.io/btb/img/TheRiddlerModernAge.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -19748,7 +15994,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Suicide Squad"],
-    "img": "img/Ratcatcher2TheSuicideSquad.png",
+    "img": "https://veland55.github.io/btb/img/Ratcatcher2TheSuicideSquad.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -19775,7 +16021,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Suicide Squad"],
-    "img": "img/CaptainBoomerangVanguardTeam.png",
+    "img": "https://veland55.github.io/btb/img/CaptainBoomerangVanguardTeam.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -19817,7 +16063,7 @@ const models = [
     "funding": 350,
     "rank": ["Sidekick"],
     "faction": ["Suicide Squad"],
-    "img": "img/RickFlagInfiltration.png",
+    "img": "https://veland55.github.io/btb/img/RickFlagInfiltration.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -19861,7 +16107,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick", "Free Agent"],
     "faction": ["Suicide Squad"],
-    "img": "img/TheRiddler.png",
+    "img": "https://veland55.github.io/btb/img/TheRiddler.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -19897,7 +16143,7 @@ const models = [
     "funding": 300,
     "rank": ["Free Agent"],
     "faction": ["Suicide Squad"],
-    "img": "img/Vigilante.png",
+    "img": "https://veland55.github.io/btb/img/Vigilante.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -19941,7 +16187,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Suicide Squad", "Unknown"],
     "rivals": ["Bat Family", "GCPD"],
-    "img": "img/CaptainBoomerangSuicideSquad.png",
+    "img": "https://veland55.github.io/btb/img/CaptainBoomerangSuicideSquad.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -19985,7 +16231,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Suicide Squad", "Unknown"],
     "rivals": ["Bat Family", "GCPD"],
-    "img": "img/KGBeast.png",
+    "img": "https://veland55.github.io/btb/img/KGBeast.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -20033,7 +16279,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Suicide Squad", "Unknown"],
     "rivals": ["Bat Family", "GCPD"],
-    "img": "img/Deadshot.png",
+    "img": "https://veland55.github.io/btb/img/Deadshot.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -20074,7 +16320,7 @@ const models = [
     "funding": 300,
     "rank": ["Sidekick"],
     "faction": ["Joker", "Suicide Squad"],
-    "img": "img/HarleyQuinnBombshell.png",
+    "img": "https://veland55.github.io/btb/img/HarleyQuinnBombshell.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -20119,7 +16365,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Suicide Squad", "Unknown"],
     "rivals": ["Bat Family", "GCPD"],
-    "img": "img/DeadshotSuicideSquad.png",
+    "img": "https://veland55.github.io/btb/img/DeadshotSuicideSquad.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -20163,7 +16409,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Suicide Squad", "Unknown"],
     "rivals": ["Bat Family", "GCPD"],
-    "img": "img/DeathstrokeTheTerminator.png",
+    "img": "https://veland55.github.io/btb/img/DeathstrokeTheTerminator.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -20196,7 +16442,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Suicide Squad"],
-    "img": "img/AmandaWallerViolaDavis.png",
+    "img": "https://veland55.github.io/btb/img/AmandaWallerViolaDavis.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -20235,7 +16481,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Suicide Squad", "Unknown"],
     "rivals": ["Bat Family", "GCPD", "Bane"],
-    "img": "img/KillerCroc.png",
+    "img": "https://veland55.github.io/btb/img/KillerCroc.png",
     "stats": {
       "Attack": 5,
       "Defense": 3,
@@ -20267,7 +16513,7 @@ const models = [
     "funding": 150,
     "rank": ["Free Agent"],
     "faction": ["Suicide Squad"],
-    "img": "img/HarleyQuinnTheSuicideSquad.png",
+    "img": "https://veland55.github.io/btb/img/HarleyQuinnTheSuicideSquad.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -20312,7 +16558,7 @@ const models = [
     "funding": 350,
     "rank": ["Free Agent", "Sidekick"],
     "faction": ["Suicide Squad"],
-    "img": "img/PeacemakerJohnCena.png",
+    "img": "https://veland55.github.io/btb/img/PeacemakerJohnCena.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -20352,7 +16598,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Suicide Squad", "Unknown"],
     "rivals": ["Bat Family", "GCPD"],
-    "img": "img/BloodsportTheSuicideSquad.png",
+    "img": "https://veland55.github.io/btb/img/BloodsportTheSuicideSquad.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -20400,7 +16646,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/Ratface.png",
+    "img": "https://veland55.github.io/btb/img/Ratface.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -20437,7 +16683,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Cults"],
-    "img": "img/Kobra.png",
+    "img": "https://veland55.github.io/btb/img/Kobra.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -20481,7 +16727,7 @@ const models = [
     "funding": 350,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/NagaHazardTrooper2.png",
+    "img": "https://veland55.github.io/btb/img/NagaHazardTrooper2.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -20514,7 +16760,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/TheNagas.png",
+    "img": "https://veland55.github.io/btb/img/TheNagas.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -20555,7 +16801,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Cults"],
-    "img": "img/Jake.png",
+    "img": "https://veland55.github.io/btb/img/Jake.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -20600,7 +16846,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/Underworlder1.png",
+    "img": "https://veland55.github.io/btb/img/Underworlder1.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -20625,7 +16871,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/KobraHybrid.png",
+    "img": "https://veland55.github.io/btb/img/KobraHybrid.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -20659,7 +16905,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Cults"],
-    "img": "img/DeaconBlackfire.png",
+    "img": "https://veland55.github.io/btb/img/DeaconBlackfire.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -20706,7 +16952,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/UnderworlderVagon1.png",
+    "img": "https://veland55.github.io/btb/img/UnderworlderVagon1.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -20733,7 +16979,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/Underworlder2.png",
+    "img": "https://veland55.github.io/btb/img/Underworlder2.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -20758,7 +17004,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/CobraSwarm.png",
+    "img": "https://veland55.github.io/btb/img/CobraSwarm.png",
     "stats": {
       "Attack": 1,
       "Defense": 1,
@@ -20791,7 +17037,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/YoungWoman.png",
+    "img": "https://veland55.github.io/btb/img/YoungWoman.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -20819,7 +17065,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/Lancehead1.png",
+    "img": "https://veland55.github.io/btb/img/Lancehead1.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -20851,7 +17097,7 @@ const models = [
     "funding": 0,
     "rank": ["Sidekick"],
     "faction": ["Cults"],
-    "img": "img/LadyEve.png",
+    "img": "https://veland55.github.io/btb/img/LadyEve.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -20894,7 +17140,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/Underworlder6.png",
+    "img": "https://veland55.github.io/btb/img/Underworlder6.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -20927,7 +17173,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/Underworlder4.png",
+    "img": "https://veland55.github.io/btb/img/Underworlder4.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -20960,7 +17206,7 @@ const models = [
     "funding": 0,
     "rank": ["Free Agent"],
     "faction": ["Cults"],
-    "img": "img/BatmanTheCult.png",
+    "img": "https://veland55.github.io/btb/img/BatmanTheCult.png",
     "stats": {
       "Attack": 4,
       "Defense": 5,
@@ -21000,7 +17246,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/KobraBestowed.png",
+    "img": "https://veland55.github.io/btb/img/KobraBestowed.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -21034,7 +17280,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/UnderworlderVagon2.png",
+    "img": "https://veland55.github.io/btb/img/UnderworlderVagon2.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -21069,7 +17315,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/Underworlder5.png",
+    "img": "https://veland55.github.io/btb/img/Underworlder5.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -21102,7 +17348,7 @@ const models = [
     "funding": 500,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/NagaHazardTrooper1.png",
+    "img": "https://veland55.github.io/btb/img/NagaHazardTrooper1.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -21142,7 +17388,7 @@ const models = [
     "funding": 400,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/LanceheadCaptain.png",
+    "img": "https://veland55.github.io/btb/img/LanceheadCaptain.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -21174,7 +17420,7 @@ const models = [
     "funding": 350,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/Lancehead2.png",
+    "img": "https://veland55.github.io/btb/img/Lancehead2.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -21206,7 +17452,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Cults"],
-    "img": "img/LanceheadSoldier.png",
+    "img": "https://veland55.github.io/btb/img/LanceheadSoldier.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -21245,7 +17491,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Batman Who Laughs"],
     "rivals": ["GCPD", "Joker"],
-    "img": "img/DamianWhoLaughs.png",
+    "img": "https://veland55.github.io/btb/img/DamianWhoLaughs.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -21285,7 +17531,7 @@ const models = [
     "rank": ["Sidekick"],
     "faction": ["Batman Who Laughs"],
     "rivals": ["GCPD", "Joker"],
-    "img": "img/TheCommissioner.png",
+    "img": "https://veland55.github.io/btb/img/TheCommissioner.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -21324,7 +17570,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Batman Who Laughs"],
-    "img": "img/TheMerciless.png",
+    "img": "https://veland55.github.io/btb/img/TheMerciless.png",
     "stats": {
       "Attack": 5,
       "Defense": 3,
@@ -21358,7 +17604,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Batman Who Laughs"],
-    "img": "img/InfectedWhoLaughs.png",
+    "img": "https://veland55.github.io/btb/img/InfectedWhoLaughs.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -21393,7 +17639,7 @@ const models = [
     "funding": 500,
     "rank": ["Free Agent"],
     "faction": ["Batman Who Laughs"],
-    "img": "img/TheGrimKnight.png",
+    "img": "https://veland55.github.io/btb/img/TheGrimKnight.png",
     "stats": {
       "Attack": 5,
       "Defense": 4,
@@ -21439,7 +17685,7 @@ const models = [
     "rank": ["Leader", "Free Agent"],
     "faction": ["Batman Who Laughs"],
     "rivals": ["GCPD", "Joker"],
-    "img": "img/TheBatmanWhoLaughs.png",
+    "img": "https://veland55.github.io/btb/img/TheBatmanWhoLaughs.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -21487,7 +17733,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Batman Who Laughs"],
-    "img": "img/TheRedDeath.png",
+    "img": "https://veland55.github.io/btb/img/TheRedDeath.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -21532,7 +17778,7 @@ const models = [
     "funding": 300,
     "rank": ["Henchman"],
     "faction": ["Batman Who Laughs"],
-    "img": "img/TheDrowned.png",
+    "img": "https://veland55.github.io/btb/img/TheDrowned.png",
     "stats": {
       "Attack": 4,
       "Defense": 5,
@@ -21576,7 +17822,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Batman Who Laughs", "Unknown"],
     "rivals": ["GCPD", "Joker"],
-    "img": "img/RobinWhoLaughs.png",
+    "img": "https://veland55.github.io/btb/img/RobinWhoLaughs.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -21617,7 +17863,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Watchmen"],
-    "img": "img/SilkSpectreII.png",
+    "img": "https://veland55.github.io/btb/img/SilkSpectreII.png",
     "stats": {
       "Attack": 4,
       "Defense": 5,
@@ -21644,7 +17890,7 @@ const models = [
     "funding": 0,
     "rank": ["Free Agent"],
     "faction": ["Watchmen"],
-    "img": "img/TheComedian.png",
+    "img": "https://veland55.github.io/btb/img/TheComedian.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -21688,7 +17934,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Watchmen"],
-    "img": "img/NiteOwl.png",
+    "img": "https://veland55.github.io/btb/img/NiteOwl.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -21724,7 +17970,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Watchmen"],
-    "img": "img/Rorschach.png",
+    "img": "https://veland55.github.io/btb/img/Rorschach.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -21758,7 +18004,7 @@ const models = [
     "funding": 0,
     "rank": ["Henchman"],
     "faction": ["Watchmen"],
-    "img": "img/Bubastis.png",
+    "img": "https://veland55.github.io/btb/img/Bubastis.png",
     "stats": {
       "Attack": 4,
       "Defense": 3,
@@ -21785,7 +18031,7 @@ const models = [
     "funding": 0,
     "rank": ["Leader"],
     "faction": ["Watchmen"],
-    "img": "img/Ozymandias.png",
+    "img": "https://veland55.github.io/btb/img/Ozymandias.png",
     "stats": {
       "Attack": 4,
       "Defense": 5,
@@ -21820,7 +18066,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/PsychoPirate.png",
+    "img": "https://veland55.github.io/btb/img/PsychoPirate.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -21845,7 +18091,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/Ratcatcher.png",
+    "img": "https://veland55.github.io/btb/img/Ratcatcher.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -21882,7 +18128,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/SolomonGrundy.png",
+    "img": "https://veland55.github.io/btb/img/SolomonGrundy.png",
     "stats": {
       "Attack": 5,
       "Defense": 2,
@@ -21921,7 +18167,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/Scarecrow.png",
+    "img": "https://veland55.github.io/btb/img/Scarecrow.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -21965,7 +18211,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/Hush.png",
+    "img": "https://veland55.github.io/btb/img/Hush.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -22010,7 +18256,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/ClockKing.png",
+    "img": "https://veland55.github.io/btb/img/ClockKing.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -22038,7 +18284,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/GentlemanGhost.png",
+    "img": "https://veland55.github.io/btb/img/GentlemanGhost.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -22080,7 +18326,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/MadHatter.png",
+    "img": "https://veland55.github.io/btb/img/MadHatter.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -22117,7 +18363,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/ManBat.png",
+    "img": "https://veland55.github.io/btb/img/ManBat.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -22162,7 +18408,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/TenEyedMan.png",
+    "img": "https://veland55.github.io/btb/img/TenEyedMan.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -22196,7 +18442,7 @@ const models = [
     "funding": 0,
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
-    "img": "img/LoboParamilitary.png",
+    "img": "https://veland55.github.io/btb/img/LoboParamilitary.png",
     "stats": {
       "Attack": 5,
       "Defense": 4,
@@ -22244,7 +18490,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/CalculatorClassic.png",
+    "img": "https://veland55.github.io/btb/img/CalculatorClassic.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -22278,7 +18524,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family", "Joker"],
-    "img": "img/CatmanTheHunter.png",
+    "img": "https://veland55.github.io/btb/img/CatmanTheHunter.png",
     "stats": {
       "Attack": 5,
       "Defense": 5,
@@ -22320,7 +18566,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/Thug1.png",
+    "img": "https://veland55.github.io/btb/img/Thug1.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -22351,7 +18597,7 @@ const models = [
     "funding": 0,
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
-    "img": "img/HarleyQuinnBewitched.png",
+    "img": "https://veland55.github.io/btb/img/HarleyQuinnBewitched.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -22388,7 +18634,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/DrHugoStrange.png",
+    "img": "https://veland55.github.io/btb/img/DrHugoStrange.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -22433,7 +18679,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/Thug2.png",
+    "img": "https://veland55.github.io/btb/img/Thug2.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -22464,7 +18710,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/ScarecrowArkhamAsylum.png",
+    "img": "https://veland55.github.io/btb/img/ScarecrowArkhamAsylum.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -22509,7 +18755,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/VictorZsasz.png",
+    "img": "https://veland55.github.io/btb/img/VictorZsasz.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -22547,7 +18793,7 @@ const models = [
     "rank": ["Free Agent"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/CatwomanJulieNewmar.png",
+    "img": "https://veland55.github.io/btb/img/CatwomanJulieNewmar.png",
     "stats": {
       "Attack": 3,
       "Defense": 4,
@@ -22590,7 +18836,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/MrCamera.png",
+    "img": "https://veland55.github.io/btb/img/MrCamera.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -22626,7 +18872,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/CondimentKing.png",
+    "img": "https://veland55.github.io/btb/img/CondimentKing.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -22667,7 +18913,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/ArkhamAssistant1.png",
+    "img": "https://veland55.github.io/btb/img/ArkhamAssistant1.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -22710,7 +18956,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/Thug5.png",
+    "img": "https://veland55.github.io/btb/img/Thug5.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -22749,7 +18995,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/Thug3.png",
+    "img": "https://veland55.github.io/btb/img/Thug3.png",
     "stats": {
       "Attack": 3,
       "Defense": 2,
@@ -22780,7 +19026,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/CrazyQuilt.png",
+    "img": "https://veland55.github.io/btb/img/CrazyQuilt.png",
     "stats": {
       "Attack": 2,
       "Defense": 3,
@@ -22819,7 +19065,7 @@ const models = [
     "funding": 0,
     "rank": [],
     "faction": ["Unknown"],
-    "img": "img/SewerSwarm.png",
+    "img": "https://veland55.github.io/btb/img/SewerSwarm.png",
     "stats": {
       "Attack": 1,
       "Defense": 2,
@@ -22855,7 +19101,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/ArkhamAssistant2.png",
+    "img": "https://veland55.github.io/btb/img/ArkhamAssistant2.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -22898,7 +19144,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/Thug6.png",
+    "img": "https://veland55.github.io/btb/img/Thug6.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -22930,7 +19176,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/Thug4.png",
+    "img": "https://veland55.github.io/btb/img/Thug4.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -22961,7 +19207,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/Eraser.png",
+    "img": "https://veland55.github.io/btb/img/Eraser.png",
     "stats": {
       "Attack": 2,
       "Defense": 2,
@@ -22996,7 +19242,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/KiteMan.png",
+    "img": "https://veland55.github.io/btb/img/KiteMan.png",
     "stats": {
       "Attack": 3,
       "Defense": 3,
@@ -23024,7 +19270,7 @@ const models = [
     "rank": ["Henchman"],
     "faction": ["Unknown"],
     "rivals": ["GCPD", "Bat Family"],
-    "img": "img/Signalman.png",
+    "img": "https://veland55.github.io/btb/img/Signalman.png",
     "stats": {
       "Attack": 4,
       "Defense": 4,
@@ -23066,7 +19312,7 @@ const models = [
   "rank": ["Henchman"],
   "faction": ["Unknown"],
   "rivals": ["Bat Family", "GCPD"],
-  "img": "img/CalendarMan.png",
+  "img": "https://veland55.github.io/btb/img/CalendarMan.png",
   "stats": {
     "Attack": 3,
     "Defense": 3,
@@ -23090,52 +19336,6 @@ const models = [
       "rof": "-",
       "ammo": "-",
       "traits": "Mechanical / Reach (3) / Crt (Stunned)"
-    }
-  ]
-},
-{
-  "name": "The Penguin Crime Lord Rising",
-  "realname": "Oswald Chesterfield Cobblepot",
-  "base": "40mm",
-  "rep": 74,
-  "funding": 0,
-  "rank": ["Leader"],
-  "faction": ["Penguin"],
-  "print": "yes",
-  "img": "img/ThePenguinCrimeLordRising.png",
-  "stats": {
-    "Attack": 3,
-    "Defense": 3,
-    "Strength": "5+",
-    "Movement": 8,
-    "Willpower": 7,
-    "Endurance": 7
-  },
-  "traits": [
-    "Business Agent",
-    "Criminal Bonds",
-    "Drop It!",
-    "Empire of Lies",
-    "Handyman",
-    "Manipulative",
-    "Tough Guy",
-    "Underworld King",
-    "Protect Me!"
-  ],
-  "weapons": [
-    {
-      "name": "SMG",
-      "damage": "🩸🩸",
-      "rof": 4,
-      "ammo": 2,
-      "traits": "Firearm / S. Range"
-    },
-    {
-      "name": "Torture Tools",
-      "damage": "🩸★",
-      "rof": "-",
-      "ammo": "-",
-      "traits": "Handy / Steal"
     }
   ]
 }
@@ -23243,7 +19443,7 @@ const traitDescriptions = {
     "Batclaw {SPECIAL_ICON}": "Once per round, this model gains +6” to its basic move distance, and can move in any direction (including vertically). When using this ability, the model can move over obstacles and Difficult Ground without penalty. However, the model cannot use this rule in two consecutive activations.\n\n*Some models list this trait as ‘Grapple Gun’, and others as ‘Batclaw’. The rules are the same in both instances - the distinction is just for fun!",
     "Batcave Support {SPECIAL_ICON}": "Target a friendly model within 8\" and LoS without the Cop trait. That model gains X+1 {+ATT_ICON} or X+1 {+DEF_ICON}, where X is the number of friendly Suspects within 4\" of this model.",
     "Batcape": "This model does not take Damage, nor can it be removed as a Casualty, as a result of Falling.",
-    "Batman Inc.": "Model gains the Bat-Armor MKII trait. A model cannot have more than one Bat-Armor trait.",
+    "Batman Inc.": "Model gains the Bat-Armor MK II trait. A model cannot have more than one Bat-Armor trait.",
     "Batman Lives": "This model may perform an extra Movement Action at the start of its activation if no enemy models have LoS to it. When in contact with a KO enemy model, this model may remove it as a Casualty by spending a Special Action. In addition, when this model is included in your crew, you can also include model with Name: William Cobb (ignoring its Affiliation), but if you do so you may not include any model with Rank {RANK_FREEAGENT_ICON} rank unless it also has Affiliation: {AFF_BANE_ICON}.",
     "Batman's Tumbler": "This model can neither Jump nor Climb. When the Upgrade Card becomes disabled, you can immediately exchange this Upgrade Card with the Batman’s Batpod Upgrade card.",
     "Battle Meditation": "When this model places a Suspect, you may discard 1 Objective card from your hand.",
@@ -23381,7 +19581,6 @@ const traitDescriptions = {
     "Court of Owls Crew": "This crew can only hire models with the Affiliation: The Court of Owls.",
     "Coward’s Reward": "If this model is not KO when an enemy model moves out of contact from this model, that enemy suffers {BLOOD_ICON}.",
     "Criminal": "Keyword.",
-    "Criminal Bonds": "If this model is included in your crew, you can recruit up to 3 models with Affiliation {AFF_PENGUIN_ICON}, Rank {RANK_HENCHMAN_ICON}, and the Criminal trait. Additional models in the crew with this trait have no further effect.",
     "Criminal Empire": "When both players end the placing of the Sewer markers, each player must place 1 Criminal Empire marker (use an Event marker) at least 8\" away of all Deployment Zones. Each time a friendly model makes a Manipulate action within 4\" of a Criminal Empire marker, you earn 1 Business Counter.",
     "Criminology": "All enemy models within 12” of this model lose the benefit of the Runaway trait.",
     "Critical": "Critical Effect",
@@ -23400,7 +19599,10 @@ const traitDescriptions = {
     "Cybernetic Arms": "This model gains the Reinforced Gloves trait.",
     "Cyclops": "This model’s ranged attacks gain the Imprecise rule when the target is more than 8” away.",
     "Combat Mode": "This model is only allowed to use its weapons if you move with it at maximum 6\" in the same round.",
-    
+
+    "Criminal Bonds": "If this model is included in your crew, you can recruit up to 3 models with Affiliation {AFF_CRIME_ICON} with Rank {RANK_HENCHMAN_ICON} and with the Criminal trait. Additional models in the crew with this trait have no further effect.",
+    "Empire of Lies": "After this model Sets a Suspect within 8\" and LOS of an enemy model, the opponent must show you their objective card hand. choose one of those cards and the opponent must Discard it. You can search into you Objective deck for a card that shares the Type of the card discarded by the opponent.",
+
     //D
     "Demon Mask (Inspire Fear) {SPECIAL_ICON}": "Target an enemy model [not a Vehicle) within 4\" and LOS. The target must take a Willpower roll. If this roll is failed, consult the following chart (the results are cumulative): Fail by 1-2 Target suffers the Scared Status. Fail by 3-5. Target suffers the Terror and Slow (4) Status. Fails by 6 or more: Target receives {BLOOD_ICON} damage equal to half is Endurance (rounding down).",
     "Daddy’s Girrrl": "If this model starts its activation within 6” of the Boss, its gains +1 {+ATT_ICON}.",
@@ -23495,7 +19697,6 @@ const traitDescriptions = {
     "Embrace the Chaos": "After an attack in which this model scores any hits, you may take the top card card from your objective deck. Immediately use the resource on that card for free and then discard it.",
     "Emotion Control": "At the start of this model’s activation, choose one of the following effects. Until this model's next activation, this rule affects all enemy models while they are within 8” of this model.\r\n\r\n1. Love: Affected models deal 1 less total damage with attacks and traits (the model suffering the damage chooses the type).\r\n\r\n2. Fear: Affected models suffer -1 to their Attack and Defense dice rolls.\r\n\r\n3. Anger: Affected models suffer 1 additional damage with attacks and traits (the model inflicting the damage chooses the type).\r\n\r\n4. Sadness: Affected models suffer -1 to their Effort limit.",
     "Emptying Dots": "Model gains the Emptying Dots weapon.",
-    "Empire of Lies": "After this model Sets a Suspect within 8” and LoS of an enemy model, the opponent must show you their Objective card hand. Choose one of those cards and the opponent must discard it. You can search into your Objective deck for a card that shares the Type of the card discarded by the opponent.",
     "Enemies of the Court": "Any friendly model, can spend a Special Action to, interrupt the activation to perform immediately a free Special Action with this model.",
     "Enervating (X)": "Status. When the model affected is going to perform an action/using a trait/being targeted by an attack, before that, the opponent may choose to reduce the Effort Limit of the target by -(X) during that time frame. Then remove this Status.",
     "Energy Absorption {SPECIAL_ICON}": "All the damage inflicted by this model melee attacks this round, inflicts {BLOOD_ICON} instead of {STUN_ICON}. In addition, per each successfull non-blocked hit, this model removes 1 damage.",
@@ -23512,41 +19713,7 @@ const traitDescriptions = {
     
     "Equipment List - {AFF_BANE_ICON}": "• 0-2 Magazine ($200): To Ammunition for one weapon.\r\n• 0-2 Grapple-gun ($300): Model gains the Batclaw/Grapple-gun rule.\r\n• 0-2 Titan Dose ($100): Model gains one Titan Dose.\r\n• 0-1 Night Vision Goggles ($200): Model gains the Night Vision rule.\r\n• 0-3 Venom Dose ($100): Model gains one Venom Dose.\r\n• 0-1 Backpack ($100): Model gains the Backpack rule.\r\n• 0-1 Antidote ($50): Model is immune to Poison Status.\r\n• 0-2 Neurotoxic Drugs ($250): Model gains +2 Movement and Dodge trait.\r\n• 0-2 Camo Vest ($200): Model gains the Stealth rule.\r\n• 0-3 Gas Mask ($150): Model gains the Gas Mask rule.\r\n• 0-1 War Hardened ($200): Model gains the Cruel trait.\r\n\r\n\r\nThe following options may be taken only when a model with Name: Bane is in the crew:\r\n• 0-1 Handcuffs ($100): Model gains the Arrest rule.\r\n• 0-1 Venom Laboratory ($100+5 Rep Points)* (Can only be purchased by {RANK_LEADER_ICON} or {RANK_SIDEKICK_ICON}): All model in your crew can use more than 1 Titan Dose per game. This bonus remains in play even if this model is removed from play or leaves the board. Also, the cost of Venom Doses in the equipment list is reduced to $50.\r\n• 0-2 Venom Applicator ($0+2 Rep Points): This model can use Titan and Venom Doses on a friendly model in contact.\r\n\r\nThe following options may be taken only when a model with Name: Bird is in the crew:\r\n• 0-2 Military Progress ($150) Model gains Veteran rule.\r\n\r\nThe following options may be taken only when a model with Name: Thomas Wayne is in the crew:\r\n• 0-1 Dual Handguns ($300+7 Rep Points)* (Can only be purchased by Thomas Wayne): Model gains the Rapid Fire trait and the following weapon: Dual Handguns: {BLOOD_ICON}{STUN_ICON} ROF: 4 AMMO:3 S. Range / Firearm / Light / Assault.\r\n• 0-1 Surgeon Training ($200): Model gains the Medic trait.\r\n\r\nThe following option may be taken only when a model with Alias: Scarecrow (Arkham Knight) is in the crew:\r\n• 0-1 Fear Gas Dispenser ($150): Model gains the Inspire Fear rule.\r\n• 0-1 Secret Laboratory ($100+2Rep points)* (Can only be purchased by Scarecrow): At the start of the game you can chose up to 2 henchmen in your crew. These models let you use Scarecrow Inspire Fear from those models position as if Scarecrow would be placed over there. The Willpower roll caused by any Inspire Fear suffers a +1 Penalty to the roll.\r\n\r\nThe following option may be taken only when a character with Name: Jason Todd is in the crew:\r\n• 0-2 Radio ($150): This model is always treated as though it were within range of the Inspire rule.\r\n• 0-1 Hidden Magazines ($200) (Only can be taken by Jason Todd): +1 Magazines to one weapon.\r\n• 0-1 Cybernetic Arms ($50) (Can only be purchased by Jason Todd): Gains Reinforced Gloves rule.\r\n• 0-1 Arkham Knight Secret Armoury ($100): One ranged weapon of this model gains the Acid rule.\r\n• 0-1 Hook Pistol (400$) (Can only be purchased by the Jason Todd, and only if he is the Boss): Gains the Grapple Gun and the following ranged weapon: Electric Hook: {STUN_ICON}{STUN_ICON} RoF: 1 Ammo: 2 S.Range /Mechanical / Electric / Devastating.\r\n\r\nThe following option may be taken only when a model with Name: Slade Wilson is in the crew:\r\n• 0-1 Martial Training ($150): Model gains the Martial Artist and Master Fighter rules.\r\n• 0-1 Contract ($0)* (Can only be purchased by Slade Wilson): Gains rank {RANK_SIDEKICK_ICON} of {AFF_BANE_ICON}.\r\n\r\nEquipment marked * cannot be affected by the Broken Equipment rule.",
     "Equipment List - {AFF_CRIME_ICON}": "• 0-3 Magazine ($150): +1 to Ammunition for one weapon.\r\n• 0-1 Bribe ($100): Model gains the Informer trait.\r\n• 0-1 Kevlar Vest ($200): Model gains the Kevlar Vest trait.\r\n• 0-1 Grapple-gun ($250): Model gains the Grapple-gun trait.\r\n• 0-1 C-4 ($250): Model gains the Explosive Gel trait.\r\n• 0-1 Gas Mask ($150): Model gains the Gas Mask trait.\r\n• 0-1 Silencer ($200): One of the models ranged weapons gains the Silencer trait.\r\n• 0-2 Brass Knuckles ($100): Model gains the Reinforced Gloves trait.\r\n• 0-1 The Cleaner ($100): When this model reveals an enemy Suspect, you may immediately draw 1 card from your Objective deck.\r\n• 0-2 Backpack ($100): Model gains the Backpack trait.\r\n• 0-2 Family ($150): Model gains the Mobster trait.\r\n• 0-1 Rusty Tools ($200): Model gains the Cruel trait.\r\n• 0-1 Planted Evidence ($200) (Can only be purchased by models with the Cop trait): Model gains the Evidence Tampering trait.\r\n• 0-1 Abuse the Badge ($150) (Can only be purchased by models with the Cop trait): Model gains the Interrogation trait.\r\n\r\nThe following option may be taken only when a model with Name: Roman Sionis is in the crew:\r\n• 0-1 Psychotic ($150) (Can only be purchased by Black Mask): Gain Protect Me! rule.\r\n\r\nThe following option may be taken only when a model with Name: Carmine Falcone is in the crew:\r\n• 0-1 Mob Payroll ($200) (Can only be purchased by Carmine Falcone): Model gains the Corrupt trait.\r\n\r\nThe following option may be taken only when a model with Name: Salvatore Maroni is in the crew:\r\n• 0-1 Long Guns ($0): If Sal Maroni is the Boss, select up to three friendly Henchmen with ranged weapons with the Short Range and Firearm rules. Those weapons replace the Short Range rule with the Medium Range rule. These models must be selected before Pre-Game Phase C.\r\n\r\nThe following option may be taken only when a model with Name: Arnold Wesker is in the crew:\r\n• 0-2 Mafia ($100): Model gains the Criminal trait.\r\n\r\nThe following option may be taken only when a model with Name: Alexander Joseph Luthor is in the crew:\r\n• 0-1 Advanced Weaponry ($200): One of this model ranged weapons gain the Accurate rule.\r\n\r\nThe following option may be taken only when a model with Name: Jervis Tetch is in the crew:\r\n• 0-1 Broken Equipment ($250): Before Phase A of the pre-game sequence choose one item of equipment purchased by the opposing player before the game begins. That item may not be used during the game.\r\n• 0-2 Weird Device ($200): Model gains the Goad trait.\r\n• 0-1 Trained Mind ($100): Model gains Desensitized rule.\r\n• 0-1 Rhyme with Me ($200): Model gains Disarray rule.\r\n• 0-3 Masks of Wonderland ($200): When choosing this equipment, choose only one of the following masks:\r\n0-1 Queen of Hearts mask: Model gains Assassin (1) and Order rules.\r\n0-1 White Rabbit mask: model gains Fast and Tireless rules.\r\n0-1 Cheshire Cat mask: model gains Stealth and Climbing Claws rules.\r\n\r\nThe following option may be taken only when a model with Name: Alexander Joseph Luthor is in the crew:\r\n• 0-1 Advanced Weaponry ($200): One of this model ranged weapons gain the Accurate rule.",
-    "Equipment List - {AFF_HARLEY_QUINN_FRIENDS_ICON}": [
-      "• 0-2 Spray Can ($150): Model gains 1 Spray Can.",
-      "• 0-1 Grapple-gun (2) ($300): Model gains the Batclaw/Grapple-gun trait.",
-      "• 0-1 Camo Vest (2) ($300): Model gains the Stealth rule.",
-      "• 0-2 Adaptive Planning (2) ($200+2 Rep. points): Model gains the Adaptable trait.",
-      "• 0-2 Titanic Mutation ($150): Model gains one Titan Dose.",
-      "• 0-1 Sense Mutation (1) ($100): Model gains the Night Vision trait.",
-      "• 0-1 Extra Spores (1) ($100): +1 to Ammunition for one weapon.",
-      "• 0-2 Spikes Mutation (1) ($200): Model gains the Claws rule.",
-      "• 0-1 Luminescent Mutation (1) ($100): Model gains the Lantern rule.",
-      "• 0-1 Large Roots (1) ($200): Models moving within this model's action radius suffer Impaired Movement.",
-      "",
-      "The following option may be taken only when a model with Name: Dr. Harleen Frances Quinzel is in the crew:",
-      "• 0-1 Smash 'n Grab (2) ($200): Model's Close Combat attacks gain the Steal trait.",
-      "",
-      "The following option may be taken only when a model with Name: Dr. Pamela Lillian Isley is in the crew:",
-      "• 0-3 Corrosive Blood ($50): When this model becomes a Casualty, all models in Contact must pass an Endurance roll or receive {BLOOD_ICON} Damage.",
-      "• 0-1 Mutation Serum (2) ($200+3 Rep. points): Model gains the Tough Skin and Desensitized traits.",
-      "• 0-1 Modified Pheromone ($100) (Can only be purchased by Dr. Pamela Lillian Isley): When this model uses the Control Pheromones trait, the targeted model adds 1 additional dice and adds all the 3 results together while taking that Hypnotize Willpower roll. If the target Efforts to add an additional die to the Willpower roll, then they must roll 4D6 and then choose 3 of them.",
-      "• 0-1 Ancient Plant (1,3) ($200+30 Rep. points): Model gains the Invulnerability (1) and Tough Skin traits, +1 to all Basic Skills except Endurance, +3 to Endurance, and the action area radius is increased to 6\".",
-      "",
-      "The following option may be taken only when a model with Name: Barbara Gordon is in the crew:",
-      "• 0-1 Watch Tower (2) ($200): Model gains Exhaustive Planner rule.",
-      "• 0-1 Radio (2) ($200): This model is always treated as though it were within range of it's Boss's Inspire trait.",
-      "",
-      "The following option may be taken only when a model with Name: Dinah Lance is in the crew:",
-      "• 0-1 Pitch Perfect Vocals ($200) (Can only be taken by Dinah Lance): Model gains the Mixed Combat Style trait.",
-      "",
-      "The following option may be taken only when a model with Name: Alec Holland is in the crew:",
-      "• 0-1 Passage ($200) (Eternal Option Required): Model gains the Undercover rule.",
-      "",
-      "(1) Only Plants can purchase this equipment.",
-      "(2) Plants cannot purchase this equipment.",
-      "(3) This Equipment cannot be affected by the Broken Equipment rule."
-    ].join("\r\n"),
+    "Equipment List - {AFF_HARLEY_QUINN_FRIENDS_ICON}": "• 0-2 Spray Can ($150): Model gains 1 Spray Can.\r\n• 0-1 Grapple-gun (2) ($300): Model gains the Grapple-gun rule.\r\n• 0-1 Camo Vest (2) ($300): Model gains the Stealth rule.\r\n• 0-2 Adaptive Planning (2) ($150+2Rep. points): Model gains the Adaptable trait.\r\n• 0-2 Titanic Mutation (2) ($150): Model gains one Titan Dose.\r\n• 0-1 Sense Mutation (1) ($100): Model gains the Night Vision rule.\r\n• 0-1 Extra Spores (1) ($100): +1 to Ammunition for one weapon.\r\n• 0-2 Spikes Mutation (1) ($200): Model gains the Claws rule.\r\n• 0-1 Luminescent Mutation (1) ($100): Model gains the Lantern rule.\r\n• 0-1 Large Roots (1) ($200): Models moving within this model's action radius suffer Impaired Movement.\r\n\r\nThe following option may be taken only when a model with Name: Dr. Harleen Frances Quinzel is in the crew:\r\n• 0-1 Smash 'n Grab ($200): Model’s Close Combat attacks gain the Steal trait.\r\n\r\nThe following option may be taken only when a model with Name: Dr. Pamela Lillian Isley is in the crew:\r\n• 0-3 Corrosive Blood ($50): When this model becomes a Casualty, all models in Contact must pass an Endurance roll of receive {BLOOD_ICON} Damage.\r\n• 0-1 Mutation Serum (2) ($200+3 Rep. points): Model gains the Tough Skin and Desensitized traits.\r\n• 0-1 Modified Pheromones (2) ($150+5 Rep Points) (Can only be purchased by Leader, Sidekicks or Free Agents): When using the Control Pheromones trait, all models in the crew can target up to 2 enemy models instead of 1. Resolve the effect one a time.\r\n• 0-1 Ancient Plants (1,3) ($200+40 Rep. points): Model gains the Invulnerability (1) and Tough Skin traits, +1 to all Basic Skills except Endurance, +3 to Endurance, and the action area radius is increased to 6”.\r\n\r\nThe following option may be taken only when a model with Name: Barbara Gordon is in the crew:\r\n• 0-1 Watch Tower ($200) (Can only be taken by Barbara Gordon): Model gains Exhaustive Planner rule.\r\n• 0-1 Radio ($200): This model is always treated as though it were within range of it's Boss's Inspire trait.\r\n\r\nThe following option may be taken only when a model with Name: Dinah Lance is in the crew:\r\n• 0-1 Pitch Perfect Vocals ($200) (Can only be taken by Dinah Lance): Model gains the Mixed Combat Style trait.\r\n\r\nThe following option may be taken only when a model with Name: Alec Holland is in the crew:\r\n• 0-1 Passage ($200): Model gains the Undercover rule.\r\n\r\n(1) Only Plants can purchase this equipment.\r\n(2) Plants cannot purchase this equipment.\r\n(3) This Equipment cannot be affected by the Broken Equipment rule.",
     "Equipment List - {AFF_JOKER_ICON}": "• 0-2 Magazine ($200): +1 to Ammunition for one weapon.\r\n• 0-2 Grapple-gun ($300): Model gains the Batclaw/Grapple-gun rule.\r\n• 0-2 Clown Paint ($150): Model gains the Distract rule.\r\n• 0-2 Flare ($300): Model gains the Flare rule.\r\n• 0-2 Neurotoxic Drugs ($250): Model gains +2 Movement and Dodge trait.\r\n• 0-1 Improvised Armor ($150): Model gains the Hockey Gear rule.\r\n• 0-1 Gas Mask ($100): Model gains the Gas Mask rule.\r\n• 0-1 Antidote ($100): Model is immune to the Poison Status.\r\n• 0-1 Poison Training ($200): Model gains the Poison Master trait.\r\n• 0-1 Mental Torture ($150): Model gains the Aggressive Schizophrenia trait.\r\n• 0-1 Joker's Gas ($100): Model gains the Joker's Gas trait.\r\n\r\nThe following option may be taken only when a model with Alias: Joker is in the crew:\r\n• 0-2 Nerve Gas ($150): Model gains the Sturdy rule.\r\n\r\nThe following option may be taken only when a model with Name: Harleen Quinzel is in the crew:\r\n• 0-1 Sexy Costume ($300+5 Rep Points): Model gains the Disarray rule.\r\n• 0-1 Pole Dancer ($150): Model gains Escape Artist rule.\r\n\r\nThe following option may be taken only when a model with Alias: Gaggy is in the crew:\r\n• 0-1 Enhanced Gas ($200)(Can only be Purchased by {RANK_LEADER_ICON} or {RANK_SIDEKICK_ICON}): When an enemy model within 8” of this model suffers the Enervating effect, it is increased by +1.\r\n\r\nThe following option may be taken only when a model with Name: Duela Dent is in the crew:\r\n• 0-1 Rusty Tools ($200+2 Rep Points): Model gains the Cruel rule.\r\n\r\nThe following option may be taken only when a model with Name: Mr. Hammer is in the crew:\r\n• 0-1 Brutal Training ($150): Model gains the Savage Fighter rule.\r\n\r\nEquipment marked * cannot be affected by the Broken Equipment rule.",
     "Equipment List - {AFF_LAW_FORCES_ICON}": "• 0-2 Magazine ($200): +1 to Ammunition for one weapon.\r\n\r\n• 0-2 Flashlight ($50): Model gains the Lantern rule.\r\n\r\n• 0-2 Handcuffs ($100): Model gains the Arrest rule.\r\n\r\n• 0-2 Whistle ($150): Model gains the Halt/Stop rule.\r\n\r\n• 0-1 Street Patrol ($50): Model gains the Street Guy rule.\r\n\r\n• 0-1 Intensive training ($100): Model gains the Teamwork (1) (All) rule.\r\n\r\n• 0-2 Radio ($200): This model is always treated as though it were within range of it's Boss's Inspire trait.\r\n\r\n• 0-1 Antidote ($50): Model is immune to the Poison Status.\r\n\r\n• 0-1 Grapple-gun ($200): Model gains the Batclaw/Grapple-gun rule.\r\n\r\n• 0-1 Helmet ($100): Model gains the Hardened rule.\r\n\r\n• 0-1 Patrol Training ($150): Model gains the Undercover rule.\r\n\r\n• 0-1 Gas Mask ($100): Model gains the Gas Mask rule.\r\n\r\n• 0-2 Riot Gear ($150): The models gains the Football Gear rule.\r\n\r\n• 0-1 Medic ($150): Model gains the Medic rule.\r\n\r\n• 0-2 SWAT Special Training ($100): If the model has Elite (SWAT) trait you can choose one of these options:\r\n   - Model gains the Tracking rule.\r\n   - Model gains the Precise Aim rule.\r\n\r\n\r\nThe following options may be taken only when a model with Name: Bruce Wayne is in the crew:\r\n\r\n• 0-1 Upgraded Batsuit ($200) (Can only be purchased by Bruce Wayne): Model gains +1 to Endurance.\r\n\r\n• 0-1 Kevlar Cowl ($200) (Can only be purchased by Bruce Wayne): Model gains Immunity to CRT.\r\n\r\n• 0-1 EMP ($100): Model Gains the EMP rule.\r\n\r\n• 0-1 Martial Arts Training ($100+2 Rep Points) (Can only be purchased by {RANK_SIDEKICK_ICON} or {RANK_FREEAGENT_ICON}): Model gains the Martial Artist rule.\r\n\r\n• 0-1 Mentor ($100+3 Rep Points) (Can only be purchased by {RANK_SIDEKICK_ICON} or {RANK_FREEAGENT_ICON}): Model gains the Hidden Boss rule.\r\n\r\n• 0-1 Hidden Magazine ($300) (Can only be purchased by {RANK_LEADER_ICON} or {RANK_SIDEKICK_ICON}): +1 to Ammunition for one weapon.\r\n\r\n• 0-1 Morality ($50) (Can only be purchased by Batman): Model gains Moral Compass and Demotivate rules.\r\n\r\n\r\nThe following options may be taken only when a model with Name: Dick Grayson is in the crew:\r\n\r\n• 0-1 Circus Training ($200+5 Rep Points): Model gains the Acrobat rule.\r\n\r\n• 0-1 Runner ($100): Model gains the Tireless rule.\r\n\r\n\r\nThe following option may be taken only when a model with Name: Oliver Queen is in the crew:\r\n\r\n• 0-1 Command Center Support ($250): Model gains the Scheming (2) rule.\r\n\r\n• 0-1 Tactical Gloves ($50) Only can be taken by Oliver Queen, gains Reinforced Gloves rule.\r\n\r\n\r\nThe following option may be taken only when a model with Name: Roy Harper is in the crew:\r\n\r\n• 0-1 Hi-Tech Ammo ($150+2 Rep Points): One of the model’s ranged weapons gains Bleed (2).\r\n\r\n\r\nThe following option may be taken only when a model with Name: Kathy Kane is in the crew:\r\n\r\n• 0-1 Officer training ($100+2 Rep Points): Model gains the Follow Me! rule.\r\n\r\n\r\nThe following option may be taken only when a model with Name: Tim Drake is in the crew:\r\n\r\n• 0-1 Inspiring Presence ($250) (Can only be taken by Tim Drake): Model gains Leadership rule.\r\n\r\n\r\nThe following option may be taken only when a model with Name: Barbara Gordon is in the crew:\r\n\r\n• 0-1 Watch Tower ($200) (Can only be taken by Batgirl): Model gains Exhaustive Planner rule.\r\n\r\n\r\nThe following option may be taken only when a character with Alias: Red Hood (Arkham Knight) is in the crew:\r\n\r\n• 0-1 Deadly Weapons ($150+2 Rep points) (Can only be taken by Red Hood Arkham Knight): Weapons gain the Silencer rule.\r\n\r\n\r\nThe following option may be taken only when a model with Name: James Gordon is in the crew:\r\n\r\n• 0-1 Heliport ($150) (Can only be taken by James Gordon): When you use the Air Support rule, target an enemy model affected by the template, the target receives a Ranged attack with ROF 1, the Firearm weapon special rule and damage {BLOOD_ICON}{BLOOD_ICON} which ignores the Cover Rule. *\r\n\r\n• 0-2 Sergeant Training ($50): Model gains the Order rule. *\r\n\r\n\r\nThe following option may be taken only when a model with Name: Selina Kyle is in the crew:\r\n\r\n• 0-1 Feline Stalk ($200): Model gains Tracking rule.*\r\n\r\nEquipment marked * cannot be affected by the Broken Equipment rule.",
     "Equipment List - {AFF_LEAGUE_ICON}": "• 0-2 Magazine ($200): +1 to Ammunition for one weapon.\r\n• 0-1 Loyalty Tattoo ($200): Model gains the Bodyguard rule.\r\n• 0-2 Climbing Claws ($100): Model gains the Climbing Claws rule.\r\n• 0-1 Trained in the Shadows ($200): Model gains the Hidden rule.\r\n• 0-1 Gas Mask ($100): Model gains the Gas Mask rule.\r\n• 0-1 Grapple-gun ($400): Model gains the Grapple-gun rule.\r\n• 0-2 Combat Bracers ($150): The model’s close combat weapons and unarmed attacks gain the Defensive weapon special rule.\r\n• 0-1 Venom Dose ($100): Model gains one Venom Dose.\r\n• 0-1 Precise Orders ($150): Model gains Chain of Command.\r\n• 0-1 Pure Lazarus ($300) (Can only be purchased by {RANK_LEADER_ICON} or {RANK_SIDEKICK_ICON}): Model gains the Regeneration trait.\r\n\r\nThe following option may be taken only when a model with Name: Ra’s Al Ghul is in the crew:\r\n• 0-2 Ancient Weapon ($150): Model’s close combat weapon attacks gain Bleed (1).\r\n\r\nThe following option may be taken only when a model with Name: Talia Al Ghul is in the crew:\r\n• 0-2 Shadow Training ($150): Model gains the Undercover trait.\r\n\r\nThe following option may be taken only when a model with Alias: Lady Shiva is in the crew:\r\n• 0-1 Unarmed Combat Training ($150): Model gains the Close Combat Master trait.\r\n\r\nThe following option may be taken only when a model with Alias: Cheshire is in the crew:\r\n• 0-1 Poisong Training ($50): Model gains the Poison Master trait.\r\n\r\nThe following option may be taken only when a model with Alias: Bane is in the crew:\r\n• 0-2 Military Progress ($150): Model gains the Veteran trait.\r\n\r\nThe following option may be taken only when a character with Name: Nyssa Al Ghul is in the crew:\r\n• 0-1 Bow Training ($100): Model gains the Shooter rule.",
@@ -24164,7 +20331,7 @@ const traitDescriptions = {
     "Sealed Cabin": "Only attacks listed on the Upgrade card can be made by this model, plus the Charge trait. In addition, this model (and any model transported in it) cannot perform Manipulate actions.",
     "Sealed Off": "When this model Sets a Suspect, you can Move another friendly Suspect 4\".",
     "Searcher": "While this model is in play and not KO, the opponent’s Resource points are reduced by -1 (not cumulative).",
-    "Seasonal Criminal": "At the end of every round, check the total Victory Points scored by all players. For every full 12 VP scored, Calendar Man gains one of the following benefits, advancing one step on the list for each 12 VP scored.\n<img src=\"img/Seasonal_Criminal.png\" class=\"rounded img-fluid\" />\n\n<i>Example: The players total 24 VPs, so Calendar Man gains +2 Attack skill (12 x 2 = 24). At the end of the next round, the players have scored another 13 VPs between them. The total is now 37 — the wheel advances 3 spaces (it started at 2, and now it cycles all the way around to 1). Calendar Man loses the +2 Attack bonus, and gains +4 Movement instead.</i>\n",
+    "Seasonal Criminal": "At the end of every round, check the total Victory Points scored by all players. For every full 12 VP scored, Calendar Man gains one of the following benefits, advancing one step on the list for each 12 VP scored.\n<img src=\"https://veland55.github.io/btb/img/Seasonal_Criminal.png\" class=\"rounded img-fluid\" />\n\n<i>Example: The players total 24 VPs, so Calendar Man gains +2 Attack skill (12 x 2 = 24). At the end of the next round, the players have scored another 13 VPs between them. The total is now 37 — the wheel advances 3 spaces (it started at 2, and now it cycles all the way around to 1). Calendar Man loses the +2 Attack bonus, and gains +4 Movement instead.</i>\n",
     "Secret Laboratory": "At the start of the game, target up to 2 friendly models with Rank {RANK_HENCHMAN_ICON}. When Scarecrow uses the Inspire Fear trait, it may be measured from a targeted model's position. Willpower rolls caused by the Inspire Fear trait suffer a +1 Penalty to the roll.",
     "Security Chief": "If this model is within 4” of your crew’s Boss, enemy models suffer a -1 penalty to Attack rolls against that Boss.",
     "Self-Destruction {SPECIAL_ICON}": "Move the model 6\" and then Center the Explosive template over this model. This is resolved as an Explosive Ranged Attack, rolling a Strength 2+ die for each affected model on a successful roll, the model receives {BLOOD_ICON}{STUN_ICON} Damage. remove all suspects under the Explosive Template Once this action is resolved, remove this model as a Casualty.",
@@ -24407,7 +20574,7 @@ const traitDescriptions = {
     "Unstoppable {SPECIAL_ICON}": "Each successful hit scored by this model this round requires 2 successful defense rolls to block.",
     "Unstoppable Monster": "At the start of this model’s activation, it must move 2” in a straight line as an extra Action. Enemy models within 4” of this model cannot perform the Manipulate Action.",
     "Upgraded Batsuit": "Model gains +1 to Endurance.",
-    "Upgrades": "This model allows your crew to purchase the Equipment pieces marked as Lucius's Inventions. Only one of these equipment options are active during the game and only the active equipment option applies its effects to the equipped models. Mark the active equipment at the start of the first activation of the game.\r\nThe Upgrades are: Improved Batclaw (only purchasable by models with the Batclaw/Grapple Gun trait), Improved Batlings (only purchasable by models with a weapon with the Throwing trait), Improved Bat-Armor (only purchasable by models with the Bat-Armor MkII trait) and Improved Reinforced Gloves (only purchasable by models with the Reinforced Gloves trait).",
+    "Upgrades": "This model allows your crew to purchase the Equipment pieces marked as Lucius's Inventions. Only one of these equipment options are active during the game and only the active equipment option applies its effects to the equipped models. Mark the active equipment at the start of the first activation of the game.\r\nThe Upgrades are: Improved Batclaw (only purchasable by models with the Batclaw/Grapple Gun trait), Improved Batlings (only purchasable by models with a weapon with the Throwing trait), Improved Bat-Armor (only purchasable by models with the Bat-Armor MK II trait) and Improved Reinforced Gloves (only purchasable by models with the Reinforced Gloves trait).",
     
     //V
     
@@ -24473,8 +20640,6 @@ const traitDescriptions = {
     
     "360° Strike {SPECIAL_ICON}": "When this model performs a Melee Attack this round, it must be performed against all the models available to be a target (friendly and enemy). During this attack, no one model can make Efforts. Roll only once, and compare with all the targets results. Friendly models cannot make defense rolls against these attacks, but they cannot be the only models affected by it (there must be at least one enemy to target)."
 
-
-
 };
 
 
@@ -24529,7 +20694,7 @@ function replaceIcons(text) {
   if (typeof text !== 'string') return text || '';
   
   return text.replace(/\{([A-Z0-9+\-_]+_ICON)\}/gi, (match, tag) => {
-    const imgSrc = `img/ico/${tag}.png`;
+    const imgSrc = `https://veland55.github.io/btb/img/ico/${tag}.png`;
     return `<img src="${imgSrc}" alt="${tag}" class="stat-icon" style="height:20px; vertical-align:middle; margin:0 2px;">`;
   });
 }
@@ -24580,4 +20745,3 @@ function canHireInFaction(model, faction) {
 // Экспорт (если нужно)
 window.canViewInFaction = canViewInFaction;
 window.canHireInFaction = canHireInFaction;
-

@@ -1,0 +1,962 @@
+{
+  "counts": {
+    "ours": 514,
+    "external": 513
+  },
+  "externalMissingExact": [
+    {
+      "external": {
+        "name": "Robin [Jason Todd]",
+        "realname": "Jason Todd",
+        "base": "30mm",
+        "rep": 40,
+        "funding": 0,
+        "rank": "Sidekick",
+        "faction": "Bat Family/GCPD",
+        "traits": "Batclaw / Brutal / Goad / Handyman / Impetuous / Street Guy",
+        "img": "https://veland55.github.io/btb/img/RobinJasonTodd.png"
+      },
+      "oursSameName": []
+    },
+    {
+      "external": {
+        "name": "Robin [Carrie Kelley]",
+        "realname": "Carrie Kelley",
+        "base": "30mm",
+        "rep": 54,
+        "funding": 100,
+        "rank": "Sidekick",
+        "faction": "Bat Family/GCPD",
+        "traits": "Acrobat / Agile / Bat Family / Boy Wonder / Concealment / Handyman / The Dark Knight Returns",
+        "img": "https://veland55.github.io/btb/img/RobinCarrieKelley.png"
+      },
+      "oursSameName": []
+    },
+    {
+      "external": {
+        "name": "Robin [Damian Wayne]",
+        "realname": "Damian Wayne",
+        "base": "30mm",
+        "rep": 50,
+        "funding": 0,
+        "rank": "Sidekick/Henchman",
+        "faction": "Bat Family/GCPD",
+        "traits": "Acrobat / Bat Family / Batclaw / Combo (Damian's Attack) / Detective / Martial Artist / Mentoring / Small / Teen Titans",
+        "img": "https://veland55.github.io/btb/img/RobinDamian.png"
+      },
+      "oursSameName": []
+    }
+  ],
+  "oursMissingExact": [
+    {
+      "ours": {
+        "name": "Kid Flash",
+        "realname": "Wally West",
+        "base": "30mm",
+        "rep": 50,
+        "funding": 0,
+        "rank": "Henchman",
+        "faction": "Bat Family",
+        "traits": "Always on the Move / Dodge / Drop It! / Fast (4) / Molecular Control (1) / Speed Force Master (1) / Speedster / Super Speed (2) / Teen Titans",
+        "img": "img/no.png"
+      },
+      "externalSameName": []
+    },
+    {
+      "ours": {
+        "name": "Robin",
+        "realname": "Jason Todd",
+        "base": "30mm",
+        "rep": 40,
+        "funding": 0,
+        "rank": "Sidekick",
+        "faction": "Bat Family/GCPD",
+        "traits": "Batclaw / Brutal / Goad / Handyman / Impetuous / Street Guy",
+        "img": "img/RobinJasonTodd.png"
+      },
+      "externalSameName": [
+        {
+          "name": "Robin",
+          "realname": "Damian Wayne",
+          "base": "30mm",
+          "rep": 50,
+          "funding": 0,
+          "rank": "Henchman",
+          "faction": "League of Shadows/Court of Owls",
+          "traits": "Acrobat / Combo (Paired Katanas) / Martial Artist / True Love (Talia al Ghul) / Batclaw / Detective / Small",
+          "img": "https://veland55.github.io/btb/img/RobinDamian.png"
+        }
+      ]
+    },
+    {
+      "ours": {
+        "name": "Robin",
+        "realname": "Carrie Kelley",
+        "base": "30mm",
+        "rep": 54,
+        "funding": 100,
+        "rank": "Sidekick",
+        "faction": "Bat Family/GCPD",
+        "traits": "Acrobat / Agile / Bat Family / Boy Wonder / Concealment / Handyman / The Dark Knight Returns",
+        "img": "img/RobinCarrieKelley.png"
+      },
+      "externalSameName": [
+        {
+          "name": "Robin",
+          "realname": "Damian Wayne",
+          "base": "30mm",
+          "rep": 50,
+          "funding": 0,
+          "rank": "Henchman",
+          "faction": "League of Shadows/Court of Owls",
+          "traits": "Acrobat / Combo (Paired Katanas) / Martial Artist / True Love (Talia al Ghul) / Batclaw / Detective / Small",
+          "img": "https://veland55.github.io/btb/img/RobinDamian.png"
+        }
+      ]
+    }
+  ],
+  "differingMatchedModels": [
+    {
+      "model": {
+        "name": "The Penguin Crime Lord Rising",
+        "realname": "Oswald Chesterfield Cobblepot",
+        "base": "40mm",
+        "rep": 74,
+        "funding": 0,
+        "rank": "Leader",
+        "faction": "Penguin",
+        "traits": "Business Agent / Criminal Bonds / Drop It! / Empire of Lies / Handyman / Manipulative / Tough Guy / Underworld King / Protect Me!",
+        "img": "https://veland55.github.io/btb/img/ThePenguinCrimeLordRising.png"
+      },
+      "fields": [
+        {
+          "field": "stats",
+          "ours": {
+            "Attack": 3,
+            "Defense": 3,
+            "Strength": "5+",
+            "Movement": 8,
+            "Willpower": 7,
+            "Endurance": 7
+          },
+          "external": {
+            "Attack": "3",
+            "Defense": "3",
+            "Strength": "5+",
+            "Movement": "8",
+            "Willpower": "7",
+            "Endurance": "7"
+          }
+        },
+        {
+          "field": "weapons",
+          "ours": [
+            {
+              "name": "SMG",
+              "damage": "🩸🩸",
+              "rof": 4,
+              "ammo": 2,
+              "traits": "Firearm / S. Range"
+            },
+            {
+              "name": "Torture Tools",
+              "damage": "🩸★",
+              "rof": "-",
+              "ammo": "-",
+              "traits": "Handy / Steal"
+            }
+          ],
+          "external": [
+            {
+              "name": "SMG",
+              "damage": "🩸🩸",
+              "rof": "4",
+              "ammo": "2",
+              "traits": "Firearm / S. Range"
+            },
+            {
+              "name": "Torture Tools",
+              "damage": "🩸★",
+              "rof": "-",
+              "ammo": "-",
+              "traits": "Handy / Steal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": {
+        "name": "Poison Ivy Arkham City",
+        "realname": "Dr. Pamela Lillian Isley",
+        "base": "30mm",
+        "rep": 101,
+        "funding": 0,
+        "rank": "Leader",
+        "faction": "Birds of Prey",
+        "traits": "Acrobat / Chlorokinesis / Control Pheromones / Elite Boss (Plants) / Mortal Kiss / Poison Immunity / Possessed / Scientific",
+        "img": "https://veland55.github.io/btb/img/PoisonIvyArkhamCity.png"
+      },
+      "fields": [
+        {
+          "field": "traits",
+          "ours": [
+            "Acrobat",
+            "Chlorokinesis",
+            "Control Pheromones",
+            "Elite Boss (Plants)",
+            "Gotham City Siren",
+            "Mortal Kiss",
+            "Poison Immunity",
+            "Possessed",
+            "Scientific",
+            "The Song of the Sirens"
+          ],
+          "external": [
+            "Acrobat",
+            "Chlorokinesis",
+            "Control Pheromones",
+            "Elite Boss (Plants)",
+            "Mortal Kiss",
+            "Poison Immunity",
+            "Possessed",
+            "Scientific"
+          ]
+        },
+        {
+          "field": "weapons",
+          "ours": [
+            {
+              "name": "Sprinkling Spores",
+              "damage": "-",
+              "rof": "1+",
+              "ammo": "-",
+              "traits": "Expansive / Poison / Toxic (1)"
+            }
+          ],
+          "external": []
+        }
+      ]
+    },
+    {
+      "model": {
+        "name": "Batmobile Arkham Knight",
+        "realname": "Bruce Wayne",
+        "base": "90mm",
+        "rep": 160,
+        "funding": 0,
+        "rank": "Leader",
+        "faction": "Bat Family/GCPD",
+        "traits": "Combat Mode / Ejection System / Heavy Armor / Huge / Lantern / Non-Lethal Ammo / Shock Armor / Vehicle",
+        "img": "https://veland55.github.io/btb/img/BatmobileArkhamKnight.png"
+      },
+      "fields": [
+        {
+          "field": "rep",
+          "ours": "?",
+          "external": 160
+        },
+        {
+          "field": "funding",
+          "ours": "?",
+          "external": 0
+        }
+      ]
+    },
+    {
+      "model": {
+        "name": "Batman Arkham City",
+        "realname": "Bruce Wayne",
+        "base": "60mm",
+        "rep": 125,
+        "funding": 0,
+        "rank": "Leader",
+        "faction": "Bat Family/GCPD",
+        "traits": "Bat Cape / Bat Family / Bat-Armor MKI / Batclaw / Counter Attack / Detective / Detective Mode / Explosive Gel / Mixed Combat Style / Reinforced Gloves / Sneak Attack / Total Vision",
+        "img": "https://veland55.github.io/btb/img/BatmanArkhamCity.png"
+      },
+      "fields": [
+        {
+          "field": "traits",
+          "ours": [
+            "Bat Cape",
+            "Bat Family",
+            "Bat-Armor MK I",
+            "Batclaw",
+            "Counter Attack",
+            "Detective",
+            "Detective Mode",
+            "Explosive Gel",
+            "Mixed Combat Style",
+            "Reinforced Gloves",
+            "Sneak Attack",
+            "Total Vision"
+          ],
+          "external": [
+            "Bat Cape",
+            "Bat Family",
+            "Bat-Armor MKI",
+            "Batclaw",
+            "Counter Attack",
+            "Detective",
+            "Detective Mode",
+            "Explosive Gel",
+            "Mixed Combat Style",
+            "Reinforced Gloves",
+            "Sneak Attack",
+            "Total Vision"
+          ]
+        }
+      ]
+    },
+    {
+      "model": {
+        "name": "Robin [Tim Drake]",
+        "realname": "Tim Drake",
+        "base": "40mm",
+        "rep": 50,
+        "funding": 200,
+        "rank": "Free Agent",
+        "faction": "Bat Family/GCPD",
+        "traits": "Bat Family / Batclaw / Detective / Hacking / Tactical Approach / Teen Titans",
+        "img": "https://veland55.github.io/btb/img/RobinTimDrake.png"
+      },
+      "fields": [
+        {
+          "field": "name",
+          "ours": "Robin Tim Drake",
+          "external": "Robin [Tim Drake]"
+        }
+      ]
+    },
+    {
+      "model": {
+        "name": "Lieutenant Gordon Year One",
+        "realname": "James W. Gordon",
+        "base": "30mm",
+        "rep": 46,
+        "funding": 200,
+        "rank": "Henchman",
+        "faction": "GCPD",
+        "traits": "Arrest / Bulletproof Vest / Coordination / Cop / Detective / Incorruptible / Observation",
+        "img": "https://veland55.github.io/btb/img/LtGordonYearOne.png"
+      },
+      "fields": [
+        {
+          "field": "stats",
+          "ours": {
+            "Attack": 3,
+            "Defense": 3,
+            "Strength": "5+",
+            "Movement": 8,
+            "Willpower": 6,
+            "Endurance": 6
+          },
+          "external": {
+            "Attack": 3,
+            "Defense": 4,
+            "Strength": "5+",
+            "Movement": 8,
+            "Willpower": 6,
+            "Endurance": 6
+          }
+        }
+      ]
+    },
+    {
+      "model": {
+        "name": "Killer Croc Thug",
+        "realname": "Waylon Jones",
+        "base": "40mm",
+        "rep": 50,
+        "funding": 0,
+        "rank": "Henchman",
+        "faction": "Organized Crime",
+        "traits": "Amphibious / Criminal / Large / Made Man / Mobster / Raised In The Sewers / Tough Skin",
+        "img": "https://veland55.github.io/btb/img/KillerCrocThug.png"
+      },
+      "fields": [
+        {
+          "field": "faction",
+          "ours": [
+            "Two-Face"
+          ],
+          "external": [
+            "Organized Crime"
+          ]
+        },
+        {
+          "field": "traits",
+          "ours": [
+            "Amphibious",
+            "Gambling Time",
+            "Large",
+            "Tough Skin",
+            "Criminal",
+            "Gangsters",
+            "Raised in the Sewers"
+          ],
+          "external": [
+            "Amphibious",
+            "Criminal",
+            "Large",
+            "Made Man",
+            "Mobster",
+            "Raised In The Sewers",
+            "Tough Skin"
+          ]
+        },
+        {
+          "field": "weapons",
+          "ours": [
+            {
+              "name": "Expeditious Fighter",
+              "damage": "★ ★",
+              "rof": "-",
+              "ammo": "-",
+              "traits": "Devastating / Overwhelming"
+            }
+          ],
+          "external": [
+            {
+              "name": "Expeditious Fighter",
+              "damage": "★★",
+              "rof": "-",
+              "ammo": "-",
+              "traits": "Devastating / Overwhelming"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": {
+        "name": "Bane Titan",
+        "realname": "Unknown",
+        "base": "60mm",
+        "rep": 140,
+        "funding": 0,
+        "rank": "Leader",
+        "faction": "Bane",
+        "traits": "Charge / Huge / Recover the Titan / Titan Addict / Tough Guy / Veteran / Desensitized / Like Flies to Me / Savage Throw / Unstoppable",
+        "img": "https://veland55.github.io/btb/img/BaneTitan.png"
+      },
+      "fields": [
+        {
+          "field": "traits",
+          "ours": [
+            "Charge",
+            "Huge",
+            "Recover the Titan",
+            "Titan Addict",
+            "Titan Dose (4)",
+            "Tough Guy",
+            "Veteran",
+            "Desensitized",
+            "Like Flies to Me",
+            "Savage Throw",
+            "Unstoppable"
+          ],
+          "external": [
+            "Charge",
+            "Huge",
+            "Recover the Titan",
+            "Titan Addict",
+            "Tough Guy",
+            "Veteran",
+            "Desensitized",
+            "Like Flies to Me",
+            "Savage Throw",
+            "Unstoppable"
+          ]
+        }
+      ]
+    },
+    {
+      "model": {
+        "name": "Killer Frost Rebirth",
+        "realname": "Caitlin Snow",
+        "base": "40mm",
+        "rep": 90,
+        "funding": 0,
+        "rank": "Sidekick",
+        "faction": "Mr. Freeze",
+        "traits": "Acrobat / Boss’s Orders / Cold Acclimation / Ice Flash / Runaway / Adaptable / Chill Touch / Coordination / Ice Queen",
+        "img": "https://veland55.github.io/btb/img/KillerFrost_Rebirth.png"
+      },
+      "fields": [
+        {
+          "field": "name",
+          "ours": "Killer Frost (Rebirth)",
+          "external": "Killer Frost Rebirth"
+        },
+        {
+          "field": "rep",
+          "ours": 60,
+          "external": 90
+        },
+        {
+          "field": "funding",
+          "ours": 100,
+          "external": 0
+        },
+        {
+          "field": "rank",
+          "ours": [
+            "Henchman"
+          ],
+          "external": [
+            "Sidekick"
+          ]
+        },
+        {
+          "field": "faction",
+          "ours": [
+            [
+              "Suicide Squad"
+            ],
+            "Birds of Prey"
+          ],
+          "external": [
+            "Mr. Freeze"
+          ]
+        },
+        {
+          "field": "stats",
+          "ours": {
+            "Attack": 3,
+            "Defense": 4,
+            "Strength": "4+",
+            "Movement": 10,
+            "Willpower": 6,
+            "Endurance": 6
+          },
+          "external": {
+            "Attack": 3,
+            "Defense": 4,
+            "Strength": "4+",
+            "Movement": 11,
+            "Willpower": 7,
+            "Endurance": 6
+          }
+        },
+        {
+          "field": "traits",
+          "ours": [
+            "Acrobat",
+            "Chill Touch",
+            "It's Mine",
+            "Adaptable",
+            "Ice Flash",
+            "Snow Storm"
+          ],
+          "external": [
+            "Acrobat",
+            "Boss’s Orders",
+            "Cold Acclimation",
+            "Ice Flash",
+            "Runaway",
+            "Adaptable",
+            "Chill Touch",
+            "Coordination",
+            "Ice Queen"
+          ]
+        }
+      ]
+    },
+    {
+      "model": {
+        "name": "The Riddler",
+        "realname": "Edward Nigma",
+        "base": "60mm",
+        "rep": 80,
+        "funding": 0,
+        "rank": "Leader",
+        "faction": "The Riddler",
+        "traits": "A Challenge for You / Feedback Protection / Intel Support (5) / Puzzle Master / Wizard of Quiz / Conundrum Champion / Hacking / Mastermind / Quiz Master",
+        "img": "https://veland55.github.io/btb/img/TheRiddler.png"
+      },
+      "fields": [
+        {
+          "field": "rep",
+          "ours": 60,
+          "external": 80
+        },
+        {
+          "field": "rank",
+          "ours": [
+            "Sidekick",
+            "Free Agent"
+          ],
+          "external": [
+            "Leader"
+          ]
+        },
+        {
+          "field": "faction",
+          "ours": [
+            "Suicide Squad"
+          ],
+          "external": [
+            "The Riddler"
+          ]
+        },
+        {
+          "field": "stats",
+          "ours": {
+            "Attack": 3,
+            "Defense": 3,
+            "Strength": "5+",
+            "Movement": 8,
+            "Willpower": 7,
+            "Endurance": 5
+          },
+          "external": {
+            "Attack": 3,
+            "Defense": 3,
+            "Strength": "5+",
+            "Movement": 8,
+            "Willpower": 8,
+            "Endurance": 5
+          }
+        },
+        {
+          "field": "traits",
+          "ours": [
+            "AFK",
+            "Intel Support (5)",
+            "Puzzle Master",
+            "Wizard of Quiz",
+            "Hacking",
+            "Mastermind",
+            "Quiz Master"
+          ],
+          "external": [
+            "A Challenge for You",
+            "Feedback Protection",
+            "Intel Support (5)",
+            "Puzzle Master",
+            "Wizard of Quiz",
+            "Conundrum Champion",
+            "Hacking",
+            "Mastermind",
+            "Quiz Master"
+          ]
+        }
+      ]
+    },
+    {
+      "model": {
+        "name": "The Riddler Modern Age",
+        "realname": "Edward Nigma",
+        "base": "30mm",
+        "rep": 80,
+        "funding": 0,
+        "rank": "Leader",
+        "faction": "The Riddler",
+        "traits": "A Challenge for You / GOAD / Mind Trick / Quiz Master / Confusion / Mastermind / Puzzle Master / Wizard of Quiz",
+        "img": "https://veland55.github.io/btb/img/TheRiddlerModernAge.png"
+      },
+      "fields": [
+        {
+          "field": "rep",
+          "ours": 40,
+          "external": 80
+        },
+        {
+          "field": "rank",
+          "ours": [
+            "Henchman"
+          ],
+          "external": [
+            "Leader"
+          ]
+        },
+        {
+          "field": "faction",
+          "ours": [
+            "Suicide Squad"
+          ],
+          "external": [
+            "The Riddler"
+          ]
+        },
+        {
+          "field": "stats",
+          "ours": {
+            "Attack": 2,
+            "Defense": 3,
+            "Strength": "5+",
+            "Movement": 10,
+            "Willpower": 6,
+            "Endurance": 6
+          },
+          "external": {
+            "Attack": 3,
+            "Defense": 3,
+            "Strength": "5+",
+            "Movement": 10,
+            "Willpower": 8,
+            "Endurance": 7
+          }
+        },
+        {
+          "field": "traits",
+          "ours": [
+            "Confusion",
+            "Puzzle Master",
+            "Exhaustive Planner",
+            "Showmanship!"
+          ],
+          "external": [
+            "A Challenge for You",
+            "GOAD",
+            "Mind Trick",
+            "Quiz Master",
+            "Confusion",
+            "Mastermind",
+            "Puzzle Master",
+            "Wizard of Quiz"
+          ]
+        },
+        {
+          "field": "weapons",
+          "ours": [
+            {
+              "name": "Cane-Sword",
+              "damage": "🩸 🩸",
+              "rof": "-",
+              "ammo": "-",
+              "traits": "Sharp"
+            }
+          ],
+          "external": [
+            {
+              "name": "Cane-Sword",
+              "damage": "🩸🩸",
+              "rof": "-",
+              "ammo": "-",
+              "traits": "Sharp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": {
+        "name": "Poison Ivy",
+        "realname": "Dr. Pamela Lillian Isley",
+        "base": "40mm / 60mm",
+        "rep": 93,
+        "funding": 0,
+        "rank": "Sidekick/Leader",
+        "faction": "Birds of Prey",
+        "traits": "Adaptable / Control Pheromones / Green Web / Poison Immunity / Protect Me! / Chlorokinesis / Elite Boss (Plants) / Mortal Kiss / Pollination / Scientific",
+        "img": "https://veland55.github.io/btb/img/PoisonIvy.png"
+      },
+      "fields": [
+        {
+          "field": "rep",
+          "ours": 60,
+          "external": 93
+        },
+        {
+          "field": "funding",
+          "ours": 200,
+          "external": 0
+        },
+        {
+          "field": "rank",
+          "ours": [
+            "Free Agent"
+          ],
+          "external": [
+            "Sidekick",
+            "Leader"
+          ]
+        },
+        {
+          "field": "faction",
+          "ours": [
+            "Suicide Squad"
+          ],
+          "external": [
+            "Birds of Prey"
+          ]
+        },
+        {
+          "field": "stats",
+          "ours": {
+            "Attack": 3,
+            "Defense": 3,
+            "Strength": "5+",
+            "Movement": 8,
+            "Willpower": 7,
+            "Endurance": 6
+          },
+          "external": {
+            "Attack": 3,
+            "Defense": 3,
+            "Strength": "5+",
+            "Movement": 8,
+            "Willpower": 8,
+            "Endurance": 7
+          }
+        },
+        {
+          "field": "traits",
+          "ours": [
+            "Adaptable",
+            "Insidious",
+            "Poison Immunity",
+            "Scientific",
+            "Control Pheromones",
+            "Nature's Arm",
+            "Protect Me!"
+          ],
+          "external": [
+            "Adaptable",
+            "Control Pheromones",
+            "Green Web",
+            "Poison Immunity",
+            "Protect Me!",
+            "Chlorokinesis",
+            "Elite Boss (Plants)",
+            "Mortal Kiss",
+            "Pollination",
+            "Scientific"
+          ]
+        },
+        {
+          "field": "weapons",
+          "ours": [
+            {
+              "name": "Plants",
+              "damage": "🩸 ★",
+              "rof": "-",
+              "ammo": "-",
+              "traits": "Mechanical / Protective / Reach (2)"
+            },
+            {
+              "name": "Spores",
+              "damage": "🩸",
+              "rof": 1,
+              "ammo": 3,
+              "traits": "Acid / Explosive / Mechanical / S. Range / Poison"
+            }
+          ],
+          "external": [
+            {
+              "name": "Plants",
+              "damage": "🩸★",
+              "rof": "-",
+              "ammo": "-",
+              "traits": "Mechanical / Protective / Reach (2)"
+            },
+            {
+              "name": "Spores",
+              "damage": "🩸",
+              "rof": 1,
+              "ammo": 3,
+              "traits": "Acid / Explosive / Mechanical / S. Range / Poison"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": {
+        "name": "Robin",
+        "realname": "Damian Wayne",
+        "base": "30mm",
+        "rep": 50,
+        "funding": 0,
+        "rank": "Henchman",
+        "faction": "League of Shadows/Court of Owls",
+        "traits": "Acrobat / Combo (Paired Katanas) / Martial Artist / True Love (Talia al Ghul) / Batclaw / Detective / Small",
+        "img": "https://veland55.github.io/btb/img/RobinDamian.png"
+      },
+      "fields": [
+        {
+          "field": "rank",
+          "ours": [
+            "Sidekick",
+            "Henchman"
+          ],
+          "external": [
+            "Henchman"
+          ]
+        },
+        {
+          "field": "faction",
+          "ours": [
+            "Bat Family",
+            "GCPD"
+          ],
+          "external": [
+            "League of Shadows",
+            "Court of Owls"
+          ]
+        },
+        {
+          "field": "traits",
+          "ours": [
+            "Acrobat",
+            "Bat Family",
+            "Batclaw",
+            "Combo (Damian's Attack)",
+            "Detective",
+            "Martial Artist",
+            "Mentoring",
+            "Small",
+            "Teen Titans"
+          ],
+          "external": [
+            "Acrobat",
+            "Combo (Paired Katanas)",
+            "Martial Artist",
+            "True Love (Talia al Ghul)",
+            "Batclaw",
+            "Detective",
+            "Small"
+          ]
+        },
+        {
+          "field": "weapons",
+          "ours": [
+            {
+              "name": "Batlngs",
+              "damage": "★★",
+              "rof": 2,
+              "ammo": 2,
+              "traits": "Light / S. Range / Throwing"
+            },
+            {
+              "name": "Damian's Attack",
+              "damage": "★★",
+              "rof": "-",
+              "ammo": "-",
+              "traits": "Handy / Boosted (2)"
+            }
+          ],
+          "external": [
+            {
+              "name": "Batlngs",
+              "damage": "★★",
+              "rof": 2,
+              "ammo": 2,
+              "traits": "Light / S. Range / Throwing"
+            },
+            {
+              "name": "Paired Katanas",
+              "damage": "🩸🩸",
+              "rof": "-",
+              "ammo": "-",
+              "traits": "Handy / Overwhelming / Sharp"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

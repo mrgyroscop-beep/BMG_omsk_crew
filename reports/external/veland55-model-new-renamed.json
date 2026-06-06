@@ -1,0 +1,210 @@
+{
+  "counts": {
+    "ours": 514,
+    "external": 513
+  },
+  "externalRenamed": [
+    {
+      "external": {
+        "name": "Robin [Jason Todd]",
+        "realname": "Jason Todd",
+        "base": "30mm",
+        "rep": 40,
+        "funding": 0,
+        "rank": "Sidekick",
+        "faction": "Bat Family/GCPD",
+        "img": "https://veland55.github.io/btb/img/RobinJasonTodd.png"
+      },
+      "ours": {
+        "name": "Robin",
+        "realname": "Jason Todd",
+        "base": "30mm",
+        "rep": 40,
+        "funding": 0,
+        "rank": "Sidekick",
+        "faction": "Bat Family/GCPD",
+        "img": "img/RobinJasonTodd.png"
+      }
+    },
+    {
+      "external": {
+        "name": "Robin [Carrie Kelley]",
+        "realname": "Carrie Kelley",
+        "base": "30mm",
+        "rep": 54,
+        "funding": 100,
+        "rank": "Sidekick",
+        "faction": "Bat Family/GCPD",
+        "img": "https://veland55.github.io/btb/img/RobinCarrieKelley.png"
+      },
+      "ours": {
+        "name": "Robin",
+        "realname": "Carrie Kelley",
+        "base": "30mm",
+        "rep": 54,
+        "funding": 100,
+        "rank": "Sidekick",
+        "faction": "Bat Family/GCPD",
+        "img": "img/RobinCarrieKelley.png"
+      }
+    },
+    {
+      "external": {
+        "name": "Robin [Tim Drake]",
+        "realname": "Tim Drake",
+        "base": "40mm",
+        "rep": 50,
+        "funding": 200,
+        "rank": "Free Agent",
+        "faction": "Bat Family/GCPD",
+        "img": "https://veland55.github.io/btb/img/RobinTimDrake.png"
+      },
+      "ours": {
+        "name": "Robin Tim Drake",
+        "realname": "Tim Drake",
+        "base": "40mm",
+        "rep": 50,
+        "funding": 200,
+        "rank": "Free Agent",
+        "faction": "Bat Family/GCPD",
+        "img": "img/RobinTimDrake.png"
+      }
+    },
+    {
+      "external": {
+        "name": "Robin [Damian Wayne]",
+        "realname": "Damian Wayne",
+        "base": "30mm",
+        "rep": 50,
+        "funding": 0,
+        "rank": "Sidekick/Henchman",
+        "faction": "Bat Family/GCPD",
+        "img": "https://veland55.github.io/btb/img/RobinDamian.png"
+      },
+      "ours": {
+        "name": "Robin",
+        "realname": "Damian Wayne",
+        "base": "30mm",
+        "rep": 50,
+        "funding": 0,
+        "rank": "Sidekick/Henchman",
+        "faction": "Bat Family/GCPD",
+        "img": "img/RobinDamian.png"
+      }
+    }
+  ],
+  "externalNew": [
+    {
+      "name": "Poison Ivy Arkham City",
+      "realname": "Dr. Pamela Lillian Isley",
+      "base": "30mm",
+      "rep": 101,
+      "funding": 0,
+      "rank": "Leader",
+      "faction": "Birds of Prey",
+      "img": "https://veland55.github.io/btb/img/PoisonIvyArkhamCity.png"
+    },
+    {
+      "name": "Batmobile Arkham Knight",
+      "realname": "Bruce Wayne",
+      "base": "90mm",
+      "rep": 160,
+      "funding": 0,
+      "rank": "Leader",
+      "faction": "Bat Family/GCPD",
+      "img": "https://veland55.github.io/btb/img/BatmobileArkhamKnight.png"
+    },
+    {
+      "name": "Batman Arkham City",
+      "realname": "Bruce Wayne",
+      "base": "60mm",
+      "rep": 125,
+      "funding": 0,
+      "rank": "Leader",
+      "faction": "Bat Family/GCPD",
+      "img": "https://veland55.github.io/btb/img/BatmanArkhamCity.png"
+    },
+    {
+      "name": "Lieutenant Gordon Year One",
+      "realname": "James W. Gordon",
+      "base": "30mm",
+      "rep": 46,
+      "funding": 200,
+      "rank": "Henchman",
+      "faction": "GCPD",
+      "img": "https://veland55.github.io/btb/img/LtGordonYearOne.png"
+    },
+    {
+      "name": "Bane Titan",
+      "realname": "Unknown",
+      "base": "60mm",
+      "rep": 140,
+      "funding": 0,
+      "rank": "Leader",
+      "faction": "Bane",
+      "img": "https://veland55.github.io/btb/img/BaneTitan.png"
+    }
+  ],
+  "oursOnly": [
+    {
+      "name": "Poison Ivy Arkham City",
+      "realname": "Dr. Pamela Lillian Isley",
+      "base": "30mm",
+      "rep": 101,
+      "funding": 0,
+      "rank": "Leader",
+      "faction": "Birds of Prey",
+      "img": "img/PoisonIvyArkhamCity.png"
+    },
+    {
+      "name": "Batmobile Arkham Knight",
+      "realname": "Bruce Wayne",
+      "base": "90mm",
+      "rep": "?",
+      "funding": "?",
+      "rank": "Leader",
+      "faction": "Bat Family/GCPD",
+      "img": "img/BatmobileArkhamKnight.png"
+    },
+    {
+      "name": "Batman Arkham City",
+      "realname": "Bruce Wayne",
+      "base": "60mm",
+      "rep": 125,
+      "funding": 0,
+      "rank": "Leader",
+      "faction": "Bat Family/GCPD",
+      "img": "img/BatmanArkhamCity.png"
+    },
+    {
+      "name": "Kid Flash",
+      "realname": "Wally West",
+      "base": "30mm",
+      "rep": 50,
+      "funding": 0,
+      "rank": "Henchman",
+      "faction": "Bat Family",
+      "img": "img/no.png"
+    },
+    {
+      "name": "Lieutenant Gordon Year One",
+      "realname": "James W. Gordon",
+      "base": "30mm",
+      "rep": 46,
+      "funding": 200,
+      "rank": "Henchman",
+      "faction": "GCPD",
+      "img": "img/LtGordonYearOne.png"
+    },
+    {
+      "name": "Bane Titan",
+      "realname": "Unknown",
+      "base": "60mm",
+      "rep": 140,
+      "funding": 0,
+      "rank": "Leader",
+      "faction": "Bane",
+      "img": "img/BaneTitan.png"
+    }
+  ]
+}
