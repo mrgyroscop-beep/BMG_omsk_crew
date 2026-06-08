@@ -6172,23 +6172,24 @@ function canUseRankForCurrentCrew(model, rank) {
   if (!factionRules.ignoreStandardRankRequirements) {
     const extras = bmgExtraSlots();
     const modelTraits = getModelTraits(model);
+    const prospectiveRankCount = bmgEffectiveRankCount(rank, { model, rank });
 
     if (rank === "Leader") {
-      if (bmgRankCount("Leader") >= 1) return false;
+      if (prospectiveRankCount > 1) return false;
       if (BMG_BOSS && BMG_BOSS.rankUsed === "Sidekick" && !modelRanks.includes("Sidekick")) return false;
     }
 
     if (rank === "Sidekick") {
-      if (bmgRankCount("Leader") === 0 && bmgRankCount("Sidekick") >= 2) return false;
-      if (bmgRankCount("Leader") >= 1 && bmgRankCount("Sidekick") >= 1) return false;
+      const sidekickLimit = bmgEffectiveRankCount("Leader") === 0 ? 2 : 1;
+      if (prospectiveRankCount > sidekickLimit) return false;
     }
 
-    if (rank === "Free Agent" && bmgRankCount("Free Agent") >= 1 + extras + (modifiers.extraFreeAgents || 0)) {
+    if (rank === "Free Agent" && prospectiveRankCount > 1 + extras + (modifiers.extraFreeAgents || 0)) {
       const hasCharismatic = crew.some(m => getModelTraits(m).includes("Charismatic"));
       if (!hasCharismatic || modifiers.charismaticUsed) return false;
     }
 
-    if (rank === "Vehicle" && bmgRankCount("Vehicle") >= 1 + extras + (modifiers.extraVehicles || 0)) {
+    if (rank === "Vehicle" && prospectiveRankCount > 1 + extras + (modifiers.extraVehicles || 0)) {
       return false;
     }
 
@@ -11612,6 +11613,60 @@ function getModelTraits(model) {
   return Array.isArray(model?.traits) ? model.traits : [];
 }
 
+function getDuoPartnerNames(model) {
+  return getModelTraits(model).flatMap(trait => {
+    const match = String(trait || "").match(/^Duo\s*\((.+)\)$/i);
+    if (!match) return [];
+    return match[1]
+      .split(/\s*(?:,|\/|&|\band\b)\s*/i)
+      .map(name => name.trim())
+      .filter(Boolean);
+  });
+}
+
+function modelReferencesDuoPartner(model, partner) {
+  return getDuoPartnerNames(model).some(name => modelMatchesEquipmentName(partner, name));
+}
+
+function modelsFormDuoPairForRank(a, rankA, b, rankB) {
+  if (!a || !b || !rankA || rankA !== rankB) return false;
+  return modelReferencesDuoPartner(a, b) || modelReferencesDuoPartner(b, a);
+}
+
+function bmgDuoRankExemptionCount(rank, candidate = null) {
+  const rankModels = getRecruitedCrewModels()
+    .filter(model => model.rankUsed === rank)
+    .map(model => ({ model, rank: model.rankUsed }));
+
+  if (candidate?.model && candidate.rank === rank) {
+    rankModels.push({ model: candidate.model, rank: candidate.rank });
+  }
+
+  const used = new Set();
+  let exemptions = 0;
+
+  for (let i = 0; i < rankModels.length; i += 1) {
+    if (used.has(i)) continue;
+    for (let j = i + 1; j < rankModels.length; j += 1) {
+      if (used.has(j)) continue;
+      if (!modelsFormDuoPairForRank(rankModels[i].model, rankModels[i].rank, rankModels[j].model, rankModels[j].rank)) {
+        continue;
+      }
+      used.add(i);
+      used.add(j);
+      exemptions += 1;
+      break;
+    }
+  }
+
+  return exemptions;
+}
+
+function bmgEffectiveRankCount(rank, candidate = null) {
+  const baseCount = bmgRankCount(rank) + (candidate?.model && candidate.rank === rank ? 1 : 0);
+  return Math.max(0, baseCount - bmgDuoRankExemptionCount(rank, candidate));
+}
+
 function hasTrait(model, traitName) {
   return getModelTraits(model).some(trait => getCleanName(trait) === traitName);
 }
@@ -11813,6 +11868,7 @@ function bmgCanAddModel(model, options = {}) {
     const hasCharismatic = crew.some(m => m.traits && m.traits.includes("Charismatic"));
     // Charismatic позволяет добавить одного дополнительного Free Agent
     const canUseCharismatic = hasCharismatic && !modifiers.charismaticUsed && rank === "Free Agent";
+    const prospectiveRankCount = bmgEffectiveRankCount(rank, { model, rank });
     
     // Стандартные проверки рангов
     if (rank === "Leader") {
@@ -11822,7 +11878,7 @@ function bmgCanAddModel(model, options = {}) {
         hasAnyThreeJokersInCrew();
 
       // Если уже есть Leader — нельзя добавить ещё одного
-      if (bmgRankCount("Leader") >= 1 && !allowExtraThreeJokersLeader) {
+      if (prospectiveRankCount > 1 && !allowExtraThreeJokersLeader) {
         showBuilderWarning(t("only_one_leader"));
         return false;
       }
@@ -11833,16 +11889,14 @@ function bmgCanAddModel(model, options = {}) {
       }
     }
     if (rank === "Sidekick") {
-      if (bmgRankCount("Leader") === 0 && bmgRankCount("Sidekick") >= 2) {
-        showBuilderWarning(t("max_2_sidekick"));
-        return false;
-      }
-      if (bmgRankCount("Leader") >= 1 && bmgRankCount("Sidekick") >= 1) {
-        showBuilderWarning(t("max_1_sidekick_with_leader"));
+      const hasEffectiveLeader = bmgEffectiveRankCount("Leader") > 0;
+      const sidekickLimit = hasEffectiveLeader ? 1 : 2;
+      if (prospectiveRankCount > sidekickLimit) {
+        showBuilderWarning(t(hasEffectiveLeader ? "max_1_sidekick_with_leader" : "max_2_sidekick"));
         return false;
       }
     }
-    if (rank === "Free Agent" && bmgRankCount("Free Agent") >= 1 + extras + (modifiers.extraFreeAgents || 0)) {
+    if (rank === "Free Agent" && prospectiveRankCount > 1 + extras + (modifiers.extraFreeAgents || 0)) {
       // Charismatic позволяет добавить одного дополнительного Free Agent
       if (canUseCharismatic) {
         modifiers.charismaticUsed = true;
@@ -11851,7 +11905,7 @@ function bmgCanAddModel(model, options = {}) {
         return false;
       }
     }
-    if (rank === "Vehicle" && bmgRankCount("Vehicle") >= 1 + extras + (modifiers.extraVehicles || 0)) {
+    if (rank === "Vehicle" && prospectiveRankCount > 1 + extras + (modifiers.extraVehicles || 0)) {
       showBuilderWarning(t("vehicle_limit_exceeded"));
       return false;
     }
