@@ -4062,6 +4062,22 @@ const equipmentByFaction = {
     { name: "Masks of Wonderland", fundingCost: 200, repCost: 0, maxPerCrew: 3, conditions: ["Jervis Tetch"], effects: ["Choose one mask: Queen of Hearts (Assassin 1, Order), White Rabbit (Fast, Tireless), Cheshire Cat (Stealth, Climbing Claws)."] },
     { name: "Advanced Weaponry", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Alexander Joseph Luthor"], effects: ["One ranged weapon gains Accurate trait."] }
   ],
+  "Two-Face": [
+    { name: "Grapple Gun", fundingCost: 250, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Batclaw/Grapple Gun trait."] },
+    { name: "Bulletproof Vest", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Bulletproof Vest trait."] },
+    { name: "Handcuffs", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Arrest trait."] },
+    { name: "Backpack", fundingCost: 150, repCost: 0, maxPerCrew: 2, conditions: [], effects: ["Model gains the Backpack trait."] },
+    { name: "Lockpick", fundingCost: 150, repCost: 0, maxPerCrew: 2, conditions: [], effects: ["Model gains the Runaway trait."] },
+    { name: "Magazine", fundingCost: 150, repCost: 0, maxPerCrew: 2, conditions: [], effects: ["Model gains one Ammunition for one weapon."] },
+    { name: "Brass Knuckles", fundingCost: 100, repCost: 0, maxPerCrew: 2, conditions: [], effects: ["Model gains the Reinforced Gloves trait."] },
+    { name: "Bribe", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Informer trait."] },
+    { name: "C-4", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Explosive Gel trait."] },
+    { name: "Gas Mask", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Gas Mask trait."] },
+    { name: "Scarred Silver Dollar", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Harvey Dent", "Restricted: Name: Harvey Dent"], targetModels: ["Sidekick"], effects: ["This model's crew gains 1 Blood Money when this model removes an enemy model as a Casualty."] },
+    { name: "Vote for Harvey Dent Banner", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Harvey Dent", "Restricted: Name: Harvey Dent"], targetModels: ["Sidekick"], effects: ["Model's Inspire radius is increased by 4\"."] },
+    { name: "Lace", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Alias: Sugar in crew"], targetModels: ["Henchman"], effects: ["One of this model's melee weapons gains the Blunt (2) trait."] },
+    { name: "Leather", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Alias: Spice in crew"], targetModels: ["Henchman"], effects: ["One of this model's melee weapons gains the Bleed (2) trait."] }
+  ],
   "Scarecrow": [
     { name: "Magazine", fundingCost: 200, repCost: 0, maxPerCrew: 2, conditions: [], effects: ["+1 to Ammunition for one weapon."] },
     { name: "Apparition", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Model has Nightmare trait cannot purchase"], effects: ["Model gains the Apparition trait."] },

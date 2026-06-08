@@ -10380,6 +10380,7 @@ function crewHasEquipmentModelCondition(condition) {
 function isEquipmentCharacterCondition(condition) {
   const trimmed = String(condition || "").trim();
   if (!trimmed) return false;
+  if (/^Restricted:\s*/i.test(trimmed)) return false;
   if (trimmed.startsWith("Alias:")) return true;
   if (trimmed.endsWith(" in crew")) return crewHasEquipmentModelCondition(trimmed);
   if (trimmed.startsWith("Only ")) return false;
@@ -10388,6 +10389,27 @@ function isEquipmentCharacterCondition(condition) {
   if (trimmed.startsWith("Model has ")) return false;
   if (/cannot (buy|purchase)/i.test(trimmed)) return false;
   return true;
+}
+
+function parseEquipmentRestrictedCondition(condition) {
+  const trimmed = String(condition || "").trim();
+  const restrictedMatch = trimmed.match(/^Restricted:\s*(Name|Alias):\s*(.+)$/i);
+  if (restrictedMatch) {
+    return {
+      kind: restrictedMatch[1].toLowerCase(),
+      value: restrictedMatch[2].trim()
+    };
+  }
+
+  const cannotPurchaseMatch = trimmed.match(/^(Name|Alias):\s*(.+?)\s+cannot\s+(?:buy|purchase)$/i);
+  if (cannotPurchaseMatch) {
+    return {
+      kind: cannotPurchaseMatch[1].toLowerCase(),
+      value: cannotPurchaseMatch[2].trim()
+    };
+  }
+
+  return null;
 }
 
 function normalizeEquipmentTraitValue(value) {
@@ -12219,6 +12241,10 @@ function canShowEquipmentForCrewModel(eq, crewModel) {
   if (eq.conditions && eq.conditions.length) {
     const allConditionsMet = eq.conditions.every(condition => {
       const trimmed = condition.trim();
+      const restrictedCondition = parseEquipmentRestrictedCondition(trimmed);
+      if (restrictedCondition) {
+        return !modelMatchesEquipmentName(crewModel, restrictedCondition.value);
+      }
 
       if (trimmed.endsWith(" in crew")) {
         if (trimmed.startsWith("Alias:")) return crewHasEquipmentModelCondition(trimmed);
