@@ -412,14 +412,15 @@ function officialEquipmentEntries(officialEquipment, indexes) {
 
 function compareEquipment(localEntries, officialEntries) {
   const differences = [];
-  const localByOfficialId = new Map();
+  const equipmentOfficialMatchKey = (faction, id) => `${normalizeName(faction)}||${Number(id)}`;
+  const localByOfficialKey = new Map();
   for (const item of localEntries) {
     if (item.officialId !== undefined && item.officialId !== null) {
-      localByOfficialId.set(Number(item.officialId), item);
+      localByOfficialKey.set(equipmentOfficialMatchKey(item.faction, item.officialId), item);
     }
   }
 
-  const matchedOfficialIds = new Set();
+  const matchedOfficialKeys = new Set();
   const matchedLocalItems = new Set();
   const compareEquipmentCosts = (local, official) => {
     const diffs = {};
@@ -443,9 +444,10 @@ function compareEquipment(localEntries, officialEntries) {
   };
 
   for (const official of officialEntries) {
-    const local = localByOfficialId.get(Number(official.id));
+    const officialKey = equipmentOfficialMatchKey(official.faction, official.id);
+    const local = localByOfficialKey.get(officialKey);
     if (!local) continue;
-    matchedOfficialIds.add(Number(official.id));
+    matchedOfficialKeys.add(officialKey);
     matchedLocalItems.add(local);
     compareEquipmentCosts(local, official);
   }
@@ -461,7 +463,7 @@ function compareEquipment(localEntries, officialEntries) {
   }
 
   for (const item of officialEntries) {
-    if (matchedOfficialIds.has(Number(item.id))) continue;
+    if (matchedOfficialKeys.has(equipmentOfficialMatchKey(item.faction, item.id))) continue;
     const key = `${normalizeName(item.faction)}||${normalizeName(item.name)}`;
     if (!officialByKey.has(key)) officialByKey.set(key, []);
     officialByKey.get(key).push(item);

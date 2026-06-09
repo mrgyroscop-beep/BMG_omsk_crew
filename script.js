@@ -10628,13 +10628,66 @@ function modelHasEquipmentWeaponTrait(model, traitName) {
   );
 }
 
+function getEquipmentModelOfficialId(model) {
+  const id = Number(model?.officialId);
+  return Number.isFinite(id) ? id : null;
+}
+
+function equipmentOfficialIdListIncludes(list, id) {
+  return Array.isArray(list) && list.some(value => Number(value) === id);
+}
+
+function equipmentTargetRankMatches(eq, crewModel) {
+  const ranks = Array.isArray(eq?.targetRanks) ? eq.targetRanks : [];
+  if (!ranks.length) return true;
+  return ranks.some(rank => rank === crewModel?.rankUsed);
+}
+
+function crewHasRequiredEquipmentOfficialIds(eq) {
+  const requiredIds = Array.isArray(eq?.requiredCrewOfficialIds) ? eq.requiredCrewOfficialIds : [];
+  if (!requiredIds.length) return true;
+
+  return crew.some(model => {
+    const officialId = getEquipmentModelOfficialId(model);
+    return officialId !== null && equipmentOfficialIdListIncludes(requiredIds, officialId);
+  });
+}
+
 function equipmentTargetMatches(eq, crewModel) {
+  const officialId = getEquipmentModelOfficialId(crewModel);
+  let hasPreciseOfficialTarget = false;
+
+  if (officialId !== null) {
+    if (equipmentOfficialIdListIncludes(eq?.excludedTargetOfficialIds, officialId)) return false;
+    if (Array.isArray(eq?.targetOfficialIds) && eq.targetOfficialIds.length) {
+      hasPreciseOfficialTarget = true;
+      if (!equipmentOfficialIdListIncludes(eq.targetOfficialIds, officialId)) return false;
+    }
+  }
+
+  if (Array.isArray(eq?.targetRanks) && eq.targetRanks.length) {
+    hasPreciseOfficialTarget = true;
+    if (!equipmentTargetRankMatches(eq, crewModel)) return false;
+  }
+
+  if (hasPreciseOfficialTarget) return true;
+
   const targets = Array.isArray(eq?.targetModels) ? eq.targetModels : [];
   if (!targets.length) return true;
   return targets.some(target =>
     target === crewModel?.rankUsed ||
     modelMatchesEquipmentName(crewModel, target)
   );
+}
+
+function isGenericGlobalEquipment(eq) {
+  if (!eq?.globalEquipment) return false;
+  const conditions = Array.isArray(eq.conditions) ? eq.conditions.filter(Boolean) : [];
+  if (conditions.length) return false;
+
+  const rankTargets = new Set(["Leader", "Sidekick", "Free Agent", "Henchman"]);
+  const targets = Array.isArray(eq.targetModels) ? eq.targetModels : [];
+  return !targets.some(target => !rankTargets.has(target));
 }
 
 function modelRepValue(model) {
@@ -12386,6 +12439,9 @@ function equipmentSearchText(eq) {
 }
 
 function canShowEquipmentForCrewModel(eq, crewModel) {
+  if (isGenericGlobalEquipment(eq)) return false;
+  if (!crewHasRequiredEquipmentOfficialIds(eq)) return false;
+
   const currentCount = crew.flatMap(model => model.equipment || []).filter(item => item.name === eq.name).length;
   if (currentCount >= (eq.maxPerCrew || Infinity)) return false;
 

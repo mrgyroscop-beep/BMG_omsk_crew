@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-09T06:53:23.045Z",
+  "generatedAt": "2026-06-09T09:00:40.175Z",
   "officialMeta": {
     "source": "https://app.knightmodels.com/gamedata/",
     "generatedAt": "2026-06-09T04:00:00.796Z",
@@ -21,7 +21,7 @@
     "localEquipment": 359,
     "officialEquipment": 324,
     "activeLocalEquipment": 318,
-    "equipmentDisabledLocalOnly": 41,
+    "equipmentDisabledLocalOnly": 35,
     "equipmentMissingLocal": 0,
     "equipmentMissingOfficial": 0,
     "equipmentDifferences": 0,
@@ -5028,50 +5028,6 @@
       },
       {
         "faction": "Bat Family",
-        "name": "Improved Bat-Armor",
-        "maxPerCrew": 1,
-        "fundingCost": 0,
-        "repCost": 0,
-        "conditions": [
-          "Lucius Fox",
-          "Model has Bat-Armor MK II trait"
-        ]
-      },
-      {
-        "faction": "Bat Family",
-        "name": "Improved Batclaw",
-        "maxPerCrew": 1,
-        "fundingCost": 0,
-        "repCost": 0,
-        "conditions": [
-          "Lucius Fox",
-          "Model has Batclaw/Grapple Gun trait"
-        ]
-      },
-      {
-        "faction": "Bat Family",
-        "name": "Improved Batlings",
-        "maxPerCrew": 1,
-        "fundingCost": 0,
-        "repCost": 0,
-        "conditions": [
-          "Lucius Fox",
-          "Weapon has Throwing trait"
-        ]
-      },
-      {
-        "faction": "Bat Family",
-        "name": "Improved Reinforced Gloves",
-        "maxPerCrew": 1,
-        "fundingCost": 0,
-        "repCost": 0,
-        "conditions": [
-          "Lucius Fox",
-          "Model has Reinforced Gloves trait"
-        ]
-      },
-      {
-        "faction": "Bat Family",
         "name": "The Turning",
         "maxPerCrew": 4,
         "fundingCost": 200,
@@ -5386,26 +5342,6 @@
         "conditions": [
           "Alec Holland",
           "Eternal Option Required"
-        ]
-      },
-      {
-        "faction": "Royal Flush",
-        "name": "Poison Training",
-        "maxPerCrew": 1,
-        "fundingCost": 250,
-        "repCost": 0,
-        "conditions": [
-          "Punchline"
-        ]
-      },
-      {
-        "faction": "Suicide Squad",
-        "name": "Modified Pheromone",
-        "maxPerCrew": 2,
-        "fundingCost": 100,
-        "repCost": 0,
-        "conditions": [
-          "Poison Ivy"
         ]
       }
     ],
