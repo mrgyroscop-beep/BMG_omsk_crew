@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-06-09T06:36:07.380Z",
+  "dryRun": false,
+  "force": false,
+  "includeDisabled": false,
+  "requestTimeout": 15000,
+  "concurrency": 6,
+  "requested": 389,
+  "selected": 0,
+  "downloaded": [],
+  "skipped": [],
+  "overrides": {
+    "cards": 177,
+    "models": 211
+  }
+}

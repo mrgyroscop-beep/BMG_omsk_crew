@@ -338,6 +338,7 @@ const translations = {
     builder_card_single_limit_reached: "В колоде может быть не больше 15 одиночных карт",
     builder_card_general_limit_reached: "Общих карт может быть не больше 15",
     builder_card_missing_required_model: "Для использования нужна модель в ростере",
+    builder_card_prevented_by_trait: "Недоступно из-за трейта",
     builder_card_requirement: "Нужна",
     builder_card_translation: "Перевод",
     builder_card_mandatory: "Обязательно",
@@ -441,7 +442,8 @@ const translations = {
     import_title: "Импорт ростера",
     no_available_equipment: "Нет доступного оборудования",
     henry_ducard_sidekick_requires_ras: "Henry Ducard может быть нанят как Sidekick только если лидером банды является Ra's al Ghul Decoy!",
-    model_requires_other: "Модель {model} требует, чтобы в отряде была модель {required}"
+    model_requires_other: "Модель {model} требует, чтобы в отряде была модель {required}",
+    local_model_disabled: "Локальная модель скрыта и недоступна для новых ростеров."
   },
   en: {
     cards: "CARDS",
@@ -587,6 +589,7 @@ const translations = {
     builder_card_single_limit_reached: "The deck cannot include more than 15 single cards",
     builder_card_general_limit_reached: "The deck cannot include more than 15 general cards",
     builder_card_missing_required_model: "Required model must be in the roster",
+    builder_card_prevented_by_trait: "Blocked by trait",
     builder_card_requirement: "Requires",
     builder_card_translation: "Translation",
     builder_card_mandatory: "Mandatory",
@@ -690,7 +693,8 @@ const translations = {
     import_title: "Import Roster",
     no_available_equipment: "No available equipment",
     henry_ducard_sidekick_requires_ras: "Henry Ducard can only be recruited as Sidekick if Ra's al Ghul Decoy is the crew leader!",
-    model_requires_other: "Model {model} requires {required} model in the crew"
+    model_requires_other: "Model {model} requires {required} model in the crew",
+    local_model_disabled: "This local-only model is hidden and unavailable for new rosters."
   }
 };
 
@@ -4899,12 +4903,18 @@ function postProcessLocalizedDisplay(text) {
 }
 
 function localizeFactionName(name) {
-  const entry = factionLabels[name];
-  return entry ? (entry[currentLang] || entry.en || name) : name;
+  const canonicalName = typeof canonicalFactionName === "function" ? canonicalFactionName(name) : name;
+  const entry = factionLabels[canonicalName];
+  return entry ? (entry[currentLang] || entry.en || canonicalName) : canonicalName;
 }
 
 function localizeFactionList(input) {
-  const values = Array.isArray(input) ? input : String(input || "").split(/\s*[\/,]\s*/).filter(Boolean);
+  const text = String(input || "").trim();
+  const values = Array.isArray(input)
+    ? input
+    : typeof canonicalFactionName === "function" && canonicalFactionName(text) !== text
+      ? [text]
+      : text.split(/\s*[\/,]\s*/).filter(Boolean);
   return values.map(localizeFactionName).join(" • ");
 }
 
@@ -6967,18 +6977,18 @@ function getMatchSelectedCrewEntry() {
   return myCrews.find(item => item.id === matchSelectedCrewId) || null;
 }
 
-function getAllMatchCardsCatalog() {
-  return [...getBuilderCardCatalog(), ...getBuilderMandatoryCardCatalog()];
+function getAllMatchCardsCatalog(options = {}) {
+  return [...getBuilderCardCatalog(options), ...getBuilderMandatoryCardCatalog(options)];
 }
 
-function findBuilderCardByName(cardName) {
+function findBuilderCardByName(cardName, options = {}) {
   const normalized = normalizeEquipmentMatchName(cardName);
-  return getAllMatchCardsCatalog().find(card => normalizeEquipmentMatchName(getBuilderCardName(card)) === normalized) || null;
+  return getAllMatchCardsCatalog(options).find(card => normalizeEquipmentMatchName(getBuilderCardName(card)) === normalized) || null;
 }
 
 function getParsedRosterCardObjects(parsed) {
   return (parsed.cards || []).map(cardInfo => {
-    const catalogCard = findBuilderCardByName(cardInfo.name);
+    const catalogCard = findBuilderCardByName(cardInfo.name, { includeDisabled: true });
     return catalogCard ? { ...catalogCard } : {
       id: `unknown-${normalizeEquipmentMatchName(cardInfo.name)}`,
       name: cardInfo.name,
@@ -7004,7 +7014,7 @@ function getParsedRosterCosts(parsed) {
 function aggregateMatchCards(parsedCards) {
   const map = new Map();
   parsedCards.forEach(cardInfo => {
-    const catalogCard = findBuilderCardByName(cardInfo.name);
+    const catalogCard = findBuilderCardByName(cardInfo.name, { includeDisabled: true });
     const key = catalogCard ? getBuilderCardKey(catalogCard) : normalizeEquipmentMatchName(cardInfo.name);
     const entry = map.get(key) || {
       id: key,
@@ -7253,7 +7263,7 @@ function validateMatchRoster(parsed, options = {}) {
     messages.push(matchText(`Превышен лимит Funding: $${costs.usedFunding}/$${parsed.fundingLimit}.`, `Funding limit exceeded: $${costs.usedFunding}/$${parsed.fundingLimit}.`));
   }
 
-  const unknownCards = (parsed.cards || []).filter(card => !findBuilderCardByName(card.name)).map(card => card.name);
+  const unknownCards = (parsed.cards || []).filter(card => !findBuilderCardByName(card.name, { includeDisabled: true })).map(card => card.name);
   if (unknownCards.length) {
     isLegal = false;
     messages.push(matchText(`Не найдены карты: ${unknownCards.join(", ")}`, `Missing cards: ${unknownCards.join(", ")}`));
@@ -7423,12 +7433,44 @@ function decodeMatchRank(value, model) {
 }
 
 function getMatchEquipmentCatalog(faction) {
+  return getEquipmentCatalogForFaction(faction, { includeDisabled: true });
+}
+
+function getEquipmentDisabledKey(value) {
+  return String(value || "").trim().toLowerCase();
+}
+
+function isEquipmentDisabledForFaction(eq, faction) {
+  if (!eq || !faction || typeof disabledLocalOnlyEquipmentByFaction === "undefined") return false;
+  const disabledNames = disabledLocalOnlyEquipmentByFaction[faction];
+  if (!Array.isArray(disabledNames) || !disabledNames.length) return false;
+
+  const itemKey = getEquipmentDisabledKey(eq.name);
+  return disabledNames.some(name => getEquipmentDisabledKey(name) === itemKey);
+}
+
+function getEquipmentCatalogForFaction(faction, options = {}) {
   if (typeof equipmentByFaction === "undefined") return [];
-  return Array.isArray(equipmentByFaction[faction]) ? equipmentByFaction[faction] : [];
+  const includeDisabled = !!options.includeDisabled;
+  const rawFactionItems = Array.isArray(equipmentByFaction[faction]) ? equipmentByFaction[faction] : [];
+  const factionItems = includeDisabled
+    ? rawFactionItems
+    : rawFactionItems.filter(item => !isEquipmentDisabledForFaction(item, faction));
+  if (faction === "Any") return factionItems;
+
+  const rawGlobalItems = Array.isArray(equipmentByFaction.Any) ? equipmentByFaction.Any : [];
+  const globalItems = includeDisabled
+    ? rawGlobalItems
+    : rawGlobalItems.filter(item => !isEquipmentDisabledForFaction(item, "Any"));
+  if (!globalItems.length) return factionItems;
+
+  const factionNames = new Set(factionItems.map(item => item.name));
+  const mergedGlobalItems = globalItems.filter(item => !factionNames.has(item.name));
+  return [...factionItems, ...mergedGlobalItems];
 }
 
 function getMatchCardCatalogIndex(card) {
-  const catalog = getAllMatchCardsCatalog();
+  const catalog = getAllMatchCardsCatalog({ includeDisabled: true });
   const key = getBuilderCardKey(card);
   const name = getBuilderCardName(card);
   const index = catalog.findIndex(item => getBuilderCardKey(item) === key || getBuilderCardName(item) === name);
@@ -7436,7 +7478,7 @@ function getMatchCardCatalogIndex(card) {
 }
 
 function getMatchCardByRef(ref) {
-  const catalog = getAllMatchCardsCatalog();
+  const catalog = getAllMatchCardsCatalog({ includeDisabled: true });
   if (typeof ref === "number") return catalog[ref] || null;
   return catalog.find(card => getBuilderCardKey(card) === ref || getBuilderCardName(card) === ref) || null;
 }
@@ -7532,7 +7574,7 @@ function decodeMatchPayloadBytes(body) {
 
   const cardRows = readMatchVarint(reader);
   const expandedCards = [];
-  const cardCatalog = getAllMatchCardsCatalog();
+  const cardCatalog = getAllMatchCardsCatalog({ includeDisabled: true });
   for (let index = 0; index < cardRows; index++) {
     const cardRef = readMatchCatalogRef(reader);
     const card = cardRef.index !== null ? (cardCatalog[cardRef.index] || null) : getMatchCardByRef(cardRef.text);
@@ -8080,24 +8122,28 @@ function toggleMatchGameCards() {
   renderMatchGame();
 }
 
-function showMatchGameCard(encodedCardName) {
-  const cardName = decodeURIComponent(encodedCardName || "");
-  const card = findBuilderCardByName(cardName);
-
-  if (!card) {
-    showTraitPopup(cardName || t("match_cards"), `<div>${escapeHtml(cardName || "—")}</div>`);
-    return;
-  }
-
+function showBuilderCardPreview(card, fallbackTitle = "") {
   const imageHtml = card.img
     ? `<img src="${escapeAttribute(card.img)}" alt="${escapeAttribute(getBuilderCardName(card))}" class="match-card-preview-img" onerror="this.style.display='none'">`
     : "";
   const textHtml = getBuilderCardTranslationHTML(card) || renderBuilderCardMeta(card) || "";
 
   showTraitPopup(
-    getBuilderCardName(card),
+    getBuilderCardName(card) || fallbackTitle,
     `<div class="match-card-preview">${imageHtml}${textHtml ? `<div class="match-card-preview-text">${textHtml}</div>` : ""}</div>`
   );
+}
+
+function showMatchGameCard(encodedCardName) {
+  const cardName = decodeURIComponent(encodedCardName || "");
+  const card = findBuilderCardByName(cardName, { includeDisabled: true });
+
+  if (!card) {
+    showTraitPopup(cardName || t("match_cards"), `<div>${escapeHtml(cardName || "—")}</div>`);
+    return;
+  }
+
+  showBuilderCardPreview(card, cardName);
 }
 
 function resetMatchGameObjectiveState() {
@@ -8131,7 +8177,7 @@ function buildMatchObjectiveDeck(roster, side) {
 }
 
 function createMatchObjectiveCardInstance(cardInfo, side, cardIndex, copyIndex) {
-  const catalogCard = findBuilderCardByName(cardInfo?.name || "");
+  const catalogCard = findBuilderCardByName(cardInfo?.name || "", { includeDisabled: true });
   const name = catalogCard ? getBuilderCardName(catalogCard) : String(cardInfo?.name || "Objective");
   const key = catalogCard ? getBuilderCardKey(catalogCard) : normalizeEquipmentMatchName(name);
   const resourceCost = catalogCard?.resource?.cost ?? catalogCard?.resourceCost ?? cardInfo?.resourceCost ?? "";
@@ -8234,7 +8280,7 @@ function resolveMatchObjectiveDeclaredCard(instanceId, result) {
 }
 
 function getMatchObjectiveCatalogCard(card) {
-  return findBuilderCardByName(card?.name || "") || null;
+  return findBuilderCardByName(card?.name || "", { includeDisabled: true }) || null;
 }
 
 function getMatchObjectiveValueText(card) {
@@ -8815,7 +8861,12 @@ function passesBuilderFactionFilter(model) {
   return !builderFactionOnly || modelHasCurrentFaction(model);
 }
 
+function isDisabledLocalOnlyModel(model) {
+  return Boolean(model?.disabledLocalOnlyModel);
+}
+
 function canConsiderModelForCurrentBuilder(model) {
+  if (isDisabledLocalOnlyModel(model)) return false;
   if (isBeastBoyShapeshiftForm(model)) {
     return hasBeastBoyMainInCrew();
   }
@@ -9114,14 +9165,20 @@ function setCardsContentMode(mode) {
   }
 }
 
-function getBuilderCardCatalog() {
-  const source = window.BMG_BUILDER_CARDS || window.bmgBuilderCards || window.BMG_OBJECTIVE_CARDS || [];
-  return Array.isArray(source) ? source : [];
+function isDisabledLocalOnlyCard(card) {
+  return Boolean(card?.disabledLocalOnlyCard);
 }
 
-function getBuilderMandatoryCardCatalog() {
+function getBuilderCardCatalog(options = {}) {
+  const source = window.BMG_BUILDER_CARDS || window.bmgBuilderCards || window.BMG_OBJECTIVE_CARDS || [];
+  if (!Array.isArray(source)) return [];
+  return options.includeDisabled ? source : source.filter(card => !isDisabledLocalOnlyCard(card));
+}
+
+function getBuilderMandatoryCardCatalog(options = {}) {
   const source = window.BMG_BUILDER_MANDATORY_CARDS || window.bmgBuilderMandatoryCards || [];
-  return Array.isArray(source) ? source : [];
+  if (!Array.isArray(source)) return [];
+  return options.includeDisabled ? source : source.filter(card => !isDisabledLocalOnlyCard(card));
 }
 
 function getObjectiveDeckCards(cards = crewCards) {
@@ -9152,12 +9209,23 @@ function getBuilderCardCount(card) {
 }
 
 function getBuilderCardFactionList(card) {
+  const factionText = String(card?.faction || "").trim();
   const factions = Array.isArray(card?.faction)
     ? card.faction
-    : typeof card?.faction === "string" && card.faction.trim()
-      ? card.faction.replace(/ *& */gi, ",").replace(/ *\/ */g, ",").split(",").map(s => s.trim())
+    : factionText
+      ? (typeof canonicalFactionName === "function" && canonicalFactionName(factionText) !== factionText
+          ? [factionText]
+          : factionText.replace(/ *& */gi, ",").replace(/ *\/ */g, ",").split(",").map(s => s.trim()))
       : [];
-  return factions.filter(Boolean);
+  const seen = new Set();
+  return factions
+    .flat(Infinity)
+    .map(faction => typeof canonicalFactionName === "function" ? canonicalFactionName(faction) : String(faction || "").trim())
+    .filter(faction => {
+      if (!faction || seen.has(faction)) return false;
+      seen.add(faction);
+      return true;
+    });
 }
 
 function isBuilderCardGeneral(card) {
@@ -9217,6 +9285,10 @@ function getBuilderCardRequiredTraits(card) {
   return normalizeBuilderCardArray(card?.requiredTraits || card?.requiredTrait || card?.traitRequirement || card?.traitsRequired);
 }
 
+function getBuilderCardPreventingTraits(card) {
+  return normalizeBuilderCardArray(card?.preventingTraits || card?.preventingTrait || card?.blockedTraits || card?.preventedByTraits);
+}
+
 function normalizeBuilderCardRankText(value) {
   const loose = normalizeEquipmentMatchName(String(value || "")
     .replace(/[{}]/g, "")
@@ -9271,6 +9343,31 @@ function builderCardTraitMatchesRequirement(model, requiredTraits = []) {
   );
 }
 
+function builderCardModelHasAnyTrait(model, traits = []) {
+  if (!traits.length) return false;
+
+  const requiredLoose = traits.map(normalizeBuilderCardTraitText).filter(Boolean);
+  const modelTraits = getModelTraits(model).map(trait => ({
+    full: normalizeEquipmentMatchName(getCleanName(trait)),
+    base: normalizeBuilderCardTraitText(trait)
+  }));
+
+  return requiredLoose.some(requiredTrait =>
+    modelTraits.some(({ full, base }) =>
+      requiredTrait === full ||
+      requiredTrait === base ||
+      full.includes(requiredTrait) ||
+      base.includes(requiredTrait)
+    )
+  );
+}
+
+function builderCardCrewHasPreventingTrait(card, crewModels = getRecruitedCrewModels()) {
+  const preventingTraits = getBuilderCardPreventingTraits(card);
+  if (!preventingTraits.length) return false;
+  return crewModels.some(model => builderCardModelHasAnyTrait(model, preventingTraits));
+}
+
 function getBuilderCardEligibleCrewModels(card, crewModels = getRecruitedCrewModels()) {
   const requiredModels = getBuilderCardRequiredModelNames(card);
   const requiredRanks = getBuilderCardRequiredRanks(card);
@@ -9291,6 +9388,7 @@ function getBuilderCardFactionAvailableModels(card, faction = currentFaction) {
   if ((!requiredModels.length && !requiredRanks.length && !requiredTraits.length) || !faction) return [];
 
   return models.filter(model => {
+    if (isDisabledLocalOnlyModel(model)) return false;
     if (!builderCardModelMatchesRequirement(model, requiredModels)) return false;
     if (!builderCardRankMatchesRequirement(model, requiredRanks)) return false;
     if (!builderCardTraitMatchesRequirement(model, requiredTraits)) return false;
@@ -9359,6 +9457,7 @@ function canShowBuilderCard(card) {
   const factions = getBuilderCardFactionList(card);
   const factionMatches = !factions.length || factions.includes(currentFaction) || factions.includes("Any") || factions.includes("All");
   if (!factionMatches) return false;
+  if (currentMode === "builder" && builderCardCrewHasPreventingTrait(card)) return false;
 
   if (!builderCardHasCrewRequirement(card)) return true;
   if (card?.showWhenRequirementMet && currentMode === "builder") {
@@ -9387,6 +9486,10 @@ function getLocalizedCardField(value) {
   return String(value);
 }
 
+function renderLocalizedCardText(value) {
+  return replaceIcons(escapeHtml(value).replace(/\n/g, "<br>"));
+}
+
 function renderBuilderCardText(card) {
   const text = getLocalizedCardField(card?.text || card?.description || card?.objective);
   const resourceText = getLocalizedCardField(card?.resource);
@@ -9394,14 +9497,14 @@ function renderBuilderCardText(card) {
   const html = [];
 
   if (text) {
-    html.push(`<div class="builder-card-text">${escapeHtml(text).replace(/\n/g, "<br>")}</div>`);
+    html.push(`<div class="builder-card-text">${renderLocalizedCardText(text)}</div>`);
   }
 
   if (resourceText) {
     const cost = resourceCost !== undefined && resourceCost !== null && resourceCost !== ""
       ? `<span class="builder-card-resource-cost">&#9889; ${escapeHtml(resourceCost)}:</span>`
       : "";
-    html.push(`<div class="builder-card-resource">${cost}<span>${escapeHtml(resourceText)}</span></div>`);
+    html.push(`<div class="builder-card-resource">${cost}<span>${renderLocalizedCardText(resourceText)}</span></div>`);
   }
 
   return html.join("");
@@ -9414,13 +9517,13 @@ function getBuilderCardTranslationHTML(card) {
   const parts = [];
 
   if (text) {
-    parts.push(`<div>${escapeHtml(text).replace(/\n/g, "<br>")}</div>`);
+    parts.push(`<div>${renderLocalizedCardText(text)}</div>`);
   }
   if (resourceText) {
     const cost = resourceCost !== undefined && resourceCost !== null && resourceCost !== ""
       ? `&#9889; ${escapeHtml(resourceCost)}: `
       : "";
-    parts.push(`<div style="margin-top:16px;color:#ffd700;font-weight:bold;">${cost}${escapeHtml(resourceText)}</div>`);
+    parts.push(`<div style="margin-top:16px;color:#ffd700;font-weight:bold;">${cost}${renderLocalizedCardText(resourceText)}</div>`);
   }
 
   return parts.join("");
@@ -9438,6 +9541,19 @@ function showBuilderCardTranslation(cardKey) {
   const card = findBuilderCardByKey(cardKey);
   if (!card) return;
   showTraitPopup(getBuilderCardName(card), getBuilderCardTranslationHTML(card));
+}
+
+function showBuilderCardPreviewByKey(cardKey) {
+  const card = findBuilderCardByKey(cardKey);
+  if (!card) return;
+  showBuilderCardPreview(card);
+}
+
+function handleBuilderCardPreviewKey(event, cardKey) {
+  if (event.key !== "Enter" && event.key !== " ") return;
+  event.preventDefault();
+  event.stopPropagation();
+  showBuilderCardPreviewByKey(cardKey);
 }
 
 function renderBuilderCardThumb(card) {
@@ -9580,6 +9696,16 @@ function getBuilderCardAddCheck(card) {
     };
   }
 
+  if (builderCardCrewHasPreventingTrait(card)) {
+    const preventingTraits = getBuilderCardPreventingTraits(card).map(translateDisplayText).join(" / ");
+    return {
+      ok: false,
+      reason: preventingTraits
+        ? `${t("builder_card_prevented_by_trait")}: ${preventingTraits}`
+        : t("builder_card_prevented_by_trait")
+    };
+  }
+
   const addCount = getBuilderCardAddCount(card);
   const stats = getObjectiveDeckStats();
   if (stats.total + addCount > OBJECTIVE_DECK_SIZE) {
@@ -9610,8 +9736,12 @@ function renderBuilderCardItem(card, options = {}) {
   const requirementMissing = (selected || (!viewOnly && builderCardQuickFilter === "missing")) &&
     builderCardHasCrewRequirement(card) &&
     !isBuilderCardRequirementMet(card);
+  const requirementLabel = requirementMissing ? t("builder_card_missing_required_model") : t("builder_card_requirement");
   const requirementHTML = requirementText
-    ? `<div class="builder-card-requirement ${requirementMissing ? "is-missing" : ""}">${escapeHtml(requirementMissing ? `${t("builder_card_missing_required_model")}: ${requirementText}` : requirementText)}</div>`
+    ? `<details class="builder-card-requirement ${requirementMissing ? "is-missing" : ""}" onclick="event.stopPropagation()">
+        <summary><span>${escapeHtml(requirementLabel)}</span></summary>
+        <div>${escapeHtml(requirementText)}</div>
+      </details>`
     : "";
   const button = viewOnly || mandatory
     ? ""
@@ -9622,16 +9752,20 @@ function renderBuilderCardItem(card, options = {}) {
   const actions = button || countBadge
     ? `<div class="mini-card-actions">${countBadge}${button}</div>`
     : "";
+  const translationHTML = getBuilderCardTranslationHTML(card);
+  const translationButton = translationHTML
+    ? `<button class="builder-card-translation-btn" type="button" onclick="event.stopPropagation(); showBuilderCardTranslation('${key}')">${t("builder_card_translation")}</button>`
+    : "";
 
   if (card?.renderAsCardImage && card?.img) {
     return `
-      <div class="mini-card builder-card-item builder-card-image-item ${selected ? "in-crew" : ""} ${requirementMissing ? "builder-card-requirement-missing" : ""} ${viewOnly || mandatory ? "builder-card-readonly" : ""} ${mandatory ? "builder-card-mandatory" : ""}">
+      <div class="mini-card builder-card-item builder-card-image-item ${selected ? "in-crew" : ""} ${requirementMissing ? "builder-card-requirement-missing" : ""} ${viewOnly || mandatory ? "builder-card-readonly" : ""} ${mandatory ? "builder-card-mandatory" : ""}" role="button" tabindex="0" onclick="showBuilderCardPreviewByKey('${key}')" onkeydown="handleBuilderCardPreviewKey(event, '${key}')">
         ${button}
         ${countBadge}
         <img src="${escapeAttribute(card.img)}" class="builder-card-full-img" alt="${escapeAttribute(getBuilderCardName(card))}" onerror="this.src='img/no.png'">
         <div class="builder-card-image-footer">
           <span>${escapeHtml(getBuilderCardName(card))}</span>
-          <button class="builder-card-translation-btn" type="button" onclick="event.stopPropagation(); showBuilderCardTranslation('${key}')">${t("builder_card_translation")}</button>
+          ${translationButton}
           <strong>${footerBadge}</strong>
         </div>
         ${requirementHTML}
@@ -9640,14 +9774,14 @@ function renderBuilderCardItem(card, options = {}) {
   }
 
   return `
-    <div class="mini-card builder-card-item ${selected ? "in-crew" : ""} ${requirementMissing ? "builder-card-requirement-missing" : ""} ${viewOnly || mandatory ? "builder-card-readonly" : ""} ${mandatory ? "builder-card-mandatory" : ""}">
+    <div class="mini-card builder-card-item ${selected ? "in-crew" : ""} ${requirementMissing ? "builder-card-requirement-missing" : ""} ${viewOnly || mandatory ? "builder-card-readonly" : ""} ${mandatory ? "builder-card-mandatory" : ""}" role="button" tabindex="0" onclick="showBuilderCardPreviewByKey('${key}')" onkeydown="handleBuilderCardPreviewKey(event, '${key}')">
       ${renderBuilderCardThumb(card)}
       <div class="mini-info">
         <div class="mini-name">${escapeHtml(getBuilderCardName(card))}</div>
         ${renderBuilderCardMeta(card)}
         ${requirementHTML}
         ${card?.showInlineText === false ? "" : renderBuilderCardText(card)}
-        <button class="builder-card-translation-btn" type="button" onclick="event.stopPropagation(); showBuilderCardTranslation('${key}')">${t("builder_card_translation")}</button>
+        ${translationButton}
         <div class="mini-rep">${footerBadge}</div>
       </div>
       ${actions}
@@ -9700,6 +9834,7 @@ function getBuilderCardSearchHaystack(card) {
     getBuilderCardRequiredModelNames(card).join(" "),
     getBuilderCardRequiredRanks(card).join(" "),
     getBuilderCardRequiredTraits(card).join(" "),
+    getBuilderCardPreventingTraits(card).join(" "),
     getBuilderCardFactionList(card).join(" "),
     groupKey,
     getBuilderCardGroupTitle(groupKey)
@@ -10117,6 +10252,7 @@ function addThreeJokersToCrew() {
 function addModelWithRank(model, chosenRank, options = {}) {
   const {
     allowThreeJokersLeader = false,
+    allowDisabledLocalOnly = false,
     skipRefresh = false,
     skipThreeJokersSync = false
   } = options;
@@ -10177,7 +10313,7 @@ function addModelWithRank(model, chosenRank, options = {}) {
     applyPossessedRecruitmentEffects(cloned);
   }
 
-  if (!bmgCanAddModel(cloned, { allowThreeJokersLeader })) return null;
+  if (!bmgCanAddModel(cloned, { allowThreeJokersLeader, allowDisabledLocalOnly })) return null;
   // ИЗМЕНЕНИЕ: используем unshift вместо push для добавления в начало массива
   crew.unshift(cloned);
   if (isBeastBoyMainModel(cloned)) {
@@ -10345,8 +10481,45 @@ function getEquipmentAffordability(eq) {
 function normalizeEquipmentConditionName(condition) {
   return String(condition || "")
     .replace(/^Alias:\s*/i, "")
+    .replace(/^Name:\s*/i, "")
     .replace(/\s+in crew$/i, "")
     .trim();
+}
+
+function parseEquipmentAnyOfCondition(condition) {
+  const match = String(condition || "").trim().match(/^Any of:\s*(.+)$/i);
+  if (!match) return null;
+  return match[1]
+    .split(/\s*\|\s*/)
+    .map(item => item.trim())
+    .filter(Boolean);
+}
+
+function equipmentConditionOptionMet(condition, crewModel) {
+  const trimmed = String(condition || "").trim();
+  if (!trimmed) return false;
+
+  const restrictedCondition = parseEquipmentRestrictedCondition(trimmed);
+  if (restrictedCondition) {
+    return !modelMatchesEquipmentName(crewModel, restrictedCondition.value);
+  }
+
+  if (trimmed.endsWith(" in crew")) {
+    if (trimmed.startsWith("Alias:")) return crewHasEquipmentModelCondition(trimmed);
+    const traitName = trimmed.replace(" in crew", "").trim();
+    return crew.some(model => getModelTraits(model).some(trait => trait.includes(traitName)));
+  }
+
+  if (/^Name:\s*/i.test(trimmed)) {
+    const requiredName = trimmed.replace(/^Name:\s*/i, "").trim();
+    return modelMatchesEquipmentName(crewModel, requiredName);
+  }
+
+  if (trimmed.startsWith("Alias:")) {
+    return modelMatchesEquipmentName(crewModel, trimmed);
+  }
+
+  return crewHasEquipmentModelCondition(trimmed);
 }
 
 function normalizeEquipmentMatchName(name) {
@@ -10362,7 +10535,7 @@ function modelMatchesEquipmentName(model, conditionName) {
   const expectedLoose = normalizeEquipmentMatchName(expected);
   if (!expectedLoose) return false;
 
-  return [model?.name, model?.alias, model?.realname].some(value => {
+  return [model?.name, model?.alias, model?.realname, model?.officialAlias, model?.officialName].some(value => {
     const current = String(value || "").trim();
     const currentLoose = normalizeEquipmentMatchName(current);
     return current === expected ||
@@ -10380,6 +10553,10 @@ function crewHasEquipmentModelCondition(condition) {
 function isEquipmentCharacterCondition(condition) {
   const trimmed = String(condition || "").trim();
   if (!trimmed) return false;
+  const anyOfOptions = parseEquipmentAnyOfCondition(trimmed);
+  if (anyOfOptions) {
+    return anyOfOptions.some(option => isEquipmentCharacterCondition(option));
+  }
   if (/^Restricted:\s*/i.test(trimmed)) return false;
   if (trimmed.startsWith("Alias:")) return true;
   if (trimmed.endsWith(" in crew")) return crewHasEquipmentModelCondition(trimmed);
@@ -10767,6 +10944,7 @@ function hasStaticFactionRestriction(model, faction) {
 
 function canShowInFactionCards(model, faction) {
   if (!model || !faction) return false;
+  if (isDisabledLocalOnlyModel(model)) return false;
   if (hasStaticFactionRestriction(model, faction)) return false;
 
   const factionRules = factionCrewRules[faction] || {};
@@ -11773,7 +11951,12 @@ function applyPossessedRecruitmentEffects(model, bossFactionsOverride = null) {
 }
 
 function bmgCanAddModel(model, options = {}) {
-  const { allowThreeJokersLeader = false } = options;
+  const { allowThreeJokersLeader = false, allowDisabledLocalOnly = false } = options;
+
+  if (isDisabledLocalOnlyModel(model) && !allowDisabledLocalOnly) {
+    showBuilderWarning(t("local_model_disabled"));
+    return false;
+  }
 
   if (isBeastBoyShapeshiftForm(model)) {
     showBuilderWarning(t("beast_boy_form_requires_main"));
@@ -12139,7 +12322,7 @@ function getEquipmentBlockedReason(crewModel) {
   }
 
   if (crewModel.rankUsed === "Leader") {
-    const hasLeaderPermission = (equipmentByFaction[currentFaction] || []).some(eq =>
+    const hasLeaderPermission = getEquipmentCatalogForFaction(currentFaction).some(eq =>
       eq.targetModels && eq.targetModels.includes("Leader")
     );
     if (!hasLeaderPermission) {
@@ -12152,12 +12335,22 @@ function getEquipmentBlockedReason(crewModel) {
 
 function isSpecialEquipmentAvailable(eq) {
   return !!(eq?.conditions && eq.conditions.some(cond =>
-    isEquipmentCharacterCondition(cond) && crewHasEquipmentModelCondition(cond)
+    isEquipmentCharacterCondition(cond) && (
+      parseEquipmentAnyOfCondition(cond)?.some(option => equipmentConditionOptionMet(option, null)) ||
+      crewHasEquipmentModelCondition(cond)
+    )
   ));
 }
 
 function equipmentRequirementText(eq) {
   const conditions = Array.isArray(eq?.conditions) ? eq.conditions : [];
+  const anyOfCondition = conditions.find(condition => parseEquipmentAnyOfCondition(condition));
+  const anyOfOptions = anyOfCondition ? parseEquipmentAnyOfCondition(anyOfCondition) : null;
+  if (anyOfOptions?.length) {
+    const options = anyOfOptions.map(option => translateDisplayText(normalizeEquipmentConditionName(option))).join(" / ");
+    return `${uiText("requires")} ${options}`;
+  }
+
   const reqTrait = conditions.find(condition =>
     condition.endsWith(" in crew") &&
     !condition.startsWith("Alias:") &&
@@ -12241,6 +12434,11 @@ function canShowEquipmentForCrewModel(eq, crewModel) {
   if (eq.conditions && eq.conditions.length) {
     const allConditionsMet = eq.conditions.every(condition => {
       const trimmed = condition.trim();
+      const anyOfOptions = parseEquipmentAnyOfCondition(trimmed);
+      if (anyOfOptions) {
+        return anyOfOptions.some(option => equipmentConditionOptionMet(option, crewModel));
+      }
+
       const restrictedCondition = parseEquipmentRestrictedCondition(trimmed);
       if (restrictedCondition) {
         return !modelMatchesEquipmentName(crewModel, restrictedCondition.value);
@@ -12348,7 +12546,7 @@ function canShowEquipmentForCrewModel(eq, crewModel) {
 
 function getAvailableEquipmentForCrewModel(crewModel) {
   if (!crewModel || getEquipmentBlockedReason(crewModel)) return [];
-  return (equipmentByFaction[currentFaction] || []).filter(eq => canShowEquipmentForCrewModel(eq, crewModel));
+  return getEquipmentCatalogForFaction(currentFaction).filter(eq => canShowEquipmentForCrewModel(eq, crewModel));
 }
 
 function openEquipmentMenu(model, cardElement = null, sourceEvent = null) {
@@ -12829,13 +13027,13 @@ function importRosterFromText(text, options = {}) {
       return;
     }
 
-    const importedModel = addModelWithRank(entry.model, entry.finalRank);
+    const importedModel = addModelWithRank(entry.model, entry.finalRank, { allowDisabledLocalOnly: true });
     if (!importedModel) {
       importWarnings.push(`${entry.modelName}${entry.rank ? ` [${entry.rank}]` : ""}`);
       return;
     }
 
-    const factionEquipment = equipmentByFaction[currentFaction] || [];
+    const factionEquipment = getEquipmentCatalogForFaction(currentFaction, { includeDisabled: true });
     entry.equipment.forEach(eqEntry => {
       const equipment = factionEquipment.find(eq => eq.name === eqEntry.name);
       if (!equipment) {
@@ -12851,7 +13049,7 @@ function importRosterFromText(text, options = {}) {
 
   crewCards = [];
   (parsed.cards || []).forEach((cardInfo, index) => {
-    const catalogCard = findBuilderCardByName(cardInfo.name);
+    const catalogCard = findBuilderCardByName(cardInfo.name, { includeDisabled: true });
     if (!catalogCard) {
       importWarnings.push(`${cardInfo.name}`);
       return;

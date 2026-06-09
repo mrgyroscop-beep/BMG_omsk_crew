@@ -1,0 +1,114 @@
+{
+  "generatedAt": "2026-06-09T06:53:22.995Z",
+  "officialMeta": {
+    "source": "https://app.knightmodels.com/gamedata/",
+    "generatedAt": "2026-06-09T04:00:00.796Z",
+    "complete": true,
+    "sourceBytes": 2437749,
+    "sourceDownloadedAt": "2026-06-09T03:43:36.553Z",
+    "incompleteSections": []
+  },
+  "counts": {
+    "localBuilderCards": 390,
+    "activeBuilderCards": 390,
+    "builderCardsDisabledLocalOnly": 0,
+    "localMandatoryCards": 36,
+    "activeMandatoryCards": 19,
+    "mandatoryCardsDisabledLocalOnly": 17,
+    "officialBuilderCards": 390,
+    "officialMandatoryCards": 19,
+    "officialCards": 409,
+    "localModels": 679,
+    "officialAffiliations": 21,
+    "localAffiliations": 21
+  },
+  "cards": {
+    "builder": {
+      "missingLocal": [],
+      "missingOfficial": [],
+      "differences": [],
+      "ambiguous": [],
+      "disabledLocalOnly": []
+    },
+    "mandatory": {
+      "missingLocal": [],
+      "missingOfficial": [],
+      "differences": [],
+      "ambiguous": [],
+      "disabledLocalOnly": [
+        {
+          "id": "speedforce-switch-timelines",
+          "name": "SWITCH TIMELINES"
+        },
+        {
+          "id": "speedforce-what-happened",
+          "name": "WH... WHAT HAPPENED?"
+        },
+        {
+          "id": "speedforce-disorientated",
+          "name": "DISORIENTATED"
+        },
+        {
+          "id": "speedforce-exhausted-1",
+          "name": "EXHAUSTED"
+        },
+        {
+          "id": "speedforce-exhausted-2",
+          "name": "EXHAUSTED"
+        },
+        {
+          "id": "speedforce-fatigue-1",
+          "name": "FATIGUE"
+        },
+        {
+          "id": "speedforce-fatigue-2",
+          "name": "FATIGUE"
+        },
+        {
+          "id": "speedforce-surprised",
+          "name": "SURPRISED"
+        },
+        {
+          "id": "speedforce-too-fast",
+          "name": "TOO FAST..."
+        },
+        {
+          "id": "speedforce-yesterday-again",
+          "name": "HUH... YESTERDAY AGAIN?"
+        },
+        {
+          "id": "harley-quinn-friends-special-rules",
+          "name": "HARLEY QUINN & FRIENDS SPECIAL RULES"
+        },
+        {
+          "id": "scarecrow-fear-audacity-stun",
+          "name": "FEAR: AUDACITY STUN"
+        },
+        {
+          "id": "scarecrow-fear-move-enemy",
+          "name": "FEAR: MOVE ENEMY"
+        },
+        {
+          "id": "scarecrow-fear-attack-bonus",
+          "name": "FEAR: ATTACK BONUS"
+        },
+        {
+          "id": "scarecrow-fear-terror-status",
+          "name": "FEAR: TERROR STATUS"
+        },
+        {
+          "id": "scarecrow-fear-move-suspect",
+          "name": "FEAR: MOVE SUSPECT"
+        },
+        {
+          "id": "scarecrow-fear-scared-status",
+          "name": "FEAR: SCARED STATUS"
+        }
+      ]
+    }
+  },
+  "affiliations": {
+    "missingLocal": [],
+    "missingOfficial": []
+  }
+}

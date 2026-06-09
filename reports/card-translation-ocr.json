@@ -1,0 +1,998 @@
+﻿[
+    {
+        "id":  119,
+        "name":  "Easy Riddle",
+        "path":  "BMG_omsk_crew/img/cards/official/119-easy-riddle.jpg",
+        "text":  "A friendly model Reveals an enemy Suspect before an enemy model Reveals a friendly Suspect. Burn 1• Trap • After this action is resolved, look at the opponents hand and you may discard 1 card from it. What comes once in a minute, twice in a moment, but never in a thousand years? RIOOD7 - •02 KNIGHT VO DELS"
+    },
+    {
+        "id":  121,
+        "name":  "Riddle Me Softly",
+        "path":  "BMG_omsk_crew/img/cards/official/121-riddle-me-softly.jpg",
+        "text":  "At least 3 friendly Suspects have a Numeric counter with an odd value. 51 During a friendly model\u0027 activation, it may Set a Riddle marker within 4\". How many seconds are there in one year? RIOOD2 - •02 KNIGHT VO DELS"
+    },
+    {
+        "id":  122,
+        "name":  "Riddle Me That",
+        "path":  "BMG_omsk_crew/img/cards/official/122-riddle-me-that.jpg",
+        "text":  "The Revealed Suspect had a Numeric counter with a value of 1, 2, or 3. 51 Play at the start of an activation. Move a friendly marker 4\". I have no feet, no hands, no wings, but I climb to the sky. What am l? RIOOD3 KNIGHT VO DELS"
+    },
+    {
+        "id":  123,
+        "name":  "Riddle Me This",
+        "path":  "BMG_omsk_crew/img/cards/official/123-riddle-me-this.jpg",
+        "text":  "The Revealed Suspect had a Numeric counter with a value of 4, 5, or 6. 51 Play at the start of an activation. Move an enemy marker 4\". I am full of holes but I can still hold water. What am l? KNIGHT VO DELS"
+    },
+    {
+        "id":  124,
+        "name":  "Riddle of Nowhere",
+        "path":  "BMG_omsk_crew/img/cards/official/124-riddle-of-nowhere.jpg",
+        "text":  "At the end of the next enemy model\u0027 activation you have at least 1 of every different Numeric counter on friendly Suspects. Can only be played during a friendly model\u0027s activation. 51 Play immediately after an enemy model Reveals a friendly Suspect. Change the value of a Numeric counter on a friendly Suspect. What belongs to you, but other people use it more than you? KNIGHT VO DELS"
+    },
+    {
+        "id":  125,
+        "name":  "Riddles on the Storm",
+        "path":  "BMG_omsk_crew/img/cards/official/125-riddles-on-the-storm.jpg",
+        "text":  "Each time a friendly model Reveals a Suspect, placeo@ on this card. Each time an enemy model Reveals a Suspect, placea@ on this card. There are more@than@on this card. 51 Burn 1 • Reduce a number of Damage markers inflicted by an attack equal to the number of friendly Suspects within 8\" of the target model. KNIGHT VO DELS"
+    },
+    {
+        "id":  126,
+        "name":  "The Riddle of the Night",
+        "path":  "BMG_omsk_crew/img/cards/official/126-the-riddle-of-the-night.jpg",
+        "text":  "0 11/0 At least 3 friendly Suspects have a Numeric counter with an even value. 51 During a friendly model\u0027 activation, it may Set a Riddle marker within 4\". What has head, a tail, is brown, and has no legs? RIOODI KNIGHT VO DELS"
+    },
+    {
+        "id":  127,
+        "name":  "You Activate the Riddle",
+        "path":  "BMG_omsk_crew/img/cards/official/127-you-activate-the-riddle.jpg",
+        "text":  "Remove 2 friendly Suspects within 6\" of an enemy model. Can only be played when a model completes an action. 51 An enemy model within 4\" of a friendly Suspect and a friendly Riddle marker suffers the Enervating (3) Status. Then remove both markers. What has many keys, but can\u0027t even open a single door? RIOOD8 - KNIGHT VO DELS"
+    },
+    {
+        "id":  138,
+        "name":  "Come On Short Round!",
+        "path":  "BMG_omsk_crew/img/cards/official/138-come-on-short-round.jpg",
+        "text":  "One of your models is within 4\" of an enemy Suspect but not within 8\" of an enemy model. \u00272 Move one of your models up to 6\". \u0026 WBEL KNIGHT VO DELS"
+    },
+    {
+        "id":  139,
+        "name":  "Eureka",
+        "path":  "BMG_omsk_crew/img/cards/official/139-eureka.jpg",
+        "text":  "Reveal an enemy Suspect within 6\" of two of your Suspects. 50 You gain a Resource point. \u0026 WBEL KNIGHT VO DELS"
+    },
+    {
+        "id":  140,
+        "name":  "Kites Ho!",
+        "path":  "BMG_omsk_crew/img/cards/official/140-kites-ho.jpg",
+        "text":  "Play this card when an enemy model places a Suspect marker. Roll 103+2. The result is the value of a Numeric Counter you must place on a friendly model\u0027s character card. At the end of each model activation after the current one, reduce the value of the number counter by -1. When the Numeric Counter reaches 0, if this model is not KO or removed as a Casualty, score this Objective. 51 Perform a free ranged attack from one of your friendly Suspects. The attack has ROF 2, Firearm, Short Range, and deals \u0026 WBEL KNIGHT VO DELS"
+    },
+    {
+        "id":  141,
+        "name":  "Logic",
+        "path":  "BMG_omsk_crew/img/cards/official/141-logic.jpg",
+        "text":  "010 You have more models in play than enemy Suspects. 51 Remove up to 3 friendly or enemy Suspects (in any combination) within 6\" of one of your models. For each marker you remove, your opponent does the same. For each marker you removed in this way, choose an enemy model to gain Enervating 2. For each marker your opponent removed in this way, they may choose one of your models to gain Enervating 2. No model may be chosen to gain Enervating 2 more than once per time you play this card. \u0026 WBEL KNIGHT VO DELS"
+    },
+    {
+        "id":  142,
+        "name":  "Quantum Vortex",
+        "path":  "BMG_omsk_crew/img/cards/official/142-quantum-vortex.jpg",
+        "text":  "Center the Explosive template on a friendly Suspect, remove the Suspect, and roll 103. The result is the number of inches all Suspects within 8\" must be pushed directly towards the center of the template. Any Suspect that finishes in contact with the template is removed. If you remove one or more Suspects with this card, score this card. 51 Choose an enemy model. That enemy model gains €4. \u0026 WBEL KNIGHT VO DELS"
+    },
+    {
+        "id":  143,
+        "name":  "Robot Fight!",
+        "path":  "BMG_omsk_crew/img/cards/official/143-robot-fight.jpg",
+        "text":  "When a friendly model places a Suspect marker you may change it to a Killer Robot marker. It is still a Suspect marker. Roll ID6 and place a Numeric Counter on the Killer Robot with a value equal to the roll. At the end of every model\u0027 activation after the current one, reduce the value of the Numeric Counter by -1, then roll ID6 and move all Killer Robot markers that distance directly towards the activated model. When the Numeric Counter reaches 0, or this marker is Revealed, center the Explosive template on the marker. If any Suspect markers are under the template, score this card. 52 Place a friendly Suspect marker within 4\" of one of your models. \u0026 WBEL KNIGHT VO DELS"
+    },
+    {
+        "id":  144,
+        "name":  "Sweet Kitty",
+        "path":  "BMG_omsk_crew/img/cards/official/144-sweet-kitty.jpg",
+        "text":  "010. Place an event marker up to 4\" from the enemy Boss. You have a Suspect in contact with that event marker. Remove all * markers from one of your models. \u0026 WBEL KNIGHT VO DELS"
+    },
+    {
+        "id":  145,
+        "name":  "Time Travel Machine",
+        "path":  "BMG_omsk_crew/img/cards/official/145-time-travel-machine.jpg",
+        "text":  "Reveal a Suspect marker that is more than 10\" away from any other Suspects. 52 • Place an Event marker in one of your models\u0027 current position, then place that model in contact with a friendly Suspect anywhere on the board. When the model\u0027 activation ends, place it on top of the Event marker, then remove the Event marker. \u0026 WBEL KNIGHT VO DELS"
+    },
+    {
+        "id":  146,
+        "name":  "Zarnecki Incursion",
+        "path":  "BMG_omsk_crew/img/cards/official/146-zarnecki-incursion.jpg",
+        "text":  "Inflict a Casualty or a K.O. with a model with the Scientific trait. 51 Choose an enemy model. That enemy model gains €4. \u0026 WBEL KNIGHT VO DELS"
+    },
+    {
+        "id":  147,
+        "name":  "Smart And Beautiful",
+        "path":  "BMG_omsk_crew/img/cards/official/147-smart-and-beautiful.jpg",
+        "text":  "A friendly model with name Zach Johnson is removed as a Casualty or suffers K.O. 52 If a model with name Penny is within 4\" of a model with name Leonard Hofstadter then it gains a free New Laser special action that is resolve immediately. \u0026 WBEL BETCto KNIGHT VO DELS"
+    },
+    {
+        "id":  148,
+        "name":  "Experimental Medication",
+        "path":  "BMG_omsk_crew/img/cards/official/148-experimental-medication.jpg",
+        "text":  "There are 6 or more Suspects in one of your model\u0027s LOS. 51 A friendly active model gains a Venom Dose that must use inmediately. \u0026 WBEL KNIGHT VO DELS"
+    },
+    {
+        "id":  149,
+        "name":  "I Was In Space",
+        "path":  "BMG_omsk_crew/img/cards/official/149-i-was-in-space.jpg",
+        "text":  "(8 W You have two models without the Scientific trait within opponent Deployment Zone. 52 If a model with Name: Howard Wolowitz is within 4\" of a friendly Suspect you can play immediately a card as a resource without spending resource points. \u0026 WBEL BETC13 KNIGHT VO DELS"
+    },
+    {
+        "id":  150,
+        "name":  "You\u0027re In My Spot",
+        "path":  "BMG_omsk_crew/img/cards/official/150-you-re-in-my-spot.jpg",
+        "text":  "Place an event marker up to 2\" from board edge and inside opponent Deployment Zone. One of your models with Sidekick rank is in contact with that marker. 51 You can move immediately any models up to 4\" away from a friendly model with Name: Sheldon Cooper. \u0026 WBEL KNIGHT VO DELS"
+    },
+    {
+        "id":  173,
+        "name":  "An Owl\u0027s Tale",
+        "path":  "BMG_omsk_crew/img/cards/official/173-an-owl-s-tale.jpg",
+        "text":  "6 A friendly Owl marker ends a Move within 4\" of an enemy model that is within 4\" of a friendly Suspect and another Owl marker. 50 Talon\u0027s Prey KNIGHT VO DELS"
+    },
+    {
+        "id":  174,
+        "name":  "Gotham Is Ours",
+        "path":  "BMG_omsk_crew/img/cards/official/174-gotham-is-ours.jpg",
+        "text":  "one Target 2 Scenery elements, then the opponent target another 1 (must be outside any OZ). Set a friendly Suspect within 4\" of them. Have at least 1 friendly Suspect within 4\" of all of these Scenery elements. 51 Move a marker 4\". If that marker is within 8\" of a Prey, instead Move it 8\". OWLOOE vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  175,
+        "name":  "Owl\u0027s Night",
+        "path":  "BMG_omsk_crew/img/cards/official/175-owl-s-night.jpg",
+        "text":  "When a friendly model Sets a Suspect within 4\" of a target friendly Owl marker, place a Timer ID6 on this card. Score when the counter is reduced to 0 if that Suspect is within 4\" of the Target. 50 A friendly model gains 1 free Effort or 3 free Efforts if targeting or targeted by a Prey. OWL007 vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  176,
+        "name":  "Talon\u0027s Claw",
+        "path":  "BMG_omsk_crew/img/cards/official/176-talon-s-claw.jpg",
+        "text":  "An enemy Prey is removed as a Casualty. 50 Burn 1 • Talon\u0027s Prey OWL002 vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  177,
+        "name":  "Terrible Accident",
+        "path":  "BMG_omsk_crew/img/cards/official/177-terrible-accident.jpg",
+        "text":  "Limited • When an enemy Prey model is removed as a Casualty, odd 1@ on this card. If it is was removed by a friendly model with the Reanimated Owl trait place 3 instead. You have more @ markers on this card than enemy Suspects in play. Burn 1 • Talon\u0027s Prey OWL003 vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  178,
+        "name":  "The Court\u0027s Secure Bases",
+        "path":  "BMG_omsk_crew/img/cards/official/178-the-court-s-secure-bases.jpg",
+        "text":  "Target a friendly Owl marker (cannot be the target of another copy of this card). At the end of each enemy models activation, odd1@marker on this card if there are no enemy models within 4\". Score when this card has 3 @ markers. 50 Place a friendly model in contact with a Sewer that is within 4\" of a Prey. OWL00t vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  179,
+        "name":  "The Owl\u0027s Labyrinth",
+        "path":  "BMG_omsk_crew/img/cards/official/179-the-owl-s-labyrinth.jpg",
+        "text":  "e A friendly model Sets a Suspect within 4\" of a target enemy model. The opponent chooses if you score this card, or if you Move the target 4\" and it suffers Enervating (2). 51 Move a Prey 4\". If that model is within 4\" of a friendly Owl marker, you may instead place it in contact with a Sewer. The opponent may cancel this resource by discording o Scored Objective card. OWL008 vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  180,
+        "name":  "The Shadow Claw",
+        "path":  "BMG_omsk_crew/img/cards/official/180-the-shadow-claw.jpg",
+        "text":  "A friendly model Sets a Suspect within 4\" of an enemy model that has at least 1 marker. 51 A friendly model that Moves and ends closer to a Prey may Move 4\". If that model ends in contact with a Prey, Move a friendly Owl marker 4\". OWLoos vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  188,
+        "name":  "Sacrifice",
+        "path":  "BMG_omsk_crew/img/cards/official/188-sacrifice.jpg",
+        "text":  "A friendly model within 4\" of a friendly Suspect inflicts at least 10. When an enemy model performs a Reveal action on a friendly Suspect within 6\" and LOS of a friendly model, that model may suffer 2 to cancel that action. e 2: Does not suffer the 2 0. CLTOO\u0027 - vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  189,
+        "name":  "Ritual",
+        "path":  "BMG_omsk_crew/img/cards/official/189-ritual.jpg",
+        "text":  "Have a friendly Suspect within 6\" of 3 other friendly Suspects. When scored, remove 2 of these Suspects. Burn O • The next time the active model Sets a Suspect, Set it within 4\" instead of in contact and it may spend its Special action to Set an additional Suspect within 4\" instead of in contact. 2: May be placed within 8\" instead. CLT002 - vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  190,
+        "name":  "New Followers",
+        "path":  "BMG_omsk_crew/img/cards/official/190-new-followers.jpg",
+        "text":  "An enemy model suffers KO within 4\" of a friendly Suspect. When scored, remove that Suspect. The active friendly model spends a Special action while in contact with a model suffering KO to remove it as a Casualty. 2: Move the active model 4\". CLT003 - vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  191,
+        "name":  "Can be Anyone",
+        "path":  "BMG_omsk_crew/img/cards/official/191-can-be-anyone.jpg",
+        "text":  "A friendly model Sets a Suspect within 6\" of an enemy model and no enemy model can draw LOS to the friendly model. Play at the start of an Attack action, if the target could not see the attacker at the start of this activation, the target cannot make Efforts. 2: The Attacker gains 19. CLT004 - vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  192,
+        "name":  "Full Devotion",
+        "path":  "BMG_omsk_crew/img/cards/official/192-full-devotion.jpg",
+        "text":  "A friendly e within 4\" of a friendly Suspect suffers KO or is removed as a Casualty as a result of taking Damage on behalf of the friendly Boss. When a target friendly model is removed as a Casualty, before removing it, interrupt the activation to immediately perform a free Attack Action with the target. 2: Set a friendly Suspect in contact before removing the model. CLToos - vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  193,
+        "name":  "Awakening",
+        "path":  "BMG_omsk_crew/img/cards/official/193-awakening.jpg",
+        "text":  "An enemy model suffering the Poison Status is removed as a Casualty within 8\" of a friendly model. Play at the start of an Attack action, this Attack also inflicts the Poison Status. 2: After the Attack action, all targets make a Poison test. CLTOOE - vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  194,
+        "name":  "Sabotage",
+        "path":  "BMG_omsk_crew/img/cards/official/194-sabotage.jpg",
+        "text":  "A friendly model Reveals an enemy Suspect while no other enemy Suspect is within 4\" of that model. During a friendly model\u0027s activation, remove the Poison Status from an enemy model within 4\" and gain2@ or 2 0. 2: Another model within 8\" of the active model suffers the Poison Status. CLT007 - vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  195,
+        "name":  "The Great Plan",
+        "path":  "BMG_omsk_crew/img/cards/official/195-the-great-plan.jpg",
+        "text":  "Suspects than enemy Suspects within 8\" of the corners of the Gaming Area. Burn 0 • Target an enemy model within 4\" of an active friendly model with the Void Priest trait. Place a friendly Cobra Swarm model that was removed as a Casualty in contact with it. Target suffers the Poison Status. e 2: Immediately perform an Attack action with the Cobra Swarm. CLTOOE - vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  198,
+        "name":  "Pinched Mobster",
+        "path":  "BMG_omsk_crew/img/cards/official/198-pinched-mobster.jpg",
+        "text":  "Black Money • Play when a friendly model receives Damage from an enemy action. Set a Pinched Mobster Event marker in contact with it. A model may Manipulate a Pinched Mobster to Move it 4\". Score when that marker is Moved into your DZ. 51 Burn 1 • A friendly model with the Criminal trait immediately recovers from KO. OCROCI -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  199,
+        "name":  "Spring Cleaning",
+        "path":  "BMG_omsk_crew/img/cards/official/199-spring-cleaning.jpg",
+        "text":  "Black Money • Limited • Play when a model is removed as a Casualty. Before removing that model, Set a Spring Cleaning Event marker in contact. A friendly model may Manipulate it to remove it. Score when the Spring Cleaning is removed. 51 Move a friendly Suspect 4\", or a friendly marker that is within 4\" of a friendly Suspect. OCROC2 -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  200,
+        "name":  "Recovering the Juice",
+        "path":  "BMG_omsk_crew/img/cards/official/200-recovering-the-juice.jpg",
+        "text":  "ono Black Money • Target a friendly model (may not be the Boss). That model Reveals an enemy Suspect during its activation and is still in play. You may play this card os a Phase if a friendly model Sets o Suspect, targeting another friendly model that is yet to take its activation. 51 The active model may spend its Manipulate action to Set a Suspect in contact with another friendly model. OCROC3 -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  201,
+        "name":  "Paying Tribute",
+        "path":  "BMG_omsk_crew/img/cards/official/201-paying-tribute.jpg",
+        "text":  "Black Money • Play when a friendly model Reveals on enemy Suspect. Score when a friendly model Sets a Suspect within 4\" of a friendly Boss. 50 The active friendly model affected by the Inspire trait removes up to X Damage or gains X O. Where X is equal to the number of friendly Suspects within 4\". ocaou -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  202,
+        "name":  "Message Job",
+        "path":  "BMG_omsk_crew/img/cards/official/202-message-job.jpg",
+        "text":  "AAR Black Money • An enemy model is removed as a Casualty. 51 Target enemy model suffers -1 Defense this attack action. ocaocs -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  203,
+        "name":  "Killing the Rat",
+        "path":  "BMG_omsk_crew/img/cards/official/203-killing-the-rat.jpg",
+        "text":  "Black Money • Play when an enemy model Sets a Suspect. Until the end of Recount, that Suspect is also a Rat marker. The Rat marker may be targeted by an Attack. If it is, remove it. The Rat marker is no longer in play. 51 Burn 0 • When a friendly model suffers Damage, another friendly model within 4\" suffers that Damage instead. -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  204,
+        "name":  "The Program",
+        "path":  "BMG_omsk_crew/img/cards/official/204-the-program.jpg",
+        "text":  "Black Money • Play when a target enemy model Reveals a Suspect. Place a Timer ID3+2 on this card. Score if a friendly model Sets a Suspect within 4\" of the target before the counter is reduced to 0. 51 During a friendly model\u0027 activation, a friendly model within 4\" of a friendly Suspect Moves 4\". OCR007 -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  205,
+        "name":  "Shakedown",
+        "path":  "BMG_omsk_crew/img/cards/official/205-shakedown.jpg",
+        "text":  "Black Money • An enemy model within 6\" of a friendly Suspect suffers KO. 51 A friendly model within 4\" of a friendly Suspect adds 1 die to an Attack roll. ocaoæ -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  221,
+        "name":  "Important Research",
+        "path":  "BMG_omsk_crew/img/cards/official/221-important-research.jpg",
+        "text":  "At the end of the next enemy activation, the opponent has at least 1 Ice Age card in play. When scored, remove 1 Ice Age cord in ploy from the game. Can only be played during o friendly activation. 51 At the start of a friendly activation, remove up to 2 Damage from your Boss for each Frozen Suspect within 4\" of that Boss. KNIGHT VO DELS"
+    },
+    {
+        "id":  222,
+        "name":  "A Freeze is Coming",
+        "path":  "BMG_omsk_crew/img/cards/official/222-a-freeze-is-coming.jpg",
+        "text":  "When a friendly model Sets a Suspect, place a Timer 103+1 on it. Score when the counter is reduced to 0. 51 Target 1 Frozen Suspect and 1 model within 4\" of that Suspect: • Models without Cold Acclimation: 19. • Models with Cold Acclimations:2@. KNIGHT VO DELS"
+    },
+    {
+        "id":  223,
+        "name":  "Stay Cool",
+        "path":  "BMG_omsk_crew/img/cards/official/223-stay-cool.jpg",
+        "text":  "A friendly model Sets a Suspect within 4\" of an enemy Frozen Suspect. 50 Burn 1 • When playing an Ice Age card, you may look at the opponents hand and choose which card is played face up. KNIGHT VO DELS"
+    },
+    {
+        "id":  224,
+        "name":  "Chill Out",
+        "path":  "BMG_omsk_crew/img/cards/official/224-chill-out.jpg",
+        "text":  "A friendly model Reveals an enemy Frozen Suspect. 51 Target 1 Frozen Suspect and 1 model within 4\" of that Suspect: • Models without Cold Acclimation: €4. • Models with Cold Acclimation: €4. KNIGHT VO DELS"
+    },
+    {
+        "id":  225,
+        "name":  "Frozen Assets",
+        "path":  "BMG_omsk_crew/img/cards/official/225-frozen-assets.jpg",
+        "text":  "QI Set an Assets Event marker with the Loot rules in contact with a friendly Suspect. A friendly model is in control of the Assets. 51 Burn 0 • Cancel an Objective card used as a Resource. That card is discarded. KNIGHT VO DELS"
+    },
+    {
+        "id":  226,
+        "name":  "Endless Winter",
+        "path":  "BMG_omsk_crew/img/cards/official/226-endless-winter.jpg",
+        "text":  "Limited • If an enemy Suspect becomes Frozen during a friendly model\u0027s action, place 1@ marker on this card. Score when this card has at least 3 @. Can only be played at the start of an activation. 51 Target 1 Frozen Suspect and 1 model within 4\" of that Suspect: • Models without Cold Acclimation: 10. • Models with Cold Acclimation: 20. KNIGHT VO DELS"
+    },
+    {
+        "id":  227,
+        "name":  "Kingdom of Ice",
+        "path":  "BMG_omsk_crew/img/cards/official/227-kingdom-of-ice.jpg",
+        "text":  "Limited • If a model suffers the Freeze Status or Damage from a weapon with the Cold trait, place 1@on this card. Score when this card has at least 5 @. Can only be played at the start of on activation. Burn 1 • At the start of a friendly model\u0027 activation, target a friendly model that is within 4\" of a friendly Frozen Suspect. Place that model anywhere within 4\" of that Frozen Suspect. KNIGHT VO DELS"
+    },
+    {
+        "id":  228,
+        "name":  "Send them to the Cooler",
+        "path":  "BMG_omsk_crew/img/cards/official/228-send-them-to-the-cooler.jpg",
+        "text":  "There are at least 6 models within 4\" of Frozen Suspects. 51 Burn 1• When a friendly model is the target of an enemy Attack action, it gains +1 Defense during that action. KNIGHT VO DELS"
+    },
+    {
+        "id":  243,
+        "name":  "Let\u0027s Dance (Doom Patrol)",
+        "path":  "BMG_omsk_crew/img/cards/official/243-let-s-dance-doom-patrol.jpg",
+        "text":  "A friendly S, a or suffers Damage from an enemy action during this Round. 51 Choose 1 friendly model with 1 or more Damage. Exchange the * Damage for O Damage or vice versa. You cannot do this if the model would become KO or be removed as a Casualty as a result. Take your time... Its good to savor the moment. BTGL16 - KNIGHT VO DELS"
+    },
+    {
+        "id":  244,
+        "name":  "Psychopaths (Doom Patrol)",
+        "path":  "BMG_omsk_crew/img/cards/official/244-psychopaths-doom-patrol.jpg",
+        "text":  "3 11 0 Each time a model is removed from the game as Casualty or becomes KO, placea@ on this card. Each time an enemy model Sets a Suspect, placea@ on this card. There are more@than @ on this card. 51 Burn 1 • When a model suffers Damage, you can use this Resource and a friendly model gains2@. KNIGHT VO DELS"
+    },
+    {
+        "id":  245,
+        "name":  "Not Buying? Don\u0027t Touch (Doom Patrol)",
+        "path":  "BMG_omsk_crew/img/cards/official/245-not-buying-don-t-touch-doom-patrol.jpg",
+        "text":  ".éßi\u0026 Target an enemy model when it either removes a friendly Suspect or removes a model as o Casualty. A friendly Suspect is within 4\" of the target. 51 Spend X Business. Target model gains X+l free Efforts while Attacking or Defending this activation, where X is the amount of Business spent. -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  246,
+        "name":  "Riddles On The Storm (Doom Patrol)",
+        "path":  "BMG_omsk_crew/img/cards/official/246-riddles-on-the-storm-doom-patrol.jpg",
+        "text":  "Each time a friendly model Reveals a Suspect, placeo@ on this card. Each time an enemy model Reveals a Suspect, placea@ on this card. There are more@than@on this card. 51 Burn 1 • Reduce a number of Damage markers inflicted by an attack equal to the number of friendly Suspects within 8\" of the target model. KNIGHT VO DELS"
+    },
+    {
+        "id":  247,
+        "name":  "We Cannot Be Defeated (Doom Patrol)",
+        "path":  "BMG_omsk_crew/img/cards/official/247-we-cannot-be-defeated-doom-patrol.jpg",
+        "text":  "omo. Play when a friendly model Sets a Suspect. That Suspect is within 6\" of another 2 friendly Suspects. The opponent may Move those 3 Suspects 4\". The active model can Set or Reveal a Suspect within X\". Where X is equal to the Level of Shadow\u0027s Plan x2. Time to bring out the big guns.„ KNIGHT VO DELS"
+    },
+    {
+        "id":  248,
+        "name":  "I Work Best Alone (Doom Patrol)",
+        "path":  "BMG_omsk_crew/img/cards/official/248-i-work-best-alone-doom-patrol.jpg",
+        "text":  "Limited • Target a friendly model. When that model Reveals an enemy Suspect, place2@markers on this card. Score when this card has more @ markers than enemy Suspects in play. 51 Burn 0 • The active friendly model within 8\" and LOS of a friendly Suspect gains a free Manipulate action. The world doesn\u0027t make sense until you force it to. (823) BGLOO\u0027 -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  249,
+        "name":  "Domination (Doom Patrol)",
+        "path":  "BMG_omsk_crew/img/cards/official/249-domination-doom-patrol.jpg",
+        "text":  "Set a Domination Event marker in contact with an enemy model. Any model may Manipulate it to Move it 4\". At the end of the round you have more friendly models than enemy models within 4\" of the Domination. 51 At the start of a model\u0027 activation, Move a Suspect or friendly Drone marker 4\". KNIGHT VO DELS"
+    },
+    {
+        "id":  250,
+        "name":  "Let Them Do Their Thing (Doom Patrol)",
+        "path":  "BMG_omsk_crew/img/cards/official/250-let-them-do-their-thing-doom-patrol.jpg",
+        "text":  "When a friendly model Sets a Suspect, center an Explosive template on the Suspect. Choose a direction and roll 206. Place the template that many inches in the chosen direction. Models affected by the template suffer * Score if this inflicts Damage on a model. Target a model with the Poison Status. Other models within 4\" suffer the Poison Status. The arsenal he had prepared was small but lethal. BTGC1g-v02 KNIGHT VO DELS"
+    },
+    {
+        "id":  251,
+        "name":  "Sisters In Arms (Doom Patrol)",
+        "path":  "BMG_omsk_crew/img/cards/official/251-sisters-in-arms-doom-patrol.jpg",
+        "text":  "Assign Numerical counters 1, 2, 3, and 4 to different friendly models (or up to the friendly models currently in play). These counters cannot be modified. Score if those models activated in order 50 Burn 0 • Exception (In Play) • A model activating in order gains 1@or O. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  267,
+        "name":  "Target Adquired",
+        "path":  "BMG_omsk_crew/img/cards/official/267-target-adquired.jpg",
+        "text":  "Task • A friendly model Sets a Suspect within 5\" of another Suspect. 52 Cancel an Objective card used as a Resource. That card is discarded. (823) .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  268,
+        "name":  "Revealing the Plan",
+        "path":  "BMG_omsk_crew/img/cards/official/268-revealing-the-plan.jpg",
+        "text":  "Task • A friendly model Reveals an enemy Suspect that is within 5\" of another Suspect. 51 Play when the active friendly model gains a Task counter, another model within 8\" gains a Task counter (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  269,
+        "name":  "Subterfuge Mission",
+        "path":  "BMG_omsk_crew/img/cards/official/269-subterfuge-mission.jpg",
+        "text":  "Task • Play when a friendly model gains a Task counter. A friendly model with a Task counter is in an enemy DZ. 51 Burn 0 • Play when a friendly model with a Task counter is targeted by a Melee attack. That model adds 2 dice to the Defense roll. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  270,
+        "name":  "Taking the Lead",
+        "path":  "BMG_omsk_crew/img/cards/official/270-taking-the-lead.jpg",
+        "text":  "Task • An enemy model was the first model removed as a Casualty. 50 Move the active friendly model 2\". If it has a Task counter, Move it 4\" instead. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  271,
+        "name":  "Extermination Mission",
+        "path":  "BMG_omsk_crew/img/cards/official/271-extermination-mission.jpg",
+        "text":  "Task • Limited • Each time a friendly model inflicts Damage on an enemy model, place 1@ on this card. Score when this card has4@. 51 Burn 0 • A friendly model with a Task counter decalring an Attack loses an Attack die and gains a Strength die. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  272,
+        "name":  "Risking All",
+        "path":  "BMG_omsk_crew/img/cards/official/272-risking-all.jpg",
+        "text":  "Task • Limited • Target an enemy model when it declares an action. A friendly model Sets a Suspect within 4\" of the target. When scored, odd o Cranial Bomb Activated cord to your Objective deck and shuffle it. 51 Play when the active friendly model declares an Attack. If a target of that Attack suffers KO or is removed as a Casualty, the active model gains a Task counter. If not, the active model suffers 2 0. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  273,
+        "name":  "Interrogation Mission",
+        "path":  "BMG_omsk_crew/img/cards/official/273-interrogation-mission.jpg",
+        "text":  "Task•Playwhen an enemy model suffers KO or is removed as a Casualty. Set an Interrogation Event marker in contact that model (before removing it). A friendly model is in contact with the Interrogation marker. 51 A friendly model within 4\" of an enemy model and 4\" of a friendly Suspect gains a free Manipulate action. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  274,
+        "name":  "A.R.G.U.S. Intelligence",
+        "path":  "BMG_omsk_crew/img/cards/official/274-a-r-g-u-s-intelligence.jpg",
+        "text":  "Task • Play when a friendly model Sets o Suspect within 4\" of a Scenery element that is within 4\" of an enemy model, place a Timer ID6 on that Suspect. Score when the counter is reduced to 0. 51 Discard an Objective card. That card may be a Cranial Bomb Activated card. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  275,
+        "name":  "Behind the Enemy Line",
+        "path":  "BMG_omsk_crew/img/cards/official/275-behind-the-enemy-line.jpg",
+        "text":  "Task • Limited • Each time a friendly model Sets a Suspect in the enemy OZ, placea@ on this card. Score when this card has3@. 51 Burn 1 • Play when a friendly model Reveals an enemy Suspect. Look at the opponents Objective hand and Discard 1 card from it. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  276,
+        "name":  "Who Watches the Watchmen?",
+        "path":  "BMG_omsk_crew/img/cards/official/276-who-watches-the-watchmen.jpg",
+        "text":  "Target the active friendly model and place a Timer 2D6-X(to a minimum of 1) on this card, where X is equal to the number of of friendly scored O cards. Score if the counter is reduced to 0 and the target is still in Play. 51 The opponent chooses to either spend a Resource point or cancel a trait targeting a friendly model. (823) WATOOI .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  277,
+        "name":  "Unneccessary Brutality",
+        "path":  "BMG_omsk_crew/img/cards/official/277-unneccessary-brutality.jpg",
+        "text":  "An enemy model within 4\" of a Suspect suffers KO. 51 Burn 1 • When Defending within 4\" of a Suspect, gain 2 Free Efforts. (823) WAT002 .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  278,
+        "name":  "The Big Plan",
+        "path":  "BMG_omsk_crew/img/cards/official/278-the-big-plan.jpg",
+        "text":  "A friendly model Sets a Suspect within 4\" of an enemy model. 50 Target an enemy model within 6\" of a friendly model and 6\" away from a friendly Suspect to it. The opponent chooses; That model Sets a Suspect in contact. OR That model loses its Audacity marker. (823) WAT003 .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  279,
+        "name":  "Retribution",
+        "path":  "BMG_omsk_crew/img/cards/official/279-retribution.jpg",
+        "text":  "A friendly model Reveals an enemy Suspect. 51 When declaring an Attack action gain 2 Free Efforts. (823) WAT004 .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  280,
+        "name":  "Rorschach\u0027s Journal",
+        "path":  "BMG_omsk_crew/img/cards/official/280-rorschach-s-journal.jpg",
+        "text":  "Limited • Ticking • Target the active friendly model. When that model Reveals an enemy Suspect, place 2@ on this card. Score when this card has more@than enemy Suspects in play. 51 The active friendly model gains a Free Manipulate action. (823) WATOOS .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  281,
+        "name":  "Sealed Area",
+        "path":  "BMG_omsk_crew/img/cards/official/281-sealed-area.jpg",
+        "text":  "O • Limited • Ticking • When a friendly model Sets a Suspect within 4\" of on edge of the Gaming Area, placea@ on this card. Score when this card has 3 @. 51 Burn 0 • Move a friendly model 4\". Play only when an enemy model Reveals a Suspect. (823) WATOOE .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  282,
+        "name":  "Day\u0027s Work",
+        "path":  "BMG_omsk_crew/img/cards/official/282-day-s-work.jpg",
+        "text":  "oåi O • An enemy model is removed as a Casualty. 51 Burn I • The active model removes 3 Damage. (823) WAT007 - .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  283,
+        "name":  "A Comedian Died",
+        "path":  "BMG_omsk_crew/img/cards/official/283-a-comedian-died.jpg",
+        "text":  "O • A friendly model Sets a Suspect in the enemy DZ. 52 Burn 1 • Place another friendly model in contact with the active friendly model. (823) .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  304,
+        "name":  "The Evidence Mounts",
+        "path":  "BMG_omsk_crew/img/cards/official/304-the-evidence-mounts.jpg",
+        "text":  "omo Target 5 enemy Suspects. Set a Search Event marker in contact with each Suspect. There are no enemy Suspects within 4\" of a Search. 51 A friendly model (Alias: Batman) gains 2 Free Efforts this activation while Attacking or Defending. .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  308,
+        "name":  "Where the Trail Ended",
+        "path":  "BMG_omsk_crew/img/cards/official/308-where-the-trail-ended.jpg",
+        "text":  "A friendly model Sets a Suspect within 4\" of a Sewer marker. Target a friendly model that has been removed as a Casualty with Rank: a, and the (NAME) Cultist and Horde traits. Place that model in your DZ. It cannot activate this round. e 2: Place it in contact with a Sewer instead. DBFOCI -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  309,
+        "name":  "Tempted to Despair",
+        "path":  "BMG_omsk_crew/img/cards/official/309-tempted-to-despair.jpg",
+        "text":  "An enemy model is removed as a Casualty within 4\" of a Sewer marker. Move a Sewer or friendly marker 4\". e 3: After moving the marker, place a friendly e in contact with it. KNIGHT VO DELS"
+    },
+    {
+        "id":  310,
+        "name":  "I See...",
+        "path":  "BMG_omsk_crew/img/cards/official/310-i-see.jpg",
+        "text":  "A friendly model that used a Sewer this Round Reveals an enemy Suspect. The active model may perform and/ or continue a Movement action after using a Sewer. e 2: That model gains 4\" to that Move. KNIGHT VO DELS"
+    },
+    {
+        "id":  330,
+        "name":  "Ruthless Team",
+        "path":  "BMG_omsk_crew/img/cards/official/330-ruthless-team.jpg",
+        "text":  "M IVO Task • A friendly model has been removed as a Casualty by a Cranial Bomb Activated card this round. 51 A friendly model counts as having an Audacity. Add a Cranial Bomb Activated card to your Objective deck and shuffle. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  331,
+        "name":  "Reinforcement Beacon Planted",
+        "path":  "BMG_omsk_crew/img/cards/official/331-reinforcement-beacon-planted.jpg",
+        "text":  "Task • Limited • Play during a friendly model\u0027 activation. Set a Beacon Event marker within 4\" of an enemy model. If there are no enemy Suspects within 4\" of the Beacon at the end of an enemy mode(s activation, placea@ on this card. Score when this card has 3 @. 51 Burn 0 • Exception (In Play) • A friendly model may spend its Special Action to place itself in contact with a friendly Beacon marker. Can only be used during a friendly mode(s activation. (823) snoll -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  332,
+        "name":  "Misunderstood Orders",
+        "path":  "BMG_omsk_crew/img/cards/official/332-misunderstood-orders.jpg",
+        "text":  "Task • Assign numerical counters l, 2, 3, and 4 to friendly models without the Swarm trait. (These counters cannot be modified.). Score if those models are the last friendly models to activate and do so in descending order (4, 3, 2, 1). Burn 0 • Exception (Scored Pile) • At the start of the Round, a friendly model gains a Task counter. (823) .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  342,
+        "name":  "Nuclear Menace",
+        "path":  "BMG_omsk_crew/img/cards/official/342-nuclear-menace.jpg",
+        "text":  "0• Seta Nuclear Event marker on Ground Level outside of any DZ and more than 5\" away from the edge of the Gaming Area. The opponent places another. Both Nuclear Events have a friendly Suspect within 4\". 51 Burn 0 • Move 1 Enemy Suspect 2D6\". (823) WATOog .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  343,
+        "name":  "Soon it Will be Dark",
+        "path":  "BMG_omsk_crew/img/cards/official/343-soon-it-will-be-dark.jpg",
+        "text":  "O • Limited • Target up to 6 friendly Suspects without Numeric Counters and place a Numeric Counter on each. During Recount roll ID6. The result matches any of the counters on friendly Suspects in play. 51 Target a friendly Suspect within 4\" of the active friendly model. Move it 4\". (823) NATO IO .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  344,
+        "name":  "Locked in Here with Me!",
+        "path":  "BMG_omsk_crew/img/cards/official/344-locked-in-here-with-me.jpg",
+        "text":  "W O • Limited • During a friendly model\u0027s activation, Set a Locked In Event marker within 8\" of an enemy model. At the end of each enemy model\u0027s activation, add1@ on this card if there are no enemy models within 4\". Score when this card has4@. 51 Play when a Melee Attack is declared. No models can make Efforts. (823) -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  345,
+        "name":  "Deceiving a God",
+        "path":  "BMG_omsk_crew/img/cards/official/345-deceiving-a-god.jpg",
+        "text":  "O • Limited • Ticking • Set the Dr. Manhattan Special Event marker within 4\" of an enemy. When on enemy model suffers KO or is removed as o Casualty within 8\" of the Dr. Manhattan, placea@ on this cord. Score when this card has 3 @ and there is a Suspect within 4\" of the Dr. Manhattan. The Dr. Manhattan marker is on a 30mm base and cannot be interacted with by enemy models or opponent Resources. 51 Exception (In Play) • Choose one: Move 4\" the Dr. Manhattan OR perform a Ranged Attack ( *O / Beam) against an enemy model within 4\" of it. (823) WAT012- .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  346,
+        "name":  "Pretending Normality",
+        "path":  "BMG_omsk_crew/img/cards/official/346-pretending-normality.jpg",
+        "text":  "O • Limited • A friendly model Sets a Suspect within 4\" of a Lamppost that is within 8\" of an enemy Suspect. 51 Discard the top card of the O deck. (823) KNIGHT VO DELS NATO 13 .02"
+    },
+    {
+        "id":  349,
+        "name":  "Ace of Spades",
+        "path":  "BMG_omsk_crew/img/cards/official/349-ace-of-spades.jpg",
+        "text":  "A friendly model Sets a Suspect within 4\" of an enemy model. Burn 0 • Search the Objective deck for another copy of this card and shuffle. If the active friendly model is within 4\" of a friendly Suspect, you may search for any card instead. (823) .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  350,
+        "name":  "Ace of Clubs",
+        "path":  "BMG_omsk_crew/img/cards/official/350-ace-of-clubs.jpg",
+        "text":  "A friendly model Sets a Suspect within 4\" of an enemy model. Burn 0 • Search the Objective deck for another copy of this card and shuffle. If the active friendly model is within 4\" of a friendly Suspect, you may search for any card instead. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  351,
+        "name":  "Ace of Diamonds",
+        "path":  "BMG_omsk_crew/img/cards/official/351-ace-of-diamonds.jpg",
+        "text":  "A friendly model Sets a Suspect within 4\" of an enemy model. Burn 0 • Search the Objective deck for another copy of this card and shuffle. If the active friendly model is within 4\" of a friendly Suspect, you may search for any card instead. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  352,
+        "name":  "Ace of Hearts",
+        "path":  "BMG_omsk_crew/img/cards/official/352-ace-of-hearts.jpg",
+        "text":  "A friendly model Sets a Suspect within 4\" of an enemy model. Burn 0 • Search the Objective deck for another copy of this card and shuffle. If the active friendly model is within 4\" of a friendly Suspect, you may search for any card instead. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  353,
+        "name":  "Two of Spades",
+        "path":  "BMG_omsk_crew/img/cards/official/353-two-of-spades.jpg",
+        "text":  "An enemy models suffers KO. 50 After Dealing, replace a card with this card. Discard the replaced card. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  354,
+        "name":  "Two of Clubs",
+        "path":  "BMG_omsk_crew/img/cards/official/354-two-of-clubs.jpg",
+        "text":  "An enemy models suffers KO. 50 After Dealing, replace a card with this card. Discard the replaced card. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  355,
+        "name":  "Two of Diamonds",
+        "path":  "BMG_omsk_crew/img/cards/official/355-two-of-diamonds.jpg",
+        "text":  "An enemy models suffers KO. 50 After Dealing, replace a card with this card. Discard the replaced card. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  356,
+        "name":  "Two of Hearts",
+        "path":  "BMG_omsk_crew/img/cards/official/356-two-of-hearts.jpg",
+        "text":  "An enemy models suffers KO. 50 After Dealing, replace a card with this card. Discard the replaced card. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  357,
+        "name":  "Three of Spades",
+        "path":  "BMG_omsk_crew/img/cards/official/357-three-of-spades.jpg",
+        "text":  "3 Play when an enemy model Sets a Suspect. Set a Treys Event marker in contact with that Suspect. Score when that Suspect is no longer in contact with the Treys. 50 Decked • After Dealing, change a card\u0027 Suit to match this card\u0027s Suit. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  358,
+        "name":  "Three of Clubs",
+        "path":  "BMG_omsk_crew/img/cards/official/358-three-of-clubs.jpg",
+        "text":  "3 Play when an enemy model Sets a Suspect. Set a Treys Event marker in contact with that Suspect. Score when that Suspect is no longer in contact with the Treys. 50 Decked • After Dealing, change a card\u0027 Suit to match this card\u0027s Suit. (823) .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  359,
+        "name":  "Three of Diamonds",
+        "path":  "BMG_omsk_crew/img/cards/official/359-three-of-diamonds.jpg",
+        "text":  "3 Play when an enemy model Sets a Suspect. Set a Treys Event marker in contact with that Suspect. Score when that Suspect is no longer in contact with the Treys. 50 Decked • After Dealing, change a card\u0027 Suit to match this card\u0027s Suit. (823) \"GO 11 - vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  360,
+        "name":  "Three of Hearts",
+        "path":  "BMG_omsk_crew/img/cards/official/360-three-of-hearts.jpg",
+        "text":  "3 Ploy when an enemy model Sets a Suspect. Set a Treys Event marker in contact with that Suspect. Score when that Suspect is no longer in contact with the Treys. 50 Decked • After Dealing, change a card\u0027 Suit to match this card\u0027s Suit. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  361,
+        "name":  "Four of Spades",
+        "path":  "BMG_omsk_crew/img/cards/official/361-four-of-spades.jpg",
+        "text":  "A friendly model Reveals an enemy Suspect. 51 Move 1 friendly Suspect 206\". (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  362,
+        "name":  "Four of Clubs",
+        "path":  "BMG_omsk_crew/img/cards/official/362-four-of-clubs.jpg",
+        "text":  "A friendly model Reveals an enemy Suspect. 51 Move 1 friendly Suspect 206\". (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  363,
+        "name":  "Four of Diamonds",
+        "path":  "BMG_omsk_crew/img/cards/official/363-four-of-diamonds.jpg",
+        "text":  "A friendly model Reveals an enemy Suspect. 51 Move 1 friendly Suspect 206\". (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  364,
+        "name":  "Four of Hearts",
+        "path":  "BMG_omsk_crew/img/cards/official/364-four-of-hearts.jpg",
+        "text":  "A friendly model Reveals an enemy Suspect. 51 Move 1 friendly Suspect 206\". (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  365,
+        "name":  "Five of Spades",
+        "path":  "BMG_omsk_crew/img/cards/official/365-five-of-spades.jpg",
+        "text":  "A friendly model Sets a Suspect within the opponents DZ. 51 After Dealing, change the Suit or Numeral of a card to a Suit or Numeral of your choice. (8231 RFG017 .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  366,
+        "name":  "Five of Clubs",
+        "path":  "BMG_omsk_crew/img/cards/official/366-five-of-clubs.jpg",
+        "text":  "A friendly model Sets a Suspect within the opponents DZ. 51 After Dealing, change the Suit or Numeral of a card to a Suit or Numeral of your choice. (8231 KNIGHT VO DELS"
+    },
+    {
+        "id":  367,
+        "name":  "Five of Diamonds",
+        "path":  "BMG_omsk_crew/img/cards/official/367-five-of-diamonds.jpg",
+        "text":  "A friendly model Sets a Suspect within the opponents DZ. 51 After Dealing, change the Suit or Numeral of a card to a Suit or Numeral of your choice. (8231 RFG01g .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  368,
+        "name":  "Five of Hearts",
+        "path":  "BMG_omsk_crew/img/cards/official/368-five-of-hearts.jpg",
+        "text":  "A friendly model Sets a Suspect within the opponents DZ. 51 After Dealing, change the Suit or Numeral of a card to a Suit or Numeral of your choice. (8231 KNIGHT VO DELS"
+    },
+    {
+        "id":  369,
+        "name":  "Six of Spades",
+        "path":  "BMG_omsk_crew/img/cards/official/369-six-of-spades.jpg",
+        "text":  "6 Limited • Each time a friendly model Sets a Suspect within 4\" of a Board Edge, placea@ on this card. Score when this card has 2@. 51 Decked • When an enemy model resolves an action, target a Suspect and roll ID6. On a result of 2+, models within 2\" suffer (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  370,
+        "name":  "Six of Clubs",
+        "path":  "BMG_omsk_crew/img/cards/official/370-six-of-clubs.jpg",
+        "text":  "6 Limited • Each time a friendly model Sets o Suspect within 4\" of a Board Edge, placea@ on this card. Score when this card has 2@. 51 Decked • When an enemy model resolves an action, target a Suspect and roll ID6. On a result of 2+, models within 2\" suffer (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  371,
+        "name":  "Six of Diamonds",
+        "path":  "BMG_omsk_crew/img/cards/official/371-six-of-diamonds.jpg",
+        "text":  "6 Limited • Each time a friendly model Sets a Suspect within 4\" of a Board Edge, placea@ on this card. Score when this card has 2@. 51 Decked • When an enemy model resolves an action, target a Suspect and roll ID6. On a result of 2+, models within 2\" suffer (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  372,
+        "name":  "Six of Hearts",
+        "path":  "BMG_omsk_crew/img/cards/official/372-six-of-hearts.jpg",
+        "text":  "6 Limited • Each time a friendly model Sets a Suspect within 4\" of a Board Edge, placea@ on this card. Score when this card has 2@. 51 Decked • When an enemy model resolves an action, target a Suspect and roll ID6. On a result of 2+, models within 2\" suffer (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  373,
+        "name":  "Seven of Spades",
+        "path":  "BMG_omsk_crew/img/cards/official/373-seven-of-spades.jpg",
+        "text":  "An enemy model is removed as a Casualty. 51 Burn 0 • A friendly model gains 2 Free Efforts. If that model shares o Suit with this card gain 3 Free Efforts instead. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  374,
+        "name":  "Seven of Clubs",
+        "path":  "BMG_omsk_crew/img/cards/official/374-seven-of-clubs.jpg",
+        "text":  "An enemy model is removed as a Casualty. 51 Burn 0 • A friendly model gains 2 Free Efforts. If that model shares o Suit with this card gain 3 Free Efforts instead. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  375,
+        "name":  "Seven of Diamonds",
+        "path":  "BMG_omsk_crew/img/cards/official/375-seven-of-diamonds.jpg",
+        "text":  "An enemy model is removed as a Casualty. 51 Burn 0 • A friendly model gains 2 Free Efforts. If that model shares o Suit with this card gain 3 Free Efforts instead. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  376,
+        "name":  "Seven of Hearts",
+        "path":  "BMG_omsk_crew/img/cards/official/376-seven-of-hearts.jpg",
+        "text":  "An enemy model is removed as a Casualty. 51 Burn 0 • A friendly model gains 2 Free Efforts. If that model shares o Suit with this card gain 3 Free Efforts instead. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  377,
+        "name":  "Eight of Spades",
+        "path":  "BMG_omsk_crew/img/cards/official/377-eight-of-spades.jpg",
+        "text":  "Play this at the start of an enemy mode(s activation. Set this card in contact with that model as a Special marker. Score if a friendly model is in contact with this card at the end of an enemy model\u0027 activation. 50 Search your Objective deck for a Seven or Nine card and add it to your hand. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  378,
+        "name":  "Eight of Clubs",
+        "path":  "BMG_omsk_crew/img/cards/official/378-eight-of-clubs.jpg",
+        "text":  "Play this at the start of on enemy mode(s activation. Set this card in contact with that model as a Special marker. Score if a friendly model is in contact with this card at the end of an enemy model\u0027 activation. 50 Search your Objective deck for a Seven or Nine card and add it to your hand. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  379,
+        "name":  "Eight of Diamonds",
+        "path":  "BMG_omsk_crew/img/cards/official/379-eight-of-diamonds.jpg",
+        "text":  "Play this at the start of an enemy mode(s activation. Set this card in contact with that model as o Special marker. Score if a friendly model is in contact with this card at the end of an enemy model\u0027 activation. 50 Search your Objective deck for a Seven or Nine card and add it to your hand. (823) RFG031 .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  380,
+        "name":  "Eight of Hearts",
+        "path":  "BMG_omsk_crew/img/cards/official/380-eight-of-hearts.jpg",
+        "text":  "Play this at the start of an enemy mode(s activation. Set this card in contact with that model as o Special marker. Score if a friendly model is in contact with this card at the end of an enemy model\u0027 activation. 50 Search your Objective deck for a Seven or Nine card and add it to your hand. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  381,
+        "name":  "Nine of Spades",
+        "path":  "BMG_omsk_crew/img/cards/official/381-nine-of-spades.jpg",
+        "text":  "9 After Dealing, at least 3 different Suits were dealt. 51 After Dealing, replace a card with this card. Discard the replaced card. If the model making the roll does not share a Suit with this card, reduce this card\u0027 Resource cost to 0. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  382,
+        "name":  "Nine of Clubs",
+        "path":  "BMG_omsk_crew/img/cards/official/382-nine-of-clubs.jpg",
+        "text":  "9 After Dealing, at least 3 different Suits were dealt. 51 After Dealing, replace a card with this card. Discard the replaced card. If the model making the roll does not share o Suit with this card, reduce this card\u0027 Resource cost to 0. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  383,
+        "name":  "Nine of Diamonds",
+        "path":  "BMG_omsk_crew/img/cards/official/383-nine-of-diamonds.jpg",
+        "text":  "9 After Dealing, at least 3 different Suits were dealt. 51 After Dealing, replace a card with this card. Discard the replaced card. If the model making the roll does not share a Suit with this card, reduce this card\u0027 Resource cost to 0. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  384,
+        "name":  "Nine of Hearts",
+        "path":  "BMG_omsk_crew/img/cards/official/384-nine-of-hearts.jpg",
+        "text":  "9 After Dealing, at least 3 different Suits were dealt. 51 After Dealing, replace a card with this card. Discard the replaced card. If the model making the roll does not share o Suit with this card, reduce this card\u0027 Resource cost to 0. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  385,
+        "name":  "Ten of Spades",
+        "path":  "BMG_omsk_crew/img/cards/official/385-ten-of-spades.jpg",
+        "text":  "10 A friendly model with Audacity performs an Attack and inflicts Damage. 51 Move the active friendly model 4\". (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  386,
+        "name":  "Ten of Clubs",
+        "path":  "BMG_omsk_crew/img/cards/official/386-ten-of-clubs.jpg",
+        "text":  "10 A friendly model with Audacity performs an Attack and inflicts Damage. 51 Move the active friendly model 4\". (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  387,
+        "name":  "Ten of Diamonds",
+        "path":  "BMG_omsk_crew/img/cards/official/387-ten-of-diamonds.jpg",
+        "text":  "10 A friendly model with Audacity performs an Attack and inflicts Damage. 51 Move the active friendly model 4\". (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  388,
+        "name":  "Ten of Hearts",
+        "path":  "BMG_omsk_crew/img/cards/official/388-ten-of-hearts.jpg",
+        "text":  "10 A friendly model with Audacity performs an Attack and inflicts Damage. 51 Move the active friendly model 4\". (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  389,
+        "name":  "Jack of Spades",
+        "path":  "BMG_omsk_crew/img/cards/official/389-jack-of-spades.jpg",
+        "text":  "Limited • After Dealing at least 2 cards, all cards dealt share the same Suit. 51 Burn 1 • Keep this card aside. After Dealing, replace a card with this card. Discard the replaced card. (823) .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  390,
+        "name":  "Jack of Clubs",
+        "path":  "BMG_omsk_crew/img/cards/official/390-jack-of-clubs.jpg",
+        "text":  "Limited • After Dealing at least 2 cards, all cards dealt share the same Suit. 51 Burn 1 • Keep this card aside. After Dealing, replace a card with this card. Discard the replaced card. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  391,
+        "name":  "Jack of Diamonds",
+        "path":  "BMG_omsk_crew/img/cards/official/391-jack-of-diamonds.jpg",
+        "text":  "ABA-z-— Limited • After Dealing at least 2 cards, all cards dealt share the same Suit. 51 Burn 1 • Keep this card aside. After Dealing, replace a card with this card. Discard the replaced card. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  392,
+        "name":  "Jack of Hearts",
+        "path":  "BMG_omsk_crew/img/cards/official/392-jack-of-hearts.jpg",
+        "text":  "3 Limited • After Dealing at least 2 cards, all cards dealt share the same Suit. 51 Burn 1 • Keep this card aside. After Dealing, replace a card with this card. Discard the replaced card. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  393,
+        "name":  "Queen of Spades",
+        "path":  "BMG_omsk_crew/img/cards/official/393-queen-of-spades.jpg",
+        "text":  "• : 52 After Dealing, have a Run of 2. Burn 0 • Discard your Objective hand. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  394,
+        "name":  "Queen of Clubs",
+        "path":  "BMG_omsk_crew/img/cards/official/394-queen-of-clubs.jpg",
+        "text":  "• : 52 After Dealing, have a Run of 2. Burn 0 • Discard your Objective hand. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  395,
+        "name":  "Queen of Diamonds",
+        "path":  "BMG_omsk_crew/img/cards/official/395-queen-of-diamonds.jpg",
+        "text":  "• : 52 After Dealing, have a Run of 2. Burn 0 • Discard your Objective hand. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  396,
+        "name":  "Queen of Hearts",
+        "path":  "BMG_omsk_crew/img/cards/official/396-queen-of-hearts.jpg",
+        "text":  "• : 52 After Dealing, have a Run of 2. Burn 0 • Discard your Objective hand. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  397,
+        "name":  "King of Spades",
+        "path":  "BMG_omsk_crew/img/cards/official/397-king-of-spades.jpg",
+        "text":  "o O After Dealing, the friendly model shares a Suit with both a card dealt and another friendly model within 4\". 51 After Dealing, replace a card with this card. Discard the replaced card. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  398,
+        "name":  "King of Clubs",
+        "path":  "BMG_omsk_crew/img/cards/official/398-king-of-clubs.jpg",
+        "text":  "o After Dealing, the friendly model shares a Suit with both a card dealt and another friendly model within 4\". 51 After Dealing, replace a card with this card. Discard the replaced card. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  399,
+        "name":  "King of Diamonds",
+        "path":  "BMG_omsk_crew/img/cards/official/399-king-of-diamonds.jpg",
+        "text":  "o o After Dealing, the friendly model shares a Suit with both a card dealt and another friendly model within 4\". 51 After Dealing, replace a card with this card. Discard the replaced card. (823) - .02 KNIGHT VO DELS"
+    },
+    {
+        "id":  400,
+        "name":  "King of Hearts",
+        "path":  "BMG_omsk_crew/img/cards/official/400-king-of-hearts.jpg",
+        "text":  "o O (Xlf+ After Dealing, the friendly model shares a Suit with both a card dealt Z and another friendly model within 4\". 51 After Dealing, replace a card with this card. Discard the replaced card. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  421,
+        "name":  "Born to Riddle",
+        "path":  "BMG_omsk_crew/img/cards/official/421-born-to-riddle.jpg",
+        "text":  "Gut Feeling • A friendly model Sets a Riddle marker within 4\" of an Enemy model. 50 Replace a friendly facedown ? card in play with one from you hand. Discarding the original card. (823) R10013-Æ2 KNIGHT VO DELS"
+    },
+    {
+        "id":  422,
+        "name":  "Riddles of the World",
+        "path":  "BMG_omsk_crew/img/cards/official/422-riddles-of-the-world.jpg",
+        "text":  "There are more friendly Suspects than enemy Suspects in play. Burn 1 • Trap • After this action is resolved, Move the model that triggered this card 4\". (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  423,
+        "name":  "Riddle Box Hero",
+        "path":  "BMG_omsk_crew/img/cards/official/423-riddle-box-hero.jpg",
+        "text":  "AIVO There are 2 or less enemy Suspects in or within 4\" of an enemy DZ. _ 51 You may play an additional ? card, place this card aside. When you would W reveal a ? card, the opponent chooses which to reveal. When ? a card was revealed, discard this card. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  424,
+        "name":  "Psycho Riddle",
+        "path":  "BMG_omsk_crew/img/cards/official/424-psycho-riddle.jpg",
+        "text":  "There is a friendly Riddle marker in play. Burn I • Trap • Draw 2 cards. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  430,
+        "name":  "The Primary Prey",
+        "path":  "BMG_omsk_crew/img/cards/official/430-the-primary-prey.jpg",
+        "text":  "At the end of an activation, a friendly model has inficted Damage on a model and that model can not draw LOS to the friendly model. 51 Burn 0 • The active model gains a Free Manipulate action. (823) OWL018 vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  431,
+        "name":  "Stalking Parliament",
+        "path":  "BMG_omsk_crew/img/cards/official/431-stalking-parliament.jpg",
+        "text":  "Target a friendly model. Each time that model either Sets a Suspect within 8\" of o Prey or ends its activation and can draw LOS to a Prey, placea@ on this card. Score if this card has more@than enemy Suspects in play. 90 Move a friendly Owl marker 4\". (823) OWL01g vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  432,
+        "name":  "Not a Whispered Word",
+        "path":  "BMG_omsk_crew/img/cards/official/432-not-a-whispered-word.jpg",
+        "text":  "A friendly model with Audacity Sets a Suspect within 4\" of a Sewer and does not perform any other Tactical actions this activation. 50 Target friendly Suspect is treated as a Sewer this activation. If a model is marked as Prey, you may instead target any Suspect. (823) OWL020 vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  433,
+        "name":  "Beware the Court of Owls",
+        "path":  "BMG_omsk_crew/img/cards/official/433-beware-the-court-of-owls.jpg",
+        "text":  "A friendly model that no enemy model can see at the start of its activation Reveals an enemy Suspect. Talon\u0027s Prey (823) vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  435,
+        "name":  "The Inner Enemy",
+        "path":  "BMG_omsk_crew/img/cards/official/435-the-inner-enemy.jpg",
+        "text":  "A friendly model with the (NAME) Cultist trait Sets a Suspect within the opponents DZ. @2 Burn 0 • Place 1 friendly model that was removed as a Casualty with Rank: e and the (NAME) Cultist Trait in your DZ. It cannot be activated this round. e 2: Place it in contact with a friendly Suspect instead. (823) CLT014 - vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  436,
+        "name":  "Worship Place",
+        "path":  "BMG_omsk_crew/img/cards/official/436-worship-place.jpg",
+        "text":  "Set a Worship Event marker within 4\" of an enemy model. At the end of each enemy model\u0027s activation, if there is a friendly Suspect within 4\", place1@ on this card. Score when this card has4@. Move a friendly Suspect 4\". e 3: Move 2 friendly Suspects instead. (823) CLT01S-vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  437,
+        "name":  "Prophecies of the Snake",
+        "path":  "BMG_omsk_crew/img/cards/official/437-prophecies-of-the-snake.jpg",
+        "text":  "A friendly model Sets a Suspect within 4\" of a target enemy model with the Poison Status. Remove the Poison Status from the target. Target 1 enemy model within 4\" of a friendly Suspect to suffer the Poison Status. e 1: Target 2 models instead. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  438,
+        "name":  "Followers of Kali-Yuga",
+        "path":  "BMG_omsk_crew/img/cards/official/438-followers-of-kali-yuga.jpg",
+        "text":  "Limited • An enemy model is removed as a Casualty as a result of a failed Poison test. Burn 0 • Target 1 enemy model with the Poison Status It immediately takes a Poison test. e 2: Target 2 models instead. (823) CLT013-vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  439,
+        "name":  "Eternal Life",
+        "path":  "BMG_omsk_crew/img/cards/official/439-eternal-life.jpg",
+        "text":  "When an enemy performs a Movement action, target it. When o friendly model attacks the target or Sets a Suspect within 4\" of the target, placea@marker on this card. If a friendly model with Alias: Deacon Blackfire or the Totem marker is within 8\" of the target, add an additional@. This card has3@ Move a friendly Blackfire Totem Marker or Sewer marker 4\". e 1: Place it within 4\" of a friendly model with Alias: Deacon Blackfire. (823) CLT01E-vC2 KNIGHT VO DELS"
+    },
+    {
+        "id":  440,
+        "name":  "A Godless City",
+        "path":  "BMG_omsk_crew/img/cards/official/440-a-godless-city.jpg",
+        "text":  "(9 There are more friendly Suspects than enemy Suspects in the Gaming Area. Cannot be played if all of the Opponent models have already activated this round. @2 Burn 0 • Place 1 friendly model with Rank: e, and the (NAME) Cultist and Horde or Charge traits, that has been removed as a Casualty. Place that model in your DZ. It cannot activate this round. e 1: That model can be activated, but your opponent gains a Pass. (823) CLT017 - vc2 KNIGHT VO DELS"
+    },
+    {
+        "id":  443,
+        "name":  "The Family",
+        "path":  "BMG_omsk_crew/img/cards/official/443-the-family.jpg",
+        "text":  "Black Money • A friendly model Sets a Suspect within 8\" of the enemy Boss. 50 The active friendly e is affected by Inspire regardless of Range. (823) -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  444,
+        "name":  "Demonstration of Strength",
+        "path":  "BMG_omsk_crew/img/cards/official/444-demonstration-of-strength.jpg",
+        "text":  "ALI + Black Money • Play when a friendly model performs an Attack action. If any Strength die is Successful, remove them from the roll and score this card. 51 During a Ranged Attack, the weapon\u0027s Strength die is the last to be removed from the attack if the target is within effective range. (823) -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  445,
+        "name":  "Vendetta",
+        "path":  "BMG_omsk_crew/img/cards/official/445-vendetta.jpg",
+        "text":  "o Black Money • Play when target enemy model performs an attack. A friendly model Sets a Suspect within 4\" of the target. \u00272 Burn 1 • Spend $100 Black Money and choose 1 friendly model with Rank: that has been removed as a Casualty. Place that model in your DZ. It cannot activate o W this round. (823) OCR020 -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  446,
+        "name":  "Dead Men Tell no Tales",
+        "path":  "BMG_omsk_crew/img/cards/official/446-dead-men-tell-no-tales.jpg",
+        "text":  "Black Money • Limited • At the end of a friendly model\u0027 activation, target an enemy model that has not activated this Round. Score if the target is removed as a Casualty or does not Set a Suspect this round. Burn 1 • Exception (When Scoring) • Target a friendly model, that model counts as e until the end of the game. (823) OCR021 -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  447,
+        "name":  "Proof of Power",
+        "path":  "BMG_omsk_crew/img/cards/official/447-proof-of-power.jpg",
+        "text":  "Black Money • A friendly model Sets a Suspect within 4\" of an enemy with Audacity. 51 A friendly model affected by Inspire gains an additional action. It cannot repeat the same action. (823) OCR022 -.02 KNIGHT VO DELS"
+    },
+    {
+        "id":  456,
+        "name":  "Harsh Conditions",
+        "path":  "BMG_omsk_crew/img/cards/official/456-harsh-conditions.jpg",
+        "text":  "Target a friendly model. The target inflicts Damage with a Ranged attack and is not suffering KO and is still in Play. 51 Play only at the start of an activation. Target model suffers Impaired Movement, and gains 20. (823) \u0027CEO 13 KNIGHT VO DELS"
+    },
+    {
+        "id":  457,
+        "name":  "Technological Information",
+        "path":  "BMG_omsk_crew/img/cards/official/457-technological-information.jpg",
+        "text":  "W Choose 2 enemy Suspects. Your opponent chooses 1 of them to be the target. Place a Timer ID3+X, where X is the number of Ice Age cards not in the Ice Age pile. Score if the Suspect is not in play before the counter reach 0. If the Suspect is in play, it becomes a Frozen Suspect. Burn 1 • Exception (Scored Pile) • Once per Round during a friendly Boss\u0027s activation, target a Suspect within 4\". That Suspect becomes Frozen. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  458,
+        "name":  "Cool Trophy",
+        "path":  "BMG_omsk_crew/img/cards/official/458-cool-trophy.jpg",
+        "text":  "A friendly model Sets a Suspect within 4\" of an enemy model suffering Slow (X) or the Freeze Status. The enemy model may remove a Status. 50 When playing an Ice Age card, you may look at the opponent\u0027 hand and choose which card is played face up. (823) KNIGHT VO DELS"
+    },
+    {
+        "id":  459,
+        "name":  "Hell Freezes Over",
+        "path":  "BMG_omsk_crew/img/cards/official/459-hell-freezes-over.jpg",
+        "text":  "When a friendly model Sets a Suspect, target another friendly Suspect within 12\" of the first one and draw a straight line between them. Enemy models crossed by that line immediately Set a Suspect in contact (ignoring normal placement rules) and suffer the Cold Status. At least 2 Suspects are Set this way. 51 When a Frozen Suspect is going to be removed, make another Suspect within 8\" of it a Frozen Suspect. (823) \u0027CEC16 KNIGHT VO DELS"
+    }
+]

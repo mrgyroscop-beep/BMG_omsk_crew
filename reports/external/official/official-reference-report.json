@@ -1,0 +1,183 @@
+{
+  "generatedAt": "2026-06-09T04:00:00.796Z",
+  "complete": true,
+  "incomplete": [],
+  "summary": {
+    "affiliations": {
+      "type": "array",
+      "count": 21,
+      "fields": [
+        "id",
+        "app_order",
+        "deck_size",
+        "name",
+        "image",
+        "icon",
+        "is_team",
+        "eternal",
+        "only_allow_affiliation_characters",
+        "only_allow_affiliation_cards",
+        "only_allow_affiliation_keyword_characters",
+        "only_allow_affiliation_keyword_cards",
+        "affiliation_keyword_boss_must_be_leader",
+        "must_select_leader_as_boss",
+        "can_include_characters_with_same_name",
+        "affiliation_keyword_trait_ids"
+      ]
+    },
+    "cards": {
+      "type": "array",
+      "count": 409,
+      "fields": [
+        "id",
+        "name",
+        "image",
+        "objective_type_id",
+        "count",
+        "vp",
+        "affiliation_id",
+        "preventing_trait_id",
+        "trait_id",
+        "rank_ids",
+        "required_character_ids"
+      ]
+    },
+    "characters": {
+      "type": "array",
+      "count": 646,
+      "fields": [
+        "id",
+        "name",
+        "alias",
+        "affiliations",
+        "rival_affiliation_ids",
+        "rank_ids",
+        "weapon_ids",
+        "image",
+        "background",
+        "willpower",
+        "strength",
+        "movement",
+        "attack",
+        "defense",
+        "special",
+        "endurance",
+        "reputation",
+        "funding",
+        "eternal",
+        "bases_size",
+        "traits",
+        "linked_to_characters",
+        "linked_characters",
+        "shares_profile_in_game",
+        "shares_equipment",
+        "ignores_costs",
+        "can_be_taken_individually",
+        "adds_to_model_count",
+        "adds_to_rank_count",
+        "upgrade_ids"
+      ]
+    },
+    "equipment": {
+      "type": "array",
+      "count": 315,
+      "fields": [
+        "id",
+        "name",
+        "description",
+        "max_count",
+        "funding",
+        "reputation",
+        "image",
+        "banned_character_ids",
+        "banned_crew_equipment_ids",
+        "required_character_ids",
+        "required_crew_character_ids",
+        "required_rank_ids",
+        "required_affiliation_ids",
+        "weapon_ids",
+        "traits",
+        "willpower",
+        "strength",
+        "movement",
+        "attack",
+        "defense",
+        "special",
+        "endurance",
+        "ammunition",
+        "granted_weapon_id"
+      ]
+    },
+    "traits": {
+      "type": "array",
+      "count": 979,
+      "fields": [
+        "id",
+        "name",
+        "description",
+        "sideboard_amount",
+        "effect_count",
+        "effect_name"
+      ]
+    },
+    "upgrades": {
+      "type": "array",
+      "count": 13,
+      "fields": [
+        "id",
+        "rank_id",
+        "name",
+        "bases_size",
+        "image",
+        "willpower",
+        "strength",
+        "movement",
+        "attack",
+        "defense",
+        "special",
+        "endurance",
+        "reputation",
+        "funding",
+        "eternal",
+        "weapon_ids",
+        "traits"
+      ]
+    },
+    "weapons": {
+      "type": "array",
+      "count": 579,
+      "fields": [
+        "id",
+        "name",
+        "rate_of_fire",
+        "ammunition",
+        "damage",
+        "traits"
+      ]
+    },
+    "version": {
+      "type": "number",
+      "count": 0,
+      "fields": []
+    },
+    "changelog": {
+      "type": "string",
+      "count": 0,
+      "fields": []
+    },
+    "images": {
+      "type": "array",
+      "count": 1683,
+      "fields": []
+    },
+    "rule_documents": {
+      "type": "array",
+      "count": 3,
+      "fields": [
+        "id",
+        "name",
+        "url"
+      ]
+    }
+  }
+}

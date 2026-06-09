@@ -1,0 +1,5415 @@
+{
+  "generatedAt": "2026-06-09T06:53:23.045Z",
+  "officialMeta": {
+    "source": "https://app.knightmodels.com/gamedata/",
+    "generatedAt": "2026-06-09T04:00:00.796Z",
+    "complete": true,
+    "sourceBytes": 2437749,
+    "sourceDownloadedAt": "2026-06-09T03:43:36.553Z",
+    "incompleteSections": []
+  },
+  "counts": {
+    "localModels": 679,
+    "activeLocalModels": 646,
+    "modelsDisabledLocalOnly": 33,
+    "officialCharacters": 646,
+    "matchedModels": 646,
+    "unmatchedLocalModels": 0,
+    "ambiguousLocalModels": 0,
+    "officialCharactersMissingLocal": 0,
+    "modelDifferences": 0,
+    "localEquipment": 359,
+    "officialEquipment": 324,
+    "activeLocalEquipment": 318,
+    "equipmentDisabledLocalOnly": 41,
+    "equipmentMissingLocal": 0,
+    "equipmentMissingOfficial": 0,
+    "equipmentDifferences": 0,
+    "equipmentAmbiguous": 0
+  },
+  "characters": {
+    "matched": [
+      {
+        "localName": "Batman Bushi",
+        "officialId": 801,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Bushi)",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Quinn Arkham Knight",
+        "officialId": 9,
+        "officialName": "Dr. Harleen Frances Quinzel",
+        "officialAlias": "Harley Quinn (Arkham Knight)",
+        "score": 10000
+      },
+      {
+        "localName": "Damien Darhk",
+        "officialId": 415,
+        "officialName": "Damien Darhk",
+        "officialAlias": "Damien Darhk",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Quinn Gatling Brute",
+        "officialId": 644,
+        "officialName": "Unknown",
+        "officialAlias": "Harley Quinn Gatling Brute",
+        "score": 10000
+      },
+      {
+        "localName": "Nightwing Arkham Knight",
+        "officialId": 222,
+        "officialName": "Dick Grayson",
+        "officialAlias": "Nightwing (Arkham Knight)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman Dark Knight Rises",
+        "officialId": 46,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Dark Knight Rises)",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Thug 1",
+        "officialId": 641,
+        "officialName": "Punker",
+        "officialAlias": "Harley Thug 1",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Thug 2",
+        "officialId": 643,
+        "officialName": "Bragg",
+        "officialAlias": "Harley Thug 2",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Thug 3",
+        "officialId": 642,
+        "officialName": "Worker",
+        "officialAlias": "Harley Thug 3",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Thug 4",
+        "officialId": 647,
+        "officialName": "Unknown",
+        "officialAlias": "Harley Thug 4",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Thug 5",
+        "officialId": 648,
+        "officialName": "Unknown",
+        "officialAlias": "Harley Thug 5",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Thug 6",
+        "officialId": 646,
+        "officialName": "Chencho",
+        "officialAlias": "Harley Thug 6",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Thug 7",
+        "officialId": 645,
+        "officialName": "Lumberjack",
+        "officialAlias": "Harley Thug 7",
+        "score": 10000
+      },
+      {
+        "localName": "Catwoman Dark Knight Rises",
+        "officialId": 479,
+        "officialName": "Selina Kyle",
+        "officialAlias": "Catwoman (Dark Knight Rises)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman Arkham Knight",
+        "officialId": 37,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Arkham Knight)",
+        "score": 10000
+      },
+      {
+        "localName": "Miranda Tate",
+        "officialId": 473,
+        "officialName": "Talia Al Ghul",
+        "officialAlias": "Miranda Tate",
+        "score": 10000
+      },
+      {
+        "localName": "Arkham Knight",
+        "officialId": 18,
+        "officialName": "Jason Todd",
+        "officialAlias": "Arkham Knight",
+        "score": 10000
+      },
+      {
+        "localName": "The Drifter Robert Pattinson",
+        "officialId": 724,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "The Drifter (Robert Pattinson)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman Year One",
+        "officialId": 640,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Year One)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman Robert Pattinson",
+        "officialId": 707,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Robert Pattinson)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman on Bike Robert Pattinson",
+        "officialId": 767,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman on Bike (Robert Pattinson)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman 1997",
+        "officialId": 812,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (1997)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman Michael Keaton",
+        "officialId": 803,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Michael Keaton)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman Red Rain",
+        "officialId": 671,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Red Rain)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman Adam West",
+        "officialId": 621,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Adam West)",
+        "score": 10000
+      },
+      {
+        "localName": "The White Knight",
+        "officialId": 485,
+        "officialName": "Harvey Dent",
+        "officialAlias": "The White Knight",
+        "score": 10000
+      },
+      {
+        "localName": "Aaron Cash",
+        "officialId": 779,
+        "officialName": "Aaron Cash",
+        "officialAlias": "Aaron Cash",
+        "score": 10000
+      },
+      {
+        "localName": "Green Arrow Rebirth",
+        "officialId": 663,
+        "officialName": "Oliver Queen",
+        "officialAlias": "Green Arrow (Rebirth)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman Gaslight",
+        "officialId": 454,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Gaslight)",
+        "score": 10000
+      },
+      {
+        "localName": "Commissioner Gordon",
+        "officialId": 535,
+        "officialName": "James W. Gordon",
+        "officialAlias": "Commissioner Gordon",
+        "score": 10000
+      },
+      {
+        "localName": "Robin Burt Ward",
+        "officialId": 622,
+        "officialName": "Dick Grayson",
+        "officialAlias": "Robin (Burt Ward)",
+        "score": 10000
+      },
+      {
+        "localName": "Chief Mackenzie",
+        "officialId": 709,
+        "officialName": "Mackenzie Bock",
+        "officialAlias": "Chief Mackenzie",
+        "score": 10000
+      },
+      {
+        "localName": "Robin 1997",
+        "officialId": 813,
+        "officialName": "Dick Grayson",
+        "officialAlias": "Robin (1997)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman Multiverse",
+        "officialId": 422,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Multiverse)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman Viking",
+        "officialId": 705,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Viking)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman Frank Miller on Power Armor",
+        "officialId": 848,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Frank Miller on Power Armor)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman The Animated Series",
+        "officialId": 861,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (The Animated Series)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman",
+        "officialId": 534,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman",
+        "score": 10000
+      },
+      {
+        "localName": "Robin Teen Titans",
+        "officialId": 491,
+        "officialName": "Dick Grayson",
+        "officialAlias": "Robin (Teen Titans)",
+        "score": 10000
+      },
+      {
+        "localName": "Kid Flash",
+        "officialId": 815,
+        "officialName": "Wally West",
+        "officialAlias": "Kid Flash",
+        "score": 10000
+      },
+      {
+        "localName": "Batman The Gotham City Knight",
+        "officialId": 886,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (The Gotham City Knight)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman Death Metal",
+        "officialId": 680,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Death Metal)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman Frank Miller on Horse",
+        "officialId": 846,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Frank Miller on Horse)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman Beyond",
+        "officialId": 852,
+        "officialName": "Terry McGinnis",
+        "officialAlias": "Batman (Beyond)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman Classic",
+        "officialId": 734,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Classic)",
+        "score": 10000
+      },
+      {
+        "localName": "Green Arrow DKR",
+        "officialId": 574,
+        "officialName": "Oliver Queen",
+        "officialAlias": "Green Arrow DKR",
+        "score": 10000
+      },
+      {
+        "localName": "Batman Frank Miller",
+        "officialId": 570,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Frank Miller)",
+        "score": 10000
+      },
+      {
+        "localName": "Batwoman",
+        "officialId": 468,
+        "officialName": "Kathy Kane",
+        "officialAlias": "Batwoman",
+        "score": 10000
+      },
+      {
+        "localName": "Catwoman",
+        "officialId": 610,
+        "officialName": "Selina Kyle",
+        "officialAlias": "Catwoman",
+        "score": 10000
+      },
+      {
+        "localName": "Red Hood Rebirth",
+        "officialId": 552,
+        "officialName": "Jason Todd",
+        "officialAlias": "Red Hood (Rebirth)",
+        "score": 10000
+      },
+      {
+        "localName": "Robin Classic",
+        "officialId": 735,
+        "officialName": "Dick Grayson",
+        "officialAlias": "Robin (Classic)",
+        "score": 10000
+      },
+      {
+        "localName": "Robin",
+        "officialId": 531,
+        "officialName": "Jason Todd",
+        "officialAlias": "Robin",
+        "score": 10000
+      },
+      {
+        "localName": "Wonder Girl",
+        "officialId": 494,
+        "officialName": "Donna Troy",
+        "officialAlias": "Wonder Girl",
+        "score": 10000
+      },
+      {
+        "localName": "Mr. Wayne Beyond",
+        "officialId": 854,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Mr. Wayne (Beyond)",
+        "score": 10000
+      },
+      {
+        "localName": "Clayface",
+        "officialId": 427,
+        "officialName": "Basil Karlo",
+        "officialAlias": "Clayface",
+        "score": 10000
+      },
+      {
+        "localName": "Robin",
+        "officialId": 573,
+        "officialName": "Carrie Kelley",
+        "officialAlias": "Robin",
+        "score": 10000
+      },
+      {
+        "localName": "Red Hood The Outlaw",
+        "officialId": 796,
+        "officialName": "Jason Todd",
+        "officialAlias": "Red Hood (The Outlaw)",
+        "score": 10000
+      },
+      {
+        "localName": "Starfire Teen Titans",
+        "officialId": 492,
+        "officialName": "Koriand'r",
+        "officialAlias": "Starfire (Teen Titans)",
+        "score": 10000
+      },
+      {
+        "localName": "Nightwing Rebirth",
+        "officialId": 670,
+        "officialName": "Dick Grayson",
+        "officialAlias": "Nightwing (Rebirth)",
+        "score": 10000
+      },
+      {
+        "localName": "Green Arrow The Animated Series",
+        "officialId": 863,
+        "officialName": "Oliver Queen",
+        "officialAlias": "Green Arrow (The Animated Series)",
+        "score": 10000
+      },
+      {
+        "localName": "Son of Batman 3",
+        "officialId": 577,
+        "officialName": "Unknown",
+        "officialAlias": "Son of Batman 3",
+        "score": 10000
+      },
+      {
+        "localName": "Ace",
+        "officialId": 706,
+        "officialName": "Ace",
+        "officialAlias": "Ace",
+        "score": 10000
+      },
+      {
+        "localName": "Alfred Pennyworth",
+        "officialId": 817,
+        "officialName": "Alfred Pennyworth",
+        "officialAlias": "Alfred Pennyworth",
+        "score": 10000
+      },
+      {
+        "localName": "Huntress Classic",
+        "officialId": 819,
+        "officialName": "Helena Bertinelli",
+        "officialAlias": "Huntress (Classic)",
+        "score": 10000
+      },
+      {
+        "localName": "Raven",
+        "officialId": 257,
+        "officialName": "Rachel Roth",
+        "officialAlias": "Raven",
+        "score": 10000
+      },
+      {
+        "localName": "Son of Batman 2",
+        "officialId": 576,
+        "officialName": "Unknown",
+        "officialAlias": "Son of Batman 2",
+        "score": 10000
+      },
+      {
+        "localName": "Clownhunter",
+        "officialId": 820,
+        "officialName": "Bao Pham",
+        "officialAlias": "Clownhunter",
+        "score": 10000
+      },
+      {
+        "localName": "Red Robin",
+        "officialId": 611,
+        "officialName": "Tim Drake",
+        "officialAlias": "Red Robin",
+        "score": 10000
+      },
+      {
+        "localName": "Son of Batman 1",
+        "officialId": 575,
+        "officialName": "Unknown",
+        "officialAlias": "Son of Batman 1",
+        "score": 10000
+      },
+      {
+        "localName": "Azrael God's Punishment",
+        "officialId": 725,
+        "officialName": "Michael Washington Lane",
+        "officialAlias": "Azrael (God's Punishment)",
+        "score": 10000
+      },
+      {
+        "localName": "Robin Tim Drake",
+        "officialId": 872,
+        "officialName": "Tim Drake",
+        "officialAlias": "Robin (Tim Drake)",
+        "score": 10000
+      },
+      {
+        "localName": "Lucius Fox",
+        "officialId": 871,
+        "officialName": "Lucius Fox",
+        "officialAlias": "Lucius Fox",
+        "score": 10000
+      },
+      {
+        "localName": "Catwoman The Animated Series",
+        "officialId": 865,
+        "officialName": "Selina Kyle",
+        "officialAlias": "Catwoman (The Animated Series)",
+        "score": 10000
+      },
+      {
+        "localName": "Batgirl The Animated Series",
+        "officialId": 862,
+        "officialName": "Barbara Gordon",
+        "officialAlias": "Batgirl (The Animated Series)",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Quinn The Animated Series",
+        "officialId": 870,
+        "officialName": "Dr. Harleen Frances Quinzel",
+        "officialAlias": "Harley Quinn (The Animated Series)",
+        "score": 10000
+      },
+      {
+        "localName": "Robin Beyond",
+        "officialId": 853,
+        "officialName": "Matt McGinnis",
+        "officialAlias": "Robin (Beyond)",
+        "score": 10000
+      },
+      {
+        "localName": "Ravager Vanguard Team",
+        "officialId": 866,
+        "officialName": "Rose Wilson",
+        "officialAlias": "Ravager (Vanguard Team)",
+        "score": 10000
+      },
+      {
+        "localName": "Black Canary The Animated Series",
+        "officialId": 864,
+        "officialName": "Dinah Lance",
+        "officialAlias": "Black Canary (The Animated Series)",
+        "score": 10000
+      },
+      {
+        "localName": "Renée Montoya",
+        "officialId": 876,
+        "officialName": "Renée Maria Montoya",
+        "officialAlias": "Renée Montoya",
+        "score": 10000
+      },
+      {
+        "localName": "Homicide Detective",
+        "officialId": 873,
+        "officialName": "Unknown",
+        "officialAlias": "Homicide Detective",
+        "score": 10000
+      },
+      {
+        "localName": "GCPD Mounted Cop",
+        "officialId": 711,
+        "officialName": "Unknown",
+        "officialAlias": "GCPD Mounted Cop",
+        "score": 10000
+      },
+      {
+        "localName": "SWAT QRT 3",
+        "officialId": 782,
+        "officialName": "QRT 3",
+        "officialAlias": "SWAT QRT 3",
+        "score": 10000
+      },
+      {
+        "localName": "Officer Martinez",
+        "officialId": 713,
+        "officialName": "Martinez",
+        "officialAlias": "Officer Martinez",
+        "score": 10000
+      },
+      {
+        "localName": "SWAT QRT 2",
+        "officialId": 781,
+        "officialName": "QRT 2",
+        "officialAlias": "SWAT QRT 2",
+        "score": 10000
+      },
+      {
+        "localName": "Reinforcement Cop",
+        "officialId": 874,
+        "officialName": "Unknown",
+        "officialAlias": "Reinforcement Cop",
+        "score": 10000
+      },
+      {
+        "localName": "GCPD Officer 1",
+        "officialId": 712,
+        "officialName": "Unknown",
+        "officialAlias": "GCPD Officer 1",
+        "score": 10000
+      },
+      {
+        "localName": "Gilda Dent",
+        "officialId": 784,
+        "officialName": "Gilda Dent",
+        "officialAlias": "Gilda Dent",
+        "score": 10000
+      },
+      {
+        "localName": "SWAT QRT 1",
+        "officialId": 780,
+        "officialName": "QRT 1",
+        "officialAlias": "SWAT QRT 1",
+        "score": 10000
+      },
+      {
+        "localName": "GCPD Officer 2",
+        "officialId": 714,
+        "officialName": "Unknown",
+        "officialAlias": "GCPD Officer 2",
+        "score": 10000
+      },
+      {
+        "localName": "Beat Cop",
+        "officialId": 875,
+        "officialName": "Unknown",
+        "officialAlias": "Beat Cop",
+        "score": 10000
+      },
+      {
+        "localName": "Sgt. Harvey Bullock",
+        "officialId": 536,
+        "officialName": "Harvey Bullock",
+        "officialAlias": "Sgt. Harvey Bullock",
+        "score": 10000
+      },
+      {
+        "localName": "GCPD Detective",
+        "officialId": 540,
+        "officialName": "Unknown",
+        "officialAlias": "GCPD Detective",
+        "score": 10000
+      },
+      {
+        "localName": "Sierra",
+        "officialId": 283,
+        "officialName": "Sierra",
+        "officialAlias": "Sierra",
+        "score": 10000
+      },
+      {
+        "localName": "GCPD Cop 1",
+        "officialId": 542,
+        "officialName": "Unknown",
+        "officialAlias": "GCPD Cop 1",
+        "score": 10000
+      },
+      {
+        "localName": "Lieutenant Gordon Year One",
+        "officialId": 623,
+        "officialName": "James W. Gordon",
+        "officialAlias": "Lieutenant Gordon (Year One)",
+        "score": 10000
+      },
+      {
+        "localName": "GCPD Cop 2",
+        "officialId": 543,
+        "officialName": "Unknown",
+        "officialAlias": "GCPD Cop 2",
+        "score": 10000
+      },
+      {
+        "localName": "Lt. Gordon Jeffrey Wright",
+        "officialId": 708,
+        "officialName": "James W. Gordon",
+        "officialAlias": "Lt. Gordon (Jeffrey Wright)",
+        "score": 10000
+      },
+      {
+        "localName": "Agent 1",
+        "officialId": 481,
+        "officialName": "Unknown",
+        "officialAlias": "Agent 1",
+        "score": 10000
+      },
+      {
+        "localName": "Officer Merkel",
+        "officialId": 541,
+        "officialName": "Stanley Merkel",
+        "officialAlias": "Officer Merkel",
+        "score": 10000
+      },
+      {
+        "localName": "Agent 2",
+        "officialId": 482,
+        "officialName": "Unknown",
+        "officialAlias": "Agent 2",
+        "score": 10000
+      },
+      {
+        "localName": "Agent 3",
+        "officialId": 483,
+        "officialName": "Unknown",
+        "officialAlias": "Agent 3",
+        "score": 10000
+      },
+      {
+        "localName": "Detective Flass Year One",
+        "officialId": 624,
+        "officialName": "Arnold Flass",
+        "officialAlias": "Detective Flass (Year One)",
+        "score": 10000
+      },
+      {
+        "localName": "Lerida",
+        "officialId": 184,
+        "officialName": "Lerida",
+        "officialAlias": "Lerida",
+        "score": 10000
+      },
+      {
+        "localName": "Foxtrot",
+        "officialId": 116,
+        "officialName": "Foxtrot",
+        "officialAlias": "Foxtrot",
+        "score": 10000
+      },
+      {
+        "localName": "Attorney Harvey Dent",
+        "officialId": 783,
+        "officialName": "Harvey Dent",
+        "officialAlias": "Attorney Harvey Dent",
+        "score": 10000
+      },
+      {
+        "localName": "Bouncer 1",
+        "officialId": 721,
+        "officialName": "Unknown",
+        "officialAlias": "Bouncer 1",
+        "score": 10000
+      },
+      {
+        "localName": "Bouncer 2",
+        "officialId": 722,
+        "officialName": "Unknown",
+        "officialAlias": "Bouncer 2",
+        "score": 10000
+      },
+      {
+        "localName": "Bouncer 3",
+        "officialId": 723,
+        "officialName": "Unknown",
+        "officialAlias": "Bouncer 3",
+        "score": 10000
+      },
+      {
+        "localName": "Black Mask Thug 6",
+        "officialId": 636,
+        "officialName": "Vladimir Sokolov",
+        "officialAlias": "Black Mask Thug 6",
+        "score": 10000
+      },
+      {
+        "localName": "The Twin 1",
+        "officialId": 718,
+        "officialName": "Unknown",
+        "officialAlias": "The Twin 1",
+        "score": 10000
+      },
+      {
+        "localName": "The Twin 2",
+        "officialId": 719,
+        "officialName": "Unknown",
+        "officialAlias": "The Twin 2",
+        "score": 10000
+      },
+      {
+        "localName": "Killer Croc Thug",
+        "officialId": 877,
+        "officialName": "Waylon Jones",
+        "officialAlias": "Killer Croc (Thug)",
+        "score": 10000
+      },
+      {
+        "localName": "Detective Kenzie",
+        "officialId": 717,
+        "officialName": "William Kenzie",
+        "officialAlias": "Detective Kenzie",
+        "score": 10000
+      },
+      {
+        "localName": "The Fixer",
+        "officialId": 638,
+        "officialName": "Yelena Vólkov",
+        "officialAlias": "The Fixer",
+        "score": 10000
+      },
+      {
+        "localName": "Black Mask Thug 7",
+        "officialId": 637,
+        "officialName": "Yuri Ivanov",
+        "officialAlias": "Black Mask Thug 7",
+        "score": 10000
+      },
+      {
+        "localName": "Mafia Thug",
+        "officialId": 720,
+        "officialName": "Unknown",
+        "officialAlias": "Mafia Thug",
+        "score": 10000
+      },
+      {
+        "localName": "Black Mask Thug 4",
+        "officialId": 634,
+        "officialName": "Koulikov Khrushchev",
+        "officialAlias": "Black Mask Thug 4",
+        "score": 10000
+      },
+      {
+        "localName": "Black Mask Thug 2",
+        "officialId": 632,
+        "officialName": "Vassili Danilov",
+        "officialAlias": "Black Mask Thug 2",
+        "score": 10000
+      },
+      {
+        "localName": "The Tailor",
+        "officialId": 402,
+        "officialName": "Alan Il'Gordo",
+        "officialAlias": "The Tailor",
+        "score": 10000
+      },
+      {
+        "localName": "Black Mask Thug 1",
+        "officialId": 631,
+        "officialName": "Vigo Stoniskov",
+        "officialAlias": "Black Mask Thug 1",
+        "score": 10000
+      },
+      {
+        "localName": "Malatesta",
+        "officialId": 196,
+        "officialName": "Hugo Testa",
+        "officialAlias": "Malatesta",
+        "score": 10000
+      },
+      {
+        "localName": "Troy Sins",
+        "officialId": 326,
+        "officialName": "Troy Santino",
+        "officialAlias": "Troy Sins",
+        "score": 10000
+      },
+      {
+        "localName": "Black Mask Thug 5",
+        "officialId": 635,
+        "officialName": "Volodya Smirnov",
+        "officialAlias": "Black Mask Thug 5",
+        "score": 10000
+      },
+      {
+        "localName": "Black Mask Thug 3",
+        "officialId": 633,
+        "officialName": "Nikita Filipov",
+        "officialAlias": "Black Mask Thug 3",
+        "score": 10000
+      },
+      {
+        "localName": "The Bull",
+        "officialId": 312,
+        "officialName": "Luigi Lombardo",
+        "officialAlias": "The Bull",
+        "score": 10000
+      },
+      {
+        "localName": "Showtime",
+        "officialId": 400,
+        "officialName": "Tony Gianni",
+        "officialAlias": "Showtime",
+        "score": 10000
+      },
+      {
+        "localName": "Vipera",
+        "officialId": 334,
+        "officialName": "Samuel Hill",
+        "officialAlias": "Vipera",
+        "score": 10000
+      },
+      {
+        "localName": "Black Mask",
+        "officialId": 627,
+        "officialName": "Roman Sionis",
+        "officialAlias": "Black Mask",
+        "score": 10000
+      },
+      {
+        "localName": "Lex Luthor",
+        "officialId": 390,
+        "officialName": "Alexander Joseph Luthor",
+        "officialAlias": "Lex Luthor",
+        "score": 10000
+      },
+      {
+        "localName": "Alexandra Kosov",
+        "officialId": 628,
+        "officialName": "Alexandra Kosov",
+        "officialAlias": "Alexandra Kosov",
+        "score": 10000
+      },
+      {
+        "localName": "Sal Maroni",
+        "officialId": 274,
+        "officialName": "Salvatore Maroni",
+        "officialAlias": "Sal Maroni",
+        "score": 10000
+      },
+      {
+        "localName": "Fat Johnny",
+        "officialId": 113,
+        "officialName": "John D'Amico",
+        "officialAlias": "Fat Johnny",
+        "score": 10000
+      },
+      {
+        "localName": "Battista",
+        "officialId": 33,
+        "officialName": "Andrea D'Amico",
+        "officialAlias": "Battista",
+        "score": 10000
+      },
+      {
+        "localName": "The Roman",
+        "officialId": 322,
+        "officialName": "Carmine Falcone",
+        "officialAlias": "The Roman",
+        "score": 10000
+      },
+      {
+        "localName": "The Ventriloquist",
+        "officialId": 399,
+        "officialName": "Arnold Wesker",
+        "officialAlias": "The Ventriloquist",
+        "score": 10000
+      },
+      {
+        "localName": "The Holiday Killer",
+        "officialId": 316,
+        "officialName": "Alberto Falcone",
+        "officialAlias": "The Holiday Killer",
+        "score": 10000
+      },
+      {
+        "localName": "Carmine Falcone (John Turturro)",
+        "officialId": 715,
+        "officialName": "Carmine Falcone",
+        "officialAlias": "Carmine Falcone (John Turturro)",
+        "score": 10000
+      },
+      {
+        "localName": "Fright",
+        "officialId": 629,
+        "officialName": "Linda Friitawa",
+        "officialAlias": "Fright",
+        "score": 10000
+      },
+      {
+        "localName": "The Penguin (Colin Farrell)",
+        "officialId": 716,
+        "officialName": "Oswald Chesterfield Cobblepot",
+        "officialAlias": "The Penguin (Colin Farrell)",
+        "score": 10000
+      },
+      {
+        "localName": "Beast Boy - Tiger Teen Titans",
+        "officialId": 809,
+        "officialName": "Unknown",
+        "officialAlias": "Beast Boy - Tiger (Teen Titans)",
+        "score": 10000
+      },
+      {
+        "localName": "Beast Boy - Gorilla Teen Titans",
+        "officialId": 807,
+        "officialName": "Unknown",
+        "officialAlias": "Beast Boy - Gorilla (Teen Titans)",
+        "score": 10000
+      },
+      {
+        "localName": "Beast Boy - Hawk Teen Titans",
+        "officialId": 808,
+        "officialName": "Unknown",
+        "officialAlias": "Beast Boy - Hawk (Teen Titans)",
+        "score": 10000
+      },
+      {
+        "localName": "Beast Boy - Human (Teen Titans)",
+        "officialId": 493,
+        "officialName": "Garfield Mark Logan",
+        "officialAlias": "Beast Boy - Human (Teen Titans)",
+        "score": 10000
+      },
+      {
+        "localName": "The Chief",
+        "officialId": 526,
+        "officialName": "Niles Caulder",
+        "officialAlias": "The Chief",
+        "score": 10000
+      },
+      {
+        "localName": "Elasti-Girl",
+        "officialId": 527,
+        "officialName": "Rita Starr",
+        "officialAlias": "Elasti-Girl",
+        "score": 10000
+      },
+      {
+        "localName": "Crazy Jane",
+        "officialId": 528,
+        "officialName": "Kay Challis",
+        "officialAlias": "Crazy Jane",
+        "score": 10000
+      },
+      {
+        "localName": "Negative Man",
+        "officialId": 529,
+        "officialName": "Lawrence Michael Trainor",
+        "officialAlias": "Negative Man",
+        "score": 10000
+      },
+      {
+        "localName": "Robotman",
+        "officialId": 530,
+        "officialName": "Clifford Steele",
+        "officialAlias": "Robotman",
+        "score": 10000
+      },
+      {
+        "localName": "Bane Unleashed",
+        "officialId": 667,
+        "officialName": "Unknown",
+        "officialAlias": "Bane (Unleashed)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman",
+        "officialId": 588,
+        "officialName": "Thomas Wayne",
+        "officialAlias": "Batman",
+        "score": 10000
+      },
+      {
+        "localName": "Bane Titan",
+        "officialId": 768,
+        "officialName": "Unknown",
+        "officialAlias": "Bane (Titan)",
+        "score": 10000
+      },
+      {
+        "localName": "Medic OP",
+        "officialId": 209,
+        "officialName": "Dillon",
+        "officialAlias": "Medic Op",
+        "score": 10000
+      },
+      {
+        "localName": "Bird Classic",
+        "officialId": 798,
+        "officialName": "Angel Vallelunga",
+        "officialAlias": "Bird (Classic)",
+        "score": 10000
+      },
+      {
+        "localName": "Bird",
+        "officialId": 50,
+        "officialName": "Angel Vallelunga",
+        "officialAlias": "Bird",
+        "score": 10000
+      },
+      {
+        "localName": "Bane Rebirth",
+        "officialId": 28,
+        "officialName": "Unknown",
+        "officialAlias": "Bane (Rebirth)",
+        "score": 10000
+      },
+      {
+        "localName": "Vengeance",
+        "officialId": 797,
+        "officialName": "Unknown",
+        "officialAlias": "Vengeance",
+        "score": 10000
+      },
+      {
+        "localName": "Bane The Bat",
+        "officialId": 550,
+        "officialName": "Unknown",
+        "officialAlias": "Bane (The Bat)",
+        "score": 10000
+      },
+      {
+        "localName": "Dreadnought OP",
+        "officialId": 106,
+        "officialName": "Billy",
+        "officialAlias": "Dreadnought Op",
+        "score": 10000
+      },
+      {
+        "localName": "Elite OP",
+        "officialId": 109,
+        "officialName": "Duke",
+        "officialAlias": "Elite Op",
+        "score": 10000
+      },
+      {
+        "localName": "Bane Commander",
+        "officialId": 844,
+        "officialName": "Unknown",
+        "officialAlias": "Bane (Commander)",
+        "score": 10000
+      },
+      {
+        "localName": "Lieutenant OP",
+        "officialId": 208,
+        "officialName": "Ross",
+        "officialAlias": "Lieutenant Op",
+        "score": 10000
+      },
+      {
+        "localName": "Cuchillo",
+        "officialId": 101,
+        "officialName": "Diaz",
+        "officialAlias": "Cuchillo",
+        "score": 10000
+      },
+      {
+        "localName": "Stealth OP",
+        "officialId": 301,
+        "officialName": "Kabuto",
+        "officialAlias": "Stealth Op",
+        "score": 10000
+      },
+      {
+        "localName": "Infiltrate OP",
+        "officialId": 585,
+        "officialName": "Claire",
+        "officialAlias": "Infiltrate OP",
+        "score": 10000
+      },
+      {
+        "localName": "Macgregor",
+        "officialId": 776,
+        "officialName": "Unknown",
+        "officialAlias": "MacGregor",
+        "score": 10000
+      },
+      {
+        "localName": "Clover",
+        "officialId": 306,
+        "officialName": "Sullivan",
+        "officialAlias": "Clover",
+        "score": 10000
+      },
+      {
+        "localName": "Sharp Shooter",
+        "officialId": 456,
+        "officialName": "Kyle Kurt",
+        "officialAlias": "Sharp Shooter",
+        "score": 10000
+      },
+      {
+        "localName": "Malicia",
+        "officialId": 583,
+        "officialName": "Malicia",
+        "officialAlias": "Malicia",
+        "score": 10000
+      },
+      {
+        "localName": "The Builder",
+        "officialId": 799,
+        "officialName": "Adam Schnauzer",
+        "officialAlias": "The Builder",
+        "score": 10000
+      },
+      {
+        "localName": "Smash",
+        "officialId": 777,
+        "officialName": "Unknown",
+        "officialAlias": "Smash",
+        "score": 10000
+      },
+      {
+        "localName": "Ted Hunter",
+        "officialId": 778,
+        "officialName": "Unknown",
+        "officialAlias": "Ted Hunter",
+        "score": 10000
+      },
+      {
+        "localName": "Schoolboy",
+        "officialId": 279,
+        "officialName": "Ike",
+        "officialAlias": "Schoolboy",
+        "score": 10000
+      },
+      {
+        "localName": "Support OP",
+        "officialId": 455,
+        "officialName": "Dolph Wolf",
+        "officialAlias": "Support Op",
+        "score": 10000
+      },
+      {
+        "localName": "Red Bastard",
+        "officialId": 800,
+        "officialName": "Ernesto Machado",
+        "officialAlias": "Red Bastard",
+        "score": 10000
+      },
+      {
+        "localName": "Grumpy",
+        "officialId": 488,
+        "officialName": "Unknown",
+        "officialAlias": "Grumpy",
+        "score": 10000
+      },
+      {
+        "localName": "Happy",
+        "officialId": 487,
+        "officialName": "Unknown",
+        "officialAlias": "Happy",
+        "score": 10000
+      },
+      {
+        "localName": "Gaggy Rebirth",
+        "officialId": 686,
+        "officialName": "Unknown",
+        "officialAlias": "Gaggy (Rebirth)",
+        "score": 10000
+      },
+      {
+        "localName": "Joker's Biker 2",
+        "officialId": 471,
+        "officialName": "Unknown",
+        "officialAlias": "Joker's Biker 2",
+        "score": 10000
+      },
+      {
+        "localName": "Joker's Bus Driver",
+        "officialId": 490,
+        "officialName": "Unknown",
+        "officialAlias": "Joker's Bus Driver",
+        "score": 10000
+      },
+      {
+        "localName": "Joker's Para-Military 2",
+        "officialId": 688,
+        "officialName": "Unknown",
+        "officialAlias": "Joker's Para-Military 2",
+        "score": 10000
+      },
+      {
+        "localName": "Joker's Para-Military 3",
+        "officialId": 689,
+        "officialName": "Unknown",
+        "officialAlias": "Joker's Para-Military 3",
+        "score": 10000
+      },
+      {
+        "localName": "Joker's Para-Military 1",
+        "officialId": 687,
+        "officialName": "Unknown",
+        "officialAlias": "Joker's Para-Military 1",
+        "score": 10000
+      },
+      {
+        "localName": "Blunderbuss Clown",
+        "officialId": 883,
+        "officialName": "Unknown",
+        "officialAlias": "Blunderbuss Clown",
+        "score": 10000
+      },
+      {
+        "localName": "Joker's Victim 1",
+        "officialId": 690,
+        "officialName": "Unknown",
+        "officialAlias": "Joker's Victim 1",
+        "score": 10000
+      },
+      {
+        "localName": "Joker's Victim 2",
+        "officialId": 691,
+        "officialName": "Unknown",
+        "officialAlias": "Joker's Victim 2",
+        "score": 10000
+      },
+      {
+        "localName": "Street Jester 2",
+        "officialId": 748,
+        "officialName": "Unknown",
+        "officialAlias": "Street Jester 2",
+        "score": 10000
+      },
+      {
+        "localName": "Street Jester 3",
+        "officialId": 749,
+        "officialName": "Unknown",
+        "officialAlias": "Street Jester 3",
+        "score": 10000
+      },
+      {
+        "localName": "Axe Clown",
+        "officialId": 881,
+        "officialName": "Unknown",
+        "officialAlias": "Axe Clown",
+        "score": 10000
+      },
+      {
+        "localName": "Barrel Clown",
+        "officialId": 880,
+        "officialName": "Unknown",
+        "officialAlias": "Barrel Clown",
+        "score": 10000
+      },
+      {
+        "localName": "Street Jester 4",
+        "officialId": 750,
+        "officialName": "Unknown",
+        "officialAlias": "Street Jester 4",
+        "score": 10000
+      },
+      {
+        "localName": "Chainsaw Clown",
+        "officialId": 882,
+        "officialName": "Unknown",
+        "officialAlias": "Chainsaw Clown",
+        "score": 10000
+      },
+      {
+        "localName": "Street Jester 1",
+        "officialId": 747,
+        "officialName": "Unknown",
+        "officialAlias": "Street Jester 1",
+        "score": 10000
+      },
+      {
+        "localName": "Thorgon",
+        "officialId": 879,
+        "officialName": "Unknown",
+        "officialAlias": "Thorgon",
+        "score": 10000
+      },
+      {
+        "localName": "Joker's Victim 3",
+        "officialId": 692,
+        "officialName": "Unknown",
+        "officialAlias": "Joker's Victim 3",
+        "score": 10000
+      },
+      {
+        "localName": "Dynamite",
+        "officialId": 417,
+        "officialName": "Unknown",
+        "officialAlias": "Dynamite",
+        "score": 10000
+      },
+      {
+        "localName": "Gas Puppet 3",
+        "officialId": 746,
+        "officialName": "Unknown",
+        "officialAlias": "Gas Puppet 3",
+        "score": 10000
+      },
+      {
+        "localName": "Gas Puppet 1",
+        "officialId": 744,
+        "officialName": "Unknown",
+        "officialAlias": "Gas Puppet 1",
+        "score": 10000
+      },
+      {
+        "localName": "Joker's Biker 1",
+        "officialId": 470,
+        "officialName": "Unknown",
+        "officialAlias": "Joker's Biker 1",
+        "score": 10000
+      },
+      {
+        "localName": "Bouffon",
+        "officialId": 69,
+        "officialName": "Unknown",
+        "officialAlias": "Bouffon",
+        "score": 10000
+      },
+      {
+        "localName": "White-Face",
+        "officialId": 337,
+        "officialName": "Unknown",
+        "officialAlias": "White-Face",
+        "score": 10000
+      },
+      {
+        "localName": "Gas Puppet 2",
+        "officialId": 745,
+        "officialName": "Unknown",
+        "officialAlias": "Gas Puppet 2",
+        "score": 10000
+      },
+      {
+        "localName": "Borgon the Cursed",
+        "officialId": 404,
+        "officialName": "Unknown",
+        "officialAlias": "Borgon the Cursed",
+        "score": 10000
+      },
+      {
+        "localName": "Hobo Clown",
+        "officialId": 155,
+        "officialName": "Unknown",
+        "officialAlias": "Hobo Clown",
+        "score": 10000
+      },
+      {
+        "localName": "Ace of Spades",
+        "officialId": 416,
+        "officialName": "Unknown",
+        "officialAlias": "Ace of Spades",
+        "score": 10000
+      },
+      {
+        "localName": "Slingy Clown",
+        "officialId": 884,
+        "officialName": "Unknown",
+        "officialAlias": "Slingy Clown",
+        "score": 10000
+      },
+      {
+        "localName": "Joker (Arkham Asylum)",
+        "officialId": 166,
+        "officialName": "Unknown",
+        "officialAlias": "Joker (Arkham Asylum)",
+        "score": 10000
+      },
+      {
+        "localName": "Joker (Dark Knight Rises)",
+        "officialId": 317,
+        "officialName": "Unknown",
+        "officialAlias": "Joker (Dark Knight Rises)",
+        "score": 10000
+      },
+      {
+        "localName": "Joker (Red Hood)",
+        "officialId": 533,
+        "officialName": "Unknown",
+        "officialAlias": "Joker (Red Hood)",
+        "score": 10000
+      },
+      {
+        "localName": "Joker",
+        "officialId": 539,
+        "officialName": "Unknown",
+        "officialAlias": "Joker",
+        "score": 10000
+      },
+      {
+        "localName": "Joker (Cesar Romero)",
+        "officialId": 639,
+        "officialName": "Unknown",
+        "officialAlias": "Joker (Cesar Romero)",
+        "score": 10000
+      },
+      {
+        "localName": "Joker (The Criminal)",
+        "officialId": 683,
+        "officialName": "Unknown",
+        "officialAlias": "Joker (The Criminal)",
+        "score": 10000
+      },
+      {
+        "localName": "Joker (The Clown)",
+        "officialId": 684,
+        "officialName": "Unknown",
+        "officialAlias": "Joker (The Clown)",
+        "score": 10000
+      },
+      {
+        "localName": "Joker (The Comedian)",
+        "officialId": 685,
+        "officialName": "Unknown",
+        "officialAlias": "Joker (The Comedian)",
+        "score": 10000
+      },
+      {
+        "localName": "Joker (Titan)",
+        "officialId": 770,
+        "officialName": "Unknown",
+        "officialAlias": "Joker (Titan)",
+        "score": 10000
+      },
+      {
+        "localName": "Joker (Christmas)",
+        "officialId": 772,
+        "officialName": "Unknown",
+        "officialAlias": "Joker (Christmas)",
+        "score": 10000
+      },
+      {
+        "localName": "Joker (Having Fun)",
+        "officialId": 843,
+        "officialName": "Unknown",
+        "officialAlias": "Joker (Having Fun)",
+        "score": 10000
+      },
+      {
+        "localName": "Joker (Explosive Arrival)",
+        "officialId": 855,
+        "officialName": "Unknown",
+        "officialAlias": "Joker (Explosive Arrival)",
+        "score": 10000
+      },
+      {
+        "localName": "Joker (Bat-Armor)",
+        "officialId": 885,
+        "officialName": "Unknown",
+        "officialAlias": "Joker (Bat-Armor)",
+        "score": 10000
+      },
+      {
+        "localName": "Gaggy",
+        "officialId": 418,
+        "officialName": "Unknown",
+        "officialAlias": "Gaggy",
+        "score": 10000
+      },
+      {
+        "localName": "Archie",
+        "officialId": 469,
+        "officialName": "Unknown",
+        "officialAlias": "Archie",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Quinn (BTG)",
+        "officialId": 538,
+        "officialName": "Dr. Harleen Frances Quinzel",
+        "officialAlias": "Harley Quinn (BTG)",
+        "score": 10000
+      },
+      {
+        "localName": "Punchline",
+        "officialId": 662,
+        "officialName": "Alexis Kaye",
+        "officialAlias": "Punchline",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Quinn (Arkham Asylum)",
+        "officialId": 763,
+        "officialName": "Dr. Harleen Frances Quinzel",
+        "officialAlias": "Harley Quinn (Arkham Asylum)",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Quinn (& The Boys)",
+        "officialId": 842,
+        "officialName": "Dr. Harleen Frances Quinzel",
+        "officialAlias": "Harley Quinn (& the Boys)",
+        "score": 10000
+      },
+      {
+        "localName": "Two-Face (Dark Knight)",
+        "officialId": 486,
+        "officialName": "Harvey Dent",
+        "officialAlias": "Two-Face (Dark Knight)",
+        "score": 10000
+      },
+      {
+        "localName": "The Riddler (Frank Gorshin)",
+        "officialId": 822,
+        "officialName": "Edward Nigma",
+        "officialAlias": "The Riddler (Frank Gorshin)",
+        "score": 10000
+      },
+      {
+        "localName": "The Penguin (Burgess Meredith)",
+        "officialId": 823,
+        "officialName": "Oswald Chesterfield Cobblepot",
+        "officialAlias": "The Penguin (Burgess Meredith)",
+        "score": 10000
+      },
+      {
+        "localName": "Mr. Freeze 1997",
+        "officialId": 811,
+        "officialName": "VIctor Fries",
+        "officialAlias": "Mr. Freeze (1997)",
+        "score": 10000
+      },
+      {
+        "localName": "Freeze Thug 1",
+        "officialId": 676,
+        "officialName": "Unknown",
+        "officialAlias": "Freeze Thug 1",
+        "score": 10000
+      },
+      {
+        "localName": "Freeze Thug 2",
+        "officialId": 677,
+        "officialName": "Unknown",
+        "officialAlias": "Freeze Thug 2",
+        "score": 10000
+      },
+      {
+        "localName": "Freeze Engineer",
+        "officialId": 738,
+        "officialName": "Unknown",
+        "officialAlias": "Freeze Engineer",
+        "score": 10000
+      },
+      {
+        "localName": "Freeze Thug 5",
+        "officialId": 737,
+        "officialName": "Seamus O'Farrell",
+        "officialAlias": "Freeze Thug 5",
+        "score": 10000
+      },
+      {
+        "localName": "Combat Polar Bear",
+        "officialId": 674,
+        "officialName": "Unknown",
+        "officialAlias": "Combat Polar Bear",
+        "score": 10000
+      },
+      {
+        "localName": "Freeze Thug 4",
+        "officialId": 679,
+        "officialName": "Unknown",
+        "officialAlias": "Freeze Thug 4",
+        "score": 10000
+      },
+      {
+        "localName": "Freeze Thug 3",
+        "officialId": 678,
+        "officialName": "Unknown",
+        "officialAlias": "Freeze Thug 3",
+        "score": 10000
+      },
+      {
+        "localName": "Mr. Freeze Cryo-Armor",
+        "officialId": 672,
+        "officialName": "Victor Fries",
+        "officialAlias": "Mr. Freeze (Cryo-Armor)",
+        "score": 10000
+      },
+      {
+        "localName": "Mrs. Freeze",
+        "officialId": 736,
+        "officialName": "Nora Fries",
+        "officialAlias": "Mrs. Freeze",
+        "score": 10000
+      },
+      {
+        "localName": "Ranged Polar Bear",
+        "officialId": 675,
+        "officialName": "Unknown",
+        "officialAlias": "Ranged Polar Bear",
+        "score": 10000
+      },
+      {
+        "localName": "Killer Frost Rebirth",
+        "officialId": 673,
+        "officialName": "Caitlin Snow",
+        "officialAlias": "Killer Frost (Rebirth)",
+        "score": 10000
+      },
+      {
+        "localName": "Quiz 5",
+        "officialId": 424,
+        "officialName": "Francoise Moreau",
+        "officialAlias": "Quiz 5",
+        "score": 10000
+      },
+      {
+        "localName": "Quiz 7",
+        "officialId": 613,
+        "officialName": "Alex Orange",
+        "officialAlias": "Quiz 7",
+        "score": 10000
+      },
+      {
+        "localName": "Echo",
+        "officialId": 426,
+        "officialName": "Unknown",
+        "officialAlias": "Echo",
+        "score": 10000
+      },
+      {
+        "localName": "Quiz 8",
+        "officialId": 614,
+        "officialName": "Finn O’Farrell",
+        "officialAlias": "Quiz 8",
+        "score": 10000
+      },
+      {
+        "localName": "The Riddler",
+        "officialId": 739,
+        "officialName": "Edward Nigma",
+        "officialAlias": "The Riddler (Paul Dano)",
+        "score": 10000
+      },
+      {
+        "localName": "The Riddler",
+        "officialId": 609,
+        "officialName": "Edward Nigma",
+        "officialAlias": "The Riddler",
+        "score": 10000
+      },
+      {
+        "localName": "The Riddler's Follower 1",
+        "officialId": 740,
+        "officialName": "Unknown",
+        "officialAlias": "The Riddler's Follower 1",
+        "score": 10000
+      },
+      {
+        "localName": "Quiz 4",
+        "officialId": 423,
+        "officialName": "Finn O’Farrell",
+        "officialAlias": "Quiz 4",
+        "score": 10000
+      },
+      {
+        "localName": "Query",
+        "officialId": 425,
+        "officialName": "Unknown",
+        "officialAlias": "Query",
+        "score": 10000
+      },
+      {
+        "localName": "Quiz 2",
+        "officialId": 251,
+        "officialName": "Igor",
+        "officialAlias": "Quiz 2",
+        "score": 10000
+      },
+      {
+        "localName": "The Riddler Modern Age",
+        "officialId": 320,
+        "officialName": "Edward Nigma",
+        "officialAlias": "The Riddler (Modern Age)",
+        "score": 10000
+      },
+      {
+        "localName": "Quiz 6",
+        "officialId": 612,
+        "officialName": "Charlie C.",
+        "officialAlias": "Quiz 6",
+        "score": 10000
+      },
+      {
+        "localName": "The Riddler's Follower 2",
+        "officialId": 741,
+        "officialName": "Unknown",
+        "officialAlias": "The Riddler's Follower 2",
+        "score": 10000
+      },
+      {
+        "localName": "Two-Face",
+        "officialId": 840,
+        "officialName": "Harvey Dent",
+        "officialAlias": "Two-Face (Tommy Lee Jones)",
+        "score": 10000
+      },
+      {
+        "localName": "Quiz 3",
+        "officialId": 252,
+        "officialName": "John Carrie",
+        "officialAlias": "Quiz 3",
+        "score": 10000
+      },
+      {
+        "localName": "The Riddler",
+        "officialId": 839,
+        "officialName": "Edward Nigma",
+        "officialAlias": "The Riddler (Jim Carrey)",
+        "score": 10000
+      },
+      {
+        "localName": "Quelle",
+        "officialId": 352,
+        "officialName": "Josette",
+        "officialAlias": "Quelle",
+        "score": 10000
+      },
+      {
+        "localName": "Quiz 1",
+        "officialId": 250,
+        "officialName": "Alexander",
+        "officialAlias": "Quiz 1",
+        "score": 10000
+      },
+      {
+        "localName": "The Riddler's Follower 3",
+        "officialId": 742,
+        "officialName": "Unknown",
+        "officialAlias": "The Riddler's Follower 3",
+        "score": 10000
+      },
+      {
+        "localName": "Catwoman Michelle Pfeiffer",
+        "officialId": 806,
+        "officialName": "Selina Kyle",
+        "officialAlias": "Catwoman (Michelle Pfeiffer)",
+        "score": 10000
+      },
+      {
+        "localName": "Penguin Thug 1",
+        "officialId": 439,
+        "officialName": "Shane",
+        "officialAlias": "Penguin Thug 1",
+        "score": 10000
+      },
+      {
+        "localName": "The Penguin Danny DeVito",
+        "officialId": 804,
+        "officialName": "Oswald Chesterfield Cobblepot",
+        "officialAlias": "The Penguin (Danny DeVito)",
+        "score": 10000
+      },
+      {
+        "localName": "The Penguin New 52",
+        "officialId": 446,
+        "officialName": "Oswald Chesterfield Cobblepot",
+        "officialAlias": "The Penguin (New 52)",
+        "score": 10000
+      },
+      {
+        "localName": "Lark",
+        "officialId": 445,
+        "officialName": "Unknown",
+        "officialAlias": "Lark",
+        "score": 10000
+      },
+      {
+        "localName": "The Penguin Arkham City",
+        "officialId": 764,
+        "officialName": "Oswald Chesterfield Cobblepot",
+        "officialAlias": "The Penguin (Arkham City)",
+        "score": 10000
+      },
+      {
+        "localName": "Rocket Launcher Penguin",
+        "officialId": 442,
+        "officialName": "Unknown",
+        "officialAlias": "Rocket Launcher Penguin",
+        "score": 10000
+      },
+      {
+        "localName": "Street Demonz Biker 1",
+        "officialId": 524,
+        "officialName": "Joe \"Viking\" Thompson",
+        "officialAlias": "Street Demonz Biker 1",
+        "score": 10000
+      },
+      {
+        "localName": "Loose Lips",
+        "officialId": 441,
+        "officialName": "Ricky LeBlanc",
+        "officialAlias": "Loose Lips",
+        "score": 10000
+      },
+      {
+        "localName": "Emperor Penguin Unchained",
+        "officialId": 650,
+        "officialName": "Ignatius Ogilvy",
+        "officialAlias": "Emperor Penguin (Unchained)",
+        "score": 10000
+      },
+      {
+        "localName": "Penguin Elite Thug",
+        "officialId": 438,
+        "officialName": "Mason",
+        "officialAlias": "Penguin Elite Thug",
+        "score": 10000
+      },
+      {
+        "localName": "Minigun Penguin",
+        "officialId": 443,
+        "officialName": "Unknown",
+        "officialAlias": "Minigun Penguin",
+        "score": 10000
+      },
+      {
+        "localName": "Explosive Penguin",
+        "officialId": 444,
+        "officialName": "Unknown",
+        "officialAlias": "Explosive Penguin",
+        "score": 10000
+      },
+      {
+        "localName": "Penguin Lieutenant",
+        "officialId": 232,
+        "officialName": "Big A",
+        "officialAlias": "Penguin Lieutenant",
+        "score": 10000
+      },
+      {
+        "localName": "Mr. Toxic",
+        "officialId": 651,
+        "officialName": "Hugh Marder",
+        "officialAlias": "Mr. Toxic",
+        "score": 10000
+      },
+      {
+        "localName": "Penguin Thug 2",
+        "officialId": 440,
+        "officialName": "Tanner",
+        "officialAlias": "Penguin Thug 2",
+        "score": 10000
+      },
+      {
+        "localName": "The Penguin Penguin's Duck",
+        "officialId": 849,
+        "officialName": "Oswald Chesterfield Cobblepot",
+        "officialAlias": "The Penguin (Penguin's Duck)",
+        "score": 10000
+      },
+      {
+        "localName": "The Penguin Arkham Knight",
+        "officialId": 656,
+        "officialName": "Oswald Chesterfield Cobblepot",
+        "officialAlias": "The Penguin (Arkham Knight)",
+        "score": 10000
+      },
+      {
+        "localName": "Street Demonz 4",
+        "officialId": 660,
+        "officialName": "Aaron \"Durum Killer\" Taylor",
+        "officialAlias": "Street Demonz 4",
+        "score": 10000
+      },
+      {
+        "localName": "Mr. Combustible",
+        "officialId": 654,
+        "officialName": "Unknown",
+        "officialAlias": "Mr. Combustible",
+        "score": 10000
+      },
+      {
+        "localName": "Hypnotic",
+        "officialId": 653,
+        "officialName": "Unknown",
+        "officialAlias": "Hypnotic",
+        "score": 10000
+      },
+      {
+        "localName": "Street Demonz 1",
+        "officialId": 657,
+        "officialName": "Grumble",
+        "officialAlias": "Street Demonz 1",
+        "score": 10000
+      },
+      {
+        "localName": "Street Demonz Biker 2",
+        "officialId": 525,
+        "officialName": "Jackson \"Fat\" Smith",
+        "officialAlias": "Street Demonz Biker 2",
+        "score": 10000
+      },
+      {
+        "localName": "Street Demonz Biker 3",
+        "officialId": 655,
+        "officialName": "Serge \"Darky\" Powers",
+        "officialAlias": "Street Demonz Biker 3",
+        "score": 10000
+      },
+      {
+        "localName": "Street Demonz 3",
+        "officialId": 659,
+        "officialName": "Reaver",
+        "officialAlias": "Street Demonz 3",
+        "score": 10000
+      },
+      {
+        "localName": "Street Demonz 2",
+        "officialId": 658,
+        "officialName": "Simmons",
+        "officialAlias": "Street Demonz 2",
+        "score": 10000
+      },
+      {
+        "localName": "Imperceptible Man",
+        "officialId": 652,
+        "officialName": "Unknown",
+        "officialAlias": "Imperceptible Man",
+        "score": 10000
+      },
+      {
+        "localName": "League Acolyte 1",
+        "officialId": 554,
+        "officialName": "Unknown",
+        "officialAlias": "League Acolyte 1",
+        "score": 10000
+      },
+      {
+        "localName": "Mercenary 1",
+        "officialId": 475,
+        "officialName": "Unknown",
+        "officialAlias": "Mercenary 1",
+        "score": 10000
+      },
+      {
+        "localName": "Mercenary 2",
+        "officialId": 476,
+        "officialName": "Unknown",
+        "officialAlias": "Mercenary 2",
+        "score": 10000
+      },
+      {
+        "localName": "League Acolyte 2",
+        "officialId": 555,
+        "officialName": "Unknown",
+        "officialAlias": "League Acolyte 2",
+        "score": 10000
+      },
+      {
+        "localName": "Ubu",
+        "officialId": 553,
+        "officialName": "Unknown",
+        "officialAlias": "Ubu",
+        "score": 10000
+      },
+      {
+        "localName": "Goliath",
+        "officialId": 437,
+        "officialName": "Goliath",
+        "officialAlias": "Goliath",
+        "score": 10000
+      },
+      {
+        "localName": "Talia Rebirth",
+        "officialId": 466,
+        "officialName": "Talia Al Ghul",
+        "officialAlias": "Talia (Rebirth)",
+        "score": 10000
+      },
+      {
+        "localName": "The Heretic",
+        "officialId": 464,
+        "officialName": "Damian Wayne Clone",
+        "officialAlias": "The Heretic",
+        "score": 10000
+      },
+      {
+        "localName": "League Acolyte 3",
+        "officialId": 556,
+        "officialName": "Unknown",
+        "officialAlias": "League Acolyte 3",
+        "score": 10000
+      },
+      {
+        "localName": "League Acolyte 4",
+        "officialId": 557,
+        "officialName": "Unknown",
+        "officialAlias": "League Acolyte 4",
+        "score": 10000
+      },
+      {
+        "localName": "Cheshire",
+        "officialId": 465,
+        "officialName": "Jade Nguyen",
+        "officialAlias": "Cheshire",
+        "score": 10000
+      },
+      {
+        "localName": "Bane Dark Knight Rises",
+        "officialId": 27,
+        "officialName": "Unknown",
+        "officialAlias": "Bane (Dark Knight Rises)",
+        "score": 10000
+      },
+      {
+        "localName": "Ra's al Ghul",
+        "officialId": 254,
+        "officialName": "Unknown",
+        "officialAlias": "Ra's Al Ghul",
+        "score": 10000
+      },
+      {
+        "localName": "Barsad",
+        "officialId": 474,
+        "officialName": "Unknown",
+        "officialAlias": "Barsad",
+        "score": 10000
+      },
+      {
+        "localName": "Gangster 1",
+        "officialId": 602,
+        "officialName": "Tommy",
+        "officialAlias": "Gangster 1",
+        "score": 10000
+      },
+      {
+        "localName": "Gangster 3",
+        "officialId": 604,
+        "officialName": "Wallace",
+        "officialAlias": "Gangster 3",
+        "score": 10000
+      },
+      {
+        "localName": "Sugar",
+        "officialId": 600,
+        "officialName": "Unknown",
+        "officialAlias": "Sugar",
+        "score": 10000
+      },
+      {
+        "localName": "Two-Face Tommy Lee Jones",
+        "officialId": 841,
+        "officialName": "Harvey Dent",
+        "officialAlias": "Two-Face (Tommy Lee Jones)",
+        "score": 10000
+      },
+      {
+        "localName": "Gangster 5",
+        "officialId": 606,
+        "officialName": "Stone",
+        "officialAlias": "Gangster 5",
+        "score": 10000
+      },
+      {
+        "localName": "Two-Face",
+        "officialId": 599,
+        "officialName": "Harvey Dent",
+        "officialAlias": "Two-Face",
+        "score": 10000
+      },
+      {
+        "localName": "Spice",
+        "officialId": 601,
+        "officialName": "Unknown",
+        "officialAlias": "Spice",
+        "score": 10000
+      },
+      {
+        "localName": "The Hitman",
+        "officialId": 731,
+        "officialName": "Maguire",
+        "officialAlias": "The Hitman",
+        "score": 10000
+      },
+      {
+        "localName": "Gangster 7",
+        "officialId": 608,
+        "officialName": "Sergio",
+        "officialAlias": "Gangster 7",
+        "score": 10000
+      },
+      {
+        "localName": "Gangster 6",
+        "officialId": 607,
+        "officialName": "Luigi",
+        "officialAlias": "Gangster 6",
+        "score": 10000
+      },
+      {
+        "localName": "Gangster 2",
+        "officialId": 603,
+        "officialName": "Malone",
+        "officialAlias": "Gangster 2",
+        "score": 10000
+      },
+      {
+        "localName": "Gangster 4",
+        "officialId": 605,
+        "officialName": "Giuseppe",
+        "officialAlias": "Gangster 4",
+        "score": 10000
+      },
+      {
+        "localName": "Two-Face Arkham City",
+        "officialId": 766,
+        "officialName": "Harvey Dent",
+        "officialAlias": "Two-Face (Arkham City)",
+        "score": 10000
+      },
+      {
+        "localName": "Killer Croc Thug",
+        "officialId": 878,
+        "officialName": "Waylon Jones",
+        "officialAlias": "Killer Croc (Thug)",
+        "score": 10000
+      },
+      {
+        "localName": "Big John",
+        "officialId": 732,
+        "officialName": "Jonathan Miers",
+        "officialAlias": "Big John",
+        "score": 10000
+      },
+      {
+        "localName": "Poison Ivy 1997",
+        "officialId": 814,
+        "officialName": "Dr. Pamela Lillian Isley",
+        "officialAlias": "Poison Ivy (1997)",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Quinn Roller Derby",
+        "officialId": 726,
+        "officialName": "Dr. Harleen Frances Quinzel",
+        "officialAlias": "Harley Quinn (Roller Derby)",
+        "score": 10000
+      },
+      {
+        "localName": "Poison Ivy",
+        "officialId": 560,
+        "officialName": "Dr. Pamela Lillian Isley",
+        "officialAlias": "Poison Ivy",
+        "score": 10000
+      },
+      {
+        "localName": "Black Canary (Rebirth)",
+        "officialId": 664,
+        "officialName": "Dinah Lance",
+        "officialAlias": "Black Canary (Rebirth)",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Quinn",
+        "officialId": 565,
+        "officialName": "Dr. Harleen Frances Quinzel",
+        "officialAlias": "Harley Quinn",
+        "score": 10000
+      },
+      {
+        "localName": "Katana (Rebirth)",
+        "officialId": 559,
+        "officialName": "Tatsu Yamashiro",
+        "officialAlias": "Katana (Rebirth)",
+        "score": 10000
+      },
+      {
+        "localName": "Black Canary",
+        "officialId": 562,
+        "officialName": "Dinah Lance",
+        "officialAlias": "Black Canary",
+        "score": 10000
+      },
+      {
+        "localName": "Lady Shiva",
+        "officialId": 180,
+        "officialName": "Sandra Wu-San",
+        "officialAlias": "Lady Shiva",
+        "score": 10000
+      },
+      {
+        "localName": "Oracle",
+        "officialId": 558,
+        "officialName": "Barbara Gordon",
+        "officialAlias": "Oracle",
+        "score": 10000
+      },
+      {
+        "localName": "Floronic Man",
+        "officialId": 773,
+        "officialName": "Jason Woodrue",
+        "officialAlias": "Floronic Man",
+        "score": 10000
+      },
+      {
+        "localName": "Killer Frost (Rebirth)",
+        "officialId": 858,
+        "officialName": "Caitlin Snow",
+        "officialAlias": "Killer Frost (Rebirth)",
+        "score": 10000
+      },
+      {
+        "localName": "Rabid Plant 1",
+        "officialId": 774,
+        "officialName": "Unknown",
+        "officialAlias": "Rabid Plant 1",
+        "score": 10000
+      },
+      {
+        "localName": "Roller Derby Thug 4",
+        "officialId": 730,
+        "officialName": "Unknown",
+        "officialAlias": "Roller Derby Thug 4",
+        "score": 10000
+      },
+      {
+        "localName": "Roller Derby Thug 1",
+        "officialId": 727,
+        "officialName": "Unknown",
+        "officialAlias": "Roller Derby Thug 1",
+        "score": 10000
+      },
+      {
+        "localName": "Roller Derby Thug 2",
+        "officialId": 728,
+        "officialName": "Unknown",
+        "officialAlias": "Roller Derby Thug 2",
+        "score": 10000
+      },
+      {
+        "localName": "Rabid Plant 2",
+        "officialId": 775,
+        "officialName": "Unknown",
+        "officialAlias": "Rabid Plant 2",
+        "score": 10000
+      },
+      {
+        "localName": "Huntress",
+        "officialId": 567,
+        "officialName": "Helena Bertinelli",
+        "officialAlias": "Huntress",
+        "score": 10000
+      },
+      {
+        "localName": "Roller Derby Thug 3",
+        "officialId": 729,
+        "officialName": "Unknown",
+        "officialAlias": "Roller Derby Thug 3",
+        "score": 10000
+      },
+      {
+        "localName": "Hawk",
+        "officialId": 496,
+        "officialName": "Hank Hall",
+        "officialAlias": "Hawk",
+        "score": 10000
+      },
+      {
+        "localName": "Dove",
+        "officialId": 495,
+        "officialName": "Dawn Granger",
+        "officialAlias": "Dove",
+        "score": 10000
+      },
+      {
+        "localName": "Bruce the Hyena",
+        "officialId": 566,
+        "officialName": "Unknown",
+        "officialAlias": "Bruce the Hyena",
+        "score": 10000
+      },
+      {
+        "localName": "Mutated Plant 2",
+        "officialId": 411,
+        "officialName": "Unknown",
+        "officialAlias": "Mutated Plant 2",
+        "score": 10000
+      },
+      {
+        "localName": "Unknown",
+        "officialId": 564,
+        "officialName": "Cassandra Cain",
+        "officialAlias": "Unknown",
+        "score": 10000
+      },
+      {
+        "localName": "Batgirl Rebirth",
+        "officialId": 32,
+        "officialName": "Barbara Gordon",
+        "officialAlias": "Batgirl (Rebirth)",
+        "score": 10000
+      },
+      {
+        "localName": "Mutated Plant 1",
+        "officialId": 410,
+        "officialName": "Unknown",
+        "officialAlias": "Mutated Plant 1",
+        "score": 10000
+      },
+      {
+        "localName": "Frank the Plant",
+        "officialId": 561,
+        "officialName": "Frank",
+        "officialAlias": "Frank the Plant",
+        "score": 10000
+      },
+      {
+        "localName": "Detective Montoya",
+        "officialId": 563,
+        "officialName": "Renée Maria Montoya",
+        "officialAlias": "Detective Montoya",
+        "score": 10000
+      },
+      {
+        "localName": "Batgirl Classic Costume",
+        "officialId": 669,
+        "officialName": "Barbara Gordon",
+        "officialAlias": "Batgirl (Classic Costume)",
+        "score": 10000
+      },
+      {
+        "localName": "Strix",
+        "officialId": 305,
+        "officialName": "Mary Turner",
+        "officialAlias": "Strix",
+        "score": 10000
+      },
+      {
+        "localName": "Mutated Plant 3",
+        "officialId": 412,
+        "officialName": "Unknown",
+        "officialAlias": "Mutated Plant 3",
+        "score": 10000
+      },
+      {
+        "localName": "Scarecrow (The Worst Nightmare)",
+        "officialId": 785,
+        "officialName": "Jonathan Crane",
+        "officialAlias": "Scarecrow (The Worst Nightmare)",
+        "score": 10000
+      },
+      {
+        "localName": "Dr. Friitawa",
+        "officialId": 786,
+        "officialName": "Linda Friitawa",
+        "officialAlias": "Dr. Friitawa",
+        "score": 10000
+      },
+      {
+        "localName": "Nightmare of Fear",
+        "officialId": 788,
+        "officialName": "Unknown",
+        "officialAlias": "Nightmare of Fear",
+        "score": 10000
+      },
+      {
+        "localName": "Nightmare of Demotivation",
+        "officialId": 789,
+        "officialName": "Unknown",
+        "officialAlias": "Nightmare of Demotivation",
+        "score": 10000
+      },
+      {
+        "localName": "Nightmare of Anger",
+        "officialId": 790,
+        "officialName": "Unknown",
+        "officialAlias": "Nightmare of Anger",
+        "score": 10000
+      },
+      {
+        "localName": "Nightmare of Insignificance",
+        "officialId": 791,
+        "officialName": "Unknown",
+        "officialAlias": "Nightmare of Insignificance",
+        "score": 10000
+      },
+      {
+        "localName": "Fearbeast Nightmare",
+        "officialId": 792,
+        "officialName": "Unknown",
+        "officialAlias": "Fearbeast Nightmare",
+        "score": 10000
+      },
+      {
+        "localName": "Little Nightmare",
+        "officialId": 821,
+        "officialName": "Unknown",
+        "officialAlias": "Little Nightmare",
+        "score": 10000
+      },
+      {
+        "localName": "The Court",
+        "officialId": 615,
+        "officialName": "Unknown",
+        "officialAlias": "The Court",
+        "score": 10000
+      },
+      {
+        "localName": "1890's Talon",
+        "officialId": 339,
+        "officialName": "Xiao Loong",
+        "officialAlias": "1890's Talon",
+        "score": 10000
+      },
+      {
+        "localName": "The Talon",
+        "officialId": 338,
+        "officialName": "William Cobb",
+        "officialAlias": "The Talon",
+        "score": 10000
+      },
+      {
+        "localName": "Gotham Butcher",
+        "officialId": 127,
+        "officialName": "Felix Harmon",
+        "officialAlias": "Gotham Butcher",
+        "score": 10000
+      },
+      {
+        "localName": "Lincoln March",
+        "officialId": 435,
+        "officialName": "Lincoln March",
+        "officialAlias": "Lincoln March",
+        "score": 10000
+      },
+      {
+        "localName": "O'Malley's Grandfather",
+        "officialId": 225,
+        "officialName": "James O'Malley",
+        "officialAlias": "O'Malley's Grandfather",
+        "score": 10000
+      },
+      {
+        "localName": "Talon",
+        "officialId": 617,
+        "officialName": "Calvin Rose",
+        "officialAlias": "Talon",
+        "score": 10000
+      },
+      {
+        "localName": "O'Malley's Father",
+        "officialId": 224,
+        "officialName": "Brandon O'Malley",
+        "officialAlias": "O'Malley's Father",
+        "score": 10000
+      },
+      {
+        "localName": "Dementor",
+        "officialId": 618,
+        "officialName": "Unknown",
+        "officialAlias": "Dementor",
+        "score": 10000
+      },
+      {
+        "localName": "Raptor",
+        "officialId": 620,
+        "officialName": "Richard",
+        "officialAlias": "Raptor",
+        "score": 10000
+      },
+      {
+        "localName": "1880's Talon",
+        "officialId": 1,
+        "officialName": "Unknown",
+        "officialAlias": "1880's Talon",
+        "score": 10000
+      },
+      {
+        "localName": "Robin",
+        "officialId": 845,
+        "officialName": "Damian Wayne",
+        "officialAlias": "Robin",
+        "score": 10000
+      },
+      {
+        "localName": "Robin",
+        "officialId": 436,
+        "officialName": "Damian Wayne",
+        "officialAlias": "Robin",
+        "score": 10000
+      },
+      {
+        "localName": "O'Malley's Son",
+        "officialId": 226,
+        "officialName": "Nathaniel O'Malley",
+        "officialAlias": "O'Malley's Son",
+        "score": 10000
+      },
+      {
+        "localName": "Ephraim Newhouse",
+        "officialId": 112,
+        "officialName": "Ephraim Newhouse",
+        "officialAlias": "Ephraim Newhouse",
+        "score": 10000
+      },
+      {
+        "localName": "King of Spades",
+        "officialId": 828,
+        "officialName": "Joe Carny",
+        "officialAlias": "King of Spades",
+        "score": 10000
+      },
+      {
+        "localName": "10 of Spades",
+        "officialId": 832,
+        "officialName": "Wanda Wayland",
+        "officialAlias": "10 of Spades",
+        "score": 10000
+      },
+      {
+        "localName": "Jack of Spades",
+        "officialId": 830,
+        "officialName": "Unknown",
+        "officialAlias": "Jack of Spades",
+        "score": 10000
+      },
+      {
+        "localName": "Ace of Spades",
+        "officialId": 831,
+        "officialName": "Derek Reston",
+        "officialAlias": "Ace of Spades",
+        "score": 10000
+      },
+      {
+        "localName": "Queen of Spades",
+        "officialId": 829,
+        "officialName": "Mona Taylor",
+        "officialAlias": "Queen of Spades",
+        "score": 10000
+      },
+      {
+        "localName": "5 of Spades",
+        "officialId": 833,
+        "officialName": "Unknown",
+        "officialAlias": "5 of Spades",
+        "score": 10000
+      },
+      {
+        "localName": "Slipknot Suicide Squad",
+        "officialId": 285,
+        "officialName": "Christopher Weiss",
+        "officialAlias": "Slipknot (Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Polka-Dot Man The Suicide Squad",
+        "officialId": 701,
+        "officialName": "Abner Krill",
+        "officialAlias": "Polka-Dot Man (The Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Weasel The Suicide Squad",
+        "officialId": 700,
+        "officialName": "Unknown",
+        "officialAlias": "Weasel (The Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Killer Moth",
+        "officialId": 569,
+        "officialName": "Drury Walker",
+        "officialAlias": "Killer Moth",
+        "score": 10000
+      },
+      {
+        "localName": "John Economos",
+        "officialId": 838,
+        "officialName": "John Economos",
+        "officialAlias": "John Economos",
+        "score": 10000
+      },
+      {
+        "localName": "Emilia Harcourt",
+        "officialId": 837,
+        "officialName": "Emilia Harcourt",
+        "officialAlias": "Emilia Harcourt",
+        "score": 10000
+      },
+      {
+        "localName": "Killer Croc Suicide Squad",
+        "officialId": 178,
+        "officialName": "Waylon Jones",
+        "officialAlias": "Killer Croc (Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Polka-Dot Man",
+        "officialId": 616,
+        "officialName": "Abner Krill",
+        "officialAlias": "Polka-Dot Man",
+        "score": 10000
+      },
+      {
+        "localName": "Thinker The Suicide Squad",
+        "officialId": 699,
+        "officialName": "Gaius Grieves",
+        "officialAlias": "Thinker (The Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Diablo Suicide Squad",
+        "officialId": 100,
+        "officialName": "Chato Santana",
+        "officialAlias": "Diablo (Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Katana Suicide Squad",
+        "officialId": 174,
+        "officialName": "Tatsu Yamashiro",
+        "officialAlias": "Katana (Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Sebastian the Rat The Suicide Squad",
+        "officialId": 703,
+        "officialName": "Sebastian",
+        "officialAlias": "Sebastian the Rat (The Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Eagly",
+        "officialId": 694,
+        "officialName": "Eagly",
+        "officialAlias": "Eagly",
+        "score": 10000
+      },
+      {
+        "localName": "King Shark The Suicide Squad",
+        "officialId": 698,
+        "officialName": "Nananue",
+        "officialAlias": "King Shark (The Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Poison Ivy",
+        "officialId": 857,
+        "officialName": "Dr. Pamela Lillian Isley",
+        "officialAlias": "Poison Ivy",
+        "score": 10000
+      },
+      {
+        "localName": "Killer Croc Arkham Asylum",
+        "officialId": 771,
+        "officialName": "Waylon Jones",
+        "officialAlias": "Killer Croc (Arkham Asylum)",
+        "score": 10000
+      },
+      {
+        "localName": "T.D.K. The Suicide Squad",
+        "officialId": 702,
+        "officialName": "Cory Pitzner",
+        "officialAlias": "T.D.K. (The Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Deathstroke Vanguard Team",
+        "officialId": 867,
+        "officialName": "Slade Wilson",
+        "officialAlias": "Deathstroke (Vanguard Team)",
+        "score": 10000
+      },
+      {
+        "localName": "The Riddler Modern Age",
+        "officialId": 860,
+        "officialName": "Edward Nigma",
+        "officialAlias": "The Riddler (Modern Age)",
+        "score": 10000
+      },
+      {
+        "localName": "Ratcatcher 2 The Suicide Squad",
+        "officialId": 696,
+        "officialName": "Cleo Cazo",
+        "officialAlias": "Ratcatcher 2 (The Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Captain Boomerang Vanguard Team",
+        "officialId": 868,
+        "officialName": "George \"Digger\" Harkness",
+        "officialAlias": "Captain Boomerang (Vanguard Team)",
+        "score": 10000
+      },
+      {
+        "localName": "Rick Flag Infiltration",
+        "officialId": 836,
+        "officialName": "Rick Flag",
+        "officialAlias": "Rick Flag (Infiltration)",
+        "score": 10000
+      },
+      {
+        "localName": "The Riddler",
+        "officialId": 859,
+        "officialName": "Edward Nigma",
+        "officialAlias": "The Riddler",
+        "score": 10000
+      },
+      {
+        "localName": "Vigilante",
+        "officialId": 695,
+        "officialName": "Adrian Chase",
+        "officialAlias": "Vigilante",
+        "score": 10000
+      },
+      {
+        "localName": "Captain Boomerang Suicide Squad",
+        "officialId": 74,
+        "officialName": "George \"Digger\" Harkness",
+        "officialAlias": "Captain Boomerang (Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "KGBeast",
+        "officialId": 619,
+        "officialName": "Anatoli Knyazev",
+        "officialAlias": "KGBeast",
+        "score": 10000
+      },
+      {
+        "localName": "Deadshot",
+        "officialId": 537,
+        "officialName": "Floyd Lawton",
+        "officialAlias": "Deadshot",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Quinn Bombshell",
+        "officialId": 453,
+        "officialName": "Dr. Harleen Frances Quinzel",
+        "officialAlias": "Harley Quinn (Bombshell)",
+        "score": 10000
+      },
+      {
+        "localName": "Deadshot Suicide Squad",
+        "officialId": 96,
+        "officialName": "Floyd Lawton",
+        "officialAlias": "Deadshot (Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Deathstroke The Terminator",
+        "officialId": 586,
+        "officialName": "Slade Wilson",
+        "officialAlias": "Deathstroke (The Terminator)",
+        "score": 10000
+      },
+      {
+        "localName": "Amanda Waller Viola Davis",
+        "officialId": 835,
+        "officialName": "Amanda Waller",
+        "officialAlias": "Amanda Waller (Viola Davis)",
+        "score": 10000
+      },
+      {
+        "localName": "Killer Croc",
+        "officialId": 361,
+        "officialName": "Waylon Jones",
+        "officialAlias": "Killer Croc",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Quinn The Suicide Squad",
+        "officialId": 697,
+        "officialName": "Dr. Harleen Frances Quinzel",
+        "officialAlias": "Harley Quinn (The Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Peacemaker John Cena",
+        "officialId": 693,
+        "officialName": "Christopher Smith",
+        "officialAlias": "Peacemaker (John Cena)",
+        "score": 10000
+      },
+      {
+        "localName": "Bloodsport The Suicide Squad",
+        "officialId": 704,
+        "officialName": "Robert DuBois",
+        "officialAlias": "BloodSport (The Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Ratface",
+        "officialId": 754,
+        "officialName": "Unknown",
+        "officialAlias": "Ratface",
+        "score": 10000
+      },
+      {
+        "localName": "Kobra",
+        "officialId": 501,
+        "officialName": "Jeffrey Franklin Burr",
+        "officialAlias": "Kobra",
+        "score": 10000
+      },
+      {
+        "localName": "Naga Hazard Trooper 2",
+        "officialId": 512,
+        "officialName": "Unknown",
+        "officialAlias": "Naga Hazard Trooper 2",
+        "score": 10000
+      },
+      {
+        "localName": "The Nagas",
+        "officialId": 504,
+        "officialName": "Unknown",
+        "officialAlias": "The Nagas",
+        "score": 10000
+      },
+      {
+        "localName": "Jake",
+        "officialId": 752,
+        "officialName": "Jake Baker",
+        "officialAlias": "Jake",
+        "score": 10000
+      },
+      {
+        "localName": "Underworlder 1",
+        "officialId": 755,
+        "officialName": "Unknown",
+        "officialAlias": "Underworlder 1",
+        "score": 10000
+      },
+      {
+        "localName": "Kobra Hybrid",
+        "officialId": 505,
+        "officialName": "Unknown",
+        "officialAlias": "Kobra Hybrid",
+        "score": 10000
+      },
+      {
+        "localName": "Deacon Blackfire",
+        "officialId": 751,
+        "officialName": "Joseph Blackfire",
+        "officialAlias": "Deacon Blackfire",
+        "score": 10000
+      },
+      {
+        "localName": "Underworlder Vagon 1",
+        "officialId": 761,
+        "officialName": "Unknown",
+        "officialAlias": "Underworlder Vagon 1",
+        "score": 10000
+      },
+      {
+        "localName": "Underworlder 2",
+        "officialId": 756,
+        "officialName": "Unknown",
+        "officialAlias": "Underworlder 2",
+        "score": 10000
+      },
+      {
+        "localName": "Cobra Swarm",
+        "officialId": 508,
+        "officialName": "Unknown",
+        "officialAlias": "Cobra Swarm",
+        "score": 10000
+      },
+      {
+        "localName": "Young Woman",
+        "officialId": 753,
+        "officialName": "Sally",
+        "officialAlias": "Young Woman",
+        "score": 10000
+      },
+      {
+        "localName": "Lancehead 1",
+        "officialId": 509,
+        "officialName": "Unknown",
+        "officialAlias": "Lancehead 1",
+        "score": 10000
+      },
+      {
+        "localName": "Lady Eve",
+        "officialId": 503,
+        "officialName": "Eve",
+        "officialAlias": "Lady Eve",
+        "score": 10000
+      },
+      {
+        "localName": "Underworlder 6",
+        "officialId": 760,
+        "officialName": "Unknown",
+        "officialAlias": "Underworlder 6",
+        "score": 10000
+      },
+      {
+        "localName": "Underworlder 4",
+        "officialId": 758,
+        "officialName": "Unknown",
+        "officialAlias": "Underworlder 4",
+        "score": 10000
+      },
+      {
+        "localName": "Batman The Cult",
+        "officialId": 769,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (The Cult)",
+        "score": 10000
+      },
+      {
+        "localName": "Kobra Bestowed",
+        "officialId": 502,
+        "officialName": "Unknown",
+        "officialAlias": "Kobra Bestowed",
+        "score": 10000
+      },
+      {
+        "localName": "Underworlder Vagon 2",
+        "officialId": 762,
+        "officialName": "Unknown",
+        "officialAlias": "Underworlder Vagon 2",
+        "score": 10000
+      },
+      {
+        "localName": "Underworlder 5",
+        "officialId": 759,
+        "officialName": "Unknown",
+        "officialAlias": "Underworlder 5",
+        "score": 10000
+      },
+      {
+        "localName": "Naga Hazard Trooper 1",
+        "officialId": 511,
+        "officialName": "Unknown",
+        "officialAlias": "Naga Hazard Trooper 1",
+        "score": 10000
+      },
+      {
+        "localName": "Lancehead Captain",
+        "officialId": 506,
+        "officialName": "Unknown",
+        "officialAlias": "Lancehead Captain",
+        "score": 10000
+      },
+      {
+        "localName": "Lancehead 2",
+        "officialId": 510,
+        "officialName": "Unknonw",
+        "officialAlias": "Lancehead 2",
+        "score": 10000
+      },
+      {
+        "localName": "Lancehead Soldier",
+        "officialId": 507,
+        "officialName": "Unknown",
+        "officialAlias": "Lancehead Soldier",
+        "score": 10000
+      },
+      {
+        "localName": "Damian Who Laughs",
+        "officialId": 581,
+        "officialName": "Damian Wayne",
+        "officialAlias": "Damian Who Laughs",
+        "score": 10000
+      },
+      {
+        "localName": "The Commissioner",
+        "officialId": 578,
+        "officialName": "James Gordon",
+        "officialAlias": "The Commissioner",
+        "score": 10000
+      },
+      {
+        "localName": "The Merciless",
+        "officialId": 398,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "The Merciless",
+        "score": 10000
+      },
+      {
+        "localName": "Infected Who Laughs",
+        "officialId": 810,
+        "officialName": "Unknown",
+        "officialAlias": "Infected Who Laughs",
+        "score": 10000
+      },
+      {
+        "localName": "The Grim Knight",
+        "officialId": 869,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "The Grim Knight",
+        "score": 10000
+      },
+      {
+        "localName": "The Batman Who Laughs",
+        "officialId": 580,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "The Batman Who Laughs",
+        "score": 10000
+      },
+      {
+        "localName": "The Red Death",
+        "officialId": 396,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "The Red Death",
+        "score": 10000
+      },
+      {
+        "localName": "The Drowned",
+        "officialId": 397,
+        "officialName": "Bryce Wayne",
+        "officialAlias": "The Drowned",
+        "score": 10000
+      },
+      {
+        "localName": "Robin Who Laughs",
+        "officialId": 582,
+        "officialName": "Unknown",
+        "officialAlias": "Robin Who Laughs",
+        "score": 10000
+      },
+      {
+        "localName": "Silk Spectre II",
+        "officialId": 451,
+        "officialName": "Laurie Juspeczyk",
+        "officialAlias": "Silk Spectre II",
+        "score": 10000
+      },
+      {
+        "localName": "The Comedian",
+        "officialId": 450,
+        "officialName": "Edward Blake",
+        "officialAlias": "The Comedian",
+        "score": 10000
+      },
+      {
+        "localName": "Nite Owl",
+        "officialId": 452,
+        "officialName": "Daniel Dreiberg",
+        "officialAlias": "Nite Owl",
+        "score": 10000
+      },
+      {
+        "localName": "Rorschach",
+        "officialId": 449,
+        "officialName": "Walter Joseph Kovacs",
+        "officialAlias": "Rorschach",
+        "score": 10000
+      },
+      {
+        "localName": "Bubastis",
+        "officialId": 532,
+        "officialName": "Bubastis",
+        "officialAlias": "Bubastis",
+        "score": 10000
+      },
+      {
+        "localName": "Ozymandias",
+        "officialId": 448,
+        "officialName": "Adrian Alexander Veidt",
+        "officialAlias": "Ozymandias",
+        "score": 10000
+      },
+      {
+        "localName": "Psycho-Pirate",
+        "officialId": 579,
+        "officialName": "Roger Hayden",
+        "officialAlias": "Psycho-Pirate",
+        "score": 10000
+      },
+      {
+        "localName": "Ratcatcher",
+        "officialId": 458,
+        "officialName": "Otis Flannegan",
+        "officialAlias": "Ratcatcher",
+        "score": 10000
+      },
+      {
+        "localName": "Solomon Grundy",
+        "officialId": 434,
+        "officialName": "Cyrus Gold",
+        "officialAlias": "Solomon Grundy",
+        "score": 10000
+      },
+      {
+        "localName": "Scarecrow",
+        "officialId": 433,
+        "officialName": "Jonathan Crane",
+        "officialAlias": "Scarecrow",
+        "score": 10000
+      },
+      {
+        "localName": "Hush",
+        "officialId": 598,
+        "officialName": "Thomas Elliot",
+        "officialAlias": "Hush",
+        "score": 10000
+      },
+      {
+        "localName": "Clock King",
+        "officialId": 584,
+        "officialName": "William Tockman",
+        "officialAlias": "Clock King",
+        "score": 10000
+      },
+      {
+        "localName": "Gentleman Ghost",
+        "officialId": 587,
+        "officialName": "Jim Craddock",
+        "officialAlias": "Gentleman Ghost",
+        "score": 10000
+      },
+      {
+        "localName": "Mad Hatter",
+        "officialId": 457,
+        "officialName": "Jervis Tetch",
+        "officialAlias": "Mad Hatter",
+        "score": 10000
+      },
+      {
+        "localName": "Man-Bat",
+        "officialId": 432,
+        "officialName": "Dr. Kirk Langstrom",
+        "officialAlias": "Man-Bat",
+        "score": 10000
+      },
+      {
+        "localName": "Ten-Eyed Man",
+        "officialId": 802,
+        "officialName": "Philip Reardon",
+        "officialAlias": "Ten-Eyed Man",
+        "score": 10000
+      },
+      {
+        "localName": "Lobo Paramilitary",
+        "officialId": 682,
+        "officialName": "Unknown",
+        "officialAlias": "Lobo (Paramilitary)",
+        "score": 10000
+      },
+      {
+        "localName": "Calculator Classic",
+        "officialId": 743,
+        "officialName": "Noah Kuttler",
+        "officialAlias": "Calculator (Classic)",
+        "score": 10000
+      },
+      {
+        "localName": "Catman The Hunter",
+        "officialId": 666,
+        "officialName": "Thomas Reese Blake",
+        "officialAlias": "Catman (The Hunter)",
+        "score": 10000
+      },
+      {
+        "localName": "Thug 1",
+        "officialId": 544,
+        "officialName": "Unknown",
+        "officialAlias": "Thug 1",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Quinn Bewitched",
+        "officialId": 668,
+        "officialName": "Dr. Harleen Frances Quinzel",
+        "officialAlias": "Harley Quinn (Bewitched)",
+        "score": 10000
+      },
+      {
+        "localName": "Dr. Hugo Strange",
+        "officialId": 787,
+        "officialName": "Hugo Strange",
+        "officialAlias": "Dr. Hugo Strange",
+        "score": 10000
+      },
+      {
+        "localName": "Thug 2",
+        "officialId": 545,
+        "officialName": "Unknown",
+        "officialAlias": "Thug 2",
+        "score": 10000
+      },
+      {
+        "localName": "Scarecrow Arkham Asylum",
+        "officialId": 765,
+        "officialName": "Jonathan Crane",
+        "officialAlias": "Scarecrow (Arkham Asylum)",
+        "score": 10000
+      },
+      {
+        "localName": "Victor Zsasz",
+        "officialId": 630,
+        "officialName": "Victor Zsasz",
+        "officialAlias": "Victor Zsasz",
+        "score": 10000
+      },
+      {
+        "localName": "Catwoman Julie Newmar",
+        "officialId": 665,
+        "officialName": "Selina Kyle",
+        "officialAlias": "Catwoman (Julie Newmar)",
+        "score": 10000
+      },
+      {
+        "localName": "Mr. Camera",
+        "officialId": 733,
+        "officialName": "Harry Simms",
+        "officialAlias": "Mr. Camera",
+        "score": 10000
+      },
+      {
+        "localName": "Condiment King",
+        "officialId": 590,
+        "officialName": "Mitchell Mayo",
+        "officialAlias": "Condiment King",
+        "score": 10000
+      },
+      {
+        "localName": "Arkham Assistant 1",
+        "officialId": 794,
+        "officialName": "Unknown",
+        "officialAlias": "Arkham Assistant 1",
+        "score": 10000
+      },
+      {
+        "localName": "Thug 5",
+        "officialId": 548,
+        "officialName": "Unknown",
+        "officialAlias": "Thug 5",
+        "score": 10000
+      },
+      {
+        "localName": "Thug 3",
+        "officialId": 546,
+        "officialName": "Unknown",
+        "officialAlias": "Thug 3",
+        "score": 10000
+      },
+      {
+        "localName": "Crazy Quilt",
+        "officialId": 625,
+        "officialName": "Paul Dekker",
+        "officialAlias": "Crazy Quilt",
+        "score": 10000
+      },
+      {
+        "localName": "Sewer Swarm",
+        "officialId": 459,
+        "officialName": "Unknown",
+        "officialAlias": "Sewer Swarm",
+        "score": 10000
+      },
+      {
+        "localName": "Arkham Assistant 2",
+        "officialId": 795,
+        "officialName": "Unknown",
+        "officialAlias": "Arkham Assistant 2",
+        "score": 10000
+      },
+      {
+        "localName": "Thug 6",
+        "officialId": 549,
+        "officialName": "Unknown",
+        "officialAlias": "Thug 6",
+        "score": 10000
+      },
+      {
+        "localName": "Thug 4",
+        "officialId": 547,
+        "officialName": "Unknown",
+        "officialAlias": "Thug 4",
+        "score": 10000
+      },
+      {
+        "localName": "Eraser",
+        "officialId": 626,
+        "officialName": "Leonard Fiasco",
+        "officialAlias": "Eraser",
+        "score": 10000
+      },
+      {
+        "localName": "Kite-Man",
+        "officialId": 568,
+        "officialName": "Charles Brown",
+        "officialAlias": "Kite-Man",
+        "score": 10000
+      },
+      {
+        "localName": "Signalman",
+        "officialId": 661,
+        "officialName": "Phillip Cobb",
+        "officialAlias": "Signalman",
+        "score": 10000
+      },
+      {
+        "localName": "Calendar Man",
+        "officialId": 589,
+        "officialName": "Julian Gregory Day",
+        "officialAlias": "Calendar Man",
+        "score": 10000
+      },
+      {
+        "localName": "Mr. Hammer",
+        "officialId": 2,
+        "officialName": "Abramovici",
+        "officialAlias": "Mr. Hammer",
+        "score": 10000
+      },
+      {
+        "localName": "Arsenal",
+        "officialId": 3,
+        "officialName": "Roy Harper, Jr.",
+        "officialAlias": "Arsenal",
+        "score": 10000
+      },
+      {
+        "localName": "Alfred Pennyworth",
+        "officialId": 4,
+        "officialName": "Alfred Pennyworth",
+        "officialAlias": "Alfred Pennyworth",
+        "score": 10000
+      },
+      {
+        "localName": "Black Mask",
+        "officialId": 5,
+        "officialName": "Roman Sionis",
+        "officialAlias": "Black Mask",
+        "score": 10000
+      },
+      {
+        "localName": "Nyssa Al Ghul",
+        "officialId": 6,
+        "officialName": "Nyssa Raatko",
+        "officialAlias": "Nyssa Al Ghul",
+        "score": 10000
+      },
+      {
+        "localName": "The Riddler (Arkham Knight)",
+        "officialId": 7,
+        "officialName": "Edward Nigma",
+        "officialAlias": "The Riddler (Arkham Knight)",
+        "score": 10000
+      },
+      {
+        "localName": "The Riddler's Mech",
+        "officialId": 8,
+        "officialName": "Edward Nigma",
+        "officialAlias": "The Riddler's Mech",
+        "score": 10000
+      },
+      {
+        "localName": "Arkham Guard 1",
+        "officialId": 14,
+        "officialName": "Unknown",
+        "officialAlias": "Arkham Guard 1",
+        "score": 10000
+      },
+      {
+        "localName": "Arkham Guard 2",
+        "officialId": 15,
+        "officialName": "Unknown",
+        "officialAlias": "Arkham Guard 2",
+        "score": 10000
+      },
+      {
+        "localName": "Arkham Guard 3",
+        "officialId": 16,
+        "officialName": "Unknown",
+        "officialAlias": "Arkham Guard 3",
+        "score": 10000
+      },
+      {
+        "localName": "Bat-Mite",
+        "officialId": 29,
+        "officialName": "Unknown",
+        "officialAlias": "Bat-Mite",
+        "score": 10000
+      },
+      {
+        "localName": "Batgirl",
+        "officialId": 30,
+        "officialName": "Barbara Gordon",
+        "officialAlias": "Batgirl",
+        "score": 10000
+      },
+      {
+        "localName": "Batman",
+        "officialId": 34,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman",
+        "score": 10000
+      },
+      {
+        "localName": "Batman (Ben Affleck)",
+        "officialId": 39,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Ben Affleck)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman (Flashpoint)",
+        "officialId": 40,
+        "officialName": "Thomas Wayne",
+        "officialAlias": "Batman (Flashpoint)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman (Knightfall)",
+        "officialId": 42,
+        "officialName": "Jean Paul Valley",
+        "officialAlias": "Batman (Knightfall)",
+        "score": 10000
+      },
+      {
+        "localName": "Batman (Modern Age)",
+        "officialId": 43,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Modern Age)",
+        "score": 10000
+      },
+      {
+        "localName": "Black Manta",
+        "officialId": 53,
+        "officialName": "David",
+        "officialAlias": "Black Manta",
+        "score": 10000
+      },
+      {
+        "localName": "Bobbie",
+        "officialId": 59,
+        "officialName": "Unknown",
+        "officialAlias": "Bobbie",
+        "score": 10000
+      },
+      {
+        "localName": "Bobbie MKII",
+        "officialId": 60,
+        "officialName": "Unknown",
+        "officialAlias": "Bobbie MKII",
+        "score": 10000
+      },
+      {
+        "localName": "Bud",
+        "officialId": 71,
+        "officialName": "Bud",
+        "officialAlias": "Bud",
+        "score": 10000
+      },
+      {
+        "localName": "Calendar Man",
+        "officialId": 72,
+        "officialName": "Julian Gregory Day",
+        "officialAlias": "Calendar Man",
+        "score": 10000
+      },
+      {
+        "localName": "Captain Cold",
+        "officialId": 75,
+        "officialName": "Leonard Snart",
+        "officialAlias": "Captain Cold",
+        "score": 10000
+      },
+      {
+        "localName": "Carnivorous Plant",
+        "officialId": 76,
+        "officialName": "Unknown",
+        "officialAlias": "Carnivorous Plant",
+        "score": 10000
+      },
+      {
+        "localName": "Coldy",
+        "officialId": 85,
+        "officialName": "Unknown",
+        "officialAlias": "Coldy",
+        "score": 10000
+      },
+      {
+        "localName": "Commissioner Gordon",
+        "officialId": 86,
+        "officialName": "James W. Gordon",
+        "officialAlias": "Commissioner Gordon",
+        "score": 10000
+      },
+      {
+        "localName": "Deadshot (Classic)",
+        "officialId": 95,
+        "officialName": "Floyd Lawton",
+        "officialAlias": "Deadshot (Classic)",
+        "score": 10000
+      },
+      {
+        "localName": "Dollotron 1",
+        "officialId": 103,
+        "officialName": "Unknown",
+        "officialAlias": "Dollotron 1",
+        "score": 10000
+      },
+      {
+        "localName": "Dollotron 2",
+        "officialId": 104,
+        "officialName": "Unknown",
+        "officialAlias": "Dollotron 2",
+        "score": 10000
+      },
+      {
+        "localName": "Dollotron 3",
+        "officialId": 105,
+        "officialName": "Unknown",
+        "officialAlias": "Dollotron 3",
+        "score": 10000
+      },
+      {
+        "localName": "Electrocutioner",
+        "officialId": 108,
+        "officialName": "Lester Buchinsky",
+        "officialAlias": "Electrocutioner",
+        "score": 10000
+      },
+      {
+        "localName": "Emperor Penguin",
+        "officialId": 110,
+        "officialName": "Ignatius Ogilvy",
+        "officialAlias": "Emperor Penguin",
+        "score": 10000
+      },
+      {
+        "localName": "Firefly",
+        "officialId": 115,
+        "officialName": "Garfield Lynns",
+        "officialAlias": "Firefly",
+        "score": 10000
+      },
+      {
+        "localName": "Freezy",
+        "officialId": 117,
+        "officialName": "Unknown",
+        "officialAlias": "Freezy",
+        "score": 10000
+      },
+      {
+        "localName": "Goat Head Priest",
+        "officialId": 119,
+        "officialName": "Unknown",
+        "officialAlias": "Goat Head Priest",
+        "score": 10000
+      },
+      {
+        "localName": "Goro",
+        "officialId": 126,
+        "officialName": "Unknown",
+        "officialAlias": "Goro",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Quinn (Rebirth)",
+        "officialId": 135,
+        "officialName": "Dr. Harleen Frances Quinzel",
+        "officialAlias": "Harley Quinn (Rebirth)",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Quinn (Suicide Squad)",
+        "officialId": 136,
+        "officialName": "Dr. Harleen Frances Quinzel",
+        "officialAlias": "Harley Quinn (Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Hawkgirl",
+        "officialId": 147,
+        "officialName": "Kendra Saunders",
+        "officialAlias": "Hawkgirl",
+        "score": 10000
+      },
+      {
+        "localName": "Hawkman",
+        "officialId": 148,
+        "officialName": "Carter Hall",
+        "officialAlias": "Hawkman",
+        "score": 10000
+      },
+      {
+        "localName": "Heat Wave",
+        "officialId": 149,
+        "officialName": "Mick Rory",
+        "officialAlias": "Heat Wave",
+        "score": 10000
+      },
+      {
+        "localName": "Henry Ballard",
+        "officialId": 150,
+        "officialName": "Henry Ballard",
+        "officialAlias": "Henry Ballard",
+        "score": 10000
+      },
+      {
+        "localName": "High Court Lady",
+        "officialId": 151,
+        "officialName": "Unknown",
+        "officialAlias": "High Court Lady",
+        "score": 10000
+      },
+      {
+        "localName": "High Court Member",
+        "officialId": 152,
+        "officialName": "Unknown",
+        "officialAlias": "High Court Member",
+        "score": 10000
+      },
+      {
+        "localName": "High Security Henchman",
+        "officialId": 154,
+        "officialName": "Unknown",
+        "officialAlias": "High Security Henchman",
+        "score": 10000
+      },
+      {
+        "localName": "Huntress",
+        "officialId": 157,
+        "officialName": "Helena Bertinelli",
+        "officialAlias": "Huntress",
+        "score": 10000
+      },
+      {
+        "localName": "Ichi",
+        "officialId": 160,
+        "officialName": "Unknown",
+        "officialAlias": "Ichi",
+        "score": 10000
+      },
+      {
+        "localName": "Icy",
+        "officialId": 161,
+        "officialName": "Unknown",
+        "officialAlias": "Icy",
+        "score": 10000
+      },
+      {
+        "localName": "Jason Blood",
+        "officialId": 162,
+        "officialName": "Jason Blood",
+        "officialAlias": "Jason Blood",
+        "score": 10000
+      },
+      {
+        "localName": "John Constantine",
+        "officialId": 164,
+        "officialName": "John Constantine",
+        "officialAlias": "John Constantine",
+        "score": 10000
+      },
+      {
+        "localName": "Joker",
+        "officialId": 165,
+        "officialName": "Unknown",
+        "officialAlias": "Joker",
+        "score": 10000
+      },
+      {
+        "localName": "Joker (Jared Leto)",
+        "officialId": 168,
+        "officialName": "Unknown",
+        "officialAlias": "Joker (Jared Leto)",
+        "score": 10000
+      },
+      {
+        "localName": "Joker's Daughter",
+        "officialId": 171,
+        "officialName": "Duela Dent",
+        "officialAlias": "Joker's Daughter",
+        "score": 10000
+      },
+      {
+        "localName": "Katana",
+        "officialId": 173,
+        "officialName": "Tatsu Yamashiro",
+        "officialAlias": "Katana",
+        "score": 10000
+      },
+      {
+        "localName": "Ki",
+        "officialId": 175,
+        "officialName": "Unknown",
+        "officialAlias": "Ki",
+        "score": 10000
+      },
+      {
+        "localName": "Lou",
+        "officialId": 194,
+        "officialName": "Lou",
+        "officialAlias": "Lou",
+        "score": 10000
+      },
+      {
+        "localName": "Mary",
+        "officialId": 197,
+        "officialName": "Unknown",
+        "officialAlias": "Mary",
+        "score": 10000
+      },
+      {
+        "localName": "Militia Soldier 1",
+        "officialId": 201,
+        "officialName": "Perry",
+        "officialAlias": "Militia Soldier 1",
+        "score": 10000
+      },
+      {
+        "localName": "Militia Soldier 2",
+        "officialId": 203,
+        "officialName": "Unknown",
+        "officialAlias": "Militia Soldier 2",
+        "score": 10000
+      },
+      {
+        "localName": "Militia Soldier 3",
+        "officialId": 204,
+        "officialName": "Scott",
+        "officialAlias": "Militia Soldier 3",
+        "score": 10000
+      },
+      {
+        "localName": "Militia Brute",
+        "officialId": 205,
+        "officialName": "Drummer",
+        "officialAlias": "Militia Brute",
+        "score": 10000
+      },
+      {
+        "localName": "Mr. Freeze (Arkham Knight)",
+        "officialId": 214,
+        "officialName": "Victor Fries",
+        "officialAlias": "Mr. Freeze (Arkham Knight)",
+        "score": 10000
+      },
+      {
+        "localName": "Mr. Grin - Black",
+        "officialId": 215,
+        "officialName": "Unknown",
+        "officialAlias": "Mr. Grin - Black",
+        "score": 10000
+      },
+      {
+        "localName": "Mr. Grin - White",
+        "officialId": 216,
+        "officialName": "Unknown",
+        "officialAlias": "Mr. Grin - White",
+        "score": 10000
+      },
+      {
+        "localName": "Nen",
+        "officialId": 220,
+        "officialName": "Unknown",
+        "officialAlias": "Nen",
+        "score": 10000
+      },
+      {
+        "localName": "Panda Man",
+        "officialId": 227,
+        "officialName": "Unknown",
+        "officialAlias": "Panda Man",
+        "score": 10000
+      },
+      {
+        "localName": "Prisoner 04211",
+        "officialId": 239,
+        "officialName": "Gustaff Gustaffson",
+        "officialAlias": "Prisoner 04211",
+        "score": 10000
+      },
+      {
+        "localName": "Prisoner 47905",
+        "officialId": 241,
+        "officialName": "Carlo Grotti",
+        "officialAlias": "Prisoner 47905",
+        "score": 10000
+      },
+      {
+        "localName": "Prisoner 93432",
+        "officialId": 242,
+        "officialName": "Tyrone Johnson",
+        "officialAlias": "Prisoner 93432",
+        "score": 10000
+      },
+      {
+        "localName": "Professor Pyg",
+        "officialId": 243,
+        "officialName": "Lazlo Valentin",
+        "officialAlias": "Professor Pyg",
+        "score": 10000
+      },
+      {
+        "localName": "Ra's Al Ghul (Rebirth)",
+        "officialId": 255,
+        "officialName": "Unknown",
+        "officialAlias": "Ra's Al Ghul (Rebirth)",
+        "score": 10000
+      },
+      {
+        "localName": "Reaper",
+        "officialId": 258,
+        "officialName": "Benjamin Gruener",
+        "officialAlias": "Reaper",
+        "score": 10000
+      },
+      {
+        "localName": "Red Hood (Arkham Knight)",
+        "officialId": 259,
+        "officialName": "Jason Todd",
+        "officialAlias": "Red Hood (Arkham Knight)",
+        "score": 10000
+      },
+      {
+        "localName": "Reverse Flash (TV)",
+        "officialId": 261,
+        "officialName": "Eobard Thawne",
+        "officialAlias": "Reverse Flash (TV)",
+        "score": 10000
+      },
+      {
+        "localName": "Rick Flag",
+        "officialId": 262,
+        "officialName": "Richard Rogers Flag",
+        "officialAlias": "Rick Flag",
+        "score": 10000
+      },
+      {
+        "localName": "Robin (Boy Wonder)",
+        "officialId": 270,
+        "officialName": "Dick Grayson",
+        "officialAlias": "Robin (Boy Wonder)",
+        "score": 10000
+      },
+      {
+        "localName": "Scarecrow (Arkham Knight)",
+        "officialId": 278,
+        "officialName": "Jonathan Crane",
+        "officialAlias": "Scarecrow (Arkham Knight)",
+        "score": 10000
+      },
+      {
+        "localName": "Spartan",
+        "officialId": 296,
+        "officialName": "John Diggle",
+        "officialAlias": "Spartan",
+        "score": 10000
+      },
+      {
+        "localName": "Spikes Plant",
+        "officialId": 298,
+        "officialName": "Unknown",
+        "officialAlias": "Spikes Plant",
+        "score": 10000
+      },
+      {
+        "localName": "Tet",
+        "officialId": 311,
+        "officialName": "Unknown",
+        "officialAlias": "Tet",
+        "score": 10000
+      },
+      {
+        "localName": "The Eyeball Man",
+        "officialId": 313,
+        "officialName": "Stan",
+        "officialAlias": "The Eyeball Man",
+        "score": 10000
+      },
+      {
+        "localName": "Vov",
+        "officialId": 335,
+        "officialName": "Unknown",
+        "officialAlias": "Vov",
+        "score": 10000
+      },
+      {
+        "localName": "Zatanna",
+        "officialId": 342,
+        "officialName": "Zatanna Zatara",
+        "officialAlias": "Zatanna",
+        "score": 10000
+      },
+      {
+        "localName": "The Flash",
+        "officialId": 344,
+        "officialName": "Barry Allen",
+        "officialAlias": "The Flash",
+        "score": 10000
+      },
+      {
+        "localName": "Nightwing",
+        "officialId": 345,
+        "officialName": "Dick Grayson",
+        "officialAlias": "Nightwing",
+        "score": 10000
+      },
+      {
+        "localName": "Harley Quinn",
+        "officialId": 347,
+        "officialName": "Dr. Harleen Frances Quinzel",
+        "officialAlias": "Harley Quinn",
+        "score": 10000
+      },
+      {
+        "localName": "Poison Ivy",
+        "officialId": 348,
+        "officialName": "Dr. Pamela Lillian Isley",
+        "officialAlias": "Poison Ivy",
+        "score": 10000
+      },
+      {
+        "localName": "Two-Face",
+        "officialId": 350,
+        "officialName": "Harvey Dent",
+        "officialAlias": "Two-Face",
+        "score": 10000
+      },
+      {
+        "localName": "Green Arrow",
+        "officialId": 353,
+        "officialName": "Oliver Queen",
+        "officialAlias": "Green Arrow",
+        "score": 10000
+      },
+      {
+        "localName": "Catwoman",
+        "officialId": 354,
+        "officialName": "Selina Kyle",
+        "officialAlias": "Catwoman",
+        "score": 10000
+      },
+      {
+        "localName": "Deathstroke (Arkham Origins)",
+        "officialId": 355,
+        "officialName": "Slade Wilson",
+        "officialAlias": "Deathstroke (Arkham Origins)",
+        "score": 10000
+      },
+      {
+        "localName": "Talia Al Ghul",
+        "officialId": 358,
+        "officialName": "Talia Al Ghul",
+        "officialAlias": "Talia Al Ghul",
+        "score": 10000
+      },
+      {
+        "localName": "Owlman",
+        "officialId": 362,
+        "officialName": "Thomas Wayne Jr.",
+        "officialAlias": "Owlman",
+        "score": 10000
+      },
+      {
+        "localName": "Zur-En-Arrh Batman",
+        "officialId": 368,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Zur-En-Arrh Batman",
+        "score": 10000
+      },
+      {
+        "localName": "Queen Hippolita",
+        "officialId": 369,
+        "officialName": "Hippolyta",
+        "officialAlias": "Queen Hippolita",
+        "score": 10000
+      },
+      {
+        "localName": "Amazon Warrior 1",
+        "officialId": 370,
+        "officialName": "Unknown",
+        "officialAlias": "Amazon Warrior 1",
+        "score": 10000
+      },
+      {
+        "localName": "Amazon Warrior 3",
+        "officialId": 371,
+        "officialName": "Unknown",
+        "officialAlias": "Amazon Warrior 3",
+        "score": 10000
+      },
+      {
+        "localName": "Amazon Warrior 2",
+        "officialId": 372,
+        "officialName": "Unknown",
+        "officialAlias": "Amazon Warrior 2",
+        "score": 10000
+      },
+      {
+        "localName": "Johnny Quick",
+        "officialId": 375,
+        "officialName": "Jonathan Allen",
+        "officialAlias": "Johnny Quick",
+        "score": 10000
+      },
+      {
+        "localName": "Batman (Rebirth)",
+        "officialId": 381,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Rebirth)",
+        "score": 10000
+      },
+      {
+        "localName": "Lobo",
+        "officialId": 382,
+        "officialName": "Unknown",
+        "officialAlias": "Lobo",
+        "score": 10000
+      },
+      {
+        "localName": "Killer Frost",
+        "officialId": 384,
+        "officialName": "Louise Lincoln",
+        "officialAlias": "Killer Frost",
+        "score": 10000
+      },
+      {
+        "localName": "The Batman Who Laughs",
+        "officialId": 385,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "The Batman Who Laughs",
+        "score": 10000
+      },
+      {
+        "localName": "Catwoman (Modern Age)",
+        "officialId": 386,
+        "officialName": "Selina Kyle",
+        "officialAlias": "Catwoman (Modern Age)",
+        "score": 10000
+      },
+      {
+        "localName": "Swamp Thing",
+        "officialId": 387,
+        "officialName": "Alec Holland",
+        "officialAlias": "Swamp Thing",
+        "score": 10000
+      },
+      {
+        "localName": "Deadman",
+        "officialId": 388,
+        "officialName": "Boston Brand",
+        "officialAlias": "Deadman",
+        "score": 10000
+      },
+      {
+        "localName": "Black Orchid",
+        "officialId": 389,
+        "officialName": "Susan Linden",
+        "officialAlias": "Black Orchid",
+        "score": 10000
+      },
+      {
+        "localName": "Lexcorp Heavy Trooper",
+        "officialId": 392,
+        "officialName": "Unknown",
+        "officialAlias": "Lexcorp Heavy Trooper",
+        "score": 10000
+      },
+      {
+        "localName": "LexCorp Trooper 1",
+        "officialId": 393,
+        "officialName": "Unknown",
+        "officialAlias": "LexCorp Trooper 1",
+        "score": 10000
+      },
+      {
+        "localName": "LexCorp Trooper 2",
+        "officialId": 394,
+        "officialName": "Unknown",
+        "officialAlias": "LexCorp Trooper 2",
+        "score": 10000
+      },
+      {
+        "localName": "LexCorp Trooper 3",
+        "officialId": 395,
+        "officialName": "Unknown",
+        "officialAlias": "LexCorp Trooper 3",
+        "score": 10000
+      },
+      {
+        "localName": "Iceman",
+        "officialId": 401,
+        "officialName": "Rosco Versace",
+        "officialAlias": "Iceman",
+        "score": 10000
+      },
+      {
+        "localName": "King Shark",
+        "officialId": 403,
+        "officialName": "Shay Lamden",
+        "officialAlias": "King Shark",
+        "score": 10000
+      },
+      {
+        "localName": "Rastaclown",
+        "officialId": 405,
+        "officialName": "Unknown",
+        "officialAlias": "Rastaclown",
+        "score": 10000
+      },
+      {
+        "localName": "Batman (Knightmare)",
+        "officialId": 406,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Knightmare)",
+        "score": 10000
+      },
+      {
+        "localName": "Booster Gold",
+        "officialId": 407,
+        "officialName": "Michael Jon Carter",
+        "officialAlias": "Booster Gold",
+        "score": 10000
+      },
+      {
+        "localName": "Blue Beetle",
+        "officialId": 408,
+        "officialName": "Ted Kord",
+        "officialAlias": "Blue Beetle",
+        "score": 10000
+      },
+      {
+        "localName": "Poison Ivy",
+        "officialId": 409,
+        "officialName": "Dr. Pamela Lillian Isley",
+        "officialAlias": "Poison Ivy",
+        "score": 10000
+      },
+      {
+        "localName": "The Demon",
+        "officialId": 413,
+        "officialName": "Etrigan",
+        "officialAlias": "The Demon",
+        "score": 10000
+      },
+      {
+        "localName": "The Wizard",
+        "officialId": 414,
+        "officialName": "Malcolm Merlyn",
+        "officialAlias": "The Wizard",
+        "score": 10000
+      },
+      {
+        "localName": "The Flash (TV Show)",
+        "officialId": 419,
+        "officialName": "Barry Allen",
+        "officialAlias": "The Flash (TV Show)",
+        "score": 10000
+      },
+      {
+        "localName": "Vibe",
+        "officialId": 420,
+        "officialName": "Cisco Ramon",
+        "officialAlias": "Vibe",
+        "score": 10000
+      },
+      {
+        "localName": "Harry",
+        "officialId": 421,
+        "officialName": "Harrison Wells (Earth's 2)",
+        "officialAlias": "Harry",
+        "score": 10000
+      },
+      {
+        "localName": "Black Flash",
+        "officialId": 430,
+        "officialName": "Unknown",
+        "officialAlias": "Black Flash",
+        "score": 10000
+      },
+      {
+        "localName": "Joker (The Killing Joke)",
+        "officialId": 431,
+        "officialName": "Unknown",
+        "officialAlias": "Joker (The Killing Joke)",
+        "score": 10000
+      },
+      {
+        "localName": "Hasssasin 1",
+        "officialId": 460,
+        "officialName": "Unknown",
+        "officialAlias": "Hasssasin 1",
+        "score": 10000
+      },
+      {
+        "localName": "Hasssasin 2",
+        "officialId": 461,
+        "officialName": "Unknown",
+        "officialAlias": "Hasssasin 2",
+        "score": 10000
+      },
+      {
+        "localName": "Hasssasin 3",
+        "officialId": 462,
+        "officialName": "Unknown",
+        "officialAlias": "Hasssasin 3",
+        "score": 10000
+      },
+      {
+        "localName": "Hasssasin 4",
+        "officialId": 463,
+        "officialName": "Unknown",
+        "officialAlias": "Hasssasin 4",
+        "score": 10000
+      },
+      {
+        "localName": "Joker's Biker 3",
+        "officialId": 472,
+        "officialName": "Unknown",
+        "officialAlias": "Joker's Biker 3",
+        "score": 10000
+      },
+      {
+        "localName": "Chuckles",
+        "officialId": 489,
+        "officialName": "Unknown",
+        "officialAlias": "Chuckles",
+        "score": 10000
+      },
+      {
+        "localName": "Bronze Tiger",
+        "officialId": 497,
+        "officialName": "Benjamin Turner",
+        "officialAlias": "Bronze Tiger",
+        "score": 10000
+      },
+      {
+        "localName": "Mahoney",
+        "officialId": 513,
+        "officialName": "Unknown",
+        "officialAlias": "Mahoney",
+        "score": 10000
+      },
+      {
+        "localName": "1 Dollar",
+        "officialId": 514,
+        "officialName": "Unknown",
+        "officialAlias": "1 Dollar",
+        "score": 10000
+      },
+      {
+        "localName": "Li Holidays",
+        "officialId": 515,
+        "officialName": "Unknown",
+        "officialAlias": "Li Holidays",
+        "score": 10000
+      },
+      {
+        "localName": "Tyrant",
+        "officialId": 516,
+        "officialName": "Unknown",
+        "officialAlias": "Tyrant",
+        "score": 10000
+      },
+      {
+        "localName": "Big Sidekick",
+        "officialId": 517,
+        "officialName": "Unknown",
+        "officialAlias": "Big Sidekick",
+        "score": 10000
+      },
+      {
+        "localName": "Hayabusa",
+        "officialId": 518,
+        "officialName": "Unknown",
+        "officialAlias": "Hayabusa",
+        "score": 10000
+      },
+      {
+        "localName": "Boogeyman",
+        "officialId": 519,
+        "officialName": "Johnny",
+        "officialAlias": "Boogeyman",
+        "score": 10000
+      },
+      {
+        "localName": "That",
+        "officialId": 520,
+        "officialName": "Unknown",
+        "officialAlias": "That",
+        "score": 10000
+      },
+      {
+        "localName": "Bruce Wayne",
+        "officialId": 521,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Bruce Wayne",
+        "score": 10000
+      },
+      {
+        "localName": "Matches Malone",
+        "officialId": 522,
+        "officialName": "Unknown",
+        "officialAlias": "Matches Malone",
+        "score": 10000
+      },
+      {
+        "localName": "Grifter",
+        "officialId": 523,
+        "officialName": "Cole Cash",
+        "officialAlias": "Grifter",
+        "score": 10000
+      },
+      {
+        "localName": "Joe Chill",
+        "officialId": 551,
+        "officialName": "Joseph Chilton",
+        "officialAlias": "Joe Chill",
+        "score": 10000
+      },
+      {
+        "localName": "Leonard Hofstadter",
+        "officialId": 591,
+        "officialName": "Leonard Hofstadter",
+        "officialAlias": "Leonard Hofstadter",
+        "score": 10000
+      },
+      {
+        "localName": "Sheldon Cooper",
+        "officialId": 592,
+        "officialName": "Sheldon Cooper",
+        "officialAlias": "Sheldon Cooper",
+        "score": 10000
+      },
+      {
+        "localName": "Penny",
+        "officialId": 593,
+        "officialName": "Penny",
+        "officialAlias": "Penny",
+        "score": 10000
+      },
+      {
+        "localName": "Howard Wolowitz",
+        "officialId": 594,
+        "officialName": "Howard Wolowitz",
+        "officialAlias": "Howard Wolowitz",
+        "score": 10000
+      },
+      {
+        "localName": "Rajesh Koothrappali",
+        "officialId": 595,
+        "officialName": "Rajesh Koothrappali",
+        "officialAlias": "Rajesh Koothrappali",
+        "score": 10000
+      },
+      {
+        "localName": "Zack Johnson",
+        "officialId": 596,
+        "officialName": "Zack Johnson",
+        "officialAlias": "Zack Johnson",
+        "score": 10000
+      },
+      {
+        "localName": "The Grim Knight",
+        "officialId": 597,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "The Grim Knight",
+        "score": 10000
+      },
+      {
+        "localName": "Green Arrow",
+        "officialId": 649,
+        "officialName": "Oliver Queen",
+        "officialAlias": "Green Arrow",
+        "score": 10000
+      },
+      {
+        "localName": "Alfred Pennyworth",
+        "officialId": 681,
+        "officialName": "Alfred Pennyworth",
+        "officialAlias": "Alfred Pennyworth",
+        "score": 10000
+      },
+      {
+        "localName": "Catwoman (Zoë Kravitz)",
+        "officialId": 710,
+        "officialName": "Selina Kyle",
+        "officialAlias": "Catwoman (Zoë Kravitz)",
+        "score": 10000
+      },
+      {
+        "localName": "Underworlder 3",
+        "officialId": 757,
+        "officialName": "Unknown",
+        "officialAlias": "Underworlder 3",
+        "score": 10000
+      },
+      {
+        "localName": "Batman (High Seas)",
+        "officialId": 816,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (High Seas)",
+        "score": 10000
+      },
+      {
+        "localName": "Spoiler",
+        "officialId": 818,
+        "officialName": "Stephanie Brown",
+        "officialAlias": "Spoiler",
+        "score": 10000
+      },
+      {
+        "localName": "Ratcatcher 2 (The Suicide Squad)",
+        "officialId": 824,
+        "officialName": "Cleo Cazo",
+        "officialAlias": "Ratcatcher 2 (The Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "T.D.K. (The Suicide Squad)",
+        "officialId": 825,
+        "officialName": "Cory Pitzner",
+        "officialAlias": "T.D.K. (The Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Weasel (The Suicide Squad)",
+        "officialId": 826,
+        "officialName": "Unknown",
+        "officialAlias": "Weasel (The Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Thinker (The Suicide Squad)",
+        "officialId": 827,
+        "officialName": "Gaius Grieves",
+        "officialAlias": "Thinker (The Suicide Squad)",
+        "score": 10000
+      },
+      {
+        "localName": "Punchline",
+        "officialId": 834,
+        "officialName": "Alexis Kaye",
+        "officialAlias": "Punchline",
+        "score": 10000
+      },
+      {
+        "localName": "Batman (Dark Knight Rises)",
+        "officialId": 850,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Batman (Dark Knight Rises)",
+        "score": 10000
+      },
+      {
+        "localName": "Catwoman (Dark Knight Rises)",
+        "officialId": 851,
+        "officialName": "Selina Kyle",
+        "officialAlias": "Catwoman (Dark Knight Rises)",
+        "score": 10000
+      },
+      {
+        "localName": "Cheshire",
+        "officialId": 856,
+        "officialName": "Jade Nguyen",
+        "officialAlias": "Cheshire",
+        "score": 10000
+      }
+    ],
+    "differences": [],
+    "unmatchedLocal": [],
+    "disabledLocalOnly": [
+      {
+        "localName": "Warden Sharp",
+        "localRealName": "Quincy Ulysses Sharp",
+        "base": "30mm",
+        "rep": 50,
+        "funding": 0,
+        "rank": [
+          "Leader",
+          "Sidekick"
+        ],
+        "faction": [
+          "League of Shadows",
+          "GCPD"
+        ]
+      },
+      {
+        "localName": "Jokermobile Arkham Knight",
+        "localRealName": "Unknown",
+        "base": "90mm",
+        "rep": 130,
+        "funding": 0,
+        "rank": [
+          "Leader"
+        ],
+        "faction": [
+          "Joker"
+        ]
+      },
+      {
+        "localName": "Poison Ivy Arkham City",
+        "localRealName": "Dr. Pamela Lillian Isley",
+        "base": "30mm",
+        "rep": 101,
+        "funding": 0,
+        "rank": [
+          "Leader"
+        ],
+        "faction": [
+          "Birds of Prey"
+        ]
+      },
+      {
+        "localName": "Batmobile Arkham Knight",
+        "localRealName": "Bruce Wayne",
+        "base": "90mm",
+        "rep": 160,
+        "funding": 0,
+        "rank": [
+          "Leader"
+        ],
+        "faction": [
+          "Bat Family",
+          "GCPD"
+        ]
+      },
+      {
+        "localName": "Batman Arkham City",
+        "localRealName": "Bruce Wayne",
+        "base": "60mm",
+        "rep": 125,
+        "funding": 0,
+        "rank": [
+          "Leader"
+        ],
+        "faction": [
+          "Bat Family",
+          "GCPD"
+        ]
+      },
+      {
+        "localName": "Green Arrow (Arrow)",
+        "localRealName": "Oliver Queen",
+        "base": "30mm",
+        "rep": 120,
+        "funding": 0,
+        "rank": [
+          "Leader"
+        ],
+        "faction": [
+          "GCPD"
+        ]
+      },
+      {
+        "localName": "Mad Hatter Arkham Knight",
+        "localRealName": "Jervis Tech",
+        "base": "30mm",
+        "rep": 70,
+        "funding": 200,
+        "rank": [
+          "Free Agent"
+        ],
+        "faction": [
+          "Unknown"
+        ]
+      },
+      {
+        "localName": "Rebel Armored Assassin",
+        "localRealName": "Unknown",
+        "base": "30mm",
+        "rep": 35,
+        "funding": 200,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "Rebel Masked Assassin 2",
+        "localRealName": "Unknown",
+        "base": "30mm",
+        "rep": 28,
+        "funding": 0,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "Rebel Monk",
+        "localRealName": "Unknown",
+        "base": "40mm",
+        "rep": 35,
+        "funding": 0,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "Rebel Masked Assassin 1",
+        "localRealName": "Unknown",
+        "base": "30mm",
+        "rep": 35,
+        "funding": 150,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "Shadow Armored Assassin",
+        "localRealName": "Unknown",
+        "base": "30mm",
+        "rep": 32,
+        "funding": 0,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "Armored Assassin",
+        "localRealName": "Unknown",
+        "base": "30mm",
+        "rep": 29,
+        "funding": 200,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "Guardian Monk",
+        "localRealName": "Unknown",
+        "base": "40mm",
+        "rep": 52,
+        "funding": 0,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "Nyssa al Ghul (Arkham Knight)",
+        "localRealName": "Nyssa Raatko",
+        "base": "40mm",
+        "rep": 100,
+        "funding": 0,
+        "rank": [
+          "Leader"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "Henry Ducard",
+        "localRealName": "Unknown",
+        "base": "30mm",
+        "rep": 108,
+        "funding": 0,
+        "rank": [
+          "Leader",
+          "Sidekick"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "Raven Trigon's Daughter",
+        "localRealName": "Rachel Roth",
+        "base": "60mm",
+        "rep": 70,
+        "funding": 200,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "Bat Family"
+        ]
+      },
+      {
+        "localName": "Ra's al Ghul Decoy",
+        "localRealName": "Unknown",
+        "base": "30mm",
+        "rep": 46,
+        "funding": 0,
+        "rank": [
+          "Leader"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "League of Shadows Ninja 1",
+        "localRealName": "Unknown",
+        "base": "30mm",
+        "rep": 40,
+        "funding": 100,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "League of Shadows Ninja 3",
+        "localRealName": "Unknown",
+        "base": "30mm",
+        "rep": 26,
+        "funding": 300,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "Bruce Batman Begins",
+        "localRealName": "Bruce Wayne",
+        "base": "30mm",
+        "rep": 52,
+        "funding": 0,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "Gordon Infiltrate",
+        "localRealName": "James W. Gordon",
+        "base": "30mm",
+        "rep": 40,
+        "funding": 300,
+        "rank": [
+          "Sidekick"
+        ],
+        "faction": [
+          "GCPD"
+        ]
+      },
+      {
+        "localName": "League of Shadows Ninja 2",
+        "localRealName": "Unknown",
+        "base": "30mm",
+        "rep": 28,
+        "funding": 0,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "Batman Dark Knight Rises Batpod",
+        "localRealName": "Bruce Wayne / 42x75mm",
+        "base": "42x75mm",
+        "rep": 120,
+        "funding": 0,
+        "rank": [
+          "Leader"
+        ],
+        "faction": [
+          "GCPD"
+        ]
+      },
+      {
+        "localName": "Chuckcles",
+        "localRealName": "Unknown",
+        "base": "30mm",
+        "rep": 23,
+        "funding": 200,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "Joker"
+        ]
+      },
+      {
+        "localName": "Rastaclow",
+        "localRealName": "Unknown",
+        "base": "30mm",
+        "rep": 21,
+        "funding": 600,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "Joker"
+        ]
+      },
+      {
+        "localName": "Hassassin 4",
+        "localRealName": "Unknown",
+        "base": "30mm",
+        "rep": 22,
+        "funding": 0,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "Hassassin 1",
+        "localRealName": "Unknown",
+        "base": "30mm",
+        "rep": 20,
+        "funding": 0,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "Hassassin 3",
+        "localRealName": "Unknown",
+        "base": "30mm",
+        "rep": 20,
+        "funding": 100,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "Hassassin 2",
+        "localRealName": "Unknown",
+        "base": "30mm",
+        "rep": 24,
+        "funding": 0,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ]
+      },
+      {
+        "localName": "Harley Quinn KaBoom!",
+        "localRealName": "Dr. Harleen Frances Quinzel",
+        "base": "60mm",
+        "rep": 84,
+        "funding": 0,
+        "rank": [
+          "Sidekick"
+        ],
+        "faction": [
+          "Birds of Prey"
+        ]
+      },
+      {
+        "localName": "Batgirl Vampire Queen",
+        "localRealName": "Barbara Gordon",
+        "base": "40mm",
+        "rep": 130,
+        "funding": 0,
+        "rank": [
+          "Leader"
+        ],
+        "faction": [
+          "Bat Family",
+          "GCPD"
+        ]
+      },
+      {
+        "localName": "The Penguin Crime Lord Rising",
+        "localRealName": "Oswald Chesterfield Cobblepot",
+        "base": "40mm",
+        "rep": 74,
+        "funding": 0,
+        "rank": [
+          "Leader"
+        ],
+        "faction": [
+          "Penguin"
+        ]
+      }
+    ],
+    "ambiguousLocal": [],
+    "missingLocal": []
+  },
+  "equipment": {
+    "missingLocal": [],
+    "missingOfficial": [],
+    "disabledLocalOnly": [
+      {
+        "faction": "Bat Family",
+        "name": "Always Prepared",
+        "maxPerCrew": 1,
+        "fundingCost": 200,
+        "repCost": 0,
+        "conditions": []
+      },
+      {
+        "faction": "Bat Family",
+        "name": "The Leader",
+        "maxPerCrew": 1,
+        "fundingCost": 0,
+        "repCost": 0,
+        "conditions": [
+          "Alias: Batman (Multiverse) in crew"
+        ]
+      },
+      {
+        "faction": "Bat Family",
+        "name": "The Shadows",
+        "maxPerCrew": 1,
+        "fundingCost": 0,
+        "repCost": 0,
+        "conditions": [
+          "Alias: Batman (Multiverse) in crew"
+        ]
+      },
+      {
+        "faction": "Bat Family",
+        "name": "Improved Bat-Armor",
+        "maxPerCrew": 1,
+        "fundingCost": 0,
+        "repCost": 0,
+        "conditions": [
+          "Lucius Fox",
+          "Model has Bat-Armor MK II trait"
+        ]
+      },
+      {
+        "faction": "Bat Family",
+        "name": "Improved Batclaw",
+        "maxPerCrew": 1,
+        "fundingCost": 0,
+        "repCost": 0,
+        "conditions": [
+          "Lucius Fox",
+          "Model has Batclaw/Grapple Gun trait"
+        ]
+      },
+      {
+        "faction": "Bat Family",
+        "name": "Improved Batlings",
+        "maxPerCrew": 1,
+        "fundingCost": 0,
+        "repCost": 0,
+        "conditions": [
+          "Lucius Fox",
+          "Weapon has Throwing trait"
+        ]
+      },
+      {
+        "faction": "Bat Family",
+        "name": "Improved Reinforced Gloves",
+        "maxPerCrew": 1,
+        "fundingCost": 0,
+        "repCost": 0,
+        "conditions": [
+          "Lucius Fox",
+          "Model has Reinforced Gloves trait"
+        ]
+      },
+      {
+        "faction": "Bat Family",
+        "name": "The Turning",
+        "maxPerCrew": 4,
+        "fundingCost": 200,
+        "repCost": 10,
+        "conditions": [
+          "Vampire Queen in crew"
+        ]
+      },
+      {
+        "faction": "Joker",
+        "name": "Flare",
+        "maxPerCrew": 2,
+        "fundingCost": 300,
+        "repCost": 0,
+        "conditions": []
+      },
+      {
+        "faction": "Penguin",
+        "name": "Neurotoxic Drugs",
+        "maxPerCrew": 1,
+        "fundingCost": 500,
+        "repCost": 0,
+        "conditions": [
+          "Iceberg Lounge"
+        ]
+      },
+      {
+        "faction": "Penguin",
+        "name": "Silencer",
+        "maxPerCrew": 1,
+        "fundingCost": 400,
+        "repCost": 0,
+        "conditions": [
+          "Iceberg Lounge"
+        ]
+      },
+      {
+        "faction": "Penguin",
+        "name": "Weird Ammo",
+        "maxPerCrew": 1,
+        "fundingCost": 300,
+        "repCost": 0,
+        "conditions": [
+          "Iceberg Lounge"
+        ]
+      },
+      {
+        "faction": "Penguin",
+        "name": "Mutation Serum",
+        "maxPerCrew": 1,
+        "fundingCost": 500,
+        "repCost": 0,
+        "conditions": [
+          "Iceberg Lounge"
+        ]
+      },
+      {
+        "faction": "Penguin",
+        "name": "Fear Gas Dispenser",
+        "maxPerCrew": 1,
+        "fundingCost": 600,
+        "repCost": 0,
+        "conditions": [
+          "Iceberg Lounge"
+        ]
+      },
+      {
+        "faction": "Penguin",
+        "name": "Titan Dose",
+        "maxPerCrew": 1,
+        "fundingCost": 300,
+        "repCost": 0,
+        "conditions": [
+          "Iceberg Lounge"
+        ]
+      },
+      {
+        "faction": "Penguin",
+        "name": "Prototype Freeze Ray",
+        "maxPerCrew": 1,
+        "fundingCost": 500,
+        "repCost": 0,
+        "conditions": [
+          "Iceberg Lounge"
+        ]
+      },
+      {
+        "faction": "Court of Owls",
+        "name": "Magazine",
+        "maxPerCrew": 2,
+        "fundingCost": 100,
+        "repCost": 0,
+        "conditions": [
+          "Only Henchman/Free Agents"
+        ]
+      },
+      {
+        "faction": "Court of Owls",
+        "name": "Circus Grooming",
+        "maxPerCrew": 1,
+        "fundingCost": 100,
+        "repCost": 0,
+        "conditions": [
+          "Only Henchman/Free Agents"
+        ]
+      },
+      {
+        "faction": "The Riddler",
+        "name": "Broken Equipment Pack",
+        "maxPerCrew": 1,
+        "fundingCost": 250,
+        "repCost": 0,
+        "conditions": []
+      },
+      {
+        "faction": "League of Shadows",
+        "name": "Combat Bracers",
+        "maxPerCrew": 2,
+        "fundingCost": 150,
+        "repCost": 0,
+        "conditions": []
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Spray Can",
+        "maxPerCrew": 2,
+        "fundingCost": 150,
+        "repCost": 0,
+        "conditions": []
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Grapple-gun",
+        "maxPerCrew": 1,
+        "fundingCost": 300,
+        "repCost": 0,
+        "conditions": [
+          "Plants cannot purchase"
+        ]
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Camo Vest",
+        "maxPerCrew": 1,
+        "fundingCost": 300,
+        "repCost": 0,
+        "conditions": [
+          "Plants cannot purchase"
+        ]
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Adaptive Planning",
+        "maxPerCrew": 2,
+        "fundingCost": 200,
+        "repCost": 2,
+        "conditions": [
+          "Plants cannot purchase"
+        ]
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Titanic Mutation",
+        "maxPerCrew": 2,
+        "fundingCost": 150,
+        "repCost": 0,
+        "conditions": []
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Sense Mutation",
+        "maxPerCrew": 1,
+        "fundingCost": 100,
+        "repCost": 0,
+        "conditions": [
+          "Only Plants"
+        ]
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Extra Spores",
+        "maxPerCrew": 1,
+        "fundingCost": 100,
+        "repCost": 0,
+        "conditions": [
+          "Only Plants"
+        ]
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Spikes Mutation",
+        "maxPerCrew": 2,
+        "fundingCost": 200,
+        "repCost": 0,
+        "conditions": [
+          "Only Plants"
+        ]
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Luminescent Mutation",
+        "maxPerCrew": 1,
+        "fundingCost": 100,
+        "repCost": 0,
+        "conditions": [
+          "Only Plants"
+        ]
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Large Roots",
+        "maxPerCrew": 1,
+        "fundingCost": 200,
+        "repCost": 0,
+        "conditions": [
+          "Only Plants"
+        ]
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Smash 'n Grab",
+        "maxPerCrew": 1,
+        "fundingCost": 200,
+        "repCost": 0,
+        "conditions": [
+          "Dr. Harleen Frances Quinzel",
+          "Plants cannot purchase"
+        ]
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Corrosive Blood",
+        "maxPerCrew": 3,
+        "fundingCost": 50,
+        "repCost": 0,
+        "conditions": [
+          "Dr. Pamela Lillian Isley"
+        ]
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Mutation Serum",
+        "maxPerCrew": 1,
+        "fundingCost": 200,
+        "repCost": 3,
+        "conditions": [
+          "Dr. Pamela Lillian Isley",
+          "Plants cannot purchase"
+        ]
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Modified Pheromone",
+        "maxPerCrew": 1,
+        "fundingCost": 100,
+        "repCost": 0,
+        "conditions": [
+          "Dr. Pamela Lillian Isley",
+          "Name: Dr. Pamela Lillian Isley"
+        ]
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Ancient Plant",
+        "maxPerCrew": 1,
+        "fundingCost": 200,
+        "repCost": 30,
+        "conditions": [
+          "Dr. Pamela Lillian Isley",
+          "Only Plants"
+        ]
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Watch Tower",
+        "maxPerCrew": 1,
+        "fundingCost": 200,
+        "repCost": 0,
+        "conditions": [
+          "Barbara Gordon",
+          "Plants cannot purchase"
+        ]
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Radio",
+        "maxPerCrew": 1,
+        "fundingCost": 200,
+        "repCost": 0,
+        "conditions": [
+          "Barbara Gordon",
+          "Plants cannot purchase"
+        ]
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Pitch Perfect Vocals",
+        "maxPerCrew": 1,
+        "fundingCost": 200,
+        "repCost": 0,
+        "conditions": [
+          "Dinah Lance",
+          "Name: Dinah Lance"
+        ]
+      },
+      {
+        "faction": "Birds of Prey",
+        "name": "Passage",
+        "maxPerCrew": 1,
+        "fundingCost": 200,
+        "repCost": 0,
+        "conditions": [
+          "Alec Holland",
+          "Eternal Option Required"
+        ]
+      },
+      {
+        "faction": "Royal Flush",
+        "name": "Poison Training",
+        "maxPerCrew": 1,
+        "fundingCost": 250,
+        "repCost": 0,
+        "conditions": [
+          "Punchline"
+        ]
+      },
+      {
+        "faction": "Suicide Squad",
+        "name": "Modified Pheromone",
+        "maxPerCrew": 2,
+        "fundingCost": 100,
+        "repCost": 0,
+        "conditions": [
+          "Poison Ivy"
+        ]
+      }
+    ],
+    "differences": [],
+    "ambiguous": []
+  }
+}

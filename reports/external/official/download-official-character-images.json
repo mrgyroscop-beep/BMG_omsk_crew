@@ -1,0 +1,2256 @@
+{
+  "generatedAt": "2026-06-09T04:31:46.525Z",
+  "dryRun": false,
+  "fillMissingLocal": true,
+  "requestTimeout": 15000,
+  "downloaded": [],
+  "skipped": [
+    {
+      "name": "Batman Bushi",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Harley Quinn Arkham Knight",
+      "officialId": 9,
+      "url": "https://app.knightmodels.com/images/character/main/dr-harleen-frances-quinzel-1624967747.png",
+      "path": "img/HarleyQuinnArkhamKnight.png",
+      "reason": "download-failed",
+      "error": "official-placeholder-image"
+    },
+    {
+      "name": "Warden Sharp",
+      "reason": "no-official-match",
+      "matches": []
+    },
+    {
+      "name": "Damien Darhk",
+      "officialId": 415,
+      "url": "https://app.knightmodels.com/images/character/main/415-damien-darhk-damien-darhk.png",
+      "path": "img/DamienDarhk.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Jokermobile Arkham Knight",
+      "reason": "no-official-match",
+      "matches": []
+    },
+    {
+      "name": "Harley Quinn Gatling Brute",
+      "officialId": 644,
+      "url": "https://app.knightmodels.com/images/character/main/unknown-1624972740.png",
+      "path": "img/HarleyQuinnGatlingBrute.png",
+      "reason": "download-failed",
+      "error": "official-placeholder-image"
+    },
+    {
+      "name": "Nightwing Arkham Knight",
+      "officialId": 222,
+      "url": "https://app.knightmodels.com/images/character/main/222-dick-grayson-nightwing-arkham-knight.png",
+      "path": "img/NightwingArkhamKnight.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Poison Ivy Arkham City",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman Dark Knight Rises",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Harley Thug 1",
+      "officialId": 641,
+      "url": "https://app.knightmodels.com/images/character/main/punker-1624971025.png",
+      "path": "img/HarleyThug1.png",
+      "reason": "download-failed",
+      "error": "official-placeholder-image"
+    },
+    {
+      "name": "Harley Thug 2",
+      "officialId": 643,
+      "url": "https://app.knightmodels.com/images/character/main/bragg-1624972035.png",
+      "path": "img/HarleyThug2.png",
+      "reason": "download-failed",
+      "error": "official-placeholder-image"
+    },
+    {
+      "name": "Harley Thug 3",
+      "officialId": 642,
+      "url": "https://app.knightmodels.com/images/character/main/worker-1624971490.png",
+      "path": "img/HarleyThug3.png",
+      "reason": "download-failed",
+      "error": "official-placeholder-image"
+    },
+    {
+      "name": "Harley Thug 4",
+      "officialId": 647,
+      "url": "https://app.knightmodels.com/images/character/main/unknown-1624975221.png",
+      "path": "img/HarleyThug4.png",
+      "reason": "download-failed",
+      "error": "official-placeholder-image"
+    },
+    {
+      "name": "Harley Thug 5",
+      "officialId": 648,
+      "url": "https://app.knightmodels.com/images/character/main/unknown-1624975883.png",
+      "path": "img/HarleyThug5.png",
+      "reason": "download-failed",
+      "error": "official-placeholder-image"
+    },
+    {
+      "name": "Harley Thug 6",
+      "officialId": 646,
+      "url": "https://app.knightmodels.com/images/character/main/chencho-1624974460.png",
+      "path": "img/HarleyThug6.png",
+      "reason": "download-failed",
+      "error": "official-placeholder-image"
+    },
+    {
+      "name": "Harley Thug 7",
+      "officialId": 645,
+      "url": "https://app.knightmodels.com/images/character/main/lumberjack-1624973861.png",
+      "path": "img/HarleyThug7.png",
+      "reason": "download-failed",
+      "error": "official-placeholder-image"
+    },
+    {
+      "name": "Batmobile Arkham Knight",
+      "reason": "no-official-match",
+      "matches": []
+    },
+    {
+      "name": "Catwoman Dark Knight Rises",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman Arkham Knight",
+      "officialId": 37,
+      "url": "https://app.knightmodels.com/images/character/main/37-bruce-wayne-batman-arkham-knight.png",
+      "path": "img/BatmanArkhamKnight.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Batman Arkham City",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Miranda Tate",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Green Arrow (Arrow)",
+      "reason": "no-official-match",
+      "matches": []
+    },
+    {
+      "name": "Arkham Knight",
+      "officialId": 18,
+      "url": "https://app.knightmodels.com/images/character/main/18-jason-todd-arkham-knight.png",
+      "path": "img/ArkhamKnight.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Mad Hatter Arkham Knight",
+      "reason": "no-official-match",
+      "matches": []
+    },
+    {
+      "name": "Rebel Armored Assassin",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Rebel Masked Assassin 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Rebel Monk",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Rebel Masked Assassin 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Shadow Armored Assassin",
+      "reason": "no-official-match",
+      "matches": []
+    },
+    {
+      "name": "Armored Assassin",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Guardian Monk",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Nyssa al Ghul (Arkham Knight)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Henry Ducard",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Raven Trigon's Daughter",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Ra's al Ghul Decoy",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "League of Shadows Ninja 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "League of Shadows Ninja 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Bruce Batman Begins",
+      "reason": "no-official-match",
+      "matches": []
+    },
+    {
+      "name": "Gordon Infiltrate",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "League of Shadows Ninja 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Drifter Robert Pattinson",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman Year One",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman Robert Pattinson",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman on Bike Robert Pattinson",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman 1997",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman Michael Keaton",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman Red Rain",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman Adam West",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The White Knight",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Aaron Cash",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Green Arrow Rebirth",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman Gaslight",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Commissioner Gordon",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Robin Burt Ward",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman Dark Knight Rises Batpod",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Chief Mackenzie",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Robin 1997",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman Multiverse",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman Viking",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman Frank Miller on Power Armor",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman The Animated Series",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Robin Teen Titans",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Kid Flash",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman The Gotham City Knight",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman Death Metal",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman Frank Miller on Horse",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman Beyond",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman Classic",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Green Arrow DKR",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman Frank Miller",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batwoman",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Catwoman",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Red Hood Rebirth",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Robin Classic",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Robin",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Wonder Girl",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Mr. Wayne Beyond",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Clayface",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Robin",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Red Hood The Outlaw",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Starfire Teen Titans",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Nightwing Rebirth",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Green Arrow The Animated Series",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Son of Batman 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Ace",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Alfred Pennyworth",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Huntress Classic",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Raven",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Son of Batman 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Clownhunter",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Red Robin",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Son of Batman 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Azrael God's Punishment",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Robin Tim Drake",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Lucius Fox",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Catwoman The Animated Series",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batgirl The Animated Series",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Harley Quinn The Animated Series",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Robin Beyond",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Ravager Vanguard Team",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Black Canary The Animated Series",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Renée Montoya",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Homicide Detective",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "GCPD Mounted Cop",
+      "officialId": 711,
+      "url": "https://app.knightmodels.com/images/character/main/unknown-1651849725.png",
+      "path": "img/GCPDMountedCop.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "SWAT QRT 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Officer Martinez",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "SWAT QRT 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Reinforcement Cop",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "GCPD Officer 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Gilda Dent",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "SWAT QRT 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "GCPD Officer 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Beat Cop",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Sgt. Harvey Bullock",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "GCPD Detective",
+      "officialId": 540,
+      "url": "https://app.knightmodels.com/images/character/main/540-unknown-gcpd-detective.png",
+      "path": "img/GCPDDetective.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Sierra",
+      "officialId": 283,
+      "url": "https://app.knightmodels.com/images/character/main/283-unknown-sierra.png",
+      "path": "img/Sierra.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "GCPD Cop 1",
+      "officialId": 542,
+      "url": "https://app.knightmodels.com/images/character/main/542-unknown-gcpd-cop-1.png",
+      "path": "img/GCPDCop1.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Lieutenant Gordon Year One",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "GCPD Cop 2",
+      "officialId": 543,
+      "url": "https://app.knightmodels.com/images/character/main/543-unknown-gcpd-cop-2.png",
+      "path": "img/GCPDCop2.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Lt. Gordon Jeffrey Wright",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Agent 1",
+      "officialId": 481,
+      "url": "https://app.knightmodels.com/images/character/main/481-unknown-agent-1.png",
+      "path": "img/Agent1.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Officer Merkel",
+      "officialId": 541,
+      "url": "https://app.knightmodels.com/images/character/main/541-stanley-merkel-officer-merkel.png",
+      "path": "img/OfficerMerkel.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Agent 2",
+      "officialId": 482,
+      "url": "https://app.knightmodels.com/images/character/main/482-unknown-agent-2.png",
+      "path": "img/Agent2.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Agent 3",
+      "officialId": 483,
+      "url": "https://app.knightmodels.com/images/character/main/483-unknown-agent-3.png",
+      "path": "img/Agent3.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Detective Flass Year One",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Lerida",
+      "officialId": 184,
+      "url": "https://app.knightmodels.com/images/character/main/184-unknown-lerida.png",
+      "path": "img/Lerida.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Foxtrot",
+      "officialId": 116,
+      "url": "https://app.knightmodels.com/images/character/main/116-unknown-foxtrot.png",
+      "path": "img/Foxtrot.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Attorney Harvey Dent",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Bouncer 1",
+      "officialId": 721,
+      "url": "https://app.knightmodels.com/images/character/main/unknown-1651851602.png",
+      "path": "img/Bouncer1.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Bouncer 2",
+      "officialId": 722,
+      "url": "https://app.knightmodels.com/images/character/main/unknown-1651851677.png",
+      "path": "img/Bouncer2.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Bouncer 3",
+      "officialId": 723,
+      "url": "https://app.knightmodels.com/images/character/main/unknown-1651852204.png",
+      "path": "img/Bouncer3.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Black Mask Thug 6",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Twin 1",
+      "officialId": 718,
+      "url": "https://app.knightmodels.com/images/character/main/unknown-1651851285.png",
+      "path": "img/TheTwin1.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "The Twin 2",
+      "officialId": 719,
+      "url": "https://app.knightmodels.com/images/character/main/unknown-1651851391.png",
+      "path": "img/TheTwin2.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Killer Croc Thug",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Detective Kenzie",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Fixer",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Black Mask Thug 7",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Mafia Thug",
+      "officialId": 720,
+      "url": "https://app.knightmodels.com/images/character/main/unknown-1651851506.png",
+      "path": "img/MafiaThug.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Black Mask Thug 4",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Black Mask Thug 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Tailor",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Black Mask Thug 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Malatesta",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Troy Sins",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Black Mask Thug 5",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Black Mask Thug 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Bull",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Showtime",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Vipera",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Black Mask",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Lex Luthor",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Alexandra Kosov",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Sal Maroni",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Fat Johnny",
+      "officialId": 113,
+      "url": "https://app.knightmodels.com/images/character/main/113-john-d-amico-fat-johnny.png",
+      "path": "img/FatJohnny.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Battista",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Roman",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Ventriloquist",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Holiday Killer",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Carmine Falcone (John Turturro)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Fright",
+      "officialId": 629,
+      "url": "https://app.knightmodels.com/images/character/main/629-linda-friitawa-fright.png",
+      "path": "img/Fright.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "The Penguin (Colin Farrell)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Beast Boy - Tiger Teen Titans",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Beast Boy - Gorilla Teen Titans",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Beast Boy - Hawk Teen Titans",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Beast Boy - Human (Teen Titans)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Chief",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Elasti-Girl",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Crazy Jane",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Negative Man",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Robotman",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Bane Unleashed",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Bane Titan",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Medic OP",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Bird Classic",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Bird",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Bane Rebirth",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Vengeance",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Bane The Bat",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Dreadnought OP",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Elite OP",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Bane Commander",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Lieutenant OP",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Cuchillo",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Stealth OP",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Infiltrate OP",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Macgregor",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Clover",
+      "officialId": 306,
+      "url": "https://app.knightmodels.com/images/character/main/306-sullivan-clover.png",
+      "path": "img/Clover.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Sharp Shooter",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Malicia",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Builder",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Smash",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Ted Hunter",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Schoolboy",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Support OP",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Red Bastard",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Grumpy",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Happy",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Gaggy Rebirth",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker's Biker 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker's Bus Driver",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker's Para-Military 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker's Para-Military 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker's Para-Military 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Chuckcles",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Blunderbuss Clown",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker's Victim 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker's Victim 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Street Jester 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Street Jester 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Axe Clown",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Barrel Clown",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Street Jester 4",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Chainsaw Clown",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Street Jester 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Thorgon",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker's Victim 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Dynamite",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Gas Puppet 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Gas Puppet 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker's Biker 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Bouffon",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "White-Face",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Gas Puppet 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Rastaclow",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Borgon the Cursed",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Hobo Clown",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Ace of Spades",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Slingy Clown",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker (Arkham Asylum)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker (Dark Knight Rises)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker (Red Hood)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker (Cesar Romero)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker (The Criminal)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker (The Clown)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker (The Comedian)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker (Titan)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker (Christmas)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker (Having Fun)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker (Explosive Arrival)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Joker (Bat-Armor)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Gaggy",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Archie",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Harley Quinn (BTG)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Punchline",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Harley Quinn (Arkham Asylum)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Harley Quinn (& The Boys)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Two-Face (Dark Knight)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Riddler (Frank Gorshin)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Penguin (Burgess Meredith)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Mr. Freeze 1997",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Freeze Thug 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Freeze Thug 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Freeze Engineer",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Freeze Thug 5",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Combat Polar Bear",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Freeze Thug 4",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Freeze Thug 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Mr. Freeze Cryo-Armor",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Mrs. Freeze",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Ranged Polar Bear",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Killer Frost Rebirth",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Quiz 5",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Quiz 7",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Echo",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Quiz 8",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Riddler",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Riddler",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Riddler's Follower 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Quiz 4",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Query",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Quiz 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Riddler Modern Age",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Quiz 6",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Riddler's Follower 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Two-Face",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Quiz 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Riddler",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Quelle",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Quiz 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Riddler's Follower 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Catwoman Michelle Pfeiffer",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Penguin Thug 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Penguin Danny DeVito",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Penguin New 52",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Lark",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Penguin Arkham City",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Rocket Launcher Penguin",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Street Demonz Biker 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Loose Lips",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Emperor Penguin Unchained",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Penguin Elite Thug",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Minigun Penguin",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Explosive Penguin",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Penguin Lieutenant",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Mr. Toxic",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Penguin Thug 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Penguin Penguin's Duck",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Penguin Arkham Knight",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Street Demonz 4",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Mr. Combustible",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Hypnotic",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Street Demonz 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Street Demonz Biker 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Street Demonz Biker 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Street Demonz 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Street Demonz 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Imperceptible Man",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "League Acolyte 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Mercenary 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Mercenary 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "League Acolyte 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Ubu",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Hassassin 4",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Goliath",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Hassassin 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Talia Rebirth",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Heretic",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "League Acolyte 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "League Acolyte 4",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Hassassin 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Cheshire",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Hassassin 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Bane Dark Knight Rises",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Ra's al Ghul",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Barsad",
+      "officialId": 474,
+      "url": "https://app.knightmodels.com/images/character/main/474-unknown-barsad.png",
+      "path": "img/Barsad.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Gangster 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Gangster 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Sugar",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Two-Face Tommy Lee Jones",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Gangster 5",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Two-Face",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Spice",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Hitman",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Gangster 7",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Gangster 6",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Gangster 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Gangster 4",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Two-Face Arkham City",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Killer Croc Thug",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Big John",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Poison Ivy 1997",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Harley Quinn Roller Derby",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Harley Quinn KaBoom!",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Poison Ivy",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Black Canary (Rebirth)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Harley Quinn",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Katana (Rebirth)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Black Canary",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Lady Shiva",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Oracle",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Floronic Man",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Killer Frost (Rebirth)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Rabid Plant 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Roller Derby Thug 4",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Roller Derby Thug 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Roller Derby Thug 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Rabid Plant 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Huntress",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Roller Derby Thug 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Hawk",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Dove",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Bruce the Hyena",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Mutated Plant 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Unknown",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batgirl Rebirth",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batgirl Vampire Queen",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Mutated Plant 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Frank the Plant",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Detective Montoya",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batgirl Classic Costume",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Strix",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Mutated Plant 3",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Scarecrow (The Worst Nightmare)",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Dr. Friitawa",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Nightmare of Fear",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Nightmare of Demotivation",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Nightmare of Anger",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Nightmare of Insignificance",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Fearbeast Nightmare",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Little Nightmare",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Court",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "1890's Talon",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Talon",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Gotham Butcher",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Lincoln March",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "O'Malley's Grandfather",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Talon",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "O'Malley's Father",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Dementor",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Raptor",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "1880's Talon",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Robin",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Robin",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "O'Malley's Son",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Ephraim Newhouse",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "King of Spades",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "10 of Spades",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Jack of Spades",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Ace of Spades",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Queen of Spades",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "5 of Spades",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Slipknot Suicide Squad",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Polka-Dot Man The Suicide Squad",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Weasel The Suicide Squad",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Killer Moth",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "John Economos",
+      "officialId": 838,
+      "url": "https://app.knightmodels.com/images/character/main/john-economos-1700475606.png",
+      "path": "img/JohnEconomos.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Emilia Harcourt",
+      "officialId": 837,
+      "url": "https://app.knightmodels.com/images/character/main/emilia-harcourt-1700475512.png",
+      "path": "img/EmiliaHarcourt.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Killer Croc Suicide Squad",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Polka-Dot Man",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Thinker The Suicide Squad",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Diablo Suicide Squad",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Katana Suicide Squad",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Sebastian the Rat The Suicide Squad",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Eagly",
+      "officialId": 694,
+      "url": "https://app.knightmodels.com/images/character/main/eagly-1647011215.png",
+      "path": "img/Eagly.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "King Shark The Suicide Squad",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Poison Ivy",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Killer Croc Arkham Asylum",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "T.D.K. The Suicide Squad",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Deathstroke Vanguard Team",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Riddler Modern Age",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Ratcatcher 2 The Suicide Squad",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Captain Boomerang Vanguard Team",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Rick Flag Infiltration",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Riddler",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Vigilante",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Captain Boomerang Suicide Squad",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "KGBeast",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Deadshot",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Harley Quinn Bombshell",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Deadshot Suicide Squad",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Deathstroke The Terminator",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Amanda Waller Viola Davis",
+      "officialId": 835,
+      "url": "https://app.knightmodels.com/images/character/main/amanda-waller-1700475272.png",
+      "path": "img/AmandaWallerViolaDavis.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Killer Croc",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Harley Quinn The Suicide Squad",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Peacemaker John Cena",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Bloodsport The Suicide Squad",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Ratface",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Kobra",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Naga Hazard Trooper 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Nagas",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Jake",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Underworlder 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Kobra Hybrid",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Deacon Blackfire",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Underworlder Vagon 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Underworlder 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Cobra Swarm",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Young Woman",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Lancehead 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Lady Eve",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Underworlder 6",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Underworlder 4",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Batman The Cult",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Kobra Bestowed",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Underworlder Vagon 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Underworlder 5",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Naga Hazard Trooper 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Lancehead Captain",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Lancehead 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Lancehead Soldier",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Damian Who Laughs",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Commissioner",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Merciless",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Infected Who Laughs",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Grim Knight",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Batman Who Laughs",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Red Death",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Drowned",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Robin Who Laughs",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Silk Spectre II",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Comedian",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Nite Owl",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Rorschach",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Bubastis",
+      "officialId": 532,
+      "url": "https://app.knightmodels.com/images/character/main/532-bubastis-bubastis.png",
+      "path": "img/Bubastis.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Ozymandias",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Psycho-Pirate",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Ratcatcher",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Solomon Grundy",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Scarecrow",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Hush",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Clock King",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Gentleman Ghost",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Mad Hatter",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Man-Bat",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Ten-Eyed Man",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Lobo Paramilitary",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Calculator Classic",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Catman The Hunter",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Thug 1",
+      "officialId": 544,
+      "url": "https://app.knightmodels.com/images/character/main/544-unknown-thug-1.png",
+      "path": "img/Thug1.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Harley Quinn Bewitched",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Dr. Hugo Strange",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Thug 2",
+      "officialId": 545,
+      "url": "https://app.knightmodels.com/images/character/main/545-unknown-thug-2.png",
+      "path": "img/Thug2.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Scarecrow Arkham Asylum",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Victor Zsasz",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Catwoman Julie Newmar",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Mr. Camera",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Condiment King",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Arkham Assistant 1",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Thug 5",
+      "officialId": 548,
+      "url": "https://app.knightmodels.com/images/character/main/548-unknown-thug-5.png",
+      "path": "img/Thug5.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Thug 3",
+      "officialId": 546,
+      "url": "https://app.knightmodels.com/images/character/main/546-unknown-thug-3.png",
+      "path": "img/Thug3.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Crazy Quilt",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Sewer Swarm",
+      "officialId": 459,
+      "url": "https://app.knightmodels.com/images/character/main/unknown-1624961305.png",
+      "path": "img/SewerSwarm.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Arkham Assistant 2",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Thug 6",
+      "officialId": 549,
+      "url": "https://app.knightmodels.com/images/character/main/549-unknown-thug-6.png",
+      "path": "img/Thug6.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Thug 4",
+      "officialId": 547,
+      "url": "https://app.knightmodels.com/images/character/main/547-unknown-thug-4.png",
+      "path": "img/Thug4.png",
+      "reason": "download-failed",
+      "error": "The operation was aborted due to timeout"
+    },
+    {
+      "name": "Eraser",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Kite-Man",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Signalman",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "Calendar Man",
+      "reason": "local-image-exists"
+    },
+    {
+      "name": "The Penguin Crime Lord Rising",
+      "reason": "local-image-exists"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "source": "https://app.knightmodels.com/gamedata/",
+  "downloadedAt": "2026-06-09T03:43:36.553Z",
+  "bestAttempt": 1,
+  "complete": false,
+  "validJson": false,
+  "bytes": 147162,
+  "results": [
+    {
+      "attempt": 1,
+      "tempPath": "E:\\Модели\\Batman Miniature Games\\Приложение\\BMG_omsk_crew\\reports\\external\\official\\knightmodels_gamedata.json.attempt-1.tmp",
+      "bytes": 147162,
+      "chunks": 10,
+      "startedAt": "2026-06-09T03:42:25.505Z",
+      "finishedAt": "2026-06-09T03:43:36.270Z",
+      "complete": false,
+      "validJson": false,
+      "error": "TypeError: terminated\n    at Fetch.onAborted (node:internal/deps/undici/undici:12826:53)\n    at Fetch.emit (node:events:508:28)\n    at Fetch.terminate (node:internal/deps/undici/undici:11963:14)\n    at Object.onError (node:internal/deps/undici/undici:12950:38)\n    at Request.onError (node:internal/deps/undici/undici:3015:31)\n    at Object.errorRequest (node:internal/deps/undici/undici:1887:17)\n    at TLSSocket.onHttpSocketClose (node:internal/deps/undici/undici:7661:14)\n    at TLSSocket.emit (node:events:520:35)\n    at node:net:346:12\n    at TCP.done (node:internal/tls/wrap:667:7)"
+    }
+  ]
+}

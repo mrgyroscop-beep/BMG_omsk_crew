@@ -1,0 +1,832 @@
+[
+  {
+    "id": 119,
+    "name": "Easy Riddle",
+    "path": "BMG_omsk_crew/img/cards/official/119-easy-riddle.jpg"
+  },
+  {
+    "id": 121,
+    "name": "Riddle Me Softly",
+    "path": "BMG_omsk_crew/img/cards/official/121-riddle-me-softly.jpg"
+  },
+  {
+    "id": 122,
+    "name": "Riddle Me That",
+    "path": "BMG_omsk_crew/img/cards/official/122-riddle-me-that.jpg"
+  },
+  {
+    "id": 123,
+    "name": "Riddle Me This",
+    "path": "BMG_omsk_crew/img/cards/official/123-riddle-me-this.jpg"
+  },
+  {
+    "id": 124,
+    "name": "Riddle of Nowhere",
+    "path": "BMG_omsk_crew/img/cards/official/124-riddle-of-nowhere.jpg"
+  },
+  {
+    "id": 125,
+    "name": "Riddles on the Storm",
+    "path": "BMG_omsk_crew/img/cards/official/125-riddles-on-the-storm.jpg"
+  },
+  {
+    "id": 126,
+    "name": "The Riddle of the Night",
+    "path": "BMG_omsk_crew/img/cards/official/126-the-riddle-of-the-night.jpg"
+  },
+  {
+    "id": 127,
+    "name": "You Activate the Riddle",
+    "path": "BMG_omsk_crew/img/cards/official/127-you-activate-the-riddle.jpg"
+  },
+  {
+    "id": 138,
+    "name": "Come On Short Round!",
+    "path": "BMG_omsk_crew/img/cards/official/138-come-on-short-round.jpg"
+  },
+  {
+    "id": 139,
+    "name": "Eureka",
+    "path": "BMG_omsk_crew/img/cards/official/139-eureka.jpg"
+  },
+  {
+    "id": 140,
+    "name": "Kites Ho!",
+    "path": "BMG_omsk_crew/img/cards/official/140-kites-ho.jpg"
+  },
+  {
+    "id": 141,
+    "name": "Logic",
+    "path": "BMG_omsk_crew/img/cards/official/141-logic.jpg"
+  },
+  {
+    "id": 142,
+    "name": "Quantum Vortex",
+    "path": "BMG_omsk_crew/img/cards/official/142-quantum-vortex.jpg"
+  },
+  {
+    "id": 143,
+    "name": "Robot Fight!",
+    "path": "BMG_omsk_crew/img/cards/official/143-robot-fight.jpg"
+  },
+  {
+    "id": 144,
+    "name": "Sweet Kitty",
+    "path": "BMG_omsk_crew/img/cards/official/144-sweet-kitty.jpg"
+  },
+  {
+    "id": 145,
+    "name": "Time Travel Machine",
+    "path": "BMG_omsk_crew/img/cards/official/145-time-travel-machine.jpg"
+  },
+  {
+    "id": 146,
+    "name": "Zarnecki Incursion",
+    "path": "BMG_omsk_crew/img/cards/official/146-zarnecki-incursion.jpg"
+  },
+  {
+    "id": 147,
+    "name": "Smart And Beautiful",
+    "path": "BMG_omsk_crew/img/cards/official/147-smart-and-beautiful.jpg"
+  },
+  {
+    "id": 148,
+    "name": "Experimental Medication",
+    "path": "BMG_omsk_crew/img/cards/official/148-experimental-medication.jpg"
+  },
+  {
+    "id": 149,
+    "name": "I Was In Space",
+    "path": "BMG_omsk_crew/img/cards/official/149-i-was-in-space.jpg"
+  },
+  {
+    "id": 150,
+    "name": "You're In My Spot",
+    "path": "BMG_omsk_crew/img/cards/official/150-you-re-in-my-spot.jpg"
+  },
+  {
+    "id": 173,
+    "name": "An Owl's Tale",
+    "path": "BMG_omsk_crew/img/cards/official/173-an-owl-s-tale.jpg"
+  },
+  {
+    "id": 174,
+    "name": "Gotham Is Ours",
+    "path": "BMG_omsk_crew/img/cards/official/174-gotham-is-ours.jpg"
+  },
+  {
+    "id": 175,
+    "name": "Owl's Night",
+    "path": "BMG_omsk_crew/img/cards/official/175-owl-s-night.jpg"
+  },
+  {
+    "id": 176,
+    "name": "Talon's Claw",
+    "path": "BMG_omsk_crew/img/cards/official/176-talon-s-claw.jpg"
+  },
+  {
+    "id": 177,
+    "name": "Terrible Accident",
+    "path": "BMG_omsk_crew/img/cards/official/177-terrible-accident.jpg"
+  },
+  {
+    "id": 178,
+    "name": "The Court's Secure Bases",
+    "path": "BMG_omsk_crew/img/cards/official/178-the-court-s-secure-bases.jpg"
+  },
+  {
+    "id": 179,
+    "name": "The Owl's Labyrinth",
+    "path": "BMG_omsk_crew/img/cards/official/179-the-owl-s-labyrinth.jpg"
+  },
+  {
+    "id": 180,
+    "name": "The Shadow Claw",
+    "path": "BMG_omsk_crew/img/cards/official/180-the-shadow-claw.jpg"
+  },
+  {
+    "id": 188,
+    "name": "Sacrifice",
+    "path": "BMG_omsk_crew/img/cards/official/188-sacrifice.jpg"
+  },
+  {
+    "id": 189,
+    "name": "Ritual",
+    "path": "BMG_omsk_crew/img/cards/official/189-ritual.jpg"
+  },
+  {
+    "id": 190,
+    "name": "New Followers",
+    "path": "BMG_omsk_crew/img/cards/official/190-new-followers.jpg"
+  },
+  {
+    "id": 191,
+    "name": "Can be Anyone",
+    "path": "BMG_omsk_crew/img/cards/official/191-can-be-anyone.jpg"
+  },
+  {
+    "id": 192,
+    "name": "Full Devotion",
+    "path": "BMG_omsk_crew/img/cards/official/192-full-devotion.jpg"
+  },
+  {
+    "id": 193,
+    "name": "Awakening",
+    "path": "BMG_omsk_crew/img/cards/official/193-awakening.jpg"
+  },
+  {
+    "id": 194,
+    "name": "Sabotage",
+    "path": "BMG_omsk_crew/img/cards/official/194-sabotage.jpg"
+  },
+  {
+    "id": 195,
+    "name": "The Great Plan",
+    "path": "BMG_omsk_crew/img/cards/official/195-the-great-plan.jpg"
+  },
+  {
+    "id": 198,
+    "name": "Pinched Mobster",
+    "path": "BMG_omsk_crew/img/cards/official/198-pinched-mobster.jpg"
+  },
+  {
+    "id": 199,
+    "name": "Spring Cleaning",
+    "path": "BMG_omsk_crew/img/cards/official/199-spring-cleaning.jpg"
+  },
+  {
+    "id": 200,
+    "name": "Recovering the Juice",
+    "path": "BMG_omsk_crew/img/cards/official/200-recovering-the-juice.jpg"
+  },
+  {
+    "id": 201,
+    "name": "Paying Tribute",
+    "path": "BMG_omsk_crew/img/cards/official/201-paying-tribute.jpg"
+  },
+  {
+    "id": 202,
+    "name": "Message Job",
+    "path": "BMG_omsk_crew/img/cards/official/202-message-job.jpg"
+  },
+  {
+    "id": 203,
+    "name": "Killing the Rat",
+    "path": "BMG_omsk_crew/img/cards/official/203-killing-the-rat.jpg"
+  },
+  {
+    "id": 204,
+    "name": "The Program",
+    "path": "BMG_omsk_crew/img/cards/official/204-the-program.jpg"
+  },
+  {
+    "id": 205,
+    "name": "Shakedown",
+    "path": "BMG_omsk_crew/img/cards/official/205-shakedown.jpg"
+  },
+  {
+    "id": 221,
+    "name": "Important Research",
+    "path": "BMG_omsk_crew/img/cards/official/221-important-research.jpg"
+  },
+  {
+    "id": 222,
+    "name": "A Freeze is Coming",
+    "path": "BMG_omsk_crew/img/cards/official/222-a-freeze-is-coming.jpg"
+  },
+  {
+    "id": 223,
+    "name": "Stay Cool",
+    "path": "BMG_omsk_crew/img/cards/official/223-stay-cool.jpg"
+  },
+  {
+    "id": 224,
+    "name": "Chill Out",
+    "path": "BMG_omsk_crew/img/cards/official/224-chill-out.jpg"
+  },
+  {
+    "id": 225,
+    "name": "Frozen Assets",
+    "path": "BMG_omsk_crew/img/cards/official/225-frozen-assets.jpg"
+  },
+  {
+    "id": 226,
+    "name": "Endless Winter",
+    "path": "BMG_omsk_crew/img/cards/official/226-endless-winter.jpg"
+  },
+  {
+    "id": 227,
+    "name": "Kingdom of Ice",
+    "path": "BMG_omsk_crew/img/cards/official/227-kingdom-of-ice.jpg"
+  },
+  {
+    "id": 228,
+    "name": "Send them to the Cooler",
+    "path": "BMG_omsk_crew/img/cards/official/228-send-them-to-the-cooler.jpg"
+  },
+  {
+    "id": 243,
+    "name": "Let's Dance (Doom Patrol)",
+    "path": "BMG_omsk_crew/img/cards/official/243-let-s-dance-doom-patrol.jpg"
+  },
+  {
+    "id": 244,
+    "name": "Psychopaths (Doom Patrol)",
+    "path": "BMG_omsk_crew/img/cards/official/244-psychopaths-doom-patrol.jpg"
+  },
+  {
+    "id": 245,
+    "name": "Not Buying? Don't Touch (Doom Patrol)",
+    "path": "BMG_omsk_crew/img/cards/official/245-not-buying-don-t-touch-doom-patrol.jpg"
+  },
+  {
+    "id": 246,
+    "name": "Riddles On The Storm (Doom Patrol)",
+    "path": "BMG_omsk_crew/img/cards/official/246-riddles-on-the-storm-doom-patrol.jpg"
+  },
+  {
+    "id": 247,
+    "name": "We Cannot Be Defeated (Doom Patrol)",
+    "path": "BMG_omsk_crew/img/cards/official/247-we-cannot-be-defeated-doom-patrol.jpg"
+  },
+  {
+    "id": 248,
+    "name": "I Work Best Alone (Doom Patrol)",
+    "path": "BMG_omsk_crew/img/cards/official/248-i-work-best-alone-doom-patrol.jpg"
+  },
+  {
+    "id": 249,
+    "name": "Domination (Doom Patrol)",
+    "path": "BMG_omsk_crew/img/cards/official/249-domination-doom-patrol.jpg"
+  },
+  {
+    "id": 250,
+    "name": "Let Them Do Their Thing (Doom Patrol)",
+    "path": "BMG_omsk_crew/img/cards/official/250-let-them-do-their-thing-doom-patrol.jpg"
+  },
+  {
+    "id": 251,
+    "name": "Sisters In Arms (Doom Patrol)",
+    "path": "BMG_omsk_crew/img/cards/official/251-sisters-in-arms-doom-patrol.jpg"
+  },
+  {
+    "id": 267,
+    "name": "Target Adquired",
+    "path": "BMG_omsk_crew/img/cards/official/267-target-adquired.jpg"
+  },
+  {
+    "id": 268,
+    "name": "Revealing the Plan",
+    "path": "BMG_omsk_crew/img/cards/official/268-revealing-the-plan.jpg"
+  },
+  {
+    "id": 269,
+    "name": "Subterfuge Mission",
+    "path": "BMG_omsk_crew/img/cards/official/269-subterfuge-mission.jpg"
+  },
+  {
+    "id": 270,
+    "name": "Taking the Lead",
+    "path": "BMG_omsk_crew/img/cards/official/270-taking-the-lead.jpg"
+  },
+  {
+    "id": 271,
+    "name": "Extermination Mission",
+    "path": "BMG_omsk_crew/img/cards/official/271-extermination-mission.jpg"
+  },
+  {
+    "id": 272,
+    "name": "Risking All",
+    "path": "BMG_omsk_crew/img/cards/official/272-risking-all.jpg"
+  },
+  {
+    "id": 273,
+    "name": "Interrogation Mission",
+    "path": "BMG_omsk_crew/img/cards/official/273-interrogation-mission.jpg"
+  },
+  {
+    "id": 274,
+    "name": "A.R.G.U.S. Intelligence",
+    "path": "BMG_omsk_crew/img/cards/official/274-a-r-g-u-s-intelligence.jpg"
+  },
+  {
+    "id": 275,
+    "name": "Behind the Enemy Line",
+    "path": "BMG_omsk_crew/img/cards/official/275-behind-the-enemy-line.jpg"
+  },
+  {
+    "id": 276,
+    "name": "Who Watches the Watchmen?",
+    "path": "BMG_omsk_crew/img/cards/official/276-who-watches-the-watchmen.jpg"
+  },
+  {
+    "id": 277,
+    "name": "Unneccessary Brutality",
+    "path": "BMG_omsk_crew/img/cards/official/277-unneccessary-brutality.jpg"
+  },
+  {
+    "id": 278,
+    "name": "The Big Plan",
+    "path": "BMG_omsk_crew/img/cards/official/278-the-big-plan.jpg"
+  },
+  {
+    "id": 279,
+    "name": "Retribution",
+    "path": "BMG_omsk_crew/img/cards/official/279-retribution.jpg"
+  },
+  {
+    "id": 280,
+    "name": "Rorschach's Journal",
+    "path": "BMG_omsk_crew/img/cards/official/280-rorschach-s-journal.jpg"
+  },
+  {
+    "id": 281,
+    "name": "Sealed Area",
+    "path": "BMG_omsk_crew/img/cards/official/281-sealed-area.jpg"
+  },
+  {
+    "id": 282,
+    "name": "Day's Work",
+    "path": "BMG_omsk_crew/img/cards/official/282-day-s-work.jpg"
+  },
+  {
+    "id": 283,
+    "name": "A Comedian Died",
+    "path": "BMG_omsk_crew/img/cards/official/283-a-comedian-died.jpg"
+  },
+  {
+    "id": 304,
+    "name": "The Evidence Mounts",
+    "path": "BMG_omsk_crew/img/cards/official/304-the-evidence-mounts.jpg"
+  },
+  {
+    "id": 308,
+    "name": "Where the Trail Ended",
+    "path": "BMG_omsk_crew/img/cards/official/308-where-the-trail-ended.jpg"
+  },
+  {
+    "id": 309,
+    "name": "Tempted to Despair",
+    "path": "BMG_omsk_crew/img/cards/official/309-tempted-to-despair.jpg"
+  },
+  {
+    "id": 310,
+    "name": "I See...",
+    "path": "BMG_omsk_crew/img/cards/official/310-i-see.jpg"
+  },
+  {
+    "id": 330,
+    "name": "Ruthless Team",
+    "path": "BMG_omsk_crew/img/cards/official/330-ruthless-team.jpg"
+  },
+  {
+    "id": 331,
+    "name": "Reinforcement Beacon Planted",
+    "path": "BMG_omsk_crew/img/cards/official/331-reinforcement-beacon-planted.jpg"
+  },
+  {
+    "id": 332,
+    "name": "Misunderstood Orders",
+    "path": "BMG_omsk_crew/img/cards/official/332-misunderstood-orders.jpg"
+  },
+  {
+    "id": 342,
+    "name": "Nuclear Menace",
+    "path": "BMG_omsk_crew/img/cards/official/342-nuclear-menace.jpg"
+  },
+  {
+    "id": 343,
+    "name": "Soon it Will be Dark",
+    "path": "BMG_omsk_crew/img/cards/official/343-soon-it-will-be-dark.jpg"
+  },
+  {
+    "id": 344,
+    "name": "Locked in Here with Me!",
+    "path": "BMG_omsk_crew/img/cards/official/344-locked-in-here-with-me.jpg"
+  },
+  {
+    "id": 345,
+    "name": "Deceiving a God",
+    "path": "BMG_omsk_crew/img/cards/official/345-deceiving-a-god.jpg"
+  },
+  {
+    "id": 346,
+    "name": "Pretending Normality",
+    "path": "BMG_omsk_crew/img/cards/official/346-pretending-normality.jpg"
+  },
+  {
+    "id": 349,
+    "name": "Ace of Spades",
+    "path": "BMG_omsk_crew/img/cards/official/349-ace-of-spades.jpg"
+  },
+  {
+    "id": 350,
+    "name": "Ace of Clubs",
+    "path": "BMG_omsk_crew/img/cards/official/350-ace-of-clubs.jpg"
+  },
+  {
+    "id": 351,
+    "name": "Ace of Diamonds",
+    "path": "BMG_omsk_crew/img/cards/official/351-ace-of-diamonds.jpg"
+  },
+  {
+    "id": 352,
+    "name": "Ace of Hearts",
+    "path": "BMG_omsk_crew/img/cards/official/352-ace-of-hearts.jpg"
+  },
+  {
+    "id": 353,
+    "name": "Two of Spades",
+    "path": "BMG_omsk_crew/img/cards/official/353-two-of-spades.jpg"
+  },
+  {
+    "id": 354,
+    "name": "Two of Clubs",
+    "path": "BMG_omsk_crew/img/cards/official/354-two-of-clubs.jpg"
+  },
+  {
+    "id": 355,
+    "name": "Two of Diamonds",
+    "path": "BMG_omsk_crew/img/cards/official/355-two-of-diamonds.jpg"
+  },
+  {
+    "id": 356,
+    "name": "Two of Hearts",
+    "path": "BMG_omsk_crew/img/cards/official/356-two-of-hearts.jpg"
+  },
+  {
+    "id": 357,
+    "name": "Three of Spades",
+    "path": "BMG_omsk_crew/img/cards/official/357-three-of-spades.jpg"
+  },
+  {
+    "id": 358,
+    "name": "Three of Clubs",
+    "path": "BMG_omsk_crew/img/cards/official/358-three-of-clubs.jpg"
+  },
+  {
+    "id": 359,
+    "name": "Three of Diamonds",
+    "path": "BMG_omsk_crew/img/cards/official/359-three-of-diamonds.jpg"
+  },
+  {
+    "id": 360,
+    "name": "Three of Hearts",
+    "path": "BMG_omsk_crew/img/cards/official/360-three-of-hearts.jpg"
+  },
+  {
+    "id": 361,
+    "name": "Four of Spades",
+    "path": "BMG_omsk_crew/img/cards/official/361-four-of-spades.jpg"
+  },
+  {
+    "id": 362,
+    "name": "Four of Clubs",
+    "path": "BMG_omsk_crew/img/cards/official/362-four-of-clubs.jpg"
+  },
+  {
+    "id": 363,
+    "name": "Four of Diamonds",
+    "path": "BMG_omsk_crew/img/cards/official/363-four-of-diamonds.jpg"
+  },
+  {
+    "id": 364,
+    "name": "Four of Hearts",
+    "path": "BMG_omsk_crew/img/cards/official/364-four-of-hearts.jpg"
+  },
+  {
+    "id": 365,
+    "name": "Five of Spades",
+    "path": "BMG_omsk_crew/img/cards/official/365-five-of-spades.jpg"
+  },
+  {
+    "id": 366,
+    "name": "Five of Clubs",
+    "path": "BMG_omsk_crew/img/cards/official/366-five-of-clubs.jpg"
+  },
+  {
+    "id": 367,
+    "name": "Five of Diamonds",
+    "path": "BMG_omsk_crew/img/cards/official/367-five-of-diamonds.jpg"
+  },
+  {
+    "id": 368,
+    "name": "Five of Hearts",
+    "path": "BMG_omsk_crew/img/cards/official/368-five-of-hearts.jpg"
+  },
+  {
+    "id": 369,
+    "name": "Six of Spades",
+    "path": "BMG_omsk_crew/img/cards/official/369-six-of-spades.jpg"
+  },
+  {
+    "id": 370,
+    "name": "Six of Clubs",
+    "path": "BMG_omsk_crew/img/cards/official/370-six-of-clubs.jpg"
+  },
+  {
+    "id": 371,
+    "name": "Six of Diamonds",
+    "path": "BMG_omsk_crew/img/cards/official/371-six-of-diamonds.jpg"
+  },
+  {
+    "id": 372,
+    "name": "Six of Hearts",
+    "path": "BMG_omsk_crew/img/cards/official/372-six-of-hearts.jpg"
+  },
+  {
+    "id": 373,
+    "name": "Seven of Spades",
+    "path": "BMG_omsk_crew/img/cards/official/373-seven-of-spades.jpg"
+  },
+  {
+    "id": 374,
+    "name": "Seven of Clubs",
+    "path": "BMG_omsk_crew/img/cards/official/374-seven-of-clubs.jpg"
+  },
+  {
+    "id": 375,
+    "name": "Seven of Diamonds",
+    "path": "BMG_omsk_crew/img/cards/official/375-seven-of-diamonds.jpg"
+  },
+  {
+    "id": 376,
+    "name": "Seven of Hearts",
+    "path": "BMG_omsk_crew/img/cards/official/376-seven-of-hearts.jpg"
+  },
+  {
+    "id": 377,
+    "name": "Eight of Spades",
+    "path": "BMG_omsk_crew/img/cards/official/377-eight-of-spades.jpg"
+  },
+  {
+    "id": 378,
+    "name": "Eight of Clubs",
+    "path": "BMG_omsk_crew/img/cards/official/378-eight-of-clubs.jpg"
+  },
+  {
+    "id": 379,
+    "name": "Eight of Diamonds",
+    "path": "BMG_omsk_crew/img/cards/official/379-eight-of-diamonds.jpg"
+  },
+  {
+    "id": 380,
+    "name": "Eight of Hearts",
+    "path": "BMG_omsk_crew/img/cards/official/380-eight-of-hearts.jpg"
+  },
+  {
+    "id": 381,
+    "name": "Nine of Spades",
+    "path": "BMG_omsk_crew/img/cards/official/381-nine-of-spades.jpg"
+  },
+  {
+    "id": 382,
+    "name": "Nine of Clubs",
+    "path": "BMG_omsk_crew/img/cards/official/382-nine-of-clubs.jpg"
+  },
+  {
+    "id": 383,
+    "name": "Nine of Diamonds",
+    "path": "BMG_omsk_crew/img/cards/official/383-nine-of-diamonds.jpg"
+  },
+  {
+    "id": 384,
+    "name": "Nine of Hearts",
+    "path": "BMG_omsk_crew/img/cards/official/384-nine-of-hearts.jpg"
+  },
+  {
+    "id": 385,
+    "name": "Ten of Spades",
+    "path": "BMG_omsk_crew/img/cards/official/385-ten-of-spades.jpg"
+  },
+  {
+    "id": 386,
+    "name": "Ten of Clubs",
+    "path": "BMG_omsk_crew/img/cards/official/386-ten-of-clubs.jpg"
+  },
+  {
+    "id": 387,
+    "name": "Ten of Diamonds",
+    "path": "BMG_omsk_crew/img/cards/official/387-ten-of-diamonds.jpg"
+  },
+  {
+    "id": 388,
+    "name": "Ten of Hearts",
+    "path": "BMG_omsk_crew/img/cards/official/388-ten-of-hearts.jpg"
+  },
+  {
+    "id": 389,
+    "name": "Jack of Spades",
+    "path": "BMG_omsk_crew/img/cards/official/389-jack-of-spades.jpg"
+  },
+  {
+    "id": 390,
+    "name": "Jack of Clubs",
+    "path": "BMG_omsk_crew/img/cards/official/390-jack-of-clubs.jpg"
+  },
+  {
+    "id": 391,
+    "name": "Jack of Diamonds",
+    "path": "BMG_omsk_crew/img/cards/official/391-jack-of-diamonds.jpg"
+  },
+  {
+    "id": 392,
+    "name": "Jack of Hearts",
+    "path": "BMG_omsk_crew/img/cards/official/392-jack-of-hearts.jpg"
+  },
+  {
+    "id": 393,
+    "name": "Queen of Spades",
+    "path": "BMG_omsk_crew/img/cards/official/393-queen-of-spades.jpg"
+  },
+  {
+    "id": 394,
+    "name": "Queen of Clubs",
+    "path": "BMG_omsk_crew/img/cards/official/394-queen-of-clubs.jpg"
+  },
+  {
+    "id": 395,
+    "name": "Queen of Diamonds",
+    "path": "BMG_omsk_crew/img/cards/official/395-queen-of-diamonds.jpg"
+  },
+  {
+    "id": 396,
+    "name": "Queen of Hearts",
+    "path": "BMG_omsk_crew/img/cards/official/396-queen-of-hearts.jpg"
+  },
+  {
+    "id": 397,
+    "name": "King of Spades",
+    "path": "BMG_omsk_crew/img/cards/official/397-king-of-spades.jpg"
+  },
+  {
+    "id": 398,
+    "name": "King of Clubs",
+    "path": "BMG_omsk_crew/img/cards/official/398-king-of-clubs.jpg"
+  },
+  {
+    "id": 399,
+    "name": "King of Diamonds",
+    "path": "BMG_omsk_crew/img/cards/official/399-king-of-diamonds.jpg"
+  },
+  {
+    "id": 400,
+    "name": "King of Hearts",
+    "path": "BMG_omsk_crew/img/cards/official/400-king-of-hearts.jpg"
+  },
+  {
+    "id": 421,
+    "name": "Born to Riddle",
+    "path": "BMG_omsk_crew/img/cards/official/421-born-to-riddle.jpg"
+  },
+  {
+    "id": 422,
+    "name": "Riddles of the World",
+    "path": "BMG_omsk_crew/img/cards/official/422-riddles-of-the-world.jpg"
+  },
+  {
+    "id": 423,
+    "name": "Riddle Box Hero",
+    "path": "BMG_omsk_crew/img/cards/official/423-riddle-box-hero.jpg"
+  },
+  {
+    "id": 424,
+    "name": "Psycho Riddle",
+    "path": "BMG_omsk_crew/img/cards/official/424-psycho-riddle.jpg"
+  },
+  {
+    "id": 430,
+    "name": "The Primary Prey",
+    "path": "BMG_omsk_crew/img/cards/official/430-the-primary-prey.jpg"
+  },
+  {
+    "id": 431,
+    "name": "Stalking Parliament",
+    "path": "BMG_omsk_crew/img/cards/official/431-stalking-parliament.jpg"
+  },
+  {
+    "id": 432,
+    "name": "Not a Whispered Word",
+    "path": "BMG_omsk_crew/img/cards/official/432-not-a-whispered-word.jpg"
+  },
+  {
+    "id": 433,
+    "name": "Beware the Court of Owls",
+    "path": "BMG_omsk_crew/img/cards/official/433-beware-the-court-of-owls.jpg"
+  },
+  {
+    "id": 435,
+    "name": "The Inner Enemy",
+    "path": "BMG_omsk_crew/img/cards/official/435-the-inner-enemy.jpg"
+  },
+  {
+    "id": 436,
+    "name": "Worship Place",
+    "path": "BMG_omsk_crew/img/cards/official/436-worship-place.jpg"
+  },
+  {
+    "id": 437,
+    "name": "Prophecies of the Snake",
+    "path": "BMG_omsk_crew/img/cards/official/437-prophecies-of-the-snake.jpg"
+  },
+  {
+    "id": 438,
+    "name": "Followers of Kali-Yuga",
+    "path": "BMG_omsk_crew/img/cards/official/438-followers-of-kali-yuga.jpg"
+  },
+  {
+    "id": 439,
+    "name": "Eternal Life",
+    "path": "BMG_omsk_crew/img/cards/official/439-eternal-life.jpg"
+  },
+  {
+    "id": 440,
+    "name": "A Godless City",
+    "path": "BMG_omsk_crew/img/cards/official/440-a-godless-city.jpg"
+  },
+  {
+    "id": 443,
+    "name": "The Family",
+    "path": "BMG_omsk_crew/img/cards/official/443-the-family.jpg"
+  },
+  {
+    "id": 444,
+    "name": "Demonstration of Strength",
+    "path": "BMG_omsk_crew/img/cards/official/444-demonstration-of-strength.jpg"
+  },
+  {
+    "id": 445,
+    "name": "Vendetta",
+    "path": "BMG_omsk_crew/img/cards/official/445-vendetta.jpg"
+  },
+  {
+    "id": 446,
+    "name": "Dead Men Tell no Tales",
+    "path": "BMG_omsk_crew/img/cards/official/446-dead-men-tell-no-tales.jpg"
+  },
+  {
+    "id": 447,
+    "name": "Proof of Power",
+    "path": "BMG_omsk_crew/img/cards/official/447-proof-of-power.jpg"
+  },
+  {
+    "id": 456,
+    "name": "Harsh Conditions",
+    "path": "BMG_omsk_crew/img/cards/official/456-harsh-conditions.jpg"
+  },
+  {
+    "id": 457,
+    "name": "Technological Information",
+    "path": "BMG_omsk_crew/img/cards/official/457-technological-information.jpg"
+  },
+  {
+    "id": 458,
+    "name": "Cool Trophy",
+    "path": "BMG_omsk_crew/img/cards/official/458-cool-trophy.jpg"
+  },
+  {
+    "id": 459,
+    "name": "Hell Freezes Over",
+    "path": "BMG_omsk_crew/img/cards/official/459-hell-freezes-over.jpg"
+  }
+]
