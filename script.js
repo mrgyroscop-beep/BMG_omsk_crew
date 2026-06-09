@@ -4,6 +4,7 @@ let crewCards = [];
 let crewEquipmentCounts = {}; // { "Magazine": count } for crew-wide limits
 let modelSearchMode = 'models';
 let compendiumSearchMode = 'rules';
+let compendiumMatchSetupGalleryOpen = false;
 let builderPrintOnly = false;
 let builderFactionOnly = false;
 let builderModelQuery = "";
@@ -69,6 +70,304 @@ let navigationHistory = [];
 const OBJECTIVE_DECK_SIZE = 30;
 const OBJECTIVE_DECK_MAX_GENERAL = 15;
 const OBJECTIVE_DECK_MAX_SINGLE = 15;
+const MATCH_SETUP_CARDS = {
+  encounters: [
+    {
+      id: "encounter-01",
+      name: "SHOWDOWN",
+      img: "img/match-setup/encounters/encounter-01.jpg",
+      text: {
+        en: "The first group to be deployed must only contain Leader, Sidekick or Free Agent models.",
+        ru: "Первая выставляемая группа должна содержать только модели рангов Leader, Sidekick или Free Agent."
+      }
+    },
+    {
+      id: "encounter-02",
+      name: "CHANCE ENCOUNTER",
+      img: "img/match-setup/encounters/encounter-02.jpg",
+      text: {
+        en: "The first group must be deployed into the A zone, and the second group must be deployed into the B zone. Special Traits that modify Deployment still apply.",
+        ru: "Первая группа должна быть выставлена в зоне A, а вторая группа - в зоне B. Special Traits, изменяющие расстановку, продолжают действовать."
+      }
+    },
+    {
+      id: "encounter-03",
+      name: "VANGUARD",
+      img: "img/match-setup/encounters/encounter-03.jpg",
+      text: {
+        en: "Deploy one friendly model up to 4\" outside the deployment zone.",
+        ru: "Выставьте одну дружественную модель на расстоянии до 4\" за пределами зоны расстановки."
+      }
+    },
+    {
+      id: "encounter-04",
+      name: "SECURE THE AREA",
+      img: "img/match-setup/encounters/encounter-04.jpg",
+      text: {
+        en: "Choose one friendly Henchman. That model is not deployed normally. Instead, before rolling for Initiative in any Round, you may place the model in contact with a friendly Suspect.",
+        ru: "Выберите одного дружественного Henchman. Эта модель не выставляется обычным образом. Вместо этого перед броском Initiative в любом раунде вы можете разместить эту модель в контакте с дружественным Suspect."
+      }
+    },
+    {
+      id: "encounter-05",
+      name: "PLUNDER",
+      img: "img/match-setup/encounters/encounter-05.jpg",
+      text: {
+        en: "Before deploying models, but after choosing deployment zones, each player must Set 2 Suspect markers at least 8\" away from their deployment zone and at least 8\" away from each other.",
+        ru: "Перед выставлением моделей, но после выбора зон расстановки, каждый игрок должен разместить 2 Suspect markers не ближе 8\" от своей зоны расстановки и не ближе 8\" друг от друга."
+      }
+    },
+    {
+      id: "encounter-06",
+      name: "DUEL",
+      img: "img/match-setup/encounters/encounter-06.jpg",
+      text: {
+        en: "Set an Event marker on the map as shown. Only the indicated model rank can be deployed within 4\" of that marker. When Deployment is finished, remove this Event marker.",
+        ru: "Разместите Event marker на карте, как показано. Только модель указанного на карте ранга может быть выставлена в пределах 4\" от этого маркера. После завершения расстановки уберите этот Event marker."
+      }
+    },
+    {
+      id: "encounter-07",
+      name: "STAND-OFF",
+      img: "img/match-setup/encounters/encounter-07.jpg",
+      text: {
+        en: "During the first Round, Damage inflicted is ignored by models, but is still inflicted for Objective card requirements.",
+        ru: "В течение первого раунда нанесенный Damage игнорируется моделями, но считается нанесенным для требований Objective cards."
+      }
+    },
+    {
+      id: "encounter-08",
+      name: "TAKING SIDES",
+      img: "img/match-setup/encounters/encounter-08.jpg",
+      text: {
+        en: "Place the 10\" and 8\" measure sticks as shown. For the rest of the game they are an impassable element. No model may Move, Place, draw LoS, or affect another model through it.",
+        ru: "Разместите измерительные линейки 10\" и 8\", как показано. До конца игры они считаются непроходимым элементом. Модели не могут двигаться, размещаться, проводить LoS или воздействовать на другую модель через него."
+      }
+    },
+    {
+      id: "encounter-09",
+      name: "AMBUSH",
+      img: "img/match-setup/encounters/encounter-09.jpg",
+      text: {
+        en: "Players do not divide their crew into groups and deploy all of their models at once.",
+        ru: "Игроки не делят свою банду на группы и выставляют все свои модели сразу."
+      }
+    },
+    {
+      id: "encounter-10",
+      name: "HIDDEN EVIDENCES",
+      img: "img/match-setup/encounters/encounter-10.jpg",
+      text: {
+        en: "When all players have deployed all models, starting with the player with Initiative, each player must Set 2 friendly Suspects within 8\" of an enemy model. Those Suspects are also Hidden Evidences. When a model reveals a Hidden Evidence, it can discard 1 Objective card from its hand.",
+        ru: "Когда все игроки выставили все модели, начиная с игрока с Initiative, каждый игрок должен разместить 2 дружественных Suspects в пределах 8\" от вражеской модели. Эти Suspects также являются Hidden Evidences. Когда модель раскрывает Hidden Evidence, она может сбросить 1 Objective card из руки."
+      }
+    },
+    {
+      id: "encounter-11",
+      name: "KING OF THE HILL",
+      img: "img/match-setup/encounters/encounter-11.jpg",
+      text: {
+        en: "Set an Event marker in the centre of the gaming area. A model within 4\" of this marker cannot benefit from Cover or Night Rule. At the end of the Recount phase, the player with the model closest to the marker may remove 2 Damage or a Status from it.",
+        ru: "Разместите Event marker в центре игровой зоны. Модель в пределах 4\" от этого маркера не получает преимущества от Cover или Night Rule. В конце фазы Recount игрок, чья модель ближе всего к маркеру, может убрать с нее 2 Damage или один Status."
+      }
+    },
+    {
+      id: "encounter-12",
+      name: "NEWS FILES",
+      img: "img/match-setup/encounters/encounter-12.jpg",
+      text: {
+        en: "After models are deployed, beginning with the player with Initiative, each player Sets a Suspect within 8\" of the center of the Gaming Area.",
+        ru: "После выставления моделей, начиная с игрока с Initiative, каждый игрок размещает Suspect в пределах 8\" от центра игровой зоны."
+      }
+    },
+    {
+      id: "encounter-13",
+      name: "CROSSFIRE",
+      img: "img/match-setup/encounters/encounter-13.jpg",
+      text: {
+        en: "Each player must deploy at least 1 model in each of their deployment zones.",
+        ru: "Каждый игрок должен выставить минимум 1 модель в каждой своей зоне расстановки."
+      }
+    },
+    {
+      id: "encounter-14",
+      name: "FIGHT FOR TERRITORY",
+      img: "img/match-setup/encounters/encounter-14.jpg",
+      text: {
+        en: "After models are deployed, beginning with the player with Initiative, each player may Move a friendly model 4\".",
+        ru: "После выставления моделей, начиная с игрока с Initiative, каждый игрок может сдвинуть одну дружественную модель на 4\"."
+      }
+    },
+    {
+      id: "encounter-15",
+      name: "DIVIDE AND CONQUER",
+      img: "img/match-setup/encounters/encounter-15.jpg",
+      text: {
+        en: "If your Crew has a Leader and a Henchman, they must be deployed in separate deployment zones.",
+        ru: "Если в вашей банде есть Leader и Henchman, они должны быть выставлены в разных зонах расстановки."
+      }
+    },
+    {
+      id: "encounter-16",
+      name: "FOUNTAINS",
+      img: "img/match-setup/encounters/encounter-16.jpg",
+      text: {
+        en: "Leader and Henchman models must deploy within 4\" from the edge of the Gaming Area, still within the deployment zone.",
+        ru: "Модели Leader и Henchman должны выставляться в пределах 4\" от края игровой зоны, оставаясь в своей зоне расстановки."
+      }
+    }
+  ],
+  events: [
+    {
+      id: "event-01",
+      name: "LABYRINTHINE SEWER",
+      img: "img/match-setup/events/event-01.jpg",
+      text: {
+        en: "Models that use a Sewer suffer the Enervating (1) Status.",
+        ru: "Модели, использующие Sewer, получают статус Enervating (1)."
+      }
+    },
+    {
+      id: "event-02",
+      name: "HEAVY RAIN",
+      img: "img/match-setup/events/event-02.jpg",
+      text: {
+        en: "At the start of each Round, the player with Initiative must roll a D6. On a result of 4+, all Ranged Attacks for all models roll 1 less die until the end of the Round.",
+        ru: "В начале каждого раунда игрок с Initiative бросает D6. На результате 4+ все Ranged Attacks всех моделей бросают на 1 куб меньше до конца раунда."
+      }
+    },
+    {
+      id: "event-03",
+      name: "GOTHAM IN FLAMES",
+      img: "img/match-setup/events/event-03.jpg",
+      text: {
+        en: "At the start of the first Execute the Plan phase, place an Event marker on the center point of the gaming area. At the start of each subsequent Execute the Plan phase, the player without Initiative chooses a direction and moves the marker 2D6\" in that direction. Any model that ends its activation within 4\" of the marker suffers the Fire (1) Status. In addition, all models within 4\" of the marker are Illuminated.",
+        ru: "В начале первой фазы Execute the Plan разместите Event marker в центре игровой зоны. В начале каждой последующей фазы Execute the Plan игрок без Initiative выбирает направление и двигает маркер на 2D6\" в этом направлении. Любая модель, завершившая активацию в пределах 4\" от маркера, получает статус Fire (1). Кроме того, все модели в пределах 4\" от маркера считаются Illuminated."
+      }
+    },
+    {
+      id: "event-04",
+      name: "IN THE SPOTLIGHT",
+      img: "img/match-setup/events/event-04.jpg",
+      text: {
+        en: "At the end of each Raise the Plan phase, beginning with the player with Initiative, each player chooses a different Streetlamp marker. Choose a direction, then move the chosen marker 1D6\" in that direction.",
+        ru: "В конце каждой фазы Raise the Plan, начиная с игрока с Initiative, каждый игрок выбирает разный Streetlamp marker. Выберите направление, затем переместите выбранный маркер на 1D6\" в этом направлении."
+      }
+    },
+    {
+      id: "event-05",
+      name: "EXPOSED",
+      img: "img/match-setup/events/event-05.jpg",
+      text: {
+        en: "At the start of each Raise the Plan phase each player chooses an enemy model. That model cannot be the first model its owner activates this round.",
+        ru: "В начале каждой фазы Raise the Plan каждый игрок выбирает вражескую модель. Эта модель не может быть первой моделью, которую ее владелец активирует в этом раунде."
+      }
+    },
+    {
+      id: "event-06",
+      name: "DELAYED",
+      img: "img/match-setup/events/event-06.jpg",
+      text: {
+        en: "Before deployment each player must choose one of their models. That model is not deployed as normal. Instead, at the start of the Raise the Plan phase of round 2, you may place the chosen model anywhere in your deployment zone.",
+        ru: "Перед расстановкой каждый игрок выбирает одну свою модель. Эта модель не выставляется обычным образом. Вместо этого в начале фазы Raise the Plan второго раунда вы можете разместить выбранную модель в любом месте своей зоны расстановки."
+      }
+    },
+    {
+      id: "event-07",
+      name: "DATA EXTRACTION",
+      img: "img/match-setup/events/event-07.jpg",
+      text: {
+        en: "At the end of the first Raise the Plan phase, the player without Initiative places an Event marker at least 8\" away from their deployment zone. At the end of the Recount phase, if a player has any models in contact with this marker, they may search their Objective deck for a card. If only 1 player uses this rule, the other player chooses a direction and moves the Event marker 1D6\" in that direction.",
+        ru: "В конце первой фазы Raise the Plan игрок без Initiative размещает Event marker минимум в 8\" от своей зоны расстановки. В конце фазы Recount, если у игрока есть модели в контакте с этим маркером, он может найти карту в своей Objective deck. Если только один игрок использовал это правило, другой игрок выбирает направление и перемещает Event marker на 1D6\" в этом направлении."
+      }
+    },
+    {
+      id: "event-08",
+      name: "FULL MOON",
+      img: "img/match-setup/events/event-08.jpg",
+      text: {
+        en: "At the start of each Round, the player with Initiative must roll a D6. On a result of 4+, Firing Blind only reduces RoF by 1.",
+        ru: "В начале каждого раунда игрок с Initiative бросает D6. На результате 4+ Firing Blind уменьшает RoF только на 1."
+      }
+    },
+    {
+      id: "event-09",
+      name: "EXHAUSTED",
+      img: "img/match-setup/events/event-09.jpg",
+      text: {
+        en: "The first Strength die rolled for each player in each Round becomes an Attack die instead.",
+        ru: "Первый Strength die, брошенный каждым игроком в каждом раунде, вместо этого становится Attack die."
+      }
+    },
+    {
+      id: "event-10",
+      name: "THE RAT",
+      img: "img/match-setup/events/event-10.jpg",
+      text: {
+        en: "At the end of the first Raise the Plan phase, each player must choose one of their Henchmen. That Henchman is the Rat. At the end of each Rat's activation, if able, the active Rat must Set a friendly Suspect as a free Action in contact.",
+        ru: "В конце первой фазы Raise the Plan каждый игрок должен выбрать одного своего Henchman. Этот Henchman становится Rat. В конце каждой активации Rat, если возможно, активный Rat должен бесплатным действием Set разместить дружественный Suspect в контакте."
+      }
+    },
+    {
+      id: "event-11",
+      name: "LOW FOG",
+      img: "img/match-setup/events/event-11.jpg",
+      text: {
+        en: "At the start of each Round, the player with Initiative must roll a D6. On a result of 4+, Night rule is 8\" instead of 12\" until the end of the Round.",
+        ru: "В начале каждого раунда игрок с Initiative бросает D6. На результате 4+ Night rule равен 8\" вместо 12\" до конца раунда."
+      }
+    },
+    {
+      id: "event-12",
+      name: "HEATWAVE",
+      img: "img/match-setup/events/event-12.jpg",
+      text: {
+        en: "All models that make 3 Efforts in one instance must take an additional Damage.",
+        ru: "Все модели, которые делают 3 Efforts за один раз, должны получить дополнительный Damage."
+      }
+    },
+    {
+      id: "event-13",
+      name: "POWER OUTAGE",
+      img: "img/match-setup/events/event-13.jpg",
+      text: {
+        en: "At the end of each Raise the Plan phase, beginning with the player with Initiative, each player chooses a different Streetlamp marker. That Streetlamp does not provide Light this round.",
+        ru: "В конце каждой фазы Raise the Plan, начиная с игрока с Initiative, каждый игрок выбирает разный Streetlamp marker. Этот Streetlamp не дает Light в этом раунде."
+      }
+    },
+    {
+      id: "event-14",
+      name: "EARTHQUAKE",
+      img: "img/match-setup/events/event-14.jpg",
+      text: {
+        en: "At the end of each Raise the Plan phase, the player without Initiative places an Explosive template not in contact with any model anywhere in the Gaming Area. Any model that moves over the template this round suffers Impaired Movement.",
+        ru: "В конце каждой фазы Raise the Plan игрок без Initiative размещает Explosive template в любом месте игровой зоны, не в контакте с моделями. Любая модель, которая в этом раунде движется через этот шаблон, получает Impaired Movement."
+      }
+    },
+    {
+      id: "event-15",
+      name: "SUSPECT ESCAPES",
+      img: "img/match-setup/events/event-15.jpg",
+      text: {
+        en: "At the end of Recount, beginning with the player with Initiative, each player may move an enemy Suspect 4\".",
+        ru: "В конце Recount, начиная с игрока с Initiative, каждый игрок может переместить вражеский Suspect на 4\"."
+      }
+    },
+    {
+      id: "event-16",
+      name: "OLD SEWAGE SYSTEM",
+      img: "img/match-setup/events/event-16.jpg",
+      text: {
+        en: "Models without the Amphibious trait immediately end their activation after using a Sewer.",
+        ru: "Модели без трейта Amphibious немедленно завершают свою активацию после использования Sewer."
+      }
+    }
+  ]
+};
+let matchSetupSelection = {
+  encounterId: null,
+  eventId: null
+};
 const WARGAME_DAY_CREWS = [
   {
     id: "wargame_day_crew_1",
@@ -292,6 +591,14 @@ const translations = {
     match_objectives_action_fail: "Не выполнена",
     match_objectives_resource_cost: "Ресурс",
     match_objectives_card_value: "Ценность",
+    match_setup_title: "Деплой и ивент",
+    match_setup_generate: "Сгенерировать деплой и ивент",
+    match_setup_deployment: "Деплой",
+    match_setup_event: "Ивент",
+    match_setup_empty: "Нажмите кнопку, чтобы выбрать случайные карты деплоя и ивента.",
+    match_setup_rules_btn: "Деплой / Ивенты",
+    match_setup_all_title: "Карты деплоя и ивентов",
+    match_setup_translation: "Перевод",
     rules: "ПРАВИЛА",
     select_faction: "ВЫБОР ФРАКЦИИ",
     crew: "ОТРЯД",
@@ -543,6 +850,14 @@ const translations = {
     match_objectives_action_fail: "Failed",
     match_objectives_resource_cost: "Resource",
     match_objectives_card_value: "Value",
+    match_setup_title: "Deployment and event",
+    match_setup_generate: "Generate deployment and event",
+    match_setup_deployment: "Deployment",
+    match_setup_event: "Event",
+    match_setup_empty: "Press the button to draw random deployment and event cards.",
+    match_setup_rules_btn: "Deployment / Events",
+    match_setup_all_title: "Deployment and event cards",
+    match_setup_translation: "Translation",
     rules: "RULES",
     select_faction: "SELECT FACTION",
     crew: "CREW",
@@ -800,7 +1115,11 @@ function setLanguage(lang) {
   if (compendiumOpen) {
     const query = $("compendiumSearch")?.value || "";
     updateCompendiumSearchUi();
-    renderCompendiumUnifiedSearch(query);
+    if (compendiumMatchSetupGalleryOpen) {
+      renderMatchSetupCardsGalleryIntoCompendium(query);
+    } else {
+      renderCompendiumUnifiedSearch(query);
+    }
   }
 
   if (modelSearchOpen) {
@@ -5490,6 +5809,7 @@ function renderCompendiumUnifiedSearch(query = "") {
 }
 
 function setCompendiumSearchMode(mode) {
+  compendiumMatchSetupGalleryOpen = false;
   compendiumSearchMode = mode === "models" ? "models" : "rules";
   updateCompendiumSearchUi();
   renderCompendiumUnifiedSearch($("compendiumSearch")?.value || "");
@@ -6737,6 +7057,7 @@ function playWargameDayCrew(crewId) {
     };
     matchGameSide = "own";
     matchGameCardsExpanded = false;
+    resetMatchSetupSelection();
     resetMatchGameObjectiveState();
 
     rememberNavigation("match-game");
@@ -7943,6 +8264,7 @@ function startMatchGame() {
   };
   matchGameSide = "own";
   matchGameCardsExpanded = false;
+  resetMatchSetupSelection();
   resetMatchGameObjectiveState();
 
   rememberNavigation('match-game');
@@ -8100,12 +8422,219 @@ function renderMatchGameModelCard(modelEntry, rosterIndex) {
   `;
 }
 
+function getMatchSetupDeck(kind) {
+  return kind === "event" ? MATCH_SETUP_CARDS.events : MATCH_SETUP_CARDS.encounters;
+}
+
+function getMatchSetupSelectionKey(kind) {
+  return kind === "event" ? "eventId" : "encounterId";
+}
+
+function findMatchSetupCard(kind, cardId) {
+  return getMatchSetupDeck(kind).find(card => card.id === cardId) || null;
+}
+
+function getCurrentMatchSetupCard(kind) {
+  return findMatchSetupCard(kind, matchSetupSelection[getMatchSetupSelectionKey(kind)]);
+}
+
+function getMatchSetupCardText(card) {
+  if (!card?.text) return "";
+  return card.text[currentLang] || card.text.ru || card.text.en || "";
+}
+
+function renderMatchSetupText(text) {
+  return replaceIcons(escapeHtml(String(text || "")).replace(/\n/g, "<br>"));
+}
+
+function showMatchSetupCardPreview(kind, cardId) {
+  const card = findMatchSetupCard(kind, cardId);
+  if (!card) return;
+
+  const kindLabel = kind === "event" ? t("match_setup_event") : t("match_setup_deployment");
+  const imageHtml = card.img
+    ? `<img src="${escapeAttribute(card.img)}" alt="${escapeAttribute(card.name)}" class="match-card-preview-img match-setup-preview-img" onerror="this.style.display='none'">`
+    : "";
+  const textHtml = getMatchSetupCardText(card)
+    ? `<div class="match-card-preview-text">
+        <div>${escapeHtml(t("match_setup_translation"))}</div>
+        <p>${renderMatchSetupText(getMatchSetupCardText(card))}</p>
+      </div>`
+    : "";
+
+  showTraitPopup(
+    `${kindLabel}: ${card.name}`,
+    `<div class="match-card-preview match-setup-preview">${imageHtml}${textHtml}</div>`
+  );
+}
+
+function getRandomMatchSetupCard(kind) {
+  const deck = getMatchSetupDeck(kind);
+  if (!deck.length) return null;
+  return deck[Math.floor(Math.random() * deck.length)];
+}
+
+function resetMatchSetupSelection() {
+  matchSetupSelection = {
+    encounterId: null,
+    eventId: null
+  };
+}
+
+function generateMatchSetupCards() {
+  const encounter = getRandomMatchSetupCard("encounter");
+  const event = getRandomMatchSetupCard("event");
+  matchSetupSelection.encounterId = encounter?.id || null;
+  matchSetupSelection.eventId = event?.id || null;
+  renderMatchGame();
+}
+
+function selectMatchSetupCard(kind, cardId) {
+  matchSetupSelection[getMatchSetupSelectionKey(kind)] = cardId || null;
+  renderMatchGame();
+}
+
+function renderMatchSetupSelect(kind) {
+  const selectedId = matchSetupSelection[getMatchSetupSelectionKey(kind)] || "";
+  const label = kind === "event" ? t("match_setup_event") : t("match_setup_deployment");
+  const options = getMatchSetupDeck(kind).map(card =>
+    `<option value="${escapeAttribute(card.id)}" ${card.id === selectedId ? "selected" : ""}>${escapeHtml(card.name)}</option>`
+  ).join("");
+
+  return `
+    <label class="match-setup-select-wrap">
+      <span>${escapeHtml(label)}</span>
+      <select class="match-setup-select" onchange="selectMatchSetupCard('${kind}', this.value)">
+        <option value="">${escapeHtml(label)}</option>
+        ${options}
+      </select>
+    </label>
+  `;
+}
+
+function renderMatchSetupCardSlot(kind) {
+  const card = getCurrentMatchSetupCard(kind);
+  const label = kind === "event" ? t("match_setup_event") : t("match_setup_deployment");
+
+  if (!card) {
+    return `
+      <div class="match-setup-slot is-empty">
+        <div class="match-setup-slot-label">${escapeHtml(label)}</div>
+        <div class="match-setup-empty-card">${escapeHtml(t("match_setup_empty"))}</div>
+      </div>
+    `;
+  }
+
+  return `
+    <article class="match-setup-slot">
+      <div class="match-setup-slot-label">${escapeHtml(label)}</div>
+      <button class="match-setup-card" type="button" onclick="showMatchSetupCardPreview('${kind}', '${escapeAttribute(card.id)}')">
+        <img src="${escapeAttribute(card.img)}" alt="${escapeAttribute(card.name)}" onerror="this.style.display='none'">
+        <span>${escapeHtml(card.name)}</span>
+      </button>
+    </article>
+  `;
+}
+
+function renderMatchSetupPanel() {
+  return `
+    <section class="match-setup-panel">
+      <div class="match-setup-head">
+        <div>
+          <div class="match-objective-title">${escapeHtml(t("match_setup_title"))}</div>
+        </div>
+        <button class="match-objective-draw-btn" type="button" onclick="generateMatchSetupCards()">
+          ${escapeHtml(t("match_setup_generate"))}
+        </button>
+      </div>
+      <div class="match-setup-selects">
+        ${renderMatchSetupSelect("encounter")}
+        ${renderMatchSetupSelect("event")}
+      </div>
+      <div class="match-setup-grid">
+        ${renderMatchSetupCardSlot("encounter")}
+        ${renderMatchSetupCardSlot("event")}
+      </div>
+    </section>
+  `;
+}
+
+function getMatchSetupGalleryCards() {
+  return [
+    ...MATCH_SETUP_CARDS.encounters.map(card => ({ ...card, kind: "encounter", label: t("match_setup_deployment") })),
+    ...MATCH_SETUP_CARDS.events.map(card => ({ ...card, kind: "event", label: t("match_setup_event") }))
+  ];
+}
+
+function renderMatchSetupGalleryCard(card) {
+  return `
+    <button class="match-setup-gallery-card" type="button" onclick="showMatchSetupCardPreview('${card.kind}', '${escapeAttribute(card.id)}')">
+      <img src="${escapeAttribute(card.img)}" alt="${escapeAttribute(card.name)}" onerror="this.style.display='none'">
+      <span>${escapeHtml(card.label)}</span>
+      <strong>${escapeHtml(card.name)}</strong>
+    </button>
+  `;
+}
+
+function renderMatchSetupCardsGallery(query = "") {
+  const normalizedQuery = String(query || "").toLowerCase().trim();
+  const cards = getMatchSetupGalleryCards().filter(card => {
+    if (!normalizedQuery) return true;
+    return [
+      card.name,
+      card.label,
+      getMatchSetupCardText(card),
+      card.text?.en,
+      card.text?.ru
+    ].some(value => String(value || "").toLowerCase().includes(normalizedQuery));
+  });
+
+  if (!cards.length) {
+    return `<div style="text-align:center;color:#888;padding:80px;font-size:18px;">${t("nothing_found")}</div>`;
+  }
+
+  const encounterCards = cards.filter(card => card.kind === "encounter");
+  const eventCards = cards.filter(card => card.kind === "event");
+  const section = (title, items) => items.length
+    ? `<section class="match-setup-gallery-section">
+        <h3>${escapeHtml(title)}</h3>
+        <div class="match-setup-gallery-grid">${items.map(renderMatchSetupGalleryCard).join("")}</div>
+      </section>`
+    : "";
+
+  return `
+    <div class="match-setup-gallery">
+      <h2>${escapeHtml(t("match_setup_all_title"))}</h2>
+      ${section(t("match_setup_deployment"), encounterCards)}
+      ${section(t("match_setup_event"), eventCards)}
+    </div>
+  `;
+}
+
+function renderMatchSetupCardsGalleryIntoCompendium(query = $("compendiumSearch")?.value || "") {
+  const list = $("compendiumList");
+  if (!list) return;
+  list.innerHTML = renderMatchSetupCardsGallery(query);
+}
+
+function showMatchSetupCardsGallery() {
+  compendiumMatchSetupGalleryOpen = true;
+  compendiumSearchMode = "rules";
+  $("compendiumModal").classList.add("active");
+  if ($("compendiumSearch")) $("compendiumSearch").value = "";
+  document.querySelector("#compendiumModal .clear-search")?.style && (document.querySelector("#compendiumModal .clear-search").style.display = "none");
+  updateCompendiumSearchUi();
+  renderMatchSetupCardsGalleryIntoCompendium("");
+}
+
 function renderMatchGameCards(roster) {
   const cards = Array.isArray(roster?.cards) ? roster.cards : [];
   const totalCards = roster?.cardCount || cards.reduce((sum, card) => sum + numericValue(card.count, 1), 0);
   const objectivePlayArea = renderMatchObjectivePlayArea(roster);
+  const matchSetupPanel = renderMatchSetupPanel();
   if (!cards.length) {
     return `
+      ${matchSetupPanel}
       ${objectivePlayArea}
       <div class="match-roster-list">
         <div class="match-roster-list-title">${t("match_cards")}: 0</div>
@@ -8115,6 +8644,7 @@ function renderMatchGameCards(roster) {
   }
 
   return `
+    ${matchSetupPanel}
     ${objectivePlayArea}
     <div class="match-roster-list match-game-card-list ${matchGameCardsExpanded ? "is-open" : ""}">
       <button class="match-game-cards-toggle" type="button" onclick="toggleMatchGameCards()">
@@ -11637,6 +12167,7 @@ const closeFullCard = () => {
 
 // ======================== COMPENDIUM ========================
 const openCompendium = () => {
+  compendiumMatchSetupGalleryOpen = false;
   rebuildCompendiumHTML();
   $("compendiumModal").classList.add("active");
   $("compendiumSearch").value = "";
@@ -11648,13 +12179,21 @@ const openCompendium = () => {
 const clearCompendiumSearch = () => {
   $("compendiumSearch").value = "";
   document.querySelector("#compendiumModal .clear-search").style.display = "none";
-  renderCompendiumUnifiedSearch("");
+  if (compendiumMatchSetupGalleryOpen) {
+    renderMatchSetupCardsGalleryIntoCompendium("");
+  } else {
+    renderCompendiumUnifiedSearch("");
+  }
 };
 
 $("compendiumSearch").oninput = function() {
   const q = this.value.toLowerCase().trim();
   document.querySelector("#compendiumModal .clear-search").style.display = q ? "flex" : "none";
-  renderCompendiumUnifiedSearch(q);
+  if (compendiumMatchSetupGalleryOpen) {
+    renderMatchSetupCardsGalleryIntoCompendium(q);
+  } else {
+    renderCompendiumUnifiedSearch(q);
+  }
 };
 
 // ======================== ПОИСК МОДЕЛЕЙ ========================
