@@ -11179,6 +11179,22 @@ function getTraitDisplayKey(trait) {
   return normalizeExactKey(getCleanName(trait));
 }
 
+function resolveCanonicalTraitDisplayName(trait) {
+  const fallback = String(trait || "").trim();
+  const targetKey = getTraitDisplayKey(fallback);
+  if (!targetKey || typeof window === "undefined" || !window.compendium) return fallback;
+
+  const exactMatch = Object.keys(window.compendium)
+    .filter(key => getTraitDisplayKey(key) === targetKey)
+    .sort((left, right) => {
+      const leftSpecial = isSpecialTrait(left) ? 1 : 0;
+      const rightSpecial = isSpecialTrait(right) ? 1 : 0;
+      return rightSpecial - leftSpecial;
+    })[0];
+
+  return exactMatch || fallback;
+}
+
 function splitTextOutsideParens(value, separatorChar) {
   const parts = [];
   let current = "";
@@ -11297,10 +11313,11 @@ function getEquipmentGrantedTraits(equipmentItems = []) {
     effects
       .flatMap(getEquipmentGrantedTraitsFromEffect)
       .forEach(trait => {
-        const key = getTraitDisplayKey(trait);
+        const canonicalTrait = resolveCanonicalTraitDisplayName(trait);
+        const key = getTraitDisplayKey(canonicalTrait);
         if (!key || seen.has(key)) return;
         seen.add(key);
-        result.push(trait);
+        result.push(canonicalTrait);
       });
   });
 
