@@ -59,14 +59,16 @@ function unique(values) {
 
 function officialFactionDisplayName(name) {
   const aliases = {
-    "Law Forces": "GCPD",
-    "Vigilantes": "Bat Family",
-    "League of Assassins": "League of Shadows",
-    "Riddler": "The Riddler",
-    "Soldiers of Fortune": "Bane",
-    "The Batman Who Laughs": "Batman Who Laughs",
-    "The Court of Owls": "Court of Owls",
-    "Royal Flush Gang": "Royal Flush"
+    "GCPD": "Law Forces",
+    "Bat Family": "Vigilantes",
+    "Birds of Prey": "Harley Quinn & Friends",
+    "Harley Quinn and Friends": "Harley Quinn & Friends",
+    "League of Shadows": "League of Assassins",
+    "Bane": "Soldiers of Fortune",
+    "The Riddler": "Riddler",
+    "Batman Who Laughs": "The Batman Who Laughs",
+    "Court of Owls": "The Court of Owls",
+    "Royal Flush": "Royal Flush Gang"
   };
   return aliases[name] || name;
 }
@@ -262,7 +264,7 @@ function findOfficialEquipmentRule(faction, item) {
   const itemKey = normalizeOfficialEquipmentRuleKey(item.name);
   const candidates = rules.filter(rule => {
     const ruleKey = normalizeOfficialEquipmentRuleKey(rule.name);
-    return itemKey === ruleKey || itemKey.startsWith(ruleKey + " ");
+    return itemKey === ruleKey;
   });
 
   if (candidates.length === 1) return candidates[0];
@@ -275,6 +277,9 @@ function mergeOfficialEquipmentRuleFields(item, rule) {
   if (!rule) return item;
   const merged = { ...item };
   if (merged.officialId == null) merged.officialId = rule.officialId;
+  merged.fundingCost = rule.fundingCost;
+  merged.repCost = rule.repCost;
+  merged.maxPerCrew = rule.maxPerCrew;
   if (Array.isArray(rule.targetModels) && rule.targetModels.length) merged.targetModels = rule.targetModels;
   if (Array.isArray(rule.targetRanks) && rule.targetRanks.length) merged.targetRanks = rule.targetRanks;
   if (Array.isArray(rule.targetOfficialIds) && rule.targetOfficialIds.length) merged.targetOfficialIds = rule.targetOfficialIds;

@@ -40,14 +40,16 @@ function cleanRealName(value) {
 
 function officialFactionDisplayName(name) {
   const aliases = {
-    "Law Forces": "GCPD",
-    "Vigilantes": "Bat Family",
-    "League of Assassins": "League of Shadows",
-    "Riddler": "The Riddler",
-    "Soldiers of Fortune": "Bane",
-    "The Batman Who Laughs": "Batman Who Laughs",
-    "The Court of Owls": "Court of Owls",
-    "Royal Flush Gang": "Royal Flush"
+    "GCPD": "Law Forces",
+    "Bat Family": "Vigilantes",
+    "Birds of Prey": "Harley Quinn & Friends",
+    "Harley Quinn and Friends": "Harley Quinn & Friends",
+    "League of Shadows": "League of Assassins",
+    "Bane": "Soldiers of Fortune",
+    "The Riddler": "Riddler",
+    "Batman Who Laughs": "The Batman Who Laughs",
+    "Court of Owls": "The Court of Owls",
+    "Royal Flush": "Royal Flush Gang"
   };
   return aliases[name] || name;
 }
@@ -334,7 +336,7 @@ function compareModel(model, character, indexes) {
     differences.ranks = { local: localRanks, official: officialRanks };
   }
 
-  const localFactions = sortedUnique(model.faction || []);
+  const localFactions = sortedUnique(asArray(model.faction).flat(Infinity).map(officialFactionDisplayName));
   const officialFactions = officialCharacterFactions(character, indexes);
   if (!valuesEqualSet(localFactions, officialFactions)) {
     differences.factions = { local: localFactions, official: officialFactions };
@@ -376,6 +378,7 @@ function equipmentDisabledKey(value) {
 }
 
 function isDisabledLocalOnlyEquipment(item, disabledLocalOnlyEquipmentByFaction) {
+  if (item?.officialId !== undefined && item.officialId !== null) return false;
   const disabledNames = disabledLocalOnlyEquipmentByFaction?.[item.faction];
   if (!Array.isArray(disabledNames) || !disabledNames.length) return false;
 

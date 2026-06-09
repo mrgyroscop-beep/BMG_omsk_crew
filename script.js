@@ -907,6 +907,15 @@ const localizedUi = {
 };
 
 const factionLabels = {
+  "Law Forces": { ru: "Силы правопорядка", en: "Law Forces" },
+  "Vigilantes": { ru: "Вигиланты", en: "Vigilantes" },
+  "Harley Quinn & Friends": { ru: "Харли Квинн и Ко", en: "Harley Quinn & Friends" },
+  "League of Assassins": { ru: "Лига убийц", en: "League of Assassins" },
+  "Soldiers of Fortune": { ru: "Солдаты удачи", en: "Soldiers of Fortune" },
+  "Riddler": { ru: "Загадочник", en: "Riddler" },
+  "The Court of Owls": { ru: "Суд Сов", en: "The Court of Owls" },
+  "The Batman Who Laughs": { ru: "Бэтмен, который смеётся", en: "The Batman Who Laughs" },
+  "Royal Flush Gang": { ru: "Королевский Флеш", en: "Royal Flush Gang" },
   "Bat Family": { ru: "Семья Бэтмена", en: "Bat Family" },
   "Birds of Prey": { ru: "Хищные птицы", en: "Birds of Prey" },
   "League of Shadows": { ru: "Лига Теней", en: "League of Shadows" },
@@ -4919,6 +4928,15 @@ function localizeFactionList(input) {
 }
 
 const factionIconPaths = {
+  "Law Forces": "img/ico/AFF_LAW_FORCES_ICON.png",
+  "Vigilantes": "img/ico/AFF_BATMAN_ICON.png",
+  "Harley Quinn & Friends": "img/menu/BIRDS_OF_PREY.png",
+  "League of Assassins": "img/ico/AFF_LEAGUE_ICON.png",
+  "Soldiers of Fortune": "img/ico/AFF_BANE_ICON.png",
+  "Riddler": "img/ico/AFF_RIDDLER_ICON}.png",
+  "The Court of Owls": "img/ico/AFF_OWLS_ICON.png",
+  "The Batman Who Laughs": "img/menu/BatmanWhoLaughs.png",
+  "Royal Flush Gang": "img/ico/AFF_ROYAL_FLUSH_ICON.png",
   "Bat Family": "img/ico/AFF_BATMAN_ICON.png",
   "GCPD": "img/ico/AFF_LAW_FORCES_ICON.png",
   "Birds of Prey": "img/menu/BIRDS_OF_PREY.png",
@@ -5435,12 +5453,7 @@ function renderCompendiumModelsSearch(query = "") {
     .filter(m => {
       if (!normalizedQuery) return true;
 
-      const factions = Array.isArray(m.faction)
-        ? m.faction
-        : typeof m.faction === "string"
-          ? m.faction.replace(/ *& */gi, ",").replace(/ *\/ */g, ",").split(",").map(s => s.trim())
-          : [];
-
+      const factions = getFactions(m);
       const rank = Array.isArray(m.rank) ? m.rank.join(" ") : (m.rank || "");
       const factionText = factions.join(" ");
 
@@ -5449,7 +5462,7 @@ function renderCompendiumModelsSearch(query = "") {
         rank,
         factionText,
         localizeRank(m.rank || "Free Agent"),
-        localizeFactionList(Array.isArray(m.faction) ? m.faction : (m.faction || "—"))
+        localizeFactionList(factions.length ? factions : "—")
       ].some(value => String(value).toLowerCase().includes(normalizedQuery));
     })
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -5460,7 +5473,7 @@ function renderCompendiumModelsSearch(query = "") {
         ${m.name}<span style="float:right;color:#e94560;font-weight:bold">${displayValue(m.rep)} Rep • $${displayValue(m.funding)} • ${getPrintableStatusText(m)}</span>
       </div>
       <div class="comp-text" style="padding:12px;font-size:14px;color:#aaa">
-        ${localizeRank(m.rank || "Free Agent")} • ${localizeFactionList(Array.isArray(m.faction) ? m.faction : (m.faction || "—"))}
+        ${localizeRank(m.rank || "Free Agent")} • ${localizeFactionList(getFactions(m).length ? getFactions(m) : "—")}
       </div>
     </div>`).join("") : `<div style="text-align:center;color:#888;padding:80px;font-size:18px;">${t("nothing_found")}</div>`;
 
@@ -6075,7 +6088,7 @@ function canPassTraitRecruitmentRules(model) {
     const requiredMatch = trait.match(/^Required \((.+)\)$/);
     if (requiredMatch && !hasRequiredTraitOption(requiredMatch[1])) return false;
 
-    if (trait === "Incorruptible" && ["Joker", "Bane", "Penguin", "Mr. Freeze", "Scarecrow", "Two-Face", "The Riddler", "Organized Crime", "Suicide Squad", "Batman Who Laughs", "Cults"].includes(currentFaction)) {
+    if (trait === "Incorruptible" && ["Joker", "Soldiers of Fortune", "Penguin", "Mr. Freeze", "Scarecrow", "Two-Face", "Riddler", "Organized Crime", "Suicide Squad", "The Batman Who Laughs", "Cults"].includes(currentFaction)) {
       return false;
     }
 
@@ -6088,7 +6101,7 @@ function canPassTraitRecruitmentRules(model) {
     }
 
     const isPrintedFaction = getFactions(model).includes(currentFaction);
-    if (trait === "Possessed" && !isPrintedFaction && !["Cults", "Batman Who Laughs"].includes(currentFaction)) {
+    if (trait === "Possessed" && !isPrintedFaction && !["Cults", "The Batman Who Laughs"].includes(currentFaction)) {
       return false;
     }
 
@@ -6100,7 +6113,7 @@ function canPassTraitRecruitmentRules(model) {
       return false;
     }
 
-    if (trait === "Amazon Lineage" && currentFaction !== "Birds of Prey") {
+    if (trait === "Amazon Lineage" && currentFaction !== "Harley Quinn & Friends") {
       return false;
     }
   }
@@ -6288,12 +6301,13 @@ function formatMyCrewDate(value) {
 function createMyCrewRecordFromText(text) {
   const normalizedText = String(text || "").replace(/\r\n/g, "\n").trim();
   const parsed = parseRosterImportText(normalizedText);
-  const title = parsed.crewName || parsed.entries[0]?.modelName || parsed.faction || "Crew";
+  const parsedFaction = typeof canonicalFactionName === "function" ? canonicalFactionName(parsed.faction) : parsed.faction;
+  const title = parsed.crewName || parsed.entries[0]?.modelName || parsedFaction || "Crew";
 
   return {
     id: `crew_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
     title,
-    faction: parsed.faction,
+    faction: parsedFaction,
     modelCount: parsed.entries.length,
     addedAt: new Date().toISOString(),
     text: normalizedText
@@ -7206,9 +7220,10 @@ function applyMatchRosterRuleEffects(roster) {
 
 function buildMatchRosterFromParsedCrew(crewEntry, parsed) {
   const costs = getParsedRosterCosts(parsed);
+  const parsedFaction = typeof canonicalFactionName === "function" ? canonicalFactionName(parsed.faction) : parsed.faction;
   const roster = {
-    title: crewEntry.title || parsed.crewName || parsed.faction || "Crew",
-    faction: parsed.faction,
+    title: crewEntry.title || parsed.crewName || parsedFaction || "Crew",
+    faction: parsedFaction,
     repLimit: parsed.repLimit || 350,
     fundingLimit: parsed.fundingLimit || 1500,
     usedRep: costs.usedRep,
@@ -7216,7 +7231,7 @@ function buildMatchRosterFromParsedCrew(crewEntry, parsed) {
     modelCount: parsed.entries.length,
     cardCount: (parsed.cards || []).length,
     models: parsed.entries.map(entry => {
-      const catalogModel = findMatchRosterModel(entry, parsed.faction);
+      const catalogModel = findMatchRosterModel(entry, parsedFaction);
       return {
         id: getMatchModelIndex(catalogModel),
         modelId: catalogModel?.id || entry.modelId || "",
@@ -7238,6 +7253,7 @@ function validateMatchRoster(parsed, options = {}) {
   const messages = [];
   let isLegal = true;
   const allowEmptyDeck = Boolean(options.allowEmptyDeck && !(parsed.cards || []).length);
+  const parsedFaction = typeof canonicalFactionName === "function" ? canonicalFactionName(parsed.faction) : parsed.faction;
 
   if (!parsed.entries.length) {
     isLegal = false;
@@ -7245,7 +7261,7 @@ function validateMatchRoster(parsed, options = {}) {
   }
 
   const missingModels = parsed.entries
-    .filter(entry => !findRosterModelByEntry(entry, parsed.faction))
+    .filter(entry => !findRosterModelByEntry(entry, parsedFaction))
     .map(entry => entry.modelName);
   if (missingModels.length) {
     isLegal = false;
@@ -7442,6 +7458,7 @@ function getEquipmentDisabledKey(value) {
 
 function isEquipmentDisabledForFaction(eq, faction) {
   if (!eq || !faction || typeof disabledLocalOnlyEquipmentByFaction === "undefined") return false;
+  if (eq.officialId !== undefined && eq.officialId !== null) return false;
   const disabledNames = disabledLocalOnlyEquipmentByFaction[faction];
   if (!Array.isArray(disabledNames) || !disabledNames.length) return false;
 
@@ -9422,8 +9439,9 @@ function getBuilderCardRequirementText(card) {
 function getParsedRosterRequirementModels(parsed) {
   if (!parsed?.entries?.length) return [];
 
+  const parsedFaction = typeof canonicalFactionName === "function" ? canonicalFactionName(parsed.faction) : parsed.faction;
   return parsed.entries.map((entry, index) => {
-    const baseModel = findRosterModelByEntry(entry, parsed.faction) || {};
+    const baseModel = findRosterModelByEntry(entry, parsedFaction) || {};
     const rankUsed = entry.rank || inferImportRank(baseModel, entry.rank, index === 0);
     return {
       ...baseModel,
@@ -10111,9 +10129,10 @@ function removeBuilderCard(cardKey) {
 
 // ======================== ВЫБОР ФРАКЦИИ В БИЛДЕРЕ ========================
 function selectFaction(faction) {
-  if (currentMode === 'builder' && faction === 'Unknown') return;
+  const normalizedFaction = typeof canonicalFactionName === "function" ? canonicalFactionName(faction) : faction;
+  if (currentMode === 'builder' && normalizedFaction === 'Unknown') return;
 
-  currentFaction = faction;
+  currentFaction = normalizedFaction;
   $('factionSelect').style.display = 'none';
   $('builderFactionCards').classList.add('hidden'); // Скрываем вкладки фракций
   $('builderMain').style.display = 'block';
@@ -10846,7 +10865,7 @@ function calculateModifiers() {
       if (t === "Undercover Agent") mods.extraFreeAgents += 1;
       if (t === "Politician") mods.extraFreeAgents += 1; // у большинства версий Politician даёт +1 FA
       if (t === "Mercenary") mods.extraFreeAgents += 1; // +1 Free Agent слот
-      if (t === "Heir to the Cowl" && currentFaction === "Bat Family") mods.extraFreeAgents += 1; // +1 FA в Bat Family
+      if (t === "Heir to the Cowl" && currentFaction === "Vigilantes") mods.extraFreeAgents += 1; // +1 FA в Vigilantes
       if (t === "Watchmen") mods.extraFreeAgents += 1; // +1 FA для Watchmen
 
       // Vehicles
@@ -10956,15 +10975,15 @@ function renderMiniMetaBadges(model, options = {}) {
 
 const INCORRUPTIBLE_BLOCKED_FACTIONS = [
   "Joker",
-  "Bane",
+  "Soldiers of Fortune",
   "Penguin",
   "Mr. Freeze",
   "Scarecrow",
   "Two-Face",
-  "The Riddler",
+  "Riddler",
   "Organized Crime",
   "Suicide Squad",
-  "Batman Who Laughs",
+  "The Batman Who Laughs",
   "Cults"
 ];
 
@@ -10976,7 +10995,7 @@ function hasStaticFactionRestriction(model, faction) {
     return true;
   }
 
-  if ((traits.includes("Freed") || traits.includes("He Freed Me")) && faction !== "Batman Who Laughs") {
+  if ((traits.includes("Freed") || traits.includes("He Freed Me")) && faction !== "The Batman Who Laughs") {
     return true;
   }
 
@@ -10984,11 +11003,11 @@ function hasStaticFactionRestriction(model, faction) {
     return true;
   }
 
-  if (traits.includes("Amazon Lineage") && faction !== "Birds of Prey") {
+  if (traits.includes("Amazon Lineage") && faction !== "Harley Quinn & Friends") {
     return true;
   }
 
-  if (traits.includes("Possessed") && !modelFactions.includes(faction) && !["Cults", "Batman Who Laughs"].includes(faction)) {
+  if (traits.includes("Possessed") && !modelFactions.includes(faction) && !["Cults", "The Batman Who Laughs"].includes(faction)) {
     return true;
   }
 
@@ -11156,22 +11175,184 @@ ${actions}
 }, 100);
 
 // ======================== ПОЛНАЯ КАРТОЧКА ========================
-function renderTraits(traits, ruleAddedTraits = []) {
+function getTraitDisplayKey(trait) {
+  return normalizeExactKey(getCleanName(trait));
+}
+
+function splitTextOutsideParens(value, separatorChar) {
+  const parts = [];
+  let current = "";
+  let depth = 0;
+
+  String(value || "").split("").forEach(char => {
+    if (char === "(") depth += 1;
+    if (char === ")" && depth > 0) depth -= 1;
+
+    if (char === separatorChar && depth === 0) {
+      parts.push(current.trim());
+      current = "";
+      return;
+    }
+
+    current += char;
+  });
+
+  if (current.trim()) parts.push(current.trim());
+  return parts;
+}
+
+function splitAndOutsideParens(value) {
+  const text = String(value || "");
+  const parts = [];
+  let current = "";
+  let depth = 0;
+  let index = 0;
+
+  while (index < text.length) {
+    const char = text[index];
+    if (char === "(") depth += 1;
+    if (char === ")" && depth > 0) depth -= 1;
+
+    const lowerTail = text.slice(index).toLowerCase();
+    const andMatch = depth === 0 && lowerTail.match(/^\s+(?:and|и)\s+/);
+    if (andMatch) {
+      if (current.trim()) parts.push(current.trim());
+      current = "";
+      index += andMatch[0].length;
+      continue;
+    }
+
+    current += char;
+    index += 1;
+  }
+
+  if (current.trim()) parts.push(current.trim());
+  return parts;
+}
+
+function splitGrantedTraitList(value) {
+  return splitTextOutsideParens(value, ",")
+    .flatMap(splitAndOutsideParens)
+    .map(item => item.trim())
+    .filter(Boolean);
+}
+
+function cleanGrantedEquipmentTraitName(value) {
+  let result = String(value || "")
+    .replace(/\s+/g, " ")
+    .replace(/^[\s,.;:]+|[\s,.;:]+$/g, "")
+    .replace(/^(?:and|и)\s+/i, "")
+    .replace(/^(?:the|a|an)\s+/i, "")
+    .replace(/^(?:правило|правила|трейт|трейты)\s+/i, "")
+    .replace(/\s+(?:rules?|traits?)$/i, "")
+    .replace(/\s+(?:правило|правила|трейт|трейты)$/i, "")
+    .trim();
+
+  if (!result) return "";
+  if (/^[+-]?\d+\b/.test(result)) return "";
+  if (/^(?:one|один|одну|1)\s+/i.test(result)) return "";
+  if (/^(?:to\s+)?(?:movement|defense|attack|willpower|endurance|strength|ammo|ammunition|titan dose|venom dose|spray can)\b/i.test(result)) {
+    return "";
+  }
+
+  return result;
+}
+
+function getEquipmentGrantedTraitsFromEffect(effect) {
+  const text = String(effect || "").replace(/\s+/g, " ").trim();
+  if (!text) return [];
+
+  const result = [];
+  const patterns = [
+    /(?:^|[.;]\s*)(?:the\s+models?|this\s+model|model|models?)\s+gains?\s+(?:the\s+)?(.+?)\s+(?:rules?|traits?)(?=\.|;|$)/gi,
+    /(?:^|[.;]\s*)(?:модель|модели)\s+получа(?:ет|ют)\s+(?:правило|правила|трейт|трейты)\s+(.+?)(?=\.|;|$)/gi,
+    /(?:^|[.;]\s*)(?:модель|модели)\s+получа(?:ет|ют)\s+(.+?)\s+(?:правило|правила|трейт|трейты)(?=\.|;|$)/gi
+  ];
+
+  patterns.forEach(pattern => {
+    let match;
+    while ((match = pattern.exec(text)) !== null) {
+      splitGrantedTraitList(match[1])
+        .map(cleanGrantedEquipmentTraitName)
+        .filter(Boolean)
+        .forEach(trait => result.push(trait));
+    }
+  });
+
+  const seen = new Set();
+  return result.filter(trait => {
+    const key = getTraitDisplayKey(trait);
+    if (!key || seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function getEquipmentGrantedTraits(equipmentItems = []) {
+  const result = [];
+  const seen = new Set();
+
+  (Array.isArray(equipmentItems) ? equipmentItems : []).forEach(eq => {
+    const effects = Array.isArray(eq?.effects) ? eq.effects : [];
+    effects
+      .flatMap(getEquipmentGrantedTraitsFromEffect)
+      .forEach(trait => {
+        const key = getTraitDisplayKey(trait);
+        if (!key || seen.has(key)) return;
+        seen.add(key);
+        result.push(trait);
+      });
+  });
+
+  return result;
+}
+
+function getDisplayTraitsWithEquipment(model, crewModel = model) {
+  const traits = [...getModelTraits(model)];
+  const seen = new Set(traits.map(getTraitDisplayKey).filter(Boolean));
+  const equipmentAddedTraits = [];
+
+  getEquipmentGrantedTraits(crewModel?.equipment || model?.equipment || []).forEach(trait => {
+    const key = getTraitDisplayKey(trait);
+    if (!key) return;
+    if (!seen.has(key)) {
+      seen.add(key);
+      traits.push(trait);
+    }
+    equipmentAddedTraits.push(trait);
+  });
+
+  return {
+    traits,
+    ruleAddedTraits: Array.isArray(model?.ruleAddedTraits) ? model.ruleAddedTraits : [],
+    equipmentAddedTraits
+  };
+}
+
+function renderTraits(traits, ruleAddedTraits = [], equipmentAddedTraits = []) {
   if (!traits || !traits.length) return '';
 
   const traitsArray = Array.isArray(traits) ? traits : [traits];
-  const ruleAddedTraitNames = new Set((ruleAddedTraits || []).map(trait => getCleanName(trait)));
+  const ruleAddedTraitNames = new Set((ruleAddedTraits || []).map(getTraitDisplayKey).filter(Boolean));
+  const equipmentAddedTraitNames = new Set((equipmentAddedTraits || []).map(getTraitDisplayKey).filter(Boolean));
 
   return traitsArray.map(trait => {
     const traitText = String(trait);
     const isSpecial = isSpecialTrait(traitText);
-    const isRuleAdded = ruleAddedTraitNames.has(getCleanName(traitText));
+    const traitKey = getTraitDisplayKey(traitText);
+    const isRuleAdded = ruleAddedTraitNames.has(traitKey);
+    const isEquipmentAdded = equipmentAddedTraitNames.has(traitKey);
     const content = replaceIcons(translateDisplayText(traitText));
     const highlightClass = [
       isSpecial ? 'special-trait-highlight' : '',
-      isRuleAdded ? 'rule-added-trait-highlight' : ''
+      (isRuleAdded || isEquipmentAdded) ? 'rule-added-trait-highlight' : ''
     ].filter(Boolean).join(" ");
-    const title = isRuleAdded ? ` title="${escapeAttribute("Added by a rule")}"` : "";
+    const titleText = isEquipmentAdded
+      ? (currentLang === "ru" ? "Добавлено снаряжением" : "Added by equipment")
+      : isRuleAdded
+        ? (currentLang === "ru" ? "Добавлено правилом" : "Added by a rule")
+        : "";
+    const title = titleText ? ` title="${escapeAttribute(titleText)}"` : "";
 
     return `
       <div class="official-trait ${highlightClass}"
@@ -11310,16 +11491,13 @@ const showFullCard = model => {
       models.find(m => m.name === model?.name) ||
       model);
   model = currentFullCardModel;
+  const crewModel = isDisplayModel ? model : findCrewModel(model); // Находим экземпляр в crew
 
   const realName = model.realname || "—";
   const base = model.base || "30mm";
 
   // --- Основные фракции (faction) ---
-  const mainFactions = Array.isArray(model.faction)
-    ? model.faction
-    : typeof model.faction === "string" && model.faction.trim()
-      ? model.faction.replace(/ *& */gi, ",").replace(/ *\/ */g, ",").split(",").map(s => s.trim())
-      : [];
+  const mainFactions = getFactions(model);
 
   // --- Rivals (новое поле) ---
   const rivalFactions = Array.isArray(model.rivals)
@@ -11327,6 +11505,9 @@ const showFullCard = model => {
     : typeof model.rivals === "string" && model.rivals.trim()
       ? model.rivals.replace(/ *& */gi, ",").replace(/ *\/ */g, ",").split(",").map(s => s.trim())
       : [];
+  const canonicalRivalFactions = rivalFactions.map(faction =>
+    typeof canonicalFactionName === "function" ? canonicalFactionName(faction) : faction
+  );
 
   // --- Ранг ---
   const rank = Array.isArray(model.rank)
@@ -11337,7 +11518,7 @@ const showFullCard = model => {
   const funding = displayValue(model.funding);
 
   const factionIconsHTML = renderFactionIcons(mainFactions);
-  const rivalsIconsHTML = renderFactionIcons(rivalFactions);
+  const rivalsIconsHTML = renderFactionIcons(canonicalRivalFactions);
   // --- Оружие и трейты ---
 const weaponsHTML = model.weapons?.length ? model.weapons.map(w => {
     if (!w || Object.keys(w).length === 0) return "";
@@ -11354,13 +11535,12 @@ const weaponsHTML = model.weapons?.length ? model.weapons.map(w => {
       </div>`;
   }).join("") : "";
 
-  // ИСПРАВЛЕНО: Используем новую функцию renderTraits для отображения трейтов с иконками и специальными стилями
-  const traitsHTML = model.traits?.length
-    ? `<div class="official-section yellow"><div class="official-section-title">${uiText("section_traits")}</div><div class="official-traits-grid">${renderTraits(model.traits, model.ruleAddedTraits || [])}</div></div>`
+  const displayTraitInfo = getDisplayTraitsWithEquipment(model, crewModel);
+  const traitsHTML = displayTraitInfo.traits.length
+    ? `<div class="official-section yellow"><div class="official-section-title">${uiText("section_traits")}</div><div class="official-traits-grid">${renderTraits(displayTraitInfo.traits, displayTraitInfo.ruleAddedTraits, displayTraitInfo.equipmentAddedTraits)}</div></div>`
     : "";
 
   // Новый блок: equipment (только если есть в crewModel)
-  const crewModel = isDisplayModel ? model : findCrewModel(model); // Находим экземпляр в crew
   const equipmentHTML = renderFullCardEquipmentSection(model, crewModel, isDisplayModel);
   
   // --- Финальная сборка карточки ---
@@ -11677,7 +11857,10 @@ function initTabs() {
     card.addEventListener('click', () => {
       document.querySelectorAll('.faction-card').forEach(c => c.classList.remove('active'));
       card.classList.add('active');
-      currentFaction = card.dataset.faction; // Устанавливаем фракцию
+      const selectedFaction = typeof canonicalFactionName === "function"
+        ? canonicalFactionName(card.dataset.faction)
+        : card.dataset.faction;
+      currentFaction = selectedFaction; // Устанавливаем фракцию
 
       if (card.closest('#cardsSection')) { // Для cardsSection
         // Скрываем вкладки фракций после выбора
@@ -11688,8 +11871,7 @@ function initTabs() {
           renderMiniCardsView(); // Рендерим модели только после выбора
         }
       } else if (card.closest('#factionSelect')) {
-        const faction = card.dataset.faction;
-        selectFaction(faction);
+        selectFaction(selectedFaction);
       } else {
         if (currentMode === 'cards') {
           renderMiniCardsView();
@@ -12301,7 +12483,7 @@ function bmgCanAddModel(model, options = {}) {
     }
 
     // Incorruptible: Нельзя в злые фракции (если фракция villain)
-    if (trait === "Incorruptible" && ["Joker", "Bane", "Penguin", "Mr. Freeze", "Scarecrow", "Two-Face", "The Riddler", "Organized Crime", "Suicide Squad", "Batman Who Laughs", "Cults"].includes(currentFaction)) {
+    if (trait === "Incorruptible" && ["Joker", "Soldiers of Fortune", "Penguin", "Mr. Freeze", "Scarecrow", "Two-Face", "Riddler", "Organized Crime", "Suicide Squad", "The Batman Who Laughs", "Cults"].includes(currentFaction)) {
       showBuilderWarning(t("incorruptible_cannot_add"));
       exceeded = true;
     }
@@ -12324,7 +12506,7 @@ function bmgCanAddModel(model, options = {}) {
 
     // Possessed сам по себе не запрещает нанимать модель в ее напечатанную фракцию.
     const isPrintedFaction = getFactions(model).includes(currentFaction);
-    if (trait === "Possessed" && !isPrintedFaction && !["Cults", "Batman Who Laughs"].includes(currentFaction)) {
+    if (trait === "Possessed" && !isPrintedFaction && !["Cults", "The Batman Who Laughs"].includes(currentFaction)) {
       showBuilderWarning(t("possessed_only_supernatural"));
       exceeded = true;
     }
@@ -12348,7 +12530,7 @@ function bmgCanAddModel(model, options = {}) {
     }
 
     // Amazon Lineage: Только в amazon фракциях
-    if (trait === "Amazon Lineage" && currentFaction !== "Birds of Prey") {
+    if (trait === "Amazon Lineage" && currentFaction !== "Harley Quinn & Friends") {
       showBuilderWarning(t("amazon_lineage"));
       exceeded = true;
     }
@@ -13045,8 +13227,9 @@ function getImportRankPriority(rank) {
 
 function importRosterFromText(text, options = {}) {
   const parsed = parseRosterImportText(text);
-  const factionExists = Object.prototype.hasOwnProperty.call(factionCrewRules, parsed.faction) ||
-    models.some(model => canHireInFaction(model, parsed.faction));
+  const parsedFaction = typeof canonicalFactionName === "function" ? canonicalFactionName(parsed.faction) : parsed.faction;
+  const factionExists = Object.prototype.hasOwnProperty.call(factionCrewRules, parsedFaction) ||
+    models.some(model => canHireInFaction(model, parsedFaction));
 
   if (!factionExists) {
     throw new Error((currentLang === "ru" ? "Неизвестная фракция в файле: " : "Unknown faction in file: ") + parsed.faction);
@@ -13057,10 +13240,10 @@ function importRosterFromText(text, options = {}) {
   BMG_REP_LIMIT = parsed.repLimit || 350;
   const repLimitInput = document.getElementById('repLimit');
   if (repLimitInput) repLimitInput.value = BMG_REP_LIMIT;
-  selectFaction(parsed.faction);
+  selectFaction(parsedFaction);
 
   const pendingEntries = parsed.entries.map((entry, index) => {
-    const model = findRosterModelByEntry(entry, parsed.faction);
+    const model = findRosterModelByEntry(entry, parsedFaction);
     if (!model) {
       throw new Error((currentLang === "ru" ? "Модель не найдена: " : "Model not found: ") + entry.modelName);
     }

@@ -14196,1776 +14196,6 @@ const officialEquipmentRulesByFaction = {
       ]
     }
   ],
-  "Bane": [
-    {
-      "name": "Antidote",
-      "officialId": 55,
-      "fundingCost": 50,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Arkham Knight Secret Armoury",
-      "officialId": 68,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        18,
-        259,
-        531,
-        552,
-        796
-      ]
-    },
-    {
-      "name": "Backpack",
-      "officialId": 48,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Camo Vest",
-      "officialId": 59,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Contract",
-      "officialId": 264,
-      "fundingCost": 0,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Slade Wilson"
-      ],
-      "targetOfficialIds": [
-        355,
-        586,
-        867
-      ],
-      "requiredCrewOfficialIds": [
-        355,
-        586,
-        867
-      ]
-    },
-    {
-      "name": "Cybernetic Arms",
-      "officialId": 192,
-      "fundingCost": 50,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Jason Todd"
-      ],
-      "targetOfficialIds": [
-        18,
-        259,
-        531,
-        552,
-        796
-      ],
-      "requiredCrewOfficialIds": [
-        18,
-        259,
-        531,
-        552,
-        796
-      ]
-    },
-    {
-      "name": "Dual Handguns",
-      "officialId": 274,
-      "fundingCost": 300,
-      "repCost": 7,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Sidekick",
-        "Thomas Wayne"
-      ],
-      "targetRanks": [
-        "Sidekick"
-      ],
-      "targetOfficialIds": [
-        40,
-        588
-      ],
-      "requiredCrewOfficialIds": [
-        40,
-        588
-      ]
-    },
-    {
-      "name": "Fear Gas Dispenser",
-      "officialId": 61,
-      "fundingCost": 150,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        278
-      ]
-    },
-    {
-      "name": "Gas Mask",
-      "officialId": 193,
-      "fundingCost": 50,
-      "repCost": 0,
-      "maxPerCrew": 3,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Grapple Gun",
-      "officialId": 43,
-      "fundingCost": 300,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Handcuffs",
-      "officialId": 226,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        27,
-        28,
-        550,
-        667,
-        768,
-        844
-      ]
-    },
-    {
-      "name": "Hidden Magazines",
-      "officialId": 66,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Jason Todd"
-      ],
-      "targetOfficialIds": [
-        18,
-        259,
-        531,
-        552,
-        796
-      ],
-      "requiredCrewOfficialIds": [
-        18,
-        259,
-        531,
-        552,
-        796
-      ]
-    },
-    {
-      "name": "Hook Pistol",
-      "officialId": 69,
-      "fundingCost": 400,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Jason Todd"
-      ],
-      "targetOfficialIds": [
-        18,
-        259,
-        531,
-        552,
-        796
-      ],
-      "requiredCrewOfficialIds": [
-        18,
-        259,
-        531,
-        552,
-        796
-      ]
-    },
-    {
-      "name": "Magazine",
-      "officialId": 54,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Martial Training",
-      "officialId": 60,
-      "fundingCost": 150,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        355,
-        586,
-        867
-      ]
-    },
-    {
-      "name": "Military Progress",
-      "officialId": 53,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        50,
-        798
-      ]
-    },
-    {
-      "name": "Neurotoxic Drugs",
-      "officialId": 58,
-      "fundingCost": 250,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Night Vision Goggles",
-      "officialId": 45,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Radio",
-      "officialId": 64,
-      "fundingCost": 150,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        18,
-        259,
-        531,
-        552,
-        796
-      ]
-    },
-    {
-      "name": "Secret Laboratory",
-      "officialId": 62,
-      "fundingCost": 100,
-      "repCost": 2,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Jonathan Crane"
-      ],
-      "targetOfficialIds": [
-        278,
-        433,
-        765,
-        785
-      ],
-      "requiredCrewOfficialIds": [
-        278,
-        433,
-        765,
-        785
-      ]
-    },
-    {
-      "name": "Surgeon Training",
-      "officialId": 298,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        40,
-        588
-      ]
-    },
-    {
-      "name": "Titan Dose",
-      "officialId": 56,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        27,
-        28,
-        550,
-        667,
-        768,
-        844
-      ]
-    },
-    {
-      "name": "Venom Applicator",
-      "officialId": 52,
-      "fundingCost": 0,
-      "repCost": 2,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        27,
-        28,
-        550,
-        667,
-        768,
-        844
-      ]
-    },
-    {
-      "name": "Venom Dose",
-      "officialId": 47,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 3,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Venom Laboratory",
-      "officialId": 50,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Leader",
-        "Sidekick"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick"
-      ],
-      "requiredCrewOfficialIds": [
-        27,
-        28,
-        550,
-        667,
-        768,
-        844
-      ]
-    },
-    {
-      "name": "War Hardened",
-      "officialId": 238,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    }
-  ],
-  "Bat Family": [
-    {
-      "name": "Batclaw",
-      "officialId": 342,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman",
-        "Batgirl (Rebirth)",
-        "Batman (Multiverse)",
-        "Clayface",
-        "Robin",
-        "Goliath",
-        "Batwoman",
-        "Batman",
-        "Red Hood (Rebirth)",
-        "Oracle",
-        "Batman (Frank Miller)",
-        "Green Arrow DKR",
-        "Son of Batman 1",
-        "Son of Batman 2",
-        "Son of Batman 3",
-        "Catwoman",
-        "Red Robin",
-        "Talon",
-        "Batgirl (Classic Costume)",
-        "Nightwing (Rebirth)",
-        "Batman (Death Metal)",
-        "Batman (Viking)",
-        "Ace",
-        "Azrael (God's Punishment)",
-        "Batman (Classic)",
-        "Robin (Classic)",
-        "Red Hood (The Outlaw)",
-        "Batman (High Seas)",
-        "Alfred Pennyworth",
-        "Spoiler",
-        "Huntress (Classic)",
-        "Clownhunter",
-        "Batman (Frank Miller on Horse)",
-        "Batman (Frank Miller on Power Armor)",
-        "Batman (Beyond)",
-        "Robin (Beyond)",
-        "Mr. Wayne (Beyond)",
-        "Batman (The Animated Series)",
-        "Batgirl (The Animated Series)",
-        "Green Arrow (The Animated Series)",
-        "Black Canary (The Animated Series)",
-        "Catwoman (The Animated Series)",
-        "Harley Quinn (The Animated Series)",
-        "Lucius Fox",
-        "Robin (Tim Drake)",
-        "Batman (The Gotham City Knight)"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        32,
-        422,
-        427,
-        436,
-        437,
-        468,
-        534,
-        552,
-        558,
-        570,
-        573,
-        574,
-        575,
-        576,
-        577,
-        610,
-        611,
-        617,
-        669,
-        670,
-        680,
-        705,
-        706,
-        725,
-        734,
-        735,
-        796,
-        816,
-        817,
-        818,
-        819,
-        820,
-        846,
-        848,
-        852,
-        853,
-        854,
-        861,
-        862,
-        863,
-        864,
-        865,
-        870,
-        871,
-        872,
-        886
-      ]
-    },
-    {
-      "name": "Batman Inc.",
-      "officialId": 19,
-      "fundingCost": 300,
-      "repCost": 3,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Sidekick",
-        "Free Agent"
-      ],
-      "targetRanks": [
-        "Sidekick",
-        "Free Agent"
-      ],
-      "requiredCrewOfficialIds": [
-        34,
-        37,
-        39,
-        43,
-        46,
-        368,
-        381,
-        385,
-        396,
-        398,
-        406,
-        422,
-        454,
-        521,
-        534,
-        570,
-        580,
-        597,
-        621,
-        640,
-        671,
-        680,
-        705,
-        707,
-        724,
-        734,
-        767,
-        769,
-        801,
-        803,
-        812,
-        816,
-        846,
-        848,
-        850,
-        854,
-        861,
-        869,
-        886
-      ]
-    },
-    {
-      "name": "Circus Training",
-      "officialId": 30,
-      "fundingCost": 200,
-      "repCost": 5,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Sidekick",
-        "Free Agent"
-      ],
-      "targetRanks": [
-        "Sidekick",
-        "Free Agent"
-      ],
-      "requiredCrewOfficialIds": [
-        222,
-        270,
-        345,
-        491,
-        622,
-        670,
-        735,
-        813
-      ]
-    },
-    {
-      "name": "Command Center Support",
-      "officialId": 31,
-      "fundingCost": 250,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        353,
-        574,
-        649,
-        663,
-        863
-      ]
-    },
-    {
-      "name": "Handcuffs",
-      "officialId": 211,
-      "fundingCost": 300,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Heroic Jump",
-      "officialId": 343,
-      "fundingCost": 300,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman",
-        "Raven",
-        "Robin",
-        "Goliath",
-        "Robin (Teen Titans)",
-        "Starfire (Teen Titans)",
-        "Beast Boy - Human (Teen Titans)",
-        "Wonder Girl",
-        "Dove",
-        "Hawk",
-        "Red Robin",
-        "Batgirl (Classic Costume)",
-        "Nightwing (Rebirth)",
-        "Robin (Classic)",
-        "Red Hood (The Outlaw)",
-        "Beast Boy - Gorilla (Teen Titans)",
-        "Beast Boy - Hawk (Teen Titans)",
-        "Beast Boy - Tiger (Teen Titans)",
-        "Kid Flash",
-        "Ravager (Vanguard Team)",
-        "Robin (Tim Drake)"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        257,
-        436,
-        437,
-        491,
-        492,
-        493,
-        494,
-        495,
-        496,
-        611,
-        669,
-        670,
-        735,
-        796,
-        807,
-        808,
-        809,
-        815,
-        866,
-        872
-      ]
-    },
-    {
-      "name": "Improved Bat-Armor",
-      "officialId": 371,
-      "fundingCost": 0,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "requiredCrewOfficialIds": [
-        871
-      ]
-    },
-    {
-      "name": "Improved Batclaw",
-      "officialId": 370,
-      "fundingCost": 0,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Nyssa Al Ghul",
-        "Batgirl",
-        "Batgirl (Rebirth)",
-        "Batman",
-        "Batman (Arkham Knight)",
-        "Batman (Ben Affleck)",
-        "Batman (Flashpoint)",
-        "Batman (Knightfall)",
-        "Batman (Modern Age)",
-        "Batman (Dark Knight Rises)",
-        "Nightwing (Arkham Knight)",
-        "Red Hood (Arkham Knight)",
-        "Robin (Boy Wonder)",
-        "Slipknot (Suicide Squad)",
-        "Nightwing",
-        "Green Arrow",
-        "Owlman",
-        "Zur-En-Arrh Batman",
-        "Batman (Rebirth)",
-        "Batman (Knightmare)",
-        "Blue Beetle",
-        "The Wizard",
-        "Batman (Multiverse)",
-        "Robin",
-        "Batman (Gaslight)",
-        "Batwoman",
-        "Happy",
-        "Robin (Teen Titans)",
-        "Killer Moth",
-        "Batman (Frank Miller)",
-        "Green Arrow DKR",
-        "The Grim Knight",
-        "Red Robin",
-        "Raptor",
-        "Batman (Adam West)",
-        "Robin (Burt Ward)",
-        "Batgirl (Classic Costume)",
-        "Nightwing (Rebirth)",
-        "Vigilante",
-        "Batman (Robert Pattinson)",
-        "Batman (Classic)",
-        "The Riddler's Follower 2",
-        "Batman (Michael Keaton)",
-        "Batman (1997)",
-        "Robin (1997)",
-        "Batman (The Animated Series)",
-        "Batgirl (The Animated Series)",
-        "Robin (Tim Drake)",
-        "Batman (The Gotham City Knight)"
-      ],
-      "targetOfficialIds": [
-        6,
-        30,
-        32,
-        34,
-        37,
-        39,
-        40,
-        42,
-        43,
-        46,
-        222,
-        259,
-        270,
-        285,
-        345,
-        353,
-        362,
-        368,
-        381,
-        406,
-        408,
-        414,
-        422,
-        436,
-        454,
-        468,
-        487,
-        491,
-        531,
-        534,
-        569,
-        570,
-        574,
-        588,
-        597,
-        611,
-        620,
-        621,
-        622,
-        649,
-        669,
-        670,
-        695,
-        707,
-        734,
-        741,
-        803,
-        812,
-        813,
-        845,
-        861,
-        862,
-        869,
-        872,
-        886
-      ],
-      "requiredCrewOfficialIds": [
-        871
-      ]
-    },
-    {
-      "name": "Improved Batlings",
-      "officialId": 372,
-      "fundingCost": 0,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "requiredCrewOfficialIds": [
-        871
-      ]
-    },
-    {
-      "name": "Improved Reinforced Gloves",
-      "officialId": 373,
-      "fundingCost": 0,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Bane (Dark Knight Rises)",
-        "Bane (Rebirth)",
-        "Bat-Mite",
-        "Batgirl (Rebirth)",
-        "Batman",
-        "Batman (Arkham Knight)",
-        "Batman (Ben Affleck)",
-        "Batman (Flashpoint)",
-        "Batman (Modern Age)",
-        "Batman (Dark Knight Rises)",
-        "Emperor Penguin",
-        "Heat Wave",
-        "Jason Blood",
-        "Lady Shiva",
-        "Penguin Lieutenant",
-        "Prisoner 93432",
-        "The Bull",
-        "Two-Face",
-        "Zur-En-Arrh Batman",
-        "Queen Hippolita",
-        "Batman (Rebirth)",
-        "Lobo",
-        "Black Orchid",
-        "Lexcorp Heavy Trooper",
-        "LexCorp Trooper 1",
-        "LexCorp Trooper 2",
-        "LexCorp Trooper 3",
-        "The Tailor",
-        "Batman (Knightmare)",
-        "Booster Gold",
-        "Blue Beetle",
-        "Damien Darhk",
-        "Batman (Multiverse)",
-        "Echo",
-        "Solomon Grundy",
-        "Lark",
-        "Ozymandias",
-        "The Comedian",
-        "Nite Owl",
-        "Batman (Gaslight)",
-        "The Heretic",
-        "Mercenary 2",
-        "Wonder Girl",
-        "Hawk",
-        "Bronze Tiger",
-        "1 Dollar",
-        "Big Sidekick",
-        "Bruce Wayne",
-        "Matches Malone",
-        "Grifter",
-        "Bane (The Bat)",
-        "Batman (Frank Miller)",
-        "Son of Batman 3",
-        "The Batman Who Laughs",
-        "Malicia",
-        "Deathstroke (The Terminator)",
-        "Zack Johnson",
-        "The Grim Knight",
-        "Hush",
-        "Quiz 8",
-        "Talon",
-        "Batman (Adam West)",
-        "Fright",
-        "Batman (Year One)",
-        "Mr. Toxic",
-        "Signalman",
-        "Batgirl (Classic Costume)",
-        "Mr. Freeze (Cryo-Armor)",
-        "Batman (Death Metal)",
-        "Lobo (Paramilitary)",
-        "Peacemaker (John Cena)",
-        "Vigilante",
-        "Batman (Viking)",
-        "Batman (Robert Pattinson)",
-        "Batman (Classic)",
-        "Deacon Blackfire",
-        "Two-Face (Arkham City)",
-        "Batman on Bike (Robert Pattinson)",
-        "Batman (The Cult)",
-        "Red Hood (The Outlaw)",
-        "Vengeance",
-        "Batman (Bushi)",
-        "Ten-Eyed Man",
-        "Robin (1997)",
-        "Batman (High Seas)",
-        "Two-Face (Tommy Lee Jones)",
-        "Bane (Commander)",
-        "Batman (Frank Miller on Horse)",
-        "Batman (Frank Miller on Power Armor)",
-        "Batman (The Gotham City Knight)"
-      ],
-      "targetOfficialIds": [
-        27,
-        28,
-        29,
-        32,
-        34,
-        37,
-        39,
-        40,
-        43,
-        46,
-        110,
-        149,
-        162,
-        180,
-        232,
-        242,
-        312,
-        350,
-        368,
-        369,
-        381,
-        382,
-        389,
-        392,
-        393,
-        394,
-        395,
-        402,
-        406,
-        407,
-        408,
-        415,
-        422,
-        426,
-        434,
-        445,
-        448,
-        450,
-        452,
-        454,
-        464,
-        476,
-        494,
-        496,
-        497,
-        514,
-        517,
-        521,
-        522,
-        523,
-        534,
-        550,
-        570,
-        577,
-        580,
-        583,
-        586,
-        588,
-        596,
-        597,
-        598,
-        599,
-        614,
-        617,
-        621,
-        629,
-        640,
-        651,
-        661,
-        669,
-        672,
-        680,
-        682,
-        693,
-        695,
-        705,
-        707,
-        734,
-        751,
-        766,
-        767,
-        769,
-        796,
-        797,
-        801,
-        802,
-        813,
-        816,
-        840,
-        841,
-        844,
-        846,
-        848,
-        850,
-        869,
-        886
-      ],
-      "requiredCrewOfficialIds": [
-        871
-      ]
-    },
-    {
-      "name": "Investigator",
-      "officialId": 345,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Sidekick",
-        "Free Agent",
-        "Henchman",
-        "Batgirl (Rebirth)",
-        "Batman (Multiverse)",
-        "Clayface",
-        "Robin",
-        "Goliath",
-        "Batwoman",
-        "Batman",
-        "Red Hood (Rebirth)",
-        "Oracle",
-        "Batman (Frank Miller)",
-        "Green Arrow DKR",
-        "Son of Batman 1",
-        "Son of Batman 2",
-        "Son of Batman 3",
-        "Catwoman",
-        "Red Robin",
-        "Talon",
-        "Batgirl (Classic Costume)",
-        "Nightwing (Rebirth)",
-        "Batman (Death Metal)",
-        "Batman (Viking)",
-        "Ace",
-        "Azrael (God's Punishment)",
-        "Batman (Classic)",
-        "Robin (Classic)",
-        "Red Hood (The Outlaw)",
-        "Batman (High Seas)",
-        "Alfred Pennyworth",
-        "Spoiler",
-        "Huntress (Classic)",
-        "Clownhunter",
-        "Batman (Frank Miller on Horse)",
-        "Batman (Frank Miller on Power Armor)",
-        "Batman (Beyond)",
-        "Robin (Beyond)",
-        "Mr. Wayne (Beyond)",
-        "Batman (The Animated Series)",
-        "Batgirl (The Animated Series)",
-        "Green Arrow (The Animated Series)",
-        "Black Canary (The Animated Series)",
-        "Catwoman (The Animated Series)",
-        "Harley Quinn (The Animated Series)",
-        "Lucius Fox",
-        "Robin (Tim Drake)",
-        "Batman (The Gotham City Knight)"
-      ],
-      "targetRanks": [
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        32,
-        422,
-        427,
-        436,
-        437,
-        468,
-        534,
-        552,
-        558,
-        570,
-        573,
-        574,
-        575,
-        576,
-        577,
-        610,
-        611,
-        617,
-        669,
-        670,
-        680,
-        705,
-        706,
-        725,
-        734,
-        735,
-        796,
-        816,
-        817,
-        818,
-        819,
-        820,
-        846,
-        848,
-        852,
-        853,
-        854,
-        861,
-        862,
-        863,
-        864,
-        865,
-        870,
-        871,
-        872,
-        886
-      ]
-    },
-    {
-      "name": "Magazine",
-      "officialId": 210,
-      "fundingCost": 300,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Martial Arts Training",
-      "officialId": 213,
-      "fundingCost": 100,
-      "repCost": 2,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Sidekick",
-        "Free Agent"
-      ],
-      "targetRanks": [
-        "Sidekick",
-        "Free Agent"
-      ],
-      "requiredCrewOfficialIds": [
-        34,
-        37,
-        39,
-        43,
-        46,
-        368,
-        381,
-        385,
-        396,
-        398,
-        406,
-        422,
-        454,
-        521,
-        534,
-        570,
-        580,
-        597,
-        621,
-        640,
-        671,
-        680,
-        705,
-        707,
-        724,
-        734,
-        767,
-        769,
-        801,
-        803,
-        812,
-        816,
-        846,
-        848,
-        850,
-        854,
-        861,
-        869,
-        886
-      ]
-    },
-    {
-      "name": "Mentor",
-      "officialId": 214,
-      "fundingCost": 200,
-      "repCost": 3,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Sidekick",
-        "Free Agent"
-      ],
-      "targetRanks": [
-        "Sidekick",
-        "Free Agent"
-      ],
-      "requiredCrewOfficialIds": [
-        34,
-        37,
-        39,
-        43,
-        46,
-        368,
-        381,
-        385,
-        396,
-        398,
-        406,
-        422,
-        454,
-        521,
-        534,
-        570,
-        580,
-        597,
-        621,
-        640,
-        671,
-        680,
-        705,
-        707,
-        724,
-        734,
-        767,
-        769,
-        801,
-        803,
-        812,
-        816,
-        846,
-        848,
-        850,
-        854,
-        861,
-        869,
-        886
-      ]
-    },
-    {
-      "name": "Moment of Glory",
-      "officialId": 228,
-      "fundingCost": 150,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Reconnaissance",
-      "officialId": 209,
-      "fundingCost": 300,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Tactical Gloves",
-      "officialId": 32,
-      "fundingCost": 50,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Oliver Queen"
-      ],
-      "targetOfficialIds": [
-        353,
-        574,
-        649,
-        663,
-        863
-      ],
-      "requiredCrewOfficialIds": [
-        353,
-        574,
-        649,
-        663,
-        863
-      ]
-    },
-    {
-      "name": "Upgraded Batsuit",
-      "officialId": 212,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Bruce Wayne"
-      ],
-      "targetOfficialIds": [
-        34,
-        37,
-        39,
-        43,
-        46,
-        368,
-        381,
-        385,
-        396,
-        398,
-        406,
-        422,
-        454,
-        521,
-        534,
-        570,
-        580,
-        597,
-        621,
-        640,
-        671,
-        680,
-        705,
-        707,
-        724,
-        734,
-        767,
-        769,
-        801,
-        803,
-        812,
-        816,
-        846,
-        848,
-        850,
-        854,
-        861,
-        869,
-        886
-      ],
-      "requiredCrewOfficialIds": [
-        34,
-        37,
-        39,
-        43,
-        46,
-        368,
-        381,
-        385,
-        396,
-        398,
-        406,
-        422,
-        454,
-        521,
-        534,
-        570,
-        580,
-        597,
-        621,
-        640,
-        671,
-        680,
-        705,
-        707,
-        724,
-        734,
-        767,
-        769,
-        801,
-        803,
-        812,
-        816,
-        846,
-        848,
-        850,
-        854,
-        861,
-        869,
-        886
-      ]
-    }
-  ],
-  "Batman Who Laughs": [
-    {
-      "name": "Bar",
-      "officialId": 265,
-      "fundingCost": 0,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Darkness",
-      "officialId": 268,
-      "fundingCost": 0,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Hunter",
-      "officialId": 266,
-      "fundingCost": 0,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "No Limits",
-      "officialId": 267,
-      "fundingCost": 0,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ]
-    }
-  ],
-  "Court of Owls": [
-    {
-      "name": "Ancient Training",
-      "officialId": 116,
-      "fundingCost": 150,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Ancient Weapon",
-      "officialId": 113,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Antidote",
-      "officialId": 108,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "C-4",
-      "officialId": 110,
-      "fundingCost": 300,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Camo Vest",
-      "officialId": 109,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Circus Gromming",
-      "officialId": 117,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Climbing Claws",
-      "officialId": 107,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Gas Mask",
-      "officialId": 111,
-      "fundingCost": 150,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Genetic Alteration",
-      "officialId": 114,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 3,
-      "targetModels": [
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Grapple Gun",
-      "officialId": 112,
-      "fundingCost": 400,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Hunter Training",
-      "officialId": 115,
-      "fundingCost": 150,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Lords of Gotham",
-      "officialId": 292,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "The Court"
-      ],
-      "targetOfficialIds": [
-        615
-      ]
-    },
-    {
-      "name": "Spare Blade",
-      "officialId": 106,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Free Agent",
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Talon Serum Infusion",
-      "officialId": 227,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman",
-        "Lincoln March"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        435
-      ]
-    }
-  ],
   "Cults": [
     {
       "name": "Bomb Specialist",
@@ -16654,7 +14884,853 @@ const officialEquipmentRulesByFaction = {
       ]
     }
   ],
-  "GCPD": [
+  "Harley Quinn & Friends": [
+    {
+      "name": "Adaptive Planning",
+      "officialId": 170,
+      "fundingCost": 200,
+      "repCost": 2,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "excludedTargetOfficialIds": [
+        76,
+        298,
+        410,
+        411,
+        412,
+        561,
+        773,
+        774,
+        775
+      ]
+    },
+    {
+      "name": "Ancient Plant",
+      "officialId": 173,
+      "fundingCost": 200,
+      "repCost": 30,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman",
+        "Carnivorous Plant",
+        "Spikes Plant",
+        "Mutated Plant 1",
+        "Mutated Plant 2",
+        "Mutated Plant 3",
+        "Frank the Plant",
+        "Floronic Man",
+        "Rabid Plant 1",
+        "Rabid Plant 2"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "targetOfficialIds": [
+        76,
+        298,
+        410,
+        411,
+        412,
+        561,
+        773,
+        774,
+        775
+      ],
+      "requiredCrewOfficialIds": [
+        348,
+        409,
+        560,
+        814,
+        857
+      ]
+    },
+    {
+      "name": "Camo Vest",
+      "officialId": 168,
+      "fundingCost": 300,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "excludedTargetOfficialIds": [
+        76,
+        298,
+        410,
+        411,
+        412,
+        561,
+        773,
+        774,
+        775
+      ]
+    },
+    {
+      "name": "Corrosive Blood",
+      "officialId": 171,
+      "fundingCost": 50,
+      "repCost": 0,
+      "maxPerCrew": 3,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        348,
+        409,
+        560,
+        814,
+        857
+      ]
+    },
+    {
+      "name": "Extra Spores",
+      "officialId": 163,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman",
+        "Carnivorous Plant",
+        "Spikes Plant",
+        "Mutated Plant 1",
+        "Mutated Plant 2",
+        "Mutated Plant 3",
+        "Frank the Plant",
+        "Floronic Man",
+        "Rabid Plant 1",
+        "Rabid Plant 2"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "targetOfficialIds": [
+        76,
+        298,
+        410,
+        411,
+        412,
+        561,
+        773,
+        774,
+        775
+      ]
+    },
+    {
+      "name": "Grapple Gun",
+      "officialId": 167,
+      "fundingCost": 300,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "excludedTargetOfficialIds": [
+        76,
+        298,
+        410,
+        411,
+        412,
+        561,
+        773,
+        774,
+        775
+      ]
+    },
+    {
+      "name": "Large Roots",
+      "officialId": 166,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman",
+        "Carnivorous Plant",
+        "Spikes Plant",
+        "Mutated Plant 1",
+        "Mutated Plant 2",
+        "Mutated Plant 3",
+        "Frank the Plant",
+        "Floronic Man",
+        "Rabid Plant 1",
+        "Rabid Plant 2"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "targetOfficialIds": [
+        76,
+        298,
+        410,
+        411,
+        412,
+        561,
+        773,
+        774,
+        775
+      ]
+    },
+    {
+      "name": "Luminescent Mutation",
+      "officialId": 165,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman",
+        "Carnivorous Plant",
+        "Spikes Plant",
+        "Mutated Plant 1",
+        "Mutated Plant 2",
+        "Mutated Plant 3",
+        "Frank the Plant",
+        "Floronic Man",
+        "Rabid Plant 1",
+        "Rabid Plant 2"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "targetOfficialIds": [
+        76,
+        298,
+        410,
+        411,
+        412,
+        561,
+        773,
+        774,
+        775
+      ]
+    },
+    {
+      "name": "Modified Pheromone",
+      "officialId": 172,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Dr. Pamela Lillian Isley"
+      ],
+      "targetRanks": [
+        "Leader",
+        "Sidekick",
+        "Free Agent"
+      ],
+      "targetOfficialIds": [
+        348,
+        409,
+        560,
+        814,
+        857
+      ],
+      "requiredCrewOfficialIds": [
+        348,
+        409,
+        560,
+        814,
+        857
+      ]
+    },
+    {
+      "name": "Mutation Serum",
+      "officialId": 169,
+      "fundingCost": 200,
+      "repCost": 3,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        348,
+        409,
+        560,
+        814,
+        857
+      ],
+      "excludedTargetOfficialIds": [
+        76,
+        298,
+        410,
+        411,
+        412,
+        561,
+        773,
+        774,
+        775
+      ]
+    },
+    {
+      "name": "Passage",
+      "officialId": 174,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        387
+      ],
+      "excludedTargetOfficialIds": [
+        76,
+        298,
+        410,
+        411,
+        412,
+        561,
+        773,
+        774,
+        775
+      ]
+    },
+    {
+      "name": "Pitch Perfect Vocals",
+      "officialId": 297,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Dinah Lance"
+      ],
+      "targetOfficialIds": [
+        562,
+        664,
+        864
+      ],
+      "requiredCrewOfficialIds": [
+        562,
+        664,
+        864
+      ]
+    },
+    {
+      "name": "Radio",
+      "officialId": 295,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        30,
+        32,
+        558,
+        669,
+        862
+      ],
+      "excludedTargetOfficialIds": [
+        76,
+        298,
+        410,
+        411,
+        412,
+        561,
+        773,
+        774,
+        775
+      ]
+    },
+    {
+      "name": "Sense Mutation",
+      "officialId": 162,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman",
+        "Carnivorous Plant",
+        "Spikes Plant",
+        "Mutated Plant 1",
+        "Mutated Plant 2",
+        "Mutated Plant 3",
+        "Frank the Plant",
+        "Floronic Man",
+        "Rabid Plant 1",
+        "Rabid Plant 2"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "targetOfficialIds": [
+        76,
+        298,
+        410,
+        411,
+        412,
+        561,
+        773,
+        774,
+        775
+      ]
+    },
+    {
+      "name": "Smash 'n Grab",
+      "officialId": 296,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        9,
+        135,
+        136,
+        347,
+        453,
+        538,
+        565,
+        668,
+        697,
+        726,
+        763,
+        842,
+        870
+      ],
+      "excludedTargetOfficialIds": [
+        76,
+        298,
+        410,
+        411,
+        412,
+        561,
+        773,
+        774,
+        775
+      ]
+    },
+    {
+      "name": "Spikes Mutation",
+      "officialId": 164,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman",
+        "Carnivorous Plant",
+        "Spikes Plant",
+        "Mutated Plant 1",
+        "Mutated Plant 2",
+        "Mutated Plant 3",
+        "Frank the Plant",
+        "Floronic Man",
+        "Rabid Plant 1",
+        "Rabid Plant 2"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "targetOfficialIds": [
+        76,
+        298,
+        410,
+        411,
+        412,
+        561,
+        773,
+        774,
+        775
+      ]
+    },
+    {
+      "name": "Spray Can",
+      "officialId": 344,
+      "fundingCost": 150,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Titanic Mutation",
+      "officialId": 161,
+      "fundingCost": 150,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Watch Tower",
+      "officialId": 294,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "requiredCrewOfficialIds": [
+        30,
+        32,
+        558,
+        669,
+        862
+      ]
+    }
+  ],
+  "Joker": [
+    {
+      "name": "Antidote",
+      "officialId": 78,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Brutal Training",
+      "officialId": 82,
+      "fundingCost": 150,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        2
+      ]
+    },
+    {
+      "name": "Clown Paint",
+      "officialId": 73,
+      "fundingCost": 150,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Enhanced Gas",
+      "officialId": 225,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Leader",
+        "Sidekick"
+      ],
+      "targetRanks": [
+        "Leader",
+        "Sidekick"
+      ],
+      "requiredCrewOfficialIds": [
+        418,
+        686
+      ]
+    },
+    {
+      "name": "Fireworks",
+      "officialId": 74,
+      "fundingCost": 300,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Gas Mask",
+      "officialId": 77,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Grapple Gun",
+      "officialId": 72,
+      "fundingCost": 300,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "excludedTargetOfficialIds": [
+        71,
+        103,
+        104,
+        105,
+        194,
+        404,
+        434,
+        690,
+        691,
+        692,
+        744,
+        745,
+        746
+      ]
+    },
+    {
+      "name": "Improvised Armor",
+      "officialId": 359,
+      "fundingCost": 0,
+      "repCost": 150,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Joker's Gas",
+      "officialId": 276,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Magazine",
+      "officialId": 71,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Mental Torture",
+      "officialId": 275,
+      "fundingCost": 150,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Nerve Gas",
+      "officialId": 79,
+      "fundingCost": 150,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        165,
+        166,
+        168,
+        317,
+        431,
+        533,
+        539,
+        639,
+        683,
+        770,
+        772,
+        843,
+        855
+      ]
+    },
+    {
+      "name": "Neurotoxic Drugs",
+      "officialId": 75,
+      "fundingCost": 250,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Poison Training",
+      "officialId": 76,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Poison Training",
+      "officialId": 354,
+      "fundingCost": 250,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Alexis Kaye"
+      ],
+      "targetOfficialIds": [
+        662,
+        834
+      ]
+    },
+    {
+      "name": "Pole Dancer",
+      "officialId": 81,
+      "fundingCost": 150,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Dr. Harleen Frances Quinzel"
+      ],
+      "targetOfficialIds": [
+        9,
+        135,
+        136,
+        347,
+        453,
+        538,
+        565,
+        668,
+        697,
+        726,
+        763,
+        842,
+        870
+      ],
+      "requiredCrewOfficialIds": [
+        9,
+        135,
+        136,
+        347,
+        453,
+        538,
+        565,
+        668,
+        697,
+        726,
+        763,
+        842,
+        870
+      ]
+    },
+    {
+      "name": "Rusty Tools",
+      "officialId": 83,
+      "fundingCost": 200,
+      "repCost": 2,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        171
+      ]
+    },
+    {
+      "name": "Sexy Costume",
+      "officialId": 80,
+      "fundingCost": 300,
+      "repCost": 5,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        9,
+        135,
+        136,
+        347,
+        453,
+        538,
+        565,
+        668,
+        697,
+        726,
+        763,
+        842,
+        870
+      ]
+    }
+  ],
+  "Law Forces": [
     {
       "name": "Antidote",
       "officialId": 8,
@@ -18134,853 +17210,7 @@ const officialEquipmentRulesByFaction = {
       ]
     }
   ],
-  "Harley Quinn & Friends": [
-    {
-      "name": "Adaptive Planning",
-      "officialId": 170,
-      "fundingCost": 200,
-      "repCost": 2,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "excludedTargetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ]
-    },
-    {
-      "name": "Ancient Plant",
-      "officialId": 173,
-      "fundingCost": 200,
-      "repCost": 30,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman",
-        "Carnivorous Plant",
-        "Spikes Plant",
-        "Mutated Plant 1",
-        "Mutated Plant 2",
-        "Mutated Plant 3",
-        "Frank the Plant",
-        "Floronic Man",
-        "Rabid Plant 1",
-        "Rabid Plant 2"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ],
-      "requiredCrewOfficialIds": [
-        348,
-        409,
-        560,
-        814,
-        857
-      ]
-    },
-    {
-      "name": "Camo Vest",
-      "officialId": 168,
-      "fundingCost": 300,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "excludedTargetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ]
-    },
-    {
-      "name": "Corrosive Blood",
-      "officialId": 171,
-      "fundingCost": 50,
-      "repCost": 0,
-      "maxPerCrew": 3,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        348,
-        409,
-        560,
-        814,
-        857
-      ]
-    },
-    {
-      "name": "Extra Spores",
-      "officialId": 163,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman",
-        "Carnivorous Plant",
-        "Spikes Plant",
-        "Mutated Plant 1",
-        "Mutated Plant 2",
-        "Mutated Plant 3",
-        "Frank the Plant",
-        "Floronic Man",
-        "Rabid Plant 1",
-        "Rabid Plant 2"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ]
-    },
-    {
-      "name": "Grapple Gun",
-      "officialId": 167,
-      "fundingCost": 300,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "excludedTargetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ]
-    },
-    {
-      "name": "Large Roots",
-      "officialId": 166,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman",
-        "Carnivorous Plant",
-        "Spikes Plant",
-        "Mutated Plant 1",
-        "Mutated Plant 2",
-        "Mutated Plant 3",
-        "Frank the Plant",
-        "Floronic Man",
-        "Rabid Plant 1",
-        "Rabid Plant 2"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ]
-    },
-    {
-      "name": "Luminescent Mutation",
-      "officialId": 165,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman",
-        "Carnivorous Plant",
-        "Spikes Plant",
-        "Mutated Plant 1",
-        "Mutated Plant 2",
-        "Mutated Plant 3",
-        "Frank the Plant",
-        "Floronic Man",
-        "Rabid Plant 1",
-        "Rabid Plant 2"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ]
-    },
-    {
-      "name": "Modified Pheromone",
-      "officialId": 172,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Dr. Pamela Lillian Isley"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent"
-      ],
-      "targetOfficialIds": [
-        348,
-        409,
-        560,
-        814,
-        857
-      ],
-      "requiredCrewOfficialIds": [
-        348,
-        409,
-        560,
-        814,
-        857
-      ]
-    },
-    {
-      "name": "Mutation Serum",
-      "officialId": 169,
-      "fundingCost": 200,
-      "repCost": 3,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        348,
-        409,
-        560,
-        814,
-        857
-      ],
-      "excludedTargetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ]
-    },
-    {
-      "name": "Passage",
-      "officialId": 174,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        387
-      ],
-      "excludedTargetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ]
-    },
-    {
-      "name": "Pitch Perfect Vocals",
-      "officialId": 297,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Dinah Lance"
-      ],
-      "targetOfficialIds": [
-        562,
-        664,
-        864
-      ],
-      "requiredCrewOfficialIds": [
-        562,
-        664,
-        864
-      ]
-    },
-    {
-      "name": "Radio",
-      "officialId": 295,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        30,
-        32,
-        558,
-        669,
-        862
-      ],
-      "excludedTargetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ]
-    },
-    {
-      "name": "Sense Mutation",
-      "officialId": 162,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman",
-        "Carnivorous Plant",
-        "Spikes Plant",
-        "Mutated Plant 1",
-        "Mutated Plant 2",
-        "Mutated Plant 3",
-        "Frank the Plant",
-        "Floronic Man",
-        "Rabid Plant 1",
-        "Rabid Plant 2"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ]
-    },
-    {
-      "name": "Smash 'n Grab",
-      "officialId": 296,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        9,
-        135,
-        136,
-        347,
-        453,
-        538,
-        565,
-        668,
-        697,
-        726,
-        763,
-        842,
-        870
-      ],
-      "excludedTargetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ]
-    },
-    {
-      "name": "Spikes Mutation",
-      "officialId": 164,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman",
-        "Carnivorous Plant",
-        "Spikes Plant",
-        "Mutated Plant 1",
-        "Mutated Plant 2",
-        "Mutated Plant 3",
-        "Frank the Plant",
-        "Floronic Man",
-        "Rabid Plant 1",
-        "Rabid Plant 2"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ]
-    },
-    {
-      "name": "Spray Can",
-      "officialId": 344,
-      "fundingCost": 150,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Titanic Mutation",
-      "officialId": 161,
-      "fundingCost": 150,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Watch Tower",
-      "officialId": 294,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "requiredCrewOfficialIds": [
-        30,
-        32,
-        558,
-        669,
-        862
-      ]
-    }
-  ],
-  "Joker": [
-    {
-      "name": "Antidote",
-      "officialId": 78,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Brutal Training",
-      "officialId": 82,
-      "fundingCost": 150,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        2
-      ]
-    },
-    {
-      "name": "Clown Paint",
-      "officialId": 73,
-      "fundingCost": 150,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Enhanced Gas",
-      "officialId": 225,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Leader",
-        "Sidekick"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick"
-      ],
-      "requiredCrewOfficialIds": [
-        418,
-        686
-      ]
-    },
-    {
-      "name": "Fireworks",
-      "officialId": 74,
-      "fundingCost": 300,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Gas Mask",
-      "officialId": 77,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Grapple Gun",
-      "officialId": 72,
-      "fundingCost": 300,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "excludedTargetOfficialIds": [
-        71,
-        103,
-        104,
-        105,
-        194,
-        404,
-        434,
-        690,
-        691,
-        692,
-        744,
-        745,
-        746
-      ]
-    },
-    {
-      "name": "Improvised Armor",
-      "officialId": 359,
-      "fundingCost": 0,
-      "repCost": 150,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Joker's Gas",
-      "officialId": 276,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Magazine",
-      "officialId": 71,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Mental Torture",
-      "officialId": 275,
-      "fundingCost": 150,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Nerve Gas",
-      "officialId": 79,
-      "fundingCost": 150,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        165,
-        166,
-        168,
-        317,
-        431,
-        533,
-        539,
-        639,
-        683,
-        770,
-        772,
-        843,
-        855
-      ]
-    },
-    {
-      "name": "Neurotoxic Drugs",
-      "officialId": 75,
-      "fundingCost": 250,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Poison Training",
-      "officialId": 76,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ]
-    },
-    {
-      "name": "Poison Training",
-      "officialId": 354,
-      "fundingCost": 250,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Alexis Kaye"
-      ],
-      "targetOfficialIds": [
-        662,
-        834
-      ]
-    },
-    {
-      "name": "Pole Dancer",
-      "officialId": 81,
-      "fundingCost": 150,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Dr. Harleen Frances Quinzel"
-      ],
-      "targetOfficialIds": [
-        9,
-        135,
-        136,
-        347,
-        453,
-        538,
-        565,
-        668,
-        697,
-        726,
-        763,
-        842,
-        870
-      ],
-      "requiredCrewOfficialIds": [
-        9,
-        135,
-        136,
-        347,
-        453,
-        538,
-        565,
-        668,
-        697,
-        726,
-        763,
-        842,
-        870
-      ]
-    },
-    {
-      "name": "Rusty Tools",
-      "officialId": 83,
-      "fundingCost": 200,
-      "repCost": 2,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        171
-      ]
-    },
-    {
-      "name": "Sexy Costume",
-      "officialId": 80,
-      "fundingCost": 300,
-      "repCost": 5,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        9,
-        135,
-        136,
-        347,
-        453,
-        538,
-        565,
-        668,
-        697,
-        726,
-        763,
-        842,
-        870
-      ]
-    }
-  ],
-  "League of Shadows": [
+  "League of Assassins": [
     {
       "name": "Ancient Weapon",
       "officialId": 184,
@@ -20307,7 +18537,286 @@ const officialEquipmentRulesByFaction = {
       ]
     }
   ],
-  "Royal Flush": [
+  "Riddler": [
+    {
+      "name": "Another One!",
+      "officialId": 223,
+      "fundingCost": 150,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "B.U.C. (Bots Upgraded CPU)",
+      "officialId": 159,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Edward Nigma"
+      ],
+      "targetOfficialIds": [
+        7
+      ]
+    },
+    {
+      "name": "Battle Bot",
+      "officialId": 155,
+      "fundingCost": 250,
+      "repCost": 3,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman",
+        "Bobbie",
+        "Bobbie MKII",
+        "Mary"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "targetOfficialIds": [
+        59,
+        60,
+        197
+      ]
+    },
+    {
+      "name": "Broken Equipment",
+      "officialId": 153,
+      "fundingCost": 250,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Enhanced Servo-engines",
+      "officialId": 160,
+      "fundingCost": 150,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Edward Nigma"
+      ],
+      "targetOfficialIds": [
+        8
+      ]
+    },
+    {
+      "name": "Enigma Data-Pack",
+      "officialId": 152,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Gas Mask",
+      "officialId": 154,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Grapple Gun",
+      "officialId": 150,
+      "fundingCost": 300,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Improved Armor",
+      "officialId": 158,
+      "fundingCost": 250,
+      "repCost": 2,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Edward Nigma"
+      ],
+      "targetOfficialIds": [
+        7
+      ]
+    },
+    {
+      "name": "Improved Chassis MK",
+      "officialId": 157,
+      "fundingCost": 50,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman",
+        "Bobbie",
+        "Bobbie MKII",
+        "Mary"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "targetOfficialIds": [
+        59,
+        60,
+        197
+      ]
+    },
+    {
+      "name": "Inspiration",
+      "officialId": 221,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        426
+      ]
+    },
+    {
+      "name": "Its a Dud",
+      "officialId": 291,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Sidekick",
+        "Josette"
+      ],
+      "targetRanks": [
+        "Sidekick"
+      ],
+      "targetOfficialIds": [
+        352
+      ],
+      "requiredCrewOfficialIds": [
+        352
+      ]
+    },
+    {
+      "name": "Level Up!",
+      "officialId": 224,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Edward Nigma"
+      ],
+      "targetOfficialIds": [
+        7,
+        8,
+        320,
+        609,
+        739,
+        822,
+        839,
+        859,
+        860
+      ],
+      "requiredCrewOfficialIds": [
+        7,
+        8,
+        320,
+        609,
+        739,
+        822,
+        839,
+        859,
+        860
+      ]
+    },
+    {
+      "name": "Magazine",
+      "officialId": 149,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Mirror Games",
+      "officialId": 151,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Shock Droid",
+      "officialId": 156,
+      "fundingCost": 50,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman",
+        "Bobbie",
+        "Bobbie MKII",
+        "Mary"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "targetOfficialIds": [
+        59,
+        60,
+        197
+      ]
+    },
+    {
+      "name": "Weird Ammo",
+      "officialId": 222,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        425
+      ]
+    }
+  ],
+  "Royal Flush Gang": [
     {
       "name": "Comrades",
       "officialId": 348,
@@ -20737,6 +19246,468 @@ const officialEquipmentRulesByFaction = {
       ]
     }
   ],
+  "Soldiers of Fortune": [
+    {
+      "name": "Antidote",
+      "officialId": 55,
+      "fundingCost": 50,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Arkham Knight Secret Armoury",
+      "officialId": 68,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        18,
+        259,
+        531,
+        552,
+        796
+      ]
+    },
+    {
+      "name": "Backpack",
+      "officialId": 48,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Camo Vest",
+      "officialId": 59,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Contract",
+      "officialId": 264,
+      "fundingCost": 0,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Slade Wilson"
+      ],
+      "targetOfficialIds": [
+        355,
+        586,
+        867
+      ],
+      "requiredCrewOfficialIds": [
+        355,
+        586,
+        867
+      ]
+    },
+    {
+      "name": "Cybernetic Arms",
+      "officialId": 192,
+      "fundingCost": 50,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Jason Todd"
+      ],
+      "targetOfficialIds": [
+        18,
+        259,
+        531,
+        552,
+        796
+      ],
+      "requiredCrewOfficialIds": [
+        18,
+        259,
+        531,
+        552,
+        796
+      ]
+    },
+    {
+      "name": "Dual Handguns",
+      "officialId": 274,
+      "fundingCost": 300,
+      "repCost": 7,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Sidekick",
+        "Thomas Wayne"
+      ],
+      "targetRanks": [
+        "Sidekick"
+      ],
+      "targetOfficialIds": [
+        40,
+        588
+      ],
+      "requiredCrewOfficialIds": [
+        40,
+        588
+      ]
+    },
+    {
+      "name": "Fear Gas Dispenser",
+      "officialId": 61,
+      "fundingCost": 150,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        278
+      ]
+    },
+    {
+      "name": "Gas Mask",
+      "officialId": 193,
+      "fundingCost": 50,
+      "repCost": 0,
+      "maxPerCrew": 3,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Grapple Gun",
+      "officialId": 43,
+      "fundingCost": 300,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Handcuffs",
+      "officialId": 226,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        27,
+        28,
+        550,
+        667,
+        768,
+        844
+      ]
+    },
+    {
+      "name": "Hidden Magazines",
+      "officialId": 66,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Jason Todd"
+      ],
+      "targetOfficialIds": [
+        18,
+        259,
+        531,
+        552,
+        796
+      ],
+      "requiredCrewOfficialIds": [
+        18,
+        259,
+        531,
+        552,
+        796
+      ]
+    },
+    {
+      "name": "Hook Pistol",
+      "officialId": 69,
+      "fundingCost": 400,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Jason Todd"
+      ],
+      "targetOfficialIds": [
+        18,
+        259,
+        531,
+        552,
+        796
+      ],
+      "requiredCrewOfficialIds": [
+        18,
+        259,
+        531,
+        552,
+        796
+      ]
+    },
+    {
+      "name": "Magazine",
+      "officialId": 54,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Martial Training",
+      "officialId": 60,
+      "fundingCost": 150,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        355,
+        586,
+        867
+      ]
+    },
+    {
+      "name": "Military Progress",
+      "officialId": 53,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        50,
+        798
+      ]
+    },
+    {
+      "name": "Neurotoxic Drugs",
+      "officialId": 58,
+      "fundingCost": 250,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Night Vision Goggles",
+      "officialId": 45,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Radio",
+      "officialId": 64,
+      "fundingCost": 150,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        18,
+        259,
+        531,
+        552,
+        796
+      ]
+    },
+    {
+      "name": "Secret Laboratory",
+      "officialId": 62,
+      "fundingCost": 100,
+      "repCost": 2,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Jonathan Crane"
+      ],
+      "targetOfficialIds": [
+        278,
+        433,
+        765,
+        785
+      ],
+      "requiredCrewOfficialIds": [
+        278,
+        433,
+        765,
+        785
+      ]
+    },
+    {
+      "name": "Surgeon Training",
+      "officialId": 298,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        40,
+        588
+      ]
+    },
+    {
+      "name": "Titan Dose",
+      "officialId": 56,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        27,
+        28,
+        550,
+        667,
+        768,
+        844
+      ]
+    },
+    {
+      "name": "Venom Applicator",
+      "officialId": 52,
+      "fundingCost": 0,
+      "repCost": 2,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        27,
+        28,
+        550,
+        667,
+        768,
+        844
+      ]
+    },
+    {
+      "name": "Venom Dose",
+      "officialId": 47,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 3,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Venom Laboratory",
+      "officialId": 50,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Leader",
+        "Sidekick"
+      ],
+      "targetRanks": [
+        "Leader",
+        "Sidekick"
+      ],
+      "requiredCrewOfficialIds": [
+        27,
+        28,
+        550,
+        667,
+        768,
+        844
+      ]
+    },
+    {
+      "name": "War Hardened",
+      "officialId": 238,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ]
+    }
+  ],
   "Suicide Squad": [
     {
       "name": "Aerial Locator System",
@@ -20876,282 +19847,299 @@ const officialEquipmentRulesByFaction = {
       "maxPerCrew": 2
     }
   ],
-  "The Riddler": [
+  "The Batman Who Laughs": [
     {
-      "name": "Another One!",
-      "officialId": 223,
+      "name": "Bar",
+      "officialId": 265,
+      "fundingCost": 0,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Darkness",
+      "officialId": 268,
+      "fundingCost": 0,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Hunter",
+      "officialId": 266,
+      "fundingCost": 0,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ]
+    },
+    {
+      "name": "No Limits",
+      "officialId": 267,
+      "fundingCost": 0,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ]
+    }
+  ],
+  "The Court of Owls": [
+    {
+      "name": "Ancient Training",
+      "officialId": 116,
       "fundingCost": 150,
       "repCost": 0,
       "maxPerCrew": 2,
       "targetModels": [
+        "Free Agent",
         "Henchman"
       ],
       "targetRanks": [
+        "Free Agent",
         "Henchman"
       ]
     },
     {
-      "name": "B.U.C. (Bots Upgraded CPU)",
-      "officialId": 159,
+      "name": "Ancient Weapon",
+      "officialId": 113,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Free Agent",
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Antidote",
+      "officialId": 108,
       "fundingCost": 100,
       "repCost": 0,
       "maxPerCrew": 1,
       "targetModels": [
-        "Edward Nigma"
-      ],
-      "targetOfficialIds": [
-        7
-      ]
-    },
-    {
-      "name": "Battle Bot",
-      "officialId": 155,
-      "fundingCost": 250,
-      "repCost": 3,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman",
-        "Bobbie",
-        "Bobbie MKII",
-        "Mary"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        59,
-        60,
-        197
-      ]
-    },
-    {
-      "name": "Broken Equipment",
-      "officialId": 153,
-      "fundingCost": 250,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
+        "Free Agent",
         "Henchman"
       ],
       "targetRanks": [
+        "Free Agent",
         "Henchman"
       ]
     },
     {
-      "name": "Enhanced Servo-engines",
-      "officialId": 160,
-      "fundingCost": 150,
+      "name": "C-4",
+      "officialId": 110,
+      "fundingCost": 300,
       "repCost": 0,
       "maxPerCrew": 1,
       "targetModels": [
-        "Edward Nigma"
+        "Free Agent",
+        "Henchman"
       ],
-      "targetOfficialIds": [
-        8
+      "targetRanks": [
+        "Free Agent",
+        "Henchman"
       ]
     },
     {
-      "name": "Enigma Data-Pack",
-      "officialId": 152,
+      "name": "Camo Vest",
+      "officialId": 109,
       "fundingCost": 100,
       "repCost": 0,
       "maxPerCrew": 2,
       "targetModels": [
+        "Free Agent",
         "Henchman"
       ],
       "targetRanks": [
+        "Free Agent",
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Circus Gromming",
+      "officialId": 117,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Free Agent",
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Climbing Claws",
+      "officialId": 107,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Free Agent",
         "Henchman"
       ]
     },
     {
       "name": "Gas Mask",
-      "officialId": 154,
-      "fundingCost": 200,
+      "officialId": 111,
+      "fundingCost": 150,
       "repCost": 0,
       "maxPerCrew": 1,
       "targetModels": [
+        "Free Agent",
         "Henchman"
       ],
       "targetRanks": [
+        "Free Agent",
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Genetic Alteration",
+      "officialId": 114,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 3,
+      "targetModels": [
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Free Agent",
         "Henchman"
       ]
     },
     {
       "name": "Grapple Gun",
-      "officialId": 150,
-      "fundingCost": 300,
+      "officialId": 112,
+      "fundingCost": 400,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Free Agent",
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Hunter Training",
+      "officialId": 115,
+      "fundingCost": 150,
       "repCost": 0,
       "maxPerCrew": 2,
       "targetModels": [
+        "Free Agent",
         "Henchman"
       ],
       "targetRanks": [
+        "Free Agent",
         "Henchman"
       ]
     },
     {
-      "name": "Improved Armor",
-      "officialId": 158,
-      "fundingCost": 250,
-      "repCost": 2,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Edward Nigma"
-      ],
-      "targetOfficialIds": [
-        7
-      ]
-    },
-    {
-      "name": "Improved Chassis MK",
-      "officialId": 157,
-      "fundingCost": 50,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman",
-        "Bobbie",
-        "Bobbie MKII",
-        "Mary"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        59,
-        60,
-        197
-      ]
-    },
-    {
-      "name": "Inspiration",
-      "officialId": 221,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        426
-      ]
-    },
-    {
-      "name": "Its a Dud",
-      "officialId": 291,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Sidekick",
-        "Josette"
-      ],
-      "targetRanks": [
-        "Sidekick"
-      ],
-      "targetOfficialIds": [
-        352
-      ],
-      "requiredCrewOfficialIds": [
-        352
-      ]
-    },
-    {
-      "name": "Level Up!",
-      "officialId": 224,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Edward Nigma"
-      ],
-      "targetOfficialIds": [
-        7,
-        8,
-        320,
-        609,
-        739,
-        822,
-        839,
-        859,
-        860
-      ],
-      "requiredCrewOfficialIds": [
-        7,
-        8,
-        320,
-        609,
-        739,
-        822,
-        839,
-        859,
-        860
-      ]
-    },
-    {
-      "name": "Magazine",
-      "officialId": 149,
+      "name": "Lords of Gotham",
+      "officialId": 292,
       "fundingCost": 200,
       "repCost": 0,
-      "maxPerCrew": 2,
+      "maxPerCrew": 1,
       "targetModels": [
-        "Henchman"
+        "The Court"
       ],
-      "targetRanks": [
-        "Henchman"
+      "targetOfficialIds": [
+        615
       ]
     },
     {
-      "name": "Mirror Games",
-      "officialId": 151,
+      "name": "Spare Blade",
+      "officialId": 106,
       "fundingCost": 100,
       "repCost": 0,
-      "maxPerCrew": 1,
+      "maxPerCrew": 2,
       "targetModels": [
+        "Free Agent",
         "Henchman"
       ],
       "targetRanks": [
+        "Free Agent",
         "Henchman"
       ]
     },
     {
-      "name": "Shock Droid",
-      "officialId": 156,
-      "fundingCost": 50,
+      "name": "Talon Serum Infusion",
+      "officialId": 227,
+      "fundingCost": 200,
       "repCost": 0,
       "maxPerCrew": 1,
       "targetModels": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
         "Henchman",
-        "Bobbie",
-        "Bobbie MKII",
-        "Mary"
+        "Lincoln March"
       ],
       "targetRanks": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
         "Henchman"
       ],
       "targetOfficialIds": [
-        59,
-        60,
-        197
-      ]
-    },
-    {
-      "name": "Weird Ammo",
-      "officialId": 222,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        425
+        435
       ]
     }
   ],
@@ -21549,6 +20537,1018 @@ const officialEquipmentRulesByFaction = {
       ]
     }
   ],
+  "Vigilantes": [
+    {
+      "name": "Batclaw",
+      "officialId": 342,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman",
+        "Batgirl (Rebirth)",
+        "Batman (Multiverse)",
+        "Clayface",
+        "Robin",
+        "Goliath",
+        "Batwoman",
+        "Batman",
+        "Red Hood (Rebirth)",
+        "Oracle",
+        "Batman (Frank Miller)",
+        "Green Arrow DKR",
+        "Son of Batman 1",
+        "Son of Batman 2",
+        "Son of Batman 3",
+        "Catwoman",
+        "Red Robin",
+        "Talon",
+        "Batgirl (Classic Costume)",
+        "Nightwing (Rebirth)",
+        "Batman (Death Metal)",
+        "Batman (Viking)",
+        "Ace",
+        "Azrael (God's Punishment)",
+        "Batman (Classic)",
+        "Robin (Classic)",
+        "Red Hood (The Outlaw)",
+        "Batman (High Seas)",
+        "Alfred Pennyworth",
+        "Spoiler",
+        "Huntress (Classic)",
+        "Clownhunter",
+        "Batman (Frank Miller on Horse)",
+        "Batman (Frank Miller on Power Armor)",
+        "Batman (Beyond)",
+        "Robin (Beyond)",
+        "Mr. Wayne (Beyond)",
+        "Batman (The Animated Series)",
+        "Batgirl (The Animated Series)",
+        "Green Arrow (The Animated Series)",
+        "Black Canary (The Animated Series)",
+        "Catwoman (The Animated Series)",
+        "Harley Quinn (The Animated Series)",
+        "Lucius Fox",
+        "Robin (Tim Drake)",
+        "Batman (The Gotham City Knight)"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "targetOfficialIds": [
+        32,
+        422,
+        427,
+        436,
+        437,
+        468,
+        534,
+        552,
+        558,
+        570,
+        573,
+        574,
+        575,
+        576,
+        577,
+        610,
+        611,
+        617,
+        669,
+        670,
+        680,
+        705,
+        706,
+        725,
+        734,
+        735,
+        796,
+        816,
+        817,
+        818,
+        819,
+        820,
+        846,
+        848,
+        852,
+        853,
+        854,
+        861,
+        862,
+        863,
+        864,
+        865,
+        870,
+        871,
+        872,
+        886
+      ]
+    },
+    {
+      "name": "Batman Inc.",
+      "officialId": 19,
+      "fundingCost": 300,
+      "repCost": 3,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Sidekick",
+        "Free Agent"
+      ],
+      "targetRanks": [
+        "Sidekick",
+        "Free Agent"
+      ],
+      "requiredCrewOfficialIds": [
+        34,
+        37,
+        39,
+        43,
+        46,
+        368,
+        381,
+        385,
+        396,
+        398,
+        406,
+        422,
+        454,
+        521,
+        534,
+        570,
+        580,
+        597,
+        621,
+        640,
+        671,
+        680,
+        705,
+        707,
+        724,
+        734,
+        767,
+        769,
+        801,
+        803,
+        812,
+        816,
+        846,
+        848,
+        850,
+        854,
+        861,
+        869,
+        886
+      ]
+    },
+    {
+      "name": "Circus Training",
+      "officialId": 30,
+      "fundingCost": 200,
+      "repCost": 5,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Sidekick",
+        "Free Agent"
+      ],
+      "targetRanks": [
+        "Sidekick",
+        "Free Agent"
+      ],
+      "requiredCrewOfficialIds": [
+        222,
+        270,
+        345,
+        491,
+        622,
+        670,
+        735,
+        813
+      ]
+    },
+    {
+      "name": "Command Center Support",
+      "officialId": 31,
+      "fundingCost": 250,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "requiredCrewOfficialIds": [
+        353,
+        574,
+        649,
+        663,
+        863
+      ]
+    },
+    {
+      "name": "Handcuffs",
+      "officialId": 211,
+      "fundingCost": 300,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Heroic Jump",
+      "officialId": 343,
+      "fundingCost": 300,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Henchman",
+        "Raven",
+        "Robin",
+        "Goliath",
+        "Robin (Teen Titans)",
+        "Starfire (Teen Titans)",
+        "Beast Boy - Human (Teen Titans)",
+        "Wonder Girl",
+        "Dove",
+        "Hawk",
+        "Red Robin",
+        "Batgirl (Classic Costume)",
+        "Nightwing (Rebirth)",
+        "Robin (Classic)",
+        "Red Hood (The Outlaw)",
+        "Beast Boy - Gorilla (Teen Titans)",
+        "Beast Boy - Hawk (Teen Titans)",
+        "Beast Boy - Tiger (Teen Titans)",
+        "Kid Flash",
+        "Ravager (Vanguard Team)",
+        "Robin (Tim Drake)"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "targetOfficialIds": [
+        257,
+        436,
+        437,
+        491,
+        492,
+        493,
+        494,
+        495,
+        496,
+        611,
+        669,
+        670,
+        735,
+        796,
+        807,
+        808,
+        809,
+        815,
+        866,
+        872
+      ]
+    },
+    {
+      "name": "Improved Bat-Armor",
+      "officialId": 371,
+      "fundingCost": 0,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "requiredCrewOfficialIds": [
+        871
+      ]
+    },
+    {
+      "name": "Improved Batclaw",
+      "officialId": 370,
+      "fundingCost": 0,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Nyssa Al Ghul",
+        "Batgirl",
+        "Batgirl (Rebirth)",
+        "Batman",
+        "Batman (Arkham Knight)",
+        "Batman (Ben Affleck)",
+        "Batman (Flashpoint)",
+        "Batman (Knightfall)",
+        "Batman (Modern Age)",
+        "Batman (Dark Knight Rises)",
+        "Nightwing (Arkham Knight)",
+        "Red Hood (Arkham Knight)",
+        "Robin (Boy Wonder)",
+        "Slipknot (Suicide Squad)",
+        "Nightwing",
+        "Green Arrow",
+        "Owlman",
+        "Zur-En-Arrh Batman",
+        "Batman (Rebirth)",
+        "Batman (Knightmare)",
+        "Blue Beetle",
+        "The Wizard",
+        "Batman (Multiverse)",
+        "Robin",
+        "Batman (Gaslight)",
+        "Batwoman",
+        "Happy",
+        "Robin (Teen Titans)",
+        "Killer Moth",
+        "Batman (Frank Miller)",
+        "Green Arrow DKR",
+        "The Grim Knight",
+        "Red Robin",
+        "Raptor",
+        "Batman (Adam West)",
+        "Robin (Burt Ward)",
+        "Batgirl (Classic Costume)",
+        "Nightwing (Rebirth)",
+        "Vigilante",
+        "Batman (Robert Pattinson)",
+        "Batman (Classic)",
+        "The Riddler's Follower 2",
+        "Batman (Michael Keaton)",
+        "Batman (1997)",
+        "Robin (1997)",
+        "Batman (The Animated Series)",
+        "Batgirl (The Animated Series)",
+        "Robin (Tim Drake)",
+        "Batman (The Gotham City Knight)"
+      ],
+      "targetOfficialIds": [
+        6,
+        30,
+        32,
+        34,
+        37,
+        39,
+        40,
+        42,
+        43,
+        46,
+        222,
+        259,
+        270,
+        285,
+        345,
+        353,
+        362,
+        368,
+        381,
+        406,
+        408,
+        414,
+        422,
+        436,
+        454,
+        468,
+        487,
+        491,
+        531,
+        534,
+        569,
+        570,
+        574,
+        588,
+        597,
+        611,
+        620,
+        621,
+        622,
+        649,
+        669,
+        670,
+        695,
+        707,
+        734,
+        741,
+        803,
+        812,
+        813,
+        845,
+        861,
+        862,
+        869,
+        872,
+        886
+      ],
+      "requiredCrewOfficialIds": [
+        871
+      ]
+    },
+    {
+      "name": "Improved Batlings",
+      "officialId": 372,
+      "fundingCost": 0,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "requiredCrewOfficialIds": [
+        871
+      ]
+    },
+    {
+      "name": "Improved Reinforced Gloves",
+      "officialId": 373,
+      "fundingCost": 0,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Bane (Dark Knight Rises)",
+        "Bane (Rebirth)",
+        "Bat-Mite",
+        "Batgirl (Rebirth)",
+        "Batman",
+        "Batman (Arkham Knight)",
+        "Batman (Ben Affleck)",
+        "Batman (Flashpoint)",
+        "Batman (Modern Age)",
+        "Batman (Dark Knight Rises)",
+        "Emperor Penguin",
+        "Heat Wave",
+        "Jason Blood",
+        "Lady Shiva",
+        "Penguin Lieutenant",
+        "Prisoner 93432",
+        "The Bull",
+        "Two-Face",
+        "Zur-En-Arrh Batman",
+        "Queen Hippolita",
+        "Batman (Rebirth)",
+        "Lobo",
+        "Black Orchid",
+        "Lexcorp Heavy Trooper",
+        "LexCorp Trooper 1",
+        "LexCorp Trooper 2",
+        "LexCorp Trooper 3",
+        "The Tailor",
+        "Batman (Knightmare)",
+        "Booster Gold",
+        "Blue Beetle",
+        "Damien Darhk",
+        "Batman (Multiverse)",
+        "Echo",
+        "Solomon Grundy",
+        "Lark",
+        "Ozymandias",
+        "The Comedian",
+        "Nite Owl",
+        "Batman (Gaslight)",
+        "The Heretic",
+        "Mercenary 2",
+        "Wonder Girl",
+        "Hawk",
+        "Bronze Tiger",
+        "1 Dollar",
+        "Big Sidekick",
+        "Bruce Wayne",
+        "Matches Malone",
+        "Grifter",
+        "Bane (The Bat)",
+        "Batman (Frank Miller)",
+        "Son of Batman 3",
+        "The Batman Who Laughs",
+        "Malicia",
+        "Deathstroke (The Terminator)",
+        "Zack Johnson",
+        "The Grim Knight",
+        "Hush",
+        "Quiz 8",
+        "Talon",
+        "Batman (Adam West)",
+        "Fright",
+        "Batman (Year One)",
+        "Mr. Toxic",
+        "Signalman",
+        "Batgirl (Classic Costume)",
+        "Mr. Freeze (Cryo-Armor)",
+        "Batman (Death Metal)",
+        "Lobo (Paramilitary)",
+        "Peacemaker (John Cena)",
+        "Vigilante",
+        "Batman (Viking)",
+        "Batman (Robert Pattinson)",
+        "Batman (Classic)",
+        "Deacon Blackfire",
+        "Two-Face (Arkham City)",
+        "Batman on Bike (Robert Pattinson)",
+        "Batman (The Cult)",
+        "Red Hood (The Outlaw)",
+        "Vengeance",
+        "Batman (Bushi)",
+        "Ten-Eyed Man",
+        "Robin (1997)",
+        "Batman (High Seas)",
+        "Two-Face (Tommy Lee Jones)",
+        "Bane (Commander)",
+        "Batman (Frank Miller on Horse)",
+        "Batman (Frank Miller on Power Armor)",
+        "Batman (The Gotham City Knight)"
+      ],
+      "targetOfficialIds": [
+        27,
+        28,
+        29,
+        32,
+        34,
+        37,
+        39,
+        40,
+        43,
+        46,
+        110,
+        149,
+        162,
+        180,
+        232,
+        242,
+        312,
+        350,
+        368,
+        369,
+        381,
+        382,
+        389,
+        392,
+        393,
+        394,
+        395,
+        402,
+        406,
+        407,
+        408,
+        415,
+        422,
+        426,
+        434,
+        445,
+        448,
+        450,
+        452,
+        454,
+        464,
+        476,
+        494,
+        496,
+        497,
+        514,
+        517,
+        521,
+        522,
+        523,
+        534,
+        550,
+        570,
+        577,
+        580,
+        583,
+        586,
+        588,
+        596,
+        597,
+        598,
+        599,
+        614,
+        617,
+        621,
+        629,
+        640,
+        651,
+        661,
+        669,
+        672,
+        680,
+        682,
+        693,
+        695,
+        705,
+        707,
+        734,
+        751,
+        766,
+        767,
+        769,
+        796,
+        797,
+        801,
+        802,
+        813,
+        816,
+        840,
+        841,
+        844,
+        846,
+        848,
+        850,
+        869,
+        886
+      ],
+      "requiredCrewOfficialIds": [
+        871
+      ]
+    },
+    {
+      "name": "Investigator",
+      "officialId": 345,
+      "fundingCost": 200,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Sidekick",
+        "Free Agent",
+        "Henchman",
+        "Batgirl (Rebirth)",
+        "Batman (Multiverse)",
+        "Clayface",
+        "Robin",
+        "Goliath",
+        "Batwoman",
+        "Batman",
+        "Red Hood (Rebirth)",
+        "Oracle",
+        "Batman (Frank Miller)",
+        "Green Arrow DKR",
+        "Son of Batman 1",
+        "Son of Batman 2",
+        "Son of Batman 3",
+        "Catwoman",
+        "Red Robin",
+        "Talon",
+        "Batgirl (Classic Costume)",
+        "Nightwing (Rebirth)",
+        "Batman (Death Metal)",
+        "Batman (Viking)",
+        "Ace",
+        "Azrael (God's Punishment)",
+        "Batman (Classic)",
+        "Robin (Classic)",
+        "Red Hood (The Outlaw)",
+        "Batman (High Seas)",
+        "Alfred Pennyworth",
+        "Spoiler",
+        "Huntress (Classic)",
+        "Clownhunter",
+        "Batman (Frank Miller on Horse)",
+        "Batman (Frank Miller on Power Armor)",
+        "Batman (Beyond)",
+        "Robin (Beyond)",
+        "Mr. Wayne (Beyond)",
+        "Batman (The Animated Series)",
+        "Batgirl (The Animated Series)",
+        "Green Arrow (The Animated Series)",
+        "Black Canary (The Animated Series)",
+        "Catwoman (The Animated Series)",
+        "Harley Quinn (The Animated Series)",
+        "Lucius Fox",
+        "Robin (Tim Drake)",
+        "Batman (The Gotham City Knight)"
+      ],
+      "targetRanks": [
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetOfficialIds": [
+        32,
+        422,
+        427,
+        436,
+        437,
+        468,
+        534,
+        552,
+        558,
+        570,
+        573,
+        574,
+        575,
+        576,
+        577,
+        610,
+        611,
+        617,
+        669,
+        670,
+        680,
+        705,
+        706,
+        725,
+        734,
+        735,
+        796,
+        816,
+        817,
+        818,
+        819,
+        820,
+        846,
+        848,
+        852,
+        853,
+        854,
+        861,
+        862,
+        863,
+        864,
+        865,
+        870,
+        871,
+        872,
+        886
+      ]
+    },
+    {
+      "name": "Magazine",
+      "officialId": 210,
+      "fundingCost": 300,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Martial Arts Training",
+      "officialId": 213,
+      "fundingCost": 100,
+      "repCost": 2,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Sidekick",
+        "Free Agent"
+      ],
+      "targetRanks": [
+        "Sidekick",
+        "Free Agent"
+      ],
+      "requiredCrewOfficialIds": [
+        34,
+        37,
+        39,
+        43,
+        46,
+        368,
+        381,
+        385,
+        396,
+        398,
+        406,
+        422,
+        454,
+        521,
+        534,
+        570,
+        580,
+        597,
+        621,
+        640,
+        671,
+        680,
+        705,
+        707,
+        724,
+        734,
+        767,
+        769,
+        801,
+        803,
+        812,
+        816,
+        846,
+        848,
+        850,
+        854,
+        861,
+        869,
+        886
+      ]
+    },
+    {
+      "name": "Mentor",
+      "officialId": 214,
+      "fundingCost": 200,
+      "repCost": 3,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Sidekick",
+        "Free Agent"
+      ],
+      "targetRanks": [
+        "Sidekick",
+        "Free Agent"
+      ],
+      "requiredCrewOfficialIds": [
+        34,
+        37,
+        39,
+        43,
+        46,
+        368,
+        381,
+        385,
+        396,
+        398,
+        406,
+        422,
+        454,
+        521,
+        534,
+        570,
+        580,
+        597,
+        621,
+        640,
+        671,
+        680,
+        705,
+        707,
+        724,
+        734,
+        767,
+        769,
+        801,
+        803,
+        812,
+        816,
+        846,
+        848,
+        850,
+        854,
+        861,
+        869,
+        886
+      ]
+    },
+    {
+      "name": "Moment of Glory",
+      "officialId": 228,
+      "fundingCost": 150,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Reconnaissance",
+      "officialId": 209,
+      "fundingCost": 300,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Free Agent",
+        "Henchman"
+      ]
+    },
+    {
+      "name": "Tactical Gloves",
+      "officialId": 32,
+      "fundingCost": 50,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Oliver Queen"
+      ],
+      "targetOfficialIds": [
+        353,
+        574,
+        649,
+        663,
+        863
+      ],
+      "requiredCrewOfficialIds": [
+        353,
+        574,
+        649,
+        663,
+        863
+      ]
+    },
+    {
+      "name": "Upgraded Batsuit",
+      "officialId": 212,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Bruce Wayne"
+      ],
+      "targetOfficialIds": [
+        34,
+        37,
+        39,
+        43,
+        46,
+        368,
+        381,
+        385,
+        396,
+        398,
+        406,
+        422,
+        454,
+        521,
+        534,
+        570,
+        580,
+        597,
+        621,
+        640,
+        671,
+        680,
+        705,
+        707,
+        724,
+        734,
+        767,
+        769,
+        801,
+        803,
+        812,
+        816,
+        846,
+        848,
+        850,
+        854,
+        861,
+        869,
+        886
+      ],
+      "requiredCrewOfficialIds": [
+        34,
+        37,
+        39,
+        43,
+        46,
+        368,
+        381,
+        385,
+        396,
+        398,
+        406,
+        422,
+        454,
+        521,
+        534,
+        570,
+        580,
+        597,
+        621,
+        640,
+        671,
+        680,
+        705,
+        707,
+        724,
+        734,
+        767,
+        769,
+        801,
+        803,
+        812,
+        816,
+        846,
+        848,
+        850,
+        854,
+        861,
+        869,
+        886
+      ]
+    }
+  ],
   "Watchmen": [
     {
       "name": "Archie Support",
@@ -21781,7 +21781,7 @@ function findOfficialEquipmentRule(faction, item) {
   const itemKey = normalizeOfficialEquipmentRuleKey(item.name);
   const candidates = rules.filter(rule => {
     const ruleKey = normalizeOfficialEquipmentRuleKey(rule.name);
-    return itemKey === ruleKey || itemKey.startsWith(ruleKey + " ");
+    return itemKey === ruleKey;
   });
 
   if (candidates.length === 1) return candidates[0];
@@ -21794,6 +21794,9 @@ function mergeOfficialEquipmentRuleFields(item, rule) {
   if (!rule) return item;
   const merged = { ...item };
   if (merged.officialId == null) merged.officialId = rule.officialId;
+  merged.fundingCost = rule.fundingCost;
+  merged.repCost = rule.repCost;
+  merged.maxPerCrew = rule.maxPerCrew;
   if (Array.isArray(rule.targetModels) && rule.targetModels.length) merged.targetModels = rule.targetModels;
   if (Array.isArray(rule.targetRanks) && rule.targetRanks.length) merged.targetRanks = rule.targetRanks;
   if (Array.isArray(rule.targetOfficialIds) && rule.targetOfficialIds.length) merged.targetOfficialIds = rule.targetOfficialIds;
@@ -21967,140 +21970,6 @@ const officialEquipmentByFactionExtensions = {
         "Gains Reinforced Gloves rule."
       ],
       "globalEquipment": true
-    }
-  ],
-  "Batman Who Laughs": [
-    {
-      "name": "Bar",
-      "officialId": 265,
-      "fundingCost": 0,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "conditions": [],
-      "effects": [
-        "Model Gains the Death Pack trait."
-      ]
-    },
-    {
-      "name": "Darkness",
-      "officialId": 268,
-      "fundingCost": 0,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "conditions": [],
-      "effects": [
-        "Models within 4\" are always considered as affected by the Cover rule."
-      ]
-    },
-    {
-      "name": "Hunter",
-      "officialId": 266,
-      "fundingCost": 0,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "conditions": [],
-      "effects": [
-        "When this model attacks an enemy that has already activated this round, it gains +1 to Hit"
-      ]
-    },
-    {
-      "name": "No Limits",
-      "officialId": 267,
-      "fundingCost": 0,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "conditions": [],
-      "effects": [
-        "When this model makes Efforts, it may suffer {BLOOD_ICON} instead of {STUN_ICON}"
-      ]
-    }
-  ],
-  "Court of Owls": [
-    {
-      "name": "Circus Gromming",
-      "officialId": 117,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Free Agent",
-        "Henchman"
-      ],
-      "conditions": [],
-      "effects": [
-        "Model gains Combat Flip trait."
-      ]
-    },
-    {
-      "name": "Spare Blade",
-      "officialId": 106,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Free Agent",
-        "Henchman"
-      ],
-      "conditions": [],
-      "effects": [
-        "Model gains +1 Ammunition for one weapon."
-      ]
     }
   ],
   "Cults": [
@@ -22903,7 +22772,46 @@ const officialEquipmentByFactionExtensions = {
       ]
     }
   ],
-  "GCPD": [
+  "Joker": [
+    {
+      "name": "Fireworks",
+      "officialId": 74,
+      "fundingCost": 300,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Henchman"
+      ],
+      "conditions": [],
+      "effects": [
+        "Model gains the Flare trait."
+      ]
+    },
+    {
+      "name": "Poison Training - Alexis Kaye",
+      "officialId": 354,
+      "fundingCost": 250,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Alexis Kaye"
+      ],
+      "targetOfficialIds": [
+        662,
+        834
+      ],
+      "conditions": [
+        "Name: Alexis Kaye"
+      ],
+      "effects": [
+        "Model gains the Poison Master trait."
+      ]
+    }
+  ],
+  "Law Forces": [
     {
       "name": "Feline Stalk",
       "officialId": 40,
@@ -23299,744 +23207,7 @@ const officialEquipmentByFactionExtensions = {
       ]
     }
   ],
-  "Harley Quinn & Friends": [
-    {
-      "name": "Adaptive Planning",
-      "officialId": 170,
-      "fundingCost": 200,
-      "repCost": 2,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "excludedTargetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ],
-      "conditions": [
-        "Restricted: Name: Carnivorous Plant",
-        "Restricted: Name: Spikes Plant",
-        "Restricted: Name: Mutated Plant 1",
-        "Restricted: Name: Mutated Plant 2",
-        "Restricted: Name: Mutated Plant 3",
-        "Restricted: Name: Frank the Plant",
-        "Restricted: Name: Floronic Man",
-        "Restricted: Name: Rabid Plant 1",
-        "Restricted: Name: Rabid Plant 2"
-      ],
-      "effects": [
-        "Model gains the Adaptable trait."
-      ]
-    },
-    {
-      "name": "Ancient Plant",
-      "officialId": 173,
-      "fundingCost": 200,
-      "repCost": 30,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman",
-        "Carnivorous Plant",
-        "Spikes Plant",
-        "Mutated Plant 1",
-        "Mutated Plant 2",
-        "Mutated Plant 3",
-        "Frank the Plant",
-        "Floronic Man",
-        "Rabid Plant 1",
-        "Rabid Plant 2"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ],
-      "requiredCrewOfficialIds": [
-        348,
-        409,
-        560,
-        814,
-        857
-      ],
-      "conditions": [
-        "Any of: Name: Carnivorous Plant | Name: Spikes Plant | Name: Mutated Plant 1 | Name: Mutated Plant 2 | Name: Mutated Plant 3 | Name: Frank the Plant | Name: Floronic Man | Name: Rabid Plant 1 | Name: Rabid Plant 2",
-        "Alias: Dr. Pamela Lillian Isley in crew"
-      ],
-      "effects": [
-        "Model gains the Invulnerability (1) and Tough Skin traits, +1 to all Basic Skills except Endurance, +3 to Endurance, and the action area radius is increased to 6”."
-      ]
-    },
-    {
-      "name": "Camo Vest",
-      "officialId": 168,
-      "fundingCost": 300,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "excludedTargetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ],
-      "conditions": [
-        "Restricted: Name: Carnivorous Plant",
-        "Restricted: Name: Spikes Plant",
-        "Restricted: Name: Mutated Plant 1",
-        "Restricted: Name: Mutated Plant 2",
-        "Restricted: Name: Mutated Plant 3",
-        "Restricted: Name: Frank the Plant",
-        "Restricted: Name: Floronic Man",
-        "Restricted: Name: Rabid Plant 1",
-        "Restricted: Name: Rabid Plant 2"
-      ],
-      "effects": [
-        "Model gains the Stealth trait."
-      ]
-    },
-    {
-      "name": "Corrosive Blood",
-      "officialId": 171,
-      "fundingCost": 50,
-      "repCost": 0,
-      "maxPerCrew": 3,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        348,
-        409,
-        560,
-        814,
-        857
-      ],
-      "conditions": [
-        "Alias: Dr. Pamela Lillian Isley in crew"
-      ],
-      "effects": [
-        "When this model becomes a Casualty, all models in Contact must pass an Endurance roll of receive {BLOOD_ICON} Damage."
-      ]
-    },
-    {
-      "name": "Extra Spores",
-      "officialId": 163,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman",
-        "Carnivorous Plant",
-        "Spikes Plant",
-        "Mutated Plant 1",
-        "Mutated Plant 2",
-        "Mutated Plant 3",
-        "Frank the Plant",
-        "Floronic Man",
-        "Rabid Plant 1",
-        "Rabid Plant 2"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ],
-      "conditions": [
-        "Any of: Name: Carnivorous Plant | Name: Spikes Plant | Name: Mutated Plant 1 | Name: Mutated Plant 2 | Name: Mutated Plant 3 | Name: Frank the Plant | Name: Floronic Man | Name: Rabid Plant 1 | Name: Rabid Plant 2"
-      ],
-      "effects": [
-        "Model gains +1 Ammunition for one weapon."
-      ]
-    },
-    {
-      "name": "Grapple Gun",
-      "officialId": 167,
-      "fundingCost": 300,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "excludedTargetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ],
-      "conditions": [
-        "Restricted: Name: Carnivorous Plant",
-        "Restricted: Name: Spikes Plant",
-        "Restricted: Name: Mutated Plant 1",
-        "Restricted: Name: Mutated Plant 2",
-        "Restricted: Name: Mutated Plant 3",
-        "Restricted: Name: Frank the Plant",
-        "Restricted: Name: Floronic Man",
-        "Restricted: Name: Rabid Plant 1",
-        "Restricted: Name: Rabid Plant 2"
-      ],
-      "effects": [
-        "Model gains the Grapple Gun trait."
-      ]
-    },
-    {
-      "name": "Large Roots",
-      "officialId": 166,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman",
-        "Carnivorous Plant",
-        "Spikes Plant",
-        "Mutated Plant 1",
-        "Mutated Plant 2",
-        "Mutated Plant 3",
-        "Frank the Plant",
-        "Floronic Man",
-        "Rabid Plant 1",
-        "Rabid Plant 2"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ],
-      "conditions": [
-        "Any of: Name: Carnivorous Plant | Name: Spikes Plant | Name: Mutated Plant 1 | Name: Mutated Plant 2 | Name: Mutated Plant 3 | Name: Frank the Plant | Name: Floronic Man | Name: Rabid Plant 1 | Name: Rabid Plant 2"
-      ],
-      "effects": [
-        "Models moving within this model's action radius suffer Impaired Movement."
-      ]
-    },
-    {
-      "name": "Luminescent Mutation",
-      "officialId": 165,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman",
-        "Carnivorous Plant",
-        "Spikes Plant",
-        "Mutated Plant 1",
-        "Mutated Plant 2",
-        "Mutated Plant 3",
-        "Frank the Plant",
-        "Floronic Man",
-        "Rabid Plant 1",
-        "Rabid Plant 2"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ],
-      "conditions": [
-        "Any of: Name: Carnivorous Plant | Name: Spikes Plant | Name: Mutated Plant 1 | Name: Mutated Plant 2 | Name: Mutated Plant 3 | Name: Frank the Plant | Name: Floronic Man | Name: Rabid Plant 1 | Name: Rabid Plant 2"
-      ],
-      "effects": [
-        "Model gains the Lantern trait."
-      ]
-    },
-    {
-      "name": "Modified Pheromone",
-      "officialId": 172,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Dr. Pamela Lillian Isley"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent"
-      ],
-      "targetOfficialIds": [
-        348,
-        409,
-        560,
-        814,
-        857
-      ],
-      "requiredCrewOfficialIds": [
-        348,
-        409,
-        560,
-        814,
-        857
-      ],
-      "conditions": [
-        "Name: Dr. Pamela Lillian Isley",
-        "Alias: Dr. Pamela Lillian Isley in crew"
-      ],
-      "effects": [
-        "When this model uses the Control Pheromones trait, the targeted model adds 1 additional dice and adds all the 3 results together while taking that Hypnotize Willpower roll. If the target Efforts to add an additional die to the Willpower roll, then they must roll 4D6 and then choose 3 of them."
-      ]
-    },
-    {
-      "name": "Mutation Serum",
-      "officialId": 169,
-      "fundingCost": 200,
-      "repCost": 3,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        348,
-        409,
-        560,
-        814,
-        857
-      ],
-      "excludedTargetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ],
-      "conditions": [
-        "Alias: Dr. Pamela Lillian Isley in crew",
-        "Restricted: Name: Carnivorous Plant",
-        "Restricted: Name: Spikes Plant",
-        "Restricted: Name: Mutated Plant 1",
-        "Restricted: Name: Mutated Plant 2",
-        "Restricted: Name: Mutated Plant 3",
-        "Restricted: Name: Frank the Plant",
-        "Restricted: Name: Floronic Man",
-        "Restricted: Name: Rabid Plant 1",
-        "Restricted: Name: Rabid Plant 2"
-      ],
-      "effects": [
-        "Model gains the Tough Skin and Desensitized traits."
-      ]
-    },
-    {
-      "name": "Passage",
-      "officialId": 174,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        387
-      ],
-      "excludedTargetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ],
-      "conditions": [
-        "Alias: Alec Holland in crew",
-        "Restricted: Name: Carnivorous Plant",
-        "Restricted: Name: Spikes Plant",
-        "Restricted: Name: Mutated Plant 1",
-        "Restricted: Name: Mutated Plant 2",
-        "Restricted: Name: Mutated Plant 3",
-        "Restricted: Name: Frank the Plant",
-        "Restricted: Name: Floronic Man",
-        "Restricted: Name: Rabid Plant 1",
-        "Restricted: Name: Rabid Plant 2"
-      ],
-      "effects": [
-        "Model gains the Undercover trait."
-      ]
-    },
-    {
-      "name": "Pitch Perfect Vocals",
-      "officialId": 297,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Dinah Lance"
-      ],
-      "targetOfficialIds": [
-        562,
-        664,
-        864
-      ],
-      "requiredCrewOfficialIds": [
-        562,
-        664,
-        864
-      ],
-      "conditions": [
-        "Name: Dinah Lance",
-        "Alias: Dinah Lance in crew"
-      ],
-      "effects": [
-        "Model gains the Mixed Combat Style trait."
-      ]
-    },
-    {
-      "name": "Radio",
-      "officialId": 295,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        30,
-        32,
-        558,
-        669,
-        862
-      ],
-      "excludedTargetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ],
-      "conditions": [
-        "Alias: Barbara Gordon in crew",
-        "Restricted: Name: Carnivorous Plant",
-        "Restricted: Name: Spikes Plant",
-        "Restricted: Name: Mutated Plant 1",
-        "Restricted: Name: Mutated Plant 2",
-        "Restricted: Name: Mutated Plant 3",
-        "Restricted: Name: Frank the Plant",
-        "Restricted: Name: Floronic Man",
-        "Restricted: Name: Rabid Plant 1",
-        "Restricted: Name: Rabid Plant 2"
-      ],
-      "effects": [
-        "This model is always treated as though it were within range of it's Boss's Inspire trait."
-      ]
-    },
-    {
-      "name": "Sense Mutation",
-      "officialId": 162,
-      "fundingCost": 100,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman",
-        "Carnivorous Plant",
-        "Spikes Plant",
-        "Mutated Plant 1",
-        "Mutated Plant 2",
-        "Mutated Plant 3",
-        "Frank the Plant",
-        "Floronic Man",
-        "Rabid Plant 1",
-        "Rabid Plant 2"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ],
-      "conditions": [
-        "Any of: Name: Carnivorous Plant | Name: Spikes Plant | Name: Mutated Plant 1 | Name: Mutated Plant 2 | Name: Mutated Plant 3 | Name: Frank the Plant | Name: Floronic Man | Name: Rabid Plant 1 | Name: Rabid Plant 2"
-      ],
-      "effects": [
-        "Model gains the Night Vision trait."
-      ]
-    },
-    {
-      "name": "Smash 'n Grab",
-      "officialId": 296,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "requiredCrewOfficialIds": [
-        9,
-        135,
-        136,
-        347,
-        453,
-        538,
-        565,
-        668,
-        697,
-        726,
-        763,
-        842,
-        870
-      ],
-      "excludedTargetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ],
-      "conditions": [
-        "Alias: Dr. Harleen Frances Quinzel in crew",
-        "Restricted: Name: Carnivorous Plant",
-        "Restricted: Name: Spikes Plant",
-        "Restricted: Name: Mutated Plant 1",
-        "Restricted: Name: Mutated Plant 2",
-        "Restricted: Name: Mutated Plant 3",
-        "Restricted: Name: Frank the Plant",
-        "Restricted: Name: Floronic Man",
-        "Restricted: Name: Rabid Plant 1",
-        "Restricted: Name: Rabid Plant 2"
-      ],
-      "effects": [
-        "Model’s Close Combat attacks gain the Steal trait."
-      ]
-    },
-    {
-      "name": "Spikes Mutation",
-      "officialId": 164,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman",
-        "Carnivorous Plant",
-        "Spikes Plant",
-        "Mutated Plant 1",
-        "Mutated Plant 2",
-        "Mutated Plant 3",
-        "Frank the Plant",
-        "Floronic Man",
-        "Rabid Plant 1",
-        "Rabid Plant 2"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "targetOfficialIds": [
-        76,
-        298,
-        410,
-        411,
-        412,
-        561,
-        773,
-        774,
-        775
-      ],
-      "conditions": [
-        "Any of: Name: Carnivorous Plant | Name: Spikes Plant | Name: Mutated Plant 1 | Name: Mutated Plant 2 | Name: Mutated Plant 3 | Name: Frank the Plant | Name: Floronic Man | Name: Rabid Plant 1 | Name: Rabid Plant 2"
-      ],
-      "effects": [
-        "Model gains the Claws rule."
-      ]
-    },
-    {
-      "name": "Spray Can",
-      "officialId": 344,
-      "fundingCost": 150,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "conditions": [],
-      "effects": [
-        "Model gains 1 Spray Can."
-      ]
-    },
-    {
-      "name": "Titanic Mutation",
-      "officialId": 161,
-      "fundingCost": 150,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "conditions": [],
-      "effects": [
-        "Model gains one Titan Dose."
-      ]
-    },
-    {
-      "name": "Watch Tower",
-      "officialId": 294,
-      "fundingCost": 200,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "requiredCrewOfficialIds": [
-        30,
-        32,
-        558,
-        669,
-        862
-      ],
-      "conditions": [
-        "Alias: Barbara Gordon in crew"
-      ],
-      "effects": [
-        "Model gains Exhaustive Planner trait."
-      ]
-    }
-  ],
-  "Joker": [
-    {
-      "name": "Fireworks",
-      "officialId": 74,
-      "fundingCost": 300,
-      "repCost": 0,
-      "maxPerCrew": 2,
-      "targetModels": [
-        "Henchman"
-      ],
-      "targetRanks": [
-        "Henchman"
-      ],
-      "conditions": [],
-      "effects": [
-        "Model gains the Flare trait."
-      ]
-    },
-    {
-      "name": "Poison Training - Alexis Kaye",
-      "officialId": 354,
-      "fundingCost": 250,
-      "repCost": 0,
-      "maxPerCrew": 1,
-      "targetModels": [
-        "Alexis Kaye"
-      ],
-      "targetOfficialIds": [
-        662,
-        834
-      ],
-      "conditions": [
-        "Name: Alexis Kaye"
-      ],
-      "effects": [
-        "Model gains the Poison Master trait."
-      ]
-    }
-  ],
-  "League of Shadows": [
+  "League of Assassins": [
     {
       "name": "Bow",
       "officialId": 190,
@@ -24412,7 +23583,7 @@ const officialEquipmentByFactionExtensions = {
       ]
     }
   ],
-  "The Riddler": [
+  "Riddler": [
     {
       "name": "B.U.C. (Bots Upgraded CPU)",
       "officialId": 159,
@@ -24447,6 +23618,140 @@ const officialEquipmentByFactionExtensions = {
       "conditions": [],
       "effects": [
         "Before Phase A of the pre-game sequence choose one item of equipment purchased by the opposing player before the game begins. That item may not be used during the game."
+      ]
+    }
+  ],
+  "The Batman Who Laughs": [
+    {
+      "name": "Bar",
+      "officialId": 265,
+      "fundingCost": 0,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "conditions": [],
+      "effects": [
+        "Model Gains the Death Pack trait."
+      ]
+    },
+    {
+      "name": "Darkness",
+      "officialId": 268,
+      "fundingCost": 0,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "conditions": [],
+      "effects": [
+        "Models within 4\" are always considered as affected by the Cover rule."
+      ]
+    },
+    {
+      "name": "Hunter",
+      "officialId": 266,
+      "fundingCost": 0,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "conditions": [],
+      "effects": [
+        "When this model attacks an enemy that has already activated this round, it gains +1 to Hit"
+      ]
+    },
+    {
+      "name": "No Limits",
+      "officialId": 267,
+      "fundingCost": 0,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
+        "Henchman"
+      ],
+      "conditions": [],
+      "effects": [
+        "When this model makes Efforts, it may suffer {BLOOD_ICON} instead of {STUN_ICON}"
+      ]
+    }
+  ],
+  "The Court of Owls": [
+    {
+      "name": "Circus Gromming",
+      "officialId": 117,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 1,
+      "targetModels": [
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Free Agent",
+        "Henchman"
+      ],
+      "conditions": [],
+      "effects": [
+        "Model gains Combat Flip trait."
+      ]
+    },
+    {
+      "name": "Spare Blade",
+      "officialId": 106,
+      "fundingCost": 100,
+      "repCost": 0,
+      "maxPerCrew": 2,
+      "targetModels": [
+        "Free Agent",
+        "Henchman"
+      ],
+      "targetRanks": [
+        "Free Agent",
+        "Henchman"
+      ],
+      "conditions": [],
+      "effects": [
+        "Model gains +1 Ammunition for one weapon."
       ]
     }
   ],
@@ -82156,8 +81461,16 @@ function replaceIcons(text) {
 }
 
 const factionNameAliases = {
-  "Harley Quinn & Friends": "Birds of Prey",
-  "Harley Quinn and Friends": "Birds of Prey"
+  "GCPD": "Law Forces",
+  "Bat Family": "Vigilantes",
+  "Birds of Prey": "Harley Quinn & Friends",
+  "Harley Quinn and Friends": "Harley Quinn & Friends",
+  "League of Shadows": "League of Assassins",
+  "Bane": "Soldiers of Fortune",
+  "The Riddler": "Riddler",
+  "Batman Who Laughs": "The Batman Who Laughs",
+  "Court of Owls": "The Court of Owls",
+  "Royal Flush": "Royal Flush Gang"
 };
 
 function canonicalFactionName(value) {
@@ -82188,6 +81501,44 @@ function normalizeFactionList(value) {
 function getFactions(model) {
   return normalizeFactionList(model?.faction);
 }
+
+function mergeFactionKeyedData(collection) {
+  if (!collection || typeof collection !== "object") return collection;
+  Object.keys(collection).forEach(key => {
+    const canonical = canonicalFactionName(key);
+    if (!canonical || canonical === key) return;
+
+    const currentValue = collection[key];
+    const existingValue = collection[canonical];
+    if (Array.isArray(currentValue)) {
+      collection[canonical] = Array.isArray(existingValue)
+        ? [...existingValue, ...currentValue]
+        : [...currentValue];
+    } else if (currentValue && typeof currentValue === "object") {
+      collection[canonical] = existingValue && typeof existingValue === "object" && !Array.isArray(existingValue)
+        ? { ...currentValue, ...existingValue }
+        : { ...currentValue };
+    } else if (existingValue === undefined) {
+      collection[canonical] = currentValue;
+    }
+    delete collection[key];
+  });
+  return collection;
+}
+
+mergeFactionKeyedData(factionCrewRules);
+mergeFactionKeyedData(equipmentByFaction);
+mergeFactionKeyedData(disabledLocalOnlyEquipmentByFaction);
+if (typeof officialEquipmentRulesByFaction !== "undefined") mergeFactionKeyedData(officialEquipmentRulesByFaction);
+if (typeof officialEquipmentByFactionExtensions !== "undefined") mergeFactionKeyedData(officialEquipmentByFactionExtensions);
+if (typeof findOfficialEquipmentRule === "function" && typeof mergeOfficialEquipmentRuleFields === "function") {
+  Object.keys(equipmentByFaction).forEach(faction => {
+    equipmentByFaction[faction] = (equipmentByFaction[faction] || []).map(item =>
+      mergeOfficialEquipmentRuleFields(item, findOfficialEquipmentRule(faction, item))
+    );
+  });
+}
+window.factionCrewRules = factionCrewRules;
 
 function getRanks(model) {
   return Array.isArray(model.rank) ? model.rank : (typeof model.rank === 'string' ? [model.rank] : []);
