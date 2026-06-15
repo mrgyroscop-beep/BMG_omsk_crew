@@ -353,6 +353,17 @@ body.full-card-open {
 }
 .game-size-btn.active strong,
 .game-size-btn.active small { color:#fff; }
+.game-size-btn:disabled {
+  opacity: .38;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.builder-limit-control input[readonly],
+#repLimit[readonly] {
+  color: #ffd700;
+  border-color: #ffd700;
+  cursor: default;
+}
 .builder-quick-search {
   display: grid;
   gap: 8px;
@@ -626,7 +637,17 @@ body.full-card-open {
   pointer-events:none;
   background:linear-gradient(#000 0%, rgba(0,0,0,.92) 62%, rgba(0,0,0,0));
 }
-.full-inner { max-width:460px; min-height:100%; margin:0 auto; background:#000; overflow:visible; position:relative; padding-bottom:28px; }
+.full-inner {
+  max-width:460px;
+  min-height:100dvh;
+  margin:0 auto;
+  background:#000;
+  overflow:visible;
+  position:relative;
+  box-sizing:border-box;
+  padding-top:calc(86px + env(safe-area-inset-top));
+  padding-bottom:28px;
+}
 .close-full { position:fixed; top:26px; right:30px; font-size:36px; color:#ff4747; cursor:pointer; z-index:12; font-weight:bold; }
 .full-card-lang-switch {
   position: fixed;
@@ -648,7 +669,7 @@ body.full-card-open {
 .compendium-header h2 { color:#e94560; font-size:24px; margin:0; }
 .back-btn { position:absolute; left:15px; top:50%; transform:translateY(-50%); background:#e94560; color:#fff; border:none; padding:10px 18px; border-radius:30px; font-weight:bold; font-size:14px; cursor:pointer; }
 
-/* КНОПКИ ДОКУМЕНТОВ (RULEBOOK, FAQS, BATMATCH) */
+/* КНОПКИ ДОКУМЕНТОВ (RULEBOOK, FAQS, TOURNAMENT) */
 .rules-docs-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -1162,6 +1183,19 @@ body.full-card-open {
 .builder-deck-summary-row span { white-space:nowrap; }
 .builder-deck-summary-row .is-ok { color:#44ff88; }
 .builder-deck-summary-row .is-warning { color:#ffd700; }
+.builder-deck-mode-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 3px 9px;
+  border: 1px solid rgba(255,215,0,.48);
+  border-radius: 999px;
+  background: rgba(255,215,0,.1);
+  color: #ffd700;
+  font-size: 12px;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+}
 .builder-deck-messages { margin-top:8px; display:grid; gap:4px; color:#c7c9d1; font-family:Arial,sans-serif; font-size:12px; font-weight:normal; line-height:1.35; }
 .builder-deck-message.is-ok { color:#44ff88; font-weight:bold; }
 .builder-deck-rules-btn { padding:4px 10px; }
@@ -1692,6 +1726,12 @@ body.full-card-open {
   flex: 0 1 260px;
 }
 
+.my-crews-tournament-btn {
+  flex: 1 1 300px;
+  border-color: rgba(255, 215, 0, .52);
+  box-shadow: 0 6px 18px rgba(255, 215, 0, .14);
+}
+
 .my-crews-create-btn .btn-icon {
   width: 34px;
   height: 34px;
@@ -1802,6 +1842,27 @@ body.full-card-open {
   font-size: 14px;
 }
 
+.my-crew-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  margin-left: 7px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  line-height: 1;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.my-crew-tournament-badge {
+  border: 1px solid rgba(255,215,0,.55);
+  background: rgba(255,215,0,.13);
+  color: #ffd700;
+}
+
 .my-crew-meta {
   text-align: right;
   line-height: 1.5;
@@ -1881,6 +1942,59 @@ body.full-card-open {
   grid-column: 1 / -1;
 }
 
+.match-training-panel {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-color: rgba(255, 215, 0, .4);
+  background: linear-gradient(135deg, #1c1c1c 0%, #121212 58%, #211711 100%);
+}
+
+.match-training-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.match-training-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  border: 1px solid rgba(255, 215, 0, .36);
+  border-radius: 8px;
+  background: #0b0b0b;
+  box-shadow: 0 0 18px rgba(255, 215, 0, .16);
+}
+
+.match-training-icon img {
+  width: 30px;
+  height: 30px;
+  display: block;
+  object-fit: contain;
+}
+
+.match-training-panel h2 {
+  margin-bottom: 4px;
+}
+
+.match-training-subtitle {
+  color: #bfc1c8;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+}
+
+.match-training-btn {
+  flex: 0 0 auto;
+  min-width: 150px;
+}
+
 .match-panel h2 {
   margin: 0 0 14px;
   color: #ffd700;
@@ -1951,6 +2065,11 @@ body.full-card-open {
   border-color: rgba(255,215,0,.38);
 }
 
+.match-status-line.is-note {
+  color: #bfc3cc;
+  border-color: rgba(191,195,204,.28);
+}
+
 .match-actions {
   display: flex;
   flex-wrap: wrap;
@@ -1988,6 +2107,326 @@ body.full-card-open {
   opacity: .45;
   cursor: not-allowed;
   box-shadow: none;
+}
+
+.batmatch-layout {
+  display: grid;
+  gap: 14px;
+  width: min(1280px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 14px 0 28px;
+}
+
+.batmatch-panel {
+  min-width: 0;
+  border: 2px solid #2d2d2d;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #181818 0%, #101010 100%);
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+}
+
+.batmatch-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, .8fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+}
+
+.batmatch-panel h2 {
+  margin: 0;
+  color: #ffd700;
+  font-size: 22px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.batmatch-overview p,
+.batmatch-setup-head p {
+  margin: 5px 0 0;
+  color: #aeb3bd;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.batmatch-list-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.batmatch-list-panel {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+}
+
+.batmatch-list-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+}
+
+.batmatch-roster-select {
+  min-width: 0;
+}
+
+.batmatch-roster-title {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+}
+
+.batmatch-roster-title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.batmatch-source-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 3px 9px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px;
+  background: #101010;
+  color: #cfd2d8;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+}
+
+.batmatch-source-badge.is-tournament {
+  border-color: rgba(255,215,0,.46);
+  color: #ffd700;
+}
+
+.batmatch-source-badge.is-standard {
+  border-color: rgba(233,69,96,.55);
+  color: #ff8da0;
+}
+
+.batmatch-roster-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.batmatch-roster-summary span {
+  min-height: 26px;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border: 1px solid #333;
+  border-radius: 999px;
+  background: #0b0b0b;
+  color: #cfd2d8;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.batmatch-roster-summary span.is-ok {
+  border-color: rgba(68,255,136,.38);
+  color: #44ff88;
+}
+
+.batmatch-roster-summary span.is-warning {
+  border-color: rgba(255,215,0,.5);
+  color: #ffd700;
+}
+
+.batmatch-standard-note {
+  padding: 8px 10px;
+  border: 1px solid rgba(233,69,96,.35);
+  border-radius: 8px;
+  background: rgba(233,69,96,.08);
+  color: #ffd4dc;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.batmatch-check-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(138px, 1fr));
+  gap: 8px;
+}
+
+.batmatch-check-item {
+  min-width: 0;
+  display: grid;
+  gap: 3px;
+  padding: 9px 10px;
+  border: 1px solid #303030;
+  border-radius: 8px;
+  background: #0d0d0d;
+}
+
+.batmatch-check-item span {
+  color: #aeb3bd;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+}
+
+.batmatch-check-item strong {
+  min-width: 0;
+  color: #fff;
+  font-size: 15px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.batmatch-check-item small {
+  min-width: 0;
+  color: #9da3ad;
+  font-size: 11px;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.batmatch-check-item.is-ok {
+  border-color: rgba(68,255,136,.36);
+}
+
+.batmatch-check-item.is-ok strong {
+  color: #44ff88;
+}
+
+.batmatch-check-item.is-warning {
+  border-color: rgba(255,215,0,.5);
+  box-shadow: inset 3px 0 0 #ffd700;
+}
+
+.batmatch-check-item.is-warning strong {
+  color: #ffd700;
+}
+
+.batmatch-setup-section {
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid #303030;
+  border-radius: 8px;
+  background: #111;
+}
+
+.batmatch-setup-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.batmatch-setup-head h3 {
+  margin: 0;
+  color: #ffd700;
+  font-size: 16px;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+}
+
+.batmatch-setup-head > span {
+  align-self: start;
+  min-width: 46px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: #111;
+  background: #ffd700;
+  font-weight: 800;
+  text-align: center;
+}
+
+.batmatch-setup-head > span.is-warning {
+  color: #fff;
+  background: #e94560;
+}
+
+.batmatch-setup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+.batmatch-setup-card {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  padding: 7px;
+  border: 1px solid #2d2d2d;
+  border-radius: 8px;
+  background: #171717;
+}
+
+.batmatch-setup-card.is-selected {
+  border-color: #ffd700;
+  box-shadow: 0 0 15px rgba(255,215,0,.24);
+}
+
+.batmatch-setup-card.is-locked:not(.is-selected) {
+  opacity: .58;
+}
+
+.batmatch-setup-toggle,
+.batmatch-setup-preview-btn {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+}
+
+.batmatch-setup-toggle {
+  display: grid;
+  gap: 6px;
+  padding: 0;
+  background: transparent;
+  color: #fff;
+  text-align: left;
+}
+
+.batmatch-setup-toggle:disabled {
+  cursor: not-allowed;
+}
+
+.batmatch-setup-toggle img {
+  width: 100%;
+  aspect-ratio: 496 / 693;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: #060606;
+  object-fit: cover;
+}
+
+.batmatch-setup-toggle span {
+  min-height: 30px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.batmatch-setup-preview-btn {
+  min-height: 28px;
+  border: 1px solid #363636;
+  border-radius: 6px;
+  background: #0b0b0b;
+  color: #ffd700;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .4px;
+}
+
+.batmatch-setup-preview-btn:hover {
+  border-color: #e94560;
+  color: #fff;
 }
 
 .match-qr-box {
@@ -3014,6 +3453,12 @@ body.full-card-open {
     grid-column: auto;
   }
 
+  .match-training-panel {
+    grid-column: auto;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
   .match-panel {
     padding: 14px;
   }
@@ -3036,6 +3481,10 @@ body.full-card-open {
     letter-spacing: .8px;
   }
 
+  .match-training-btn {
+    width: 100%;
+  }
+
   .match-play-btn {
     grid-column: 1 / -1;
   }
@@ -3046,6 +3495,33 @@ body.full-card-open {
 }
 
 @media (max-width: 760px) {
+  .batmatch-layout {
+    width: min(100%, calc(100% - 18px));
+    padding-top: 10px;
+  }
+
+  .batmatch-overview,
+  .batmatch-list-grid,
+  .batmatch-list-head {
+    grid-template-columns: 1fr;
+  }
+
+  .batmatch-overview .match-action-btn {
+    width: 100%;
+  }
+
+  .batmatch-list-panel {
+    padding: 10px;
+  }
+
+  .batmatch-setup-grid {
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  }
+
+  .batmatch-setup-head {
+    align-items: flex-start;
+  }
+
   .match-setup-preview {
     grid-template-columns: 1fr;
   }

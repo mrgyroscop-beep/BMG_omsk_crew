@@ -79610,7 +79610,7 @@ for (const officialModel of officialModelExtensions) {
 }
 // END OFFICIAL_MODEL_SYNC
 
-const disabledLocalOnlyModels = [
+const localOnlyModelVisibilityOverrides = [
   { name: "Warden Sharp", realname: "Quincy Ulysses Sharp", base: "30mm" },
   { name: "Jokermobile Arkham Knight", realname: "Unknown", base: "90mm" },
   { name: "Poison Ivy Arkham City", realname: "Dr. Pamela Lillian Isley", base: "30mm" },
@@ -79644,20 +79644,27 @@ const disabledLocalOnlyModels = [
   { name: "Harley Quinn KaBoom!", realname: "Dr. Harleen Frances Quinzel", base: "60mm" },
   { name: "Batgirl Vampire Queen", realname: "Barbara Gordon", base: "40mm" },
   { name: "The Penguin Crime Lord Rising", realname: "Oswald Chesterfield Cobblepot", base: "40mm" }
-];
+].map(model => ({ ...model, visible: true }));
 
 function normalizeDisabledLocalOnlyModelValue(value) {
   return String(value || "").trim().toLowerCase();
 }
 
-for (const disabledModel of disabledLocalOnlyModels) {
+for (const localOnlyModelVisibility of localOnlyModelVisibilityOverrides) {
   const target = models.find(model =>
     !model.officialId &&
-    normalizeDisabledLocalOnlyModelValue(model.name) === normalizeDisabledLocalOnlyModelValue(disabledModel.name) &&
-    normalizeDisabledLocalOnlyModelValue(model.realname) === normalizeDisabledLocalOnlyModelValue(disabledModel.realname) &&
-    normalizeDisabledLocalOnlyModelValue(model.base) === normalizeDisabledLocalOnlyModelValue(disabledModel.base)
+    normalizeDisabledLocalOnlyModelValue(model.name) === normalizeDisabledLocalOnlyModelValue(localOnlyModelVisibility.name) &&
+    normalizeDisabledLocalOnlyModelValue(model.realname) === normalizeDisabledLocalOnlyModelValue(localOnlyModelVisibility.realname) &&
+    normalizeDisabledLocalOnlyModelValue(model.base) === normalizeDisabledLocalOnlyModelValue(localOnlyModelVisibility.base)
   );
-  if (target) target.disabledLocalOnlyModel = true;
+  if (target) {
+    target.visible = localOnlyModelVisibility.visible !== false;
+    if (target.visible) {
+      delete target.disabledLocalOnlyModel;
+    } else {
+      target.disabledLocalOnlyModel = true;
+    }
+  }
 }
 
 // BEGIN OFFICIAL_IMAGE_OVERRIDES

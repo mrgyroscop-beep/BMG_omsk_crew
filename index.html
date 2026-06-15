@@ -34,9 +34,9 @@
           <span class="btn-icon"><img src="img/ui-icons/match.svg" alt="" aria-hidden="true"></span>
           <span class="btn-text" data-i18n="match">МАТЧ</span>
         </button>
-        <button class="menu-btn" onclick="showWargameDay()">
-          <span class="btn-icon"><img src="img/ui-icons/wargame-day.svg" alt="" aria-hidden="true"></span>
-          <span class="btn-text" data-i18n="wargame_day">ПРОБНАЯ ПАРТИЯ</span>
+        <button class="menu-btn" onclick="showBatmatch()">
+          <span class="btn-icon"><img src="img/ui-icons/tournament.svg" alt="" aria-hidden="true"></span>
+          <span class="btn-text" data-i18n="batmatch_menu">ТУРНИР</span>
         </button>
         <button class="menu-btn" onclick="showRules()">
           <span class="btn-icon"><img src="img/ui-icons/rules.svg" alt="" aria-hidden="true"></span>
@@ -463,6 +463,10 @@
         <span class="btn-icon"><img src="img/ui-icons/new-crew.svg" alt="" aria-hidden="true"></span>
         <span class="btn-text" data-i18n="my_crews_create">НОВАЯ БАНДА</span>
       </button>
+      <button class="menu-btn my-crews-action-btn my-crews-tournament-btn" onclick="createNewTournamentCrewFromMyCrews()" data-i18n-title="my_crews_create_tournament" title="Новая турнирная банда">
+        <span class="btn-icon"><img src="img/ui-icons/match.svg" alt="" aria-hidden="true"></span>
+        <span class="btn-text" data-i18n="my_crews_create_tournament">НОВАЯ ТУРНИРНАЯ БАНДА</span>
+      </button>
       <button class="menu-btn my-crews-action-btn" onclick="importMyCrewFromTxt()">
         <span class="btn-icon"><img src="img/ui-icons/import.svg" alt="" aria-hidden="true"></span>
         <span class="btn-text" data-i18n="my_crews_add_txt">ДОБАВИТЬ ИЗ TXT</span>
@@ -517,7 +521,27 @@
       </div>
     </div>
 
-    <div id="wargameDayList" class="my-crews-list wargame-day-list"></div>
+  <div id="wargameDayList" class="my-crews-list wargame-day-list"></div>
+  </div>
+
+  <!-- ТУРНИР -->
+  <div id="batmatchSection" style="display:none;">
+    <div class="top-bar">
+      <div class="top-bar-content">
+        <h1 data-i18n="batmatch_title">ТУРНИР</h1>
+        <div class="header-buttons">
+          <div class="lang-switch header-lang-switch">
+            <button class="lang-btn active" data-lang="ru" onclick="setLanguage('ru')">RU</button>
+            <button class="lang-btn" data-lang="en" onclick="setLanguage('en')">EN</button>
+          </div>
+          <button class="compendium-small-btn" onclick="navigateBack()">
+            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="batmatchContent" class="batmatch-layout"></div>
   </div>
 
   <!-- МАТЧ -->
@@ -538,6 +562,19 @@
     </div>
 
     <div class="match-layout">
+      <section class="match-panel match-training-panel">
+        <div class="match-training-head">
+          <span class="match-training-icon" aria-hidden="true">
+            <img src="img/ui-icons/wargame-day.svg" alt="">
+          </span>
+          <div>
+            <h2 data-i18n="wargame_day_title">ПРОБНАЯ ПАРТИЯ</h2>
+            <div class="match-training-subtitle" data-i18n="match_training_subtitle">Учебные ростеры</div>
+          </div>
+        </div>
+        <button class="match-action-btn match-training-btn" type="button" onclick="showWargameDay()" data-i18n="match_training_open">Открыть</button>
+      </section>
+
       <section class="match-panel">
         <h2 data-i18n="match_my_roster">Моя банда</h2>
         <label class="match-field-label" for="matchCrewSelect" data-i18n="match_select_crew">Выберите банду из Моих банд</label>
@@ -610,7 +647,7 @@
       <div class="rules-docs-buttons">
         <a href="https://app.knightmodels.com/files//rule-document-rulebook-1701448204.pdf" target="_blank" class="rules-doc-btn" data-i18n="rulebook">Rulebook</a>
         <a href="https://app.knightmodels.com/files//rule-document-faqs-1701683889.pdf" target="_blank" class="rules-doc-btn" data-i18n="faqs">FAQs</a>
-        <a href="https://app.knightmodels.com/files//rule-document-batmatch-1700369985.pdf" target="_blank" class="rules-doc-btn" data-i18n="batmatch">Batmatch</a>
+        <a href="https://app.knightmodels.com/files//rule-document-batmatch-1700369985.pdf" target="_blank" class="rules-doc-btn" data-i18n="batmatch">Турнир</a>
         <button type="button" class="rules-doc-btn" onclick="showMatchSetupCardsGallery()" data-i18n="match_setup_rules_btn">Деплой / Ивенты</button>
       </div>
     </div>

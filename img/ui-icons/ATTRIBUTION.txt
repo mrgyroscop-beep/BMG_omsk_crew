@@ -17,3 +17,4 @@ Local files:
 - new-crew.svg: game-icons:police-badge
 - import.svg: game-icons:card-draw
 - export.svg: game-icons:card-discard
+- tournament.svg: custom trophy icon

@@ -15,6 +15,7 @@ let builderCardQuickFilter = "all";
 let cardsPrintOnly = false;
 let cardsFactionOnly = false;
 let builderContentMode = 'models';
+let builderTournamentMode = false;
 let cardsContentMode = 'models';
 let modifiers = {
   extraFreeAgents: 0,
@@ -46,6 +47,20 @@ let myCrewsFactionFilter = "all";
 let myCrewsPlayFilter = "all";
 let myCrewsSortMode = "updated";
 const MY_CREWS_STORAGE_KEY = 'bmg_my_crews_v1';
+const BATMATCH_STORAGE_KEY = 'bmg_batmatch_packet_v1';
+const BATMATCH_DECK_SIZE = 20;
+const BATMATCH_MAX_SINGLE = 10;
+const BATMATCH_MAX_GENERAL = 10;
+const BATMATCH_SETUP_CARD_LIMIT = 3;
+const BATMATCH_LIST_KEYS = ["listA", "listB"];
+let batmatchState = {
+  listAId: "",
+  listBId: "",
+  setup: {
+    listA: { encounters: [], events: [] },
+    listB: { encounters: [], events: [] }
+  }
+};
 let builderEditingCrewId = null;
 let builderRosterTitle = "";
 let builderSavedRosterText = "";
@@ -65,7 +80,7 @@ let diceAnimationTimer = null;
 let diceFinishTimer = null;
 
 // Режимы просмотра
-let currentMode = 'menu'; // menu, cards, builder, my-crews, wargame-day, match, match-game, rules
+let currentMode = 'menu'; // menu, cards, builder, my-crews, wargame-day, batmatch, match, match-game, rules
 let navigationHistory = [];
 const OBJECTIVE_DECK_SIZE = 30;
 const OBJECTIVE_DECK_MAX_GENERAL = 15;
@@ -503,9 +518,54 @@ const translations = {
     wargame_day_pending: "Ростер будет добавлен позже.",
     wargame_day_pending_faction: "Скоро",
     wargame_day_fixed_note: "Стабильный ростер для обучения",
+    batmatch_menu: "ТУРНИР",
+    batmatch_title: "ТУРНИР",
+    batmatch_intro: "Турнирный пакет: 2 листа одной банды, 350 REP / $1500, 20 карт целей, по 3 деплоя и 3 ивента для каждого листа.",
+    batmatch_roster_a: "Лист A",
+    batmatch_roster_b: "Лист B",
+    batmatch_select_roster: "Выберите ростер",
+    batmatch_no_crews: "Сначала сохраните или импортируйте банды в разделе «Мои банды».",
+    batmatch_no_tournament_crews: "Сначала создайте турнирные банды через кнопку «Новая турнирная банда».",
+    batmatch_standard_badge: "ОБЫЧНАЯ",
+    batmatch_standard_note: "Обычная банда: можно использовать в турнире, если параметры ниже проходят проверку.",
+    batmatch_status_title: "Проверка турнира",
+    batmatch_export: "Сохранить турнирный TXT",
+    batmatch_export_done: "Турнирный пакет подготовлен.",
+    batmatch_list_missing: "Выберите оба турнирных листа.",
+    batmatch_same_faction_ok: "Оба листа из одной банды.",
+    batmatch_same_faction_error: "Листы должны быть из одной банды/фракции.",
+    batmatch_same_list_warning: "Выбран один и тот же ростер в оба слота.",
+    batmatch_roster_valid: "Лист проходит турнирную проверку.",
+    batmatch_roster_invalid: "Лист не проходит турнирную проверку.",
+    batmatch_limit_rep: "Турнир: лимит должен быть не выше 350 REP, использовано {used}/{limit}.",
+    batmatch_limit_funding: "Турнир: лимит должен быть не выше $1500, использовано ${used}/${limit}.",
+    batmatch_forbidden_legend: "Турнир запрещает модели с рангом Legend: {models}.",
+    batmatch_forbidden_eternal: "Турнир запрещает Eternal-модели без вариации Eternal: {models}.",
+    batmatch_character_card_limit: "Турнир: можно включить только 1 тип персональной Objective-карты: {cards}.",
+    batmatch_release_unverified: "Дата релиза части контента не проверяется в локальных данных.",
+    batmatch_setup_need: "Нужно выбрать {count} карт.",
+    batmatch_setup_full: "Для турнира выбирается ровно 3 карты этого типа.",
+    batmatch_encounters_selected: "Деплой",
+    batmatch_events_selected: "Ивенты",
+    batmatch_pick_cards_hint: "Нажмите карту, чтобы добавить или убрать ее из турнирного пула.",
+    batmatch_open_preview: "Открыть",
+    batmatch_packet_ready: "Турнирный пакет готов к экспорту.",
+    batmatch_check_rep: "REP",
+    batmatch_check_funding: "Funding",
+    batmatch_check_deck: "Колода",
+    batmatch_check_deck_balance: "Баланс карт",
+    batmatch_check_character_cards: "Персональные карты",
+    batmatch_check_forbidden_models: "Запреты",
+    batmatch_check_ok: "OK",
+    batmatch_check_problem: "Проверить",
+    batmatch_check_no_forbidden: "Запрещённых моделей нет",
+    batmatch_check_forbidden_found: "Есть запрещённые модели",
+    batmatch_check_character_count: "Типов: {count}/1",
     my_crews: "МОИ БАНДЫ",
     my_crews_title: "БАНДЫ",
     my_crews_create: "НОВАЯ БАНДА",
+    my_crews_create_tournament: "НОВАЯ ТУРНИРНАЯ БАНДА",
+    my_crews_tournament_badge: "ТУРНИР",
     my_crews_add_txt: "ДОБАВИТЬ ИЗ TXT",
     my_crews_export_all: "СОХРАНИТЬ ВСЕ TXT",
     my_crews_empty: "Пока нет сохранённых банд. Нажмите +, чтобы собрать новую, или импортируйте TXT-файл ростера.",
@@ -528,13 +588,17 @@ const translations = {
     my_crews_models: "моделей",
     my_crews_faction: "Фракция",
     my_crews_import_success: "Банда добавлена в раздел «Мои банды».",
+    my_crews_import_many_success: "Банды добавлены в раздел «Мои банды»: {count}.",
     my_crews_import_duplicate: "Такая банда уже есть в разделе «Мои банды».",
+    my_crews_import_all_duplicates: "Все банды из файла уже есть в разделе «Мои банды».",
     my_crews_import_failed: "Не удалось добавить банду из TXT.",
     my_crews_delete_confirm: "Удалить эту банду из раздела «Мои банды»?",
     my_crews_export_empty: "В разделе «Мои банды» пока нечего сохранять.",
     my_crews_export_done: "Файл со всеми бандами подготовлен.",
     match: "МАТЧ",
     match_title: "МАТЧ",
+    match_training_subtitle: "Учебные ростеры",
+    match_training_open: "Открыть",
     match_my_roster: "Моя банда",
     match_select_crew: "Выберите банду из Моих банд",
     match_choose_placeholder: "Выберите сохранённую банду",
@@ -607,7 +671,7 @@ const translations = {
     compendium: "СПРАВОЧНИК",
     rulebook: "Правила",
     faqs: "FAQ",
-    batmatch: "Batmatch",
+    batmatch: "Турнир",
     model_search: "ПОИСК МОДЕЛЕЙ",
     compendium_search: "Поиск по трейтам, оружию, правилам...",
     model_search_placeholder: "Введите имя модели...",
@@ -641,6 +705,7 @@ const translations = {
     builder_card_filter_missing: "Не хватает",
     builder_card_limit_reached: "Достигнут лимит этой карты",
     builder_card_deck_full: "В колоде уже 30 карт",
+    builder_card_deck_full_count: "В колоде уже {count} карт",
     builder_card_pack_too_large: "Этот комплект не помещается в колоду",
     builder_card_single_limit_reached: "В колоде может быть не больше 15 одиночных карт",
     builder_card_general_limit_reached: "Общих карт может быть не больше 15",
@@ -659,10 +724,14 @@ const translations = {
     builder_deck_single: "Одиночные",
     builder_deck_valid: "Колода собрана по правилам",
     builder_deck_need_total: "Нужно ровно 30 карт",
+    builder_deck_need_total_count: "Нужно ровно {count} карт",
     builder_deck_need_crew_specific: "Общих карт должно быть не больше, чем фракционных и персональных",
     builder_deck_need_single: "Одиночных карт может быть не больше половины колоды",
     builder_deck_need_copy_sets: "Карты с несколькими копиями должны быть добавлены полным комплектом",
     builder_deck_need_character_requirements: "Некоторые персональные карты требуют модель в ростере",
+    builder_tournament_mode: "Турнирная банда",
+    builder_tournament_rules: "Турнир: 350 REP / $1500 / 20 карт целей",
+    builder_tournament_limit_locked: "Для турнирной банды лимит зафиксирован на 350 REP.",
     nothing_found: "Ничего не найдено",
     subtitle: "Batman: Gotham Chronicles<br>Конструктор отрядов",
     leader_first: "Первой моделью должен быть Leader для этой фракции!",
@@ -762,9 +831,54 @@ const translations = {
     wargame_day_pending: "Roster will be added later.",
     wargame_day_pending_faction: "Soon",
     wargame_day_fixed_note: "Stable teaching roster",
+    batmatch_menu: "TOURNAMENT",
+    batmatch_title: "TOURNAMENT",
+    batmatch_intro: "Tournament packet: 2 lists from the same crew, 350 REP / $1500, 20 Objective cards, 3 deployments and 3 events for each list.",
+    batmatch_roster_a: "List A",
+    batmatch_roster_b: "List B",
+    batmatch_select_roster: "Select roster",
+    batmatch_no_crews: "Save or import crews in My Crews first.",
+    batmatch_no_tournament_crews: "Create tournament crews with the New Tournament Crew button first.",
+    batmatch_standard_badge: "STANDARD",
+    batmatch_standard_note: "Standard crew: it can be used in the tournament if the checks below pass.",
+    batmatch_status_title: "Tournament check",
+    batmatch_export: "Save Tournament TXT",
+    batmatch_export_done: "Tournament packet is ready.",
+    batmatch_list_missing: "Select both tournament lists.",
+    batmatch_same_faction_ok: "Both lists are from the same crew.",
+    batmatch_same_faction_error: "Lists must be from the same crew/faction.",
+    batmatch_same_list_warning: "The same roster is selected in both slots.",
+    batmatch_roster_valid: "List passes the tournament check.",
+    batmatch_roster_invalid: "List does not pass the tournament check.",
+    batmatch_limit_rep: "Tournament: limit must be no higher than 350 REP, used {used}/{limit}.",
+    batmatch_limit_funding: "Tournament: limit must be no higher than $1500, used ${used}/${limit}.",
+    batmatch_forbidden_legend: "Tournament forbids models with Legend rank: {models}.",
+    batmatch_forbidden_eternal: "Tournament forbids Eternal models unless the Eternal variation is enabled: {models}.",
+    batmatch_character_card_limit: "Tournament: only 1 type of character Objective card can be included: {cards}.",
+    batmatch_release_unverified: "Release dates for some local content cannot be verified from local data.",
+    batmatch_setup_need: "Select {count} cards.",
+    batmatch_setup_full: "Tournament uses exactly 3 cards of this type.",
+    batmatch_encounters_selected: "Deployment",
+    batmatch_events_selected: "Events",
+    batmatch_pick_cards_hint: "Press a card to add or remove it from the tournament pool.",
+    batmatch_open_preview: "Open",
+    batmatch_packet_ready: "Tournament packet is ready to export.",
+    batmatch_check_rep: "REP",
+    batmatch_check_funding: "Funding",
+    batmatch_check_deck: "Deck",
+    batmatch_check_deck_balance: "Card balance",
+    batmatch_check_character_cards: "Character cards",
+    batmatch_check_forbidden_models: "Restrictions",
+    batmatch_check_ok: "OK",
+    batmatch_check_problem: "Check",
+    batmatch_check_no_forbidden: "No forbidden models",
+    batmatch_check_forbidden_found: "Forbidden models found",
+    batmatch_check_character_count: "Types: {count}/1",
     my_crews: "MY CREWS",
     my_crews_title: "CREWS",
     my_crews_create: "NEW CREW",
+    my_crews_create_tournament: "NEW TOURNAMENT CREW",
+    my_crews_tournament_badge: "TOURNAMENT",
     my_crews_add_txt: "ADD FROM TXT",
     my_crews_export_all: "SAVE ALL TXT",
     my_crews_empty: "No saved crews yet. Press + to build a new one, or import a roster TXT file.",
@@ -787,13 +901,17 @@ const translations = {
     my_crews_models: "models",
     my_crews_faction: "Faction",
     my_crews_import_success: "Crew added to My Crews.",
+    my_crews_import_many_success: "Crews added to My Crews: {count}.",
     my_crews_import_duplicate: "This crew is already in My Crews.",
+    my_crews_import_all_duplicates: "All crews from this file are already in My Crews.",
     my_crews_import_failed: "Failed to add crew from TXT.",
     my_crews_delete_confirm: "Delete this crew from My Crews?",
     my_crews_export_empty: "There are no crews to save yet.",
     my_crews_export_done: "The file with all crews is ready.",
     match: "MATCH",
     match_title: "MATCH",
+    match_training_subtitle: "Training rosters",
+    match_training_open: "Open",
     match_my_roster: "My Crew",
     match_select_crew: "Choose a crew from My Crews",
     match_choose_placeholder: "Choose a saved crew",
@@ -866,7 +984,7 @@ const translations = {
     compendium: "COMPENDIUM",
     rulebook: "Rulebook",
     faqs: "FAQs",
-    batmatch: "Batmatch",
+    batmatch: "Tournament",
     model_search: "MODEL SEARCH",
     compendium_search: "Search traits, weapons, rules...",
     model_search_placeholder: "Enter model name...",
@@ -900,6 +1018,7 @@ const translations = {
     builder_card_filter_missing: "Missing req.",
     builder_card_limit_reached: "Card limit reached",
     builder_card_deck_full: "The deck already has 30 cards",
+    builder_card_deck_full_count: "The deck already has {count} cards",
     builder_card_pack_too_large: "This copy set does not fit into the deck",
     builder_card_single_limit_reached: "The deck cannot include more than 15 single cards",
     builder_card_general_limit_reached: "The deck cannot include more than 15 general cards",
@@ -918,10 +1037,14 @@ const translations = {
     builder_deck_single: "Single cards",
     builder_deck_valid: "Deck follows the rules",
     builder_deck_need_total: "The deck must contain exactly 30 cards",
+    builder_deck_need_total_count: "The deck must contain exactly {count} cards",
     builder_deck_need_crew_specific: "General cards cannot outnumber crew-specific and model cards",
     builder_deck_need_single: "Single cards cannot be more than half of the deck",
     builder_deck_need_copy_sets: "Cards with multiple copies must be added as a full copy set",
     builder_deck_need_character_requirements: "Some character cards require a model in the roster",
+    builder_tournament_mode: "Tournament crew",
+    builder_tournament_rules: "Tournament: 350 REP / $1500 / 20 Objective cards",
+    builder_tournament_limit_locked: "Tournament crews are locked to 350 REP.",
     nothing_found: "Nothing found",
     subtitle: "Batman: Gotham Chronicles<br>Crew Builder",
     leader_first: "Leader must be the first model for this faction!",
@@ -1152,6 +1275,9 @@ function setLanguage(lang) {
   }
   if (currentMode === 'wargame-day') {
     renderWargameDay();
+  }
+  if (currentMode === 'batmatch') {
+    renderBatmatch();
   }
   if (currentMode === 'match') {
     renderMatchSection();
@@ -6127,6 +6253,53 @@ function getRecruitedCrewModels() {
   return crew.filter(model => !isRosterAttachment(model));
 }
 
+function normalizeCrewIdentityValue(value) {
+  return String(value || "").trim().replace(/\s+/g, " ").toLowerCase();
+}
+
+function isKnownCrewIdentityValue(value) {
+  const normalized = normalizeCrewIdentityValue(value);
+  return normalized && normalized !== "unknown" && normalized !== "-" && normalized !== "—" && normalized !== "–";
+}
+
+function getCrewModelAliasIdentity(model) {
+  return model?.officialAlias || model?.alias || model?.name || "";
+}
+
+function canRepeatCrewModelByTrait(model) {
+  return Array.isArray(model?.traits)
+    && model.traits.some(trait => String(trait || "").startsWith("Minion") || trait === "Horde");
+}
+
+function getDuplicateCrewIdentityModel(model, factionRules = {}, crewModels = getRecruitedCrewModels()) {
+  if (canRepeatCrewModelByTrait(model)) return null;
+
+  const realname = model?.realname || "";
+  const normalizedRealname = normalizeCrewIdentityValue(realname);
+
+  if (factionRules.allowSameNameDifferentAlias) {
+    const normalizedAlias = normalizeCrewIdentityValue(getCrewModelAliasIdentity(model));
+    if (!normalizedAlias) return null;
+
+    return crewModels.find(crewModel => {
+      const sameAlias = normalizeCrewIdentityValue(getCrewModelAliasIdentity(crewModel)) === normalizedAlias;
+      if (!sameAlias) return false;
+
+      const crewRealname = crewModel?.realname || "";
+      if (isKnownCrewIdentityValue(realname) && isKnownCrewIdentityValue(crewRealname)) {
+        return normalizeCrewIdentityValue(crewRealname) === normalizedRealname;
+      }
+
+      return !isKnownCrewIdentityValue(realname) && !isKnownCrewIdentityValue(crewRealname);
+    }) || null;
+  }
+
+  if (!isKnownCrewIdentityValue(realname)) return null;
+  return crewModels.find(crewModel =>
+    normalizeCrewIdentityValue(crewModel?.realname || "") === normalizedRealname
+  ) || null;
+}
+
 function getCrewAttachmentModels() {
   return crew.filter(isRosterAttachment);
 }
@@ -6505,10 +6678,7 @@ function canUseRankForCurrentCrew(model, rank) {
     if (requiredTrait && !getModelTraits(model).includes(requiredTrait)) return false;
   }
 
-  const realname = model.realname || "—";
-  if (!factionRules.allowSameNameDifferentAlias && realname !== "Unknown" && realname !== "—") {
-    if (crew.some(m => (m.realname || "—") === realname)) return false;
-  }
+  if (getDuplicateCrewIdentityModel(model, factionRules, getRecruitedCrewModels())) return false;
 
   if (rank === "Henchman" && isMinionLimitReached(model)) return false;
 
@@ -6592,9 +6762,14 @@ function loadMyCrewsFromStorage() {
     }
 
     const parsed = JSON.parse(raw);
-    myCrews = Array.isArray(parsed) ? parsed.filter(item =>
+    const storedCrews = Array.isArray(parsed) ? parsed.filter(item =>
       item && typeof item.id === "string" && typeof item.text === "string"
     ) : [];
+    const migration = migrateStoredMyCrewEntries(storedCrews);
+    myCrews = migration.items;
+    if (migration.changed) {
+      localStorage.setItem(MY_CREWS_STORAGE_KEY, JSON.stringify(myCrews));
+    }
   } catch (error) {
     console.warn("Failed to load My Crews from storage", error);
     myCrews = [];
@@ -6618,20 +6793,155 @@ function formatMyCrewDate(value) {
   }
 }
 
-function createMyCrewRecordFromText(text) {
-  const normalizedText = String(text || "").replace(/\r\n/g, "\n").trim();
+function normalizeRosterImportText(text) {
+  return String(text || "")
+    .replace(/^\uFEFF/, "")
+    .replace(/\r\n/g, "\n")
+    .replace(/\r/g, "\n")
+    .trim();
+}
+
+function getRosterImportTextBlocks(text) {
+  const normalizedText = normalizeRosterImportText(text);
+  if (!normalizedText) return [];
+
+  const lines = normalizedText
+    .split("\n")
+    .map(line => line.replace(/\t/g, "    ").trimEnd());
+  const rosterStarts = [];
+  lines.forEach((line, index) => {
+    if (line.trim().startsWith("BMG CREW - ")) rosterStarts.push(index);
+  });
+
+  const isMyCrewsExport = /^BMG MY CREWS\b/im.test(normalizedText);
+  if (!isMyCrewsExport && rosterStarts.length <= 1) {
+    return [normalizedText];
+  }
+
+  return rosterStarts.map((start, startIndex) => {
+    let end = startIndex + 1 < rosterStarts.length ? rosterStarts[startIndex + 1] : lines.length;
+    for (let index = start + 1; index < end; index++) {
+      if (/^###\s+CREW\b/i.test(lines[index].trim())) {
+        end = index;
+        break;
+      }
+    }
+    return lines.slice(start, end).join("\n").trim();
+  }).filter(block => block.startsWith("BMG CREW - "));
+}
+
+function getFirstRosterImportText(text) {
+  return getRosterImportTextBlocks(text)[0] || normalizeRosterImportText(text);
+}
+
+function migrateStoredMyCrewEntries(entries) {
+  const migrated = [];
+  const seenTexts = new Set();
+  let changed = false;
+
+  const addEntry = entry => {
+    const normalizedText = normalizeRosterImportText(entry?.text);
+    if (!normalizedText || seenTexts.has(normalizedText)) {
+      changed = true;
+      return;
+    }
+    seenTexts.add(normalizedText);
+    migrated.push(entry);
+  };
+
+  entries.forEach(entry => {
+    const blocks = getRosterImportTextBlocks(entry.text);
+    const shouldSplit = /^BMG MY CREWS\b/im.test(normalizeRosterImportText(entry.text)) || blocks.length > 1;
+    if (!shouldSplit) {
+      addEntry(entry);
+      return;
+    }
+
+    changed = true;
+    blocks.forEach(block => {
+      try {
+        const record = createMyCrewRecordFromText(block);
+        addEntry({
+          ...record,
+          addedAt: entry.addedAt || record.addedAt,
+          updatedAt: entry.updatedAt || record.updatedAt || new Date().toISOString()
+        });
+      } catch (error) {
+        console.warn("Failed to migrate saved crew entry", error);
+      }
+    });
+  });
+
+  return { items: migrated, changed };
+}
+
+function isBatmatchModeText(text) {
+  return /^Mode:\s*(?:BatMatch|Tournament|Турнир)\s*$/im.test(String(text || ""));
+}
+
+function getStandardDeckOptions() {
+  return {
+    deckSize: OBJECTIVE_DECK_SIZE,
+    maxSingle: OBJECTIVE_DECK_MAX_SINGLE,
+    maxGeneral: OBJECTIVE_DECK_MAX_GENERAL
+  };
+}
+
+function getBatmatchDeckOptions() {
+  return {
+    deckSize: BATMATCH_DECK_SIZE,
+    maxSingle: BATMATCH_MAX_SINGLE,
+    maxGeneral: BATMATCH_MAX_GENERAL
+  };
+}
+
+function getCurrentObjectiveDeckConfig() {
+  return builderTournamentMode ? getBatmatchDeckOptions() : getStandardDeckOptions();
+}
+
+function isTournamentCrewEntry(crewEntry) {
+  return Boolean(
+    crewEntry?.tournament ||
+    crewEntry?.mode === "batmatch" ||
+    crewEntry?.rosterMode === "batmatch" ||
+    isBatmatchModeText(crewEntry?.text)
+  );
+}
+
+function getCrewEntryDeckOptions(crewEntry) {
+  return isTournamentCrewEntry(crewEntry) ? getBatmatchDeckOptions() : {};
+}
+
+function getBatmatchCrewEntries() {
+  return myCrews;
+}
+
+function createMyCrewRecordFromText(text, options = {}) {
+  const normalizedText = getFirstRosterImportText(text);
   const parsed = parseRosterImportText(normalizedText);
   const parsedFaction = typeof canonicalFactionName === "function" ? canonicalFactionName(parsed.faction) : parsed.faction;
   const title = parsed.crewName || parsed.entries[0]?.modelName || parsedFaction || "Crew";
+  const tournament = options.tournament !== undefined
+    ? Boolean(options.tournament)
+    : parsed.mode === "batmatch" || isBatmatchModeText(normalizedText);
 
   return {
     id: `crew_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
     title,
     faction: parsedFaction,
     modelCount: parsed.entries.length,
+    tournament,
+    mode: tournament ? "batmatch" : "standard",
+    deckSize: tournament ? BATMATCH_DECK_SIZE : OBJECTIVE_DECK_SIZE,
     addedAt: new Date().toISOString(),
     text: normalizedText
   };
+}
+
+function createMyCrewRecordsFromText(text, options = {}) {
+  const rosterTexts = getRosterImportTextBlocks(text);
+  if (!rosterTexts.length) return [createMyCrewRecordFromText(text, options)];
+  return rosterTexts.map(rosterText => createMyCrewRecordFromText(rosterText, options));
 }
 
 function normalizeRosterText(text) {
@@ -6689,7 +6999,7 @@ function saveBuilderCrew() {
 
   try {
     const text = normalizeRosterText(buildRosterExportText(rosterName));
-    const record = createMyCrewRecordFromText(text);
+    const record = createMyCrewRecordFromText(text, { tournament: builderTournamentMode });
     const now = new Date().toISOString();
 
     if (builderEditingCrewId) {
@@ -6700,6 +7010,9 @@ function saveBuilderCrew() {
           ...record,
           id: builderEditingCrewId,
           addedAt: myCrews[index].addedAt || record.addedAt,
+          tournament: builderTournamentMode,
+          mode: builderTournamentMode ? "batmatch" : "standard",
+          deckSize: builderTournamentMode ? BATMATCH_DECK_SIZE : OBJECTIVE_DECK_SIZE,
           updatedAt: now
         };
       } else {
@@ -6723,7 +7036,7 @@ function saveBuilderCrew() {
 
 function canPlaySavedMyCrew(crewEntry) {
   try {
-    return Boolean(buildMatchCrewState(crewEntry)?.validation?.isLegal);
+    return Boolean(buildMatchCrewState(crewEntry, getCrewEntryDeckOptions(crewEntry))?.validation?.isLegal);
   } catch (error) {
     return false;
   }
@@ -6892,12 +7205,15 @@ function renderMyCrews() {
 
   container.innerHTML = sortedCrews.map(crewEntry => {
     const canPlay = canPlaySavedMyCrew(crewEntry);
+    const tournamentBadge = isTournamentCrewEntry(crewEntry)
+      ? `<span class="my-crew-badge my-crew-tournament-badge">${escapeHtml(t("my_crews_tournament_badge"))}</span>`
+      : "";
     return `
       <div class="my-crew-card" data-my-crew-id="${escapeAttribute(crewEntry.id)}">
         <div class="my-crew-card-head">
           <div>
             <div class="my-crew-title">${escapeHtml(crewEntry.title || crewEntry.faction || "Crew")}</div>
-            <div class="my-crew-subtitle">${t("my_crews_faction")}: ${escapeHtml(crewEntry.faction || "Unknown")}</div>
+            <div class="my-crew-subtitle">${t("my_crews_faction")}: ${escapeHtml(crewEntry.faction || "Unknown")} ${tournamentBadge}</div>
           </div>
           <div class="my-crew-meta">
             <div>${escapeHtml(String(crewEntry.modelCount || 0))} ${t("my_crews_models")}</div>
@@ -7068,6 +7384,7 @@ function playWargameDayCrew(crewId) {
     $("builderSection").style.display = "none";
     $("myCrewsSection").style.display = "none";
     $("wargameDaySection").style.display = "none";
+    $("batmatchSection").style.display = "none";
     $("matchSection").style.display = "none";
     $("matchGameSection").style.display = "block";
     $("compendiumModal").classList.remove("active");
@@ -7104,7 +7421,7 @@ function playSavedMyCrew(crewId) {
   if (!crewEntry) return;
 
   try {
-    const state = buildMatchCrewState(crewEntry);
+    const state = buildMatchCrewState(crewEntry, getCrewEntryDeckOptions(crewEntry));
     if (!state.validation.isLegal) {
       alert(t("match_roster_invalid"));
       return;
@@ -7126,6 +7443,7 @@ function showMyCrews(options = {}) {
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'block';
   $('wargameDaySection').style.display = 'none';
+  $('batmatchSection').style.display = 'none';
   $('matchSection').style.display = 'none';
   $('matchGameSection').style.display = 'none';
   $('compendiumModal').classList.remove('active');
@@ -7143,6 +7461,7 @@ function showWargameDay(options = {}) {
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
   $('wargameDaySection').style.display = 'block';
+  $('batmatchSection').style.display = 'none';
   $('matchSection').style.display = 'none';
   $('matchGameSection').style.display = 'none';
   $('compendiumModal').classList.remove('active');
@@ -7151,10 +7470,20 @@ function showWargameDay(options = {}) {
 }
 
 function createNewCrewFromMyCrews() {
+  builderTournamentMode = false;
   resetCrew();
   clearBuilderSaveState();
   currentFaction = null;
-  showBuilder();
+  showBuilder({ tournamentMode: false });
+}
+
+function createNewTournamentCrewFromMyCrews() {
+  builderTournamentMode = true;
+  resetCrew();
+  clearBuilderSaveState();
+  currentFaction = null;
+  setRepLimitValue(350, { warn: false, force: true });
+  showBuilder({ tournamentMode: true });
 }
 
 function openSavedMyCrew(crewId) {
@@ -7164,7 +7493,8 @@ function openSavedMyCrew(crewId) {
   try {
     importRosterFromText(crewEntry.text, {
       builderCrewId: crewId,
-      builderRosterTitle: crewEntry.title
+      builderRosterTitle: crewEntry.title,
+      tournamentMode: isTournamentCrewEntry(crewEntry)
     });
   } catch (error) {
     alert(error.message || (currentLang === "ru" ? "Не удалось открыть сохранённую банду." : "Failed to open saved crew."));
@@ -7217,17 +7547,23 @@ function promptMyCrewTxtFile() {
     const reader = new FileReader();
     reader.onload = () => {
       try {
-        const record = createMyCrewRecordFromText(reader.result || "");
-        const duplicate = myCrews.some(item => item.text.trim() === record.text.trim());
-        if (duplicate) {
-          alert(t("my_crews_import_duplicate"));
+        const records = createMyCrewRecordsFromText(reader.result || "");
+        const newRecords = records.filter(record =>
+          !myCrews.some(item => item.text.trim() === record.text.trim())
+        );
+
+        if (!newRecords.length) {
+          alert(records.length > 1 ? t("my_crews_import_all_duplicates") : t("my_crews_import_duplicate"));
           return;
         }
 
-        myCrews.unshift(record);
+        myCrews.unshift(...newRecords);
         saveMyCrewsToStorage();
         renderMyCrews();
-        alert(t("my_crews_import_success"));
+        alert(newRecords.length === 1
+          ? t("my_crews_import_success")
+          : t("my_crews_import_many_success", { count: newRecords.length })
+        );
       } catch (error) {
         alert(error.message || t("my_crews_import_failed"));
       }
@@ -7276,6 +7612,599 @@ function exportAllMyCrewsTxt() {
 
   downloadTextFile("bmg_my_crews.txt", buildAllMyCrewsExportText());
   alert(t("my_crews_export_done"));
+}
+
+function createEmptyBatmatchState() {
+  return {
+    listAId: "",
+    listBId: "",
+    setup: {
+      listA: { encounters: [], events: [] },
+      listB: { encounters: [], events: [] }
+    }
+  };
+}
+
+function normalizeBatmatchCardIds(values, deck) {
+  const allowed = new Set(deck.map(card => card.id));
+  const seen = new Set();
+  return (Array.isArray(values) ? values : [])
+    .map(value => String(value || ""))
+    .filter(value => allowed.has(value) && !seen.has(value) && (seen.add(value), true))
+    .slice(0, BATMATCH_SETUP_CARD_LIMIT);
+}
+
+function normalizeBatmatchState(rawState = {}) {
+  const state = createEmptyBatmatchState();
+  state.listAId = String(rawState.listAId || "");
+  state.listBId = String(rawState.listBId || "");
+
+  BATMATCH_LIST_KEYS.forEach(listKey => {
+    const setup = rawState.setup?.[listKey] || {};
+    state.setup[listKey] = {
+      encounters: normalizeBatmatchCardIds(setup.encounters, MATCH_SETUP_CARDS.encounters),
+      events: normalizeBatmatchCardIds(setup.events, MATCH_SETUP_CARDS.events)
+    };
+  });
+
+  return state;
+}
+
+function loadBatmatchStateFromStorage() {
+  try {
+    const raw = localStorage.getItem(BATMATCH_STORAGE_KEY);
+    batmatchState = raw ? normalizeBatmatchState(JSON.parse(raw)) : createEmptyBatmatchState();
+  } catch (error) {
+    console.warn("Failed to load tournament state", error);
+    batmatchState = createEmptyBatmatchState();
+  }
+}
+
+function saveBatmatchStateToStorage() {
+  try {
+    localStorage.setItem(BATMATCH_STORAGE_KEY, JSON.stringify(normalizeBatmatchState(batmatchState)));
+  } catch (error) {
+    console.warn("Failed to save tournament state", error);
+  }
+}
+
+function getBatmatchListLabel(listKey) {
+  return listKey === "listB" ? t("batmatch_roster_b") : t("batmatch_roster_a");
+}
+
+function getBatmatchCrewId(listKey) {
+  return listKey === "listB" ? batmatchState.listBId : batmatchState.listAId;
+}
+
+function setBatmatchCrewId(listKey, crewId) {
+  if (listKey === "listB") {
+    batmatchState.listBId = crewId;
+  } else {
+    batmatchState.listAId = crewId;
+  }
+}
+
+function getBatmatchCrewEntry(listKey) {
+  const crewId = getBatmatchCrewId(listKey);
+  return getBatmatchCrewEntries().find(item => item.id === crewId) || null;
+}
+
+function getBatmatchSetupKey(kindOrSetupKey) {
+  return kindOrSetupKey === "event" || kindOrSetupKey === "events" ? "events" : "encounters";
+}
+
+function getBatmatchSetupKind(setupKey) {
+  return setupKey === "events" ? "event" : "encounter";
+}
+
+function getBatmatchSetupDeck(setupKey) {
+  return setupKey === "events" ? MATCH_SETUP_CARDS.events : MATCH_SETUP_CARDS.encounters;
+}
+
+function getBatmatchSetupTitle(setupKey) {
+  return setupKey === "events" ? t("batmatch_events_selected") : t("batmatch_encounters_selected");
+}
+
+function ensureBatmatchSetupList(listKey, setupKey) {
+  if (!batmatchState.setup) batmatchState.setup = createEmptyBatmatchState().setup;
+  if (!batmatchState.setup[listKey]) batmatchState.setup[listKey] = { encounters: [], events: [] };
+  if (!Array.isArray(batmatchState.setup[listKey][setupKey])) {
+    batmatchState.setup[listKey][setupKey] = [];
+  }
+  return batmatchState.setup[listKey][setupKey];
+}
+
+function selectBatmatchRoster(listKey, crewId) {
+  setBatmatchCrewId(listKey, String(crewId || ""));
+  batmatchState.setup[listKey] = { encounters: [], events: [] };
+  saveBatmatchStateToStorage();
+  renderBatmatch();
+}
+
+function toggleBatmatchSetupCard(listKey, setupKey, cardId) {
+  const normalizedSetupKey = getBatmatchSetupKey(setupKey);
+  const selected = ensureBatmatchSetupList(listKey, normalizedSetupKey);
+  const index = selected.indexOf(cardId);
+
+  if (index >= 0) {
+    selected.splice(index, 1);
+  } else if (selected.length >= BATMATCH_SETUP_CARD_LIMIT) {
+    showAppNotice(t("batmatch_setup_full"), "warning");
+    return;
+  } else {
+    selected.push(cardId);
+  }
+
+  saveBatmatchStateToStorage();
+  renderBatmatch();
+}
+
+function getBatmatchCrewOptions(selectedId = "") {
+  const options = [`<option value="">${escapeHtml(t("batmatch_select_roster"))}</option>`];
+  sortMyCrewEntries(getBatmatchCrewEntries()).forEach(crewEntry => {
+    const validation = validateBatmatchCrewEntry(crewEntry);
+    const modeLabel = isTournamentCrewEntry(crewEntry) ? t("my_crews_tournament_badge") : t("batmatch_standard_badge");
+    const statusLabel = validation.isLegal ? t("batmatch_check_ok") : t("batmatch_check_problem");
+    const label = `[${statusLabel}] [${modeLabel}] ${crewEntry.title || crewEntry.faction || "Crew"} - ${crewEntry.faction || "Unknown"} (${crewEntry.modelCount || 0})`;
+    options.push(`<option value="${escapeAttribute(crewEntry.id)}" ${crewEntry.id === selectedId ? "selected" : ""}>${escapeHtml(label)}</option>`);
+  });
+  return options.join("");
+}
+
+function isBatmatchLegendModel(model, entry = {}) {
+  const ranks = entry.rank ? [entry.rank] : getRanks(model || {});
+  return ranks.some(rank => String(rank || "").toLowerCase() === "legend");
+}
+
+function isBatmatchEternalModel(model) {
+  if (!model) return false;
+  if (model.eternal || model.isEternal || model.eternalOnly || model.requiresEternal) return true;
+  return getModelTraits(model).some(trait => {
+    const normalized = String(trait || "").toLowerCase();
+    return normalized === "eternal" || normalized.includes("eternal option required");
+  });
+}
+
+function getBatmatchCharacterCardNames(cards) {
+  const names = new Map();
+  getObjectiveDeckCards(cards).forEach(card => {
+    if (!isBuilderCardCharacterSpecific(card)) return;
+    const key = getBuilderCardKey(card);
+    if (!names.has(key)) names.set(key, getBuilderCardName(card));
+  });
+  return [...names.values()];
+}
+
+function getBatmatchModelRestrictionDiagnostics(state) {
+  const parsed = state?.parsed;
+  if (!parsed) return { forbiddenLegend: [], forbiddenEternal: [], releaseUnverified: [] };
+
+  const parsedFaction = typeof canonicalFactionName === "function" ? canonicalFactionName(parsed.faction) : parsed.faction;
+  const forbiddenLegend = [];
+  const forbiddenEternal = [];
+  const releaseUnverified = [];
+
+  parsed.entries.forEach(entry => {
+    const model = findRosterModelByEntry(entry, parsedFaction);
+    if (isBatmatchLegendModel(model, entry)) forbiddenLegend.push(entry.modelName);
+    if (isBatmatchEternalModel(model)) forbiddenEternal.push(entry.modelName);
+    if (model && !model.officialId && !model.officialOnly) releaseUnverified.push(entry.modelName);
+  });
+
+  return { forbiddenLegend, forbiddenEternal, releaseUnverified };
+}
+
+function getBatmatchRosterCheckItems(validation) {
+  const state = validation?.state;
+  if (!state) return [];
+
+  const costs = state.validation?.costs || getParsedRosterCosts(state.parsed);
+  const stats = state.validation?.deckStats || {};
+  const repLimit = numericValue(state.parsed.repLimit, 350);
+  const fundingLimit = numericValue(state.parsed.fundingLimit, 1500);
+  const usedRep = numericValue(costs.usedRep, 0);
+  const usedFunding = numericValue(costs.usedFunding, 0);
+  const characterCardNames = getBatmatchCharacterCardNames(getParsedRosterCardObjects(state.parsed));
+  const restrictions = getBatmatchModelRestrictionDiagnostics(state);
+  const forbiddenCount = restrictions.forbiddenLegend.length + restrictions.forbiddenEternal.length;
+  const deckTotalOk = numericValue(stats.total, 0) === BATMATCH_DECK_SIZE;
+  const deckBalanceOk = numericValue(stats.general, 0) <= numericValue(stats.crewSpecific, 0)
+    && numericValue(stats.general, 0) <= numericValue(stats.maxGeneral, BATMATCH_MAX_GENERAL)
+    && numericValue(stats.single, 0) <= numericValue(stats.maxSingle, BATMATCH_MAX_SINGLE)
+    && !stats.copyRuleIssues?.length
+    && !stats.requirementIssues?.length;
+
+  return [
+    {
+      id: "rep",
+      label: t("batmatch_check_rep"),
+      value: `${usedRep}/350`,
+      detail: matchText(`лимит ростера: ${repLimit}`, `roster limit: ${repLimit}`),
+      ok: repLimit <= 350 && usedRep <= 350
+    },
+    {
+      id: "funding",
+      label: t("batmatch_check_funding"),
+      value: `$${usedFunding}/1500`,
+      detail: matchText(`лимит ростера: $${fundingLimit}`, `roster limit: $${fundingLimit}`),
+      ok: fundingLimit <= 1500 && usedFunding <= 1500
+    },
+    {
+      id: "deck",
+      label: t("batmatch_check_deck"),
+      value: `${numericValue(stats.total, 0)}/${BATMATCH_DECK_SIZE}`,
+      detail: matchText("ровно 20 карт целей", "exactly 20 Objective cards"),
+      ok: deckTotalOk
+    },
+    {
+      id: "balance",
+      label: t("batmatch_check_deck_balance"),
+      value: `${t("builder_deck_general")} ${numericValue(stats.general, 0)}/${numericValue(stats.maxGeneral, BATMATCH_MAX_GENERAL)}`,
+      detail: `${t("builder_deck_single")}: ${numericValue(stats.single, 0)}/${numericValue(stats.maxSingle, BATMATCH_MAX_SINGLE)}`,
+      ok: deckBalanceOk
+    },
+    {
+      id: "character",
+      label: t("batmatch_check_character_cards"),
+      value: t("batmatch_check_character_count", { count: characterCardNames.length }),
+      detail: characterCardNames.join(", ") || t("batmatch_check_ok"),
+      ok: characterCardNames.length <= 1
+    },
+    {
+      id: "restricted",
+      label: t("batmatch_check_forbidden_models"),
+      value: forbiddenCount ? t("batmatch_check_problem") : t("batmatch_check_ok"),
+      detail: forbiddenCount ? t("batmatch_check_forbidden_found") : t("batmatch_check_no_forbidden"),
+      ok: forbiddenCount === 0
+    }
+  ];
+}
+
+function validateBatmatchCrewEntry(crewEntry) {
+  if (!crewEntry) {
+    return {
+      isLegal: false,
+      state: null,
+      messages: [{ text: t("batmatch_select_roster"), type: "warning" }]
+    };
+  }
+
+  let state = null;
+  try {
+    state = buildMatchCrewState(crewEntry, {
+      deckSize: BATMATCH_DECK_SIZE,
+      maxSingle: BATMATCH_MAX_SINGLE,
+      maxGeneral: BATMATCH_MAX_GENERAL
+    });
+  } catch (error) {
+    return {
+      isLegal: false,
+      state: null,
+      messages: [{ text: error.message || t("match_roster_invalid"), type: "warning" }]
+    };
+  }
+
+  const messages = [];
+  let isLegal = Boolean(state.validation?.isLegal);
+
+  if (!state.validation?.isLegal) {
+    state.validation.messages.forEach(message => {
+      messages.push({ text: message, type: "warning" });
+    });
+  }
+
+  const costs = state.validation?.costs || getParsedRosterCosts(state.parsed);
+  if (numericValue(state.parsed.repLimit, 0) > 350 || costs.usedRep > 350) {
+    isLegal = false;
+    messages.push({
+      text: t("batmatch_limit_rep", { used: costs.usedRep, limit: state.parsed.repLimit || 350 }),
+      type: "warning"
+    });
+  }
+
+  if (numericValue(state.parsed.fundingLimit, 0) > 1500 || costs.usedFunding > 1500) {
+    isLegal = false;
+    messages.push({
+      text: t("batmatch_limit_funding", { used: costs.usedFunding, limit: state.parsed.fundingLimit || 1500 }),
+      type: "warning"
+    });
+  }
+
+  const { forbiddenLegend, forbiddenEternal, releaseUnverified } = getBatmatchModelRestrictionDiagnostics(state);
+
+  if (forbiddenLegend.length) {
+    isLegal = false;
+    messages.push({ text: t("batmatch_forbidden_legend", { models: forbiddenLegend.join(", ") }), type: "warning" });
+  }
+
+  if (forbiddenEternal.length) {
+    isLegal = false;
+    messages.push({ text: t("batmatch_forbidden_eternal", { models: forbiddenEternal.join(", ") }), type: "warning" });
+  }
+
+  const characterCardNames = getBatmatchCharacterCardNames(getParsedRosterCardObjects(state.parsed));
+  if (characterCardNames.length > 1) {
+    isLegal = false;
+    messages.push({ text: t("batmatch_character_card_limit", { cards: characterCardNames.join(", ") }), type: "warning" });
+  }
+
+  if (releaseUnverified.length) {
+    messages.push({ text: t("batmatch_release_unverified"), type: "note" });
+  }
+
+  if (!messages.some(message => message.type === "warning")) {
+    messages.unshift({ text: t("batmatch_roster_valid"), type: "ok" });
+  }
+
+  return { isLegal, state, messages };
+}
+
+function validateBatmatchSetupForList(listKey) {
+  const messages = [];
+  let isLegal = true;
+
+  ["encounters", "events"].forEach(setupKey => {
+    const selected = ensureBatmatchSetupList(listKey, setupKey);
+    if (selected.length !== BATMATCH_SETUP_CARD_LIMIT) {
+      isLegal = false;
+      messages.push({
+        text: `${getBatmatchListLabel(listKey)} - ${getBatmatchSetupTitle(setupKey)}: ${t("batmatch_setup_need", { count: BATMATCH_SETUP_CARD_LIMIT })}`,
+        type: "warning"
+      });
+    }
+  });
+
+  return { isLegal, messages };
+}
+
+function validateBatmatchPacket() {
+  const listA = getBatmatchCrewEntry("listA");
+  const listB = getBatmatchCrewEntry("listB");
+  const validationA = validateBatmatchCrewEntry(listA);
+  const validationB = validateBatmatchCrewEntry(listB);
+  const setupA = listA ? validateBatmatchSetupForList("listA") : { isLegal: false, messages: [] };
+  const setupB = listB ? validateBatmatchSetupForList("listB") : { isLegal: false, messages: [] };
+  const messages = [];
+  let isLegal = true;
+
+  if (!listA || !listB) {
+    isLegal = false;
+    messages.push({ text: t("batmatch_list_missing"), type: "warning" });
+  }
+
+  if (listA && listB) {
+    const factionA = typeof canonicalFactionName === "function" ? canonicalFactionName(listA.faction) : listA.faction;
+    const factionB = typeof canonicalFactionName === "function" ? canonicalFactionName(listB.faction) : listB.faction;
+    if (factionA !== factionB) {
+      isLegal = false;
+      messages.push({ text: t("batmatch_same_faction_error"), type: "warning" });
+    } else {
+      messages.push({ text: t("batmatch_same_faction_ok"), type: "ok" });
+    }
+
+    if (listA.id === listB.id) {
+      messages.push({ text: t("batmatch_same_list_warning"), type: "note" });
+    }
+  }
+
+  if (!validationA.isLegal || !validationB.isLegal || !setupA.isLegal || !setupB.isLegal) {
+    isLegal = false;
+  }
+
+  messages.push(...setupA.messages, ...setupB.messages);
+  if (isLegal) messages.push({ text: t("batmatch_packet_ready"), type: "ok" });
+
+  return {
+    isLegal,
+    messages,
+    lists: {
+      listA: validationA,
+      listB: validationB
+    }
+  };
+}
+
+function renderBatmatchStatusLines(messages) {
+  return messages.map(message =>
+    `<div class="match-status-line ${message.type === "ok" ? "is-ok" : message.type === "note" ? "is-note" : "is-warning"}">${escapeHtml(message.text)}</div>`
+  ).join("");
+}
+
+function renderBatmatchRosterModeBadge(crewEntry) {
+  const isTournament = isTournamentCrewEntry(crewEntry);
+  const label = isTournament ? t("my_crews_tournament_badge") : t("batmatch_standard_badge");
+  return `<span class="batmatch-source-badge ${isTournament ? "is-tournament" : "is-standard"}">${escapeHtml(label)}</span>`;
+}
+
+function renderBatmatchRosterChecks(validation) {
+  const items = getBatmatchRosterCheckItems(validation);
+  if (!items.length) return "";
+
+  return `
+    <div class="batmatch-check-grid">
+      ${items.map(item => `
+        <div class="batmatch-check-item ${item.ok ? "is-ok" : "is-warning"}">
+          <span>${escapeHtml(item.label)}</span>
+          <strong>${escapeHtml(item.value)}</strong>
+          <small>${escapeHtml(item.detail)}</small>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderBatmatchRosterSummary(validation) {
+  const state = validation.state;
+  if (!state) return "";
+  const stats = state.validation.deckStats;
+  const checks = new Map(getBatmatchRosterCheckItems(validation).map(item => [item.id, item]));
+  const checkClass = id => checks.get(id)?.ok ? "is-ok" : "is-warning";
+  return `
+    <div class="batmatch-roster-summary">
+      <span class="${checkClass("rep")}">REP ${escapeHtml(state.validation.costs.usedRep)} / 350</span>
+      <span class="${checkClass("funding")}">$${escapeHtml(state.validation.costs.usedFunding)} / 1500</span>
+      <span class="${checkClass("deck")}">${escapeHtml(t("builder_deck_total"))}: ${escapeHtml(stats.total)} / ${BATMATCH_DECK_SIZE}</span>
+      <span>${escapeHtml(t("my_crews_models"))}: ${escapeHtml(state.parsed.entries.length)}</span>
+    </div>
+  `;
+}
+
+function renderBatmatchSetupCard(listKey, setupKey, card) {
+  const selected = ensureBatmatchSetupList(listKey, setupKey);
+  const isSelected = selected.includes(card.id);
+  const isLocked = !isSelected && selected.length >= BATMATCH_SETUP_CARD_LIMIT;
+  const kind = getBatmatchSetupKind(setupKey);
+  return `
+    <div class="batmatch-setup-card ${isSelected ? "is-selected" : ""} ${isLocked ? "is-locked" : ""}">
+      <button class="batmatch-setup-toggle" type="button" onclick="toggleBatmatchSetupCard('${listKey}', '${setupKey}', '${escapeAttribute(card.id)}')" ${isLocked ? "disabled" : ""}>
+        <img src="${escapeAttribute(card.img)}" alt="${escapeAttribute(card.name)}" onerror="this.style.display='none'">
+        <span>${escapeHtml(card.name)}</span>
+      </button>
+      <button class="batmatch-setup-preview-btn" type="button" onclick="showMatchSetupCardPreview('${kind}', '${escapeAttribute(card.id)}')">${escapeHtml(t("batmatch_open_preview"))}</button>
+    </div>
+  `;
+}
+
+function renderBatmatchSetupSection(listKey, setupKey) {
+  const selected = ensureBatmatchSetupList(listKey, setupKey);
+  const deck = getBatmatchSetupDeck(setupKey);
+  return `
+    <section class="batmatch-setup-section">
+      <div class="batmatch-setup-head">
+        <div>
+          <h3>${escapeHtml(getBatmatchSetupTitle(setupKey))}</h3>
+          <p>${escapeHtml(t("batmatch_pick_cards_hint"))}</p>
+        </div>
+        <span class="${selected.length === BATMATCH_SETUP_CARD_LIMIT ? "is-ok" : "is-warning"}">${selected.length}/${BATMATCH_SETUP_CARD_LIMIT}</span>
+      </div>
+      <div class="batmatch-setup-grid">
+        ${deck.map(card => renderBatmatchSetupCard(listKey, setupKey, card)).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderBatmatchListPanel(listKey) {
+  const selectedId = getBatmatchCrewId(listKey);
+  const crewEntry = getBatmatchCrewEntry(listKey);
+  const validation = validateBatmatchCrewEntry(crewEntry);
+  const title = getBatmatchListLabel(listKey);
+  return `
+    <section class="batmatch-panel batmatch-list-panel">
+      <div class="batmatch-list-head">
+        <h2>${escapeHtml(title)}</h2>
+        <select class="match-select batmatch-roster-select" onchange="selectBatmatchRoster('${listKey}', this.value)">
+          ${getBatmatchCrewOptions(selectedId)}
+        </select>
+      </div>
+      ${crewEntry ? `
+        <div class="batmatch-roster-title-row">
+          <div class="batmatch-roster-title">${escapeHtml(crewEntry.title || crewEntry.faction || "Crew")}</div>
+          ${renderBatmatchRosterModeBadge(crewEntry)}
+        </div>
+        <div class="my-crew-subtitle">${escapeHtml(t("my_crews_faction"))}: ${escapeHtml(crewEntry.faction || "Unknown")}</div>
+        ${renderBatmatchRosterSummary(validation)}
+        ${!isTournamentCrewEntry(crewEntry) ? `<div class="batmatch-standard-note">${escapeHtml(t("batmatch_standard_note"))}</div>` : ""}
+        ${renderBatmatchRosterChecks(validation)}
+        <div class="match-status">${renderBatmatchStatusLines(validation.messages)}</div>
+        ${renderBatmatchSetupSection(listKey, "encounters")}
+        ${renderBatmatchSetupSection(listKey, "events")}
+      ` : `
+        <div class="match-status">${renderBatmatchStatusLines(validation.messages)}</div>
+      `}
+    </section>
+  `;
+}
+
+function renderBatmatch() {
+  const container = $("batmatchContent");
+  if (!container) return;
+
+  const tournamentCrews = getBatmatchCrewEntries();
+  if (!tournamentCrews.length) {
+    container.innerHTML = `
+      <section class="batmatch-panel batmatch-overview">
+        <h2>${escapeHtml(t("batmatch_status_title"))}</h2>
+        <p>${escapeHtml(t("batmatch_intro"))}</p>
+        <div class="my-crews-empty">${escapeHtml(myCrews.length ? t("batmatch_no_tournament_crews") : t("batmatch_no_crews"))}</div>
+        <button class="match-action-btn" type="button" onclick="createNewTournamentCrewFromMyCrews()">${escapeHtml(t("my_crews_create_tournament"))}</button>
+      </section>
+    `;
+    return;
+  }
+
+  const packetValidation = validateBatmatchPacket();
+  container.innerHTML = `
+    <section class="batmatch-panel batmatch-overview">
+      <div>
+        <h2>${escapeHtml(t("batmatch_status_title"))}</h2>
+        <p>${escapeHtml(t("batmatch_intro"))}</p>
+      </div>
+      <div class="match-status">${renderBatmatchStatusLines(packetValidation.messages)}</div>
+      <button id="batmatchExportBtn" class="match-action-btn" type="button" onclick="downloadBatmatchPacket()" ${packetValidation.isLegal ? "" : "disabled"}>
+        ${escapeHtml(t("batmatch_export"))}
+      </button>
+    </section>
+    <div class="batmatch-list-grid">
+      ${BATMATCH_LIST_KEYS.map(renderBatmatchListPanel).join("")}
+    </div>
+  `;
+}
+
+function getBatmatchSelectedSetupCards(listKey, setupKey) {
+  const deck = getBatmatchSetupDeck(setupKey);
+  const byId = new Map(deck.map(card => [card.id, card]));
+  return ensureBatmatchSetupList(listKey, setupKey).map(id => byId.get(id)).filter(Boolean);
+}
+
+function formatBatmatchSetupNames(listKey, setupKey) {
+  const cards = getBatmatchSelectedSetupCards(listKey, setupKey);
+  return cards.map(card => card.name).join(", ") || "-";
+}
+
+function buildBatmatchPacketExportText() {
+  const packetValidation = validateBatmatchPacket();
+  const listA = getBatmatchCrewEntry("listA");
+  const listB = getBatmatchCrewEntry("listB");
+  const lines = [
+    "BMG TOURNAMENT PACKET",
+    `Generated: ${new Date().toISOString()}`,
+    "Format: Standard",
+    "Limits: Rep 350 | Funding $1500 | Objective Cards 20",
+    `Status: ${packetValidation.isLegal ? "READY" : "CHECK REQUIRED"}`,
+    "════════════════════════════════════════"
+  ];
+
+  BATMATCH_LIST_KEYS.forEach((listKey, index) => {
+    const crewEntry = listKey === "listA" ? listA : listB;
+    if (!crewEntry) return;
+    const validation = validateBatmatchCrewEntry(crewEntry);
+    lines.push("");
+    lines.push(`### ${index + 1}. ${getBatmatchListLabel(listKey).toUpperCase()} - ${crewEntry.title || crewEntry.faction || "Crew"}`);
+    lines.push(`Faction: ${crewEntry.faction || "Unknown"}`);
+    lines.push(`Tournament valid: ${validation.isLegal ? "yes" : "no"}`);
+    lines.push(`Encounters: ${formatBatmatchSetupNames(listKey, "encounters")}`);
+    lines.push(`Events: ${formatBatmatchSetupNames(listKey, "events")}`);
+    lines.push("────────────────────────────────────────");
+    lines.push(String(crewEntry.text || "").trim());
+    lines.push("════════════════════════════════════════");
+  });
+
+  return lines.join("\n");
+}
+
+function downloadBatmatchPacket() {
+  const packetValidation = validateBatmatchPacket();
+  if (!packetValidation.isLegal) {
+    showAppNotice(t("batmatch_roster_invalid"), "warning");
+    renderBatmatch();
+    return;
+  }
+
+  const listA = getBatmatchCrewEntry("listA");
+  const safeName = getSafeRosterFileToken(`${listA?.faction || "tournament"}_${listA?.title || "packet"}`, "tournament");
+  downloadTextFile(`bmg_tournament_${safeName}.txt`, buildBatmatchPacketExportText());
+  showAppNotice(t("batmatch_export_done"), "success");
 }
 
 function matchText(ru, en) {
@@ -7608,7 +8537,10 @@ function validateMatchRoster(parsed, options = {}) {
 
   const deckStats = getObjectiveDeckStats(getParsedRosterCardObjects(parsed), {
     crewModels: getParsedRosterRequirementModels(parsed),
-    checkRequirements: true
+    checkRequirements: true,
+    deckSize: options.deckSize,
+    maxSingle: options.maxSingle,
+    maxGeneral: options.maxGeneral
   });
   const deckWarnings = getObjectiveDeckWarnings(deckStats);
   if (!allowEmptyDeck && !deckStats.isLegal) {
@@ -8028,7 +8960,7 @@ function renderMatchCrewStatus() {
   }
 
   try {
-    const state = buildMatchCrewState(crewEntry);
+    const state = buildMatchCrewState(crewEntry, getCrewEntryDeckOptions(crewEntry));
     const roster = state.roster;
     const isLegal = state.validation.isLegal;
     if (showButton) showButton.disabled = !isLegal;
@@ -8065,7 +8997,7 @@ function getValidMatchOwnState() {
   if (!crewEntry) return null;
 
   try {
-    const state = buildMatchCrewState(crewEntry);
+    const state = buildMatchCrewState(crewEntry, getCrewEntryDeckOptions(crewEntry));
     return state.validation.isLegal ? state : null;
   } catch (error) {
     return null;
@@ -8090,7 +9022,7 @@ function getCurrentMatchStateOrAlert() {
   }
 
   try {
-    const state = buildMatchCrewState(crewEntry);
+    const state = buildMatchCrewState(crewEntry, getCrewEntryDeckOptions(crewEntry));
     if (!state.validation.isLegal) {
       alert(t("match_own_roster_required"));
       return null;
@@ -8275,6 +9207,7 @@ function startMatchGame() {
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
   $('wargameDaySection').style.display = 'none';
+  $('batmatchSection').style.display = 'none';
   $('matchSection').style.display = 'none';
   $('matchGameSection').style.display = 'block';
   $('compendiumModal').classList.remove('active');
@@ -9145,6 +10078,7 @@ function showMatch(options = {}) {
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
   $('wargameDaySection').style.display = 'none';
+  $('batmatchSection').style.display = 'none';
   $('matchSection').style.display = 'block';
   $('matchGameSection').style.display = 'none';
   $('compendiumModal').classList.remove('active');
@@ -9163,6 +10097,7 @@ function showCards(options = {}) {
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
   $('wargameDaySection').style.display = 'none';
+  $('batmatchSection').style.display = 'none';
   $('matchSection').style.display = 'none';
   $('matchGameSection').style.display = 'none';
   $('compendiumModal').classList.remove('active');
@@ -9178,6 +10113,11 @@ function showCards(options = {}) {
 }
 
 function showBuilder(options = {}) {
+  if (Object.prototype.hasOwnProperty.call(options, "tournamentMode")) {
+    builderTournamentMode = Boolean(options.tournamentMode);
+  } else if (!options.preserveTournamentMode && !options.skipHistory) {
+    builderTournamentMode = false;
+  }
   rememberNavigation('builder', options);
   currentMode = 'builder';
   closeMatchQrScanner();
@@ -9188,6 +10128,7 @@ function showBuilder(options = {}) {
   $('builderSection').style.display = 'block';
   $('myCrewsSection').style.display = 'none';
   $('wargameDaySection').style.display = 'none';
+  $('batmatchSection').style.display = 'none';
   $('matchSection').style.display = 'none';
   $('matchGameSection').style.display = 'none';
   $('factionSelect').style.display = 'block';
@@ -9208,9 +10149,30 @@ function showRules(options = {}) {
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
   $('wargameDaySection').style.display = 'none';
+  $('batmatchSection').style.display = 'none';
   $('matchSection').style.display = 'none';
   $('matchGameSection').style.display = 'none';
   openCompendium();
+}
+
+function showBatmatch(options = {}) {
+  rememberNavigation('batmatch', options);
+  currentMode = 'batmatch';
+  closeMatchQrScanner();
+  loadMyCrewsFromStorage();
+  loadBatmatchStateFromStorage();
+  $('mainMenu').style.display = 'none';
+  $('cardsSection').style.display = 'none';
+  $('builderSection').style.display = 'none';
+  $('myCrewsSection').style.display = 'none';
+  $('wargameDaySection').style.display = 'none';
+  $('batmatchSection').style.display = 'block';
+  $('matchSection').style.display = 'none';
+  $('matchGameSection').style.display = 'none';
+  $('compendiumModal').classList.remove('active');
+  $('modelSearchModal').classList.remove('active');
+  renderBatmatch();
+  updateMobileFixedTopbarOffsets();
 }
 
 function rememberNavigation(nextMode, options = {}) {
@@ -9225,6 +10187,7 @@ function showScreen(mode, options = {}) {
   if (mode === 'builder') return showBuilder(options);
   if (mode === 'my-crews') return showMyCrews(options);
   if (mode === 'wargame-day') return showWargameDay(options);
+  if (mode === 'batmatch') return showBatmatch(options);
   if (mode === 'match') return showMatch(options);
   if (mode === 'rules') return showRules(options);
   return backToMenu(options);
@@ -9245,6 +10208,7 @@ function backToMenu(options = {}) {
   $('builderSection').style.display = 'none';
   $('myCrewsSection').style.display = 'none';
   $('wargameDaySection').style.display = 'none';
+  $('batmatchSection').style.display = 'none';
   $('matchSection').style.display = 'none';
   $('matchGameSection').style.display = 'none';
   $('compendiumModal').classList.remove('active');
@@ -9795,6 +10759,14 @@ function isBuilderCardGeneral(card) {
     && !card.requiredTraits;
 }
 
+function isBuilderCardCharacterSpecific(card) {
+  if (!card) return false;
+  const category = String(card.category || card.deckType || "").toLowerCase();
+  return category === "character" ||
+    getBuilderCardRequiredModelNames(card).length > 0 ||
+    Boolean(card.modelName || card.modelAlias || card.requiredModel || card.requiredModelName || card.subtitle);
+}
+
 function isBuilderCardSingle(card) {
   return getBuilderCardCopies(card) <= 1;
 }
@@ -10118,6 +11090,18 @@ function renderBuilderCardThumb(card) {
 
 function getObjectiveDeckStats(cards = crewCards, options = {}) {
   const deckCards = getObjectiveDeckCards(cards);
+  const activeDeckConfig = options.deckSize === undefined && cards === crewCards
+    ? getCurrentObjectiveDeckConfig()
+    : {};
+  const deckSize = numericValue(options.deckSize ?? activeDeckConfig.deckSize, OBJECTIVE_DECK_SIZE);
+  const maxSingle = numericValue(
+    options.maxSingle ?? activeDeckConfig.maxSingle,
+    options.deckSize !== undefined ? Math.floor(deckSize / 2) : OBJECTIVE_DECK_MAX_SINGLE
+  );
+  const maxGeneral = numericValue(
+    options.maxGeneral ?? activeDeckConfig.maxGeneral,
+    options.deckSize !== undefined ? Math.floor(deckSize / 2) : OBJECTIVE_DECK_MAX_GENERAL
+  );
   const selectedMap = new Map();
   const crewModels = options.crewModels || getRecruitedCrewModels();
   const checkRequirements = options.checkRequirements !== undefined
@@ -10132,6 +11116,9 @@ function getObjectiveDeckStats(cards = crewCards, options = {}) {
 
   const stats = {
     total: deckCards.length,
+    deckSize,
+    maxSingle,
+    maxGeneral,
     general: 0,
     crewSpecific: 0,
     single: 0,
@@ -10160,9 +11147,10 @@ function getObjectiveDeckStats(cards = crewCards, options = {}) {
     }
   });
 
-  stats.isLegal = stats.total === OBJECTIVE_DECK_SIZE
+  stats.isLegal = stats.total === stats.deckSize
     && stats.general <= stats.crewSpecific
-    && stats.single <= OBJECTIVE_DECK_MAX_SINGLE
+    && stats.general <= stats.maxGeneral
+    && stats.single <= stats.maxSingle
     && stats.copyRuleIssues.length === 0
     && stats.requirementIssues.length === 0;
   return stats;
@@ -10170,31 +11158,44 @@ function getObjectiveDeckStats(cards = crewCards, options = {}) {
 
 function getObjectiveDeckWarnings(stats = getObjectiveDeckStats()) {
   const warnings = [];
-  if (stats.total !== OBJECTIVE_DECK_SIZE) warnings.push(t("builder_deck_need_total"));
-  if (stats.general > stats.crewSpecific) warnings.push(t("builder_deck_need_crew_specific"));
-  if (stats.single > OBJECTIVE_DECK_MAX_SINGLE) warnings.push(t("builder_deck_need_single"));
+  if (stats.total !== stats.deckSize) warnings.push(t("builder_deck_need_total_count", { count: stats.deckSize }));
+  if (stats.general > stats.crewSpecific || stats.general > stats.maxGeneral) warnings.push(t("builder_deck_need_crew_specific"));
+  if (stats.single > stats.maxSingle) warnings.push(t("builder_deck_need_single"));
   if (stats.copyRuleIssues.length) warnings.push(t("builder_deck_need_copy_sets"));
   if (stats.requirementIssues?.length) warnings.push(t("builder_deck_need_character_requirements"));
   return warnings;
 }
 
+function getBuilderTournamentDeckWarnings(cards = crewCards) {
+  if (!builderTournamentMode) return [];
+  const characterCardNames = getBatmatchCharacterCardNames(cards);
+  return characterCardNames.length > 1
+    ? [t("batmatch_character_card_limit", { cards: characterCardNames.join(", ") })]
+    : [];
+}
+
 function renderObjectiveDeckSummary() {
   const stats = getObjectiveDeckStats();
-  const warnings = getObjectiveDeckWarnings(stats);
-  const statusClass = stats.isLegal ? "is-ok" : "is-warning";
-  const totalClass = stats.total === OBJECTIVE_DECK_SIZE ? "is-ok" : "is-warning";
-  const crewClass = stats.general <= stats.crewSpecific ? "is-ok" : "is-warning";
-  const singleClass = stats.single <= OBJECTIVE_DECK_MAX_SINGLE ? "is-ok" : "is-warning";
-  const messages = stats.isLegal
+  const warnings = [...getObjectiveDeckWarnings(stats), ...getBuilderTournamentDeckWarnings()];
+  const isLegal = stats.isLegal && !warnings.length;
+  const statusClass = isLegal ? "is-ok" : "is-warning";
+  const totalClass = stats.total === stats.deckSize ? "is-ok" : "is-warning";
+  const crewClass = stats.general <= stats.crewSpecific && stats.general <= stats.maxGeneral ? "is-ok" : "is-warning";
+  const singleClass = stats.single <= stats.maxSingle ? "is-ok" : "is-warning";
+  const modeBadge = builderTournamentMode
+    ? `<span class="builder-deck-mode-badge">${escapeHtml(t("builder_tournament_mode"))}</span>`
+    : "";
+  const messages = isLegal
     ? `<div class="builder-deck-message is-ok">${t("builder_deck_valid")}</div>`
     : warnings.map(message => `<div class="builder-deck-message">${escapeHtml(message)}</div>`).join("");
 
   return `
     <div class="builder-cards-summary ${statusClass}">
       <div class="builder-deck-summary-row">
-        <span class="${totalClass}">${t("builder_deck_total")}: ${stats.total}/${OBJECTIVE_DECK_SIZE}</span>
+        <span class="${totalClass}">${t("builder_deck_total")}: ${stats.total}/${stats.deckSize}</span>
         <span class="${crewClass}">${t("builder_deck_general")}: ${stats.general} / ${t("builder_deck_crew_specific")}: ${stats.crewSpecific}</span>
-        <span class="${singleClass}">${t("builder_deck_single")}: ${stats.single}/${OBJECTIVE_DECK_MAX_SINGLE}</span>
+        <span class="${singleClass}">${t("builder_deck_single")}: ${stats.single}/${stats.maxSingle}</span>
+        ${modeBadge}
         <button class="builder-card-translation-btn builder-deck-rules-btn" type="button" onclick="showObjectiveDeckRules()">${t("builder_deck_rules")}</button>
       </div>
       ${messages ? `<div class="builder-deck-messages">${messages}</div>` : ""}
@@ -10203,18 +11204,22 @@ function renderObjectiveDeckSummary() {
 }
 
 function showObjectiveDeckRules() {
+  const deckConfig = getCurrentObjectiveDeckConfig();
+  const halfLimitText = String(deckConfig.maxSingle);
   const rules = currentLang === "en"
     ? [
-      "The Objective deck must contain exactly 30 cards.",
+      `The Objective deck must contain exactly ${deckConfig.deckSize} cards.`,
       "General cards, with no Affiliation icon, cannot outnumber cards unique to your crew. Model-specific cards count as unique if their subtitle matches a model's Name or Alias and the rank icon matches that model.",
-      "No more than half of the deck can be single cards.",
-      "Cards with a printed number of copies must be included as that full set: no more and no less."
+      `No more than ${halfLimitText} cards can be single cards.`,
+      "Cards with a printed number of copies must be included as that full set: no more and no less.",
+      ...(builderTournamentMode ? ["Tournament format allows only 1 type of character Objective card in a roster."] : [])
     ]
     : [
-      "Колода целей должна содержать ровно 30 карт.",
+      `Колода целей должна содержать ровно ${deckConfig.deckSize} карт.`,
       "Общих карт без значка Affiliation не может быть больше, чем карт, уникальных для вашей банды. Персональные карты моделей считаются уникальными, если подзаголовок совпадает с Name или Alias модели, а значок ранга совпадает с ее рангом.",
-      "Одиночных карт может быть не больше половины колоды.",
-      "Карты с указанным числом копий добавляются только полным комплектом: ни больше, ни меньше."
+      `Одиночных карт может быть не больше ${halfLimitText}.`,
+      "Карты с указанным числом копий добавляются только полным комплектом: ни больше, ни меньше.",
+      ...(builderTournamentMode ? ["В турнире можно включить только 1 тип персональной Objective-карты."] : [])
     ];
 
   showTraitPopup(
@@ -10256,18 +11261,33 @@ function getBuilderCardAddCheck(card) {
 
   const addCount = getBuilderCardAddCount(card);
   const stats = getObjectiveDeckStats();
-  if (stats.total + addCount > OBJECTIVE_DECK_SIZE) {
+  if (builderTournamentMode && isBuilderCardCharacterSpecific(card)) {
+    const selectedCharacterKeys = new Set(
+      getObjectiveDeckCards().filter(isBuilderCardCharacterSpecific).map(selectedCard => getBuilderCardKey(selectedCard))
+    );
+    if (selectedCharacterKeys.size && !selectedCharacterKeys.has(getBuilderCardKey(card))) {
+      const selectedNames = getBatmatchCharacterCardNames(crewCards);
+      return {
+        ok: false,
+        reason: t("batmatch_character_card_limit", { cards: selectedNames.join(", ") })
+      };
+    }
+  }
+
+  if (stats.total + addCount > stats.deckSize) {
     return {
       ok: false,
-      reason: stats.total >= OBJECTIVE_DECK_SIZE ? t("builder_card_deck_full") : t("builder_card_pack_too_large")
+      reason: stats.total >= stats.deckSize
+        ? t("builder_card_deck_full_count", { count: stats.deckSize })
+        : t("builder_card_pack_too_large")
     };
   }
 
-  if (isBuilderCardSingle(card) && stats.single + addCount > OBJECTIVE_DECK_MAX_SINGLE) {
+  if (isBuilderCardSingle(card) && stats.single + addCount > stats.maxSingle) {
     return { ok: false, reason: t("builder_card_single_limit_reached") };
   }
 
-  if (isBuilderCardGeneral(card) && stats.general + addCount > OBJECTIVE_DECK_MAX_GENERAL) {
+  if (isBuilderCardGeneral(card) && stats.general + addCount > stats.maxGeneral) {
     return { ok: false, reason: t("builder_card_general_limit_reached") };
   }
 
@@ -12513,6 +13533,7 @@ let BMG_AFFILIATIONS = null;
  * BMG HELPERS
  *************************/
 function bmgFundingLimit() {
+  if (builderTournamentMode) return 1500;
   if (BMG_REP_LIMIT === 200) return 500 + numericValue(modifiers.extraFunding, 0);
   if (BMG_REP_LIMIT === 350 || BMG_REP_LIMIT === 450) return 1500 + numericValue(modifiers.extraFunding, 0);
   return Math.ceil(BMG_REP_LIMIT / 150) * 500 + numericValue(modifiers.extraFunding, 0);
@@ -12520,8 +13541,10 @@ function bmgFundingLimit() {
 
 function updateGameSizeButtons() {
   document.querySelectorAll(".game-size-btn").forEach(button => {
-    const isActive = numericValue(button.dataset.gameRep, 0) === BMG_REP_LIMIT;
+    const gameRep = numericValue(button.dataset.gameRep, 0);
+    const isActive = gameRep === BMG_REP_LIMIT;
     button.classList.toggle("active", isActive);
+    button.disabled = builderTournamentMode && gameRep !== 350;
     button.setAttribute("aria-pressed", isActive ? "true" : "false");
   });
 
@@ -12532,9 +13555,12 @@ function updateGameSizeButtons() {
       350: t("game_size_standard"),
       450: t("game_size_long")
     };
-    const label = presetLabels[BMG_REP_LIMIT] || t("builder_status_limit");
+    const label = builderTournamentMode ? t("builder_tournament_mode") : (presetLabels[BMG_REP_LIMIT] || t("builder_status_limit"));
     toggleText.textContent = `${label} ${BMG_REP_LIMIT} REP`;
   }
+
+  const repLimitInput = $("repLimit");
+  if (repLimitInput) repLimitInput.readOnly = builderTournamentMode;
 }
 
 function closeGameSizeMenu() {
@@ -12554,9 +13580,14 @@ function toggleGameSizeMenu(event) {
 }
 
 function setRepLimitValue(value, options = {}) {
-  const { warn = true } = options;
-  const nextLimit = parseInt(value, 10) || 350;
+  const { warn = true, force = false } = options;
+  const requestedLimit = parseInt(value, 10) || 350;
+  const nextLimit = builderTournamentMode && !force ? 350 : requestedLimit;
   const repLimitInput = document.getElementById("repLimit");
+
+  if (builderTournamentMode && requestedLimit !== 350 && warn) {
+    showAppNotice(t("builder_tournament_limit_locked"), "warning");
+  }
 
   if (nextLimit < 100) {
     showAppNotice(t("min_limit_100"), "warning");
@@ -12843,14 +13874,14 @@ function bmgCanAddModel(model, options = {}) {
     }
   }
 
-  // Проверка уникальности имени (realname)
-  const realname = model.realname || "—";
-  if (!factionRules.allowSameNameDifferentAlias && realname !== "Unknown" && realname !== "—") {
-    const existingWithSameRealname = getRecruitedCrewModels().find(m => (m.realname || "—") === realname);
-    if (existingWithSameRealname) {
-      showBuilderWarning(t("model_already_added", { name: realname }));
-      return false;
-    }
+  // Проверка уникальности персонажа: обычно по realname, для Batman Who Laughs по alias + realname.
+  const existingWithSameIdentity = getDuplicateCrewIdentityModel(model, factionRules, getRecruitedCrewModels());
+  if (existingWithSameIdentity) {
+    const identityName = factionRules.allowSameNameDifferentAlias
+      ? getCrewModelAliasIdentity(model)
+      : (model.realname || model.name || "—");
+    showBuilderWarning(t("model_already_added", { name: identityName }));
+    return false;
   }
 
   if (rank === "Henchman" && isMinionLimitReached(model)) {
@@ -13501,6 +14532,9 @@ function buildRosterExportText(rosterName = "") {
   if (rosterName) {
     exportText += `Name: ${rosterName}\n`;
   }
+  if (builderTournamentMode) {
+    exportText += `Mode: Tournament\n`;
+  }
   exportText += `Limits: Rep ${repLimit} | Funding $${fundingLimit}\n`;
   exportText += `════════════════════════════════════════\n`;
 
@@ -13583,9 +14617,7 @@ function inferImportRank(model, parsedRank, isFirstModel) {
 }
 
 function parseRosterImportText(text) {
-  const lines = String(text)
-    .replace(/^\uFEFF/, "")
-    .replace(/\r\n/g, "\n")
+  const lines = normalizeRosterImportText(text)
     .split("\n")
     .map(line => line.replace(/\t/g, "    "))
     .map(line => line.trimEnd())
@@ -13599,6 +14631,8 @@ function parseRosterImportText(text) {
   const faction = header.trim().replace("BMG CREW - ", "").trim();
   const crewNameLine = lines.find(line => line.trim().startsWith("Name: "));
   const crewName = crewNameLine ? crewNameLine.trim().replace("Name: ", "").trim() : "";
+  const modeLine = lines.find(line => /^Mode:\s*/i.test(line.trim()));
+  const mode = /BatMatch|Tournament|Турнир/i.test(modeLine || "") ? "batmatch" : "standard";
   const limitsLine = lines.find(line => line.trim().startsWith("Limits: "));
   const summaryLine = lines.find(line => line.trim().startsWith("Summary: "));
   const repLimit = numericValue(limitsLine?.match(/Rep\s+(\d+)/i)?.[1], 350);
@@ -13616,6 +14650,7 @@ function parseRosterImportText(text) {
   const shouldSkipLine = line =>
     line.startsWith("BMG CREW - ") ||
     line.startsWith("Name: ") ||
+    /^Mode:\s*/i.test(line) ||
     line.startsWith("Rep: ") ||
     line.startsWith("Limits: ") ||
     line.startsWith("Summary: ") ||
@@ -13773,7 +14808,7 @@ function parseRosterImportText(text) {
     throw new Error(currentLang === "ru" ? "В файле не найдено ни одной модели." : "No models were found in the file.");
   }
 
-  return { faction, crewName, repLimit, fundingLimit, usedRep, usedFunding, entries, cards, specialRules };
+  return { faction, crewName, mode, repLimit, fundingLimit, usedRep, usedFunding, entries, cards, specialRules };
 }
 
 function getImportRankPriority(rank) {
@@ -13782,7 +14817,11 @@ function getImportRankPriority(rank) {
 }
 
 function importRosterFromText(text, options = {}) {
-  const parsed = parseRosterImportText(text);
+  const rosterText = getFirstRosterImportText(text);
+  const parsed = parseRosterImportText(rosterText);
+  const importTournamentMode = options.tournamentMode !== undefined
+    ? Boolean(options.tournamentMode)
+    : parsed.mode === "batmatch";
   const parsedFaction = typeof canonicalFactionName === "function" ? canonicalFactionName(parsed.faction) : parsed.faction;
   const factionExists = Object.prototype.hasOwnProperty.call(factionCrewRules, parsedFaction) ||
     models.some(model => canHireInFaction(model, parsedFaction));
@@ -13791,11 +14830,10 @@ function importRosterFromText(text, options = {}) {
     throw new Error((currentLang === "ru" ? "Неизвестная фракция в файле: " : "Unknown faction in file: ") + parsed.faction);
   }
 
+  builderTournamentMode = importTournamentMode;
   resetCrew();
-  showBuilder();
-  BMG_REP_LIMIT = parsed.repLimit || 350;
-  const repLimitInput = document.getElementById('repLimit');
-  if (repLimitInput) repLimitInput.value = BMG_REP_LIMIT;
+  showBuilder({ tournamentMode: importTournamentMode });
+  setRepLimitValue(importTournamentMode ? 350 : (parsed.repLimit || 350), { warn: false, force: true });
   selectFaction(parsedFaction);
 
   const pendingEntries = parsed.entries.map((entry, index) => {
