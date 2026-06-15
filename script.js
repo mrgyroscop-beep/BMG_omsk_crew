@@ -540,7 +540,6 @@ const translations = {
     batmatch_limit_rep: "Турнир: лимит должен быть не выше 350 REP, использовано {used}/{limit}.",
     batmatch_limit_funding: "Турнир: лимит должен быть не выше $1500, использовано ${used}/${limit}.",
     batmatch_forbidden_legend: "Турнир запрещает модели с рангом Legend: {models}.",
-    batmatch_forbidden_eternal: "Турнир запрещает Eternal-модели без вариации Eternal: {models}.",
     batmatch_character_card_limit: "Турнир: можно включить только 1 тип персональной Objective-карты: {cards}.",
     batmatch_release_unverified: "Дата релиза части контента не проверяется в локальных данных.",
     batmatch_setup_need: "Нужно выбрать {count} карт.",
@@ -853,7 +852,6 @@ const translations = {
     batmatch_limit_rep: "Tournament: limit must be no higher than 350 REP, used {used}/{limit}.",
     batmatch_limit_funding: "Tournament: limit must be no higher than $1500, used ${used}/${limit}.",
     batmatch_forbidden_legend: "Tournament forbids models with Legend rank: {models}.",
-    batmatch_forbidden_eternal: "Tournament forbids Eternal models unless the Eternal variation is enabled: {models}.",
     batmatch_character_card_limit: "Tournament: only 1 type of character Objective card can be included: {cards}.",
     batmatch_release_unverified: "Release dates for some local content cannot be verified from local data.",
     batmatch_setup_need: "Select {count} cards.",
@@ -7756,15 +7754,6 @@ function isBatmatchLegendModel(model, entry = {}) {
   return ranks.some(rank => String(rank || "").toLowerCase() === "legend");
 }
 
-function isBatmatchEternalModel(model) {
-  if (!model) return false;
-  if (model.eternal || model.isEternal || model.eternalOnly || model.requiresEternal) return true;
-  return getModelTraits(model).some(trait => {
-    const normalized = String(trait || "").toLowerCase();
-    return normalized === "eternal" || normalized.includes("eternal option required");
-  });
-}
-
 function getBatmatchCharacterCardNames(cards) {
   const names = new Map();
   getObjectiveDeckCards(cards).forEach(card => {
@@ -7777,21 +7766,19 @@ function getBatmatchCharacterCardNames(cards) {
 
 function getBatmatchModelRestrictionDiagnostics(state) {
   const parsed = state?.parsed;
-  if (!parsed) return { forbiddenLegend: [], forbiddenEternal: [], releaseUnverified: [] };
+  if (!parsed) return { forbiddenLegend: [], releaseUnverified: [] };
 
   const parsedFaction = typeof canonicalFactionName === "function" ? canonicalFactionName(parsed.faction) : parsed.faction;
   const forbiddenLegend = [];
-  const forbiddenEternal = [];
   const releaseUnverified = [];
 
   parsed.entries.forEach(entry => {
     const model = findRosterModelByEntry(entry, parsedFaction);
     if (isBatmatchLegendModel(model, entry)) forbiddenLegend.push(entry.modelName);
-    if (isBatmatchEternalModel(model)) forbiddenEternal.push(entry.modelName);
     if (model && !model.officialId && !model.officialOnly) releaseUnverified.push(entry.modelName);
   });
 
-  return { forbiddenLegend, forbiddenEternal, releaseUnverified };
+  return { forbiddenLegend, releaseUnverified };
 }
 
 function getBatmatchRosterCheckItems(validation) {
@@ -7806,7 +7793,7 @@ function getBatmatchRosterCheckItems(validation) {
   const usedFunding = numericValue(costs.usedFunding, 0);
   const characterCardNames = getBatmatchCharacterCardNames(getParsedRosterCardObjects(state.parsed));
   const restrictions = getBatmatchModelRestrictionDiagnostics(state);
-  const forbiddenCount = restrictions.forbiddenLegend.length + restrictions.forbiddenEternal.length;
+  const forbiddenCount = restrictions.forbiddenLegend.length;
   const deckTotalOk = numericValue(stats.total, 0) === BATMATCH_DECK_SIZE;
   const deckBalanceOk = numericValue(stats.general, 0) <= numericValue(stats.crewSpecific, 0)
     && numericValue(stats.general, 0) <= numericValue(stats.maxGeneral, BATMATCH_MAX_GENERAL)
@@ -7910,16 +7897,11 @@ function validateBatmatchCrewEntry(crewEntry) {
     });
   }
 
-  const { forbiddenLegend, forbiddenEternal, releaseUnverified } = getBatmatchModelRestrictionDiagnostics(state);
+  const { forbiddenLegend, releaseUnverified } = getBatmatchModelRestrictionDiagnostics(state);
 
   if (forbiddenLegend.length) {
     isLegal = false;
     messages.push({ text: t("batmatch_forbidden_legend", { models: forbiddenLegend.join(", ") }), type: "warning" });
-  }
-
-  if (forbiddenEternal.length) {
-    isLegal = false;
-    messages.push({ text: t("batmatch_forbidden_eternal", { models: forbiddenEternal.join(", ") }), type: "warning" });
   }
 
   const characterCardNames = getBatmatchCharacterCardNames(getParsedRosterCardObjects(state.parsed));
