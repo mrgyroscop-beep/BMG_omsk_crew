@@ -12010,15 +12010,51 @@ function equipmentRepValue(eq) {
   return numericValue(eq?.repCost, 0);
 }
 
-function equipmentFundingValue(eq) {
+function equipmentPricingName(eq) {
+  if (typeof eq === "string") return eq;
+  return String(eq?.name || eq?.equipmentName || eq?.title || "");
+}
+
+function equipmentIsNamed(eq, expectedName) {
+  return normalizeEquipmentMatchName(equipmentPricingName(eq)) === normalizeEquipmentMatchName(expectedName);
+}
+
+function crewHasEquipmentNamed(equipmentName, crewModels = getRecruitedCrewModels()) {
+  return (crewModels || []).some(model =>
+    Array.isArray(model?.equipment) &&
+    model.equipment.some(eq => equipmentIsNamed(eq, equipmentName))
+  );
+}
+
+function countCrewEquipmentNamed(equipmentName, crewModels = getRecruitedCrewModels()) {
+  return (crewModels || []).reduce((total, model) => {
+    if (!Array.isArray(model?.equipment)) return total;
+    return total + model.equipment.filter(eq => equipmentIsNamed(eq, equipmentName)).length;
+  }, 0);
+}
+
+function equipmentFundingValue(eq, crewModels = getRecruitedCrewModels()) {
+  if (equipmentIsNamed(eq, "Venom Dose") && crewHasEquipmentNamed("Venom Laboratory", crewModels)) {
+    return 50;
+  }
+
   return numericValue(eq?.fundingCost, 0);
+}
+
+function equipmentPurchaseFundingValue(eq, crewModels = getRecruitedCrewModels()) {
+  const fundingCost = equipmentFundingValue(eq, crewModels);
+  if (equipmentIsNamed(eq, "Venom Laboratory") && !crewHasEquipmentNamed("Venom Laboratory", crewModels)) {
+    return Math.max(0, fundingCost - countCrewEquipmentNamed("Venom Dose", crewModels) * 50);
+  }
+
+  return fundingCost;
 }
 
 function getEquipmentAffordability(eq) {
   const availableRep = BMG_REP_LIMIT - crewRepUsed();
   const availableFunding = bmgFundingLimit() - crewFundingUsed();
   const repCost = equipmentRepValue(eq);
-  const fundingCost = equipmentFundingValue(eq);
+  const fundingCost = equipmentPurchaseFundingValue(eq);
 
   return {
     availableRep,
@@ -12276,7 +12312,7 @@ function crewModelRepTotal(model) {
 }
 
 function crewModelFundingTotal(model, crewModels = getRecruitedCrewModels()) {
-  return modelFundingValue(model, crewModels) + (model?.equipment || []).reduce((sum, eq) => sum + equipmentFundingValue(eq), 0);
+  return modelFundingValue(model, crewModels) + (model?.equipment || []).reduce((sum, eq) => sum + equipmentFundingValue(eq, crewModels), 0);
 }
 
 function crewRepUsed() {

@@ -141,7 +141,7 @@ const builderMandatoryCards = [
     countsForDeck: false,
     text: {
       en: "VANDALIZED!\n\nWhen you score this Objective, use a counter to mark a Scenery Element, Lamppost, or Sewer within 4” of the Active model as Vandalized!. That is now considered a Vandalized element.\n\nSPRAY CAN\n\nA model equipped with a Spray Can when it Sets a Suspect may expend 1 of its Spray Cans to Vandalize a scenery element, Streetlamp or Sewer in contact with that Suspect.",
-      ru: "VANDALIZED!\n\nКогда вы засчитываете эту Objective, используйте counter, чтобы отметить Scenery Element, Lamppost или Sewer в пределах 4” от активной модели как Vandalized!. Теперь это считается Vandalized элементом.\n\nSPRAY CAN\n\nМодель со Spray Can, когда она выставляет Suspect, может потратить 1 Spray Can, чтобы сделать Vandalized элементом scenery element, Streetlamp или Sewer в контакте с этим Suspect."
+      ru: "VANDALIZED!\n\nКогда вы засчитываете эту Objective, используйте счетчик, чтобы отметить Scenery Element, Lamppost или Sewer в пределах 4” от активной модели как Vandalized!. Теперь это считается Vandalized элементом.\n\nSPRAY CAN\n\nМодель со Spray Can, когда она выставляет Suspect, может потратить 1 Spray Can, чтобы сделать элемент местности, Streetlamp или Sewer в контакте с этим Suspect Vandalized."
     }
   },
   {
@@ -156,7 +156,7 @@ const builderMandatoryCards = [
     countsForDeck: false,
     text: {
       en: "Any time one of the following happens, place a counter near this card to represent the Business counters.\n\n• A friendly model suffers KO or is removed as a Casualty.\n• Your opponent scores an Objective card.\n\nA friendly Boss can only have up to 6 Business counters at any time.\n\nYou may not spend Business counters if your Boss is suffering KO.\n\nIf your Boss is removed as a Casualty, all Business counters are lost and your new Boss will start gaining counters as normal.",
-      ru: "Каждый раз, когда происходит одно из следующих событий, положите counter рядом с этой картой, чтобы обозначить Business counters.\n\n• Дружественная модель получает KO или удаляется как Casualty.\n• Ваш оппонент засчитывает Objective card.\n\nУ дружественного Boss может быть не больше 6 Business counters одновременно.\n\nВы не можете тратить Business counters, если ваш Boss находится в KO.\n\nЕсли ваш Boss удален как Casualty, все Business counters теряются, а новый Boss начинает получать counters как обычно."
+      ru: "Каждый раз, когда происходит одно из следующих событий, положите счетчик рядом с этой картой, чтобы обозначить Business counters.\n\n• Дружественная модель получает KO или удаляется как Casualty.\n• Ваш оппонент засчитывает Objective card.\n\nУ дружественного Boss может быть не больше 6 Business counters одновременно.\n\nВы не можете тратить Business counters, если ваш Boss находится в KO.\n\nЕсли ваш Boss удален как Casualty, все Business counters теряются, а новый Boss начинает получать счетчики как обычно."
     }
   },
   {
@@ -171,7 +171,7 @@ const builderMandatoryCards = [
     countsForDeck: false,
     text: {
       en: "You may spend 1 Business counter during a friendly model's activation that did not have Audacity to perform an additional action.\n\nIt cannot be an action it has already performed this turn.\n\nWithout revealing, remove the top card from your Objective deck and place it aside face down. At the end of Recount, reveal each face down card.\n\nFor each card revealed, the opponent chooses one of your {RANK_HENCHMAN_ICON} to suffer the Enervating (X) Status. Where X is equal to the revealed card's Resource cost. Discard those cards.",
-      ru: "Вы можете потратить 1 Business counter во время активации дружественной модели, у которой не было Audacity, чтобы выполнить дополнительное действие.\n\nЭто не может быть действие, которое она уже выполняла в этот ход.\n\nНе раскрывая, уберите верхнюю карту из вашей Objective deck и отложите ее лицом вниз. В конце Recount раскройте каждую карту, лежащую лицом вниз.\n\nЗа каждую раскрытую карту оппонент выбирает одну вашу модель ранга {RANK_HENCHMAN_ICON}, которая получает Enervating (X) Status. X равен Resource cost раскрытой карты. Сбросьте эти карты."
+      ru: "Вы можете потратить 1 Business counter во время активации дружественной модели, у которой не было Audacity, чтобы выполнить дополнительное действие.\n\nЭто не может быть действие, которое она уже выполняла в этот ход.\n\nНе раскрывая, уберите верхнюю карту из вашей Objective deck и отложите ее лицом вниз. В конце Recount раскройте каждую карту, лежащую лицом вниз.\n\nЗа каждую раскрытую карту оппонент выбирает одну вашу модель ранга {RANK_HENCHMAN_ICON}, которая получает Enervating (X) Status. X равен стоимости Resource раскрытой карты. Сбросьте эти карты."
     }
   },
   {
@@ -186,7 +186,7 @@ const builderMandatoryCards = [
     countsForDeck: false,
     text: {
       en: "If your Objective deck includes Objective cards that has Affiliation: {AFF_SCARECROW_ICON}, place 12 Fear cards aside forming your Fear Pile, shuffled and face down.\n\nWhen a rule instructs you to place a Fear card into your Objective deck, add the top card from your Fear Pile and shuffle your Objective deck.\n\nWhen a Fear card is drawn from your Objective deck or Discarded from your hand or Objective deck, reveal it and resolve its effects. Return it to the bottom of your Fear Pile.",
-      ru: "Если ваша Objective deck включает Objective cards с Affiliation: {AFF_SCARECROW_ICON}, отложите 12 Fear cards, сформировав Fear Pile, перемешанную и лежащую лицом вниз.\n\nКогда правило указывает поместить Fear card в вашу Objective deck, добавьте верхнюю карту из Fear Pile и перемешайте Objective deck.\n\nКогда Fear card взята из Objective deck или Discarded из вашей руки или Objective deck, раскройте ее и разрешите ее эффект. Верните ее вниз Fear Pile."
+      ru: "Если ваша Objective deck включает Objective cards с Affiliation: {AFF_SCARECROW_ICON}, отложите 12 Fear cards, сформировав перемешанную Fear Pile лицом вниз.\n\nКогда правило указывает поместить Fear card в вашу Objective deck, добавьте верхнюю карту из Fear Pile и перемешайте Objective deck.\n\nКогда Fear card взята из Objective deck или сброшена из вашей руки или Objective deck, раскройте ее и разрешите ее эффект. Верните ее вниз Fear Pile."
     }
   },
   {
@@ -201,7 +201,7 @@ const builderMandatoryCards = [
     countsForDeck: false,
     text: {
       en: "Burn X: You can play this Resource by paying X Resource points to discard this card from your hand, placing it at the bottom of your Objective deck.\n\nException (In Play): This Resource is not played in the usual way. This Resource may only be used while this card is in play as an Objective and does not go to the Spent Resources pile when used.\n\nException (When Scoring): This Resource is not played in the usual way. The effect of this Resource is used when this card is scored.\n\nException (Scored Pile): This Resource is not played in the usual way. The effect of this Resource applies while this card is scored.\n\nLimited: Only 1 card with this name can be in play at a time.\n\nOpening: If this card is included in your Objective deck, you must put it aside before the game starts. At the end of step 4 of Prepare the Game, you must play this card as an Objective. If a card with this keyword is going to be discarded, remove it from the game instead.",
-      ru: "Burn X: Вы можете разыграть этот Resource, заплатив X Resource points, чтобы сбросить эту карту из руки и положить ее вниз Objective deck.\n\nException (In Play): Этот Resource разыгрывается не обычным способом. Его можно использовать только пока эта карта находится в игре как Objective, и при использовании он не отправляется в Spent Resources pile.\n\nException (When Scoring): Этот Resource разыгрывается не обычным способом. Его эффект применяется, когда эта карта засчитывается.\n\nException (Scored Pile): Этот Resource разыгрывается не обычным способом. Его эффект действует, пока эта карта засчитана.\n\nLimited: Только 1 карта с этим названием может быть в игре одновременно.\n\nOpening: Если эта карта включена в вашу Objective deck, вы должны отложить ее перед началом игры. В конце шага 4 Prepare the Game вы должны разыграть эту карту как Objective. Если карта с этим ключевым словом должна быть сброшена, вместо этого удалите ее из игры."
+      ru: "Burn X: Вы можете разыграть этот Resource, заплатив X очков Resource, чтобы сбросить эту карту из руки и положить ее вниз Objective deck.\n\nException (In Play): Этот Resource разыгрывается не обычным способом. Его можно использовать только пока эта карта находится в игре как Objective, и при использовании он не отправляется в стопку Spent Resources.\n\nException (When Scoring): Этот Resource разыгрывается не обычным способом. Его эффект применяется, когда эта карта засчитывается.\n\nException (Scored Pile): Этот Resource разыгрывается не обычным способом. Его эффект действует, пока эта карта засчитана.\n\nLimited: Только 1 карта с этим названием может быть в игре одновременно.\n\nOpening: Если эта карта включена в вашу Objective deck, вы должны отложить ее перед началом игры. В конце шага 4 Prepare the Game вы должны разыграть эту карту как Objective. Если карта с этим ключевым словом должна быть сброшена, вместо этого удалите ее из игры."
     }
   },
   {
@@ -312,7 +312,7 @@ const builderMandatoryCards = [
     countsForDeck: false,
     text: {
       en: "If your Boss has Affiliation: Two-Face, you must keep this card aside, and after you draw your initial hand of Objective cards, choose 1 Side card and place it somewhere visible. Then shuffle the other Side card into your Objective deck.\n\nA card that has a Good Side or Twisted Side on its requirement can only be scored if it matches the active The Coin Side card. If a card has both Good Side and Twisted Side requirements, you can complete only those matching The Coin side in play. The Resource effect applied is the one that matches The Coin Side in play. You may play a The Coin card as any other Objective card, discarding the other in play (it doesn't count as an Objective being played).\n\nIf your Boss has Affiliation: Two-Face, your deck must include at least 7 Objective cards with either Good Side or Twisted Side (not both).",
-      ru: "Если у вашего Boss Affiliation: Two-Face, вы должны отложить эту карту. После того как вы возьмете начальную руку Objective cards, выберите 1 Side card и положите ее на видное место. Затем замешайте другую Side card в вашу Objective deck.\n\nКарта, у которой в требовании указан Good Side или Twisted Side, может быть засчитана только если она совпадает с активной The Coin Side card. Если у карты есть требования и Good Side, и Twisted Side, вы можете выполнить только те, что совпадают с The Coin side в игре. Применяется тот Resource effect, который совпадает с The Coin Side в игре. Вы можете разыграть The Coin card как любую другую Objective card, сбросив другую карту в игре; это не считается розыгрышем Objective.\n\nЕсли у вашего Boss Affiliation: Two-Face, ваша колода должна включать как минимум 7 Objective cards с Good Side или Twisted Side, но не с обеими сторонами сразу."
+      ru: "Если у вашего Boss Affiliation: Two-Face, вы должны отложить эту карту. После того как вы возьмете начальную руку Objective cards, выберите 1 Side card и положите ее на видное место. Затем замешайте другую Side card в вашу Objective deck.\n\nКарта, у которой в требовании указан Good Side или Twisted Side, может быть засчитана только если она совпадает с активной The Coin Side card. Если у карты есть требования и Good Side, и Twisted Side, вы можете выполнить только те, что совпадают с The Coin side в игре. Применяется эффект Resource, который совпадает с The Coin Side в игре. Вы можете разыграть The Coin card как любую другую Objective card, сбросив другую карту в игре; это не считается розыгрышем Objective.\n\nЕсли у вашего Boss Affiliation: Two-Face, ваша колода должна включать как минимум 7 Objective cards с Good Side или Twisted Side, но не с обеими сторонами сразу."
     }
   },
   {
@@ -327,7 +327,7 @@ const builderMandatoryCards = [
     countsForDeck: false,
     text: {
       en: "If your Boss has Affiliation: Two-Face, you must keep this card aside, and after you draw your initial hand of Objective cards, choose 1 Side card and place it somewhere visible. Then shuffle the other Side card into your Objective deck.\n\nA card that has a Good Side or Twisted Side on its requirement can only be scored if it matches the active The Coin Side card. If a card has both Good Side and Twisted Side requirements, you can complete only those matching The Coin side in play. The Resource effect applied is the one that matches The Coin Side in play. You may play a The Coin card as any other Objective card, discarding the other in play (it doesn't count as an Objective being played).\n\nIf your Boss has Affiliation: Two-Face, your deck must include at least 7 Objective cards with either Good Side or Twisted Side (not both).",
-      ru: "Если у вашего Boss Affiliation: Two-Face, вы должны отложить эту карту. После того как вы возьмете начальную руку Objective cards, выберите 1 Side card и положите ее на видное место. Затем замешайте другую Side card в вашу Objective deck.\n\nКарта, у которой в требовании указан Good Side или Twisted Side, может быть засчитана только если она совпадает с активной The Coin Side card. Если у карты есть требования и Good Side, и Twisted Side, вы можете выполнить только те, что совпадают с The Coin side в игре. Применяется тот Resource effect, который совпадает с The Coin Side в игре. Вы можете разыграть The Coin card как любую другую Objective card, сбросив другую карту в игре; это не считается розыгрышем Objective.\n\nЕсли у вашего Boss Affiliation: Two-Face, ваша колода должна включать как минимум 7 Objective cards с Good Side или Twisted Side, но не с обеими сторонами сразу."
+      ru: "Если у вашего Boss Affiliation: Two-Face, вы должны отложить эту карту. После того как вы возьмете начальную руку Objective cards, выберите 1 Side card и положите ее на видное место. Затем замешайте другую Side card в вашу Objective deck.\n\nКарта, у которой в требовании указан Good Side или Twisted Side, может быть засчитана только если она совпадает с активной The Coin Side card. Если у карты есть требования и Good Side, и Twisted Side, вы можете выполнить только те, что совпадают с The Coin side в игре. Применяется эффект Resource, который совпадает с The Coin Side в игре. Вы можете разыграть The Coin card как любую другую Objective card, сбросив другую карту в игре; это не считается розыгрышем Objective.\n\nЕсли у вашего Boss Affiliation: Two-Face, ваша колода должна включать как минимум 7 Objective cards с Good Side или Twisted Side, но не с обеими сторонами сразу."
     }
   },
   {
@@ -342,7 +342,7 @@ const builderMandatoryCards = [
     countsForDeck: false,
     text: {
       en: "INFECTED\n\nWhen a model gains an Infected counter, that model discards any previously gained Infected counters.\n\nFREED\n\nRemove an Infected counter from an enemy model. Place up to 2 models with the Freed trait previously removed as Casualty. Place them within 4” of a friendly model (Alias: Batman Who Laughs). If the enemy model has the Rank: {RANK_LEADER_ICON} or {RANK_SIDEKICK_ICON}, you may increase the cost of this Resource to 1 to place a model with He Freed Me trait instead.\n\nA model placed this way may be activated as normal if it did not already activate earlier in this Round. The opponent gains a Pass marker for each model placed.",
-      ru: "INFECTED\n\nКогда модель получает Infected counter, она сбрасывает все ранее полученные Infected counters.\n\nFREED\n\nУберите Infected counter с вражеской модели. Разместите до 2 моделей с трейтом Freed, ранее удаленных как Casualty. Разместите их в пределах 4” от дружественной модели (Alias: Batman Who Laughs). Если вражеская модель имеет Rank: {RANK_LEADER_ICON} или {RANK_SIDEKICK_ICON}, вы можете увеличить стоимость этого Resource до 1, чтобы вместо этого разместить модель с трейтом He Freed Me.\n\nМодель, размещенная таким образом, может активироваться как обычно, если она еще не активировалась ранее в этом Round. Оппонент получает Pass marker за каждую размещенную модель."
+      ru: "INFECTED\n\nКогда модель получает Infected counter, она сбрасывает все ранее полученные Infected counters.\n\nFREED\n\nУберите Infected counter с вражеской модели. Разместите до 2 моделей с трейтом Freed, ранее удаленных как Casualty. Разместите их в пределах 4” от дружественной модели (Alias: Batman Who Laughs). Если вражеская модель имеет Rank: {RANK_LEADER_ICON} или {RANK_SIDEKICK_ICON}, вы можете увеличить стоимость этого Resource до 1, чтобы вместо этого разместить модель с трейтом He Freed Me.\n\nМодель, размещенная таким образом, может активироваться как обычно, если она еще не активировалась ранее в этом раунде. Оппонент получает Pass marker за каждую размещенную модель."
     }
   }
 ];
@@ -351,12 +351,12 @@ const characterObjectiveTextRu = {
   "reinforce-bird": `Условие: дружественная модель находится в пределах 4" от другой дружественной модели с трейтом Veteran и получает не больше 2 Damage от Attack.
 
 Ресурс 1: дружественные модели с трейтом Veteran в пределах 4" от дружественной модели с Alias: Bird получают 2 маркера с карты.`,
-  "im-the-surgeon": `Условие: разыграйте, когда дружественная активная модель находится в контакте с вражеским Boss. Переместите все остальные модели в пределах 4" от Boss на 4" прямо от него. Потратьте Melee Attack action.
+  "im-the-surgeon": `Условие: разыграйте, когда дружественная активная модель находится в контакте с вражеским Boss. Переместите все остальные модели в пределах 4" от Boss на 4" прямо от него. Потратьте действие Melee Attack.
 
 Засчитайте, если эта Melee Attack наносит KO вражескому Boss.
 
-Ресурс 1: разыграйте, когда дружественная модель с Alias: Batman становится целью Melee Attack. За каждый успешный Defense die она наносит ★★★.`,
-  "lord-of-the-pits": `Условие: разыграйте, когда дружественный активный Boss находится в пределах 8" от вражеского Boss. Разместите дружественного Boss в контакте с вражеским Boss и потратьте Melee Attack action.
+Ресурс 1: разыграйте, когда дружественная модель с Alias: Batman становится целью Melee Attack. За каждый успешный кубик Defense она наносит ★★★.`,
+  "lord-of-the-pits": `Условие: разыграйте, когда дружественный активный Boss находится в пределах 8" от вражеского Boss. Разместите дружественного Boss в контакте с вражеским Boss и потратьте действие Melee Attack.
 
 Засчитайте, если эта Attack удаляет вражеского Boss как Casualty.
 
@@ -369,92 +369,92 @@ const characterObjectiveTextRu = {
 Ресурс 1: во время этой активации дружественная модель с Name: Jason Todd игнорирует ограничение once per game трейта One Shot Gun.`,
   "regrowth": `Условие: в пределах 4" от активной дружественной модели есть 2 дружественных Suspects, и хотя бы один из них находится в пределах 4" от вражеской модели.
 
-Ресурс 1: во время активации дружественной модели выберите дружественную модель с Plant trait в пределах 8" от дружественной модели с Alias: Poison Ivy. Разместите выбранную модель в контакте с дружественным Suspect.`,
+Ресурс 1: во время активации дружественной модели выберите дружественную модель с трейтом Plant в пределах 8" от дружественной модели с Alias: Poison Ivy. Разместите выбранную модель в контакте с дружественным Suspect.`,
   "feed-me": `Условие: вражеская модель проваливает Endurance roll, пока находится под Devoured.
 
-Ресурс 0: во время активации дружественной модели с Alias: Frank the Plant Devoured enemy model выполняет Slow Digestion Endurance roll. Если он провален, модель получает 1 дополнительный Damage.`,
+Ресурс 0: во время активации дружественной модели с Alias: Frank the Plant вражеская модель под Devoured выполняет Slow Digestion Endurance roll. Если он провален, модель получает 1 дополнительный Damage.`,
   "kataykuchi": `Условие: когда вражеская модель удаляет дружественную модель как Casualty, выберите эту вражескую модель и дружественную модель.
 
 Засчитайте, когда эта дружественная модель наносит Damage выбранной вражеской модели.
 
-Burn 1, Exception (In Play): модель с Alias: Katana получает 2 Free Efforts в эту активацию во время Attacking или Defending.`,
+Burn 1, Exception (In Play): модель с Alias: Katana получает 2 Free Efforts в эту активацию во время атаки или защиты.`,
   "netmaster": `Условие: выберите дружественную модель. У выбранной модели есть 6 дружественных Suspects в пределах 8".
 
-Ресурс 1: выберите все markers в пределах 10" от дружественной модели с Alias: Oracle. Передвиньте их на 2".`,
+Ресурс 1: выберите все маркеры в пределах 10" от дружественной модели с Alias: Oracle. Передвиньте их на 2".`,
   "deathmatch": `Условие: дружественная модель с Alias: Deathstroke удаляет врага с самой высокой Reputation cost как Casualty. Уберите эту дружественную модель из игры.
 
 Ресурс 1: выберите вражескую модель в пределах 8" от дружественной модели с Alias: Deathstroke. Цель нельзя переместить дальше чем на 8" от этой дружественной модели в этот раунд.`,
-  "a-cat-has-its-needs": `Условие: дружественная модель Reveals вражеский Suspect, и в пределах 4" от этого Suspect есть дружественный Cat marker.
+  "a-cat-has-its-needs": `Условие: дружественная модель раскрывает вражеский Suspect, и в пределах 4" от этого Suspect есть дружественный маркер Cat.
 
-Burn 1: разыграйте, когда дружественная модель с Alias: Catwoman удаляет выбранную вражескую модель как Casualty. Поставьте дружественный Cat marker в контакт с целью.`,
-  "justice": `Opening: каждый раз, когда вражеская модель удаляется как Casualty with the Judgement trait, поместите 1 маркер на эту карту.
+Burn 1: разыграйте, когда дружественная модель с Alias: Catwoman удаляет выбранную вражескую модель как Casualty. Поставьте дружественный маркер Cat в контакт с целью.`,
+  "justice": `Opening: каждый раз, когда вражеская модель удаляется как Casualty с трейтом Judgement, поместите 1 маркер на эту карту.
 
 Засчитайте, когда на карте 2 маркера.
 
-Ресурс 1, Exception (In Play): когда дружественная модель использует Judgement trait, выберите результат вместо броска.`,
+Ресурс 1, Exception (In Play): когда дружественная модель использует трейт Judgement, выберите результат вместо броска.`,
   "riddles-everywhere": `Условие: в игре есть 2 Riddle markers.
 
 Burn 1: выставьте до 3 Riddle markers в пределах 8" от дружественной модели с Alias: Riddler.`,
   "diversion-tactic": `Условие: в игре меньше 5 вражеских Suspects.
 
 Ресурс *, Trap: перед удалением Suspect, который активировал эту карту, вы можете разместить дружественную модель с Affiliation: ? в контакте с ним.`,
-  "query-and-echo": `Условие: дружественная модель Reveals вражеский Suspect, который находится в пределах 2" от дружественного Suspect.
+  "query-and-echo": `Условие: дружественная модель раскрывает вражеский Suspect, который находится в пределах 2" от дружественного Suspect.
 
 Ресурс 1: дружественная модель с Alias: Echo получает 2 Free Efforts на текущую активацию, если она находится в пределах 6" от дружественной модели с Alias: Query.`,
-  "echo-and-query": `Условие: вражеская модель Reveals дружественный Suspect, который находится в пределах 2" от вражеского Suspect.
+  "echo-and-query": `Условие: вражеская модель раскрывает дружественный Suspect, который находится в пределах 2" от вражеского Suspect.
 
 Ресурс 1: дружественная модель с Alias: Query получает 2 Free Efforts на текущую активацию, если она находится в пределах 6" от дружественной модели с Alias: Echo.`,
   "this-ends-tonight": `Условие: вражеский Boss удален как Casualty в пределах 8" от активной дружественной модели.
 
-Ресурс 2: дружественная модель с Alias: Arkham Knight получает Free Action.`,
+Ресурс 2: дружественная модель с Alias: Arkham Knight получает бесплатное действие.`,
   "a-city-in-fear": `Условие: как минимум 3 модели страдают от Scared Status.
 
 Ресурс 0: разыграйте в Phase II. Выберите вражескую модель, чтобы она выполнила Willpower roll. Если бросок провален, модель получает Scared Status.`,
-  "my-house-my-rules": `Условие: выберите вражескую модель в пределах 8" от дружественного Boss. Когда цель Sets a Suspect, получает KO или удаляет модель как Casualty, поместите 1 маркер на эту карту.
+  "my-house-my-rules": `Условие: выберите вражескую модель в пределах 8" от дружественного Boss. Когда цель выставляет Suspect, получает KO или удаляет модель как Casualty, поместите 1 маркер на эту карту.
 
 Засчитайте, когда на карте 3 маркера.
 
-Ресурс 0, Exception (In Play): во время активации дружественной модели с Alias: The Penguin выполните одно из действий: передвиньте дружественную модель на 4"; другая дружественная модель Sets a Suspect; посмотрите Objective hand оппонента и сбросьте из нее карту.`,
+Ресурс 0, Exception (In Play): во время активации дружественной модели с Alias: The Penguin выполните одно из действий: передвиньте дружественную модель на 4"; другая дружественная модель выставляет Suspect; посмотрите Objective hand оппонента и сбросьте из нее карту.`,
   "endless-greed": `Условие: когда дружественный Boss наносит Damage вражескому Boss, в игре больше дружественных Suspects, чем вражеских.
 
 Ресурс 1: дружественные модели в пределах 8" от дружественной модели с Alias: Emperor Penguin и в пределах 4" от вражеского Suspect получают 2 ★.`,
-  "street-transaction": `Условие: дружественная модель Reveals вражеский Suspect в пределах 6" от дружественного Suspect и дружественного маркера с иконкой карты.
+  "street-transaction": `Условие: дружественная модель раскрывает вражеский Suspect в пределах 6" от дружественного Suspect и дружественного маркера с иконкой карты.
 
 Ресурс 2: дружественные модели в пределах 8" от дружественной модели с Alias: Loose Lips и в пределах 4" от дружественного Suspect могут получить 2 маркера с карты.`,
   "plots-behind-plots": `Условие: выставьте 3 Shadow Event markers в пределах 8" от вражеских моделей. Тайно выберите 1 Shadow как Secret Objective. Модель может выполнить Manipulate Shadow, чтобы убрать его.
 
-The Secret Objective is in play. В начале активации вы можете разместить дружественную модель с Reanimated Owl trait в контакте с Shadow и убрать этот marker.
+Secret Objective находится в игре. В начале активации вы можете разместить дружественную модель с трейтом Reanimated Owl в контакте с Shadow и убрать этот маркер.
 
-Ресурс 1: во время этой активации при выборе Prey с помощью Attack action нельзя делать Efforts.`,
+Ресурс 1: во время этой активации при выборе Prey с помощью действия Attack нельзя делать Efforts.`,
   "the-courts-edict": `Условие: когда Prey удаляется как Casualty, поместите 1 маркер на эту карту. У этой карты есть 2 маркера.
 
-Ресурс 1: выберите дружественную модель с Reanimated Owl trait, ранее удаленную как Casualty, и разместите ее в пределах 4" от дружественной модели с Alias: The Court. Эта модель не может активироваться в этот раунд.`,
-  "the-mission": `Условие: выберите модель с Reanimated Owl trait.
+Ресурс 1: выберите дружественную модель с трейтом Reanimated Owl, ранее удаленную как Casualty, и разместите ее в пределах 4" от дружественной модели с Alias: The Court. Эта модель не может активироваться в этот раунд.`,
+  "the-mission": `Условие: выберите модель с трейтом Reanimated Owl.
 
 Засчитайте, если эта модель наносит Damage текущему вражескому Boss или модели с самой высокой Reputation cost.
 
-Ресурс 0: выберите вражескую модель в пределах 4" от дружественной модели с Name: William Cobb и дружественного Suspect. Эта модель становится marked as a Prey. Верните эту карту в колоду и перемешайте ее. Если вы уже отметили вражескую модель, предыдущая модель теряет mark.`,
+Ресурс 0: выберите вражескую модель в пределах 4" от дружественной модели с Name: William Cobb и дружественного Suspect. Эта модель становится отмеченной как Prey. Верните эту карту в колоду и перемешайте ее. Если вы уже отметили вражескую модель, предыдущая модель теряет метку.`,
   "escape-plan": `Условие: выберите дружественную модель.
 
 Засчитайте, если эта модель находится в игре в конце игры.
 
-Ресурс 0, Exception (In Play): дружественная модель, которая становится целью Attack в пределах 8" от дружественной модели с Name: Calvin Rose, добавляет 3 dice к своему Defense roll.`,
-  "osito": `Условие: разыграйте, когда вражеская модель Sets a Suspect. Разместите Osito Event marker в контакте с этим Suspect по Loot rules. Дружественная модель с Alias: Bane получает +1 к Attack dice rolls против вражеской модели, контролирующей Osito или находящейся в пределах 4" от Osito.
+Ресурс 0, Exception (In Play): дружественная модель, которая становится целью Attack в пределах 8" от дружественной модели с Name: Calvin Rose, добавляет 3 кубика к своему броску Defense.`,
+  "osito": `Условие: разыграйте, когда вражеская модель выставляет Suspect. Разместите Osito Event marker в контакте с этим Suspect по правилам Loot. Дружественная модель с Alias: Bane получает +1 к броскам кубиков Attack против вражеской модели, контролирующей Osito или находящейся в пределах 4" от Osito.
 
 Засчитайте, если дружественная модель контролирует Osito в конце игры. Эту Objective нельзя разыграть после 3-го раунда.
 
 Ресурс 1, Exception (In Play): выберите вражескую модель в пределах 6" от дружественной модели с Alias: Bane. Она получает Scared Status.`,
   "emancipation": `Условие: дружественная модель наносит Damage вражескому Boss, пока в пределах 6" от любой из этих моделей нет других дружественных моделей.
 
-Ресурс 1: выберите дружественный Suspect в пределах 4" от активной дружественной модели с Alias: Harley Quinn. Поставьте Explosive template на этот Suspect. Выберите направление и передвиньте template на полные 2D6". Модели, задетые template в конце движения, получают ★★. Затем уберите template.`,
+Ресурс 1: выберите дружественный Suspect в пределах 4" от активной дружественной модели с Alias: Harley Quinn. Поставьте шаблон Explosive на этот Suspect. Выберите направление и передвиньте шаблон на полные 2D6". Модели, задетые шаблоном в конце движения, получают ★★. Затем уберите шаблон.`,
   "cover-your-ears": `Условие: выберите дружественную модель. У выбранной модели есть другая дружественная модель в пределах 4".
 
-Ресурс 1: активная дружественная модель с Alias: Black Canary наносит Push (4) каждой вражеской модели и marker в пределах 8".`,
+Ресурс 1: активная дружественная модель с Alias: Black Canary наносит Push (4) каждой вражеской модели и маркеру в пределах 8".`,
   "vendetta": `Условие: выберите вражескую модель с Reputation выше 50. Если нет врагов с Reputation выше 50, можно выбрать дружественную модель.
 
 Засчитайте, если дружественная модель наносит Damage этой вражеской модели.
 
-Ресурс 1: когда дружественная модель с Alias: Huntress выполняет Ranged Attack, замените 1 attack die на Strength die.`,
+Ресурс 1: когда дружественная модель с Alias: Huntress выполняет Ranged Attack, замените 1 кубик Attack на кубик Strength.`,
   "gotham-is-mine": `Условие: все вражеские модели с указанными иконками получают KO или удалены как Casualty.
 
 Ресурс 1: разыграйте в начале активации дружественной модели. Вражеские модели не могут проводить LoS к дружественной модели с Alias: Bane.`,
@@ -463,54 +463,54 @@ The Secret Objective is in play. В начале активации вы мож�
 Ресурс 1: когда Attack наносит Damage, цель получает Poison Status.`,
   "apex-predator": `Условие: вражеская модель в пределах 4" от 2 Suspects получает Damage.
 
-Ресурс 1: если дружественная модель в пределах 8" от дружественного Boss наносит Damage Melee Attack, замените ★ на Damage с карты.`,
+Ресурс 1: если дружественная модель в пределах 8" от дружественного Boss наносит Damage атакой Melee Attack, замените ★ на Damage с карты.`,
   "showtime": `Условие: выберите дружественного Boss и положите на эту карту Timer 1D3+2. Разместите до такого количества вражеских Suspects в пределах 18" от цели в контакте с ней.
 
-Засчитайте, если counter уменьшился до 0 и любой из этих Suspects находится в контакте с целью.
+Засчитайте, если счетчик уменьшился до 0 и любой из этих Suspects находится в контакте с целью.
 
-Ресурс 1: бросьте 1D6 за каждый дружественный Suspect в пределах 20" от дружественной модели с Alias: Joker. Положите на Suspect Numeric counter с результатом броска и отложите эту карту. Когда выполняется dice roll, вы должны убрать 1 из этих Numeric counters и заменить один из результатов броска на его значение. Когда все Numeric Counters убраны, сбросьте эту карту.`,
-  "joker-o-meter": `Условие: когда карта разыграна, выберите активную дружественную модель. Когда другая модель в пределах 4" выбрасывает две натуральные 1 и не удалена из игры, разместите цель в контакте с ней. Выполните Free Melee Attack по этой модели.
+Ресурс 1: бросьте 1D6 за каждый дружественный Suspect в пределах 20" от дружественной модели с Alias: Joker. Положите на Suspect Numeric counter с результатом броска и отложите эту карту. Когда выполняется бросок кубиков, вы должны убрать 1 из этих Numeric counters и заменить один из результатов броска на его значение. Когда все Numeric counters убраны, сбросьте эту карту.`,
+  "joker-o-meter": `Условие: когда карта разыграна, выберите активную дружественную модель. Когда другая модель в пределах 4" выбрасывает две натуральные 1 и не удалена из игры, разместите цель в контакте с ней. Выполните бесплатную Melee Attack по этой модели.
 
 Засчитайте, если эта Attack наносит Damage. Если нет, сбросьте эту карту.
 
-Ресурс 2: модель с Alias: Harley Quinn получает +1 extra Strength die в эту активацию.`,
+Ресурс 2: модель с Alias: Harley Quinn получает +1 дополнительный кубик Strength в эту активацию.`,
   "one-million-dollar-shot": `Условие: вражеская модель с указанными иконками получает KO или удалена как Casualty с помощью Ranged Attack.
 
-Ресурс 1: во время этой активации модель с Alias: Deadshot получает +1 die к Attack по модели вне Effective range.`,
-  "wrong-place-kid": `Условие: дружественная модель с Cop trait Reveals вражеский Suspect как минимум в 6" от другой дружественной модели с Cop trait.
+Ресурс 1: во время этой активации модель с Alias: Deadshot получает +1 кубик к Attack по модели вне Effective range.`,
+  "wrong-place-kid": `Условие: дружественная модель с трейтом Cop раскрывает вражеский Suspect как минимум в 6" от другой дружественной модели с трейтом Cop.
 
-Ресурс 1: модель с Alias: Sgt. Harvey Bullock получает +1 die к Ranged Attack action. Оппонент Sets one of their Suspects в контакт с целью этой Attack, игнорируя minimum distance rules.`,
+Ресурс 1: модель с Alias: Sgt. Harvey Bullock получает +1 кубик к действию Ranged Attack. Оппонент выставляет один из своих Suspects в контакт с целью этой Attack, игнорируя правила минимальной дистанции.`,
   "back-to-arkham": `Условие: дружественная модель с Alias: Batman наносит KO вражеской модели или удаляет ее как Casualty.
 
 Ресурс 1: разыграйте, когда дружественная модель с Name: Bruce Wayne наносит KO вражеской модели с Rank: Henchman, Free Agent или Sidekick; вместо этого удалите ее как Casualty.`,
-  "one-good-cop": `Условие: дружественная модель получает Damage в пределах 8" от другой дружественной модели с Cop trait и не получает KO или не удаляется как Casualty.
+  "one-good-cop": `Условие: дружественная модель получает Damage в пределах 8" от другой дружественной модели с трейтом Cop и не получает KO или не удаляется как Casualty.
 
-Ресурс 1: дружественные модели с Cop trait в пределах 8" от дружественной модели с Name: James W. Gordon убирают 1 ★.`,
+Ресурс 1: дружественные модели с трейтом Cop в пределах 8" от дружественной модели с Name: James W. Gordon убирают 1 ★.`,
   "daughter-of-the-demon": `Условие: в пределах 4" от вражеских моделей больше дружественных Suspects, чем вражеских моделей в игре.
 
-Ресурс 2: выберите все дружественные Suspects в пределах 20" от дружественной модели с Alias: Talia. Они также являются Imminent Threat markers. Чтобы Reveal an Imminent Threat, оппонент должен сначала убрать дружественный Suspect.`,
+Ресурс 2: выберите все дружественные Suspects в пределах 20" от дружественной модели с Alias: Talia. Они также являются маркерами Imminent Threat. Чтобы раскрыть Imminent Threat, оппонент должен сначала убрать дружественный Suspect.`,
   "my-life-for-the-league": `Условие: выберите дружественную модель. Каждый раз, когда эта модель становится целью Attack, поместите 1 маркер на эту карту.
 
 Засчитайте, если на карте 2 маркера.
 
-Ресурс 1, Exception (In Play): если дружественный Boss получает любое количество hits, дружественная модель с Alias: The Heretic в пределах 6" получает эти hits вместо него.`,
+Ресурс 1, Exception (In Play): если дружественный Boss получает любое количество попаданий, дружественная модель с Alias: The Heretic в пределах 6" получает эти попадания вместо него.`,
   "mortal-wound": `Условие: вражеская модель проваливает Poison roll.
 
 Ресурс 1: вражеская модель в пределах 4" от модели с Alias: Cheshire, страдающей от Poison Status, выполняет Poison roll.`,
-  "searching-for-nora": `Условие: выберите 2 Scenery Elements, затем оппонент выбирает еще один. Разместите Nora Research Event marker в пределах 2" от каждого Scenery Element, на расстоянии минимум 4" друг от друга. Модель может выполнить Manipulate these Events, чтобы передвинуть их на 4". Уберите Nora Research, когда она в контакте с дружественным Boss.
+  "searching-for-nora": `Условие: выберите 2 элемента местности, затем оппонент выбирает еще один. Разместите Nora Research Event marker в пределах 2" от каждого элемента местности, на расстоянии минимум 4" друг от друга. Модель может выполнить Manipulate с этими Events, чтобы передвинуть их на 4". Уберите Nora Research, когда она в контакте с дружественным Boss.
 
 Засчитайте, когда все 3 Nora Research удалены.
 
-Ресурс 1, Exception (In Play): дружественная модель с Alias: Mr. Freeze получает Free Movement action.`,
+Ресурс 1, Exception (In Play): дружественная модель с Alias: Mr. Freeze получает бесплатное действие Movement.`,
   "cold-as-ice": `Условие: когда дружественная модель должна нанести достаточно Damage, чтобы удалить модель как Casualty, проигнорируйте этот Damage, и вместо этого модель получает Freeze Status.
 
-Ресурс 1: дружественная модель с Alias: Killer Frost получает Free Action.`,
+Ресурс 1: дружественная модель с Alias: Killer Frost получает бесплатное действие.`,
   "the-don": `Условие, Black Money: дружественный Boss находится в пределах 6" от вражеского Boss.
 
 Ресурс 0: во время активации дружественной модели выберите до 2 дружественных моделей в пределах 8" от дружественной Carmine Falcone и передвиньте их на 6".`,
   "uncontrolled-brutality": `Условие, Black Money: вражеская модель с самой высокой Reputation cost в пределах 6" от 2 дружественных Suspects получает Damage, равный минимум половине ее Endurance.
 
-Ресурс 1: когда Ranged Attack наносит Damage, цель уменьшает свои Attack и Defense skills на 1 до конца раунда.`,
+Ресурс 1: когда Ranged Attack наносит Damage, цель уменьшает свои значения Attack и Defense на 1 до конца раунда.`,
   "the-true-boss": `Условие, Black Money: каждый раз, когда дружественная модель выполняет Manipulate, поместите маркер на эту карту. Каждый раз, когда вражеская модель выполняет Manipulate, поместите другой маркер на эту карту.
 
 У этой карты больше дружественных маркеров, чем вражеских.
@@ -521,12 +521,12 @@ The Secret Objective is in play. В начале активации вы мож�
 Засчитайте, если дружественных маркеров на этой карте больше, чем вражеских Suspects.
 
 Ресурс 1: активная дружественная модель получает 1 Damage и 2 ★.`,
-  "not-so-much-sugar": `Условие: Set a Sugar Cube Event marker with Timer 1D6 within 4" of an enemy model. When the counter is reduced to 0, roll 2D6 plus 1D6 for each friendly model within 4" of the Sugar Cube, and remove 1D6 for each enemy model within 4" of the Sugar Cube.
+  "not-so-much-sugar": `Условие: разместите Sugar Cube Event marker с Timer 1D6 в пределах 4" от вражеской модели. Когда счетчик снижается до 0, бросьте 2D6 плюс 1D6 за каждую дружественную модель в пределах 4" от Sugar Cube и уберите 1D6 за каждую вражескую модель в пределах 4" от Sugar Cube.
 
-Засчитайте, если любые 2 dice results совпадают.
+Засчитайте, если любые 2 результата на кубиках совпадают.
 
 Ресурс 1: уберите Suspect в пределах 8" от активной дружественной модели. Если это был дружественный Suspect, сбросьте Objective card. Если нет, оппонент сбрасывает Objective card.`,
-  "spice-it-a-little": `Условие: дружественная модель выполняет successful hit по 2 вражеским моделям одной Attack action.
+  "spice-it-a-little": `Условие: дружественная модель выполняет успешное попадание по 2 вражеским моделям одним действием Attack.
 
 Ресурс 1: выберите одно: дружественные модели в пределах 8" от дружественной модели с Alias: Spice получают 2 маркера с карты; или вражеские модели в пределах 8" от дружественной модели с Alias: Spice получают 4 маркера с карты.`,
   "master-of-manipulation": `Условие: каждый раз, когда вы разыгрываете Resource, поместите дружественный маркер на эту карту. Каждый раз, когда оппонент разыгрывает Resource, поместите вражеский маркер на эту карту.
@@ -534,28 +534,28 @@ The Secret Objective is in play. В начале активации вы мож�
 Засчитайте, если дружественных маркеров на карте больше, чем вражеских.
 
 Ресурс 0: дружественная модель с Alias: Hush находится в пределах 8" от вражеской модели. Оппонент выбирает: потерять 1 Resource или вы получаете 1 Resource.`,
-  "yours-to-command": `Условие: дружественная модель не получает KO или не удаляется как Casualty от атаки, которая имеет как минимум 4 successful hits до Defense roll.
+  "yours-to-command": `Условие: дружественная модель не получает KO или не удаляется как Casualty от атаки, которая имеет как минимум 4 успешных попадания до броска Defense.
 
-Ресурс 0: когда дружественная модель в пределах 4" от дружественной модели с Alias: Ubu получает любое количество hits, Ubu получает эти hits вместо нее.`,
-  "great-performance": `Opening: выберите дружественную модель с Alias: Nightwing. Положите 1 маркер на эту карту, когда цель Sets a Suspect в пределах 4" от вражеской модели. Положите 1 маркер на эту карту, когда цель наносит KO.
+Ресурс 0: когда дружественная модель в пределах 4" от дружественной модели с Alias: Ubu получает любое количество попаданий, Ubu получает эти попадания вместо нее.`,
+  "great-performance": `Opening: выберите дружественную модель с Alias: Nightwing. Положите 1 маркер на эту карту, когда цель выставляет Suspect в пределах 4" от вражеской модели. Положите 1 маркер на эту карту, когда цель наносит KO.
 
 Засчитайте, если цель находится в игре в конце игры и на этой карте есть 1 маркер каждого типа.
 
-Ресурс 1, Exception (In Play): когда модель с Acrobat trait становится целью Attack и не получает KO, передвиньте ее на 4".`,
-  "assistance": `Условие: выберите Enemy Boss, когда он выполняет Action. Дружественная модель с Alias: Robin Sets a Suspect в пределах 4" от цели.
+Ресурс 1, Exception (In Play): когда модель с трейтом Acrobat становится целью Attack и не получает KO, передвиньте ее на 4".`,
+  "assistance": `Условие: выберите вражеского Boss, когда он выполняет Action. Дружественная модель с Alias: Robin выставляет Suspect в пределах 4" от цели.
 
 Ресурс 1: разыграйте во время активации дружественного Boss с Alias: Batman. Передвиньте дружественную модель с Alias: Robin на 8".`,
-  "trick-shot": `Условие: активная дружественная модель Moves, затем засчитывает как минимум 1 successful hit with a Ranged attack. Если разыграно во время активации модели с Alias: Green Arrow, она может выполнить free Ranged Attack action без траты action.
+  "trick-shot": `Условие: активная дружественная модель перемещается, затем засчитывает как минимум 1 успешное попадание Ranged Attack. Если разыграно во время активации модели с Alias: Green Arrow, она может выполнить бесплатное действие Ranged Attack без траты действия.
 
-Ресурс 1: дружественная модель с Alias: Green Arrow, выполняющая Ranged Attack, может считать свою цель дружественным Suspect within LoS.`,
+Ресурс 1: дружественная модель с Alias: Green Arrow, выполняющая Ranged Attack, может считать свою цель дружественным Suspect в пределах LoS.`,
   "justice-served": `Условие: вражеская модель с Quarry (X) Status получает KO или удалена как Casualty дружественной моделью с Justice trait.
 
 Burn 0: разыграйте во время активации дружественной модели с Alias: Peacemaker. Передвиньте вражескую модель с Quarry (X) Status на 4".`,
   "best-served-cold": `Условие: разыграйте, когда Objective card оппонента помещается под Ice Age card.
 
-Засчитайте, если другая карта помещена под Ice Age card до того, как вражеская модель Sets a Suspect в пределах 4" от дружественной модели.
+Засчитайте, если другая карта помещена под Ice Age card до того, как вражеская модель выставляет Suspect в пределах 4" от дружественной модели.
 
-Ресурс 1: дружественная модель в пределах 8" от дружественной модели с Alias: Mrs. Freeze игнорирует S. Range weapon trait в эту активацию.`,
+Ресурс 1: дружественная модель в пределах 8" от дружественной модели с Alias: Mrs. Freeze игнорирует weapon trait S. Range в эту активацию.`,
   "bigger-picture": `Условие: вражеский Boss находится в пределах 4" от дружественного Suspect и уже активировался в этом раунде.
 
 Burn 0, Trap: передвиньте вражеский Suspect на 4".`,
@@ -563,7 +563,7 @@ Burn 0, Trap: передвиньте вражеский Suspect на 4".`,
 
 Засчитайте, когда эта дружественная модель удаляет выбранную вражескую модель как Casualty.
 
-Ресурс 1, Exception (In Play): выберите дружественную модель со Stealth trait. Разместите ее в пределах 8" от вражеской модели и 4" от дружественного Suspect.`,
+Ресурс 1, Exception (In Play): выберите дружественную модель с трейтом Stealth. Разместите ее в пределах 8" от вражеской модели и 4" от дружественного Suspect.`,
   "vengeances-mission": `Opening: выберите вражескую модель и дружественную модель с Alias: Vengeance.
 
 Засчитайте, когда эта дружественная модель удаляет выбранную вражескую модель как Casualty.
@@ -571,7 +571,7 @@ Burn 0, Trap: передвиньте вражеский Suspect на 4".`,
 Ресурс 1, Exception (In Play): выбранная вражеская модель получает Scared Status.`,
   "sewers-nightmare": `Условие: вражеская модель удалена как Casualty в пределах 4" от Sewer marker.
 
-Ресурс 1: активная модель может продолжить Move после использования Sewer.`,
+Ресурс 1: активная модель может продолжить Movement после использования Sewer.`,
   "the-best-act": `Условие: разместите выбранную модель, которая была удалена как Casualty, в контакт с дружественной моделью с Alias: Clayface. Уберите Clayface из игры.
 
 Цель все еще находится в игре. Затем уберите ее из игры. В этот раунд цель считается дружественной. Если цель удалена из игры, разместите Clayface в контакте до ее удаления.
@@ -579,7 +579,7 @@ Burn 0, Trap: передвиньте вражеский Suspect на 4".`,
 Ресурс 1: разместите активную дружественную модель с Alias: Clayface в контакте с моделью.`,
   "primary-instincts": `Условие: нанесите Damage вражеской модели, которая не имела LoS к атакующему в начале активации атакующего.
 
-Ресурс 1: разыграйте, когда дружественная модель в пределах 8" от дружественной модели с Alias: Man-Bat становится целью Attack. Она бросает 2 дополнительных Defense dice. Если она не получает KO, передвиньте ее на 2".`,
+Ресурс 1: разыграйте, когда дружественная модель в пределах 8" от дружественной модели с Alias: Man-Bat становится целью Attack. Она бросает 2 дополнительных кубика Defense. Если она не получает KO, передвиньте ее на 2".`,
   "born-on-a-monday": `Условие: выберите дружественную модель в пределах 4" от вражеского Suspect. В конце хода уберите эту активацию и 1 маркер на этой карте, если в пределах 4" нет вражеских моделей.
 
 Засчитайте, когда на карте 3 маркера.
@@ -589,71 +589,71 @@ Burn 0, Trap: передвиньте вражеский Suspect на 4".`,
 
 Засчитайте, если на карте 3 маркера.
 
-Ресурс 0, Exception (In Play): разыграйте, когда дружественная модель с Alias: Victor Zsasz удаляет вражескую модель как Casualty. Victor Zsasz получает 1 Damage и удаляется из игры. Вы можете позже вернуть его в игру по Shadowed Nightmare trait.`,
+Ресурс 0, Exception (In Play): разыграйте, когда дружественная модель с Alias: Victor Zsasz удаляет вражескую модель как Casualty. Victor Zsasz получает 1 Damage и удаляется из игры. Вы можете позже вернуть его в игру по трейту Shadowed Nightmare.`,
   "this-is-the-evil": `Условие, Limited: когда дружественная модель получает Faith в пределах 4" от Blackfire Totem, поместите 1 маркер на эту карту.
 
 Засчитайте, когда на карте 4 маркера.
 
 Ресурс 1, Exception (In Play): вражеская модель в пределах 4" от Blackfire Totem получает Enervating (1) Status. За 3 маркера эта модель вместо этого получает Enervating (3) Status.`,
-  "join-the-fold": `Условие: разыграйте, когда дружественная модель удаляет вражескую модель как Casualty. Эта дружественная модель Sets a Suspect в пределах 4" от дружественной модели с указанными иконками.
+  "join-the-fold": `Условие: разыграйте, когда дружественная модель удаляет вражескую модель как Casualty. Эта дружественная модель выставляет Suspect в пределах 4" от дружественной модели с указанными иконками.
 
 Ресурс 2: во время активации дружественной модели выберите вражескую модель в пределах 8" от дружественной модели с Alias: Young Woman. Передвиньте ее на 4". За 2 маркера цель также получает Enervating (2) Status.`,
   "the-unworthy": `Условие: выберите вражескую модель. Эта модель удалена как Casualty.
 
-Ресурс 2: вражеский model within 8" of a friendly Suspect получает Quarry (2) Status. За 2 маркера вместо этого получает Quarry (4).`,
-  "the-evidence-mounts": `Условие: выберите 3 enemy Suspects. Set a Search Event marker in contact with each Suspect. В пределах 4" от Search нет вражеских Suspects.
+Ресурс 2: вражеская модель в пределах 8" от дружественного Suspect получает Quarry (2) Status. За 2 маркера вместо этого получает Quarry (4).`,
+  "the-evidence-mounts": `Условие: выберите 3 вражеских Suspects. Разместите Search Event marker в контакте с каждым Suspect. В пределах 4" от Search нет вражеских Suspects.
 
-Ресурс 1: дружественная модель с Alias: Batman получает 2 Free Efforts в эту активацию во время Attacking или Defending.`,
-  "mother-of-strays": `Условие: выберите дружественную модель, когда она Reveals an enemy Suspect, который нельзя разыграть в Round 4.
+Ресурс 1: дружественная модель с Alias: Batman получает 2 Free Efforts в эту активацию во время атаки или защиты.`,
+  "mother-of-strays": `Условие: выберите дружественную модель, когда она раскрывает вражеский Suspect, который нельзя разыграть в 4-м раунде.
 
 Засчитайте, если цель находится в игре в конце следующей Recount Phase.
 
 Ресурс 1: во время активации дружественной модели выберите дружественную модель в пределах 8" от дружественной модели с Alias: Catwoman. Передвиньте ее на 4".`,
-  "secure-the-drop": `Условие: выберите 3 friendly Suspects. Set a Drop Event marker in contact with each Suspect.
+  "secure-the-drop": `Условие: выберите 3 дружественных Suspects. Разместите Drop Event marker в контакте с каждым Suspect.
 
 В пределах 4" от 2 Drop markers больше дружественных моделей, чем вражеских.
 
 Ресурс 1: дружественная модель теряет Black Money Equipment, а вы получаете $100 Black Money.`,
-  "cover-up": `Условие: выберите 3 friendly Suspects. Эти Suspects являются Evidence markers. Дружественная модель находится в контакте с Evidence.
+  "cover-up": `Условие: выберите 3 дружественных Suspects. Эти Suspects являются Evidence markers. Дружественная модель находится в контакте с Evidence.
 
 Ресурс 1: отмените Objective card, использованную как Resource. Эта карта сбрасывается. Затем оппонент убирает 1 ваш Suspect.`,
-  "moth-signal": `Условие: выберите Scenery element в пределах 4" от дружественной модели и минимум 8" вне дружественной DZ.
+  "moth-signal": `Условие: выберите элемент местности в пределах 4" от дружественной модели и минимум 8" вне дружественной DZ.
 
-В пределах 4" от этого Scenery element есть дружественный Suspect и дружественная модель.
+В пределах 4" от этого элемента местности есть дружественный Suspect и дружественная модель.
 
 Ресурс 1: разместите дружественную модель с Alias: Killer Moth в контакте с дружественным Suspect, который находится в пределах 4" от другой дружественной модели. Затем уберите этот Suspect.`,
-  "overwhelming-charisma": `Условие: выберите вражескую модель и дружественную модель. Каждый раз, когда эта дружественная модель Reveals a Suspect, поместите дружественный маркер на эту карту. Каждый раз, когда эта вражеская модель Reveals a Suspect, поместите вражеский маркер на эту карту.
+  "overwhelming-charisma": `Условие: выберите вражескую модель и дружественную модель. Каждый раз, когда эта дружественная модель раскрывает Suspect, поместите дружественный маркер на эту карту. Каждый раз, когда эта вражеская модель раскрывает Suspect, поместите вражеский маркер на эту карту.
 
 На этой карте больше дружественных маркеров, чем вражеских.
 
 Burn 1: вражеская модель, выполняющая Willpower roll в пределах 4" от дружественной модели с Alias: Kite-Man, добавляет 2 к броску.`,
   "time-master": `Условие: оппонент выбирает до 3 своих Suspects. Эти Suspects удалены или в пределах 4" от них есть дружественный Suspect.
 
-Ресурс 1: активная дружественная модель в пределах 4" от дружественной модели с Alias: Clock King Sets a Time Warp Event marker в контакт. В конце активации разместите эту модель в контакте с Time Warp.`,
-  "cold-as-death": `Условие: как минимум 4 модели получают movement penalty.
+Ресурс 1: активная дружественная модель в пределах 4" от дружественной модели с Alias: Clock King размещает Time Warp Event marker в контакте. В конце активации разместите эту модель в контакте с Time Warp.`,
+  "cold-as-death": `Условие: как минимум 4 модели получают штраф к движению.
 
-Ресурс 1: выберите до 3 friendly Suspects в пределах 6" от дружественной модели с Alias: Gentleman Ghost. Выберите модель в пределах 4" от каждого Suspect, чтобы она получила Slow (4) Status.`,
-  "calendar-crimes": `Условие: каждый раз, когда дружественная модель Sets a Suspect, поместите дружественный маркер на эту карту. Каждый раз, когда вражеская модель Sets or Reveals a Suspect, поместите вражеский маркер на эту карту.
+Ресурс 1: выберите до 3 дружественных Suspects в пределах 6" от дружественной модели с Alias: Gentleman Ghost. Выберите модель в пределах 4" от каждого Suspect, чтобы она получила Slow (4) Status.`,
+  "calendar-crimes": `Условие: каждый раз, когда дружественная модель выставляет Suspect, поместите дружественный маркер на эту карту. Каждый раз, когда вражеская модель выставляет или раскрывает Suspect, поместите вражеский маркер на эту карту.
 
 На карте больше дружественных маркеров, чем вражеских.
 
-Ресурс 1: когда дружественная модель Reveals an enemy Suspect, Set a friendly Suspect within 4". Если эта модель имеет Alias: Calendar Man, поставьте его в пределах 12" вместо 4".`,
-  "sauce-and-pickles": `Условие: дружественная модель Reveals an enemy Suspect в пределах 4" от вражеской модели, страдающей как минимум от 2 Status.
+Ресурс 1: когда дружественная модель раскрывает вражеский Suspect, выставьте дружественный Suspect в пределах 4". Если эта модель имеет Alias: Calendar Man, поставьте его в пределах 12" вместо 4".`,
+  "sauce-and-pickles": `Условие: дружественная модель раскрывает вражеский Suspect в пределах 4" от вражеской модели, страдающей как минимум от 2 Status.
 
-Ресурс 1: во время этой активации дружественная модель с Alias: Condiment King получает +1 to hit. Если любой hit засчитан, цель получает Push (4) и Scared Status.`,
-  "kobra-viral-bomb": `Условие: Set a Kobra Bomb Event marker в пределах 4" от Suspect. Затем Set 3 Detonator Event markers в пределах 8" от Kobra Bomb. Модель может Manipulate a Detonator, чтобы убрать его. При удалении бросьте 1D6: на 1 Kobra Bomb detonates. Если остались Detonators, во время Recount Kobra Bomb detonates. При взрыве все модели в пределах 2" от Kobra Bomb получают 2 Damage и Poison Status. Затем уберите Kobra Bomb.
+Ресурс 1: во время этой активации дружественная модель с Alias: Condiment King получает +1 к попаданию. Если любое попадание засчитано, цель получает Push (4) и Scared Status.`,
+  "kobra-viral-bomb": `Условие: разместите Kobra Bomb Event marker в пределах 4" от Suspect. Затем разместите 3 Detonator Event markers в пределах 8" от Kobra Bomb. Модель может выполнить Manipulate Detonator, чтобы убрать его. При удалении бросьте 1D6: на 1 Kobra Bomb взрывается. Если остались Detonators, во время Recount Kobra Bomb взрывается. При взрыве все модели в пределах 2" от Kobra Bomb получают 2 Damage и Poison Status. Затем уберите Kobra Bomb.
 
 Засчитайте, если вражеская модель получила Damage в результате.
 
 Ресурс 1: выбранная модель в пределах 8" от дружественной модели с Alias: Kobra убирает 2 Damage.
 
 Ресурс 2: цель также убирает все Status.`,
-  "strict-control": `Условие: вражеская модель в пределах 4" от дружественной модели с Rank: Leader или Free Agent проваливает Willpower or Endurance roll.
+  "strict-control": `Условие: вражеская модель в пределах 4" от дружественной модели с Rank: Leader или Free Agent проваливает бросок Willpower или Endurance.
 
-Ресурс 3: разместите модель с Alias: Kobra Hybrid, ранее удаленную как Casualty, в пределах 2" от активной дружественной модели. Затем уберите активную модель из игры. Kobra Hybrid может выполнить 1 action.
+Ресурс 3: разместите модель с Alias: Kobra Hybrid, ранее удаленную как Casualty, в пределах 2" от активной дружественной модели. Затем уберите активную модель из игры. Kobra Hybrid может выполнить 1 действие.
 
-Ресурс 5: вместо этого Kobra Hybrid может выполнить 3 separate actions.`,
-  "state-of-fear": `Opening: каждый раз, когда Fear card возвращается в Fear Pile, поместите маркер на эту карту. Один раз за Round сбросьте верхнюю карту вашей Objective deck.
+Ресурс 5: вместо этого Kobra Hybrid может выполнить 3 отдельных действия.`,
+  "state-of-fear": `Opening: каждый раз, когда Fear card возвращается в Fear Pile, поместите маркер на эту карту. Один раз за раунд сбросьте верхнюю карту вашей Objective deck.
 
 Засчитайте, если количество маркеров на этой карте совпадает с типом сброшенной карты: 1-2 с первым типом, 3-4 со вторым типом, 5-6 с третьим типом.
 
@@ -13822,9 +13822,9 @@ const equipmentByFaction = {
     { name: "Camo Vest", fundingCost: 200, repCost: 0, maxPerCrew: 2, conditions: [], effects: ["Model gains the Stealth rule."] },
     { name: "Gas Mask", fundingCost: 50, repCost: 0, maxPerCrew: 3, conditions: [], effects: ["Model gains the Gas Mask rule."] },
     { name: "War Hardened", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Cruel trait."] },
-    { name: "Handcuffs", officialId: 226, fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: ["Bane"], targetModels: ["Henchman"], effects: ["Model gains the Arrest rule."] },
-    { name: "Venom Laboratory", officialId: 50, fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: ["Bane"], targetModels: ["Leader", "Sidekick"], effects: ["All models can use >1 Titan Dose; Venom Dose cost $50; model removed from play."] },
-    { name: "Venom Applicator", officialId: 52, fundingCost: 0, repCost: 2, maxPerCrew: 2, conditions: ["Bane"], targetModels: ["Henchman"], effects: ["Can use Titan/Venom on friendly model in contact."] },
+    { name: "Handcuffs", officialId: 226, fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: ["Bane"], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Model gains the Arrest rule."] },
+    { name: "Venom Laboratory", officialId: 50, fundingCost: 100, repCost: 5, maxPerCrew: 1, conditions: ["Bane"], targetModels: ["Leader", "Sidekick"], effects: ["All models in your crew may use more than 1 Titan Dose per game. This bonus remains in play even if this model is removed from play or leaves the Gaming Area. In addition, the cost of Venom Doses in the equipment list is reduced to $50."] },
+    { name: "Venom Applicator", officialId: 52, fundingCost: 0, repCost: 2, maxPerCrew: 2, conditions: ["Bane"], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Model may use Titan and Venom Doses on a friendly model in contact."] },
     { name: "Military Progress", fundingCost: 100, repCost: 0, maxPerCrew: 2, conditions: ["Bird"], effects: ["Model gains Veteran rule."] },
     { name: "Dual Handguns", fundingCost: 300, repCost: 7, maxPerCrew: 1, conditions: ["Thomas Wayne"], targetModels: ["Thomas Wayne"], effects: ["Gains Rapid Fire and Dual Handguns weapon."], isUnaffectedByBroken: true },
     { name: "Surgeon Training", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Thomas Wayne"], effects: ["Model gains the Medic trait."] },
@@ -14956,9 +14956,15 @@ const officialEquipmentRulesByFaction = {
       "repCost": 0,
       "maxPerCrew": 1,
       "targetModels": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
         "Henchman"
       ],
       "targetRanks": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
         "Henchman"
       ],
       "excludedTargetOfficialIds": [
@@ -19421,9 +19427,15 @@ const officialEquipmentRulesByFaction = {
       "repCost": 0,
       "maxPerCrew": 1,
       "targetModels": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
         "Henchman"
       ],
       "targetRanks": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
         "Henchman"
       ],
       "requiredCrewOfficialIds": [
@@ -19644,9 +19656,15 @@ const officialEquipmentRulesByFaction = {
       "repCost": 2,
       "maxPerCrew": 2,
       "targetModels": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
         "Henchman"
       ],
       "targetRanks": [
+        "Leader",
+        "Sidekick",
+        "Free Agent",
         "Henchman"
       ],
       "requiredCrewOfficialIds": [
@@ -19675,7 +19693,7 @@ const officialEquipmentRulesByFaction = {
       "name": "Venom Laboratory",
       "officialId": 50,
       "fundingCost": 100,
-      "repCost": 0,
+      "repCost": 5,
       "maxPerCrew": 1,
       "targetModels": [
         "Leader",
