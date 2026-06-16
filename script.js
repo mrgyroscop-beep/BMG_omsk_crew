@@ -12245,7 +12245,29 @@ function modelRepValue(model) {
   return numericValue(model?.rep, 0);
 }
 
-function modelFundingValue(model) {
+function getLieutenantAliasTargets(model) {
+  return getModelTraits(model).flatMap(trait => {
+    const match = String(trait || "").match(/^Lieutenant\s*\((.+)\)$/i);
+    if (!match) return [];
+    return match[1]
+      .split(/\s*(?:,|\/|&|\bor\b|\band\b)\s*/i)
+      .map(name => name.trim())
+      .filter(Boolean);
+  });
+}
+
+function hasLieutenantFundingDiscount(model, crewModels = getRecruitedCrewModels()) {
+  const targets = getLieutenantAliasTargets(model);
+  if (!targets.length) return false;
+
+  return crewModels.some(crewModel =>
+    !isSameModel(crewModel, model) &&
+    targets.some(target => modelMatchesEquipmentName(crewModel, target))
+  );
+}
+
+function modelFundingValue(model, crewModels = getRecruitedCrewModels()) {
+  if (hasLieutenantFundingDiscount(model, crewModels)) return 0;
   return numericValue(model?.funding, 0);
 }
 
@@ -12253,21 +12275,26 @@ function crewModelRepTotal(model) {
   return modelRepValue(model) + (model?.equipment || []).reduce((sum, eq) => sum + equipmentRepValue(eq), 0);
 }
 
-function crewModelFundingTotal(model) {
-  return modelFundingValue(model) + (model?.equipment || []).reduce((sum, eq) => sum + equipmentFundingValue(eq), 0);
+function crewModelFundingTotal(model, crewModels = getRecruitedCrewModels()) {
+  return modelFundingValue(model, crewModels) + (model?.equipment || []).reduce((sum, eq) => sum + equipmentFundingValue(eq), 0);
 }
 
 function crewRepUsed() {
   return getRecruitedCrewModels().reduce((sum, model) => sum + crewModelRepTotal(model), 0);
 }
 
-function crewFundingUsed() {
-  return getRecruitedCrewModels().reduce((sum, model) => sum + crewModelFundingTotal(model), 0);
+function crewFundingUsed(crewModels = getRecruitedCrewModels()) {
+  return crewModels.reduce((sum, model) => sum + crewModelFundingTotal(model, crewModels), 0);
+}
+
+function crewFundingUsedWithCandidate(model) {
+  const crewModels = getRecruitedCrewModels();
+  return crewFundingUsed([...crewModels, model]);
 }
 
 function canAffordModelInCurrentCrew(model) {
   return crewRepUsed() + modelRepValue(model) <= BMG_REP_LIMIT
-    && crewFundingUsed() + modelFundingValue(model) <= bmgFundingLimit();
+    && crewFundingUsedWithCandidate(model) <= bmgFundingLimit();
 }
 
 function updateBuilderMeter(meterId, barId, noteId, used, limit) {
@@ -12495,11 +12522,12 @@ function renderMiniMetaBadges(model, options = {}) {
   const printable = hasPrintableFile(model);
   const printClass = printable ? "mini-badge-print" : "mini-badge-no-print";
   const printLabel = note || getPrintableStatusText(model);
+  const funding = options.rawFunding ? model?.funding : modelFundingValue(model);
 
   return `
     <div class="mini-badges">
       <span class="mini-badge mini-badge-rep">${displayValue(model?.rep)} REP</span>
-      <span class="mini-badge mini-badge-funding">$${displayValue(model?.funding)}</span>
+      <span class="mini-badge mini-badge-funding">$${displayValue(funding)}</span>
       <span class="mini-badge ${note ? "mini-badge-note" : printClass}">${escapeHtml(printLabel)}</span>
     </div>
   `;
@@ -13064,7 +13092,7 @@ const showFullCard = model => {
     : model.rank || "Free Agent";
 
   const rep = displayValue(model.rep);
-  const funding = displayValue(model.funding);
+  const funding = displayValue(isDisplayModel ? model.funding : modelFundingValue(crewModel || model));
 
   const factionIconsHTML = renderFactionIcons(mainFactions);
   const rivalsIconsHTML = renderFactionIcons(canonicalRivalFactions);
@@ -13769,7 +13797,7 @@ function bmgCanAddModel(model, options = {}) {
 
   // Рассчитываем общую Rep и Funding с учетом оборудования
   let totalRep = crewRepUsed() + modelRepValue(model);
-  let usedFunding = crewFundingUsed() + modelFundingValue(model);
+  let usedFunding = crewFundingUsedWithCandidate(model);
 
   const rank = model.rankUsed;
   if (!rank) {
@@ -14531,7 +14559,7 @@ function buildRosterExportText(rosterName = "") {
   recruitedCrew.forEach(m => {
     exportText += `- ${m.name}`;
     exportText += m.rankUsed ? ` [${m.rankUsed}]` : "";
-    exportText += ` | Rep ${displayValue(m.rep)} | Funding $${displayValue(m.funding)}`;
+    exportText += ` | Rep ${displayValue(modelRepValue(m))} | Funding $${displayValue(modelFundingValue(m))}`;
     if (m.id) exportText += ` | ID ${m.id}`;
     if (m.realname) exportText += ` | Realname ${m.realname}`;
     if (m.base) exportText += ` | Base ${m.base}`;
