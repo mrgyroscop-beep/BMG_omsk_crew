@@ -12033,12 +12033,53 @@ function countCrewEquipmentNamed(equipmentName, crewModels = getRecruitedCrewMod
   }, 0);
 }
 
+function crewHasTraitNamed(traitName, crewModels = getRecruitedCrewModels()) {
+  const expected = normalizeEquipmentMatchName(traitName);
+  return (crewModels || []).some(model =>
+    getModelTraits(model).some(trait => normalizeEquipmentMatchName(getCleanName(trait)) === expected)
+  );
+}
+
+function modelHasTraitNamed(model, traitName) {
+  const expected = normalizeEquipmentMatchName(traitName);
+  return getModelTraits(model).some(trait => normalizeEquipmentMatchName(getCleanName(trait)) === expected);
+}
+
+function isSmugglerDiscountEquipment(eq) {
+  const name = normalizeEquipmentMatchName(equipmentPricingName(eq));
+  return name === "radio" || name === "magazine" || name.startsWith("magazine ");
+}
+
+function isIcebergLoungeEquipment(eq) {
+  const name = normalizeEquipmentMatchName(equipmentPricingName(eq));
+  return name.endsWith(" iceberg lounge") ||
+    (Array.isArray(eq?.conditions) && eq.conditions.some(condition =>
+      normalizeEquipmentMatchName(condition) === "iceberg lounge"
+    ));
+}
+
+function icebergLoungeEquipmentLimit() {
+  return 1 + (BMG_BOSS && modelHasTraitNamed(BMG_BOSS, "Iceberg Lounge") ? 1 : 0);
+}
+
+function crewIcebergLoungeEquipmentCount(crewModels = getRecruitedCrewModels()) {
+  return (crewModels || []).reduce((total, model) => {
+    if (!Array.isArray(model?.equipment)) return total;
+    return total + model.equipment.filter(isIcebergLoungeEquipment).length;
+  }, 0);
+}
+
 function equipmentFundingValue(eq, crewModels = getRecruitedCrewModels()) {
   if (equipmentIsNamed(eq, "Venom Dose") && crewHasEquipmentNamed("Venom Laboratory", crewModels)) {
     return 50;
   }
 
-  return numericValue(eq?.fundingCost, 0);
+  const fundingCost = numericValue(eq?.fundingCost, 0);
+  if (isSmugglerDiscountEquipment(eq) && crewHasTraitNamed("Smuggler", crewModels)) {
+    return Math.floor(fundingCost / 2);
+  }
+
+  return fundingCost;
 }
 
 function equipmentPurchaseFundingValue(eq, crewModels = getRecruitedCrewModels()) {
@@ -14267,6 +14308,10 @@ function canShowEquipmentForCrewModel(eq, crewModel) {
   if (crewModel.equipment && Array.isArray(eq.conflictsWith) && eq.conflictsWith.some(name =>
     crewModel.equipment.some(item => item.name === name)
   )) {
+    return false;
+  }
+
+  if (isIcebergLoungeEquipment(eq) && crewIcebergLoungeEquipmentCount() >= icebergLoungeEquipmentLimit()) {
     return false;
   }
 

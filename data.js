@@ -13801,7 +13801,7 @@ const equipmentByFaction = {
     { name: "Helmet", fundingCost: 150, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Hardened trait."] },
     { name: "Raised on the Streets", fundingCost: 150, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Plead trait."] },
     { name: "Ostentatious Clothing", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Oswald C. Cobblepot"], effects: ["Model gains the Goad rule."] },
-    { name: "Trained Mobsters", fundingCost: 250, repCost: 0, maxPerCrew: 2, conditions: ["Emperor Penguin"], effects: ["+2 Endurance."] },
+    { name: "Trained Mobsters", fundingCost: 250, repCost: 2, maxPerCrew: 2, conditions: ["Emperor Penguin"], effects: ["+2 Endurance."] },
     { name: "Neurotoxic Drugs", fundingCost: 500, repCost: 0, maxPerCrew: 1, conditions: ["Iceberg Lounge"], effects: ["+2 Movement and Dodge trait."] },
     { name: "Silencer", fundingCost: 400, repCost: 0, maxPerCrew: 1, conditions: ["Iceberg Lounge"], effects: ["One ranged weapon gains Silencer trait."] },
     { name: "Weird Ammo", fundingCost: 300, repCost: 0, maxPerCrew: 1, conditions: ["Iceberg Lounge"], effects: ["Ranged attacks gain Enervating 2 or Anti-tank."] },
@@ -14079,7 +14079,7 @@ const officialEquipmentRulesByFaction = {
       "name": "Always Prepared",
       "officialId": 341,
       "fundingCost": 200,
-      "repCost": 0,
+      "repCost": 2,
       "maxPerCrew": 1,
       "targetModels": [
         "Henchman"
@@ -18452,7 +18452,7 @@ const officialEquipmentRulesByFaction = {
       "name": "Trained Mobsters",
       "officialId": 105,
       "fundingCost": 250,
-      "repCost": 0,
+      "repCost": 2,
       "maxPerCrew": 2,
       "targetModels": [
         "Henchman",
