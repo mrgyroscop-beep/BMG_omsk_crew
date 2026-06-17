@@ -13754,7 +13754,7 @@ const equipmentByFaction = {
     { name: "Magazine", fundingCost: 300, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Model gains one Ammunition for one weapon."] },
     { name: "Moment of Glory", fundingCost: 150, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Once per game, at the start of the activation of this model, you may use Moment of Glory. This model benefits from the Boss's Inspire trait exactly as if it held Rank: Henchman until the end of the round."] },
     { name: "Reconnaissance", fundingCost: 300, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Model gains the Undercover trait."] },
-    { name: "Heroic Jump", fundingCost: 300, repCost: 0, maxPerCrew: 1, conditions: ["Bruce Wayne", "Model has Teen Titans trait cannot purchase"], targetModels: ["Henchman"], effects: ["Model gains the Super Jump trait."] },
+    { name: "Heroic Jump", fundingCost: 300, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Henchman"], effects: ["Model gains the Super Jump trait."] },
     { name: "Upgraded Batsuit", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: ["Bruce Wayne"], targetModels: ["Bruce Wayne"], effects: ["Model gains +1 Endurance."] },
     { name: "Batman Inc.", fundingCost: 300, repCost: 3, maxPerCrew: 1, conditions: ["Bruce Wayne"], targetModels: ["Sidekick", "Free Agent"], effects: ["Model gains the Bat-Armor MKII trait. A model cannot have more than one Bat-Armor trait."] },
     { name: "Martial Arts Training", fundingCost: 100, repCost: 2, maxPerCrew: 1, conditions: ["Bruce Wayne"], targetModels: ["Sidekick", "Free Agent"], effects: ["Model gains the Martial Artist trait."] },
@@ -13869,8 +13869,8 @@ const equipmentByFaction = {
     { name: "Battle Bot", fundingCost: 250, repCost: 3, maxPerCrew: 1, conditions: ["Model has Bot trait"], effects: ["Model gains the Claws rule."] },
     { name: "Shock Droid", fundingCost: 50, repCost: 0, maxPerCrew: 1, conditions: ["Model has Bot trait"], effects: ["Model gains the CRT: Stunned rule."] },
     { name: "Improved Chassis MK", fundingCost: 50, repCost: 0, maxPerCrew: 1, conditions: ["Model has Bot trait"], effects: ["The model gains Tireless rule."] },
-    { name: "Improved Armor", fundingCost: 250, repCost: 2, maxPerCrew: 1, conditions: ["The Riddler (Arkham Knight) or The Riddler's Mech (Arkham Knight)"], targetModels: ["The Riddler"], effects: ["Bots gain Light Armor Trait."], isUnaffectedByBroken: true },
-    { name: "Enhanced Servo-engines", fundingCost: 150, repCost: 0, maxPerCrew: 1, conditions: ["The Riddler (Arkham Knight) or The Riddler's Mech (Arkham Knight)"], targetModels: ["Riddler's Mech"], effects: ["+1 Movement and Combo: Mechanic Claw."], isUnaffectedByBroken: true }
+    { name: "Improved Armor", fundingCost: 250, repCost: 2, maxPerCrew: 1, conditions: ["The Riddler (Arkham Knight) or The Riddler's Mech"], targetModels: ["The Riddler"], effects: ["Bots gain Light Armor Trait."], isUnaffectedByBroken: true },
+    { name: "Enhanced Servo-engines", fundingCost: 150, repCost: 0, maxPerCrew: 1, conditions: ["The Riddler (Arkham Knight) or The Riddler's Mech"], targetModels: ["Riddler's Mech"], effects: ["+1 Movement and Combo: Mechanic Claw."], isUnaffectedByBroken: true }
   ],
   "Mr. Freeze": [
     { name: "Magazine", fundingCost: 200, repCost: 0, maxPerCrew: 2, conditions: [], effects: ["+1 to Ammunition for one weapon."] },
@@ -13961,8 +13961,8 @@ const equipmentByFaction = {
     { name: "Bribe", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Informer trait."] },
     { name: "C-4", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Explosive Gel trait."] },
     { name: "Gas Mask", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Gas Mask trait."] },
-    { name: "Scarred Silver Dollar", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Harvey Dent", "Restricted: Name: Harvey Dent"], targetModels: ["Sidekick"], effects: ["This model's crew gains 1 Blood Money when this model removes an enemy model as a Casualty."] },
-    { name: "Vote for Harvey Dent Banner", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Harvey Dent", "Restricted: Name: Harvey Dent"], targetModels: ["Sidekick"], effects: ["Model's Inspire radius is increased by 4\"."] },
+    { name: "Scarred Silver Dollar", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Leader", "Harvey Dent"], targetRanks: ["Leader"], targetOfficialIds: [350, 485, 486, 599, 766, 783, 840, 841], requiredCrewOfficialIds: [350, 485, 486, 599, 766, 783, 840, 841], effects: ["This model's crew gains 1 Blood Money when this model removes an enemy model as a Casualty."] },
+    { name: "Vote for Harvey Dent Banner", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Leader", "Harvey Dent"], targetRanks: ["Leader"], targetOfficialIds: [350, 485, 486, 599, 766, 783, 840, 841], requiredCrewOfficialIds: [350, 485, 486, 599, 766, 783, 840, 841], effects: ["Model's Inspire radius is increased by 4\"."] },
     { name: "Lace", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Alias: Sugar in crew"], targetModels: ["Henchman"], effects: ["One of this model's melee weapons gains the Blunt (2) trait."] },
     { name: "Leather", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Alias: Spice in crew"], targetModels: ["Henchman"], effects: ["One of this model's melee weapons gains the Bleed (2) trait."] }
   ],
@@ -14079,7 +14079,7 @@ const officialEquipmentRulesByFaction = {
       "name": "Always Prepared",
       "officialId": 341,
       "fundingCost": 200,
-      "repCost": 2,
+      "repCost": 0,
       "maxPerCrew": 1,
       "targetModels": [
         "Henchman"
@@ -14956,15 +14956,9 @@ const officialEquipmentRulesByFaction = {
       "repCost": 0,
       "maxPerCrew": 1,
       "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
         "Henchman"
       ],
       "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
         "Henchman"
       ],
       "excludedTargetOfficialIds": [
@@ -15534,8 +15528,8 @@ const officialEquipmentRulesByFaction = {
     {
       "name": "Improvised Armor",
       "officialId": 359,
-      "fundingCost": 150,
-      "repCost": 0,
+      "fundingCost": 0,
+      "repCost": 150,
       "maxPerCrew": 1,
       "targetModels": [
         "Henchman"
@@ -16904,7 +16898,7 @@ const officialEquipmentRulesByFaction = {
     {
       "name": "Sergeant Training",
       "officialId": 39,
-      "fundingCost": 50,
+      "fundingCost": 100,
       "repCost": 0,
       "maxPerCrew": 2,
       "targetModels": [
@@ -17961,7 +17955,7 @@ const officialEquipmentRulesByFaction = {
     {
       "name": "Masks of Wonderland",
       "officialId": 140,
-      "fundingCost": 200,
+      "fundingCost": 0,
       "repCost": 0,
       "maxPerCrew": 1,
       "targetModels": [
@@ -18452,7 +18446,7 @@ const officialEquipmentRulesByFaction = {
       "name": "Trained Mobsters",
       "officialId": 105,
       "fundingCost": 250,
-      "repCost": 2,
+      "repCost": 0,
       "maxPerCrew": 2,
       "targetModels": [
         "Henchman",
@@ -18729,7 +18723,7 @@ const officialEquipmentRulesByFaction = {
     {
       "name": "Level Up!",
       "officialId": 224,
-      "fundingCost": 150,
+      "fundingCost": 100,
       "repCost": 0,
       "maxPerCrew": 1,
       "targetModels": [
@@ -19166,7 +19160,7 @@ const officialEquipmentRulesByFaction = {
     {
       "name": "Neurotoxic Drugs",
       "officialId": 337,
-      "fundingCost": 300,
+      "fundingCost": 200,
       "repCost": 0,
       "maxPerCrew": 1,
       "targetModels": [
@@ -19397,7 +19391,7 @@ const officialEquipmentRulesByFaction = {
     {
       "name": "Gas Mask",
       "officialId": 193,
-      "fundingCost": 150,
+      "fundingCost": 50,
       "repCost": 0,
       "maxPerCrew": 3,
       "targetModels": [
@@ -19427,15 +19421,9 @@ const officialEquipmentRulesByFaction = {
       "repCost": 0,
       "maxPerCrew": 1,
       "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
         "Henchman"
       ],
       "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
         "Henchman"
       ],
       "requiredCrewOfficialIds": [
@@ -19529,7 +19517,7 @@ const officialEquipmentRulesByFaction = {
     {
       "name": "Military Progress",
       "officialId": 53,
-      "fundingCost": 150,
+      "fundingCost": 100,
       "repCost": 0,
       "maxPerCrew": 2,
       "targetModels": [
@@ -19656,15 +19644,9 @@ const officialEquipmentRulesByFaction = {
       "repCost": 2,
       "maxPerCrew": 2,
       "targetModels": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
         "Henchman"
       ],
       "targetRanks": [
-        "Leader",
-        "Sidekick",
-        "Free Agent",
         "Henchman"
       ],
       "requiredCrewOfficialIds": [
@@ -19693,7 +19675,7 @@ const officialEquipmentRulesByFaction = {
       "name": "Venom Laboratory",
       "officialId": 50,
       "fundingCost": 100,
-      "repCost": 5,
+      "repCost": 0,
       "maxPerCrew": 1,
       "targetModels": [
         "Leader",

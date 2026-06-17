@@ -1383,6 +1383,23 @@ const rankLabels = {
 
 const exactTextTranslations = {
   ru: {
+    "B.U.C. (Bots Upgraded CPU)": "B.U.C. (улучшенный CPU ботов)",
+    "Bastard Sword": "Полуторный меч",
+    "Bow": "Лук",
+    "Cheshire Cat mask": "Маска Чеширского кота",
+    "Combat Braces": "Боевые наручи",
+    "Daughter of Jupiter": "Дочь Юпитера",
+    "Fervent Follower - Deacon Blackfire": "Рьяный последователь - Deacon Blackfire",
+    "Grapple Gun - Daniel Dreiberg": "Кошка-пистолет - Daniel Dreiberg",
+    "Its a Dud": "Это муляж",
+    "Katana": "Катана",
+    "Lockpick": "Отмычка",
+    "Magazine - $250": "Магазин - $250",
+    "Poison Training - Alexis Kaye": "Подготовка с ядами - Alexis Kaye",
+    "Queen of Hearts Mask": "Маска Королевы червей",
+    "Rorschach's Journal": "Дневник Rorschach",
+    "Traditional Way": "Традиционный путь",
+    "White Rabbit Mask": "Маска Белого кролика",
     "Magazine": "Магазин",
     "Flashlight": "Фонарь",
     "Handcuffs": "Наручники",
@@ -1456,6 +1473,8 @@ const exactTextTranslations = {
     "Hidden Magazines": "Скрытые магазины",
     "Cybernetic Arms": "Кибернетические руки",
     "Arkham Knight Secret Armour": "Секретная броня Рыцаря Аркхема",
+    "Arkham Knight Secret Armoury": "Секретный арсенал Рыцаря Аркхема",
+    "Electric Hook": "Электрокрюк",
     "Hook Pistol": "Крюк-пистолет",
     "Martial Training": "Боевая подготовка",
     "Contract": "Контракт",
@@ -1494,6 +1513,7 @@ const exactTextTranslations = {
     "Pure Lazarus": "Чистый Лазарь",
     "Shadow Training": "Подготовка в тенях",
     "Unarmed Combat Training": "Подготовка к рукопашному бою",
+    "Poisong Training": "Подготовка с ядами",
     "Bow Training": "Подготовка лучника",
     "Spray Can": "Баллончик с краской",
     "Adaptive Planning": "Адаптивное планирование",
@@ -1544,6 +1564,7 @@ const exactTextTranslations = {
     "The Good King": "Добрый король",
     "King's Call": "Зов короля",
     "Last Service": "Последняя служба",
+    "Mechanic Claw": "Механическая клешня",
     "Punchline's Toys": "Игрушки Панчлайн",
     "Airborne Deployment": "Воздушное развертывание",
     "Aerial Locator System": "Система воздушного наведения",
@@ -1675,18 +1696,18 @@ const exactTextTranslations = {
     "Vampire Queen in crew": "Vampire Queen в команде",
     "The Court": "Двор",
     "+1 Magazines to one weapon.": "+1 магазин для одного оружия.",
-    "+1 Movement and Combo: Mechanic Claw.": "+1 к Movement и Combo: Mechanic Claw.",
+    "+1 Movement and Combo: Mechanic Claw.": "+1 к перемещению и Combo: Mechanic Claw.",
     "+1 to Ammunition for one weapon.": "+1 к боезапасу одного оружия.",
     "+1 to Endurance.": "+1 к стойкости.",
     "+2 Endurance.": "+2 к стойкости.",
-    "+2 Movement and Dodge trait.": "+2 к Movement и трейт Dodge.",
-    "+2 Movement and Dodge traits.": "+2 к перемещению и трейты Dodge.",
-    "+2 Movement.": "+2 к Movement.",
+    "+2 Movement and Dodge trait.": "+2 к перемещению и трейт Уклонение.",
+    "+2 Movement and Dodge traits.": "+2 к перемещению и трейт Уклонение.",
+    "+2 Movement.": "+2 к перемещению.",
     "Activate 2nd time, then suffer 🩸🩸.": "Активируется второй раз, затем получает 🩸🩸.",
     "All models can use >1 Titan Dose; Venom Dose cost $50; model removed from play.": "Все модели могут использовать больше 1 Titan Dose; стоимость Venom Dose становится $50; модель удаляется из игры.",
     "Always within Boss's Inspire range.": "Всегда считается находящейся в радиусе Inspire своего босса.",
     "Always within Inspire range.": "Всегда считается в радиусе Inspire.",
-    "Bots gain Light Armor Trait.": "Боты получают трейт Light Armor.",
+    "Bots gain Light Armor Trait.": "Боты получают трейт Лёгкая броня.",
     "Can use Titan/Venom on friendly model in contact.": "Может использовать Titan/Venom на дружественной модели в контакте.",
     "Choose one mask: Queen of Hearts (Assassin 1, Order), White Rabbit (Fast, Tireless), Cheshire Cat (Stealth, Climbing Claws).": "Выберите одну маску: Queen of Hearts (Assassin 1, Order), White Rabbit (Fast, Tireless), Cheshire Cat (Stealth, Climbing Claws).",
     "Choose: Tracking or Precise Aim rule.": "Выберите: правило Tracking или Precise Aim.",
@@ -1703,7 +1724,7 @@ const exactTextTranslations = {
     "Enhances Reanimated Owl models (details in desc).": "Усиливает модели Reanimated Owl. Подробности в описании.",
     "Free Manipulate action if no Task counter.": "Бесплатное действие Manipulate, если нет маркера задачи.",
     "Gain Protect Me! rule.": "Получает правило Protect Me!.",
-    "Gains Grapple Gun and Electric Hook weapon.": "Получает Grapple Gun и оружие Electric Hook.",
+    "Gains Grapple Gun and Electric Hook weapon.": "Получает Кошка-пистолет и оружие Электрокрюк.",
     "Gains rank Leader or Sidekick.": "Получает ранг Leader или Sidekick.",
     "Gains Rapid Fire and Dual Handguns weapon.": "Получает Rapid Fire и оружие Dual Handguns.",
     "Generates 1 extra Sewer marker.": "Создаёт 1 дополнительный маркер канализации.",
@@ -2028,7 +2049,7 @@ const exactTextTranslations = {
     "If this model does not have an Audacity marker when it is activated, it may take one from another friendly model that is yet to activate this round.": "Если у этой модели нет маркера Audacity в момент активации, она может взять его у другой дружественной модели, которая ещё не активировалась в этом раунде.",
     "When an model within 8” is removed as a Casualty, you may place 2 {OBJECTIVE_CROSS_ICON} on top of the Psychopaths Objective card instead of 1.": "Когда модель в пределах 8” удаляется как выбывшая, вы можете положить 2 {OBJECTIVE_CROSS_ICON} на карту цели Psychopaths вместо 1.",
     "This model’s Special Action is a ‘wildcard’, which may be spent as another type of Action if you wish (this means the model can perform the same Action twice in its activation if it has sufficient Actions to spend).": "Специальное действие этой модели является «wildcard» и при желании может быть потрачено как другой тип действия. Это означает, что модель может выполнить одно и то же действие дважды за свою активацию, если у неё хватает действий.",
-    "Model may use Titan and Venom Doses on a friendly model in contact.": "Модель может использовать Titan и Venom Doses на дружественной модели в контакте.",
+    "Model may use Titan and Venom Doses on a friendly model in contact.": "Модель может использовать дозы Titan и Venom на дружественной модели в контакте.",
     "All the models within 8\" and LoS to this model counts as having Audacity for the Stage Play Objective card.": "Все модели в пределах 8\" и линии видимости от этой модели считаются имеющими Audacity для карты цели Stage Play.",
     "Model gains the Cruel trait.": "Модель получает трейт Cruel.",
     "This model choose one: Enervating (2) or Anti-Tank. Its ranged weapons gain that rule.": "Эта модель выбирает одно из двух: Enervating (2) или Anti-Tank. Её дальнобойное оружие получает выбранное правило.",
@@ -2121,7 +2142,7 @@ const exactTextTranslations = {
     "Model gains the Handyman rule.": "Модель получает правило Handyman.",
     "Model gains the Hockey Gear trait.": "Модель получает трейт Hockey Gear.",
     "Once per game, during this models activation, you may return a Cranial Bomb Activated card from your hand to the Cranial bomb pile.": "Один раз за игру, во время активации этой модели, вы можете вернуть карту Cranial Bomb Activated из своей руки в стопку Cranial Bomb.",
-    "Gains the Grapple Gun and the following ranged weapon:\n\nElectric Hook:   {STUN_ICON}{STUN_ICON}   RoF: 1 Ammo: 2   S.Range /Mechanical / Electric / Devastating": "Получает Grapple Gun и следующее дальнобойное оружие:\n\nElectric Hook: {STUN_ICON}{STUN_ICON} скорострельность: 1 Ammo: 2 S.Range /Mechanical / Electric / Devastating",
+    "Gains the Grapple Gun and the following ranged weapon:\n\nElectric Hook:   {STUN_ICON}{STUN_ICON}   RoF: 1 Ammo: 2   S.Range /Mechanical / Electric / Devastating": "Получает Кошка-пистолет и следующее дальнобойное оружие:\n\nЭлектрокрюк: {STUN_ICON}{STUN_ICON} скорострельность: 1 боезапас: 2 S.Range / Mechanical / Electric / Devastating",
     "Target a model within 10” and LoS. That model must pass an Endurance roll, or suffers the Freeze Status. If it passes the Endurance roll, reduce its Defense skill by 1 and gain -2MOV until the end of the round.": "Выберите модель в пределах 10” и линии видимости. Эта модель должна пройти бросок выносливости, иначе получает статус заморозки. Если бросок успешен, её значение защиты уменьшается на 1, и до конца раунда она получает штраф -2 к перемещению.",
     "When this model plays an Objective card, it may immediately search into your Objective deck 1 card to add it to its controller’s hand (instead of replenishing that played card).": "Когда эта модель играет карту цели, она может немедленно найти в вашей колоде целей 1 карту и добавить её в руку своего контролирующего игрока вместо обычного добора сыгранной карты.",
     "This model immediately Move 4\" and then may perform an extra Ranged Attack action that ignores the modifier Move before Attacking.": "Эта модель немедленно перемещается на 4\" и затем может выполнить дополнительное действие дальней атаки, игнорируя модификатор Move before Attacking.",
@@ -2303,7 +2324,7 @@ const exactTextTranslations = {
     "Enemy models within 6вЂќ and LoS cannot make Reveal actions.": "Вражеские модели в пределах 6” и линии видимости не могут выполнять действия раскрытия.",
     "When you use the Air Support rule, target an enemy model affected by the template, the target receives a Ranged attack with ROF 1, the Firearm weapon special rule and damage {BLOOD_ICON}{BLOOD_ICON} which ignores the Cover Rule.": "Когда вы используете правило Air Support, выберите вражескую модель, затронутую шаблоном. Эта цель получает дальнюю атаку с ROF 1, специальным правилом Firearm и уроном {BLOOD_ICON}{BLOOD_ICON}, который игнорирует правило Cover.",
     "Model gains the Hardened trait.": "Модель получает трейт Hardened.",
-    "Model gains +1 Ammunition for one weapon.": "Модель получает +1 Ammunition для одного оружия.",
+    "Model gains +1 Ammunition for one weapon.": "Модель получает +1 к боезапасу одного оружия.",
     "One of the modelвЂ™s ranged weapons gains Bleed (2).": "Одно дальнобойное оружие этой модели получает Bleed (2).",
     "Enemies attacking this model never benefit from the Sharp weapon special rule.": "Враги, атакующие эту модель, никогда не получают выгоду от специального оружейного правила Sharp.",
     "Model gains the Sneaking trait.": "Модель получает трейт Sneaking.",
@@ -2486,6 +2507,186 @@ const exactTextTranslations = {
 
 const exactTraitTranslations = {
   ru: {
+    "A Challenge for you": "Вызов для тебя",
+    "Aggressive Schizophrenia (Mental Disorder)": "Агрессивная шизофрения (ментальное расстройство)",
+    "Anger Management (Mental disorder)": "Контроль гнева (ментальное расстройство)",
+    "Arkham Asylum Dr": "Доктор Аркхэмской лечебницы",
+    "Attack Bonus": "Бонус атаки",
+    "Attack Penalty": "Штраф атаки",
+    "Attorney’s Allegation": "Обвинение прокурора",
+    "Attorney’s Allegation {SPECIAL_ICON}": "Обвинение прокурора {SPECIAL_ICON}",
+    "Bat-Armor Mk I": "Бэт-броня Mk I",
+    "Bat-Armor Mk II": "Бэт-броня Mk II",
+    "Bat-Armor Mk III": "Бэт-броня Mk III",
+    "Batclaw/Grapple Gun": "Бэткоготь/кошка",
+    "Batclaw/Grapple Gun {SPECIAL_ICON}": "Бэткоготь/кошка {SPECIAL_ICON}",
+    "Canary Cry": "Крик Канарейки",
+    "Canary Cry {SPECIAL_ICON}": "Крик Канарейки {SPECIAL_ICON}",
+    "Casualty": "Выбыл",
+    "Chain of Command": "Командная цепочка",
+    "Cobras's Burst": "Всплеск Кобры",
+    "Cobras's Burst {SPECIAL_ICON}": "Всплеск Кобры {SPECIAL_ICON}",
+    "Coward’s Reward": "Награда труса",
+    "Cryo-Charge": "Криозаряд",
+    "Cryo-Charge {SPECIAL_ICON}": "Криозаряд {SPECIAL_ICON}",
+    "Defense Bonus": "Бонус защиты",
+    "Defense Penalty": "Штраф защиты",
+    "Demon Mask (Inspire Fear)": "Маска демона (Inspire Fear)",
+    "Devour": "Пожирание",
+    "Dodging": "Уклонение",
+    "Doom Patrol": "Роковой патруль",
+    "Electric Handshake": "Электрическое рукопожатие",
+    "Electric Handshake {SPECIAL_ICON}": "Электрическое рукопожатие {SPECIAL_ICON}",
+    "Explosive Arrival": "Взрывное прибытие",
+    "Explosive Gel": "Взрывчатый гель",
+    "Explosive Teeths": "Взрывные зубы",
+    "Explosive Teeths {SPECIAL_ICON}": "Взрывные зубы {SPECIAL_ICON}",
+    "Funny Bomb": "Смешная бомба",
+    "Funny Bomb {SPECIAL_ICON}": "Смешная бомба {SPECIAL_ICON}",
+    "Heavy Armor": "Тяжёлая броня",
+    "Henchman Bomb": "Бомба подручного",
+    "Henchman Bomb {SPECIAL_ICON}": "Бомба подручного {SPECIAL_ICON}",
+    "Hook Arrow": "Стрела-кошка",
+    "Hook Arrow {SPECIAL_ICON}": "Стрела-кошка {SPECIAL_ICON}",
+    "Make them perfect": "Сделать их идеальными",
+    "Medium Armor": "Средняя броня",
+    "Mindless Gas Attack": "Безмозглая газовая атака",
+    "Movement Boost Bonus": "Бонус ускорения движения",
+    "Movement Boost Penalty": "Штраф движения",
+    "Objectives? Puzzles everywhere!!!": "Цели? Загадки повсюду!!!",
+    "One Shot Gun": "Однозарядное ружьё",
+    "One Shot Gun {SPECIAL_ICON}": "Однозарядное ружьё {SPECIAL_ICON}",
+    "Perfect Creations": "Идеальные создания",
+    "Poisoned Signs": "Отравленные знаки",
+    "Poisoned Signs {SPECIAL_ICON}": "Отравленные знаки {SPECIAL_ICON}",
+    "Rain of Bullets": "Дождь пуль",
+    "Rain of Bullets {SPECIAL_ICON}": "Дождь пуль {SPECIAL_ICON}",
+    "Ranged Master": "Мастер стрельбы",
+    "Sneak Attack": "Внезапная атака",
+    "Sustained Defense": "Устойчивая защита",
+    "Take Cover!": "В укрытие!",
+    "Take Cover! {SPECIAL_ICON}": "В укрытие! {SPECIAL_ICON}",
+    "Tangible Fear": "Осязаемый страх",
+    "The Fear Master": "Мастер страха",
+    "(Unique Speed Power) Molecular Vibration": "(Уникальная Speed Power) Молекулярная вибрация",
+    "(Unique Speed Power) Molecular Vibration ": "(Уникальная Speed Power) Молекулярная вибрация",
+    "Ace Chemical Barrel": "Бочка Ace Chemicals",
+    "Amazon’s Wig": "Парик амазонки",
+    "Anaphylactic Shock": "Анафилактический шок",
+    "Automatic Guns": "Автоматическое оружие",
+    "Aware of What he Did": "Осознаёт, что сделал",
+    "Aware of What he Did {SPECIAL_ICON}": "Осознаёт, что сделал {SPECIAL_ICON}",
+    "Black Bats Trail": "След Чёрных летучих мышей",
+    "Block it Out": "Выбросить из головы",
+    "Bot Bomb": "Бомба-бот",
+    "Bot Bomb {SPECIAL_ICON}": "Бомба-бот {SPECIAL_ICON}",
+    "Bomb Specialist": "Специалист по взрывчатке",
+    "Bow training": "Тренировка с луком",
+    "Bracelets of submission": "Браслеты подчинения",
+    "Bug (Archie)": "Жучок (Archie)",
+    "Catwoman's Batpod": "Бэтпод Женщины-кошки",
+    "Combat Bo": "Боевой бо",
+    "Control Through Fear": "Контроль через страх",
+    "Control Through Fear {SPECIAL_ICON}": "Контроль через страх {SPECIAL_ICON}",
+    "Controlled by Drugs": "Под контролем препаратов",
+    "Cryo-Reinforcement": "Криоусиление",
+    "Cryo-Reinforcement {SPECIAL_ICON}": "Криоусиление {SPECIAL_ICON}",
+    "Dementor’s Claw": "Коготь дементора",
+    "EM Smoke Grenades": "ЭМ дымовые гранаты",
+    "Electromatic Control Device": "Электроматическое устройство контроля",
+    "Electromatic Control Device {SPECIAL_ICON}": "Электроматическое устройство контроля {SPECIAL_ICON}",
+    "Emptying Dots": "Опустошение точек",
+    "Experimental Ammo": "Экспериментальные боеприпасы",
+    "Explosive Personality": "Взрывной характер",
+    "Explosive Sense": "Взрывное чутьё",
+    "Fear of the Dark": "Страх темноты",
+    "Fireworks": "Фейерверки",
+    "Followers - Henchman": "Последователи - подручный",
+    "Gas Jumper": "Газовый прыгун",
+    "Hidden Plans": "Скрытые планы",
+    "Hook Arrow {SPECIAL_ICON} (Batclaw)": "Стрела-кошка {SPECIAL_ICON} (Бэткоготь)",
+    "Hunting Knives": "Охотничьи ножи",
+    "I See the Light": "Я вижу свет",
+    "I See the Light {SPECIAL_ICON}": "Я вижу свет {SPECIAL_ICON}",
+    "I've Caught You": "Я тебя поймала",
+    "Improved Reinforced Gloves": "Улучшенные усиленные перчатки",
+    "Intensive Training": "Интенсивная тренировка",
+    "Knocked Down": "Сбит с ног",
+    "Let’s Ride": "Погнали",
+    "Let's cool it for now": "Давай пока остынем",
+    "Life-Force Absorption (Spell)": "Поглощение жизненной силы (заклинание)",
+    "Light Radiance": "Световое сияние",
+    "Lightning Reflexes": "Молниеносные рефлексы",
+    "Lights Out": "Свет погас",
+    "Lights Out {SPECIAL_ICON}": "Свет погас {SPECIAL_ICON}",
+    "Magic Shield": "Магический щит",
+    "Magic Tattoos": "Магические татуировки",
+    "Magical Telekinesis (Spell)": "Магический телекинез (заклинание)",
+    "Melee Boomerang": "Бумеранг ближнего боя",
+    "Military Teamwork": "Военная слаженность",
+    "Mind Control Device": "Устройство контроля разума",
+    "Mind Control Device {SPECIAL_ICON}": "Устройство контроля разума {SPECIAL_ICON}",
+    "Modified Assault Gun": "Модифицированная штурмовая винтовка",
+    "Monitoring Device": "Устройство наблюдения",
+    "Monitoring Device {SPECIAL_ICON}": "Устройство наблюдения {SPECIAL_ICON}",
+    "More Explosives!": "Больше взрывчатки!",
+    "Multiverse Teleportation Device": "Устройство телепортации по Мультивселенной",
+    "Never Do it for Free": "Никогда не делай это бесплатно",
+    "No More Joker": "Больше никакого Джокера",
+    "No More Joker {SPECIAL_ICON}": "Больше никакого Джокера {SPECIAL_ICON}",
+    "Non-Lethal Ammo": "Нелетальные боеприпасы",
+    "Objective Keyword - Chaos": "Ключевое слово Objective - Хаос",
+    "Objective Keyword - Exception (In Play)": "Ключевое слово Objective - Исключение (в игре)",
+    "Objective Keyword - Limited": "Ключевое слово Objective - Limited",
+    "Objective Keyword - Loot": "Ключевое слово Objective - Loot",
+    "Objective Keyword - Opening": "Ключевое слово Objective - Opening",
+    "Objective Keyword - Plot": "Ключевое слово Objective - Plot",
+    "Objective Keyword - Shadow’s Plan": "Ключевое слово Objective - План Теней",
+    "Objective Keyword - Talon’s Prey": "Ключевое слово Objective - Добыча Когтя",
+    "Objective Keyword - Trap": "Ключевое слово Objective - Trap",
+    "Offensive Defense": "Атакующая защита",
+    "Officer Training": "Офицерская подготовка",
+    "One Use Only (Once per round, Once per game)": "Одноразовое использование (один раз за раунд, один раз за игру)",
+    "Poison Immunity": "Иммунитет к яду",
+    "Poisoned Fish": "Отравленная рыба",
+    "Poisoned Fish {SPECIAL_ICON}": "Отравленная рыба {SPECIAL_ICON}",
+    "Precision Rifle": "Точная винтовка",
+    "Protected Lips": "Защищённые губы",
+    "Put More Effort": "Приложи больше усилий",
+    "Queens Command": "Приказ королевы",
+    "Queens Command {SPECIAL_ICON}": "Приказ королевы {SPECIAL_ICON}",
+    "Realistic Illusions": "Реалистичные иллюзии",
+    "Realistic Illusions {SPECIAL_ICON}": "Реалистичные иллюзии {SPECIAL_ICON}",
+    "Reckless Leader": "Безрассудный лидер",
+    "Red Flags": "Красные флаги",
+    "Shadows Command": "Приказ теней",
+    "Shadows Command {SPECIAL_ICON}": "Приказ теней {SPECIAL_ICON}",
+    "Shock droid": "Шок-дроид",
+    "Soldier Training": "Солдатская подготовка",
+    "Speed Force Absorption": "Поглощение Силы Скорости",
+    "State of Fear": "Состояние страха",
+    "Strange Things Happen": "Странные вещи случаются",
+    "Tactical Intervention": "Тактическое вмешательство",
+    "Telepathy (Spell)": "Телепатия (заклинание)",
+    "Terrorific Scythe": "Ужасающая коса",
+    "The Boss": "Босс",
+    "The Crew": "Банда",
+    "The Crew {SPECIAL_ICON}": "Банда {SPECIAL_ICON}",
+    "The False Boss": "Ложный босс",
+    "The Good Command": "Благое командование",
+    "The Leader": "Лидер",
+    "The Sidekick": "Сайдкик",
+    "The True Boss": "Истинный босс",
+    "This... is.. Awesome-Sauce!": "Это... просто... потрясающе!",
+    "Tracking Device": "Следящее устройство",
+    "Tracking Device {SPECIAL_ICON}": "Следящее устройство {SPECIAL_ICON}",
+    "Traits": "Трейты",
+    "Traits as Keywords": "Трейты как ключевые слова",
+    "Umbrella's Knout Gas": "Газ зонтичного кнута",
+    "Umbrella's Knout Gas {SPECIAL_ICON}": "Газ зонтичного кнута {SPECIAL_ICON}",
+    "Vigilante Resources": "Ресурсы линчевателей",
+    "Walking Suspects": "Ходячие Suspect",
+    "You're Fun": "С тобой весело",
     "360 Strike": "Круговой удар",
     "360° Strike": "Круговой удар",
     "A Bit of Magic": "Немного магии",
@@ -2663,6 +2864,7 @@ const exactTraitTranslations = {
     "Mobster": "Мафиози",
     "Night Vision": "Ночное зрение",
     "Order": "Приказ",
+    "Poison Device": "Ядовитое устройство",
     "Poison Master": "Мастер ядов",
     "Protect Me!": "Защити меня!",
     "Radio": "Рация",
@@ -3346,6 +3548,61 @@ const exactWeaponTraitTranslations = {
 
 const exactCompendiumBodyTranslations = {
   ru: {
+    "Enemy models within 4\" of this model receive +1 to their Willpower roll results (cumulative up to 3).": "Вражеские модели в пределах 4\" от этой модели получают +1 к результатам бросков Willpower, суммарно до +3.",
+    "When this model suffers Damage by the Fire Status, inflicts to it 1 {BLOOD_ICON} Damage additionally.": "Когда эта модель получает Damage от статуса Fire, она дополнительно получает 1 {BLOOD_ICON} Damage.",
+    "Until the end of the round, enemy models within 8\" and LoS roll 1 fewer die when making a Defense roll.": "До конца раунда вражеские модели в пределах 8\" и LoS бросают на 1 кубик меньше при выполнении Defense roll.",
+    "Target friendly model with the Plant trait within 8” of this model immediately performs an Attack action.": "Выберите дружественную модель с трейтом Plant в пределах 8” от этой модели. Она немедленно выполняет Attack action.",
+    "When this model suffers Damage, it can choose to change the Damage type of up to 1 Damage marker received.": "Когда эта модель получает Damage, она может изменить тип до 1 полученного маркера Damage.",
+    "Choose another friendly model within 4” and line of sight. That model gains +2 {+ATT_ICON} or {+DEF_ICON}.": "Выберите другую дружественную модель в пределах 4” и линии видимости. Эта модель получает +2 {+ATT_ICON} или {+DEF_ICON}.",
+    "Target one KO model (not a Vehicle) within 8” and line of sight. The target model is removed as a Casualty.": "Выберите одну модель в KO, не Vehicle, в пределах 8” и линии видимости. Целевая модель удаляется как Casualty.",
+    "All attacks made by this model ignores the Invulnerability, Light Armor, Medium Armor and Tough Skin traits.": "Все атаки этой модели игнорируют трейты Invulnerability, Light Armor, Medium Armor и Tough Skin.",
+    "This model’s Unarmed Melee Attacks {STUN_ICON}{STUN_ICON}{STUN_ICON} inflict Damage with the Push (4) Status.": "Безоружные Melee Attacks этой модели наносят Damage {STUN_ICON}{STUN_ICON}{STUN_ICON} со статусом Push (4).",
+    "Place a Suspect within 3\" and LoS. Target an enemy model within 8\" and LoS to that Suspect, move 4\" the target.": "Разместите Suspect в пределах 3\" и LoS. Выберите вражескую модель в пределах 8\" и LoS от этого Suspect; переместите цель на 4\".",
+    "Target friendly model in contact benefits from Cover until the end of the round, even if it is not behind Cover.": "Выбранная дружественная модель в контакте получает Cover до конца раунда, даже если она не находится за укрытием.",
+    "Other friendly models that make a Close Combat attack against an enemy in contact with this model gain +1 to hit.": "Другие дружественные модели, выполняющие Close Combat attack против врага в контакте с этой моделью, получают +1 to hit.",
+    "Special Action. 1 Magic Counter. Enemy models within 8\" and LoS cannot make Efforts when Attacking friendly models.": "Специальное действие. 1 Magic Counter. Вражеские модели в пределах 8\" и LoS не могут делать Efforts, когда атакуют дружественные модели.",
+    "Once this trait is activated, this model gains CRT: Casualty on its Melee Attack Actions for the rest of the round.": "После активации этого трейта до конца раунда Melee Attack Actions этой модели получают CRT: Casualty.",
+    "As long as this model is not KO, it counts as a friendly Suspect for friendly Objective cards scoring requirements.": "Пока эта модель не находится в KO, она считается дружественным Suspect для требований выполнения дружественных Objective cards.",
+    "Target an enemy model within 4”. That model must take a Willpower roll. If it fails, it suffers the Hypnotize Status.": "Выберите вражескую модель в пределах 4”. Эта модель должна пройти бросок Willpower. При провале она получает статус Hypnotize.",
+    "This model Security Chief trait also affect friendly models with Rank: {RANK_LEADER_ICON} and/or {RANK_SIDEKICK_ICON}.": "Трейт Security Chief этой модели также действует на дружественные модели с Rank: {RANK_LEADER_ICON} и/или {RANK_SIDEKICK_ICON}.",
+    "One use only. Target another friendly model with this trait within 4” – the target gains +2 {+ATT_ICON} or {+DEF_ICON}.": "Одноразовое использование. Выберите другую дружественную модель с этим трейтом в пределах 4” - цель получает +2 {+ATT_ICON} или {+DEF_ICON}.",
+    "This model ignores the Blind Status.\r\nIn addition, once per round, during one action, it can make up to 3 free Efforts.": "Эта модель игнорирует статус Blind.\r\nКроме того, один раз за раунд, во время одного действия, она может сделать до 3 бесплатных Efforts.",
+    "Remove a friendly Suspect within 4\". Place a friendly Suspect within 8\". A friendly model within 4\" of the Suspect moves 4\".": "Уберите дружественный Suspect в пределах 4\". Разместите дружественный Suspect в пределах 8\". Дружественная модель в пределах 4\" от этого Suspect перемещается на 4\".",
+    "When this model removes an enemy model (not a Vehicle) as a Casualty in Melee, remove up to 2 Damage markers from this model.": "Когда эта модель удаляет вражескую модель, не Vehicle, как Casualty в Melee, снимите с этой модели до 2 маркеров Damage.",
+    "This model gains +2” to its basic move distance, but must perform a Movement action during its activation if the model can do it.": "Эта модель получает +2” к своей базовой дистанции перемещения, но обязана выполнить Movement action во время своей активации, если может это сделать.",
+    "Target one enemy model within 8” and line of sight. The target cannot use ranged weapons with the Firearm or Beam rule this round.": "Выберите одну вражескую модель в пределах 8” и линии видимости. В этом раунде цель не может использовать дальнобойное оружие с правилом Firearm или Beam.",
+    "When a friendly model gains a Task counter within 4\" of this model, another friendly model within Inspire range gains a Task counter.": "Когда дружественная модель получает Task counter в пределах 4\" от этой модели, другая дружественная модель в пределах Inspire получает Task counter.",
+    "If you have played during this round at least 2 Objective cards as Resources, place a Suspect or a Riddle marker within 4” of this model.": "Если в этом раунде вы разыграли как Resources как минимум 2 Objective cards, разместите Suspect или Riddle marker в пределах 4” от этой модели.",
+    "When a friendly model within 6\" removes an enemy model as a casualty it may immediately perform a Manipulate action or draw 1 Objective card.": "Когда дружественная модель в пределах 6\" удаляет вражескую модель как Casualty, она может немедленно выполнить Manipulate action или взять 1 Objective card.",
+    "Target a model (not a Vehicle) within 8” and line of sight. The target must pass a Willpower roll or receive {BLOOD_ICON}{BLOOD_ICON} damage.": "Выберите модель, не Vehicle, в пределах 8” и линии видимости. Цель должна пройти бросок Willpower, иначе получает {BLOOD_ICON}{BLOOD_ICON} damage.",
+    "Once this trait is activated, this model gains a +1 Strength die roll bonus and Bleed 1 on its Melee Attack Actions until the end of the round.": "После активации этого трейта до конца раунда Melee Attack Actions этой модели получают +1 к броску кубика Strength и Bleed 1.",
+    "When this card is removed from the Play Area, discard all cards under it. If there is at least 1 card under it, you may Discard this card at any time.": "Когда эта карта удаляется из Play Area, сбросьте все карты под ней. Если под ней есть хотя бы 1 карта, вы можете сбросить эту карту в любой момент.",
+    "Choose one enemy model (not a Vehicle) within 4” and line of sight. The target must pass a Willpower roll or be unable to attack this model this round.": "Выберите одну вражескую модель, не Vehicle, в пределах 4” и линии видимости. Цель должна пройти бросок Willpower, иначе в этом раунде не сможет атаковать эту модель.",
+    "Spend 1 Resource point to Set 1 THWART! in contact with a friendly Suspect within 4\" and LoS to this model, or play a Resource at no cost this activation.": "Потратьте 1 Resource point, чтобы Set 1 THWART! в контакте с дружественным Suspect в пределах 4\" и LoS от этой модели, или бесплатно разыграйте Resource в эту активацию.",
+    "Target an enemy model (not a Vehicle) within 8” and line of sight.  The target must pass a Willpower roll or be unable to perform Melee Attacks this round.": "Выберите вражескую модель, не Vehicle, в пределах 8” и линии видимости. Цель должна пройти бросок Willpower, иначе в этом раунде не сможет выполнять Melee Attacks.",
+    "This Resource is not played in the usual way. This Resource may only be used while this card is in play as an Objective and does not be discarded when used.": "Этот Resource разыгрывается не обычным способом. Его можно использовать только пока эта карта находится в игре как Objective; после использования он не сбрасывается.",
+    "One use only. This model may target a friendly model within 4” and line of sight. The target Model gains the Living Legend trait until the end of the round.": "Одноразовое использование. Эта модель может выбрать дружественную модель в пределах 4” и линии видимости. Цель получает трейт Living Legend до конца раунда.",
+    "Target a friendly Suspect within 8\" and LoS, and a friendly model with the Plant trait in play. Place that model in contact with the targeted Suspect and remove it.": "Выберите дружественный Suspect в пределах 8\" и LoS, а также дружественную модель с трейтом Plant в игре. Разместите эту модель в контакте с выбранным Suspect и уберите этот Suspect.",
+    "Before Phase A of the pre-game sequence choose one item of equipment purchased by the opposing player before the game begins. That item may not be used during the game.": "Перед фазой A предыгровой последовательности выберите один предмет снаряжения, купленный противником до начала игры. Этот предмет нельзя использовать во время игры.",
+    "While this model is within 8\" and LoS of a friendly model with the Detective trait, it can count as being in the position of that model when making a Manipulate Action.": "Пока эта модель находится в пределах 8\" и LoS от дружественной модели с трейтом Detective, при выполнении Manipulate Action она может считаться находящейся на месте той модели.",
+    "A model with one or more {-DEF_ICON} deducts 1 die to its next Defense roll for each {-DEF_ICON} it possesses. A model cannot have more than 3 {-DEF_ICON} at any one time.": "Модель с одним или несколькими {-DEF_ICON} вычитает 1 кубик из следующего Defense roll за каждый имеющийся {-DEF_ICON}. Модель не может иметь более 3 {-DEF_ICON} одновременно.",
+    "A model with one or more {+DEF_ICON} gains 1 extra die to its next Defense roll for each {+DEF_ICON} it possesses. A model cannot have more than 3 {+DEF_ICON} at any one time.": "Модель с одним или несколькими {+DEF_ICON} получает 1 дополнительный кубик к следующему Defense roll за каждый имеющийся {+DEF_ICON}. Модель не может иметь более 3 {+DEF_ICON} одновременно.",
+    "This model can use Divination Spells. In addition, once per game the model can reroll one die – you don’t need to accept the second result, and instead may choose between both.": "Эта модель может использовать Divination Spells. Кроме того, один раз за игру модель может перебросить один кубик: вы не обязаны принимать второй результат и можете выбрать любой из двух.",
+    "A model in contact during its activation can pick it up and carry it. If they are removed from the board (casualty, sewer, any other Place), or made KO, place the loot within 1\".": "Модель в контакте во время своей активации может подобрать его и нести. Если она удаляется со стола, уходит как Casualty, через Sewer или любым другим Place-эффектом, либо становится KO, разместите Loot в пределах 1\".",
+    "All friendly models with Rank {RANK_HENCHMAN_ICON} that attack an enemy model within 8” of this model gain +1 to their attack dice rolls in close combat until the end of the round.": "Все дружественные модели с Rank {RANK_HENCHMAN_ICON}, атакующие вражескую модель в пределах 8” от этой модели, до конца раунда получают +1 к броскам кубиков атаки в close combat.",
+    "When you use this trait, if you have a copy of The Great Plan Objective card in your Scored Pile, you may use their Resource as if that card is in your hand, without discarding it.": "Когда вы используете этот трейт, если в вашей Scored Pile есть копия Objective card The Great Plan, вы можете использовать её Resource так, как если бы эта карта была у вас в руке, не сбрасывая её.",
+    "During this model's next Ranged attack this activation, before rolling, roll one of your attack dice, on a 2+ that die is a successful hit.\r\nIf it fails, remove it from the attack.": "Во время следующей Ranged attack этой модели в этой активации, перед броском, бросьте один из ваших кубиков атаки. На 2+ этот кубик считается успешным попаданием.\r\nПри провале уберите его из атаки.",
+    "After an attack in which this model scores any hits, you may take the top card card from your objective deck. Immediately use the resource on that card for free and then discard it.": "После атаки, в которой эта модель нанесла хотя бы одно попадание, вы можете взять верхнюю карту своей Objective deck. Немедленно бесплатно используйте Resource этой карты, затем сбросьте её.",
+    "Enemies within 6” that wish to perform an Action must first suffer the Enervating (1) Status. If they already have Enervating, they must instead increase their Enervating value by 1.": "Враги в пределах 6”, желающие выполнить Action, сначала должны получить статус Enervating (1). Если у них уже есть Enervating, вместо этого увеличьте значение Enervating на 1.",
+    "If your crew includes a model with this trait, you may include any number of Elite models of the same (Type) as the Elite Boss (following the normal restrictions for forming a crew).": "Если ваша crew включает модель с этим трейтом, вы можете включить любое число Elite моделей того же (Type), что и Elite Boss, соблюдая обычные ограничения формирования crew.",
+    "This model can perform Ranged Attacks even if it is in contact with enemy models. If it uses a ranged weapon to target an enemy model in contact, it gains +1 to its attack dice rolls.": "Эта модель может выполнять Ranged Attacks, даже находясь в контакте с вражескими моделями. Если она использует дальнобойное оружие против вражеской модели в контакте, она получает +1 к броскам кубиков атаки.",
+    "When this model performs a movement action, can draw up to X Speedforce cards to ignore terrain elements (Can pass through walls or buildings, but cannot end its movement inside one).": "Когда эта модель выполняет movement action, она может взять до X Speedforce cards, чтобы игнорировать элементы местности: она может проходить через стены или здания, но не может завершить движение внутри них.",
+    "This model causes a Critical on a Strength die natural result of 4, 5, or 6, not just 6 (if the result is not enough to trigger also a hit, this trait only causes the Critical effect).": "Эта модель вызывает Critical на натуральном результате кубика Strength 4, 5 или 6, а не только 6. Если результата недостаточно, чтобы также вызвать попадание, этот трейт вызывает только эффект Critical.",
+    "A model with one or more {-ATT_ICON} deducts 1 attack die in its next Melee Attack action for each {-ATT_ICON} it possesses. A model cannot have more than 3 {-ATT_ICON} at any one time.": "Модель с одним или несколькими {-ATT_ICON} вычитает 1 кубик атаки из следующего Melee Attack action за каждый имеющийся {-ATT_ICON}. Модель не может иметь более 3 {-ATT_ICON} одновременно.",
+    "After deployment, this model may equip up to one Hands equipment card, and one Back equipment card. These cards cannot be equipped in any other way, and cannot be cancelled by an opponent.": "После расстановки эта модель может экипировать до одной карты снаряжения Hands и одной карты снаряжения Back. Эти карты нельзя экипировать никаким другим способом, и противник не может их отменить.",
+    "If this model is included your crew, you can recruit up to 3 models with Rank {RANK_HENCHMAN_ICON} with the Cop trait. Additional models in the crew with this trait have no further effect.": "Если эта модель включена в вашу crew, вы можете нанять до 3 моделей с Rank {RANK_HENCHMAN_ICON} и трейтом Cop. Дополнительные модели с этим трейтом в crew не дают дальнейшего эффекта.",
+    "A model with one or more {+ATT_ICON} gains 1 extra attack die in its next Melee Attack action for each {+ATT_ICON} it possesses. A model cannot have more than 3 {+ATT_ICON} at any one time.": "Модель с одним или несколькими {+ATT_ICON} получает 1 дополнительный кубик атаки в следующем Melee Attack action за каждый имеющийся {+ATT_ICON}. Модель не может иметь более 3 {+ATT_ICON} одновременно.",
+    "Whenever this model takes Damage from an enemy attack or special rule, reduce the total number of Damage markers it receives by 1, to a minimum of 1. You may choose which marker is ignored.": "Когда эта модель получает Damage от вражеской атаки или специального правила, уменьшите общее число получаемых маркеров Damage на 1, минимум до 1. Вы можете выбрать, какой маркер игнорируется.",
     "An attack with this weapon inflicts its damage only once, regardless of the number of successful hits and does not inflict Knocked Down when scoring a CRT": "Атака этим оружием наносит свой урон только один раз, независимо от числа успешных попаданий, и не вызывает состояния Knocked Down при выпадении CRT.",
     "An attack made by this weapon gains +1 to its attack dice rolls.": "Атака этим оружием получает +1 к броскам кубиков атаки.",
     "A model that doesn't move in the same activation that it uses this weapon, gains a +1 to its attack dice rolls.": "Если модель не перемещалась в ту же активацию, в которую использует это оружие, она получает +1 к броскам кубиков атаки.",
@@ -3932,7 +4189,7 @@ const exactCompendiumBodyTranslations = {
     "While you have more than 5 Faith points, this model gains a +1 bonus to its Attack dice rolls when performing Melee Attacks.": "Пока у вас больше 5 очков Faith, эта модель получает +1 к броскам кубиков атаки при выполнении атак ближнего боя.",
     "This model can make an extra Manipulate action during its activation. Also, this model can use a Manipulate action in contact with a model with Rank {RANK_VEHICLE_ICON} to remove up to 2 Damage markers from it.": "Эта модель может выполнить дополнительное действие Manipulate во время своей активации. Кроме того, находясь в контакте с моделью ранга {RANK_VEHICLE_ICON}, она может использовать действие Manipulate, чтобы убрать с неё до 2 маркеров урона.",
     "If this model is your Boss, friendly models with Rank {RANK_HENCHMAN_ICON} that attack with Brass Knuckles or Reinforced Gloves may re-roll failed Strength die rolls.": "Если эта модель является вашим Boss, дружественные модели ранга {RANK_HENCHMAN_ICON}, атакующие с Brass Knuckles или Reinforced Gloves, могут перебрасывать проваленные броски кубика силы.",
-    "Gains the Grapple Gun and the following ranged weapon:\n\nElectric Hook:   {STUN_ICON}{STUN_ICON}   RoF: 1 Ammo: 2   S.Range /Mechanical / Electric / Devastating": "Модель получает Grapple Gun и следующее дальнобойное оружие:\n\nElectric Hook: {STUN_ICON}{STUN_ICON} RoF: 1 Ammo: 2 S.Range / Mechanical / Electric / Devastating",
+    "Gains the Grapple Gun and the following ranged weapon:\n\nElectric Hook:   {STUN_ICON}{STUN_ICON}   RoF: 1 Ammo: 2   S.Range /Mechanical / Electric / Devastating": "Модель получает Кошка-пистолет и следующее дальнобойное оружие:\n\nЭлектрокрюк: {STUN_ICON}{STUN_ICON} RoF: 1 боезапас: 2 S.Range / Mechanical / Electric / Devastating",
     "One use only. This model can ignore the result on the Paradox table. The Speed Power still fails.": "Одноразовое использование. Эта модель может проигнорировать результат по таблице Paradox. Способность Speed Power всё равно считается проваленной.",
     "This model cannot be targeted/affected by an attack, and does not suffer Statuses or Damage and cannot perform Unarmed attacks. It is only considered in contact with other models during its activation. When this model performs a Move, it is instead a Place. This model cannot use the Sewers in any way. When an enemy model removes 1 of your Suspects, place 1 Disruption token on this model. When this model has X Disruption tokens remove the tokens and the model from the gaming area. In any subsequent Raise the Plan phase, you may reduce your Audacity markers by 1 during that round to return this model to play, placing it anywhere on the gaming area. This model is considered a Casualty/KO when it is removed from the game for the purpose of scoring a card.": "Эта модель не может быть выбрана целью или затронута атакой, не получает статусы и урон и не может выполнять безоружные атаки. Она считается находящейся в контакте с другими моделями только во время своей активации. Когда эта модель выполняет Move, вместо этого она делает Place. Эта модель не может использовать канализацию никаким способом. Когда вражеская модель убирает 1 из ваших Suspect маркеров, положите на эту модель 1 жетон Disruption. Когда на этой модели оказывается X жетонов Disruption, уберите жетоны и саму модель из игровой зоны. В любой последующей фазе Raise the Plan вы можете уменьшить число своих маркеров Audacity на 1 в этом раунде, чтобы вернуть эту модель в игру, разместив её в любом месте игровой зоны. Для целей выполнения карт эта модель считается KO или выбывшей, когда покидает игру.",
     "At the end of step 6 of Prepare the Game, you must add a card from your Fear pile to your Objective deck": "В конце шага 6 подготовки к игре вы должны добавить карту из своей стопки страха в свою колоду целей.",
@@ -4589,6 +4846,10 @@ const proseGlossary = {
     "During this round": "В течение этого раунда",
     "this weapon": "это оружие",
     "This weapon": "Это оружие",
+    "Control Pheromones": "Контроль феромонов",
+    "Dual Handguns": "Парные пистолеты",
+    "Electric Hook": "Электрокрюк",
+    "Hypnotize": "Гипноз",
     "once per round": "один раз за раунд",
     "Once per round": "Один раз за раунд",
     "once per game": "один раз за игру",
@@ -5023,6 +5284,7 @@ const displayGlossary = {
     "Concealed Revolver": "Скрытый револьвер",
     "Cryo-Grenade": "Криограната",
     "Custom Assault Gun": "Кастомный штурмовой автомат",
+    "Electric Hook": "Электрокрюк",
     "Flash Grenades": "Светошумовые гранаты",
     "Frag Grenade": "Осколочная граната",
     "Grapple Gun": "Кошка-пистолет",
@@ -5320,7 +5582,7 @@ function translateWithGlossary(text, glossary) {
 
   keys.forEach(key => {
     const value = langGlossary[key];
-    const pattern = new RegExp(`(^|[\\s(\\-/'"])${escapeRegExp(key)}(?=$|[\\s)\\-/'",.!?])`, "g");
+    const pattern = new RegExp(`(^|[\\s(\\-/'":])${escapeRegExp(key)}(?=$|[\\s)\\-/'",.!?:])`, "g");
     result = result.replace(pattern, (match, prefix) => `${prefix}${value}`);
   });
 
@@ -5437,17 +5699,25 @@ function translateTokenWithPatterns(text, exactDictionary) {
     [/^Minion \((.+)\)$/i, "Миньон"],
     [/^Affinity \((.+)\)$/i, "Аффилиация"],
     [/^Aversion \((.+)\)$/i, "Неприязнь"],
+    [/^Apparition \((.+)\)$/i, "Призрачность"],
     [/^Assassin \((.+)\)$/i, "Убийца"],
     [/^Autorepair \((.+)\)$/i, "Авторемонт"],
     [/^Cryo-Armor \((.+)\)$/i, "Криоброня"],
     [/^Bleed \((.+)\)$/i, "Кровотечение"],
+    [/^Blunt \((.+)\)$/i, "Дробящий"],
     [/^Boosted \((.+)\)$/i, "Усиление"],
+    [/^Can You Solve This\? \((.+)\)$/i, "Сможешь это решить?"],
     [/^Combo \((.+)\)$/i, "Комбо"],
     [/^Combo: (.+)$/i, "Комбо:"],
     [/^CRT \((.+)\)$/i, "Критический эффект"],
     [/^Crt \((.+)\)$/i, "Критический эффект"],
+    [/^Duo \((.+)\)$/i, "Дуэт"],
+    [/^Expendable Penguin (.+)$/i, "Расходный пингвин"],
+    [/^Fast \((.+)\)$/i, "Быстрый"],
     [/^Fast Combo \((.+)\)$/i, "Быстрое комбо"],
     [/^Fire \((.+)\)$/i, "Огонь"],
+    [/^Hates \((.+)\)$/i, "Ненависть"],
+    [/^Inspiring Presence \((.+)\)$/i, "Вдохновляющее присутствие"],
     [/^Intel Support \((.+)\)$/i, "Разведподдержка"],
     [/^Invulnerability \((.+)\)$/i, "Неуязвимость"],
     [/^Kryptonian \((.+)\)$/i, "Криптонец"],
@@ -5455,6 +5725,7 @@ function translateTokenWithPatterns(text, exactDictionary) {
     [/^Magical Power \((.+)\)$/i, "Магическая сила"],
     [/^Meditation \((.+)\)$/i, "Медитация"],
     [/^Metabolize Wounds \((.+)\)$/i, "Метаболизм ран"],
+    [/^Meta-Skin \((.+)\)$/i, "Мета-кожа"],
     [/^Molecular Control \((.+)\)$/i, "Молекулярный контроль"],
     [/^Motion \((.+)\)$/i, "Движение"],
     [/^Narcotic Dose \((.+)\)$/i, "Наркотическая доза"],
@@ -5465,11 +5736,16 @@ function translateTokenWithPatterns(text, exactDictionary) {
     [/^Recoil \((.+)\)$/i, "Отдача"],
     [/^Required \((.+)\)$/i, "Требуется"],
     [/^Scheming \((.+)\)$/i, "Интриги"],
+    [/^Serum Injection \((.+)\)$/i, "Инъекция сыворотки"],
     [/^Sewer Swarm \((.+)\)$/i, "Канализационный рой"],
     [/^Slow \((.+)\)$/i, "Замедление"],
     [/^Speed Attack \((.+)\)$/i, "Скоростная атака"],
     [/^Speed Force Master \((.+)\)$/i, "Мастер Силы Скорости"],
     [/^Super Speed \((.+)\)$/i, "Суперскорость"],
+    [/^Support \((.+)\)$/i, "Поддержка"],
+    [/^Titan Dose \((.+)\)$/i, "Доза Titan"],
+    [/^True Love \((.+)\)$/i, "Истинная любовь"],
+    [/^Venom Dose \((.+)\)$/i, "Доза Venom"],
     [/^Teamwork \((.+)\) \((.+)\)$/i, "Командная работа"]
   ];
 
@@ -5497,6 +5773,15 @@ function translateDisplayText(text) {
   const equipmentListMatch = source.match(/^Equipment List - (.+)$/);
   if (equipmentListMatch) {
     return postProcessLocalizedDisplay(`Список экипировки - ${equipmentListMatch[1]}`);
+  }
+
+  const dashSourceMatch = source.match(/^(.+?) - (.+)$/);
+  if (dashSourceMatch) {
+    const translatedBase = translateDisplayText(dashSourceMatch[1]);
+    const translatedSource = translateDisplayText(dashSourceMatch[2]);
+    if (translatedBase !== dashSourceMatch[1] || translatedSource !== dashSourceMatch[2]) {
+      return postProcessLocalizedDisplay(`${translatedBase} - ${translatedSource}`);
+    }
   }
 
   const specialIconMatch = source.match(/^(.+?)\s+(\{SPECIAL_ICON\})$/);
@@ -5578,6 +5863,56 @@ function translateSentence(text) {
   if (!text || currentLang === "en") return text;
 
   let result = String(text);
+  const originalSentence = result;
+
+  const formatRuList = items => {
+    const translatedItems = items.map(item => translateDisplayText(item.trim())).filter(Boolean);
+    if (translatedItems.length <= 2) return translatedItems.join(" и ");
+    return `${translatedItems.slice(0, -1).join(", ")} и ${translatedItems[translatedItems.length - 1]}`;
+  };
+  const translateTermList = value => {
+    return formatRuList(String(value || "")
+      .replace(/,\s*and\s+/gi, ", ")
+      .replace(/\s+and\s+/gi, ", ")
+      .split(/\s*,\s*/)
+      .filter(Boolean));
+  };
+  const weaponTermTranslations = {
+    "S.Range": "Малая дальность",
+    "S. Range": "Малая дальность",
+    "M.Range": "Средняя дальность",
+    "M. Range": "Средняя дальность",
+    "Short Range": "Малая дальность",
+    "Medium Range": "Средняя дальность",
+    "Firearm": "Огнестрельное",
+    "Mechanical": "Механическое",
+    "Electric": "Электрический",
+    "Devastating": "Сокрушительный",
+    "Assault": "Штурм",
+    "Light": "Лёгкое",
+    "Accurate": "Точный",
+    "Defensive": "Защитный",
+    "Silencer": "Глушитель",
+    "Scope": "Оптика",
+    "Red Dot": "Красная точка",
+    "Aim": "Прицеливание",
+    "Handy": "Удобное",
+    "Sharp": "Острое",
+    "Overwhelming": "Подавляющий",
+    "Anti-Tank": "Противотанковый",
+    "Anti-tank": "Противотанковый",
+    "Enervating": "Ослабление"
+  };
+  const translateWeaponProfileTerms = value => {
+    let translated = String(value || "");
+    Object.keys(weaponTermTranslations)
+      .sort((a, b) => b.length - a.length)
+      .forEach(term => {
+        const pattern = new RegExp(`(^|[\\s/])${escapeRegExp(term)}(?=$|[\\s/.,:)])`, "g");
+        translated = translated.replace(pattern, (_, prefix) => `${prefix}${weaponTermTranslations[term]}`);
+      });
+    return translated;
+  };
   const replacements = [
     [/\bOnly Henchman\/Free Agents\b/g, "Только подручные/свободные агенты"],
     [/\bOnly Plants\b/g, "Только растения"],
@@ -5585,7 +5920,23 @@ function translateSentence(text) {
     [/\bOne use only\b/g, "Только одно использование"],
     [/\bOnly attacks listed on the Upgrade card can be made by this model\b/g, "Эта модель может совершать только атаки, указанные на карте улучшения"],
     [/\bAlways within Boss's Inspire range\b/g, "Всегда считается находящейся в радиусе Inspire босса"],
+    [/\bAlways within Inspire range\b/g, "Всегда считается находящейся в радиусе Inspire"],
     [/\bThis model is always treated as though it were within range of it's Boss's Inspire trait\b/g, "Эта модель всегда считается находящейся в радиусе Inspire своего босса"],
+    [/\bDisables one enemy equipment pre-game\b/g, "Отключает один предмет экипировки противника перед игрой"],
+    [/\bModel gains Immunity to CRT\./g, "Модель получает иммунитет к CRT."],
+    [/\bImmunity to CRT\b/g, "Иммунитет к CRT"],
+    [/\bGains rank Leader or Sidekick\b/g, "Получает ранг Лидер или Сайдкик"],
+    [/\bGain Protect Me! rule\b/g, "Получает правило Protect Me!"],
+    [/\bReduce the cost of this Free Agent by 30 Reputation\b/g, "Снизьте стоимость этого свободного агента на 30 Reputation"],
+    [/\bEquipment marked \* cannot be affected by the Broken Equipment rule\./g, "Экипировка, отмеченная *, не может быть затронута правилом Broken Equipment."],
+    [/\bThis Equipment cannot be affected by the Broken Equipment rule\./g, "Эта экипировка не может быть затронута правилом Broken Equipment."],
+    [/\bIceberg Lounge Equipment Options, can only be selected 1 of they:/g, "Опции экипировки Iceberg Lounge, можно выбрать только одну из них:"],
+    [/\bRep\.? points\b/gi, "очков REP"],
+    [/\b([0-9]+)Rep points\b/gi, "$1 очков REP"],
+    [/\bRep Points\b/g, "очков REP"],
+    [/\bReputation Points\b/g, "очков Reputation"],
+    [/\bTo Ammunition for one weapon\./g, "+1 к боезапасу одного оружия."],
+    [/\bBroken Equipment\b/g, "Сломанное снаряжение"],
     [/\bChoose:\b/g, "Выберите:"],
     [/\bRequires:\b/g, "Требует:"]
   ];
@@ -5594,17 +5945,134 @@ function translateSentence(text) {
     result = result.replace(pattern, replacement);
   });
 
-  result = result.replace(/Model gains the ([^.]+?) trait\./g, (_, value) => `Модель получает трейт ${translateDisplayText(value)}.`);
-  result = result.replace(/Model gains the ([^.]+?) rule\./g, (_, value) => `Модель получает правило ${translateDisplayText(value)}.`);
-  result = result.replace(/Model gains ([^.]+?) trait\./g, (_, value) => `Модель получает трейт ${translateDisplayText(value)}.`);
-  result = result.replace(/Model gains ([^.]+?) rule\./g, (_, value) => `Модель получает правило ${translateDisplayText(value)}.`);
+  result = result.replace(/The following options? may be taken only for Henchman and Free Agents models:/g, "Следующие опции могут брать только модели с рангом Подручный или Свободный агент:");
+  result = result.replace(/The following option may be taken only when a models with Alias: The Riddler \(Arkham Knight\) or The Riddler’s Mech \(Arkham Knight\) is in the crew:/g, "Следующую опцию можно брать только если в команде есть модель с Alias: The Riddler (Arkham Knight) или The Riddler’s Mech (Arkham Knight):");
+  result = result.replace(/The following options? may be taken only when a models? with (Name|Alias): ([^:\r\n]+?) is in the crew:/g, (_, field, value) => `Следующие опции можно брать только если в команде есть модель с ${field}: ${translateDisplayText(value)}:`);
+  result = result.replace(/The following options? may be taken only when a character with (Name|Alias): ([^:\r\n]+?) is in the crew:/g, (_, field, value) => `Следующие опции можно брать только если в команде есть персонаж с ${field}: ${translateDisplayText(value)}:`);
+  result = result.replace(/The following options? may be taken only by models with Alias: ([^:\r\n]+?):/g, (_, value) => `Следующие опции могут брать только модели с Alias: ${translateDisplayText(value)}:`);
+  result = result.replace(/The following options? may be taken only by models with the ([^:\r\n]+?) trait:/g, (_, value) => `Следующие опции могут брать только модели с трейтом ${translateDisplayText(value)}:`);
+  result = result.replace(/(^|[\r\n])(•\s*\d+-\d+\s+)([^(:\r\n]+?)(\s*(?:\([^:\r\n]*\)\s*)*:)/g, (_, prefix, limit, name, suffix) => `${prefix}${limit}${translateDisplayText(name.trim())}${suffix}`);
+  result = result.replace(/(^|[\r\n])(•\s*\d+-\d+\s+)([^(:\r\n]+?)(\s*(?:\([^)\r\n]*\)\s*)+)(?=Model|The model|Gains|\+|This model)/g, (_, prefix, limit, name, cost) => `${prefix}${limit}${translateDisplayText(name.trim())}${cost}`);
+  result = result.replace(/(^|[\r\n])(•\s*\d+-\d+\s+)([A-Za-z][^(\r\n]+?)(?=\s*\()/g, (_, prefix, limit, name) => `${prefix}${limit}${translateDisplayText(name.trim())}`);
+  result = result.replace(/\(Can only be [Pp]urchased by the ([^,)]+?), and only if he is the Boss\)/g, (_, value) => `(может купить только ${translateDisplayText(value)}, и только если он босс)`);
+  result = result.replace(/\(Can only be [Pp]urchased by models with the ([^)]+?) trait\)/g, (_, value) => `(могут купить только модели с трейтом ${translateDisplayText(value)})`);
+  result = result.replace(/\(Can only be [Pp]urchased by a model with Alias: ([^)]+?)\)/g, (_, value) => `(может купить только модель с Alias: ${translateDisplayText(value)})`);
+  result = result.replace(/\(Can only be [Pp]urchased by ([^)]+?)\)/g, (_, value) => `(может купить только ${translateDisplayText(value)})`);
+  result = result.replace(/\(Can only be [Tt]aken by ([^)]+?)\)/g, (_, value) => `(может взять только ${translateDisplayText(value)})`);
+  result = result.replace(/\(Only can be taken by ([^)]+?)\)/g, (_, value) => `(может взять только ${translateDisplayText(value)})`);
+  result = result.replace(/(^|[\r\n])(•\s*\d+-\d+\s+)([^(\r\n]+?)(\s*\([^)\r\n]*\)\s+)Only can be taken by ([^,\r\n]+),\s*gains\s+([^.\r\n]+?)\s+rule\./gi, (_, prefix, limit, name, cost, target, rule) => `${prefix}${limit}${translateDisplayText(name.trim())}${cost}может взять только ${translateDisplayText(target)}, получает правило ${translateDisplayText(rule)}.`);
+  result = result.replace(/Only can be taken by ([^,\r\n]+),/g, (_, value) => `может взять только ${translateDisplayText(value)},`);
+  result = result.replace(/Can only be purchased by ([^:\r\n]+?):/g, (_, value) => `Может купить только ${translateDisplayText(value)}:`);
+  result = result.replace(/Can only be taken by ([^:\r\n]+?):/g, (_, value) => `Может взять только ${translateDisplayText(value)}:`);
+  result = result.replace(/All models? in your crew (?:may|can) use more than 1 Titan Dose per game\./g, "Все модели в вашей команде могут использовать больше одной дозы Titan за игру.");
+  result = result.replace(/This bonus remains in play even if this model is removed from play or leaves the (?:Gaming Area|board)\./g, "Этот бонус остаётся в игре, даже если эта модель удалена из игры или покидает игровую зону.");
+  result = result.replace(/(?:In addition, |Also, )the cost of Venom Doses? in the equipment list is reduced to \$50\./g, "Кроме того, стоимость доз Venom в списке экипировки снижается до $50.");
+  result = result.replace(/This model can use Titan and Venom Doses on a friendly model in contact\./g, "Эта модель может использовать дозы Titan и Venom на дружественной модели в контакте.");
+  result = result.replace(/Model may use Titan and Venom Doses on a friendly model in contact\./g, "Модель может использовать дозы Titan и Venom на дружественной модели в контакте.");
+  result = result.replace(/This model is always treated as though it were within range of the Inspire rule\./g, "Эта модель всегда считается находящейся в радиусе Inspire.");
+  result = result.replace(/\+1 Magazines to one weapon\./g, "+1 к боезапасу одного оружия.");
+  result = result.replace(/\+([0-9]+) to Ammunition for one weapon\./g, (_, amount) => `+${amount} к боезапасу одного оружия.`);
+  result = result.replace(/\+([0-9]+) к Ammunition одного оружия\./g, (_, amount) => `+${amount} к боезапасу одного оружия.`);
+  result = result.replace(/At the start of the game you can chose up to 2 henchmen in your crew\. These models let you use Scarecrow Inspire Fear from those models position as if Scarecrow would be placed over there\. The Willpower roll caused by any Inspire Fear suffers a \+1 Penalty to the roll\./g, "В начале игры выберите до 2 подручных в вашей команде. Эти модели позволяют использовать Inspire Fear Scarecrow, измеряя эффект от их позиции, как если бы Scarecrow находился там. Бросок силы воли, вызванный любым Inspire Fear, получает штраф +1 к броску.");
+  result = result.replace(/When this model reveals an enemy Suspect, you may immediately draw 1 card from your Objective deck\./g, "Когда эта модель раскрывает вражеский Suspect маркер, вы можете немедленно взять 1 карту из своей колоды целей.");
+  result = result.replace(/Before Phase A of the pre-game sequence choose one item of equipment purchased by the opposing player before the game begins\. That item may not be used during the game\./g, "До фазы A предыгровой последовательности выберите один предмет экипировки, купленный противником до начала игры. Этот предмет нельзя использовать во время игры.");
+  result = result.replace(/Once per game remove 2 Damage markers from a model in contact with this model\./g, "Один раз за игру уберите 2 маркера урона с модели в контакте с этой моделью.");
+  result = result.replace(/When choosing this equipment, choose only one of the following masks:/g, "При выборе этой экипировки выберите только одну из следующих масок:");
+  result = result.replace(/(^|[\r\n])0-1 Queen of Hearts mask:/g, "$10-1 Маска Королевы Червей:");
+  result = result.replace(/(^|[\r\n])0-1 White Rabbit mask:/g, "$10-1 Маска Белого Кролика:");
+  result = result.replace(/(^|[\r\n])0-1 Cheshire Cat mask:/g, "$10-1 Маска Чеширского кота:");
+  result = result.replace(/If Sal Maroni is the Boss, select up to three friendly Henchmen with ranged weapons with the Short Range and Firearm rules\. Those weapons replace the Short Range rule with the Medium Range rule\. These models must be selected before Pre-Game Phase C\./g, "Если Sal Maroni является боссом, выберите до трёх дружественных подручных со стрелковым оружием с правилами Малая дальность и Огнестрельное. Это оружие заменяет правило Малая дальность на Средняя дальность. Эти модели нужно выбрать до предыгровой фазы C.");
+  result = result.replace(/When an enemy model within 8” of this model suffers the Enervating effect, it is increased by \+1\./g, "Когда вражеская модель в пределах 8” от этой модели получает эффект Enervating, увеличьте его значение на +1.");
+  result = result.replace(/When this model uses the Control Pheromones trait, the targeted model adds 1 additional dice and adds all the 3 results together while taking that Hypnotize Willpower roll\. If the target Efforts to add an additional die to the Willpower roll, then they must roll 4D6 and then choose 3 of them\./g, "Когда эта модель использует трейт Control Pheromones, выбранная модель добавляет 1 дополнительный кубик и суммирует три результата при броске Willpower против Hypnotize. Если цель тратит Effort, чтобы добавить ещё один кубик к броску Willpower, она должна бросить 4D6 и выбрать 3 из них.");
+  result = result.replace(/This model may use the Protect Me! Trait on a friendly model with the Nightmare trait without the need of performing an Effort\./g, "Эта модель может использовать трейт Protect Me! на дружественной модели с трейтом Nightmare без необходимости тратить Effort.");
+  result = result.replace(/Models moving within this model's action radius suffer Impaired Movement\./g, "Модели, перемещающиеся в радиусе действия этой модели, получают Impaired Movement.");
+  result = result.replace(/When this model becomes a Casualty, all models in Contact must pass an Endurance roll or receive \{BLOOD_ICON\} Damage\./g, "Когда эта модель становится выбывшей, все модели в контакте должны пройти бросок стойкости или получить {BLOOD_ICON} урона.");
+  result = result.replace(/If the model has Elite \(SWAT\) trait you can choose one of these options:/g, "Если модель имеет трейт Elite (SWAT), выберите одну из этих опций:");
+  result = result.replace(/Once per game, at the start of the Raise the Plan phase, choose up to three friendly models with the Reanimated Owl trait\. Those models gain 1 additional Strength die to their attacks until the end of the round, but then at the Recovering phase \(when resolving effects\) suffer 1 \{BLOOD_ICON\}\./g, "Один раз за игру, в начале фазы Raise the Plan, выберите до трёх дружественных моделей с трейтом Reanimated Owl. Эти модели получают 1 дополнительный кубик силы к своим атакам до конца раунда, но затем в фазе Recovering при разрешении эффектов получают 1 {BLOOD_ICON}.");
+  result = result.replace(/Once per game at the start of the round, before determining who takes the lead, you can target one model currently in play\. For the remainder of the round the target is illuminated, as if affected by a Lantern\. Note that unlike the Lantern or Lamppost rules, only the target model is illuminated, not other models within 4”\. NB\. The rules governing line of sight apply as normal\./g, "Один раз за игру в начале раунда, до определения лидирующего игрока, выберите одну модель в игре. До конца раунда цель освещена, как если бы на неё действовало правило Фонарь. В отличие от правил Фонарь или уличного фонаря, освещается только выбранная модель, а не другие модели в пределах 4”. Правила линии видимости применяются как обычно.");
+  result = result.replace(/Select a model in your Suicide Squad crew before the game starts\. This model is not deployed at the beginning of the game, but is instead held in reserve\. At the beginning of the second round or any subsequent round, before determining who takes the lead, deploy the model in contact with any board edge, as long as the model’s base physically fits in the new position\. The model may act normally in the round it arrives\./g, "Выберите модель в вашей команде Suicide Squad до начала игры. Эта модель не выставляется в начале игры, а остаётся в резерве. В начале второго или любого последующего раунда, до определения лидирующего игрока, выставьте модель в контакте с любым краем стола, если её база физически помещается в новой позиции. В раунд прибытия модель действует как обычно.");
+  result = result.replace(/If this model has a Task counter on it, this model can be targeted by a Cranial Bomb Activated card, then return it to the Cranial Bomb pile without removing this model\. If you do so, remove the Task counter from this model\./g, "Если на этой модели есть маркер задачи, она может стать целью карты Cranial Bomb Activated; затем верните карту в стопку Cranial Bomb, не удаляя эту модель. Если вы так сделали, уберите с этой модели маркер задачи.");
+  result = result.replace(/While this model does not have a Task counter, it gains a free Manipulate action\./g, "Пока на этой модели нет маркера задачи, она получает бесплатное действие Manipulate.");
+  result = result.replace(/This model choose one: Enervating \(2\) or Anti-Tank\. Its ranged weapons gain that rule\./g, "Эта модель выбирает одно: Enervating (2) или Anti-Tank. Её стрелковое оружие получает выбранное правило.");
+  result = result.replace(/At the start of your first Raise the Plan phase, you may place up to 2 friendly Suspect markers at least 4” away from your Deployment zone\./g, "В начале вашей первой фазы Raise the Plan вы можете разместить до 2 дружественных Suspect маркеров на расстоянии не менее 4” от вашей зоны расстановки.");
+  result = result.replace(/At the start of this model's activation you may remove 1 Riddle marker from the Gaming Area\./g, "В начале активации этой модели вы можете убрать 1 маркер загадки из игровой зоны.");
+  result = result.replace(/When this model plays an Objective card, it may immediately search into your Objective deck 1 card to add it to its controller’s hand \(instead of replenishing that played card\)\./g, "Когда эта модель играет карту Objective, она может немедленно найти 1 карту в вашей колоде целей и добавить её в руку контролирующего игрока вместо добора замены за сыгранную карту.");
+  result = result.replace(/When you use the Air Support rule, target an enemy model affected by the template, the target receives a Ranged attack with ROF 1, the Firearm weapon special rule and damage \{BLOOD_ICON\}\{BLOOD_ICON\} which ignores the Cover Rule\./g, "Когда вы используете правило Air Support, выберите вражескую модель, затронутую шаблоном. Цель получает дальнюю атаку со скорострельностью 1, специальным правилом оружия Огнестрельное и уроном {BLOOD_ICON}{BLOOD_ICON}, который игнорирует правило Cover.");
+  result = result.replace(/Model gains the Invulnerability \(1\) and Tough Skin traits, \+1 to all Basic Skills except Endurance, \+3 to Endurance, and the action area radius is increased to 6\"/g, "Модель получает трейты Неуязвимость (1) и Толстая шкура, +1 ко всем базовым характеристикам кроме стойкости, +3 к стойкости, а радиус зоны действия увеличивается до 6\"");
+  result = result.replace(/This model can activate a 2nd time each round, at the end of that 2nd activation, this model suffers \{BLOOD_ICON\}\{BLOOD_ICON\} \(you can force this model to be removed as casualty by the use of this trait\)\./g, "Эта модель может активироваться второй раз каждый раунд. В конце второй активации она получает {BLOOD_ICON}{BLOOD_ICON}. Используя этот трейт, вы можете заставить эту модель быть удалённой как выбывшую.");
+  result = result.replace(/During this model activation you can spend 1 Action to place within 4\" a previously removed as Casualty model with the trait For My Lords!\r?\nIf you do, the opponent immediately gains a Pass marker\./g, "Во время активации этой модели вы можете потратить 1 действие, чтобы разместить в пределах 4\" модель с трейтом For My Lords!, ранее удалённую как выбывшую.\nЕсли вы это сделали, противник немедленно получает маркер паса.");
+  result = result.replace(/When this model places a Suspect within 4\" of an enemy model, you can search for a card that haves the same Suit as this model Keyword\./g, "Когда эта модель размещает Suspect маркер в пределах 4\" от вражеской модели, вы можете найти карту той же масти, что и ключевое слово этой модели.");
+  result = result.replace(/This model’s crew generates 1 extra Sewer marker\./g, "Команда этой модели получает 1 дополнительный маркер канализации.");
+  result = result.replace(/When a friendly model is removed as a Casualty within 8\" and LoS to this model, you can search into your Objective deck 1 card and add it to your hand\./g, "Когда дружественная модель удаляется как выбывшая в пределах 8\" и линии видимости до этой модели, вы можете найти 1 карту в вашей колоде целей и добавить её в руку.");
+  result = result.replace(/This model's crew gains 1 Blood Money when this model removes an enemy model as a Casualty\./g, "Команда этой модели получает 1 жетон Blood Money, когда эта модель удаляет вражескую модель как выбывшую.");
+  result = result.replace(/Model's Inspire radius is increased by 4\"\./g, "Радиус Inspire этой модели увеличивается на 4\".");
+  result = result.replace(/Model gains 1 Spray Can\./g, "Модель получает 1 баллончик с краской.");
+  result = result.replace(/Gains rank (\{RANK_[A-Z_]+_ICON\}) of (\{AFF_[A-Z_]+_ICON\})\./g, (_, rank, faction) => `Получает ранг ${rank} фракции ${faction}.`);
+  result = result.replace(/(\{[A-Z_]+_ICON\}) or (\{[A-Z_]+_ICON\})/g, "$1 или $2");
+  result = result.replace(/Model gains(?: the)? ([^:\r\n]+?) trait and the following weapon:/g, (_, value) => `Модель получает трейт ${translateDisplayText(value)} и следующее оружие:`);
+  result = result.replace(/Model gains(?: the)? ([^:\r\n]+?) trait and the following ranged weapon:/g, (_, value) => `Модель получает трейт ${translateDisplayText(value)} и следующее стрелковое оружие:`);
+  result = result.replace(/Gains(?: the)? ([^:\r\n]+?) and the following ranged weapon:/g, (_, value) => `Получает ${translateDisplayText(value)} и следующее стрелковое оружие:`);
+  result = result.replace(/Gains(?: the)? ([^:\r\n]+?) and ([^:\r\n]+?) weapon\./g, (_, left, right) => `Получает ${translateDisplayText(left)} и оружие ${translateDisplayText(right)}.`);
+  result = result.replace(/Model gains Chain of Command\./g, "Модель получает трейт Chain of Command.");
+  result = result.replace(/Model gains(?: the)? ([^.\r\n]+?) rule\*/g, (_, value) => `Модель получает правило ${translateDisplayText(value)}*`);
+  result = result.replace(/Model gains(?: the)? ([^.\r\n]+?) trait\*/g, (_, value) => `Модель получает трейт ${translateDisplayText(value)}*`);
+  result = result.replace(/The model’s close combat weapons and unarmed attacks gain the ([^.\r\n]+?) weapon special rule\./g, (_, value) => `Оружие ближнего боя модели и безоружные атаки получают специальное правило оружия ${translateDisplayText(value)}.`);
+  result = result.replace(/Model[’']s Close Combat weapon attacks gain ([^.\r\n]+?)\./g, (_, value) => `Атаки оружием ближнего боя модели получают ${translateDisplayText(value)}.`);
+  result = result.replace(/Model[’']s close combat weapon attacks gain ([^.\r\n]+?)\./g, (_, value) => `Атаки оружием ближнего боя модели получают ${translateDisplayText(value)}.`);
+  result = result.replace(/One of this model ranged weapons gain the ([^.\r\n]+?) rule\./g, (_, value) => `Одно стрелковое оружие этой модели получает правило ${translateDisplayText(value)}.`);
+  result = result.replace(/One ranged weapon of this model gains the ([^.\r\n]+?) rule\./g, (_, value) => `Одно стрелковое оружие этой модели получает правило ${translateDisplayText(value)}.`);
+  result = result.replace(/One of the model[`’']s ranged weapons gains the ([^.\r\n]+?) rule\./g, (_, value) => `Одно стрелковое оружие модели получает правило ${translateDisplayText(value)}.`);
+  result = result.replace(/One of the model[’']s ranged weapons gains ([^.\r\n]+?)\./g, (_, value) => `Одно стрелковое оружие модели получает ${translateDisplayText(value)}.`);
+  result = result.replace(/Model's Close Combat attacks gain the ([^.\r\n]+?) trait\./g, (_, value) => `Атаки ближнего боя модели получают трейт ${translateDisplayText(value)}.`);
+  result = result.replace(/Bots in your Crew gain ([^.\r\n]+?) Trait\./g, (_, value) => `Боты в вашей команде получают трейт ${translateDisplayText(value)}.`);
+  result = result.replace(/\* Can only be purchased by the Riddler\)/g, "* (может купить только The Riddler)");
+  result = result.replace(/\(Can only be taken by Riddler’s Mech\)/g, "(может взять только Riddler’s Mech)");
+  result = result.replace(/Riddler’s Mech gains \+1 to Movement and Combo: Mechanic Claw\./g, "Riddler’s Mech получает +1 к перемещению и Combo: Механическая клешня.");
+  result = result.replace(/(.+?):\s+((?:\{[A-Z_]+_ICON\})+\s+(?:ROF|RoF|AMMO|Ammo|S\.?\s?Range|M\.?\s?Range|\/|[A-Za-z -])+)/g, (_, weaponName, profile) => `${translateDisplayText(weaponName)}: ${translateWeaponProfileTerms(profile)}`);
+  result = result.replace(/Model has ([^.\r\n]+?) trait cannot purchase/g, (_, value) => `Модели с трейтом ${translateDisplayText(value)} не могут покупать это снаряжение`);
+  result = result.replace(/A model cannot have more than one ([^.\r\n]+?) trait\./g, (_, value) => `Модель не может иметь больше одного трейта ${translateDisplayText(value)}.`);
+  result = result.replace(/When this model is removed, Discard a card from your deck\./g, "Когда эта модель удаляется, сбросьте карту из своей колоды.");
+  result = result.replace(/This model may throw X additional dice when taking Attack and Defense rolls \(X is the number of cards in your Terror Pile\)\./g, "Эта модель может бросать X дополнительных кубиков при бросках атаки и защиты, где X равно количеству карт в вашей стопке Terror.");
+  result = result.replace(/\((\d+)\) Only Nightmares can purchase this equipment\./g, "($1) Только модели с трейтом Nightmare могут покупать это снаряжение.");
+  result = result.replace(/\((\d+)\) Nightmares cannot purchase this equipment\./g, "($1) Модели с трейтом Nightmare не могут покупать это снаряжение.");
+
+  result = result.replace(/(?:This model|The model|The models|Model) gains(?: the)? (?!\+)([^.]+?) traits\./gi, (_, value) => `Модель получает трейты ${translateTermList(value)}.`);
+  result = result.replace(/(?:This model|The model|The models|Model) gains(?: the)? (?!\+)([^.]+?) rules\./gi, (_, value) => `Модель получает правила ${translateTermList(value)}.`);
+  result = result.replace(/(?:This model|The model|The models|Model) gains(?: the)? (?!\+)([^.]+?\s+and\s+[^.]+?) trait\./gi, (_, value) => `Модель получает трейты ${translateTermList(value)}.`);
+  result = result.replace(/(?:This model|The model|The models|Model) gains(?: the)? (?!\+)([^.]+?) trait\./gi, (_, value) => `Модель получает трейт ${translateDisplayText(value)}.`);
+  result = result.replace(/(?:This model|The model|The models|Model) gains(?: the)? (?!\+)([^.]+?) rule\./gi, (_, value) => `Модель получает правило ${translateDisplayText(value)}.`);
+  result = result.replace(/Model gains the (?!\+)([^.]+?) trait\./g, (_, value) => `Модель получает трейт ${translateDisplayText(value)}.`);
+  result = result.replace(/Model gains the (?!\+)([^.]+?) rule\./g, (_, value) => `Модель получает правило ${translateDisplayText(value)}.`);
+  result = result.replace(/Model gains (?!\+)([^.]+?) trait\./g, (_, value) => `Модель получает трейт ${translateDisplayText(value)}.`);
+  result = result.replace(/Model gains (?!\+)([^.]+?) rule\./g, (_, value) => `Модель получает правило ${translateDisplayText(value)}.`);
+  result = result.replace(/Bots gain ([^.]+?) Trait\./g, (_, value) => `Боты получают трейт ${translateDisplayText(value)}.`);
   result = result.replace(/One ranged weapon gains ([^.]+?) trait\./g, (_, value) => `Одно стрелковое оружие получает трейт ${translateDisplayText(value)}.`);
   result = result.replace(/One ranged weapon gains ([^.]+?) rule\./g, (_, value) => `Одно стрелковое оружие получает правило ${translateDisplayText(value)}.`);
   result = result.replace(/One ranged weapon gains ([^.]+?)\./g, (_, value) => `Одно стрелковое оружие получает ${translateDisplayText(value)}.`);
+  result = result.replace(/One of the models ranged weapons gains the ([^.]+?) trait\./g, (_, value) => `Одно стрелковое оружие модели получает трейт ${translateDisplayText(value)}.`);
+  result = result.replace(/One of the model’s weapons gains the ([^.]+?) rule\./g, (_, value) => `Одно оружие модели получает правило ${translateDisplayText(value)}.`);
+  result = result.replace(/One of this model's melee weapons gains the ([^.]+?) trait\./g, (_, value) => `Одно оружие ближнего боя этой модели получает трейт ${translateDisplayText(value)}.`);
   result = result.replace(/Ranged weapons gain ([^.]+?)\./g, (_, value) => `Стрелковое оружие получает ${translateDisplayText(value)}.`);
   result = result.replace(/Weapons gain ([^.]+?)\./g, (_, value) => `Оружие получает ${translateDisplayText(value)}.`);
+  result = result.replace(/Close Combat attacks gain ([^.]+?)\./g, (_, value) => `Атаки ближнего боя получают ${translateDisplayText(value)}.`);
+  result = result.replace(/Close combat attacks gain ([^.]+?)\./g, (_, value) => `Атаки ближнего боя получают ${translateDisplayText(value)}.`);
+  result = result.replace(/Close combat weapons gain ([^.]+?)\./g, (_, value) => `Оружие ближнего боя получает ${translateDisplayText(value)}.`);
+  result = result.replace(/Model's Close Combat attacks gain ([^.]+?)\./g, (_, value) => `Атаки ближнего боя модели получают ${translateDisplayText(value)}.`);
+  result = result.replace(/Model's Ranged attacks gain either the ([^.]+?) trait\./g, (_, value) => `Дальние атаки модели получают один из трейтов: ${translateTermList(value)}.`);
+  result = result.replace(/Model gains one Ammunition for one weapon\./g, "Модель получает +1 к боезапасу одного оружия.");
   result = result.replace(/Model gains one ([^.]+?)\./g, (_, value) => `Модель получает одну ${translateDisplayText(value)}.`);
+  result = result.replace(/Model gains \+([0-9]+) to Endurance\./g, (_, amount) => `Модель получает +${amount} к стойкости.`);
+  result = result.replace(/Model gains \+([0-9]+) Endurance\./g, (_, amount) => `Модель получает +${amount} к стойкости.`);
+  result = result.replace(/Model gains \+([0-9]+) Movement\./g, (_, amount) => `Модель получает +${amount} к перемещению.`);
+  result = result.replace(/Model gains \+([0-9]+) to its Defense Skill\./g, (_, amount) => `Модель получает +${amount} к характеристике Defense.`);
+  result = result.replace(/Model gains \+([0-9]+) to its Movement Skill\./g, (_, amount) => `Модель получает +${amount} к характеристике Movement.`);
   result = result.replace(/Model gains \+([0-9]+) to ([^.]+?)\./g, (_, amount, stat) => `Модель получает +${amount} к ${translateDisplayText(stat)}.`);
+  result = result.replace(/Model gains \+([0-9]+) Ammunition for one weapon\./g, (_, amount) => `Модель получает +${amount} к боезапасу одного оружия.`);
+  result = result.replace(/Model gains \+([0-9]+) Movement and Dodge traits?\./g, (_, amount) => `Модель получает +${amount} к перемещению и трейт ${translateDisplayText("Dodge")}.`);
+  result = result.replace(/Model gains \+([0-9]+) ([^.]+?)\./g, (_, amount, stat) => `Модель получает +${amount} к ${translateDisplayText(stat)}.`);
+  result = result.replace(/(^|[\r\n])\+([0-9]+) Movement and Dodge traits?\./g, (_, prefix, amount) => `${prefix}+${amount} к перемещению и трейт ${translateDisplayText("Dodge")}.`);
+  result = result.replace(/(^|[\r\n])\+([0-9]+) to Ammunition for one weapon\./g, (_, prefix, amount) => `${prefix}+${amount} к боезапасу одного оружия.`);
+  result = result.replace(/\+([0-9]+) to ([^.]+?) for one weapon\./g, (_, amount, stat) => `+${amount} к ${translateDisplayText(stat)} одного оружия.`);
   result = result.replace(/Model gains ([^.]+?) and ([^.]+?) rules\./g, (_, left, right) => `Модель получает правила ${translateDisplayText(left)} и ${translateDisplayText(right)}.`);
   result = result.replace(/Model gains ([^.]+?) and ([^.]+?) traits\./g, (_, left, right) => `Модель получает трейты ${translateDisplayText(left)} и ${translateDisplayText(right)}.`);
   result = result.replace(/Model has ([^.]+?) trait$/g, (_, value) => `Модель имеет трейт ${translateDisplayText(value)}`);
@@ -5616,8 +6084,8 @@ function translateSentence(text) {
   result = result.replace(/Alias: ([^.]+?) in crew/g, (_, value) => `Alias: ${translateDisplayText(value)} в команде`);
   result = result.replace(/([A-Za-z0-9'() .-]+?) in crew$/g, (_, value) => `${translateDisplayText(value)} в команде`);
   result = result.replace(/\+1 to Ammunition for one weapon\./g, "+1 к боезапасу одного оружия.");
-  result = result.replace(/\+2 Movement and Dodge trait\./g, "+2 к Movement и трейт Dodge.");
-  result = result.replace(/\+2 Movement and Dodge traits\./g, "+2 к перемещению и трейты Dodge.");
+  result = result.replace(/\+2 Movement and Dodge trait\./g, "+2 к перемещению и трейт Уклонение.");
+  result = result.replace(/\+2 Movement and Dodge traits\./g, "+2 к перемещению и трейт Уклонение.");
   result = result.replace(/Movement Actions/g, "действия перемещения");
   result = result.replace(/Manipulate Actions/g, "действия Manipulate");
   result = result.replace(/Ranged Attacks/g, "дальние атаки");
@@ -5650,7 +6118,8 @@ function translateSentence(text) {
   result = result.replace(/Terror Pile/g, "стопка Terror");
   result = result.replace(/Terror pile/g, "стопка Terror");
   result = result.replace(/\bDamage\b/g, "урон");
-  result = result.replace(/Model is immune to the ([^.]+?) Status\./g, (_, value) => `Модель получает иммунитет к статусу ${translateDisplayText(value)}.`);
+  result = result.replace(/Model is immune to (?:the )?([^.]+?) Status\./g, (_, value) => `Модель получает иммунитет к статусу ${translateDisplayText(value)}.`);
+  result = result.replace(/Model is immune to the ([^.]+?) effect\./g, (_, value) => `Модель получает иммунитет к эффекту ${translateDisplayText(value)}.`);
   result = result.replace(/Close Combat attacks gain the ([^.]+?) trait\./g, (_, value) => `Атаки ближнего боя получают трейт ${translateDisplayText(value)}.`);
   result = result.replace(/Ranged attacks gain ([^.]+?)\./g, (_, value) => `Дальние атаки получают ${translateDisplayText(value)}.`);
   result = result.replace(/Weapons gain the ([^.]+?) rule\./g, (_, value) => `Оружие получает правило ${translateDisplayText(value)}.`);
@@ -5689,7 +6158,45 @@ function translateSentence(text) {
   result = result.replace(/within 4\"/g, "в пределах 4\"");
   result = result.replace(/within 3\"/g, "в пределах 3\"");
   result = result.replace(/within 2\"/g, "в пределах 2\"");
+  if (result === originalSentence) {
+    const exactSentence = translateExact(originalSentence, exactTextTranslations);
+    if (exactSentence !== originalSentence) return postProcessLocalizedDisplay(exactSentence);
+  }
   result = translateProseText(result);
+  result = translateWeaponProfileTerms(result);
+  result = result.replace(/S\.\s*Дальность/g, "Малая дальность");
+  result = result.replace(/M\.\s*Дальность/g, "Средняя дальность");
+  result = result.replace(/\bROF\s*:/g, "скорострельность:");
+  result = result.replace(/\bAMMO\s*:/g, "боезапас:");
+  result = result.replace(/Dual Пистолеты/g, "Парные пистолеты");
+  result = result.replace(/Disposable Nightmare:/g, "Расходный кошмар:");
+  result = result.replace(/Terror Invigoration:/g, "Подпитка ужасом:");
+  result = result.replace(/ужас Invigoration:/g, "Подпитка ужасом:");
+  result = result.replace(/Impaired Перемещение/g, "Impaired Movement");
+  result = result.replace(/\(Eternal Option Required\)/g, "(требуется опция Eternal)");
+  result = result.replace(/Только растения can purchase this equipment\./g, "Только растения могут покупать это снаряжение.");
+  result = result.replace(/Poisong подготовка/g, "Подготовка с ядами");
+  result = result.replace(/стопке Terror/g, "стопке ужаса");
+  result = result.replace(/стопке ужас/g, "стопке ужаса");
+  result = result.replace(/броске сила воли/g, "броске силы воли");
+  result = result.replace(/броску сила воли/g, "броску силы воли");
+  result = result.replace(/бросок сила воли/g, "бросок силы воли");
+  result = result.replace(/кубик сила/g, "кубик силы");
+  result = result.replace(/карта цель/g, "карта цели");
+  result = result.replace(/Может купить только the Загадочник\)/g, "(может купить только The Riddler)");
+  result = result.replace(/может купить только the Загадочник/g, "может купить только The Riddler");
+  result = result.replace(/The Загадочник’s Mech/g, "The Riddler’s Mech");
+  result = result.replace(/The Загадочник/g, "The Riddler");
+  result = result.replace(/Загадочник’s Mech/g, "Riddler’s Mech");
+  result = result.replace(/Deathstroke \(Vanguard Team\)/g, "Deathstroke (Передовой отряд)");
+  result = result.replace(/Ravager \(Vanguard Team\)/g, "Ravager (Передовой отряд)");
+  result = result.replace(/([A-Za-zА-Яа-яЁё0-9)}])\.\./g, "$1.");
+  result = result.replace(/правило укрытие/g, "правило Cover");
+  result = result.replace(/Оружие получает the ([^.]+?) правило/g, "Оружие получает правило $1");
+  result = result.replace(/получают the ([^.]+?) трейт/g, "получают трейт $1");
+  result = result.replace(/Модель получает the ([^.]+?) трейт/g, "Модель получает трейт $1");
+  result = result.replace(/Suspect маркер\s+маркер/g, "Suspect маркер");
+  result = result.replace(/Suspect маркеры\s+маркеры/g, "Suspect маркеры");
 
   Object.keys(rankLabels).forEach(rank => {
     result = result.replace(new RegExp(`\\b${rank}\\b`, "g"), rankLabels[rank].ru);
@@ -5698,6 +6205,14 @@ function translateSentence(text) {
   Object.keys(factionLabels).forEach(faction => {
     result = result.replace(new RegExp(faction.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"), factionLabels[faction].ru);
   });
+
+  result = result.replace(/Может купить только The Загадочник\)/g, "(может купить только The Riddler)");
+  result = result.replace(/может купить только The Загадочник/g, "может купить только The Riddler");
+  result = result.replace(/The Загадочник’s Mech/g, "The Riddler’s Mech");
+  result = result.replace(/The Загадочник/g, "The Riddler");
+  result = result.replace(/Загадочник’s Mech/g, "Riddler’s Mech");
+  result = result.replace(/карта цель/g, "карта цели");
+  result = result.replace(/карту цель/g, "карту цели");
 
   return result;
 }
@@ -12123,9 +12638,28 @@ function parseEquipmentAnyOfCondition(condition) {
     .filter(Boolean);
 }
 
+function parseEquipmentOrCondition(condition) {
+  const trimmed = String(condition || "").trim();
+  if (!trimmed || /^Any of:/i.test(trimmed)) return null;
+  if (/^(?:Model has|Only|Restricted:|Name:|Alias:)/i.test(trimmed)) return null;
+  if (!/\s+or\s+/i.test(trimmed)) return null;
+
+  const options = trimmed
+    .split(/\s+or\s+/i)
+    .map(item => item.trim())
+    .filter(Boolean);
+
+  return options.length > 1 ? options : null;
+}
+
 function equipmentConditionOptionMet(condition, crewModel) {
   const trimmed = String(condition || "").trim();
   if (!trimmed) return false;
+
+  const orOptions = parseEquipmentOrCondition(trimmed);
+  if (orOptions) {
+    return orOptions.some(option => equipmentConditionOptionMet(option, crewModel));
+  }
 
   const restrictedCondition = parseEquipmentRestrictedCondition(trimmed);
   if (restrictedCondition) {
@@ -12178,6 +12712,42 @@ function crewHasEquipmentModelCondition(condition) {
   return crew.some(model => modelMatchesEquipmentName(model, condition));
 }
 
+function parseEquipmentBossCondition(condition) {
+  const match = String(condition || "").trim().match(/^(.+?)\s+is\s+Boss$/i);
+  return match ? match[1].trim() : null;
+}
+
+function crewHasEquipmentBossCondition(conditionName) {
+  const candidates = [
+    BMG_BOSS,
+    ...crew.filter(model => model?.isBoss || model?.rankUsed === "Leader")
+  ].filter(Boolean);
+
+  return candidates.some(model => modelMatchesEquipmentName(model, conditionName));
+}
+
+function normalizeEquipmentRankName(rank) {
+  const normalized = String(rank || "").trim().toLowerCase();
+  if (normalized === "leader" || normalized === "leaders") return "Leader";
+  if (normalized === "sidekick" || normalized === "sidekicks") return "Sidekick";
+  if (normalized === "free agent" || normalized === "free agents") return "Free Agent";
+  if (normalized === "henchman" || normalized === "henchmen") return "Henchman";
+  return "";
+}
+
+function parseEquipmentOnlyRankCondition(condition) {
+  const trimmed = String(condition || "").trim();
+  if (!/^Only\s+/i.test(trimmed)) return null;
+
+  const ranks = trimmed
+    .replace(/^Only\s+/i, "")
+    .split("/")
+    .map(normalizeEquipmentRankName)
+    .filter(Boolean);
+
+  return ranks.length ? ranks : null;
+}
+
 function isEquipmentCharacterCondition(condition) {
   const trimmed = String(condition || "").trim();
   if (!trimmed) return false;
@@ -12185,9 +12755,14 @@ function isEquipmentCharacterCondition(condition) {
   if (anyOfOptions) {
     return anyOfOptions.some(option => isEquipmentCharacterCondition(option));
   }
+  const orOptions = parseEquipmentOrCondition(trimmed);
+  if (orOptions) {
+    return orOptions.some(option => isEquipmentCharacterCondition(option));
+  }
   if (/^Restricted:\s*/i.test(trimmed)) return false;
   if (trimmed.startsWith("Alias:")) return true;
   if (trimmed.endsWith(" in crew")) return crewHasEquipmentModelCondition(trimmed);
+  if (parseEquipmentBossCondition(trimmed)) return false;
   if (trimmed.startsWith("Only ")) return false;
   if (/^Name:\s*/i.test(trimmed)) return false;
   if (trimmed === "Eternal Option Required") return false;
@@ -14355,6 +14930,11 @@ function canShowEquipmentForCrewModel(eq, crewModel) {
         return anyOfOptions.some(option => equipmentConditionOptionMet(option, crewModel));
       }
 
+      const orOptions = parseEquipmentOrCondition(trimmed);
+      if (orOptions) {
+        return orOptions.some(option => equipmentConditionOptionMet(option, crewModel));
+      }
+
       const restrictedCondition = parseEquipmentRestrictedCondition(trimmed);
       if (restrictedCondition) {
         return !modelMatchesEquipmentName(crewModel, restrictedCondition.value);
@@ -14374,6 +14954,20 @@ function canShowEquipmentForCrewModel(eq, crewModel) {
       }
 
       if (trimmed === "Eternal Option Required") return true;
+
+      const bossCondition = parseEquipmentBossCondition(trimmed);
+      if (bossCondition) {
+        return crewHasEquipmentBossCondition(bossCondition);
+      }
+
+      if (
+        Array.isArray(eq.requiredCrewOfficialIds) &&
+        eq.requiredCrewOfficialIds.length &&
+        crewHasRequiredEquipmentOfficialIds(eq) &&
+        isEquipmentCharacterCondition(trimmed)
+      ) {
+        return true;
+      }
 
       const forbiddenTraitMatch = trimmed.match(/^Model has (.+?) trait cannot purchase$/i);
       if (forbiddenTraitMatch) {
@@ -14397,6 +14991,15 @@ function canShowEquipmentForCrewModel(eq, crewModel) {
         return !getModelTraits(crewModel).some(trait => trait.includes(normalizedForbiddenTrait));
       }
 
+      const onlyRankCondition = parseEquipmentOnlyRankCondition(trimmed);
+      if (onlyRankCondition) {
+        return onlyRankCondition.includes(crewModel.rankUsed);
+      }
+
+      if (trimmed.startsWith("Only Arkham Asylum Dr")) {
+        return getModelTraits(crewModel).some(trait => trait.startsWith("Arkham Asylum Dr"));
+      }
+
       if (trimmed.startsWith("Only ")) {
         const requiredTrait = trimmed.replace("Only ", "").trim();
         const traits = requiredTrait.split("/").map(item => item.trim());
@@ -14414,15 +15017,6 @@ function canShowEquipmentForCrewModel(eq, crewModel) {
             normalizedTrait.startsWith(normalizedRequired + " ") ||
             normalizedTrait.startsWith(normalizedRequired + "(");
         }));
-      }
-
-      if (trimmed.startsWith("Only Arkham Asylum Dr")) {
-        return getModelTraits(crewModel).some(trait => trait.startsWith("Arkham Asylum Dr"));
-      }
-
-      if (trimmed.startsWith("Only Henchman") || trimmed.startsWith("Only Free Agent")) {
-        const allowedRanks = trimmed.replace("Only ", "").split("/").map(rank => rank.trim());
-        return allowedRanks.some(rank => crewModel.rankUsed && crewModel.rankUsed.includes(rank));
       }
 
       const weaponTraitMatch = trimmed.match(/^(?:Model has weapon with|Weapon has)\s+(.+?)\s+trait$/i);
