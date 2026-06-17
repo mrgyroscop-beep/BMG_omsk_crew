@@ -13744,7 +13744,7 @@ const equipmentByFaction = {
     { name: "Watch Tower", officialId: 36, fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Barbara Gordon"], targetModels: ["Batgirl"], effects: ["Model gains Exhaustive Planner rule."] },
     { name: "Deadly Weapons", fundingCost: 150, repCost: 2, maxPerCrew: 1, conditions: ["Red Hood (Arkham Knight)"], targetModels: ["Red Hood Arkham Knight"], effects: ["Weapons gain the Silencer rule."] },
     { name: "Heliport", fundingCost: 150, repCost: 0, maxPerCrew: 1, conditions: ["James Gordon"], targetModels: ["James Gordon"], effects: ["Enhances Air Support (details in desc)."] },
-    { name: "Sergeant Training", fundingCost: 100, repCost: 0, maxPerCrew: 2, conditions: ["James Gordon"], effects: ["Model gains the Order rule."], isUnaffectedByBroken: true }
+    { name: "Sergeant Training", fundingCost: 50, repCost: 0, maxPerCrew: 2, conditions: ["James Gordon"], effects: ["Model gains the Order rule."], isUnaffectedByBroken: true }
   ],
   "Bat Family": [
     { name: "Always Prepared", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: [], targetModels: ["Henchman"], effects: ["When this model sets a Suspect, you may set a Thwart within 4\" of that Suspect."] },
@@ -13776,7 +13776,7 @@ const equipmentByFaction = {
     { name: "Clown Paint", fundingCost: 150, repCost: 0, maxPerCrew: 2, conditions: [], effects: ["Model gains the Distract rule."] },
     { name: "Flare", fundingCost: 300, repCost: 0, maxPerCrew: 2, conditions: [], effects: ["Model gains the Flare rule."] },
     { name: "Neurotoxic Drugs", fundingCost: 250, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains +2 Movement and Dodge trait."] },
-    { name: "Improvised Armor", fundingCost: 0, repCost: 150, maxPerCrew: 1, conditions: [], effects: ["Model gains the Hockey Gear rule."] },
+    { name: "Improvised Armor", fundingCost: 150, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Hockey Gear rule."] },
     { name: "Gas Mask", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Gas Mask rule."] },
     { name: "Antidote", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model is immune to the Poison Status."] },
     { name: "Poison Training", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Poison Master trait."] },
@@ -13820,12 +13820,12 @@ const equipmentByFaction = {
     { name: "Antidote", fundingCost: 50, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model is immune to Poison Status."] },
     { name: "Neurotoxic Drugs", fundingCost: 250, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["+2 Movement and Dodge trait."] },
     { name: "Camo Vest", fundingCost: 200, repCost: 0, maxPerCrew: 2, conditions: [], effects: ["Model gains the Stealth rule."] },
-    { name: "Gas Mask", fundingCost: 50, repCost: 0, maxPerCrew: 3, conditions: [], effects: ["Model gains the Gas Mask rule."] },
+    { name: "Gas Mask", fundingCost: 150, repCost: 0, maxPerCrew: 3, conditions: [], effects: ["Model gains the Gas Mask rule."] },
     { name: "War Hardened", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Cruel trait."] },
     { name: "Handcuffs", officialId: 226, fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: ["Bane"], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Model gains the Arrest rule."] },
     { name: "Venom Laboratory", officialId: 50, fundingCost: 100, repCost: 5, maxPerCrew: 1, conditions: ["Bane"], targetModels: ["Leader", "Sidekick"], effects: ["All models in your crew may use more than 1 Titan Dose per game. This bonus remains in play even if this model is removed from play or leaves the Gaming Area. In addition, the cost of Venom Doses in the equipment list is reduced to $50."] },
     { name: "Venom Applicator", officialId: 52, fundingCost: 0, repCost: 2, maxPerCrew: 2, conditions: ["Bane"], targetModels: ["Leader", "Sidekick", "Free Agent", "Henchman"], effects: ["Model may use Titan and Venom Doses on a friendly model in contact."] },
-    { name: "Military Progress", fundingCost: 100, repCost: 0, maxPerCrew: 2, conditions: ["Bird"], effects: ["Model gains Veteran rule."] },
+    { name: "Military Progress", fundingCost: 150, repCost: 0, maxPerCrew: 2, conditions: ["Bird"], effects: ["Model gains Veteran rule."] },
     { name: "Dual Handguns", fundingCost: 300, repCost: 7, maxPerCrew: 1, conditions: ["Thomas Wayne"], targetModels: ["Thomas Wayne"], effects: ["Gains Rapid Fire and Dual Handguns weapon."], isUnaffectedByBroken: true },
     { name: "Surgeon Training", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Thomas Wayne"], effects: ["Model gains the Medic trait."] },
     { name: "Fear Gas Dispenser", fundingCost: 150, repCost: 0, maxPerCrew: 1, conditions: ["Scarecrow (Arkham Knight)"], effects: ["Model gains the Inspire Fear rule."] },
@@ -13862,7 +13862,7 @@ const equipmentByFaction = {
     { name: "Broken Equipment Pack", fundingCost: 250, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Disables one enemy equipment pre-game."] },
     { name: "Gas Mask", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: [], effects: ["Model gains the Gas Mask rule."] },
     { name: "Another One!", fundingCost: 150, repCost: 0, maxPerCrew: 2, conditions: [], effects: ["Model gains the Drop a Riddle trait."] },
-    { name: "Level Up!", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: ["The Riddler"], targetModels: ["The Riddler"], effects: ["Place up to 2 extra Suspect markers in first 2 turns."] },
+    { name: "Level Up!", fundingCost: 150, repCost: 0, maxPerCrew: 1, conditions: ["The Riddler"], targetModels: ["The Riddler"], effects: ["Place up to 2 extra Suspect markers in first 2 turns."] },
     { name: "Its a Dud", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: ["Quell"], effects: ["Remove 1 Riddle marker at activation start."] },
     { name: "Inspiration", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: ["Echo"], effects: ["Search Objective deck when playing a card."] },
     { name: "Weird Ammo", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: ["Query"], effects: ["Ranged weapons gain Enervating (2) or Anti-Tank."] },
@@ -13947,7 +13947,7 @@ const equipmentByFaction = {
     { name: "Weird Device", fundingCost: 200, repCost: 0, maxPerCrew: 2, conditions: ["Jervis Tetch"], effects: ["Model gains the Goad trait."] },
     { name: "Trained Mind", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: ["Jervis Tetch"], effects: ["Model gains Desensitized rule."] },
     { name: "Rhyme with Me", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Jervis Tetch"], effects: ["Model gains Disarray rule."] },
-    { name: "Masks of Wonderland", fundingCost: 0, repCost: 0, maxPerCrew: 1, conditions: ["Jervis Tetch"], effects: ["Choose one mask: Queen of Hearts (Assassin 1, Order), White Rabbit (Fast, Tireless), Cheshire Cat (Stealth, Climbing Claws)."] },
+    { name: "Masks of Wonderland", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Jervis Tetch"], effects: ["Choose one mask: Queen of Hearts (Assassin 1, Order), White Rabbit (Fast, Tireless), Cheshire Cat (Stealth, Climbing Claws)."] },
     { name: "Advanced Weaponry", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Alexander Joseph Luthor"], effects: ["One ranged weapon gains Accurate trait."] }
   ],
   "Two-Face": [
@@ -13970,7 +13970,7 @@ const equipmentByFaction = {
     { name: "Magazine", fundingCost: 200, repCost: 0, maxPerCrew: 2, conditions: [], effects: ["+1 to Ammunition for one weapon."] },
     { name: "Apparition", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Model has Nightmare trait cannot purchase"], effects: ["Model gains the Apparition trait."] },
     { name: "Handcuffs", fundingCost: 150, repCost: 0, maxPerCrew: 1, conditions: ["Model has Nightmare trait cannot purchase"], effects: ["Model gains the Arrest trait."] },
-    { name: "Neurotoxic Drugs", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Model has Nightmare trait cannot purchase"], effects: ["+2 Movement and Dodge traits."] },
+    { name: "Neurotoxic Drugs", fundingCost: 300, repCost: 0, maxPerCrew: 1, conditions: ["Model has Nightmare trait cannot purchase"], effects: ["+2 Movement and Dodge traits."] },
     { name: "Fear Advantage", fundingCost: 200, repCost: 0, maxPerCrew: 1, conditions: ["Only Arkham Asylum Dr."], effects: ["This model may use the Protect Me! Trait on a friendly model with the Nightmare trait without the need of performing an Effort."] },
     { name: "Intensive Treatment", fundingCost: 100, repCost: 0, maxPerCrew: 1, conditions: ["Only Arkham Asylum Dr."], effects: ["Model gains the Intensive Treatment trait."] },
     { name: "Disposable Nightmare", fundingCost: 150, repCost: 0, maxPerCrew: 2, conditions: ["Model has Nightmare trait"], effects: ["Model gains the Disposable Nightmare trait. When this model is removed, Discard a card from your deck."] },
@@ -15534,8 +15534,8 @@ const officialEquipmentRulesByFaction = {
     {
       "name": "Improvised Armor",
       "officialId": 359,
-      "fundingCost": 0,
-      "repCost": 150,
+      "fundingCost": 150,
+      "repCost": 0,
       "maxPerCrew": 1,
       "targetModels": [
         "Henchman"
@@ -16904,7 +16904,7 @@ const officialEquipmentRulesByFaction = {
     {
       "name": "Sergeant Training",
       "officialId": 39,
-      "fundingCost": 100,
+      "fundingCost": 50,
       "repCost": 0,
       "maxPerCrew": 2,
       "targetModels": [
@@ -17961,7 +17961,7 @@ const officialEquipmentRulesByFaction = {
     {
       "name": "Masks of Wonderland",
       "officialId": 140,
-      "fundingCost": 0,
+      "fundingCost": 200,
       "repCost": 0,
       "maxPerCrew": 1,
       "targetModels": [
@@ -18729,7 +18729,7 @@ const officialEquipmentRulesByFaction = {
     {
       "name": "Level Up!",
       "officialId": 224,
-      "fundingCost": 100,
+      "fundingCost": 150,
       "repCost": 0,
       "maxPerCrew": 1,
       "targetModels": [
@@ -19166,7 +19166,7 @@ const officialEquipmentRulesByFaction = {
     {
       "name": "Neurotoxic Drugs",
       "officialId": 337,
-      "fundingCost": 200,
+      "fundingCost": 300,
       "repCost": 0,
       "maxPerCrew": 1,
       "targetModels": [
@@ -19397,7 +19397,7 @@ const officialEquipmentRulesByFaction = {
     {
       "name": "Gas Mask",
       "officialId": 193,
-      "fundingCost": 50,
+      "fundingCost": 150,
       "repCost": 0,
       "maxPerCrew": 3,
       "targetModels": [
@@ -19529,7 +19529,7 @@ const officialEquipmentRulesByFaction = {
     {
       "name": "Military Progress",
       "officialId": 53,
-      "fundingCost": 100,
+      "fundingCost": 150,
       "repCost": 0,
       "maxPerCrew": 2,
       "targetModels": [
