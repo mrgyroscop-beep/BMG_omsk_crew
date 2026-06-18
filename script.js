@@ -37,6 +37,7 @@ let compendiumCacheByLang = {};
 let i18nNodeCache = null;
 let currentFullCardModel = null;
 let fullCardCloseTimer = null;
+let fullCardReturnScrollState = null;
 let mobileTopbarOffsetFrame = null;
 const printableModelNames = window.PRINTABLE_MODEL_NAMES || new Set();
 const printableModelKeys = window.PRINTABLE_MODEL_KEYS || new Set();
@@ -10107,7 +10108,7 @@ function showBuilderCardPreview(card, fallbackTitle = "") {
 
   showTraitPopup(
     getBuilderCardName(card) || fallbackTitle,
-    `<div class="match-card-preview">${imageHtml}${textHtml ? `<div class="match-card-preview-text">${textHtml}</div>` : ""}</div>`
+    `<div class="match-card-preview builder-objective-card-preview">${imageHtml}${textHtml ? `<div class="match-card-preview-text">${textHtml}</div>` : ""}</div>`
   );
 }
 
@@ -13341,6 +13342,7 @@ const renderMiniCardsBuilder = debounce(() => {
 
     const div = document.createElement("div");
     div.className = `mini-card ${item.inCrew ? "in-crew" : ""} ${isAttachedForm ? "attached-form" : ""}`;
+    div.dataset.modelScrollKey = getModelScrollKey(item);
 
     let buttons = '';
     if (isAttachedForm) {
@@ -13625,6 +13627,77 @@ function rerenderOpenFullCard() {
   }
 }
 
+function getWindowScrollY() {
+  return document.scrollingElement?.scrollTop ||
+    window.pageYOffset ||
+    document.documentElement.scrollTop ||
+    document.body.scrollTop ||
+    0;
+}
+
+function setWindowScrollY(value) {
+  const nextScroll = Math.max(0, Number(value) || 0);
+  if (document.scrollingElement) document.scrollingElement.scrollTop = nextScroll;
+  document.documentElement.scrollTop = nextScroll;
+  document.body.scrollTop = nextScroll;
+  window.scrollTo(0, nextScroll);
+}
+
+function getModelScrollKey(model) {
+  const officialId = Number(model?.officialId);
+  if (Number.isFinite(officialId)) return `official:${officialId}`;
+  if (model?._id !== undefined && model?._id !== null) return `local:${model._id}`;
+  if (model?.name) return `name:${normalizeExactKey(model.name)}`;
+  return "";
+}
+
+function findBuilderModelCardByScrollKey(scrollKey) {
+  if (!scrollKey) return null;
+  return Array.from(document.querySelectorAll("#modelsGridBuilder .mini-card[data-model-scroll-key]"))
+    .find(card => card.dataset.modelScrollKey === scrollKey) || null;
+}
+
+function captureFullCardReturnScroll(model) {
+  const fullCard = $("fullCard");
+  if (fullCard?.classList.contains("active")) return;
+
+  const builderMain = $("builderMain");
+  const builderModelsPanel = $("builderModelsPanel");
+  const builderIsVisible = builderMain?.style.display !== "none" &&
+    builderModelsPanel?.style.display !== "none";
+  if (!builderIsVisible) return;
+
+  const scrollKey = getModelScrollKey(model);
+  const sourceCard = findBuilderModelCardByScrollKey(scrollKey);
+  fullCardReturnScrollState = {
+    scrollY: getWindowScrollY(),
+    scrollKey,
+    sourceTop: sourceCard ? sourceCard.getBoundingClientRect().top : null
+  };
+}
+
+function restoreFullCardReturnScroll() {
+  const state = fullCardReturnScrollState;
+  fullCardReturnScrollState = null;
+  if (!state) return;
+
+  const restore = () => {
+    const sourceCard = findBuilderModelCardByScrollKey(state.scrollKey);
+    if (sourceCard && Number.isFinite(state.sourceTop)) {
+      const delta = sourceCard.getBoundingClientRect().top - state.sourceTop;
+      setWindowScrollY(getWindowScrollY() + delta);
+      return;
+    }
+
+    setWindowScrollY(state.scrollY);
+  };
+
+  requestAnimationFrame(() => {
+    restore();
+    setTimeout(restore, 60);
+  });
+}
+
 function shouldAnimateFullCardDrawer() {
   return window.matchMedia && window.matchMedia("(max-width: 480px)").matches;
 }
@@ -13710,6 +13783,8 @@ function renderFullCardEquipmentSection(model, crewModel, isDisplayModel) {
 }
 
 const showFullCard = model => {
+  captureFullCardReturnScroll(model);
+
   const isDisplayModel = model?._matchDisplayModel || model?._ruleAdjustedDisplayModel;
   const crewInstance = isDisplayModel ? null : (model?.instance || findCrewModel(model));
   currentFullCardModel = isDisplayModel
@@ -13837,6 +13912,7 @@ const closeFullCard = () => {
       fullCard.classList.remove("closing");
       document.documentElement.classList.remove("full-card-open");
       document.body.classList.remove("full-card-open");
+      restoreFullCardReturnScroll();
       fullCardCloseTimer = null;
     }, 260);
     return;
@@ -13845,6 +13921,7 @@ const closeFullCard = () => {
   fullCard.classList.remove("active", "closing");
   document.documentElement.classList.remove("full-card-open");
   document.body.classList.remove("full-card-open");
+  restoreFullCardReturnScroll();
 };
 
 // ======================== COMPENDIUM ========================
