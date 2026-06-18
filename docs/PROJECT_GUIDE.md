@@ -38,7 +38,10 @@
 - `builderTournamentMode` - собирается ли ростер как турнирный.
 - `myCrews` - сохраненные ростеры из LocalStorage.
 - `batmatchState` - выбранные турнирные листы и выбранные Encounter/Event карты.
-- `matchOpponentRoster`, `matchGameState` - состояние режима матча/игры.
+- `matchOpponentRoster`, `matchGameRosters` - выбранная/импортированная банда оппонента и две стороны текущего режима игры.
+- `matchGameObjectiveState` - сессионное состояние Objective-карт в режиме игры: колода, рука, заявленные и выполненные цели.
+- `matchGameModelState` - сессионные отметки моделей в режиме игры: урон, состояния, активация.
+- `matchGameTrackerSettings` - настройки отображения игровых трекеров из LocalStorage.
 - `currentMode` - активный экран: `menu`, `cards`, `builder`, `my-crews`, `batmatch`, `match`, `match-game`, `rules`.
 
 Переходы между экранами идут через `showScreen(...)` и отдельные функции `showBuilder`, `showCards`, `showMyCrews`, `showBatmatch`, `showMatch`, `showRules`.
@@ -248,6 +251,13 @@ LocalStorage ключ:
 - `renderMatchSetupPanel()`
 - `renderMatchSetupSelect(kind)`
 - `renderMatchSetupCardsGallery(...)`
+- `resetMatchGameModelState()`
+- `getMatchGameModelState(side, rosterIndex, create)`
+- `renderMatchGameModelTracker(modelEntry, baseModel, rosterIndex)`
+- `renderMatchGameDamageTracker(...)`
+- `renderMatchGameStatusesTracker(...)`
+- `toggleMatchGameActivated(side, rosterIndex, event)`
+- `resetMatchGameActivations(side, event)`
 
 Логика Objective hand:
 
@@ -257,6 +267,26 @@ LocalStorage ключ:
 - выполненная цель идет в выполненные;
 - заявленная цель лежит отдельно, затем либо выполнена, либо уходит под низ;
 - кнопка shuffle перемешивает карты вне рук.
+
+Игровые трекеры моделей:
+
+- Это сессионное состояние матча, а не часть сохраненного ростера. При старте нового матча или пробной партии вызывается `resetMatchGameModelState()`, и отметки сбрасываются.
+- В интерфейсе нет отдельного поля `HP`. За размер дорожки здоровья отвечает `Endurance` модели из `stats.Endurance`.
+- За размер дорожки стана отвечает `Willpower` модели из `stats.Willpower`. Не используй `Endurance` для стана.
+- Здоровье и стан показываются как две независимые компактные дорожки пузырьков без видимых подписей на самих дорожках: красная дорожка - здоровье по `Endurance`, синяя - стан по `Willpower`.
+- Полученный урон опустошает пузырьки справа налево. Пузырьки кликабельные: клик по заполненному пузырьку наносит урон до этой точки, клик по пустой зоне возвращает значение назад.
+- `Blood` и `Stun` хранятся отдельно в `matchGameModelState[side][rosterIndex]`, потому что это разные игровые показатели. Не суммируй их в одну полоску.
+- Если одна из дорожек полностью опустела, подсвечивается именно она, но приложение не удаляет модель автоматически. Решение о KO/Casualty остается за игроком.
+- Активация хранится флагом `activated`. Кнопка на модели переключает `Не ходил` / `Походил`, а `startMatchGameNewRound(...)` начинает новый раунд для обеих сторон: сбрасывает активации, восстанавливает потраченные Effort до текущего доступного лимита и уменьшает `Stun` на 1 у всех моделей, которые не находятся в KO.
+- Рядом с активацией показывается текущий доступный Effort в виде треугольников в круглых кнопках. Базовый Effort Limit равен 3, у моделей с `Weak` - 2. Лимит уменьшается на 1 за каждые 3 `Blood`/Injury damage, кроме моделей с `Sturdy`, `Demon` или `Meet Goliath!`.
+- Effort хранит потраченное значение в `effortSpent` и меняется только кликом по круглым треугольникам. Синяя дорожка `Stun` не должна автоматически уменьшать или восстанавливать Effort в UI; Stun от Effort игрок отмечает синей дорожкой отдельно. Временные `Free Efforts` от карт, Inspire, доз и одноразовых эффектов не добавляются автоматически.
+- Состояния хранятся словарем `statuses`, где ключ - id состояния, значение - количество маркеров. Это важно для состояний с числом, например `Fire`, `Poison`, `Slow`, `Enervating`.
+- Список поддерживаемых состояний задан в `MATCH_GAME_STATUS_OPTIONS`: `Knocked Down`, `Enervating`, `Terror`, `Blind`, `Stunned`, `Paralyze`, `Fire`, `Freeze`, `Cooled`, `Scared`, `Poison`, `Slow`, `Hypnotize`, `KO`.
+- Названия состояний в UI оставлены на английском, чтобы совпадать с официальными картами, PDF и названиями трейтов. Само название состояния кликабельно и открывает подсказку из Compendium; `KO` использует отдельное описание из UI-словаря.
+- Интерактивные элементы трекеров должны вызывать `stopMatchGameTrackerEvent(event)`, иначе клик по пузырьку, состоянию или активации откроет полную карточку модели.
+- Трекеры можно скрывать независимо в настройках. Ключ LocalStorage: `bmg_match_game_tracker_settings_v1`, поля: `damage`, `statuses`, `activation`. По умолчанию все три включены.
+- Настройки меняют только отображение блоков. Уже выставленные отметки не стираются при выключении переключателя и снова появятся при включении.
+- Rulebook-ориентир: `Endurance` используется как предел Injury Damage до Casualty; отдельно существуют `Stun Damage Markers`, `Injury Damage Markers`, `Activation Markers` и отдельные Status markers.
 
 ### Правила и справочник
 
@@ -412,7 +442,8 @@ await browser.newPage({ viewport: { width: 390, height: 680 }, deviceScaleFactor
 - открыть `Турнир`;
 - выбрать обычную и турнирную банду;
 - открыть `Матч`;
-- открыть режим игры и проверить Objective hand.
+- открыть режим игры и проверить Objective hand;
+- в режиме игры проверить трекеры модели: Blood/Stun, состояния, `Походил`, сброс активаций, а также выключение этих блоков в настройках.
 
 ## Текущие проектные решения
 

@@ -41,7 +41,7 @@
           <span class="btn-icon"><img src="img/ui-icons/match.svg" alt="" aria-hidden="true"></span>
           <span class="btn-text" data-i18n="match">МАТЧ</span>
         </button>
-        <button class="menu-btn" onclick="showBatmatch()">
+        <button class="menu-btn" onclick="showBatmatch()" data-tournament-feature>
           <span class="btn-icon"><img src="img/ui-icons/tournament.svg" alt="" aria-hidden="true"></span>
           <span class="btn-text" data-i18n="batmatch_menu">ТУРНИР</span>
         </button>
@@ -470,7 +470,7 @@
         <span class="btn-icon"><img src="img/ui-icons/new-crew.svg" alt="" aria-hidden="true"></span>
         <span class="btn-text" data-i18n="my_crews_create">НОВАЯ БАНДА</span>
       </button>
-      <button class="menu-btn my-crews-action-btn my-crews-tournament-btn" onclick="createNewTournamentCrewFromMyCrews()" data-i18n-title="my_crews_create_tournament" title="Новая турнирная банда">
+      <button class="menu-btn my-crews-action-btn my-crews-tournament-btn" onclick="createNewTournamentCrewFromMyCrews()" data-i18n-title="my_crews_create_tournament" title="Новая турнирная банда" data-tournament-feature>
         <span class="btn-icon"><img src="img/ui-icons/match.svg" alt="" aria-hidden="true"></span>
         <span class="btn-text" data-i18n="my_crews_create_tournament">НОВАЯ ТУРНИРНАЯ БАНДА</span>
       </button>
@@ -713,7 +713,47 @@
         <button class="settings-close" type="button" onclick="closeSettings()" data-i18n-aria-label="settings_close" aria-label="Закрыть настройки">×</button>
       </div>
       <div class="settings-body">
-        <div class="settings-empty" data-i18n="settings_empty">Пока пусто</div>
+        <label class="settings-switch-row">
+          <span class="settings-switch-copy">
+            <strong data-i18n="settings_tournament_title">Турнир</strong>
+            <span id="settingsTournamentStatus" class="settings-switch-status">Включен</span>
+          </span>
+          <input id="settingsTournamentToggle" class="settings-switch-input" type="checkbox" checked onchange="setTournamentFeatureEnabled(this.checked)">
+          <span class="settings-switch-control" aria-hidden="true">
+            <span class="settings-switch-knob"></span>
+          </span>
+        </label>
+        <div class="settings-section-title" data-i18n="settings_match_game_title">Игра</div>
+        <label class="settings-switch-row is-compact">
+          <span class="settings-switch-copy">
+            <strong data-i18n="settings_damage_tracker_title">Урон и стойкость</strong>
+            <span id="settingsDamageTrackerStatus" class="settings-switch-status">Включен</span>
+          </span>
+          <input id="settingsDamageTrackerToggle" class="settings-switch-input" type="checkbox" checked onchange="setMatchGameTrackerSetting('damage', this.checked)">
+          <span class="settings-switch-control" aria-hidden="true">
+            <span class="settings-switch-knob"></span>
+          </span>
+        </label>
+        <label class="settings-switch-row is-compact">
+          <span class="settings-switch-copy">
+            <strong data-i18n="settings_status_tracker_title">Состояния</strong>
+            <span id="settingsStatusTrackerStatus" class="settings-switch-status">Включен</span>
+          </span>
+          <input id="settingsStatusTrackerToggle" class="settings-switch-input" type="checkbox" checked onchange="setMatchGameTrackerSetting('statuses', this.checked)">
+          <span class="settings-switch-control" aria-hidden="true">
+            <span class="settings-switch-knob"></span>
+          </span>
+        </label>
+        <label class="settings-switch-row is-compact">
+          <span class="settings-switch-copy">
+            <strong data-i18n="settings_activation_tracker_title">Активации</strong>
+            <span id="settingsActivationTrackerStatus" class="settings-switch-status">Включен</span>
+          </span>
+          <input id="settingsActivationTrackerToggle" class="settings-switch-input" type="checkbox" checked onchange="setMatchGameTrackerSetting('activation', this.checked)">
+          <span class="settings-switch-control" aria-hidden="true">
+            <span class="settings-switch-knob"></span>
+          </span>
+        </label>
       </div>
     </div>
   </div>

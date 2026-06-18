@@ -49,11 +49,34 @@ let myCrewsPlayFilter = "all";
 let myCrewsSortMode = "updated";
 const MY_CREWS_STORAGE_KEY = 'bmg_my_crews_v1';
 const BATMATCH_STORAGE_KEY = 'bmg_batmatch_packet_v1';
+const TOURNAMENT_FEATURE_STORAGE_KEY = 'bmg_tournament_feature_enabled_v1';
+const MATCH_GAME_TRACKER_SETTINGS_STORAGE_KEY = 'bmg_match_game_tracker_settings_v1';
 const BATMATCH_DECK_SIZE = 20;
 const BATMATCH_MAX_SINGLE = 10;
 const BATMATCH_MAX_GENERAL = 10;
 const BATMATCH_SETUP_CARD_LIMIT = 3;
 const BATMATCH_LIST_KEYS = ["listA", "listB"];
+const MATCH_GAME_TRACKER_SETTING_DEFAULTS = {
+  damage: true,
+  statuses: true,
+  activation: true
+};
+const MATCH_GAME_STATUS_OPTIONS = [
+  { id: "knocked-down", label: "Knocked Down", short: "KD" },
+  { id: "enervating", label: "Enervating", short: "ENV" },
+  { id: "terror", label: "Terror", short: "TER" },
+  { id: "blind", label: "Blind", short: "BLD" },
+  { id: "stunned", label: "Stunned", short: "STN" },
+  { id: "paralyze", label: "Paralyze", short: "PAR" },
+  { id: "fire", label: "Fire", short: "FIR" },
+  { id: "freeze", label: "Freeze", short: "FRZ" },
+  { id: "cooled", label: "Cooled", short: "CLD" },
+  { id: "scared", label: "Scared", short: "SCR" },
+  { id: "poison", label: "Poison", short: "PSN" },
+  { id: "slow", label: "Slow", short: "SLO" },
+  { id: "hypnotize", label: "Hypnotize", short: "HYP" },
+  { id: "ko", label: "KO", short: "KO", descriptionKey: "match_status_ko_description" }
+];
 let batmatchState = {
   listAId: "",
   listBId: "",
@@ -79,6 +102,9 @@ let versionEasterClickCount = 0;
 let versionEasterClickTimer = null;
 let diceAnimationTimer = null;
 let diceFinishTimer = null;
+let tournamentFeatureEnabled = true;
+let matchGameTrackerSettings = { ...MATCH_GAME_TRACKER_SETTING_DEFAULTS };
+let matchGameModelState = null;
 
 // Режимы просмотра
 let currentMode = 'menu'; // menu, cards, builder, my-crews, wargame-day, batmatch, match, match-game, rules
@@ -516,6 +542,16 @@ const translations = {
     settings_close: "Закрыть настройки",
     settings_title: "НАСТРОЙКИ",
     settings_empty: "Пока пусто",
+    settings_tournament_title: "Турнир",
+    settings_tournament_enabled: "Включен",
+    settings_tournament_disabled: "Выключен",
+    settings_tournament_disabled_notice: "Турнирный режим выключен в настройках.",
+    settings_match_game_title: "Игра",
+    settings_damage_tracker_title: "Урон и стойкость",
+    settings_status_tracker_title: "Состояния",
+    settings_activation_tracker_title: "Активации",
+    settings_option_enabled: "Включен",
+    settings_option_disabled: "Выключен",
     wargame_day: "ПРОБНАЯ ПАРТИЯ",
     wargame_day_title: "ПРОБНАЯ ПАРТИЯ",
     wargame_day_roster_1: "Учебная банда 1",
@@ -659,6 +695,22 @@ const translations = {
     match_objectives_action_fail: "Не выполнена",
     match_objectives_resource_cost: "Ресурс",
     match_objectives_card_value: "Ценность",
+    match_tracker_damage: "Урон",
+    match_tracker_endurance: "Стойкость",
+    match_tracker_health: "Здоровье",
+    match_tracker_blood: "Здоровье",
+    match_tracker_stun: "Stun",
+    match_tracker_health_pool: "END",
+    match_tracker_stun_pool: "WP",
+    match_tracker_effort: "Effort",
+    match_tracker_activated: "Походил",
+    match_tracker_ready: "Не ходил",
+    match_tracker_reset_activations: "Новый раунд",
+    match_tracker_statuses: "Состояния",
+    match_tracker_add_status: "Добавить состояние",
+    match_tracker_no_statuses: "Нет состояний",
+    match_tracker_status_remove: "Убрать",
+    match_status_ko_description: "Модель находится в KO. Кнопка «Новый раунд» не снимает ей Stun автоматически; снимите KO и Stun вручную, когда модель восстановилась по правилам.",
     match_setup_title: "Деплой и ивент",
     match_setup_generate: "Сгенерировать деплой и ивент",
     match_setup_deployment: "Деплой",
@@ -832,6 +884,16 @@ const translations = {
     settings_close: "Close settings",
     settings_title: "SETTINGS",
     settings_empty: "Empty for now",
+    settings_tournament_title: "Tournament",
+    settings_tournament_enabled: "Enabled",
+    settings_tournament_disabled: "Disabled",
+    settings_tournament_disabled_notice: "Tournament mode is disabled in settings.",
+    settings_match_game_title: "Game",
+    settings_damage_tracker_title: "Damage and Endurance",
+    settings_status_tracker_title: "Statuses",
+    settings_activation_tracker_title: "Activations",
+    settings_option_enabled: "Enabled",
+    settings_option_disabled: "Disabled",
     wargame_day: "TRIAL GAME",
     wargame_day_title: "TRIAL GAME",
     wargame_day_roster_1: "Training crew 1",
@@ -975,6 +1037,22 @@ const translations = {
     match_objectives_action_fail: "Failed",
     match_objectives_resource_cost: "Resource",
     match_objectives_card_value: "Value",
+    match_tracker_damage: "Damage",
+    match_tracker_endurance: "Endurance",
+    match_tracker_health: "Health",
+    match_tracker_blood: "Health",
+    match_tracker_stun: "Stun",
+    match_tracker_health_pool: "END",
+    match_tracker_stun_pool: "WP",
+    match_tracker_effort: "Effort",
+    match_tracker_activated: "Activated",
+    match_tracker_ready: "Ready",
+    match_tracker_reset_activations: "New round",
+    match_tracker_statuses: "Statuses",
+    match_tracker_add_status: "Add status",
+    match_tracker_no_statuses: "No statuses",
+    match_tracker_status_remove: "Remove",
+    match_status_ko_description: "The model is KO. The New round button does not automatically remove Stun from it; clear KO and Stun manually when the model recovers by the rules.",
     match_setup_title: "Deployment and event",
     match_setup_generate: "Generate deployment and event",
     match_setup_deployment: "Deployment",
@@ -1270,6 +1348,8 @@ function setLanguage(lang) {
   updateBuilderPrintFilterButton();
   updateBuilderQuickFilterUi();
   updateBuilderCardFilterUi();
+  updateTournamentFeatureUI();
+  updateMatchGameTrackerSettingsUI();
   updateCrewBar();
   updateBuilderContentModeButtons();
   updateCardsContentModeButtons();
@@ -6473,18 +6553,123 @@ function setCompendiumSearchMode(mode) {
 document.addEventListener('DOMContentLoaded', () => {
   const savedLang = localStorage.getItem('bmg_lang') || 'ru';
   setLanguage(savedLang);
+  loadTournamentFeatureSetting();
+  loadMatchGameTrackerSettings();
   initVersionEasterEgg();
 });
 
 const $ = id => document.getElementById(id);
 
+function isTournamentFeatureEnabled() {
+  return tournamentFeatureEnabled !== false;
+}
+
+function loadTournamentFeatureSetting() {
+  tournamentFeatureEnabled = localStorage.getItem(TOURNAMENT_FEATURE_STORAGE_KEY) !== "false";
+  updateTournamentFeatureUI();
+}
+
+function setTournamentFeatureEnabled(enabled) {
+  tournamentFeatureEnabled = Boolean(enabled);
+  localStorage.setItem(TOURNAMENT_FEATURE_STORAGE_KEY, tournamentFeatureEnabled ? "true" : "false");
+  updateTournamentFeatureUI();
+
+  if (!tournamentFeatureEnabled && currentMode === "batmatch") {
+    showAppNotice(t("settings_tournament_disabled_notice"), "warning");
+    backToMenu({ skipHistory: true });
+  }
+}
+
+function updateTournamentFeatureUI() {
+  const enabled = isTournamentFeatureEnabled();
+  const toggle = $("settingsTournamentToggle");
+  const status = $("settingsTournamentStatus");
+
+  document.body?.classList.toggle("tournament-feature-disabled", !enabled);
+  if (toggle) toggle.checked = enabled;
+  if (status) {
+    status.textContent = t(enabled ? "settings_tournament_enabled" : "settings_tournament_disabled");
+    status.classList.toggle("is-off", !enabled);
+  }
+
+  document.querySelectorAll("[data-tournament-feature]").forEach(element => {
+    element.hidden = !enabled;
+    element.setAttribute("aria-hidden", enabled ? "false" : "true");
+  });
+
+  if (currentMode === "my-crews" && typeof renderMyCrews === "function") {
+    renderMyCrews();
+  }
+  if (currentMode === "match" && typeof renderMatchSection === "function") {
+    renderMatchSection();
+  }
+}
+
+function loadMatchGameTrackerSettings() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(MATCH_GAME_TRACKER_SETTINGS_STORAGE_KEY) || "{}");
+    matchGameTrackerSettings = {
+      ...MATCH_GAME_TRACKER_SETTING_DEFAULTS,
+      ...(saved && typeof saved === "object" ? saved : {})
+    };
+  } catch (error) {
+    matchGameTrackerSettings = { ...MATCH_GAME_TRACKER_SETTING_DEFAULTS };
+  }
+
+  updateMatchGameTrackerSettingsUI();
+}
+
+function isMatchGameTrackerEnabled(key) {
+  return matchGameTrackerSettings?.[key] !== false;
+}
+
+function setMatchGameTrackerSetting(key, enabled) {
+  if (!Object.prototype.hasOwnProperty.call(MATCH_GAME_TRACKER_SETTING_DEFAULTS, key)) return;
+  matchGameTrackerSettings = {
+    ...MATCH_GAME_TRACKER_SETTING_DEFAULTS,
+    ...matchGameTrackerSettings,
+    [key]: Boolean(enabled)
+  };
+  localStorage.setItem(MATCH_GAME_TRACKER_SETTINGS_STORAGE_KEY, JSON.stringify(matchGameTrackerSettings));
+  updateMatchGameTrackerSettingsUI();
+
+  if (currentMode === "match-game") {
+    renderMatchGame();
+  }
+}
+
+function updateMatchGameTrackerSettingsUI() {
+  const controls = [
+    ["damage", $("settingsDamageTrackerToggle"), $("settingsDamageTrackerStatus")],
+    ["statuses", $("settingsStatusTrackerToggle"), $("settingsStatusTrackerStatus")],
+    ["activation", $("settingsActivationTrackerToggle"), $("settingsActivationTrackerStatus")]
+  ];
+
+  controls.forEach(([key, toggle, status]) => {
+    const enabled = isMatchGameTrackerEnabled(key);
+    if (toggle) toggle.checked = enabled;
+    if (status) {
+      status.textContent = t(enabled ? "settings_option_enabled" : "settings_option_disabled");
+      status.classList.toggle("is-off", !enabled);
+    }
+  });
+}
+
+function guardTournamentFeature() {
+  if (isTournamentFeatureEnabled()) return true;
+  showAppNotice(t("settings_tournament_disabled_notice"), "warning");
+  return false;
+}
+
 function openSettings() {
   const modal = $("settingsModal");
   if (!modal) return;
 
+  updateTournamentFeatureUI();
+  updateMatchGameTrackerSettingsUI();
   modal.classList.add("active");
   modal.setAttribute("aria-hidden", "false");
-  modal.querySelector(".settings-close")?.focus({ preventScroll: true });
+  modal.querySelector("#settingsTournamentToggle")?.focus({ preventScroll: true });
 }
 
 function closeSettings() {
@@ -7466,6 +7651,10 @@ function isTournamentCrewEntry(crewEntry) {
   );
 }
 
+function isCrewEntryVisibleWithTournamentSetting(crewEntry) {
+  return isTournamentFeatureEnabled() || !isTournamentCrewEntry(crewEntry);
+}
+
 function getCrewEntryDeckOptions(crewEntry) {
   return isTournamentCrewEntry(crewEntry) ? getBatmatchDeckOptions() : {};
 }
@@ -7636,7 +7825,10 @@ function compareMyCrewText(a, b) {
 }
 
 function getMyCrewFactionOptions() {
-  return [...new Set(myCrews.map(crewEntry => String(crewEntry?.faction || "").trim()).filter(Boolean))]
+  return [...new Set(myCrews
+    .filter(isCrewEntryVisibleWithTournamentSetting)
+    .map(crewEntry => String(crewEntry?.faction || "").trim())
+    .filter(Boolean))]
     .sort(compareMyCrewText);
 }
 
@@ -7663,6 +7855,7 @@ function updateMyCrewsControls() {
 }
 
 function myCrewPassesFilters(crewEntry) {
+  if (!isCrewEntryVisibleWithTournamentSetting(crewEntry)) return false;
   if (myCrewsFactionFilter !== "all" && crewEntry?.faction !== myCrewsFactionFilter) return false;
 
   const canPlay = canPlaySavedMyCrew(crewEntry);
@@ -7744,17 +7937,19 @@ function renderMyCrews() {
   if (!container) return;
   updateMyCrewsControls();
 
-  if (!myCrews.length) {
+  const visibleCrews = myCrews.filter(isCrewEntryVisibleWithTournamentSetting);
+
+  if (!visibleCrews.length) {
     updateMyCrewsSearchUi(0, 0);
     container.innerHTML = `<div class="my-crews-empty">${t("my_crews_empty")}</div>`;
     return;
   }
 
-  const sortedCrews = sortMyCrewEntries(myCrews
+  const sortedCrews = sortMyCrewEntries(visibleCrews
     .filter(crewEntry => myCrewMatchesSearch(crewEntry, myCrewsQuery))
     .filter(myCrewPassesFilters));
 
-  updateMyCrewsSearchUi(sortedCrews.length, myCrews.length);
+  updateMyCrewsSearchUi(sortedCrews.length, visibleCrews.length);
 
   if (!sortedCrews.length) {
     container.innerHTML = `<div class="my-crews-empty">${t("my_crews_filter_empty")}</div>`;
@@ -7767,7 +7962,7 @@ function renderMyCrews() {
       ? `<span class="my-crew-badge my-crew-tournament-badge">${escapeHtml(t("my_crews_tournament_badge"))}</span>`
       : "";
     return `
-      <div class="my-crew-card" data-my-crew-id="${escapeAttribute(crewEntry.id)}">
+      <div class="my-crew-card" data-my-crew-id="${escapeAttribute(crewEntry.id)}" ${isTournamentCrewEntry(crewEntry) ? "data-tournament-feature" : ""}>
         <div class="my-crew-card-head">
           <div>
             <div class="my-crew-title">${escapeHtml(crewEntry.title || crewEntry.faction || "Crew")}</div>
@@ -7933,6 +8128,7 @@ function playWargameDayCrew(crewId) {
     matchGameCardsExpanded = false;
     resetMatchSetupSelection();
     resetMatchGameObjectiveState();
+    resetMatchGameModelState();
 
     rememberNavigation("match-game");
     currentMode = "match-game";
@@ -7977,6 +8173,10 @@ function downloadWargameDayCrew(crewId) {
 function playSavedMyCrew(crewId) {
   const crewEntry = myCrews.find(item => item.id === crewId);
   if (!crewEntry) return;
+  if (!isCrewEntryVisibleWithTournamentSetting(crewEntry)) {
+    guardTournamentFeature();
+    return;
+  }
 
   try {
     const state = buildMatchCrewState(crewEntry, getCrewEntryDeckOptions(crewEntry));
@@ -8036,6 +8236,7 @@ function createNewCrewFromMyCrews() {
 }
 
 function createNewTournamentCrewFromMyCrews() {
+  if (!guardTournamentFeature()) return;
   builderTournamentMode = true;
   resetCrew();
   clearBuilderSaveState();
@@ -8047,12 +8248,14 @@ function createNewTournamentCrewFromMyCrews() {
 function openSavedMyCrew(crewId) {
   const crewEntry = myCrews.find(item => item.id === crewId);
   if (!crewEntry) return;
+  const tournamentMode = isTournamentCrewEntry(crewEntry);
+  if (tournamentMode && !guardTournamentFeature()) return;
 
   try {
     importRosterFromText(crewEntry.text, {
       builderCrewId: crewId,
       builderRosterTitle: crewEntry.title,
-      tournamentMode: isTournamentCrewEntry(crewEntry)
+      tournamentMode
     });
   } catch (error) {
     alert(error.message || (currentLang === "ru" ? "Не удалось открыть сохранённую банду." : "Failed to open saved crew."));
@@ -8776,11 +8979,14 @@ function saveMatchOpponentToStorage() {
 }
 
 function getSortedMyCrews() {
-  return [...myCrews].sort((a, b) => String(getMyCrewUpdatedValue(b)).localeCompare(String(getMyCrewUpdatedValue(a))));
+  return myCrews
+    .filter(isCrewEntryVisibleWithTournamentSetting)
+    .sort((a, b) => String(getMyCrewUpdatedValue(b)).localeCompare(String(getMyCrewUpdatedValue(a))));
 }
 
 function getMatchSelectedCrewEntry() {
-  return myCrews.find(item => item.id === matchSelectedCrewId) || null;
+  const entry = myCrews.find(item => item.id === matchSelectedCrewId) || null;
+  return entry && isCrewEntryVisibleWithTournamentSetting(entry) ? entry : null;
 }
 
 function getAllMatchCardsCatalog(options = {}) {
@@ -9451,7 +9657,7 @@ function renderMatchSection() {
   if (!select) return;
 
   const sortedCrews = getSortedMyCrews();
-  if (matchSelectedCrewId && !myCrews.some(item => item.id === matchSelectedCrewId)) {
+  if (matchSelectedCrewId && !sortedCrews.some(item => item.id === matchSelectedCrewId)) {
     matchSelectedCrewId = null;
   }
 
@@ -9740,6 +9946,7 @@ function startMatchGame() {
   matchGameCardsExpanded = false;
   resetMatchSetupSelection();
   resetMatchGameObjectiveState();
+  resetMatchGameModelState();
 
   rememberNavigation('match-game');
   currentMode = 'match-game';
@@ -9770,6 +9977,11 @@ function setMatchGameSide(side) {
 function getMatchGameRoster() {
   if (!matchGameRosters) return null;
   return matchGameSide === "opponent" ? matchGameRosters.opponent : matchGameRosters.own;
+}
+
+function getMatchGameRosterBySide(side = matchGameSide) {
+  if (!matchGameRosters) return null;
+  return side === "opponent" ? matchGameRosters.opponent : matchGameRosters.own;
 }
 
 function findMatchGameBaseModel(modelEntry, faction = "") {
@@ -9864,6 +10076,353 @@ function renderMatchRankIcons(modelEntry, baseModel) {
   `;
 }
 
+function resetMatchGameModelState() {
+  matchGameModelState = {
+    own: {},
+    opponent: {}
+  };
+}
+
+function getMatchGameModelState(side = matchGameSide, rosterIndex, create = true) {
+  const normalizedSide = side === "opponent" ? "opponent" : "own";
+  if (!matchGameModelState) resetMatchGameModelState();
+  if (!matchGameModelState[normalizedSide]) matchGameModelState[normalizedSide] = {};
+  const key = String(rosterIndex);
+  if (!matchGameModelState[normalizedSide][key] && create) {
+    matchGameModelState[normalizedSide][key] = {
+      blood: 0,
+      stun: 0,
+      effortSpent: 0,
+      activated: false,
+      statuses: {}
+    };
+  }
+  return matchGameModelState[normalizedSide][key] || null;
+}
+
+function getMatchGameStatusOption(statusId) {
+  return MATCH_GAME_STATUS_OPTIONS.find(status => status.id === statusId) || null;
+}
+
+function getMatchGameStatusLabel(statusId) {
+  return getMatchGameStatusOption(statusId)?.label || statusId;
+}
+
+function getMatchGameStatusDescriptionHtml(statusId) {
+  const option = getMatchGameStatusOption(statusId);
+  if (!option) return escapeHtml(uiText("description_not_found"));
+  if (option.descriptionKey) {
+    return escapeHtml(t(option.descriptionKey)).replace(/\n/g, "<br>");
+  }
+
+  const entry = findCompendiumEntry(option.label);
+  const rawText = entry
+    ? ((typeof entry === "object" && entry.description) ? entry.description : entry)
+    : uiText("description_not_found");
+  return replaceIcons(escapeHtml(localizeCompendiumBody(rawText)).replace(/\n/g, "<br>"));
+}
+
+function showMatchGameStatusInfo(statusId, event) {
+  stopMatchGameTrackerEvent(event);
+  const option = getMatchGameStatusOption(statusId);
+  if (!option) return;
+  showTraitPopup(escapeHtml(option.label), getMatchGameStatusDescriptionHtml(statusId));
+}
+
+function getMatchGameStatValue(modelEntry, baseModel, statName) {
+  const rawValue = modelEntry?.stats?.[statName]
+    ?? baseModel?.stats?.[statName]
+    ?? modelEntry?.[statName]
+    ?? baseModel?.[statName]
+    ?? 0;
+  let value = numericValue(rawValue, 0);
+  const statMeta = modelEntry?.ruleModifiedStats?.[statName] || baseModel?.ruleModifiedStats?.[statName];
+  if (statMeta && statMeta.delta !== undefined) {
+    value += numericValue(statMeta.delta, 0);
+  }
+  return Math.max(0, value);
+}
+
+function getMatchGameEndurance(modelEntry, baseModel) {
+  return getMatchGameStatValue(modelEntry, baseModel, "Endurance");
+}
+
+function getMatchGameWillpower(modelEntry, baseModel) {
+  return getMatchGameStatValue(modelEntry, baseModel, "Willpower");
+}
+
+function matchGameModelHasTrait(modelEntry, baseModel, traitName) {
+  const expected = getCleanName(traitName);
+  const traits = [
+    ...getModelTraits(baseModel || {}),
+    ...getModelTraits(modelEntry || {})
+  ];
+  return traits.some(trait => getCleanName(trait) === expected);
+}
+
+function getMatchGameEffortMeta(modelState, modelEntry, baseModel) {
+  const blood = Math.max(0, numericValue(modelState?.blood, 0));
+  const hasWeak = matchGameModelHasTrait(modelEntry, baseModel, "Weak");
+  const ignoresDamageLimitReduction = matchGameModelHasTrait(modelEntry, baseModel, "Sturdy")
+    || matchGameModelHasTrait(modelEntry, baseModel, "Demon")
+    || matchGameModelHasTrait(modelEntry, baseModel, "Meet Goliath!");
+  const baseLimit = hasWeak ? 2 : 3;
+  const damagePenalty = ignoresDamageLimitReduction ? 0 : Math.floor(blood / 3);
+  const effortLimit = Math.max(0, baseLimit - damagePenalty);
+  const maxAvailable = effortLimit;
+  const effortSpent = Math.max(0, Math.min(maxAvailable, numericValue(modelState?.effortSpent, 0)));
+  const available = Math.max(0, maxAvailable - effortSpent);
+
+  return {
+    available,
+    maxAvailable,
+    effortSpent,
+    baseLimit,
+    effortLimit,
+    damagePenalty,
+    ignoresDamageLimitReduction,
+    hasWeak
+  };
+}
+
+function stopMatchGameTrackerEvent(event) {
+  event?.stopPropagation?.();
+}
+
+function adjustMatchGameDamage(side, rosterIndex, type, delta, event) {
+  stopMatchGameTrackerEvent(event);
+  const key = type === "stun" ? "stun" : "blood";
+  const state = getMatchGameModelState(side, rosterIndex, true);
+  state[key] = Math.max(0, numericValue(state[key], 0) + numericValue(delta, 0));
+  renderMatchGame();
+}
+
+function setMatchGameDamageFromBubble(side, rosterIndex, type, bubbleIndex, maxValue, event) {
+  stopMatchGameTrackerEvent(event);
+  const key = type === "stun" ? "stun" : "blood";
+  const max = Math.max(0, numericValue(maxValue, 0));
+  const index = Math.max(0, Math.min(max - 1, numericValue(bubbleIndex, 0)));
+  if (max <= 0) return;
+
+  const state = getMatchGameModelState(side, rosterIndex, true);
+  const currentDamage = Math.max(0, numericValue(state[key], 0));
+  const firstEmptyIndex = max - Math.min(max, currentDamage);
+  const clickedIsEmpty = index >= firstEmptyIndex;
+  state[key] = clickedIsEmpty
+    ? Math.max(0, max - index - 1)
+    : Math.max(0, max - index);
+  renderMatchGame();
+}
+
+function setMatchGameEffortSpentFromBubble(side, rosterIndex, effortIndex, event) {
+  stopMatchGameTrackerEvent(event);
+  const roster = getMatchGameRosterBySide(side);
+  const modelEntry = roster?.models?.[rosterIndex];
+  if (!modelEntry) return;
+
+  const state = getMatchGameModelState(side, rosterIndex, true);
+  const baseModel = findMatchGameBaseModel(modelEntry, roster?.faction || "");
+  const effort = getMatchGameEffortMeta(state, modelEntry, baseModel);
+  const index = Math.max(0, Math.min(Math.max(0, effort.baseLimit - 1), numericValue(effortIndex, 0)));
+  if (index >= effort.maxAvailable) return;
+
+  const clickedIsSpent = index >= effort.available;
+  state.effortSpent = clickedIsSpent
+    ? Math.max(0, effort.maxAvailable - index - 1)
+    : Math.max(0, effort.maxAvailable - index);
+  renderMatchGame();
+}
+
+function toggleMatchGameActivated(side, rosterIndex, event) {
+  stopMatchGameTrackerEvent(event);
+  const state = getMatchGameModelState(side, rosterIndex, true);
+  state.activated = !state.activated;
+  renderMatchGame();
+}
+
+function isMatchGameModelKO(modelState, modelEntry, baseModel) {
+  const willpower = getMatchGameWillpower(modelEntry, baseModel);
+  const stun = Math.max(0, numericValue(modelState?.stun, 0));
+  const hasKoStatus = numericValue(modelState?.statuses?.ko, 0) > 0;
+  return hasKoStatus || (willpower > 0 && stun >= willpower);
+}
+
+function startMatchGameNewRound(event) {
+  stopMatchGameTrackerEvent(event);
+  if (!matchGameModelState) resetMatchGameModelState();
+  ["own", "opponent"].forEach(side => {
+    const roster = getMatchGameRosterBySide(side);
+    (roster?.models || []).forEach((modelEntry, rosterIndex) => {
+      const state = getMatchGameModelState(side, rosterIndex, true);
+      const baseModel = findMatchGameBaseModel(modelEntry, roster?.faction || "");
+      state.activated = false;
+      state.effortSpent = 0;
+      if (!isMatchGameModelKO(state, modelEntry, baseModel)) {
+        state.stun = Math.max(0, numericValue(state.stun, 0) - 1);
+      }
+    });
+  });
+  renderMatchGame();
+}
+
+function resetMatchGameActivations(side = matchGameSide, event) {
+  startMatchGameNewRound(event);
+}
+
+function adjustMatchGameStatus(side, rosterIndex, statusId, delta, event) {
+  stopMatchGameTrackerEvent(event);
+  if (!statusId || !getMatchGameStatusOption(statusId)) return;
+  const state = getMatchGameModelState(side, rosterIndex, true);
+  const currentCount = numericValue(state.statuses?.[statusId], 0);
+  const nextCount = Math.max(0, currentCount + numericValue(delta, 0));
+  state.statuses = state.statuses || {};
+  if (nextCount > 0) {
+    state.statuses[statusId] = nextCount;
+  } else {
+    delete state.statuses[statusId];
+  }
+  renderMatchGame();
+}
+
+function addMatchGameStatus(side, rosterIndex, statusId, event) {
+  adjustMatchGameStatus(side, rosterIndex, statusId, 1, event);
+}
+
+function clearMatchGameStatus(side, rosterIndex, statusId, event) {
+  stopMatchGameTrackerEvent(event);
+  const state = getMatchGameModelState(side, rosterIndex, true);
+  if (state.statuses) delete state.statuses[statusId];
+  renderMatchGame();
+}
+
+function renderMatchGameDamageTracker(modelState, modelEntry, baseModel, side, rosterIndex) {
+  const endurance = getMatchGameEndurance(modelEntry, baseModel);
+  const willpower = getMatchGameWillpower(modelEntry, baseModel);
+  const blood = numericValue(modelState.blood, 0);
+  const stun = numericValue(modelState.stun, 0);
+
+  return `
+    <div class="match-game-damage-tracker">
+      <div class="match-game-tracker-head">
+        <span>${escapeHtml(t("match_tracker_damage"))}</span>
+        <strong>${escapeHtml(t("match_tracker_health_pool"))} ${endurance > 0 ? escapeHtml(endurance) : "?"} / ${escapeHtml(t("match_tracker_stun_pool"))} ${willpower > 0 ? escapeHtml(willpower) : "?"}</strong>
+      </div>
+      <div class="match-game-bubble-grid">
+        ${renderMatchGameBubbleTrack(side, rosterIndex, "blood", t("match_tracker_health"), blood, endurance)}
+        ${renderMatchGameBubbleTrack(side, rosterIndex, "stun", t("match_tracker_stun"), stun, willpower)}
+      </div>
+    </div>
+  `;
+}
+
+function renderMatchGameBubbleTrack(side, rosterIndex, type, label, value, maxValue) {
+  const max = Math.max(0, numericValue(maxValue, 0));
+  const damage = Math.max(0, numericValue(value, 0));
+  const emptyCount = Math.min(max, damage);
+  const dangerClass = max > 0 && damage >= max ? " is-danger" : "";
+  const bubbles = max > 0
+    ? Array.from({ length: max }, (_, index) => {
+        const emptyClass = index >= max - emptyCount ? " is-empty" : "";
+        const actionLabel = `${label}: ${damage}/${max}. ${index + 1}`;
+        return `<button class="match-game-bubble${emptyClass}" type="button" onclick="setMatchGameDamageFromBubble('${side}', ${rosterIndex}, '${type}', ${index}, ${max}, event)" aria-label="${escapeAttribute(actionLabel)}"></button>`;
+      }).join("")
+    : `<span class="match-game-bubbles-unknown">?</span>`;
+
+  return `
+    <div class="match-game-bubble-track is-${escapeAttribute(type)}${dangerClass}">
+      <div class="match-game-bubbles" aria-label="${escapeAttribute(`${label}: ${damage}/${max > 0 ? max : "?"}`)}">
+        ${bubbles}
+      </div>
+    </div>
+  `;
+}
+
+function renderMatchGameEffortIcons(modelState, side, rosterIndex, modelEntry, baseModel) {
+  const effort = getMatchGameEffortMeta(modelState, modelEntry, baseModel);
+  const slots = Math.max(0, effort.baseLimit);
+  if (!slots) return "";
+  const title = `${t("match_tracker_effort")}: ${effort.available}/${effort.maxAvailable}`;
+  const icons = Array.from({ length: slots }, (_, index) => {
+    let className = "match-game-effort-icon";
+    if (index >= effort.maxAvailable) {
+      className += " is-locked";
+    } else if (index >= effort.available) {
+      className += " is-spent";
+    }
+    const actionLabel = `${t("match_tracker_effort")}: ${effort.available}/${effort.maxAvailable}. ${index + 1}`;
+    return `<button class="${className}" type="button" onclick="setMatchGameEffortSpentFromBubble('${side}', ${rosterIndex}, ${index}, event)" aria-label="${escapeAttribute(actionLabel)}"><span aria-hidden="true"></span></button>`;
+  }).join("");
+
+  return `
+    <div class="match-game-effort-row" title="${escapeAttribute(title)}" aria-label="${escapeAttribute(title)}">
+      <span class="match-game-effort-label">${escapeHtml(t("match_tracker_effort"))}</span>
+      ${icons}
+    </div>
+  `;
+}
+
+function renderMatchGameActivationTracker(modelState, side, rosterIndex, modelEntry, baseModel) {
+  const activeClass = modelState.activated ? " is-active" : "";
+  const label = modelState.activated ? t("match_tracker_activated") : t("match_tracker_ready");
+  return `
+    <div class="match-game-activation-line">
+      <button class="match-game-activation-toggle${activeClass}" type="button" onclick="toggleMatchGameActivated('${side}', ${rosterIndex}, event)" aria-pressed="${modelState.activated ? "true" : "false"}">
+        ${escapeHtml(label)}
+      </button>
+      ${renderMatchGameEffortIcons(modelState, side, rosterIndex, modelEntry, baseModel)}
+    </div>
+  `;
+}
+
+function renderMatchGameStatusesTracker(modelState, side, rosterIndex) {
+  const statusRows = Object.entries(modelState.statuses || {})
+    .filter(([statusId, count]) => numericValue(count, 0) > 0 && getMatchGameStatusOption(statusId))
+    .map(([statusId, count]) => `
+      <span class="match-game-status-chip">
+        <button type="button" class="match-game-status-info" onclick="showMatchGameStatusInfo('${escapeAttribute(statusId)}', event)" aria-label="${escapeAttribute(getMatchGameStatusLabel(statusId))}">
+          ${escapeHtml(getMatchGameStatusLabel(statusId))}${numericValue(count, 0) > 1 ? ` x${escapeHtml(count)}` : ""}
+        </button>
+        <button type="button" onclick="adjustMatchGameStatus('${side}', ${rosterIndex}, '${escapeAttribute(statusId)}', -1, event)" aria-label="${escapeAttribute(getMatchGameStatusLabel(statusId))} -">−</button>
+        <button type="button" onclick="adjustMatchGameStatus('${side}', ${rosterIndex}, '${escapeAttribute(statusId)}', 1, event)" aria-label="${escapeAttribute(getMatchGameStatusLabel(statusId))} +">+</button>
+        <button type="button" class="is-clear" onclick="clearMatchGameStatus('${side}', ${rosterIndex}, '${escapeAttribute(statusId)}', event)" aria-label="${escapeAttribute(t("match_tracker_status_remove"))}">×</button>
+      </span>
+    `).join("");
+
+  return `
+    <div class="match-game-status-tracker">
+      <div class="match-game-tracker-head">
+        <span>${escapeHtml(t("match_tracker_statuses"))}</span>
+      </div>
+      <div class="match-game-status-list">
+        ${statusRows || `<span class="match-game-status-empty">${escapeHtml(t("match_tracker_no_statuses"))}</span>`}
+      </div>
+      <select class="match-game-status-select" aria-label="${escapeAttribute(t("match_tracker_add_status"))}" onclick="stopMatchGameTrackerEvent(event)" onchange="addMatchGameStatus('${side}', ${rosterIndex}, this.value, event); this.value = '';">
+        <option value="">${escapeHtml(t("match_tracker_add_status"))}</option>
+        ${MATCH_GAME_STATUS_OPTIONS.map(status => `<option value="${escapeAttribute(status.id)}">${escapeHtml(status.label)}</option>`).join("")}
+      </select>
+    </div>
+  `;
+}
+
+function renderMatchGameModelTracker(modelEntry, baseModel, rosterIndex) {
+  const side = matchGameSide === "opponent" ? "opponent" : "own";
+  const modelState = getMatchGameModelState(side, rosterIndex, true);
+  const sections = [];
+
+  if (isMatchGameTrackerEnabled("activation")) {
+    sections.push(renderMatchGameActivationTracker(modelState, side, rosterIndex, modelEntry, baseModel));
+  }
+  if (isMatchGameTrackerEnabled("damage")) {
+    sections.push(renderMatchGameDamageTracker(modelState, modelEntry, baseModel, side, rosterIndex));
+  }
+  if (isMatchGameTrackerEnabled("statuses")) {
+    sections.push(renderMatchGameStatusesTracker(modelState, side, rosterIndex));
+  }
+
+  if (!sections.length) return "";
+  return `<div class="match-game-tracker" onclick="stopMatchGameTrackerEvent(event)">${sections.join("")}</div>`;
+}
+
 function renderMatchGameModelCard(modelEntry, rosterIndex) {
   const roster = getMatchGameRoster();
   const baseModel = findMatchGameBaseModel(modelEntry, roster?.faction || "");
@@ -9880,9 +10439,11 @@ function renderMatchGameModelCard(modelEntry, rosterIndex) {
   const possessedBadge = modelEntry.hiredByPossessed
     ? `<div class="match-game-rule-note">Possessed: -1 Willpower • Self-Discipline</div>`
     : "";
+  const modelState = getMatchGameModelState(matchGameSide, rosterIndex, false);
+  const activatedClass = isMatchGameTrackerEnabled("activation") && modelState?.activated ? " is-activated" : "";
 
   return `
-    <div class="mini-card in-crew match-game-model-card" onclick="showMatchGameModel(${rosterIndex})">
+    <div class="mini-card in-crew match-game-model-card${activatedClass}" onclick="showMatchGameModel(${rosterIndex})">
       ${renderMiniModelImage(imageModel)}
       <div class="mini-info">
         <div class="mini-name">${escapeHtml(modelEntry.name)}</div>
@@ -9893,6 +10454,7 @@ function renderMatchGameModelCard(modelEntry, rosterIndex) {
         ${possessedBadge}
         ${equipment}
       </div>
+      ${renderMatchGameModelTracker(modelEntry, baseModel, rosterIndex)}
     </div>
   `;
 }
@@ -10480,6 +11042,13 @@ function renderMatchGame() {
       ${t("match_limits")}: REP ${escapeHtml(roster.repLimit)} / $${escapeHtml(roster.fundingLimit)}
       • ${t("match_used")}: REP ${escapeHtml(roster.usedRep)} / $${escapeHtml(roster.usedFunding)}
     </div>
+    ${isMatchGameTrackerEnabled("activation")
+      ? `<div class="match-game-summary-actions">
+          <button type="button" class="match-game-reset-activations" onclick="startMatchGameNewRound(event)">
+            ${escapeHtml(t("match_tracker_reset_activations"))}
+          </button>
+        </div>`
+      : ""}
   `;
 
   const rosterModelRefs = getSortedMatchRosterModelRefs(roster);
@@ -10660,6 +11229,11 @@ function showBuilder(options = {}) {
   } else if (!options.preserveTournamentMode && !options.skipHistory) {
     builderTournamentMode = false;
   }
+  if (builderTournamentMode && !guardTournamentFeature()) {
+    builderTournamentMode = false;
+    backToMenu({ skipHistory: true });
+    return;
+  }
   rememberNavigation('builder', options);
   currentMode = 'builder';
   closeMatchQrScanner();
@@ -10698,6 +11272,11 @@ function showRules(options = {}) {
 }
 
 function showBatmatch(options = {}) {
+  if (!guardTournamentFeature()) {
+    backToMenu({ skipHistory: true });
+    return;
+  }
+
   rememberNavigation('batmatch', options);
   currentMode = 'batmatch';
   closeMatchQrScanner();
@@ -15628,6 +16207,9 @@ function importRosterFromText(text, options = {}) {
   const importTournamentMode = options.tournamentMode !== undefined
     ? Boolean(options.tournamentMode)
     : parsed.mode === "batmatch";
+  if (importTournamentMode && !isTournamentFeatureEnabled()) {
+    throw new Error(t("settings_tournament_disabled_notice"));
+  }
   const parsedFaction = typeof canonicalFactionName === "function" ? canonicalFactionName(parsed.faction) : parsed.faction;
   const factionExists = Object.prototype.hasOwnProperty.call(factionCrewRules, parsedFaction) ||
     models.some(model => canHireInFaction(model, parsedFaction));
