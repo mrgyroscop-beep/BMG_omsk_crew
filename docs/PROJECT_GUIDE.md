@@ -351,6 +351,53 @@ PDF правил открываются из раздела правил. Пои
 & 'C:\Users\user\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' --check script.js
 ```
 
+### Автопроверка в браузере через Playwright
+
+В этом окружении обычный `node` может быть не в `PATH`, а пакет `playwright` лежит в bundled runtime. Браузеры Playwright могут быть не скачаны, поэтому надежнее запускать установленный Chrome/Edge через `channel`.
+
+Рабочая база для headless-проверок:
+
+```powershell
+$env:NODE_PATH='C:\Users\user\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules;C:\Users\user\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules\.pnpm\node_modules'
+& 'C:\Users\user\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' -e @'
+const { chromium } = require('playwright');
+const { pathToFileURL } = require('url');
+
+(async () => {
+  let browser;
+  for (const channel of ['chrome', 'msedge']) {
+    try {
+      browser = await chromium.launch({ channel, headless: true });
+      break;
+    } catch (error) {}
+  }
+  if (!browser) throw new Error('No installed Chrome or Edge channel available for Playwright');
+
+  const page = await browser.newPage({ viewport: { width: 1365, height: 768 }, deviceScaleFactor: 1 });
+  await page.goto(pathToFileURL('E:/Модели/Batman Miniature Games/Приложение/BMG_omsk_crew/index.html').href, { waitUntil: 'domcontentloaded' });
+
+  // Здесь вызвать нужный UI-сценарий через page.evaluate/click/waitForSelector.
+
+  await browser.close();
+})().catch(error => {
+  console.error(error.stack || error);
+  process.exit(1);
+});
+'@
+```
+
+Для мобильной проверки меняй viewport:
+
+```js
+await browser.newPage({ viewport: { width: 390, height: 680 }, deviceScaleFactor: 1, isMobile: true });
+```
+
+Типовые проверки, которые уже использовались:
+
+- позиция списка после открытия/закрытия full-card: сохранить `scrollY`/`getBoundingClientRect().top`, открыть карточку, закрыть, сравнить `topDelta`;
+- desktop layout objective-card popup: открыть `showBuilderCardPreview(card)`, получить `getBoundingClientRect()` у `.match-card-preview-text` и `.match-card-preview-img`, проверить `text.left > img.right`;
+- mobile scroll objective-card popup: проверить, что `.rank-select-modal.scrollHeight > .rank-select-modal.clientHeight`, затем выставить `modal.scrollTop` и убедиться, что он изменился.
+
 Полезные ручные проверки в браузере:
 
 - открыть `index.html`;
@@ -389,4 +436,3 @@ PDF правил открываются из раздела правил. Пои
 - Setup card - Encounter/Event карта для деплоя и событий.
 - Match payload - компактный код/QR для передачи ростера в режим матча.
 - BatMatch/Tournament - турнирный пакет из двух листов, 20 Objective cards, 3 Encounter и 3 Event на лист.
-

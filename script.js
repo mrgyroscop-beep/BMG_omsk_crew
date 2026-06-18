@@ -512,6 +512,10 @@ const translations = {
   ru: {
     cards: "КАРТОЧКИ",
     crews: "БАНДЫ",
+    settings_open: "Настройки",
+    settings_close: "Закрыть настройки",
+    settings_title: "НАСТРОЙКИ",
+    settings_empty: "Пока пусто",
     wargame_day: "ПРОБНАЯ ПАРТИЯ",
     wargame_day_title: "ПРОБНАЯ ПАРТИЯ",
     wargame_day_roster_1: "Учебная банда 1",
@@ -824,6 +828,10 @@ const translations = {
   en: {
     cards: "CARDS",
     crews: "CREWS",
+    settings_open: "Settings",
+    settings_close: "Close settings",
+    settings_title: "SETTINGS",
+    settings_empty: "Empty for now",
     wargame_day: "TRIAL GAME",
     wargame_day_title: "TRIAL GAME",
     wargame_day_roster_1: "Training crew 1",
@@ -1187,7 +1195,8 @@ function getI18nNodeCache() {
       langButtons: Array.from(document.querySelectorAll('.lang-btn')),
       textNodes: Array.from(document.querySelectorAll('[data-i18n]')),
       titleNodes: Array.from(document.querySelectorAll('[data-i18n-title]')),
-      placeholderNodes: Array.from(document.querySelectorAll('[data-i18n-placeholder]'))
+      placeholderNodes: Array.from(document.querySelectorAll('[data-i18n-placeholder]')),
+      ariaLabelNodes: Array.from(document.querySelectorAll('[data-i18n-aria-label]'))
     };
   }
 
@@ -1220,6 +1229,11 @@ function setLanguage(lang) {
   uiNodes.placeholderNodes.forEach(el => {
     const key = el.dataset.i18nPlaceholder;
     el.placeholder = t(key);
+  });
+
+  uiNodes.ariaLabelNodes.forEach(el => {
+    const key = el.dataset.i18nAriaLabel;
+    el.setAttribute("aria-label", t(key));
   });
 
   // Сохраняем в localStorage
@@ -6463,6 +6477,36 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const $ = id => document.getElementById(id);
+
+function openSettings() {
+  const modal = $("settingsModal");
+  if (!modal) return;
+
+  modal.classList.add("active");
+  modal.setAttribute("aria-hidden", "false");
+  modal.querySelector(".settings-close")?.focus({ preventScroll: true });
+}
+
+function closeSettings() {
+  const modal = $("settingsModal");
+  if (!modal) return;
+
+  modal.classList.remove("active");
+  modal.setAttribute("aria-hidden", "true");
+  $("mainSettingsBtn")?.focus({ preventScroll: true });
+}
+
+function handleSettingsBackdropClick(event) {
+  if (event.target?.id === "settingsModal") {
+    closeSettings();
+  }
+}
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && $("settingsModal")?.classList.contains("active")) {
+    closeSettings();
+  }
+});
 
 function updateMobileFixedTopbarOffsets() {
   if (mobileTopbarOffsetFrame) {
