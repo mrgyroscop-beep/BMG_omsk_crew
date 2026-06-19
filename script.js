@@ -254,8 +254,8 @@ const MATCH_SETUP_CARDS = {
       name: "FOUNTAINS",
       img: "img/match-setup/encounters/encounter-16.jpg",
       text: {
-        en: "Leader and Henchman models must deploy within 4\" from the edge of the Gaming Area, still within the deployment zone.",
-        ru: "Модели Leader и Henchman должны выставляться в пределах 4\" от края игровой зоны, оставаясь в своей зоне расстановки."
+        en: "Leader and Free Agent models must deploy within 4\" from the edge of the Gaming Area, still within the deployment zone.",
+        ru: "Модели Leader и Free Agent должны выставляться в пределах 4\" от края игровой зоны, оставаясь в своей зоне расстановки."
       }
     }
   ],
