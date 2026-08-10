@@ -79610,6 +79610,167 @@ for (const officialModel of officialModelExtensions) {
 }
 // END OFFICIAL_MODEL_SYNC
 
+// BEGIN CARD_PROFILE_UPDATES_2026
+// Physical profile cards marked 05-26 and 07-26 are newer than the current
+// Knight Models gamedata endpoint, so keep these corrections after the
+// generated official sync layer.
+const cardProfileUpdates2026 = [
+  {
+    officialId: 651,
+    patch: {
+      traits: [
+        "Criminal",
+        "Deadly Strike {SPECIAL_ICON}",
+        "Electric Storm {SPECIAL_ICON}",
+        "Energy Absorption {SPECIAL_ICON}",
+        "Reinforced Gloves",
+        "Scientific"
+      ],
+      weapons: [
+        {
+          name: "Radio Wave",
+          damage: "🩸🩸",
+          rof: 1,
+          ammo: 2,
+          traits: "Acid / Beam / Caustic / Expansive / Gas"
+        }
+      ],
+      img: "img/MrToxic.png"
+    }
+  },
+  {
+    officialId: 650,
+    patch: {
+      name: "Emperor Penguin (Unchained)",
+      traits: [
+        "Brawler",
+        "Claws",
+        "Dirty Money",
+        "Fight Me!",
+        "Master Fighter",
+        "Provoke {SPECIAL_ICON}",
+        "Regeneration",
+        "Scheming (2)",
+        "The Emperor",
+        "Tough Skin",
+        "Underworld King"
+      ],
+      img: "img/EmperorPenguinUnchained.png"
+    }
+  }
+];
+
+for (const update of cardProfileUpdates2026) {
+  const target = models.find(model => Number(model.officialId) === Number(update.officialId));
+  if (target) Object.assign(target, update.patch);
+}
+
+const cardProfileAdditions2026 = [
+  {
+    id: "card-2026-absolute-batman",
+    name: "Absolute Batman",
+    realname: "Bruce Wayne",
+    base: "40mm",
+    rep: 130,
+    funding: 0,
+    rank: ["Leader"],
+    faction: ["Bat Family", "GCPD"],
+    rivals: [],
+    img: "img/AbsoluteBatman.png",
+    stats: {
+      Attack: 5,
+      Defense: 5,
+      Strength: "3+",
+      Movement: 10,
+      Willpower: 8,
+      Endurance: 10,
+      Special: 3
+    },
+    traits: [
+      "Bat Cape",
+      "Bat Family",
+      "Bat Hooks {SPECIAL_ICON}",
+      "Engineer",
+      "Life-altering Injuries",
+      "Obstinate",
+      "Reinforced Gloves",
+      "Savage Fighter {SPECIAL_ICON}",
+      "Spiked Bat-armor",
+      "Sturdy",
+      "Tough Guy"
+    ],
+    weapons: [
+      {
+        name: "Bat-Symbol",
+        damage: "🩸★",
+        rof: "-",
+        ammo: "-",
+        traits: "Heavy / Handy / Concealed"
+      },
+      {
+        name: "Bat-Ears",
+        damage: "🩸★",
+        rof: "-",
+        ammo: "-",
+        traits: "Handy / Sharp / Concealed"
+      }
+    ],
+    visible: true
+  },
+  {
+    id: "card-2026-sofia-gigante-the-penguin",
+    name: "Sofia Gigante (The Penguin)",
+    realname: "Sofia Falcone Gigante",
+    base: "40mm",
+    rep: 80,
+    funding: 0,
+    rank: ["Leader"],
+    faction: ["Organized Crime"],
+    rivals: [],
+    img: "img/SofiaGigante.png",
+    stats: {
+      Attack: 3,
+      Defense: 3,
+      Strength: "5+",
+      Movement: 8,
+      Willpower: 7,
+      Endurance: 6,
+      Special: 3
+    },
+    traits: [
+      "Arkham's Scars",
+      "Bliss Distribution {SPECIAL_ICON}",
+      "Business Agent",
+      "Drop It! {SPECIAL_ICON}",
+      "Family Dinner",
+      "Manipulative",
+      "Protect Me!",
+      "The Hangman's Stare"
+    ],
+    weapons: [
+      {
+        name: "Automatic Gun",
+        damage: "🩸★",
+        rof: 3,
+        ammo: 3,
+        traits: "S. Range / Firearm / Light"
+      }
+    ],
+    visible: true
+  }
+];
+
+for (const cardModel of cardProfileAdditions2026) {
+  if (!models.some(model => model.id === cardModel.id || (
+    model.name === cardModel.name
+    && (model.realname || "") === (cardModel.realname || "")
+    && (model.base || "") === (cardModel.base || "")
+  ))) {
+    models.push(cardModel);
+  }
+}
+// END CARD_PROFILE_UPDATES_2026
+
 const localOnlyModelVisibilityOverrides = [
   { name: "Warden Sharp", realname: "Quincy Ulysses Sharp", base: "30mm" },
   { name: "Jokermobile Arkham Knight", realname: "Unknown", base: "90mm" },
@@ -80111,7 +80272,8 @@ const traitDescriptions = {
     "Airborne Deployment": "Select a model in your Suicide Squad crew before the game starts. This model is not deployed at the beginning of the game, but is instead held in reserve. At the beginning of the second round or any subsequent round, before determining who takes the lead, deploy the model in contact with any board edge, as long as the model’s base physically fits in the new position. The model may act normally in the round it arrives.",
     "Aerial Locator System": "Once per game at the start of the round, before determining who takes the lead, you can target one model currently in play. For the remainder of the round the target is illuminated, as if affected by a Lantern. \nNote that unlike the Lantern or Lamppost rules, only the target model is illuminated, not other models within 4”. NB. The rules governing line of sight apply as normal.",
     "Alpha": "This model's Attack and Defense cannot be reduced by any means.",
-    "Always Illuminated": "This model is considered Illuminated.",
+    "Always Illuminated": "This model is considered Illuminated and counts as a Light source with a radius of 2\".",
+    "Arkham's Scars": "You can choose to, instead of suffering any other Status on this model, suffer the Enervating (-1) Status.",
     "Always on the Move": "This model can interrupt its Movement action to perform an Attack action, and then continue with its Movement action. The model must have enough actions available to use this trait.",
     "Always Prepared": "When this model Sets a Suspect, you may Set a Thwart within 4\" of that Suspect.",
     "Amazon": "This model receives a +1 bonus to its Attack and Defense rolls. In addition, enemy models roll 1 less attack die when targeting this model.",
@@ -80167,6 +80329,7 @@ const traitDescriptions = {
     "Bat-Armor Mk III": "Enemy models don’t roll a Strength die when attacking this model. In addition, if this model has moved this activation, it can make Melee Attacks against enemies up to 2” away in line of sight (ignore all traits that improve the model’s line of sight, such as Total Vision, for the purpose of these attacks).",
     "Bat Cape": "This model does not take Damage, nor can it be removed as a Casualty, as a result of Falling.",
     "Bat Family": "Keyword.",
+    "Bat Hooks {SPECIAL_ICON}": "Choose one:\nTarget an enemy model within 8\" and make an Opposed Endurance roll; if successful, place that model in contact with this model.\nor\nPlace this model within 6\".",
     "Bat Beacon {SPECIAL_ICON}": "Target a Suspect within 6\". Place an Explosive Template centered over it and roll 2D6. All affected models with a Willpower value less than the result suffer Scared and Push (2) Statuses. If this model is affected, it may be placed anywhere within 4\" of its current position. This model ignores the Statuses caused by this trait. However, this model may not use this trait in two consecutive activations.",
     "Bat Form {SPECIAL_ICON}": "Target a Suspect within 6\". Place an Explosive Template centered over it and roll 2D6. All affected models with a Willpower value less than the result suffer Scared and Push (2) Statuses. If this model is affected, it may be placed anywhere within 4\" of its current position. This model ignores the Statuses caused by this trait. However, this model may not use this trait in two consecutive activations.",
     "Bat-Lenses": "When this model or a friendly model with Alias: Batman (Robert Pattinson) reveals an enemy Suspect, you may look at your opponent's Objective hand.",
@@ -80202,6 +80365,7 @@ const traitDescriptions = {
     "Bloody Christmas {SPECIAL_ICON}": "Before removing an enemy model as a Casualty by this model's actions, place a new friendly Suspect (if able) in contact with that model. That Suspect is also a Blood Present marker.",
     "Bloodlust": "When this model causes a KO or Casualty, you may place 2 {OBJECTIVE_CROSS_ICON} on top of the Psychopaths Objective card instead of 1.",
     "Bloodthirsty (Mental Disorder)": "During the Raise the Plan phase, if this model has at least 1 Damage marker of any kind, it gains +1 {+ATT_ICON}.",
+    "Bliss Distribution {SPECIAL_ICON}": "Target a friendly model within 8\" and LoS. The target model gains {MOV+4_ICON} and +2 {+ATT_ICON}. However, at the end of its activation it suffers {BLOOD_ICON}{BLOOD_ICON}.",
     "Blow Up the Moon": "If a friendly Leonard model uses the New Laser trait within 8” of this model, you may immediately move this model up to 6” in any direction.",
     "Bluff {SPECIAL_ICON}": "Choose an enemy model within 6” and line of sight. The target reduces its Attacks skill by 1 until the end of the round. If multiple models with this trait target the same model, the effect is not cumulative.",
     "Blunt (X)": "Instead of inflicting normal Critical effect, the target suffers (X) {STUN_ICON} Damage upon a Critical Hit.",
@@ -80508,7 +80672,7 @@ const traitDescriptions = {
     "Explosive Arrival": "This model is not deployed as normal at the start of the game. Instead, during a friendly activation in which you score an Objective card, you may place this model anywhere on the gaming area, then, place a Smoke event marker in contact with this model, all models within 4\" of this Smoke event marker suffers Poison.\r\nThis model ignores this Smoke Event marker. Remove this marker at the end of the round.\r\nThis model may receive an Audacity marker even if it is not in play.",
     "Explosive Gel": "Once per activation, this model may mark a Streetlamp, Sewer or Suspect marker in contact as being sprayed with Explosive Gel (use a spare token or dice to remind you). In any subsequent activation, this model may use a Manipulate action to destroy any number of marked items. Center an Explosive template on each chosen marker, and roll a Strength 3+ die against each affected model. Any model hit suffers {STUN_ICON}{STUN_ICON} Damage. Then, remove that marked items from the game",
     "Explosive Personality": "While this model is in play, any friendly model can spend a Special Action during its activation to search into your Objective deck for a copy of the Bite The Dust or Let Them in on the Joke Objective card.\r\nIn addition, scored Stage Play Objective cards provide 3 VP each (instead of 2) even if this model is not in play.",
-    "Explosive Sense": "All friendly models whitin 6\" of this model, that are going to be affected by a Explosive template, impose a -1 to that roll, if any.",
+    "Explosive Sense": "All friendly models within 6\" of this model, that are going to be affected by a Explosive template, impose a -1 to that roll, if any.",
     "Explosive Teeths {SPECIAL_ICON}": "Move an Explosive Teeth marker up to 4\". Then reduce its number counter by 1",
     "Exposure": "For each additional successful hit after the first, the target suffers 1 additional damage marker (any type).",
     "Extended Limbs {SPECIAL_ICON}": "This model can perform Melee Attacks against models up to 3” away as if they were in contact.",
@@ -80520,6 +80684,7 @@ const traitDescriptions = {
     "Faint": "When this model becomes KO, it is also removed as a Casualty.",
     "Falconry {SPECIAL_ICON}": "Until the end of the round, this model can perform ranged attacks against enemy models within 16”, ignoring cover and LoS, as long as the target models are within 6” of a friendly Suspect. If you remove that marker at the start of the Attack action, you may roll one additional Attack die.",
     "Family": "Model gains the Mobster trait.",
+    "Family Dinner": "Once per round, Sofia can inflict {BLOOD_ICON}{BLOOD_ICON} to a friendly model within 4\" to remove a Status from herself, remove 2 {BLOOD_ICON} from herself, or center an Explosive template over a friendly Suspect. This is resolved as an explosive Ranged Attack rolling a Strength 2+ die for each affected model, and inflicting Damage {BLOOD_ICON}{STUN_ICON} on a successful roll.",
     "Familiar with the Subject": "When this model places a Suspect within 4\" of an enemy model, you can search for a card that haves the same Suit as this model Keyword.",
     "Fast (X)": "Once per round this model may move X\" when a model resolves an action.",
     "Fast Allegation": "Model gains the Drop It! trait.",
@@ -81138,6 +81303,7 @@ const traitDescriptions = {
     "Slow (X)": "Status. A model suffering this effect reduces by its basic movement distance by (X) during its next Movement action.",
     "Slow Digestion": "After resolving a Devour attack that inflicts damage, remove the target from the gaming area. That model is ‘Devoured’. A Devoured model may still be activated each round, but can only take an Endurance roll. If it is successful, place the Devoured model within 2” of this model and continue its activation. If the Endurance roll fails, the Devoured model suffers {BLOOD_ICON}{BLOOD_ICON} damage. This model can only remove one enemy from the game in this way at the same time. If this model becomes a Casualty, place any model it Devoured within 2” before removing this model. If a model is still Devoured when the game ends, it is considered a Casualty.",
     "Small": "This model gains +1 Defense against enemy Ranged Attacks.",
+    "Spiked Bat-armor": "Enemy models don't roll a Strength die when attacking this model. In addition, when a melee attack action against this model is fully resolved, you can take 2 Efforts to deal 2 {BLOOD_ICON} to the attacker.",
     "Small Caliber": "This weapon loses 2 dice instead of 1 if the target is not in effective range.",
     "Small Nightmare": "This model doesn't follows the Nightmare trait rules to come back to play while removed as a Casualty, instead they can be Set in play in contact with a friendly Suspect when a Fear card is returned to the Fear pile, they can only take an activation if they didn't take it before. In addition, this model gains +1 Defense against enemy Ranged Attacks.",
     "Smartest Man Alive {SPECIAL_ICON}": "Search into your Objective deck for 1 card, and add it to your hand.",
@@ -81204,6 +81370,7 @@ const traitDescriptions = {
     "Sneak Attack Takedown": "When this model inflicts a KO on an enemy model affected by this model's Sneak Attack trait, it can immediately take a Free Manipulate action.",
 
 
+    "Life-altering Injuries": "For scoring Objective cards, this model never counts as removing enemies as a Casualty; instead they always count as KOed models. When it does, this model may immediately Set a Suspect for free within 3\".",
     "Life-Force Absorption (Spell)": "Attack Action. 1 Magical counter. Take an opposed Willpower test against an enemy model within 4\" and LoS. If you pass the Willpower roll by a difference of up to 3, deal 1 ★ Damage to that model and remove 2 damage from this model. If you surpass the test by 4 or more, deal 2 ★ Damage to that model and remove 4 damage from this model.",
     "Magical Telekinesis (Spell)": "Manipulate Action. 2 Magical Counters. Target 2 combinations of 2 models or Suspects within 8\" and LoS to this model, move the selected items 4\".",
     "Telepathy (Spell)": "Movement Action. 1 Magic Counter. Target a friendly model and choose one option: Move the target its Movement value, or the target Sets a Suspect within 4\".",
@@ -81252,6 +81419,7 @@ const traitDescriptions = {
     "The Dude": "Once per game, this model may ignore a rule targeting it.",
     "The Dynamic Duo": "This model can activate immediately after a friendly Robin (Boy Wonder) model within 8”, interrupting the usual sequence of play.",
     "The Emperor": "This model starts the game with 6 Business counters but can only gains Business counters when a friendly model suffers KO or removed as a Casualty.",
+    "The Hangman's Stare": "Once per round, when this model Sets a Suspect, it can be placed within 3\" and LoS instead of in contact. If it is placed in contact with an enemy model, that model suffers the Quarry (2) Status.",
     "The Evidence Mounts": "Model gains the Groundwork trait.",
     "The False Boss": "While this model is not the Boss, other friendly models within 8” that are not affected by the Inspire rule may use a Movement or Special action during their activation to perform an additional Manipulate action.",
     "The Fear Master": "This model has 1 free Effort while Attacking for each Objective card in the Terror pile. In addition, if this model is going to be targeted by an Attack, you may discard (not triggering any effect) 1 card from your Terror pile to nominate a friendly model within 4” and LoS to be the new target of the Attack instead.",
