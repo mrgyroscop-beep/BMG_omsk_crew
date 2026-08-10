@@ -1,4 +1,5 @@
 window.PRINTABLE_MODEL_NAMES = new Set([
+  'Absolute Batman',
   'Aaron Cash',
   'Ace',
   'Alfred Pennyworth',
