@@ -175,6 +175,36 @@ const builderMandatoryCards = [
     }
   },
   {
+    id: "riddler-riddle-markers",
+    name: "RIDDLE MARKERS",
+    img: "img/cards/riddler/riddle-markers.png",
+    renderAsCardImage: true,
+    type: "Special Rules",
+    faction: ["The Riddler"],
+    category: "crew",
+    mandatory: true,
+    countsForDeck: false,
+    text: {
+      en: "When an enemy model within 8\" of a Riddle marker performs a Manipulate action, and that action does not Reveal a friendly Suspect, the opponent must target and remove a friendly Suspect in Play. It counts as Revealed by that enemy model.\n\nThen remove that Riddle marker.\n\nYou cannot have more than 3 Riddle markers in play at the same time.",
+      ru: "Когда вражеская модель в пределах 8\" от маркера Riddle выполняет действие Manipulate, и это действие не раскрывает дружественный Suspect, оппонент должен выбрать и удалить дружественный Suspect в игре. Он считается раскрытым этой вражеской моделью.\n\nЗатем удалите этот маркер Riddle.\n\nОдновременно в игре не может находиться больше 3 маркеров Riddle."
+    }
+  },
+  {
+    id: "riddler-face-down-cards",
+    name: "RIDDLER FACE DOWN CARDS",
+    img: "img/cards/riddler/riddler-face-down-cards.png",
+    renderAsCardImage: true,
+    type: "Special Rules",
+    faction: ["The Riddler"],
+    category: "crew",
+    mandatory: true,
+    countsForDeck: false,
+    text: {
+      en: "A When to Score ? card can only be played as an Objective during a friendly model's activation. Without revealing, play it face down.\n\nOnly 1 ? card may be in Play at a time.\n\nWhen an enemy model Reveals a friendly Suspect, flip the ? card face up and check scoring condition.\n\nTrap\n\nThis Resource is not played as usual. When this card is flipped face up, resolve the Trap effect. This does not count as a Resource played this Round.",
+      ru: "Карта When to Score с символом ? может быть разыграна как Objective только во время активации дружественной модели. Не раскрывая ее, сыграйте ее лицом вниз.\n\nОдновременно в игре может находиться только 1 карта ?.\n\nКогда вражеская модель раскрывает дружественный Suspect, переверните карту ? лицом вверх и проверьте условие засчитывания.\n\nTrap\n\nЭтот Resource разыгрывается не обычным способом. Когда карта переворачивается лицом вверх, примените эффект Trap. Это не считается Resource, разыгранным в этом раунде."
+    }
+  },
+  {
     id: "scarecrow-the-fear",
     name: "THE FEAR",
     img: "img/cards/scarecrow/the-fear.jpg",
