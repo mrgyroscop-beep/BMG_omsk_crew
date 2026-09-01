@@ -15982,8 +15982,7 @@ const officialEquipmentRulesByFaction = {
         850,
         854,
         861,
-        869,
-        886
+        869
       ]
     },
     {
@@ -16227,8 +16226,7 @@ const officialEquipmentRulesByFaction = {
         850,
         854,
         861,
-        869,
-        886
+        869
       ]
     },
     {
@@ -16295,8 +16293,7 @@ const officialEquipmentRulesByFaction = {
         "Robin (1997)",
         "Batman (The Animated Series)",
         "Batgirl (The Animated Series)",
-        "Robin (Tim Drake)",
-        "Batman (The Gotham City Knight)"
+        "Robin (Tim Drake)"
       ],
       "targetOfficialIds": [
         6,
@@ -16352,8 +16349,7 @@ const officialEquipmentRulesByFaction = {
         861,
         862,
         869,
-        872,
-        886
+        872
       ],
       "requiredCrewOfficialIds": [
         871
@@ -16464,8 +16460,7 @@ const officialEquipmentRulesByFaction = {
         "Two-Face (Tommy Lee Jones)",
         "Bane (Commander)",
         "Batman (Frank Miller on Horse)",
-        "Batman (Frank Miller on Power Armor)",
-        "Batman (The Gotham City Knight)"
+        "Batman (Frank Miller on Power Armor)"
       ],
       "targetOfficialIds": [
         27,
@@ -16562,8 +16557,7 @@ const officialEquipmentRulesByFaction = {
         846,
         848,
         850,
-        869,
-        886
+        869
       ],
       "requiredCrewOfficialIds": [
         871
@@ -16687,8 +16681,7 @@ const officialEquipmentRulesByFaction = {
         850,
         854,
         861,
-        869,
-        886
+        869
       ]
     },
     {
@@ -16756,8 +16749,7 @@ const officialEquipmentRulesByFaction = {
         850,
         854,
         861,
-        869,
-        886
+        869
       ]
     },
     {
@@ -16825,8 +16817,7 @@ const officialEquipmentRulesByFaction = {
         850,
         854,
         861,
-        869,
-        886
+        869
       ]
     },
     {
@@ -16864,8 +16855,7 @@ const officialEquipmentRulesByFaction = {
         "Batman (Frank Miller on Horse)",
         "Batman (Frank Miller on Power Armor)",
         "Batman (Beyond)",
-        "Batman (The Animated Series)",
-        "Batman (The Gotham City Knight)"
+        "Batman (The Animated Series)"
       ],
       "targetOfficialIds": [
         34,
@@ -16899,8 +16889,7 @@ const officialEquipmentRulesByFaction = {
         848,
         850,
         852,
-        861,
-        886
+        861
       ],
       "requiredCrewOfficialIds": [
         34,
@@ -16940,8 +16929,7 @@ const officialEquipmentRulesByFaction = {
         850,
         854,
         861,
-        869,
-        886
+        869
       ]
     },
     {
@@ -17264,8 +17252,7 @@ const officialEquipmentRulesByFaction = {
         850,
         854,
         861,
-        869,
-        886
+        869
       ],
       "requiredCrewOfficialIds": [
         34,
@@ -17305,8 +17292,7 @@ const officialEquipmentRulesByFaction = {
         850,
         854,
         861,
-        869,
-        886
+        869
       ]
     },
     {
@@ -20716,8 +20702,7 @@ const officialEquipmentRulesByFaction = {
         "Catwoman (The Animated Series)",
         "Harley Quinn (The Animated Series)",
         "Lucius Fox",
-        "Robin (Tim Drake)",
-        "Batman (The Gotham City Knight)"
+        "Robin (Tim Drake)"
       ],
       "targetRanks": [
         "Henchman"
@@ -20767,8 +20752,7 @@ const officialEquipmentRulesByFaction = {
         865,
         870,
         871,
-        872,
-        886
+        872
       ]
     },
     {
@@ -20823,8 +20807,7 @@ const officialEquipmentRulesByFaction = {
         850,
         854,
         861,
-        869,
-        886
+        869
       ]
     },
     {
@@ -21010,8 +20993,7 @@ const officialEquipmentRulesByFaction = {
         "Robin (1997)",
         "Batman (The Animated Series)",
         "Batgirl (The Animated Series)",
-        "Robin (Tim Drake)",
-        "Batman (The Gotham City Knight)"
+        "Robin (Tim Drake)"
       ],
       "targetOfficialIds": [
         6,
@@ -21067,8 +21049,7 @@ const officialEquipmentRulesByFaction = {
         861,
         862,
         869,
-        872,
-        886
+        872
       ],
       "requiredCrewOfficialIds": [
         871
@@ -21179,8 +21160,7 @@ const officialEquipmentRulesByFaction = {
         "Two-Face (Tommy Lee Jones)",
         "Bane (Commander)",
         "Batman (Frank Miller on Horse)",
-        "Batman (Frank Miller on Power Armor)",
-        "Batman (The Gotham City Knight)"
+        "Batman (Frank Miller on Power Armor)"
       ],
       "targetOfficialIds": [
         27,
@@ -21277,8 +21257,7 @@ const officialEquipmentRulesByFaction = {
         846,
         848,
         850,
-        869,
-        886
+        869
       ],
       "requiredCrewOfficialIds": [
         871
@@ -21337,8 +21316,7 @@ const officialEquipmentRulesByFaction = {
         "Catwoman (The Animated Series)",
         "Harley Quinn (The Animated Series)",
         "Lucius Fox",
-        "Robin (Tim Drake)",
-        "Batman (The Gotham City Knight)"
+        "Robin (Tim Drake)"
       ],
       "targetRanks": [
         "Sidekick",
@@ -21390,8 +21368,7 @@ const officialEquipmentRulesByFaction = {
         865,
         870,
         871,
-        872,
-        886
+        872
       ]
     },
     {
@@ -21465,8 +21442,7 @@ const officialEquipmentRulesByFaction = {
         850,
         854,
         861,
-        869,
-        886
+        869
       ]
     },
     {
@@ -21521,8 +21497,7 @@ const officialEquipmentRulesByFaction = {
         850,
         854,
         861,
-        869,
-        886
+        869
       ]
     },
     {
@@ -21630,8 +21605,7 @@ const officialEquipmentRulesByFaction = {
         850,
         854,
         861,
-        869,
-        886
+        869
       ],
       "requiredCrewOfficialIds": [
         34,
@@ -21671,8 +21645,7 @@ const officialEquipmentRulesByFaction = {
         850,
         854,
         861,
-        869,
-        886
+        869
       ]
     }
   ],
@@ -23039,8 +23012,7 @@ const officialEquipmentByFactionExtensions = {
         "Robin (1997)",
         "Batman (The Animated Series)",
         "Batgirl (The Animated Series)",
-        "Robin (Tim Drake)",
-        "Batman (The Gotham City Knight)"
+        "Robin (Tim Drake)"
       ],
       "targetOfficialIds": [
         6,
@@ -23096,14 +23068,13 @@ const officialEquipmentByFactionExtensions = {
         861,
         862,
         869,
-        872,
-        886
+        872
       ],
       "requiredCrewOfficialIds": [
         871
       ],
       "conditions": [
-        "Any of: Name: Nyssa Al Ghul | Name: Batgirl | Name: Batgirl (Rebirth) | Name: Batman | Name: Batman (Arkham Knight) | Name: Batman (Ben Affleck) | Name: Batman (Flashpoint) | Name: Batman (Knightfall) | Name: Batman (Modern Age) | Name: Batman (Dark Knight Rises) | Name: Nightwing (Arkham Knight) | Name: Red Hood (Arkham Knight) | Name: Robin (Boy Wonder) | Name: Slipknot (Suicide Squad) | Name: Nightwing | Name: Green Arrow | Name: Owlman | Name: Zur-En-Arrh Batman | Name: Batman (Rebirth) | Name: Batman (Knightmare) | Name: Blue Beetle | Name: The Wizard | Name: Batman (Multiverse) | Name: Robin | Name: Batman (Gaslight) | Name: Batwoman | Name: Happy | Name: Robin (Teen Titans) | Name: Killer Moth | Name: Batman (Frank Miller) | Name: Green Arrow DKR | Name: The Grim Knight | Name: Red Robin | Name: Raptor | Name: Batman (Adam West) | Name: Robin (Burt Ward) | Name: Batgirl (Classic Costume) | Name: Nightwing (Rebirth) | Name: Vigilante | Name: Batman (Robert Pattinson) | Name: Batman (Classic) | Name: The Riddler's Follower 2 | Name: Batman (Michael Keaton) | Name: Batman (1997) | Name: Robin (1997) | Name: Batman (The Animated Series) | Name: Batgirl (The Animated Series) | Name: Robin (Tim Drake) | Name: Batman (The Gotham City Knight)",
+        "Any of: Name: Nyssa Al Ghul | Name: Batgirl | Name: Batgirl (Rebirth) | Name: Batman | Name: Batman (Arkham Knight) | Name: Batman (Ben Affleck) | Name: Batman (Flashpoint) | Name: Batman (Knightfall) | Name: Batman (Modern Age) | Name: Batman (Dark Knight Rises) | Name: Nightwing (Arkham Knight) | Name: Red Hood (Arkham Knight) | Name: Robin (Boy Wonder) | Name: Slipknot (Suicide Squad) | Name: Nightwing | Name: Green Arrow | Name: Owlman | Name: Zur-En-Arrh Batman | Name: Batman (Rebirth) | Name: Batman (Knightmare) | Name: Blue Beetle | Name: The Wizard | Name: Batman (Multiverse) | Name: Robin | Name: Batman (Gaslight) | Name: Batwoman | Name: Happy | Name: Robin (Teen Titans) | Name: Killer Moth | Name: Batman (Frank Miller) | Name: Green Arrow DKR | Name: The Grim Knight | Name: Red Robin | Name: Raptor | Name: Batman (Adam West) | Name: Robin (Burt Ward) | Name: Batgirl (Classic Costume) | Name: Nightwing (Rebirth) | Name: Vigilante | Name: Batman (Robert Pattinson) | Name: Batman (Classic) | Name: The Riddler's Follower 2 | Name: Batman (Michael Keaton) | Name: Batman (1997) | Name: Robin (1997) | Name: Batman (The Animated Series) | Name: Batgirl (The Animated Series) | Name: Robin (Tim Drake)",
         "Alias: Lucius Fox in crew"
       ],
       "effects": [
@@ -23221,8 +23192,7 @@ const officialEquipmentByFactionExtensions = {
         "Two-Face (Tommy Lee Jones)",
         "Bane (Commander)",
         "Batman (Frank Miller on Horse)",
-        "Batman (Frank Miller on Power Armor)",
-        "Batman (The Gotham City Knight)"
+        "Batman (Frank Miller on Power Armor)"
       ],
       "targetOfficialIds": [
         27,
@@ -23319,14 +23289,13 @@ const officialEquipmentByFactionExtensions = {
         846,
         848,
         850,
-        869,
-        886
+        869
       ],
       "requiredCrewOfficialIds": [
         871
       ],
       "conditions": [
-        "Any of: Name: Bane (Dark Knight Rises) | Name: Bane (Rebirth) | Name: Bat-Mite | Name: Batgirl (Rebirth) | Name: Batman | Name: Batman (Arkham Knight) | Name: Batman (Ben Affleck) | Name: Batman (Flashpoint) | Name: Batman (Modern Age) | Name: Batman (Dark Knight Rises) | Name: Emperor Penguin | Name: Heat Wave | Name: Jason Blood | Name: Lady Shiva | Name: Penguin Lieutenant | Name: Prisoner 93432 | Name: The Bull | Name: Two-Face | Name: Zur-En-Arrh Batman | Name: Queen Hippolita | Name: Batman (Rebirth) | Name: Lobo | Name: Black Orchid | Name: Lexcorp Heavy Trooper | Name: LexCorp Trooper 1 | Name: LexCorp Trooper 2 | Name: LexCorp Trooper 3 | Name: The Tailor | Name: Batman (Knightmare) | Name: Booster Gold | Name: Blue Beetle | Name: Damien Darhk | Name: Batman (Multiverse) | Name: Echo | Name: Solomon Grundy | Name: Lark | Name: Ozymandias | Name: The Comedian | Name: Nite Owl | Name: Batman (Gaslight) | Name: The Heretic | Name: Mercenary 2 | Name: Wonder Girl | Name: Hawk | Name: Bronze Tiger | Name: 1 Dollar | Name: Big Sidekick | Name: Bruce Wayne | Name: Matches Malone | Name: Grifter | Name: Bane (The Bat) | Name: Batman (Frank Miller) | Name: Son of Batman 3 | Name: The Batman Who Laughs | Name: Malicia | Name: Deathstroke (The Terminator) | Name: Zack Johnson | Name: The Grim Knight | Name: Hush | Name: Quiz 8 | Name: Talon | Name: Batman (Adam West) | Name: Fright | Name: Batman (Year One) | Name: Mr. Toxic | Name: Signalman | Name: Batgirl (Classic Costume) | Name: Mr. Freeze (Cryo-Armor) | Name: Batman (Death Metal) | Name: Lobo (Paramilitary) | Name: Peacemaker (John Cena) | Name: Vigilante | Name: Batman (Viking) | Name: Batman (Robert Pattinson) | Name: Batman (Classic) | Name: Deacon Blackfire | Name: Two-Face (Arkham City) | Name: Batman on Bike (Robert Pattinson) | Name: Batman (The Cult) | Name: Red Hood (The Outlaw) | Name: Vengeance | Name: Batman (Bushi) | Name: Ten-Eyed Man | Name: Robin (1997) | Name: Batman (High Seas) | Name: Two-Face (Tommy Lee Jones) | Name: Bane (Commander) | Name: Batman (Frank Miller on Horse) | Name: Batman (Frank Miller on Power Armor) | Name: Batman (The Gotham City Knight)",
+        "Any of: Name: Bane (Dark Knight Rises) | Name: Bane (Rebirth) | Name: Bat-Mite | Name: Batgirl (Rebirth) | Name: Batman | Name: Batman (Arkham Knight) | Name: Batman (Ben Affleck) | Name: Batman (Flashpoint) | Name: Batman (Modern Age) | Name: Batman (Dark Knight Rises) | Name: Emperor Penguin | Name: Heat Wave | Name: Jason Blood | Name: Lady Shiva | Name: Penguin Lieutenant | Name: Prisoner 93432 | Name: The Bull | Name: Two-Face | Name: Zur-En-Arrh Batman | Name: Queen Hippolita | Name: Batman (Rebirth) | Name: Lobo | Name: Black Orchid | Name: Lexcorp Heavy Trooper | Name: LexCorp Trooper 1 | Name: LexCorp Trooper 2 | Name: LexCorp Trooper 3 | Name: The Tailor | Name: Batman (Knightmare) | Name: Booster Gold | Name: Blue Beetle | Name: Damien Darhk | Name: Batman (Multiverse) | Name: Echo | Name: Solomon Grundy | Name: Lark | Name: Ozymandias | Name: The Comedian | Name: Nite Owl | Name: Batman (Gaslight) | Name: The Heretic | Name: Mercenary 2 | Name: Wonder Girl | Name: Hawk | Name: Bronze Tiger | Name: 1 Dollar | Name: Big Sidekick | Name: Bruce Wayne | Name: Matches Malone | Name: Grifter | Name: Bane (The Bat) | Name: Batman (Frank Miller) | Name: Son of Batman 3 | Name: The Batman Who Laughs | Name: Malicia | Name: Deathstroke (The Terminator) | Name: Zack Johnson | Name: The Grim Knight | Name: Hush | Name: Quiz 8 | Name: Talon | Name: Batman (Adam West) | Name: Fright | Name: Batman (Year One) | Name: Mr. Toxic | Name: Signalman | Name: Batgirl (Classic Costume) | Name: Mr. Freeze (Cryo-Armor) | Name: Batman (Death Metal) | Name: Lobo (Paramilitary) | Name: Peacemaker (John Cena) | Name: Vigilante | Name: Batman (Viking) | Name: Batman (Robert Pattinson) | Name: Batman (Classic) | Name: Deacon Blackfire | Name: Two-Face (Arkham City) | Name: Batman on Bike (Robert Pattinson) | Name: Batman (The Cult) | Name: Red Hood (The Outlaw) | Name: Vengeance | Name: Batman (Bushi) | Name: Ten-Eyed Man | Name: Robin (1997) | Name: Batman (High Seas) | Name: Two-Face (Tommy Lee Jones) | Name: Bane (Commander) | Name: Batman (Frank Miller on Horse) | Name: Batman (Frank Miller on Power Armor)",
         "Alias: Lucius Fox in crew"
       ],
       "effects": [
@@ -45850,66 +45819,6 @@ const officialModelSyncUpdates = [
     }
   },
   {
-    "index": 64,
-    "matchName": "Batman The Gotham City Knight",
-    "matchRealname": "Bruce Wayne",
-    "matchBase": "40mm",
-    "officialId": 886,
-    "score": 223,
-    "patch": {
-      "officialId": 886,
-      "officialName": "Bruce Wayne",
-      "officialAlias": "Batman (The Gotham City Knight)",
-      "realname": "Bruce Wayne",
-      "base": "40mm",
-      "rep": 130,
-      "funding": 0,
-      "rank": [
-        "Leader"
-      ],
-      "faction": [
-        "Bat Family",
-        "GCPD"
-      ],
-      "rivals": [],
-      "stats": {
-        "Attack": 5,
-        "Defense": 5,
-        "Strength": "3+",
-        "Movement": 12,
-        "Willpower": 8,
-        "Endurance": 8,
-        "Special": 3
-      },
-      "traits": [
-        "Bat Family",
-        "Bat Cape",
-        "Bat-Armor Mk III",
-        "Batclaw {SPECIAL_ICON}",
-        "Detective",
-        "Flying Kick {SPECIAL_ICON}",
-        "I'm Batman",
-        "Master of Stealth",
-        "Reinforced Gloves",
-        "Vigilante’s Work"
-      ],
-      "weapons": [
-        {
-          "name": "Batlings",
-          "damage": "★★",
-          "rof": 2,
-          "ammo": 2,
-          "traits": "Light / S. Range / Throwing"
-        }
-      ],
-      "officialImage": "https://app.knightmodels.com/images/character/main/35DC393_BATMAN_GOTHAM_CITY_KNIGHT_MINI.png",
-      "officialBackground": "https://app.knightmodels.com/images/character/background/35DC393_BATMAN_GOTHAM_CITY_KNIGHT.jpg",
-      "eternal": false,
-      "officialUpgradeIds": [],
-      "id": "batman-the-gotham-city-knight-bruce-wayne-40mm"
-    }
-  },
-  {
     "index": 65,
     "matchName": "Batman Death Metal",
     "matchRealname": "Bruce Wayne",
@@ -47040,7 +46949,7 @@ const officialModelSyncUpdates = [
         "Always on the Move",
         "Batclaw {SPECIAL_ICON}",
         "Charismatic",
-        "Combo: Sticks",
+        "Combo",
         "Martial Artist",
         "Searcher",
         "Shadowed Nightmare",
@@ -53947,57 +53856,6 @@ const officialModelSyncUpdates = [
     }
   },
   {
-    "index": 207,
-    "matchName": "Blunderbuss Clown",
-    "matchRealname": "Unknown",
-    "matchBase": "30mm",
-    "officialId": 883,
-    "score": 178,
-    "patch": {
-      "officialId": 883,
-      "officialName": "Unknown",
-      "officialAlias": "Blunderbuss Clown",
-      "realname": "Unknown",
-      "base": "30mm",
-      "rep": 16,
-      "funding": 200,
-      "rank": [
-        "Henchman"
-      ],
-      "faction": [
-        "Joker"
-      ],
-      "rivals": [],
-      "stats": {
-        "Attack": 2,
-        "Defense": 2,
-        "Strength": "5+",
-        "Movement": 8,
-        "Willpower": 4,
-        "Endurance": 4,
-        "Special": 3
-      },
-      "traits": [
-        "Paranoid (Mental Disorder)",
-        "Explosive Teeths {SPECIAL_ICON}"
-      ],
-      "weapons": [
-        {
-          "name": "Explosive Teeth Blunderbuss",
-          "damage": "🩸★",
-          "rof": 1,
-          "ammo": 1,
-          "traits": "S. Range / Mechanical / Explosive / Handy"
-        }
-      ],
-      "officialImage": "https://app.knightmodels.com/images/character/main/35DC393_BLUNDERBUSS-CLOWN_MINI.png",
-      "officialBackground": "https://app.knightmodels.com/images/character/background/35DC393_BLUNDERBUSS-CLOWN.jpg",
-      "eternal": false,
-      "officialUpgradeIds": [],
-      "id": "blunderbuss-clown-unknown-30mm"
-    }
-  },
-  {
     "index": 208,
     "matchName": "Joker's Victim 1",
     "matchRealname": "Unknown",
@@ -54214,10 +54072,10 @@ const officialModelSyncUpdates = [
     "matchName": "Axe Clown",
     "matchRealname": "Unknown",
     "matchBase": "30mm",
-    "officialId": 881,
+    "officialId": 884,
     "score": 178,
     "patch": {
-      "officialId": 881,
+      "officialId": 884,
       "officialName": "Unknown",
       "officialAlias": "Axe Clown",
       "realname": "Unknown",
@@ -54265,10 +54123,10 @@ const officialModelSyncUpdates = [
     "matchName": "Barrel Clown",
     "matchRealname": "Unknown",
     "matchBase": "30mm",
-    "officialId": 880,
+    "officialId": 883,
     "score": 178,
     "patch": {
-      "officialId": 880,
+      "officialId": 883,
       "officialName": "Unknown",
       "officialAlias": "Barrel Clown",
       "realname": "Unknown",
@@ -54292,9 +54150,9 @@ const officialModelSyncUpdates = [
         "Special": 3
       },
       "traits": [
-        "Anger Management (Mental disorder)",
+        "Bio-Chemical Barrel {SPECIAL_ICON}",
         "Bio-Chemical Recharge",
-        "Bio-Chemical Barrel {SPECIAL_ICON}"
+        "Anger Management (Mental disorder)"
       ],
       "weapons": [
         {
@@ -54366,57 +54224,6 @@ const officialModelSyncUpdates = [
     }
   },
   {
-    "index": 215,
-    "matchName": "Chainsaw Clown",
-    "matchRealname": "Unknown",
-    "matchBase": "30mm",
-    "officialId": 882,
-    "score": 178,
-    "patch": {
-      "officialId": 882,
-      "officialName": "Unknown",
-      "officialAlias": "Chainsaw Clown",
-      "realname": "Unknown",
-      "base": "30mm",
-      "rep": 18,
-      "funding": 350,
-      "rank": [
-        "Henchman"
-      ],
-      "faction": [
-        "Joker"
-      ],
-      "rivals": [],
-      "stats": {
-        "Attack": 3,
-        "Defense": 2,
-        "Strength": "5+",
-        "Movement": 10,
-        "Willpower": 4,
-        "Endurance": 4,
-        "Special": 3
-      },
-      "traits": [
-        "Bipolar (Mental Disorder)",
-        "Street Guy"
-      ],
-      "weapons": [
-        {
-          "name": "Tri-Chainsaw",
-          "damage": "🩸🩸🩸",
-          "rof": "-",
-          "ammo": "-",
-          "traits": "Mechanical / Imprecise / Sharp / Bleed (3)"
-        }
-      ],
-      "officialImage": "https://app.knightmodels.com/images/character/main/35DC393_CHAINSAW-CLOWN_MINI.png",
-      "officialBackground": "https://app.knightmodels.com/images/character/background/35DC393_CHAINSAW-CLOWN.jpg",
-      "eternal": false,
-      "officialUpgradeIds": [],
-      "id": "chainsaw-clown-unknown-30mm"
-    }
-  },
-  {
     "index": 216,
     "matchName": "Street Jester 1",
     "matchRealname": "Unknown",
@@ -54476,10 +54283,10 @@ const officialModelSyncUpdates = [
     "matchName": "Thorgon",
     "matchRealname": "Unknown",
     "matchBase": "40mm",
-    "officialId": 879,
+    "officialId": 882,
     "score": 178,
     "patch": {
-      "officialId": 879,
+      "officialId": 882,
       "officialName": "Unknown",
       "officialAlias": "Thorgon",
       "realname": "Unknown",
@@ -54510,7 +54317,7 @@ const officialModelSyncUpdates = [
         "Bio-Chemical Barrel {SPECIAL_ICON}",
         "Sturdy",
         "OCD (Mental Disorder)",
-        "Teamwork (1) (Borgon)"
+        "Teamwork 1 (Borgon)"
       ],
       "weapons": [
         {
@@ -55119,57 +54926,6 @@ const officialModelSyncUpdates = [
       "eternal": false,
       "officialUpgradeIds": [],
       "id": "ace-of-spades-unknown-30mm"
-    }
-  },
-  {
-    "index": 230,
-    "matchName": "Slingy Clown",
-    "matchRealname": "Unknown",
-    "matchBase": "30mm",
-    "officialId": 884,
-    "score": 178,
-    "patch": {
-      "officialId": 884,
-      "officialName": "Unknown",
-      "officialAlias": "Slingy Clown",
-      "realname": "Unknown",
-      "base": "30mm",
-      "rep": 16,
-      "funding": 200,
-      "rank": [
-        "Henchman"
-      ],
-      "faction": [
-        "Joker"
-      ],
-      "rivals": [],
-      "stats": {
-        "Attack": 2,
-        "Defense": 2,
-        "Strength": "5+",
-        "Movement": 8,
-        "Willpower": 4,
-        "Endurance": 4,
-        "Special": 3
-      },
-      "traits": [
-        "Anxiety (Mental Disorder)",
-        "Tracking {SPECIAL_ICON}"
-      ],
-      "weapons": [
-        {
-          "name": "Poisoned Sling",
-          "damage": "🩸",
-          "rof": 2,
-          "ammo": 2,
-          "traits": "S. Range / Throwing / Poison / Handy"
-        }
-      ],
-      "officialImage": "https://app.knightmodels.com/images/character/main/35DC393_SLINGY-CLOWN_MINI.png",
-      "officialBackground": "https://app.knightmodels.com/images/character/background/35DC393_SLINGY-CLOWN.jpg",
-      "eternal": false,
-      "officialUpgradeIds": [],
-      "id": "slingy-clown-unknown-30mm"
     }
   },
   {
@@ -55925,71 +55681,6 @@ const officialModelSyncUpdates = [
     }
   },
   {
-    "index": 243,
-    "matchName": "Joker (Bat-Armor)",
-    "matchRealname": "Unknown",
-    "matchBase": "40mm",
-    "officialId": 885,
-    "score": 178,
-    "patch": {
-      "officialId": 885,
-      "officialName": "Unknown",
-      "officialAlias": "Joker (Bat-Armor)",
-      "realname": "Unknown",
-      "base": "40mm",
-      "rep": 85,
-      "funding": 0,
-      "rank": [
-        "Leader"
-      ],
-      "faction": [
-        "Joker"
-      ],
-      "rivals": [],
-      "stats": {
-        "Attack": 4,
-        "Defense": 4,
-        "Strength": "4+",
-        "Movement": 10,
-        "Willpower": 8,
-        "Endurance": 8,
-        "Special": 3
-      },
-      "traits": [
-        "Bat Cape",
-        "Bat-Armor Mk II",
-        "Batclaw {SPECIAL_ICON}",
-        "I am Chaos {SPECIAL_ICON}",
-        "Kaos Agent",
-        "Luck",
-        "Psycho",
-        "Reinforced Gloves",
-        "Trickster"
-      ],
-      "weapons": [
-        {
-          "name": "Bam!",
-          "damage": "🩸🩸",
-          "rof": 1,
-          "ammo": 2,
-          "traits": "S. Range / Firearm / Assault"
-        },
-        {
-          "name": "Batarang",
-          "damage": "★★",
-          "rof": 2,
-          "ammo": 3,
-          "traits": "M. Range / Remote Controlled / Throwing"
-        }
-      ],
-      "officialImage": "https://app.knightmodels.com/images/character/main/35DC393_JOKER_BAT-ARMOR_MINI.png",
-      "officialBackground": "https://app.knightmodels.com/images/character/background/35DC393_JOKER_BAT-ARMOR.jpg",
-      "eternal": false,
-      "officialUpgradeIds": [],
-      "id": "joker-bat-armor-unknown-40mm"
-    }
-  },
-  {
     "index": 244,
     "matchName": "Gaggy",
     "matchRealname": "Unknown",
@@ -56194,8 +55885,8 @@ const officialModelSyncUpdates = [
         {
           "name": "Poisoned Knives",
           "damage": "🩸",
-          "rof": 0,
-          "ammo": 0,
+          "rof": "-",
+          "ammo": "-",
           "traits": "Sharp / Poison"
         },
         {
@@ -60848,13 +60539,13 @@ const officialModelSyncUpdates = [
     "matchRealname": "Harvey Dent",
     "matchBase": "40mm/60mm",
     "officialId": 599,
-    "score": 223,
+    "score": 213,
     "patch": {
       "officialId": 599,
       "officialName": "Harvey Dent",
       "officialAlias": "Two-Face",
       "realname": "Harvey Dent",
-      "base": "40mm/60mm",
+      "base": "60mm",
       "rep": 101,
       "funding": 0,
       "rank": [
@@ -62983,7 +62674,7 @@ const officialModelSyncUpdates = [
         "Arrest {SPECIAL_ICON}",
         "Bat Cape",
         "Batclaw {SPECIAL_ICON}",
-        "Combo: Unarmed",
+        "Combo",
         "Informer",
         "One of the Boys",
         "Radio",
@@ -70294,8 +69985,8 @@ const officialModelSyncUpdates = [
         {
           "name": "Claws with Cataphrenia",
           "damage": "🩸★",
-          "rof": 0,
-          "ammo": 0,
+          "rof": "-",
+          "ammo": "-",
           "traits": "Sharp / Hypnotize"
         },
         {
@@ -71126,6 +70817,131 @@ const officialModelSyncUpdates = [
       "eternal": false,
       "officialUpgradeIds": [],
       "id": "calendar-man-julian-gregory-day-40mm"
+    }
+  },
+  {
+    "index": 514,
+    "matchName": "Absolute Batman",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "40mm",
+    "officialId": 880,
+    "score": 223,
+    "patch": {
+      "officialId": 880,
+      "officialName": "Bruce Wayne",
+      "officialAlias": "Absolute Batman",
+      "realname": "Bruce Wayne",
+      "base": "40mm",
+      "rep": 130,
+      "funding": 0,
+      "rank": [
+        "Leader"
+      ],
+      "faction": [
+        "Bat Family",
+        "GCPD"
+      ],
+      "rivals": [],
+      "stats": {
+        "Attack": 5,
+        "Defense": 5,
+        "Strength": "3+",
+        "Movement": 10,
+        "Willpower": 8,
+        "Endurance": 10,
+        "Special": 3
+      },
+      "traits": [
+        "Bat Cape",
+        "Bat Family",
+        "Bat Hooks {SPECIAL_ICON}",
+        "Engineer",
+        "Life-altering Injuries",
+        "Obstinate",
+        "Tough Guy",
+        "Reinforced Gloves",
+        "Savage Fighter {SPECIAL_ICON}",
+        "Spiked-Batarmor",
+        "Sturdy"
+      ],
+      "weapons": [
+        {
+          "name": "Bat-Symbol",
+          "damage": "🩸★",
+          "rof": "-",
+          "ammo": "-",
+          "traits": "Heavy / Handy / Concealed"
+        },
+        {
+          "name": "Bat-Ears",
+          "damage": "🩸★",
+          "rof": "-",
+          "ammo": "-",
+          "traits": "Handy / Sharp / Concealed"
+        }
+      ],
+      "officialImage": "https://app.knightmodels.com/images/character/main/35DC_ABSOLUTE_BATMAN_MINI.png",
+      "officialBackground": "https://app.knightmodels.com/images/character/background/2026_JULIO_ABSOLUTE_BATMAN.jpg",
+      "eternal": false,
+      "officialUpgradeIds": [],
+      "id": "card-2026-absolute-batman"
+    }
+  },
+  {
+    "index": 515,
+    "matchName": "Sofia Gigante (The Penguin)",
+    "matchRealname": "Sofia Falcone Gigante",
+    "matchBase": "40mm",
+    "officialId": 881,
+    "score": 223,
+    "patch": {
+      "officialId": 881,
+      "officialName": "Sofia Falcone Gigante",
+      "officialAlias": "Sofia Gigante (The Penguin)",
+      "realname": "Sofia Falcone Gigante",
+      "base": "40mm",
+      "rep": 80,
+      "funding": 0,
+      "rank": [
+        "Leader"
+      ],
+      "faction": [
+        "Organized Crime"
+      ],
+      "rivals": [],
+      "stats": {
+        "Attack": 3,
+        "Defense": 3,
+        "Strength": "5+",
+        "Movement": 8,
+        "Willpower": 7,
+        "Endurance": 6,
+        "Special": 3
+      },
+      "traits": [
+        "Business Agent",
+        "Arkham's Scars",
+        "Drop It! {SPECIAL_ICON}",
+        "Family Dinner",
+        "Manipulative",
+        "Protect Me!",
+        "Bliss Distribution {SPECIAL_ICON}",
+        "The Hangman's Stare"
+      ],
+      "weapons": [
+        {
+          "name": "Automatic Gun",
+          "damage": "🩸★",
+          "rof": 3,
+          "ammo": 3,
+          "traits": "S. Range / Firearm / Light"
+        }
+      ],
+      "officialImage": "https://app.knightmodels.com/images/character/main/35DC_SOFIA_FALCONE_MINI.png",
+      "officialBackground": "https://app.knightmodels.com/images/character/background/2026_JUNIO.jpg",
+      "eternal": false,
+      "officialUpgradeIds": [],
+      "id": "card-2026-sofia-gigante-the-penguin"
     }
   }
 ];
@@ -76063,7 +75879,7 @@ const officialModelExtensions = [
       }
     ],
     "officialImage": "https://app.knightmodels.com/images/character/main/368-bruce-wayne-zur-en-arrh-batman.png",
-    "officialBackground": "https://app.knightmodels.com/images/character/background/KPROMO10_ZUR-EN-ARRH_BATMAN_CHARACTER_CARD.jpg",
+    "officialBackground": "https://app.knightmodels.com/images/character/background/placeholder.png",
     "eternal": true,
     "officialUpgradeIds": [],
     "id": "km-368",
@@ -76293,7 +76109,7 @@ const officialModelExtensions = [
       "Fast (4)",
       "Speed Force Master",
       "Atomica",
-      "(Unique Speed Power) Molecular Vibration "
+      "(Unique Speed Power) Molecular Vibration"
     ],
     "weapons": [],
     "officialImage": "https://app.knightmodels.com/images/character/main/375-jonathan-allen-johnny-quick.png",
@@ -79510,8 +79326,8 @@ const officialModelExtensions = [
       {
         "name": "Poisoned Knives",
         "damage": "🩸",
-        "rof": 0,
-        "ammo": 0,
+        "rof": "-",
+        "ammo": "-",
         "traits": "Sharp / Poison"
       },
       {
@@ -79700,15 +79516,3703 @@ const officialModelExtensions = [
       }
     ],
     "officialImage": "https://app.knightmodels.com/images/character/main/jade-nguyen-1707391935.png",
-    "officialBackground": "https://app.knightmodels.cofm/images/character/background/jade-nguyen-1707391935.jpg",
+    "officialBackground": "https://app.knightmodels.com/images/character/background/jade-nguyen-1707391935.jpg",
     "eternal": false,
     "officialUpgradeIds": [],
     "id": "km-856",
     "name": "Cheshire",
     "img": "img/no.png",
     "officialOnly": true
+  },
+  {
+    "officialId": 879,
+    "officialName": "Alfred Pennyworth",
+    "officialAlias": "Absolute Alfred",
+    "realname": "Alfred Pennyworth",
+    "base": "40mm",
+    "rep": 70,
+    "funding": 850,
+    "rank": [
+      "Henchman"
+    ],
+    "faction": [
+      "Bat Family",
+      "GCPD"
+    ],
+    "rivals": [],
+    "stats": {
+      "Attack": 4,
+      "Defense": 4,
+      "Strength": "4+",
+      "Movement": 10,
+      "Willpower": 6,
+      "Endurance": 7,
+      "Special": 3
+    },
+    "traits": [
+      "Bat Family",
+      "Hacking {SPECIAL_ICON}",
+      "Informer",
+      "Kevlar Vest",
+      "Lieutenant (Absolute Batman)",
+      "Martial Artist",
+      "Paramedic",
+      "Radio",
+      "Veteran",
+      "Weapon Master"
+    ],
+    "weapons": [
+      {
+        "name": "Vulcan M61",
+        "damage": "🩸🩸🩸",
+        "rof": 4,
+        "ammo": 2,
+        "traits": "M. Range / Imprecise / Firearm / Anti-Tank"
+      },
+      {
+        "name": "Combat Machete",
+        "damage": "🩸★",
+        "rof": "-",
+        "ammo": "-",
+        "traits": "Sharp"
+      }
+    ],
+    "officialImage": "https://app.knightmodels.com/images/character/main/35DC_ABSOLUTE_ALFRED_MINI.png",
+    "officialBackground": "https://app.knightmodels.com/images/character/background/2026_AGOSTO_ABSOLUTE_ALFRED.jpg",
+    "eternal": false,
+    "officialUpgradeIds": [],
+    "id": "km-879",
+    "name": "Absolute Alfred",
+    "img": "img/no.png",
+    "officialOnly": true
   }
 ];
+const localModelStableIdUpdates = [
+  {
+    "index": 0,
+    "matchName": "Batman Bushi",
+    "matchRealname": "Bruce Wayne / 40mm",
+    "matchBase": "40mm",
+    "id": "batman-bushi-bruce-wayne-40mm-40mm"
+  },
+  {
+    "index": 1,
+    "matchName": "Harley Quinn Arkham Knight",
+    "matchRealname": "Dr. Harleen Frances Quinzel",
+    "matchBase": "30mm",
+    "id": "harley-quinn-arkham-knight-dr-harleen-frances-quinzel-30mm"
+  },
+  {
+    "index": 2,
+    "matchName": "Warden Sharp",
+    "matchRealname": "Quincy Ulysses Sharp",
+    "matchBase": "30mm",
+    "id": "warden-sharp-quincy-ulysses-sharp-30mm"
+  },
+  {
+    "index": 3,
+    "matchName": "Damien Darhk",
+    "matchRealname": "Damien Darhk",
+    "matchBase": "30mm",
+    "id": "damien-darhk-damien-darhk-30mm"
+  },
+  {
+    "index": 4,
+    "matchName": "Jokermobile Arkham Knight",
+    "matchRealname": "Unknown",
+    "matchBase": "90mm",
+    "id": "jokermobile-arkham-knight-unknown-90mm"
+  },
+  {
+    "index": 5,
+    "matchName": "Harley Quinn Gatling Brute",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "harley-quinn-gatling-brute-unknown-40mm"
+  },
+  {
+    "index": 6,
+    "matchName": "Nightwing Arkham Knight",
+    "matchRealname": "Dick Grayson",
+    "matchBase": "30mm",
+    "id": "nightwing-arkham-knight-dick-grayson-30mm"
+  },
+  {
+    "index": 7,
+    "matchName": "Poison Ivy Arkham City",
+    "matchRealname": "Dr. Pamela Lillian Isley",
+    "matchBase": "30mm",
+    "id": "poison-ivy-arkham-city-dr-pamela-lillian-isley-30mm"
+  },
+  {
+    "index": 8,
+    "matchName": "Batman Dark Knight Rises",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "30mm",
+    "id": "batman-dark-knight-rises-bruce-wayne-30mm"
+  },
+  {
+    "index": 9,
+    "matchName": "Harley Thug 1",
+    "matchRealname": "Punker",
+    "matchBase": "30mm",
+    "id": "harley-thug-1-punker-30mm"
+  },
+  {
+    "index": 10,
+    "matchName": "Harley Thug 2",
+    "matchRealname": "Bragg",
+    "matchBase": "30mm",
+    "id": "harley-thug-2-bragg-30mm"
+  },
+  {
+    "index": 11,
+    "matchName": "Harley Thug 3",
+    "matchRealname": "Worker",
+    "matchBase": "30mm",
+    "id": "harley-thug-3-worker-30mm"
+  },
+  {
+    "index": 12,
+    "matchName": "Harley Thug 4",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "harley-thug-4-unknown-30mm"
+  },
+  {
+    "index": 13,
+    "matchName": "Harley Thug 5",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "harley-thug-5-unknown-30mm"
+  },
+  {
+    "index": 14,
+    "matchName": "Harley Thug 6",
+    "matchRealname": "Chencho",
+    "matchBase": "30mm",
+    "id": "harley-thug-6-chencho-30mm"
+  },
+  {
+    "index": 15,
+    "matchName": "Harley Thug 7",
+    "matchRealname": "Lumberjack",
+    "matchBase": "30mm",
+    "id": "harley-thug-7-lumberjack-30mm"
+  },
+  {
+    "index": 16,
+    "matchName": "Batmobile Arkham Knight",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "90mm",
+    "id": "batmobile-arkham-knight-bruce-wayne-90mm"
+  },
+  {
+    "index": 17,
+    "matchName": "Catwoman Dark Knight Rises",
+    "matchRealname": "Selina Kyle",
+    "matchBase": "30mm",
+    "id": "catwoman-dark-knight-rises-selina-kyle-30mm"
+  },
+  {
+    "index": 18,
+    "matchName": "Batman Arkham Knight",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "30mm",
+    "id": "batman-arkham-knight-bruce-wayne-30mm"
+  },
+  {
+    "index": 19,
+    "matchName": "Batman Arkham City",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "60mm",
+    "id": "batman-arkham-city-bruce-wayne-60mm"
+  },
+  {
+    "index": 20,
+    "matchName": "Miranda Tate",
+    "matchRealname": "Tala Al Ghul",
+    "matchBase": "30mm",
+    "id": "miranda-tate-tala-al-ghul-30mm"
+  },
+  {
+    "index": 21,
+    "matchName": "Green Arrow (Arrow)",
+    "matchRealname": "Oliver Queen",
+    "matchBase": "30mm",
+    "id": "green-arrow-arrow-oliver-queen-30mm"
+  },
+  {
+    "index": 22,
+    "matchName": "Arkham Knight",
+    "matchRealname": "Jason Todd",
+    "matchBase": "30mm",
+    "id": "arkham-knight-jason-todd-30mm"
+  },
+  {
+    "index": 23,
+    "matchName": "Mad Hatter Arkham Knight",
+    "matchRealname": "Jervis Tech",
+    "matchBase": "30mm",
+    "id": "mad-hatter-arkham-knight-jervis-tech-30mm"
+  },
+  {
+    "index": 24,
+    "matchName": "Rebel Armored Assassin",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "rebel-armored-assassin-unknown-30mm"
+  },
+  {
+    "index": 25,
+    "matchName": "Rebel Masked Assassin 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "rebel-masked-assassin-2-unknown-30mm"
+  },
+  {
+    "index": 26,
+    "matchName": "Rebel Monk",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "rebel-monk-unknown-40mm"
+  },
+  {
+    "index": 27,
+    "matchName": "Rebel Masked Assassin 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "rebel-masked-assassin-1-unknown-30mm"
+  },
+  {
+    "index": 28,
+    "matchName": "Shadow Armored Assassin",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "shadow-armored-assassin-unknown-30mm"
+  },
+  {
+    "index": 29,
+    "matchName": "Armored Assassin",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "armored-assassin-unknown-30mm"
+  },
+  {
+    "index": 30,
+    "matchName": "Guardian Monk",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "guardian-monk-unknown-40mm"
+  },
+  {
+    "index": 31,
+    "matchName": "Nyssa al Ghul (Arkham Knight)",
+    "matchRealname": "Nyssa Raatko",
+    "matchBase": "40mm",
+    "id": "nyssa-al-ghul-arkham-knight-nyssa-raatko-40mm"
+  },
+  {
+    "index": 32,
+    "matchName": "Henry Ducard",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "henry-ducard-unknown-30mm"
+  },
+  {
+    "index": 33,
+    "matchName": "Raven Trigon's Daughter",
+    "matchRealname": "Rachel Roth",
+    "matchBase": "60mm",
+    "id": "raven-trigon-s-daughter-rachel-roth-60mm"
+  },
+  {
+    "index": 34,
+    "matchName": "Ra's al Ghul Decoy",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "ra-s-al-ghul-decoy-unknown-30mm"
+  },
+  {
+    "index": 35,
+    "matchName": "League of Shadows Ninja 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "league-of-shadows-ninja-1-unknown-30mm"
+  },
+  {
+    "index": 36,
+    "matchName": "League of Shadows Ninja 3",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "league-of-shadows-ninja-3-unknown-30mm"
+  },
+  {
+    "index": 37,
+    "matchName": "Bruce Batman Begins",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "30mm",
+    "id": "bruce-batman-begins-bruce-wayne-30mm"
+  },
+  {
+    "index": 38,
+    "matchName": "Gordon Infiltrate",
+    "matchRealname": "James W. Gordon",
+    "matchBase": "30mm",
+    "id": "gordon-infiltrate-james-w-gordon-30mm"
+  },
+  {
+    "index": 39,
+    "matchName": "League of Shadows Ninja 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "league-of-shadows-ninja-2-unknown-30mm"
+  },
+  {
+    "index": 40,
+    "matchName": "The Drifter Robert Pattinson",
+    "matchRealname": "Bruce Wayne / 40mm",
+    "matchBase": "40mm",
+    "id": "the-drifter-robert-pattinson-bruce-wayne-40mm-40mm"
+  },
+  {
+    "index": 41,
+    "matchName": "Batman Year One",
+    "matchRealname": "Bruce Wayne / 40mm",
+    "matchBase": "40mm",
+    "id": "batman-year-one-bruce-wayne-40mm-40mm"
+  },
+  {
+    "index": 42,
+    "matchName": "Batman Robert Pattinson",
+    "matchRealname": "Bruce Wayne / 40mm",
+    "matchBase": "40mm",
+    "id": "batman-robert-pattinson-bruce-wayne-40mm-40mm"
+  },
+  {
+    "index": 43,
+    "matchName": "Batman on Bike Robert Pattinson",
+    "matchRealname": "Bruce Wayne / 42x75mm",
+    "matchBase": "42x75mm",
+    "id": "batman-on-bike-robert-pattinson-bruce-wayne-42x75mm-42x75mm"
+  },
+  {
+    "index": 44,
+    "matchName": "Batman 1997",
+    "matchRealname": "Bruce Wayne / 40mm",
+    "matchBase": "40mm",
+    "id": "batman-1997-bruce-wayne-40mm-40mm"
+  },
+  {
+    "index": 45,
+    "matchName": "Batman Michael Keaton",
+    "matchRealname": "Bruce Wayne / 40mm",
+    "matchBase": "40mm",
+    "id": "batman-michael-keaton-bruce-wayne-40mm-40mm"
+  },
+  {
+    "index": 46,
+    "matchName": "Batman Red Rain",
+    "matchRealname": "Bruce Wayne / 40mm",
+    "matchBase": "40mm",
+    "id": "batman-red-rain-bruce-wayne-40mm-40mm"
+  },
+  {
+    "index": 47,
+    "matchName": "Batman Adam West",
+    "matchRealname": "Bruce Wayne / 30mm",
+    "matchBase": "30mm",
+    "id": "batman-adam-west-bruce-wayne-30mm-30mm"
+  },
+  {
+    "index": 48,
+    "matchName": "The White Knight",
+    "matchRealname": "Harvey Dent / 30mm",
+    "matchBase": "30mm",
+    "id": "the-white-knight-harvey-dent-30mm-30mm"
+  },
+  {
+    "index": 49,
+    "matchName": "Aaron Cash",
+    "matchRealname": "Aaron Cash / 30mm",
+    "matchBase": "30mm",
+    "id": "aaron-cash-aaron-cash-30mm-30mm"
+  },
+  {
+    "index": 50,
+    "matchName": "Green Arrow Rebirth",
+    "matchRealname": "Oliver Queen / 40mm",
+    "matchBase": "40mm",
+    "id": "green-arrow-rebirth-oliver-queen-40mm-40mm"
+  },
+  {
+    "index": 51,
+    "matchName": "Batman Gaslight",
+    "matchRealname": "Bruce Wayne / 40mm",
+    "matchBase": "40mm",
+    "id": "batman-gaslight-bruce-wayne-40mm-40mm"
+  },
+  {
+    "index": 52,
+    "matchName": "Commissioner Gordon",
+    "matchRealname": "James W. Gordon / 40mm / 60mm",
+    "matchBase": "40mm / 60mm",
+    "id": "commissioner-gordon-james-w-gordon-40mm-60mm-40mm-60mm"
+  },
+  {
+    "index": 53,
+    "matchName": "Robin Burt Ward",
+    "matchRealname": "Dick Grayson / 30mm",
+    "matchBase": "30mm",
+    "id": "robin-burt-ward-dick-grayson-30mm-30mm"
+  },
+  {
+    "index": 54,
+    "matchName": "Batman Dark Knight Rises Batpod",
+    "matchRealname": "Bruce Wayne / 42x75mm",
+    "matchBase": "42x75mm",
+    "id": "batman-dark-knight-rises-batpod-bruce-wayne-42x75mm-42x75mm"
+  },
+  {
+    "index": 55,
+    "matchName": "Chief Mackenzie",
+    "matchRealname": "Mackenzie Bock / 30mm",
+    "matchBase": "30mm",
+    "id": "chief-mackenzie-mackenzie-bock-30mm-30mm"
+  },
+  {
+    "index": 56,
+    "matchName": "Robin 1997",
+    "matchRealname": "Dick Grayson / 40mm",
+    "matchBase": "40mm",
+    "id": "robin-1997-dick-grayson-40mm-40mm"
+  },
+  {
+    "index": 57,
+    "matchName": "Batman Multiverse",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "60mm",
+    "id": "batman-multiverse-bruce-wayne-60mm"
+  },
+  {
+    "index": 58,
+    "matchName": "Batman Viking",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "40mm",
+    "id": "batman-viking-bruce-wayne-40mm"
+  },
+  {
+    "index": 59,
+    "matchName": "Batman Frank Miller on Power Armor",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "40mm",
+    "id": "batman-frank-miller-on-power-armor-bruce-wayne-40mm"
+  },
+  {
+    "index": 60,
+    "matchName": "Batman The Animated Series",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "30mm",
+    "id": "batman-the-animated-series-bruce-wayne-30mm"
+  },
+  {
+    "index": 61,
+    "matchName": "Batman",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "40mm",
+    "id": "batman-bruce-wayne-40mm"
+  },
+  {
+    "index": 62,
+    "matchName": "Robin Teen Titans",
+    "matchRealname": "Dick Grayson",
+    "matchBase": "30mm",
+    "id": "robin-teen-titans-dick-grayson-30mm"
+  },
+  {
+    "index": 63,
+    "matchName": "Kid Flash",
+    "matchRealname": "Wally West",
+    "matchBase": "40mm",
+    "id": "kid-flash-wally-west-40mm"
+  },
+  {
+    "index": 64,
+    "matchName": "Batman The Gotham City Knight",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "40mm",
+    "id": "batman-the-gotham-city-knight-bruce-wayne-40mm"
+  },
+  {
+    "index": 65,
+    "matchName": "Batman Death Metal",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "40mm",
+    "id": "batman-death-metal-bruce-wayne-40mm"
+  },
+  {
+    "index": 66,
+    "matchName": "Batman Frank Miller on Horse",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "60mm",
+    "id": "batman-frank-miller-on-horse-bruce-wayne-60mm"
+  },
+  {
+    "index": 67,
+    "matchName": "Batman Beyond",
+    "matchRealname": "Terry McGinnis",
+    "matchBase": "40mm",
+    "id": "batman-beyond-terry-mcginnis-40mm"
+  },
+  {
+    "index": 68,
+    "matchName": "Batman Classic",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "40mm",
+    "id": "batman-classic-bruce-wayne-40mm"
+  },
+  {
+    "index": 69,
+    "matchName": "Green Arrow DKR",
+    "matchRealname": "Oliver Queen",
+    "matchBase": "30mm",
+    "id": "green-arrow-dkr-oliver-queen-30mm"
+  },
+  {
+    "index": 70,
+    "matchName": "Batman Frank Miller",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "40mm",
+    "id": "batman-frank-miller-bruce-wayne-40mm"
+  },
+  {
+    "index": 71,
+    "matchName": "Batwoman",
+    "matchRealname": "Kathy Kane",
+    "matchBase": "40mm",
+    "id": "batwoman-kathy-kane-40mm"
+  },
+  {
+    "index": 72,
+    "matchName": "Catwoman",
+    "matchRealname": "Selina Kyle",
+    "matchBase": "40mm",
+    "id": "catwoman-selina-kyle-40mm"
+  },
+  {
+    "index": 73,
+    "matchName": "Red Hood Rebirth",
+    "matchRealname": "Jason Todd",
+    "matchBase": "40mm",
+    "id": "red-hood-rebirth-jason-todd-40mm"
+  },
+  {
+    "index": 74,
+    "matchName": "Robin Classic",
+    "matchRealname": "Dick Grayson",
+    "matchBase": "40mm",
+    "id": "robin-classic-dick-grayson-40mm"
+  },
+  {
+    "index": 75,
+    "matchName": "Robin",
+    "matchRealname": "Jason Todd",
+    "matchBase": "30mm",
+    "id": "robin-jason-todd-30mm"
+  },
+  {
+    "index": 76,
+    "matchName": "Wonder Girl",
+    "matchRealname": "Donna Troy",
+    "matchBase": "30mm",
+    "id": "wonder-girl-donna-troy-30mm"
+  },
+  {
+    "index": 77,
+    "matchName": "Mr. Wayne Beyond",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "40mm",
+    "id": "mr-wayne-beyond-bruce-wayne-40mm"
+  },
+  {
+    "index": 78,
+    "matchName": "Clayface",
+    "matchRealname": "Basil Karlo",
+    "matchBase": "60mm",
+    "id": "clayface-basil-karlo-60mm"
+  },
+  {
+    "index": 79,
+    "matchName": "Robin",
+    "matchRealname": "Carrie Kelley",
+    "matchBase": "30mm",
+    "id": "robin-carrie-kelley-30mm"
+  },
+  {
+    "index": 80,
+    "matchName": "Red Hood The Outlaw",
+    "matchRealname": "Jason Todd",
+    "matchBase": "40mm",
+    "id": "red-hood-the-outlaw-jason-todd-40mm"
+  },
+  {
+    "index": 81,
+    "matchName": "Starfire Teen Titans",
+    "matchRealname": "Koriand'r",
+    "matchBase": "30mm",
+    "id": "starfire-teen-titans-koriand-r-30mm"
+  },
+  {
+    "index": 82,
+    "matchName": "Nightwing Rebirth",
+    "matchRealname": "Dick Grayson",
+    "matchBase": "40mm",
+    "id": "nightwing-rebirth-dick-grayson-40mm"
+  },
+  {
+    "index": 83,
+    "matchName": "Green Arrow The Animated Series",
+    "matchRealname": "Oliver Queen",
+    "matchBase": "30mm",
+    "id": "green-arrow-the-animated-series-oliver-queen-30mm"
+  },
+  {
+    "index": 84,
+    "matchName": "Son of Batman 3",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "son-of-batman-3-unknown-30mm"
+  },
+  {
+    "index": 85,
+    "matchName": "Ace",
+    "matchRealname": "Ace",
+    "matchBase": "30mm",
+    "id": "ace-ace-30mm"
+  },
+  {
+    "index": 86,
+    "matchName": "Alfred Pennyworth",
+    "matchRealname": "Alfred Pennyworth",
+    "matchBase": "40mm",
+    "id": "alfred-pennyworth-alfred-pennyworth-40mm"
+  },
+  {
+    "index": 87,
+    "matchName": "Huntress Classic",
+    "matchRealname": "Helena Bertinelli",
+    "matchBase": "40mm",
+    "id": "huntress-classic-helena-bertinelli-40mm"
+  },
+  {
+    "index": 88,
+    "matchName": "Raven",
+    "matchRealname": "Rachel Roth",
+    "matchBase": "30mm",
+    "id": "raven-rachel-roth-30mm"
+  },
+  {
+    "index": 89,
+    "matchName": "Son of Batman 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "son-of-batman-2-unknown-30mm"
+  },
+  {
+    "index": 90,
+    "matchName": "Clownhunter",
+    "matchRealname": "Bao Pham",
+    "matchBase": "40mm",
+    "id": "clownhunter-bao-pham-40mm"
+  },
+  {
+    "index": 91,
+    "matchName": "Red Robin",
+    "matchRealname": "Tim Drake",
+    "matchBase": "40mm",
+    "id": "red-robin-tim-drake-40mm"
+  },
+  {
+    "index": 92,
+    "matchName": "Son of Batman 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "son-of-batman-1-unknown-30mm"
+  },
+  {
+    "index": 93,
+    "matchName": "Azrael God's Punishment",
+    "matchRealname": "Michael Washington's Lane",
+    "matchBase": "40mm",
+    "id": "azrael-god-s-punishment-michael-washington-s-lane-40mm"
+  },
+  {
+    "index": 94,
+    "matchName": "Robin Tim Drake",
+    "matchRealname": "Tim Drake",
+    "matchBase": "40mm",
+    "id": "robin-tim-drake-tim-drake-40mm"
+  },
+  {
+    "index": 95,
+    "matchName": "Lucius Fox",
+    "matchRealname": "Lucius Fox",
+    "matchBase": "40mm",
+    "id": "lucius-fox-lucius-fox-40mm"
+  },
+  {
+    "index": 96,
+    "matchName": "Catwoman The Animated Series",
+    "matchRealname": "Selina Kyle",
+    "matchBase": "30mm",
+    "id": "catwoman-the-animated-series-selina-kyle-30mm"
+  },
+  {
+    "index": 97,
+    "matchName": "Batgirl The Animated Series",
+    "matchRealname": "Barbara Gordon",
+    "matchBase": "30mm",
+    "id": "batgirl-the-animated-series-barbara-gordon-30mm"
+  },
+  {
+    "index": 98,
+    "matchName": "Harley Quinn The Animated Series",
+    "matchRealname": "Dr. Harleen Frances Quinzel",
+    "matchBase": "30mm",
+    "id": "harley-quinn-the-animated-series-dr-harleen-frances-quinzel-30mm"
+  },
+  {
+    "index": 99,
+    "matchName": "Robin Beyond",
+    "matchRealname": "Matt McGinnis",
+    "matchBase": "40mm",
+    "id": "robin-beyond-matt-mcginnis-40mm"
+  },
+  {
+    "index": 100,
+    "matchName": "Ravager Vanguard Team",
+    "matchRealname": "Rose Wilson",
+    "matchBase": "30mm",
+    "id": "ravager-vanguard-team-rose-wilson-30mm"
+  },
+  {
+    "index": 101,
+    "matchName": "Black Canary The Animated Series",
+    "matchRealname": "Dinah Lance",
+    "matchBase": "30mm",
+    "id": "black-canary-the-animated-series-dinah-lance-30mm"
+  },
+  {
+    "index": 102,
+    "matchName": "Renée Montoya",
+    "matchRealname": "Renée Maria Montoya",
+    "matchBase": "30mm",
+    "id": "ren-e-montoya-ren-e-maria-montoya-30mm"
+  },
+  {
+    "index": 103,
+    "matchName": "Homicide Detective",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "homicide-detective-unknown-30mm"
+  },
+  {
+    "index": 104,
+    "matchName": "GCPD Mounted Cop",
+    "matchRealname": "Unknown",
+    "matchBase": "42x75mm",
+    "id": "gcpd-mounted-cop-unknown-42x75mm"
+  },
+  {
+    "index": 105,
+    "matchName": "SWAT QRT 3",
+    "matchRealname": "QRT 3",
+    "matchBase": "30mm",
+    "id": "swat-qrt-3-qrt-3-30mm"
+  },
+  {
+    "index": 106,
+    "matchName": "Officer Martinez",
+    "matchRealname": "Martinez",
+    "matchBase": "30mm",
+    "id": "officer-martinez-martinez-30mm"
+  },
+  {
+    "index": 107,
+    "matchName": "SWAT QRT 2",
+    "matchRealname": "QRT 2",
+    "matchBase": "30mm",
+    "id": "swat-qrt-2-qrt-2-30mm"
+  },
+  {
+    "index": 108,
+    "matchName": "Reinforcement Cop",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "reinforcement-cop-unknown-30mm"
+  },
+  {
+    "index": 109,
+    "matchName": "GCPD Officer 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "gcpd-officer-1-unknown-30mm"
+  },
+  {
+    "index": 110,
+    "matchName": "Gilda Dent",
+    "matchRealname": "Gilda Dent",
+    "matchBase": "40mm",
+    "id": "gilda-dent-gilda-dent-40mm"
+  },
+  {
+    "index": 111,
+    "matchName": "SWAT QRT 1",
+    "matchRealname": "QRT 1",
+    "matchBase": "30mm",
+    "id": "swat-qrt-1-qrt-1-30mm"
+  },
+  {
+    "index": 112,
+    "matchName": "GCPD Officer 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "gcpd-officer-2-unknown-30mm"
+  },
+  {
+    "index": 113,
+    "matchName": "Beat Cop",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "beat-cop-unknown-30mm"
+  },
+  {
+    "index": 114,
+    "matchName": "Sgt. Harvey Bullock",
+    "matchRealname": "Harvey Bullock",
+    "matchBase": "30mm",
+    "id": "sgt-harvey-bullock-harvey-bullock-30mm"
+  },
+  {
+    "index": 115,
+    "matchName": "GCPD Detective",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "gcpd-detective-unknown-30mm"
+  },
+  {
+    "index": 116,
+    "matchName": "Sierra",
+    "matchRealname": "Sierra",
+    "matchBase": "30mm",
+    "id": "sierra-sierra-30mm"
+  },
+  {
+    "index": 117,
+    "matchName": "GCPD Cop 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "gcpd-cop-1-unknown-30mm"
+  },
+  {
+    "index": 118,
+    "matchName": "Lieutenant Gordon Year One",
+    "matchRealname": "James W. Gordon",
+    "matchBase": "30mm",
+    "id": "lieutenant-gordon-year-one-james-w-gordon-30mm"
+  },
+  {
+    "index": 119,
+    "matchName": "GCPD Cop 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "gcpd-cop-2-unknown-30mm"
+  },
+  {
+    "index": 120,
+    "matchName": "Lt. Gordon Jeffrey Wright",
+    "matchRealname": "James W. Gordon",
+    "matchBase": "40mm",
+    "id": "lt-gordon-jeffrey-wright-james-w-gordon-40mm"
+  },
+  {
+    "index": 121,
+    "matchName": "Agent 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "agent-1-unknown-30mm"
+  },
+  {
+    "index": 122,
+    "matchName": "Officer Merkel",
+    "matchRealname": "Stanley Merkel",
+    "matchBase": "30mm",
+    "id": "officer-merkel-stanley-merkel-30mm"
+  },
+  {
+    "index": 123,
+    "matchName": "Agent 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "agent-2-unknown-30mm"
+  },
+  {
+    "index": 124,
+    "matchName": "Agent 3",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "agent-3-unknown-30mm"
+  },
+  {
+    "index": 125,
+    "matchName": "Detective Flass Year One",
+    "matchRealname": "Arnold Flass",
+    "matchBase": "30mm",
+    "id": "detective-flass-year-one-arnold-flass-30mm"
+  },
+  {
+    "index": 126,
+    "matchName": "Lerida",
+    "matchRealname": "Lerida",
+    "matchBase": "30mm",
+    "id": "lerida-lerida-30mm"
+  },
+  {
+    "index": 127,
+    "matchName": "Foxtrot",
+    "matchRealname": "Foxtrot",
+    "matchBase": "30mm",
+    "id": "foxtrot-foxtrot-30mm"
+  },
+  {
+    "index": 128,
+    "matchName": "Attorney Harvey Dent",
+    "matchRealname": "Harvey Dent",
+    "matchBase": "40mm",
+    "id": "attorney-harvey-dent-harvey-dent-40mm"
+  },
+  {
+    "index": 129,
+    "matchName": "Bouncer 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "bouncer-1-unknown-30mm"
+  },
+  {
+    "index": 130,
+    "matchName": "Bouncer 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "bouncer-2-unknown-30mm"
+  },
+  {
+    "index": 131,
+    "matchName": "Bouncer 3",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "bouncer-3-unknown-30mm"
+  },
+  {
+    "index": 132,
+    "matchName": "Black Mask Thug 6",
+    "matchRealname": "Vladimir Sokolov",
+    "matchBase": "30mm",
+    "id": "black-mask-thug-6-vladimir-sokolov-30mm"
+  },
+  {
+    "index": 133,
+    "matchName": "The Twin 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "the-twin-1-unknown-30mm"
+  },
+  {
+    "index": 134,
+    "matchName": "The Twin 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "the-twin-2-unknown-30mm"
+  },
+  {
+    "index": 135,
+    "matchName": "Killer Croc Thug",
+    "matchRealname": "Waylon Jones",
+    "matchBase": "40mm",
+    "id": "killer-croc-thug-waylon-jones-40mm"
+  },
+  {
+    "index": 136,
+    "matchName": "Detective Kenzie",
+    "matchRealname": "William Kenzie",
+    "matchBase": "30mm",
+    "id": "detective-kenzie-william-kenzie-30mm"
+  },
+  {
+    "index": 137,
+    "matchName": "The Fixer",
+    "matchRealname": "Yelena Vólkov",
+    "matchBase": "30mm",
+    "id": "the-fixer-yelena-v-lkov-30mm"
+  },
+  {
+    "index": 138,
+    "matchName": "Black Mask Thug 7",
+    "matchRealname": "Yuri Ivanov",
+    "matchBase": "30mm",
+    "id": "black-mask-thug-7-yuri-ivanov-30mm"
+  },
+  {
+    "index": 139,
+    "matchName": "Mafia Thug",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "mafia-thug-unknown-30mm"
+  },
+  {
+    "index": 140,
+    "matchName": "Black Mask Thug 4",
+    "matchRealname": "Koulikov Khrushchev",
+    "matchBase": "30mm",
+    "id": "black-mask-thug-4-koulikov-khrushchev-30mm"
+  },
+  {
+    "index": 141,
+    "matchName": "Black Mask Thug 2",
+    "matchRealname": "Vassili Danilov",
+    "matchBase": "30mm",
+    "id": "black-mask-thug-2-vassili-danilov-30mm"
+  },
+  {
+    "index": 142,
+    "matchName": "The Tailor",
+    "matchRealname": "Alan Il'Gordo",
+    "matchBase": "30mm",
+    "id": "the-tailor-alan-il-gordo-30mm"
+  },
+  {
+    "index": 143,
+    "matchName": "Black Mask Thug 1",
+    "matchRealname": "Vigo Stoniskov",
+    "matchBase": "30mm",
+    "id": "black-mask-thug-1-vigo-stoniskov-30mm"
+  },
+  {
+    "index": 144,
+    "matchName": "Malatesta",
+    "matchRealname": "Hugo Testa",
+    "matchBase": "30mm",
+    "id": "malatesta-hugo-testa-30mm"
+  },
+  {
+    "index": 145,
+    "matchName": "Troy Sins",
+    "matchRealname": "Troy Santino",
+    "matchBase": "30mm",
+    "id": "troy-sins-troy-santino-30mm"
+  },
+  {
+    "index": 146,
+    "matchName": "Black Mask Thug 5",
+    "matchRealname": "Volodya Smirnov",
+    "matchBase": "30mm",
+    "id": "black-mask-thug-5-volodya-smirnov-30mm"
+  },
+  {
+    "index": 147,
+    "matchName": "Black Mask Thug 3",
+    "matchRealname": "Nikita Filipov",
+    "matchBase": "30mm",
+    "id": "black-mask-thug-3-nikita-filipov-30mm"
+  },
+  {
+    "index": 148,
+    "matchName": "The Bull",
+    "matchRealname": "Luigi Lombardo",
+    "matchBase": "30mm",
+    "id": "the-bull-luigi-lombardo-30mm"
+  },
+  {
+    "index": 149,
+    "matchName": "Showtime",
+    "matchRealname": "Tony Gianni",
+    "matchBase": "30mm",
+    "id": "showtime-tony-gianni-30mm"
+  },
+  {
+    "index": 150,
+    "matchName": "Vipera",
+    "matchRealname": "Samuel Hill",
+    "matchBase": "30mm",
+    "id": "vipera-samuel-hill-30mm"
+  },
+  {
+    "index": 151,
+    "matchName": "Black Mask",
+    "matchRealname": "Roman Sionis",
+    "matchBase": "40mm/60mm",
+    "id": "black-mask-roman-sionis-40mm-60mm"
+  },
+  {
+    "index": 152,
+    "matchName": "Lex Luthor",
+    "matchRealname": "Alexander Joseph Luthor",
+    "matchBase": "30mm",
+    "id": "lex-luthor-alexander-joseph-luthor-30mm"
+  },
+  {
+    "index": 153,
+    "matchName": "Alexandra Kosov",
+    "matchRealname": "Alexandra Kosov",
+    "matchBase": "40mm",
+    "id": "alexandra-kosov-alexandra-kosov-40mm"
+  },
+  {
+    "index": 154,
+    "matchName": "Sal Maroni",
+    "matchRealname": "Salvatore Maroni",
+    "matchBase": "30mm",
+    "id": "sal-maroni-salvatore-maroni-30mm"
+  },
+  {
+    "index": 155,
+    "matchName": "Fat Johnny",
+    "matchRealname": "John D'Amico",
+    "matchBase": "30mm",
+    "id": "fat-johnny-john-d-amico-30mm"
+  },
+  {
+    "index": 156,
+    "matchName": "Battista",
+    "matchRealname": "Andrea D'Amico",
+    "matchBase": "30mm",
+    "id": "battista-andrea-d-amico-30mm"
+  },
+  {
+    "index": 157,
+    "matchName": "The Roman",
+    "matchRealname": "Carmine Falcone",
+    "matchBase": "30mm",
+    "id": "the-roman-carmine-falcone-30mm"
+  },
+  {
+    "index": 158,
+    "matchName": "The Ventriloquist",
+    "matchRealname": "Arnold Wesker",
+    "matchBase": "30mm",
+    "id": "the-ventriloquist-arnold-wesker-30mm"
+  },
+  {
+    "index": 159,
+    "matchName": "The Holiday Killer",
+    "matchRealname": "Alberto Falcone",
+    "matchBase": "30mm",
+    "id": "the-holiday-killer-alberto-falcone-30mm"
+  },
+  {
+    "index": 160,
+    "matchName": "Carmine Falcone (John Turturro)",
+    "matchRealname": "Carmine Falcone",
+    "matchBase": "60mm",
+    "id": "carmine-falcone-john-turturro-carmine-falcone-60mm"
+  },
+  {
+    "index": 161,
+    "matchName": "Fright",
+    "matchRealname": "Linda Friitawa",
+    "matchBase": "40mm",
+    "id": "fright-linda-friitawa-40mm"
+  },
+  {
+    "index": 162,
+    "matchName": "The Penguin (Colin Farrell)",
+    "matchRealname": "Oswald Chesterfield Cobblepot",
+    "matchBase": "40mm",
+    "id": "the-penguin-colin-farrell-oswald-chesterfield-cobblepot-40mm"
+  },
+  {
+    "index": 163,
+    "matchName": "Beast Boy - Tiger Teen Titans",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "beast-boy-tiger-teen-titans-unknown-40mm"
+  },
+  {
+    "index": 164,
+    "matchName": "Beast Boy - Gorilla Teen Titans",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "beast-boy-gorilla-teen-titans-unknown-40mm"
+  },
+  {
+    "index": 165,
+    "matchName": "Beast Boy - Hawk Teen Titans",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "beast-boy-hawk-teen-titans-unknown-40mm"
+  },
+  {
+    "index": 166,
+    "matchName": "Beast Boy - Human (Teen Titans)",
+    "matchRealname": "",
+    "matchBase": "30mm",
+    "id": "beast-boy-human-teen-titans-model-30mm"
+  },
+  {
+    "index": 167,
+    "matchName": "The Chief",
+    "matchRealname": "",
+    "matchBase": "30mm",
+    "id": "the-chief-model-30mm"
+  },
+  {
+    "index": 168,
+    "matchName": "Elasti-Girl",
+    "matchRealname": "",
+    "matchBase": "30mm",
+    "id": "elasti-girl-model-30mm"
+  },
+  {
+    "index": 169,
+    "matchName": "Crazy Jane",
+    "matchRealname": "",
+    "matchBase": "30mm",
+    "id": "crazy-jane-model-30mm"
+  },
+  {
+    "index": 170,
+    "matchName": "Negative Man",
+    "matchRealname": "",
+    "matchBase": "30mm",
+    "id": "negative-man-model-30mm"
+  },
+  {
+    "index": 171,
+    "matchName": "Robotman",
+    "matchRealname": "",
+    "matchBase": "30mm",
+    "id": "robotman-model-30mm"
+  },
+  {
+    "index": 172,
+    "matchName": "Bane Unleashed",
+    "matchRealname": "Unknown",
+    "matchBase": "60mm",
+    "id": "bane-unleashed-unknown-60mm"
+  },
+  {
+    "index": 173,
+    "matchName": "Batman",
+    "matchRealname": "Thomas Wayne",
+    "matchBase": "40mm",
+    "id": "batman-thomas-wayne-40mm"
+  },
+  {
+    "index": 174,
+    "matchName": "Bane Titan",
+    "matchRealname": "Unknown",
+    "matchBase": "60mm",
+    "id": "bane-titan-unknown-60mm"
+  },
+  {
+    "index": 175,
+    "matchName": "Medic OP",
+    "matchRealname": "Dillon",
+    "matchBase": "30mm",
+    "id": "medic-op-dillon-30mm"
+  },
+  {
+    "index": 176,
+    "matchName": "Bird Classic",
+    "matchRealname": "Angel Vallelunga",
+    "matchBase": "40mm",
+    "id": "bird-classic-angel-vallelunga-40mm"
+  },
+  {
+    "index": 177,
+    "matchName": "Bird",
+    "matchRealname": "Angel Vallelunga",
+    "matchBase": "30mm",
+    "id": "bird-angel-vallelunga-30mm"
+  },
+  {
+    "index": 178,
+    "matchName": "Bane Rebirth",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "bane-rebirth-unknown-40mm"
+  },
+  {
+    "index": 179,
+    "matchName": "Vengeance",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "vengeance-unknown-40mm"
+  },
+  {
+    "index": 180,
+    "matchName": "Bane The Bat",
+    "matchRealname": "Unknown",
+    "matchBase": "60mm",
+    "id": "bane-the-bat-unknown-60mm"
+  },
+  {
+    "index": 181,
+    "matchName": "Dreadnought OP",
+    "matchRealname": "Billy",
+    "matchBase": "30mm",
+    "id": "dreadnought-op-billy-30mm"
+  },
+  {
+    "index": 182,
+    "matchName": "Elite OP",
+    "matchRealname": "Duke",
+    "matchBase": "30mm",
+    "id": "elite-op-duke-30mm"
+  },
+  {
+    "index": 183,
+    "matchName": "Bane Commander",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "bane-commander-unknown-40mm"
+  },
+  {
+    "index": 184,
+    "matchName": "Lieutenant OP",
+    "matchRealname": "Ross",
+    "matchBase": "30mm",
+    "id": "lieutenant-op-ross-30mm"
+  },
+  {
+    "index": 185,
+    "matchName": "Cuchillo",
+    "matchRealname": "Diaz",
+    "matchBase": "30mm",
+    "id": "cuchillo-diaz-30mm"
+  },
+  {
+    "index": 186,
+    "matchName": "Stealth OP",
+    "matchRealname": "Kabuto",
+    "matchBase": "30mm",
+    "id": "stealth-op-kabuto-30mm"
+  },
+  {
+    "index": 187,
+    "matchName": "Infiltrate OP",
+    "matchRealname": "Claire",
+    "matchBase": "30mm",
+    "id": "infiltrate-op-claire-30mm"
+  },
+  {
+    "index": 188,
+    "matchName": "Macgregor",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "macgregor-unknown-30mm"
+  },
+  {
+    "index": 189,
+    "matchName": "Clover",
+    "matchRealname": "Sullivan",
+    "matchBase": "30mm",
+    "id": "clover-sullivan-30mm"
+  },
+  {
+    "index": 190,
+    "matchName": "Sharp Shooter",
+    "matchRealname": "Kyle Kurt",
+    "matchBase": "30mm",
+    "id": "sharp-shooter-kyle-kurt-30mm"
+  },
+  {
+    "index": 191,
+    "matchName": "Malicia",
+    "matchRealname": "Malicia",
+    "matchBase": "30mm",
+    "id": "malicia-malicia-30mm"
+  },
+  {
+    "index": 192,
+    "matchName": "The Builder",
+    "matchRealname": "Adam Schnauzer",
+    "matchBase": "40mm",
+    "id": "the-builder-adam-schnauzer-40mm"
+  },
+  {
+    "index": 193,
+    "matchName": "Smash",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "smash-unknown-40mm"
+  },
+  {
+    "index": 194,
+    "matchName": "Ted Hunter",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "ted-hunter-unknown-30mm"
+  },
+  {
+    "index": 195,
+    "matchName": "Schoolboy",
+    "matchRealname": "Ike",
+    "matchBase": "30mm",
+    "id": "schoolboy-ike-30mm"
+  },
+  {
+    "index": 196,
+    "matchName": "Support OP",
+    "matchRealname": "Dolph Wolf",
+    "matchBase": "30mm",
+    "id": "support-op-dolph-wolf-30mm"
+  },
+  {
+    "index": 197,
+    "matchName": "Red Bastard",
+    "matchRealname": "Ernesto Machado",
+    "matchBase": "40mm",
+    "id": "red-bastard-ernesto-machado-40mm"
+  },
+  {
+    "index": 198,
+    "matchName": "Grumpy",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "grumpy-unknown-30mm"
+  },
+  {
+    "index": 199,
+    "matchName": "Happy",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "happy-unknown-30mm"
+  },
+  {
+    "index": 200,
+    "matchName": "Gaggy Rebirth",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "gaggy-rebirth-unknown-30mm"
+  },
+  {
+    "index": 201,
+    "matchName": "Joker's Biker 2",
+    "matchRealname": "Unknown",
+    "matchBase": "42x75mm",
+    "id": "joker-s-biker-2-unknown-42x75mm"
+  },
+  {
+    "index": 202,
+    "matchName": "Joker's Bus Driver",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "joker-s-bus-driver-unknown-30mm"
+  },
+  {
+    "index": 203,
+    "matchName": "Joker's Para-Military 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "joker-s-para-military-2-unknown-30mm"
+  },
+  {
+    "index": 204,
+    "matchName": "Joker's Para-Military 3",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "joker-s-para-military-3-unknown-30mm"
+  },
+  {
+    "index": 205,
+    "matchName": "Joker's Para-Military 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "joker-s-para-military-1-unknown-30mm"
+  },
+  {
+    "index": 206,
+    "matchName": "Chuckcles",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "chuckcles-unknown-30mm"
+  },
+  {
+    "index": 207,
+    "matchName": "Blunderbuss Clown",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "blunderbuss-clown-unknown-30mm"
+  },
+  {
+    "index": 208,
+    "matchName": "Joker's Victim 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "joker-s-victim-1-unknown-30mm"
+  },
+  {
+    "index": 209,
+    "matchName": "Joker's Victim 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "joker-s-victim-2-unknown-30mm"
+  },
+  {
+    "index": 210,
+    "matchName": "Street Jester 2",
+    "matchRealname": "Unknown Jester",
+    "matchBase": "30mm",
+    "id": "street-jester-2-unknown-jester-30mm"
+  },
+  {
+    "index": 211,
+    "matchName": "Street Jester 3",
+    "matchRealname": "Unknown Jester",
+    "matchBase": "30mm",
+    "id": "street-jester-3-unknown-jester-30mm"
+  },
+  {
+    "index": 212,
+    "matchName": "Axe Clown",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "axe-clown-unknown-30mm"
+  },
+  {
+    "index": 213,
+    "matchName": "Barrel Clown",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "barrel-clown-unknown-30mm"
+  },
+  {
+    "index": 214,
+    "matchName": "Street Jester 4",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "street-jester-4-unknown-30mm"
+  },
+  {
+    "index": 215,
+    "matchName": "Chainsaw Clown",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "chainsaw-clown-unknown-30mm"
+  },
+  {
+    "index": 216,
+    "matchName": "Street Jester 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "street-jester-1-unknown-30mm"
+  },
+  {
+    "index": 217,
+    "matchName": "Thorgon",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "thorgon-unknown-40mm"
+  },
+  {
+    "index": 218,
+    "matchName": "Joker's Victim 3",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "joker-s-victim-3-unknown-30mm"
+  },
+  {
+    "index": 219,
+    "matchName": "Dynamite",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "dynamite-unknown-30mm"
+  },
+  {
+    "index": 220,
+    "matchName": "Gas Puppet 3",
+    "matchRealname": "Unknown Puppet",
+    "matchBase": "30mm",
+    "id": "gas-puppet-3-unknown-puppet-30mm"
+  },
+  {
+    "index": 221,
+    "matchName": "Gas Puppet 1",
+    "matchRealname": "Unknown Puppet",
+    "matchBase": "30mm",
+    "id": "gas-puppet-1-unknown-puppet-30mm"
+  },
+  {
+    "index": 222,
+    "matchName": "Joker's Biker 1",
+    "matchRealname": "Unknown",
+    "matchBase": "42x75mm",
+    "id": "joker-s-biker-1-unknown-42x75mm"
+  },
+  {
+    "index": 223,
+    "matchName": "Bouffon",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "bouffon-unknown-30mm"
+  },
+  {
+    "index": 224,
+    "matchName": "White-Face",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "white-face-unknown-30mm"
+  },
+  {
+    "index": 225,
+    "matchName": "Gas Puppet 2",
+    "matchRealname": "Unknown Puppet",
+    "matchBase": "30mm",
+    "id": "gas-puppet-2-unknown-puppet-30mm"
+  },
+  {
+    "index": 226,
+    "matchName": "Rastaclow",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "rastaclow-unknown-30mm"
+  },
+  {
+    "index": 227,
+    "matchName": "Borgon the Cursed",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "borgon-the-cursed-unknown-40mm"
+  },
+  {
+    "index": 228,
+    "matchName": "Hobo Clown",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "hobo-clown-unknown-30mm"
+  },
+  {
+    "index": 229,
+    "matchName": "Ace of Spades",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "ace-of-spades-unknown-30mm"
+  },
+  {
+    "index": 230,
+    "matchName": "Slingy Clown",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "slingy-clown-unknown-30mm"
+  },
+  {
+    "index": 231,
+    "matchName": "Joker (Arkham Asylum)",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "joker-arkham-asylum-unknown-30mm"
+  },
+  {
+    "index": 232,
+    "matchName": "Joker (Dark Knight Rises)",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "joker-dark-knight-rises-unknown-30mm"
+  },
+  {
+    "index": 233,
+    "matchName": "Joker (Red Hood)",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "joker-red-hood-unknown-40mm"
+  },
+  {
+    "index": 234,
+    "matchName": "Joker",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm / 60mm",
+    "id": "joker-unknown-40mm-60mm"
+  },
+  {
+    "index": 235,
+    "matchName": "Joker (Cesar Romero)",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "joker-cesar-romero-unknown-30mm"
+  },
+  {
+    "index": 236,
+    "matchName": "Joker (The Criminal)",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "joker-the-criminal-unknown-40mm"
+  },
+  {
+    "index": 237,
+    "matchName": "Joker (The Clown)",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "joker-the-clown-unknown-40mm"
+  },
+  {
+    "index": 238,
+    "matchName": "Joker (The Comedian)",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "joker-the-comedian-unknown-40mm"
+  },
+  {
+    "index": 239,
+    "matchName": "Joker (Titan)",
+    "matchRealname": "Unknown",
+    "matchBase": "60mm",
+    "id": "joker-titan-unknown-60mm"
+  },
+  {
+    "index": 240,
+    "matchName": "Joker (Christmas)",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "joker-christmas-unknown-40mm"
+  },
+  {
+    "index": 241,
+    "matchName": "Joker (Having Fun)",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "joker-having-fun-unknown-30mm"
+  },
+  {
+    "index": 242,
+    "matchName": "Joker (Explosive Arrival)",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "joker-explosive-arrival-unknown-40mm"
+  },
+  {
+    "index": 243,
+    "matchName": "Joker (Bat-Armor)",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "joker-bat-armor-unknown-40mm"
+  },
+  {
+    "index": 244,
+    "matchName": "Gaggy",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "gaggy-unknown-30mm"
+  },
+  {
+    "index": 245,
+    "matchName": "Archie",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "archie-unknown-30mm"
+  },
+  {
+    "index": 246,
+    "matchName": "Harley Quinn (BTG)",
+    "matchRealname": "Dr. Harleen Frances Quinzel",
+    "matchBase": "40mm",
+    "id": "harley-quinn-btg-dr-harleen-frances-quinzel-40mm"
+  },
+  {
+    "index": 247,
+    "matchName": "Punchline",
+    "matchRealname": "Alexis Kaye",
+    "matchBase": "40mm",
+    "id": "punchline-alexis-kaye-40mm"
+  },
+  {
+    "index": 248,
+    "matchName": "Harley Quinn (Arkham Asylum)",
+    "matchRealname": "Dr. Harleen Frances Quinzel",
+    "matchBase": "30mm",
+    "id": "harley-quinn-arkham-asylum-dr-harleen-frances-quinzel-30mm"
+  },
+  {
+    "index": 249,
+    "matchName": "Harley Quinn (& The Boys)",
+    "matchRealname": "Dr. Harleen Frances Quinzel",
+    "matchBase": "40mm",
+    "id": "harley-quinn-the-boys-dr-harleen-frances-quinzel-40mm"
+  },
+  {
+    "index": 250,
+    "matchName": "Two-Face (Dark Knight)",
+    "matchRealname": "Harvey Dent",
+    "matchBase": "30mm",
+    "id": "two-face-dark-knight-harvey-dent-30mm"
+  },
+  {
+    "index": 251,
+    "matchName": "The Riddler (Frank Gorshin)",
+    "matchRealname": "Edward Nigma",
+    "matchBase": "30mm",
+    "id": "the-riddler-frank-gorshin-edward-nigma-30mm"
+  },
+  {
+    "index": 252,
+    "matchName": "The Penguin (Burgess Meredith)",
+    "matchRealname": "Oswald Chesterfield Cobblepot",
+    "matchBase": "30mm",
+    "id": "the-penguin-burgess-meredith-oswald-chesterfield-cobblepot-30mm"
+  },
+  {
+    "index": 253,
+    "matchName": "Mr. Freeze 1997",
+    "matchRealname": "Victor Fries",
+    "matchBase": "40mm",
+    "id": "mr-freeze-1997-victor-fries-40mm"
+  },
+  {
+    "index": 254,
+    "matchName": "Freeze Thug 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "freeze-thug-1-unknown-30mm"
+  },
+  {
+    "index": 255,
+    "matchName": "Freeze Thug 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "freeze-thug-2-unknown-30mm"
+  },
+  {
+    "index": 256,
+    "matchName": "Freeze Engineer",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "freeze-engineer-unknown-30mm"
+  },
+  {
+    "index": 257,
+    "matchName": "Freeze Thug 5",
+    "matchRealname": "Seamus O'Farrell",
+    "matchBase": "40mm",
+    "id": "freeze-thug-5-seamus-o-farrell-40mm"
+  },
+  {
+    "index": 258,
+    "matchName": "Combat Polar Bear",
+    "matchRealname": "Unknown",
+    "matchBase": "60mm",
+    "id": "combat-polar-bear-unknown-60mm"
+  },
+  {
+    "index": 259,
+    "matchName": "Freeze Thug 4",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "freeze-thug-4-unknown-30mm"
+  },
+  {
+    "index": 260,
+    "matchName": "Freeze Thug 3",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "freeze-thug-3-unknown-30mm"
+  },
+  {
+    "index": 261,
+    "matchName": "Mr. Freeze Cryo-Armor",
+    "matchRealname": "Victor Fries",
+    "matchBase": "40mm/60mm",
+    "id": "mr-freeze-cryo-armor-victor-fries-40mm-60mm"
+  },
+  {
+    "index": 262,
+    "matchName": "Mrs. Freeze",
+    "matchRealname": "Nora Fries",
+    "matchBase": "40mm",
+    "id": "mrs-freeze-nora-fries-40mm"
+  },
+  {
+    "index": 263,
+    "matchName": "Ranged Polar Bear",
+    "matchRealname": "Unknown",
+    "matchBase": "60mm",
+    "id": "ranged-polar-bear-unknown-60mm"
+  },
+  {
+    "index": 264,
+    "matchName": "Killer Frost Rebirth",
+    "matchRealname": "Caitlin Snow",
+    "matchBase": "40mm",
+    "id": "killer-frost-rebirth-caitlin-snow-40mm"
+  },
+  {
+    "index": 265,
+    "matchName": "Quiz 5",
+    "matchRealname": "Francoise Moreau",
+    "matchBase": "30mm",
+    "id": "quiz-5-francoise-moreau-30mm"
+  },
+  {
+    "index": 266,
+    "matchName": "Quiz 7",
+    "matchRealname": "Alex Orange",
+    "matchBase": "30mm",
+    "id": "quiz-7-alex-orange-30mm"
+  },
+  {
+    "index": 267,
+    "matchName": "Echo",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "echo-unknown-30mm"
+  },
+  {
+    "index": 268,
+    "matchName": "Quiz 8",
+    "matchRealname": "Finn O'Farrell",
+    "matchBase": "40mm",
+    "id": "quiz-8-finn-o-farrell-40mm"
+  },
+  {
+    "index": 269,
+    "matchName": "The Riddler",
+    "matchRealname": "Paul Dano Edward Nigma",
+    "matchBase": "40mm",
+    "id": "the-riddler-paul-dano-edward-nigma-40mm"
+  },
+  {
+    "index": 270,
+    "matchName": "The Riddler",
+    "matchRealname": "Edward Nigma",
+    "matchBase": "60mm",
+    "id": "the-riddler-edward-nigma-60mm"
+  },
+  {
+    "index": 271,
+    "matchName": "The Riddler's Follower 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "the-riddler-s-follower-1-unknown-30mm"
+  },
+  {
+    "index": 272,
+    "matchName": "Quiz 4",
+    "matchRealname": "Finn O'Farrell",
+    "matchBase": "40mm",
+    "id": "quiz-4-finn-o-farrell-40mm"
+  },
+  {
+    "index": 273,
+    "matchName": "Query",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "query-unknown-30mm"
+  },
+  {
+    "index": 274,
+    "matchName": "Quiz 2",
+    "matchRealname": "Igor",
+    "matchBase": "30mm",
+    "id": "quiz-2-igor-30mm"
+  },
+  {
+    "index": 275,
+    "matchName": "The Riddler Modern Age",
+    "matchRealname": "Edward Nigma",
+    "matchBase": "30mm",
+    "id": "the-riddler-modern-age-edward-nigma-30mm"
+  },
+  {
+    "index": 276,
+    "matchName": "Quiz 6",
+    "matchRealname": "Charlie C.",
+    "matchBase": "30mm",
+    "id": "quiz-6-charlie-c-30mm"
+  },
+  {
+    "index": 277,
+    "matchName": "The Riddler's Follower 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "the-riddler-s-follower-2-unknown-30mm"
+  },
+  {
+    "index": 278,
+    "matchName": "Two-Face",
+    "matchRealname": "Tommy Lee Jones Harvey Dent",
+    "matchBase": "40mm",
+    "id": "two-face-tommy-lee-jones-harvey-dent-40mm"
+  },
+  {
+    "index": 279,
+    "matchName": "Quiz 3",
+    "matchRealname": "John Carrie",
+    "matchBase": "30mm",
+    "id": "quiz-3-john-carrie-30mm"
+  },
+  {
+    "index": 280,
+    "matchName": "The Riddler",
+    "matchRealname": "Jim Carrey Edward Nigma",
+    "matchBase": "40mm",
+    "id": "the-riddler-jim-carrey-edward-nigma-40mm"
+  },
+  {
+    "index": 281,
+    "matchName": "Quelle",
+    "matchRealname": "Josette",
+    "matchBase": "30mm",
+    "id": "quelle-josette-30mm"
+  },
+  {
+    "index": 282,
+    "matchName": "Quiz 1",
+    "matchRealname": "Alexander",
+    "matchBase": "30mm",
+    "id": "quiz-1-alexander-30mm"
+  },
+  {
+    "index": 283,
+    "matchName": "The Riddler's Follower 3",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "the-riddler-s-follower-3-unknown-30mm"
+  },
+  {
+    "index": 284,
+    "matchName": "Catwoman Michelle Pfeiffer",
+    "matchRealname": "Selina Kyle",
+    "matchBase": "40mm",
+    "id": "catwoman-michelle-pfeiffer-selina-kyle-40mm"
+  },
+  {
+    "index": 285,
+    "matchName": "Penguin Thug 1",
+    "matchRealname": "Shane",
+    "matchBase": "30mm",
+    "id": "penguin-thug-1-shane-30mm"
+  },
+  {
+    "index": 286,
+    "matchName": "The Penguin Danny DeVito",
+    "matchRealname": "Oswald Chesterfield Cobblepot",
+    "matchBase": "40mm",
+    "id": "the-penguin-danny-devito-oswald-chesterfield-cobblepot-40mm"
+  },
+  {
+    "index": 287,
+    "matchName": "The Penguin New 52",
+    "matchRealname": "Oswald Chesterfield Cobblepot",
+    "matchBase": "30mm",
+    "id": "the-penguin-new-52-oswald-chesterfield-cobblepot-30mm"
+  },
+  {
+    "index": 288,
+    "matchName": "Lark",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "lark-unknown-30mm"
+  },
+  {
+    "index": 289,
+    "matchName": "The Penguin Arkham City",
+    "matchRealname": "Oswald Chesterfield Cobblepot",
+    "matchBase": "30mm",
+    "id": "the-penguin-arkham-city-oswald-chesterfield-cobblepot-30mm"
+  },
+  {
+    "index": 290,
+    "matchName": "Rocket Launcher Penguin",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "rocket-launcher-penguin-unknown-30mm"
+  },
+  {
+    "index": 291,
+    "matchName": "Street Demonz Biker 1",
+    "matchRealname": "Joe \"Viking\" Thompson",
+    "matchBase": "42x75mm",
+    "id": "street-demonz-biker-1-joe-viking-thompson-42x75mm"
+  },
+  {
+    "index": 292,
+    "matchName": "Loose Lips",
+    "matchRealname": "Ricky LeBlanc",
+    "matchBase": "30mm",
+    "id": "loose-lips-ricky-leblanc-30mm"
+  },
+  {
+    "index": 293,
+    "matchName": "Emperor Penguin Unchained",
+    "matchRealname": "Ignatius Ogilvy",
+    "matchBase": "40mm",
+    "id": "emperor-penguin-unchained-ignatius-ogilvy-40mm"
+  },
+  {
+    "index": 294,
+    "matchName": "Penguin Elite Thug",
+    "matchRealname": "Mason",
+    "matchBase": "30mm",
+    "id": "penguin-elite-thug-mason-30mm"
+  },
+  {
+    "index": 295,
+    "matchName": "Minigun Penguin",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "minigun-penguin-unknown-30mm"
+  },
+  {
+    "index": 296,
+    "matchName": "Explosive Penguin",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "explosive-penguin-unknown-30mm"
+  },
+  {
+    "index": 297,
+    "matchName": "Penguin Lieutenant",
+    "matchRealname": "Big A",
+    "matchBase": "40mm",
+    "id": "penguin-lieutenant-big-a-40mm"
+  },
+  {
+    "index": 298,
+    "matchName": "Mr. Toxic",
+    "matchRealname": "Hugh Marder",
+    "matchBase": "30mm",
+    "id": "mr-toxic-hugh-marder-30mm"
+  },
+  {
+    "index": 299,
+    "matchName": "Penguin Thug 2",
+    "matchRealname": "Tanner",
+    "matchBase": "30mm",
+    "id": "penguin-thug-2-tanner-30mm"
+  },
+  {
+    "index": 300,
+    "matchName": "The Penguin Penguin's Duck",
+    "matchRealname": "Oswald Chesterfield Cobblepot",
+    "matchBase": "60mm",
+    "id": "the-penguin-penguin-s-duck-oswald-chesterfield-cobblepot-60mm"
+  },
+  {
+    "index": 301,
+    "matchName": "The Penguin Arkham Knight",
+    "matchRealname": "Oswald Chesterfield Cobblepot",
+    "matchBase": "30mm",
+    "id": "the-penguin-arkham-knight-oswald-chesterfield-cobblepot-30mm"
+  },
+  {
+    "index": 302,
+    "matchName": "Street Demonz 4",
+    "matchRealname": "Aaron \"Durum Killer\" Taylor",
+    "matchBase": "40mm",
+    "id": "street-demonz-4-aaron-durum-killer-taylor-40mm"
+  },
+  {
+    "index": 303,
+    "matchName": "Mr. Combustible",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "mr-combustible-unknown-30mm"
+  },
+  {
+    "index": 304,
+    "matchName": "Hypnotic",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "hypnotic-unknown-30mm"
+  },
+  {
+    "index": 305,
+    "matchName": "Street Demonz 1",
+    "matchRealname": "Grumble",
+    "matchBase": "30mm",
+    "id": "street-demonz-1-grumble-30mm"
+  },
+  {
+    "index": 306,
+    "matchName": "Street Demonz Biker 2",
+    "matchRealname": "Jackson \"Fat\" Smith",
+    "matchBase": "42x75mm",
+    "id": "street-demonz-biker-2-jackson-fat-smith-42x75mm"
+  },
+  {
+    "index": 307,
+    "matchName": "Street Demonz Biker 3",
+    "matchRealname": "Serge \"Darky\" Powers",
+    "matchBase": "42x75mm",
+    "id": "street-demonz-biker-3-serge-darky-powers-42x75mm"
+  },
+  {
+    "index": 308,
+    "matchName": "Street Demonz 3",
+    "matchRealname": "Reaver",
+    "matchBase": "30mm",
+    "id": "street-demonz-3-reaver-30mm"
+  },
+  {
+    "index": 309,
+    "matchName": "Street Demonz 2",
+    "matchRealname": "Simmons",
+    "matchBase": "30mm",
+    "id": "street-demonz-2-simmons-30mm"
+  },
+  {
+    "index": 310,
+    "matchName": "Imperceptible Man",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "imperceptible-man-unknown-30mm"
+  },
+  {
+    "index": 311,
+    "matchName": "League Acolyte 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "league-acolyte-1-unknown-30mm"
+  },
+  {
+    "index": 312,
+    "matchName": "Mercenary 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "mercenary-1-unknown-30mm"
+  },
+  {
+    "index": 313,
+    "matchName": "Mercenary 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "mercenary-2-unknown-30mm"
+  },
+  {
+    "index": 314,
+    "matchName": "League Acolyte 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "league-acolyte-2-unknown-30mm"
+  },
+  {
+    "index": 315,
+    "matchName": "Ubu",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "ubu-unknown-40mm"
+  },
+  {
+    "index": 316,
+    "matchName": "Hassassin 4",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "hassassin-4-unknown-30mm"
+  },
+  {
+    "index": 317,
+    "matchName": "Goliath",
+    "matchRealname": "Goliath",
+    "matchBase": "60mm",
+    "id": "goliath-goliath-60mm"
+  },
+  {
+    "index": 318,
+    "matchName": "Hassassin 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "hassassin-1-unknown-30mm"
+  },
+  {
+    "index": 319,
+    "matchName": "Talia Rebirth",
+    "matchRealname": "Talia al Ghul",
+    "matchBase": "40mm",
+    "id": "talia-rebirth-talia-al-ghul-40mm"
+  },
+  {
+    "index": 320,
+    "matchName": "The Heretic",
+    "matchRealname": "Damian Wayne Clone",
+    "matchBase": "40mm",
+    "id": "the-heretic-damian-wayne-clone-40mm"
+  },
+  {
+    "index": 321,
+    "matchName": "League Acolyte 3",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "league-acolyte-3-unknown-30mm"
+  },
+  {
+    "index": 322,
+    "matchName": "League Acolyte 4",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "league-acolyte-4-unknown-30mm"
+  },
+  {
+    "index": 323,
+    "matchName": "Hassassin 3",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "hassassin-3-unknown-30mm"
+  },
+  {
+    "index": 324,
+    "matchName": "Cheshire",
+    "matchRealname": "Jade Nguyen",
+    "matchBase": "30mm",
+    "id": "cheshire-jade-nguyen-30mm"
+  },
+  {
+    "index": 325,
+    "matchName": "Hassassin 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "hassassin-2-unknown-30mm"
+  },
+  {
+    "index": 326,
+    "matchName": "Bane Dark Knight Rises",
+    "matchRealname": "Bane",
+    "matchBase": "30mm",
+    "id": "bane-dark-knight-rises-bane-30mm"
+  },
+  {
+    "index": 327,
+    "matchName": "Ra's al Ghul",
+    "matchRealname": "Ra's al Ghul",
+    "matchBase": "40mm / 60mm",
+    "id": "ra-s-al-ghul-ra-s-al-ghul-40mm-60mm"
+  },
+  {
+    "index": 328,
+    "matchName": "Barsad",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "barsad-unknown-30mm"
+  },
+  {
+    "index": 329,
+    "matchName": "Gangster 1",
+    "matchRealname": "Tommy",
+    "matchBase": "30mm",
+    "id": "gangster-1-tommy-30mm"
+  },
+  {
+    "index": 330,
+    "matchName": "Gangster 3",
+    "matchRealname": "Wallace",
+    "matchBase": "30mm",
+    "id": "gangster-3-wallace-30mm"
+  },
+  {
+    "index": 331,
+    "matchName": "Sugar",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "sugar-unknown-40mm"
+  },
+  {
+    "index": 332,
+    "matchName": "Two-Face Tommy Lee Jones",
+    "matchRealname": "Harvey Dent",
+    "matchBase": "40mm",
+    "id": "two-face-tommy-lee-jones-harvey-dent-40mm-2"
+  },
+  {
+    "index": 333,
+    "matchName": "Gangster 5",
+    "matchRealname": "Stone",
+    "matchBase": "30mm",
+    "id": "gangster-5-stone-30mm"
+  },
+  {
+    "index": 334,
+    "matchName": "Two-Face",
+    "matchRealname": "Harvey Dent",
+    "matchBase": "40mm/60mm",
+    "id": "two-face-harvey-dent-40mm-60mm"
+  },
+  {
+    "index": 335,
+    "matchName": "Spice",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "spice-unknown-40mm"
+  },
+  {
+    "index": 336,
+    "matchName": "The Hitman",
+    "matchRealname": "Maguire",
+    "matchBase": "30mm",
+    "id": "the-hitman-maguire-30mm"
+  },
+  {
+    "index": 337,
+    "matchName": "Gangster 7",
+    "matchRealname": "Sergio",
+    "matchBase": "30mm",
+    "id": "gangster-7-sergio-30mm"
+  },
+  {
+    "index": 338,
+    "matchName": "Gangster 6",
+    "matchRealname": "Luigi",
+    "matchBase": "30mm",
+    "id": "gangster-6-luigi-30mm"
+  },
+  {
+    "index": 339,
+    "matchName": "Gangster 2",
+    "matchRealname": "Malone",
+    "matchBase": "30mm",
+    "id": "gangster-2-malone-30mm"
+  },
+  {
+    "index": 340,
+    "matchName": "Gangster 4",
+    "matchRealname": "Giuseppe",
+    "matchBase": "30mm",
+    "id": "gangster-4-giuseppe-30mm"
+  },
+  {
+    "index": 341,
+    "matchName": "Two-Face Arkham City",
+    "matchRealname": "Harvey Dent",
+    "matchBase": "30mm",
+    "id": "two-face-arkham-city-harvey-dent-30mm"
+  },
+  {
+    "index": 342,
+    "matchName": "Killer Croc Thug",
+    "matchRealname": "Waylon Jones",
+    "matchBase": "40mm",
+    "id": "killer-croc-thug-waylon-jones-40mm-2"
+  },
+  {
+    "index": 343,
+    "matchName": "Big John",
+    "matchRealname": "Jonathan Miers",
+    "matchBase": "30mm",
+    "id": "big-john-jonathan-miers-30mm"
+  },
+  {
+    "index": 344,
+    "matchName": "Poison Ivy 1997",
+    "matchRealname": "Dr. Pamela Lillian Isley",
+    "matchBase": "40mm",
+    "id": "poison-ivy-1997-dr-pamela-lillian-isley-40mm"
+  },
+  {
+    "index": 345,
+    "matchName": "Harley Quinn Roller Derby",
+    "matchRealname": "Dr. Harleen Frances Quinzel",
+    "matchBase": "40mm",
+    "id": "harley-quinn-roller-derby-dr-harleen-frances-quinzel-40mm"
+  },
+  {
+    "index": 346,
+    "matchName": "Harley Quinn KaBoom!",
+    "matchRealname": "Dr. Harleen Frances Quinzel",
+    "matchBase": "60mm",
+    "id": "harley-quinn-kaboom-dr-harleen-frances-quinzel-60mm"
+  },
+  {
+    "index": 347,
+    "matchName": "Poison Ivy",
+    "matchRealname": "Dr. Pamela Lillian Isley",
+    "matchBase": "40mm / 60mm",
+    "id": "poison-ivy-dr-pamela-lillian-isley-40mm-60mm"
+  },
+  {
+    "index": 348,
+    "matchName": "Black Canary (Rebirth)",
+    "matchRealname": "Dinah Lance",
+    "matchBase": "40mm",
+    "id": "black-canary-rebirth-dinah-lance-40mm"
+  },
+  {
+    "index": 349,
+    "matchName": "Harley Quinn",
+    "matchRealname": "Dr. Harleen Frances Quinzel",
+    "matchBase": "30mm",
+    "id": "harley-quinn-dr-harleen-frances-quinzel-30mm"
+  },
+  {
+    "index": 350,
+    "matchName": "Katana (Rebirth)",
+    "matchRealname": "Tatsu Yamashiro",
+    "matchBase": "40mm",
+    "id": "katana-rebirth-tatsu-yamashiro-40mm"
+  },
+  {
+    "index": 351,
+    "matchName": "Black Canary",
+    "matchRealname": "Dinah Lance",
+    "matchBase": "30mm",
+    "id": "black-canary-dinah-lance-30mm"
+  },
+  {
+    "index": 352,
+    "matchName": "Lady Shiva",
+    "matchRealname": "Sandra Wu-San",
+    "matchBase": "40mm",
+    "id": "lady-shiva-sandra-wu-san-40mm"
+  },
+  {
+    "index": 353,
+    "matchName": "Oracle",
+    "matchRealname": "Barbara Gordon",
+    "matchBase": "40mm",
+    "id": "oracle-barbara-gordon-40mm"
+  },
+  {
+    "index": 354,
+    "matchName": "Floronic Man",
+    "matchRealname": "Jason Woodrue",
+    "matchBase": "40mm",
+    "id": "floronic-man-jason-woodrue-40mm"
+  },
+  {
+    "index": 355,
+    "matchName": "Killer Frost (Rebirth)",
+    "matchRealname": "Caitlin Snow",
+    "matchBase": "40mm",
+    "id": "killer-frost-rebirth-caitlin-snow-40mm-2"
+  },
+  {
+    "index": 356,
+    "matchName": "Rabid Plant 1",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "rabid-plant-1-unknown-40mm"
+  },
+  {
+    "index": 357,
+    "matchName": "Roller Derby Thug 4",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "roller-derby-thug-4-unknown-30mm"
+  },
+  {
+    "index": 358,
+    "matchName": "Roller Derby Thug 1",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "roller-derby-thug-1-unknown-40mm"
+  },
+  {
+    "index": 359,
+    "matchName": "Roller Derby Thug 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "roller-derby-thug-2-unknown-30mm"
+  },
+  {
+    "index": 360,
+    "matchName": "Rabid Plant 2",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "rabid-plant-2-unknown-40mm"
+  },
+  {
+    "index": 361,
+    "matchName": "Huntress",
+    "matchRealname": "Helena Bertinelli",
+    "matchBase": "30mm",
+    "id": "huntress-helena-bertinelli-30mm"
+  },
+  {
+    "index": 362,
+    "matchName": "Roller Derby Thug 3",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "roller-derby-thug-3-unknown-30mm"
+  },
+  {
+    "index": 363,
+    "matchName": "Hawk",
+    "matchRealname": "Hank Hall",
+    "matchBase": "30mm",
+    "id": "hawk-hank-hall-30mm"
+  },
+  {
+    "index": 364,
+    "matchName": "Dove",
+    "matchRealname": "Dawn Granger",
+    "matchBase": "30mm",
+    "id": "dove-dawn-granger-30mm"
+  },
+  {
+    "index": 365,
+    "matchName": "Bruce the Hyena",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "bruce-the-hyena-unknown-30mm"
+  },
+  {
+    "index": 366,
+    "matchName": "Mutated Plant 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "mutated-plant-2-unknown-30mm"
+  },
+  {
+    "index": 367,
+    "matchName": "Unknown",
+    "matchRealname": "Cassandra Cain",
+    "matchBase": "30mm",
+    "id": "unknown-cassandra-cain-30mm"
+  },
+  {
+    "index": 368,
+    "matchName": "Batgirl Rebirth",
+    "matchRealname": "Barbara Gordon",
+    "matchBase": "30mm",
+    "id": "batgirl-rebirth-barbara-gordon-30mm"
+  },
+  {
+    "index": 369,
+    "matchName": "Batgirl Vampire Queen",
+    "matchRealname": "Barbara Gordon",
+    "matchBase": "40mm",
+    "id": "batgirl-vampire-queen-barbara-gordon-40mm"
+  },
+  {
+    "index": 370,
+    "matchName": "Mutated Plant 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "mutated-plant-1-unknown-30mm"
+  },
+  {
+    "index": 371,
+    "matchName": "Frank the Plant",
+    "matchRealname": "Frank",
+    "matchBase": "60mm",
+    "id": "frank-the-plant-frank-60mm"
+  },
+  {
+    "index": 372,
+    "matchName": "Detective Montoya",
+    "matchRealname": "Renée Maria Montoya",
+    "matchBase": "30mm",
+    "id": "detective-montoya-ren-e-maria-montoya-30mm"
+  },
+  {
+    "index": 373,
+    "matchName": "Batgirl Classic Costume",
+    "matchRealname": "Barbara Gordon",
+    "matchBase": "40mm",
+    "id": "batgirl-classic-costume-barbara-gordon-40mm"
+  },
+  {
+    "index": 374,
+    "matchName": "Strix",
+    "matchRealname": "Mary Turner",
+    "matchBase": "30mm",
+    "id": "strix-mary-turner-30mm"
+  },
+  {
+    "index": 375,
+    "matchName": "Mutated Plant 3",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "mutated-plant-3-unknown-30mm"
+  },
+  {
+    "index": 376,
+    "matchName": "Scarecrow (The Worst Nightmare)",
+    "matchRealname": "Jonathan Crane",
+    "matchBase": "60mm",
+    "id": "scarecrow-the-worst-nightmare-jonathan-crane-60mm"
+  },
+  {
+    "index": 377,
+    "matchName": "Dr. Friitawa",
+    "matchRealname": "Linda Friitawa",
+    "matchBase": "40mm",
+    "id": "dr-friitawa-linda-friitawa-40mm"
+  },
+  {
+    "index": 378,
+    "matchName": "Nightmare of Fear",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "nightmare-of-fear-unknown-30mm"
+  },
+  {
+    "index": 379,
+    "matchName": "Nightmare of Demotivation",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "nightmare-of-demotivation-unknown-30mm"
+  },
+  {
+    "index": 380,
+    "matchName": "Nightmare of Anger",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "nightmare-of-anger-unknown-30mm"
+  },
+  {
+    "index": 381,
+    "matchName": "Nightmare of Insignificance",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "nightmare-of-insignificance-unknown-30mm"
+  },
+  {
+    "index": 382,
+    "matchName": "Fearbeast Nightmare",
+    "matchRealname": "Unknown",
+    "matchBase": "60mm",
+    "id": "fearbeast-nightmare-unknown-60mm"
+  },
+  {
+    "index": 383,
+    "matchName": "Little Nightmare",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "little-nightmare-unknown-30mm"
+  },
+  {
+    "index": 384,
+    "matchName": "The Court",
+    "matchRealname": "Unknown",
+    "matchBase": "60mm",
+    "id": "the-court-unknown-60mm"
+  },
+  {
+    "index": 385,
+    "matchName": "1890's Talon",
+    "matchRealname": "Xiao Loong",
+    "matchBase": "30mm",
+    "id": "1890-s-talon-xiao-loong-30mm"
+  },
+  {
+    "index": 386,
+    "matchName": "The Talon",
+    "matchRealname": "William Cobb",
+    "matchBase": "30mm",
+    "id": "the-talon-william-cobb-30mm"
+  },
+  {
+    "index": 387,
+    "matchName": "Gotham Butcher",
+    "matchRealname": "Felix Harmon",
+    "matchBase": "60mm",
+    "id": "gotham-butcher-felix-harmon-60mm"
+  },
+  {
+    "index": 388,
+    "matchName": "Lincoln March",
+    "matchRealname": "Lincoln March",
+    "matchBase": "30mm",
+    "id": "lincoln-march-lincoln-march-30mm"
+  },
+  {
+    "index": 389,
+    "matchName": "O'Malley's Grandfather",
+    "matchRealname": "James O'Malley",
+    "matchBase": "30mm",
+    "id": "o-malley-s-grandfather-james-o-malley-30mm"
+  },
+  {
+    "index": 390,
+    "matchName": "Talon",
+    "matchRealname": "Calvin Rose",
+    "matchBase": "40mm",
+    "id": "talon-calvin-rose-40mm"
+  },
+  {
+    "index": 391,
+    "matchName": "O'Malley's Father",
+    "matchRealname": "Brandon O'Malley",
+    "matchBase": "30mm",
+    "id": "o-malley-s-father-brandon-o-malley-30mm"
+  },
+  {
+    "index": 392,
+    "matchName": "Dementor",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "dementor-unknown-40mm"
+  },
+  {
+    "index": 393,
+    "matchName": "Raptor",
+    "matchRealname": "Richard",
+    "matchBase": "40mm",
+    "id": "raptor-richard-40mm"
+  },
+  {
+    "index": 394,
+    "matchName": "1880's Talon",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "1880-s-talon-unknown-30mm"
+  },
+  {
+    "index": 395,
+    "matchName": "Robin",
+    "matchRealname": "Damian Wayne",
+    "matchBase": "30mm",
+    "id": "robin-damian-wayne-30mm"
+  },
+  {
+    "index": 396,
+    "matchName": "Robin",
+    "matchRealname": "Damian Wayne",
+    "matchBase": "30mm",
+    "id": "robin-damian-wayne-30mm-2"
+  },
+  {
+    "index": 397,
+    "matchName": "O'Malley's Son",
+    "matchRealname": "Nathaniel O'Malley",
+    "matchBase": "30mm",
+    "id": "o-malley-s-son-nathaniel-o-malley-30mm"
+  },
+  {
+    "index": 398,
+    "matchName": "Ephraim Newhouse",
+    "matchRealname": "Ephraim Newhouse",
+    "matchBase": "30mm",
+    "id": "ephraim-newhouse-ephraim-newhouse-30mm"
+  },
+  {
+    "index": 399,
+    "matchName": "King of Spades",
+    "matchRealname": "Joe Carny",
+    "matchBase": "40mm",
+    "id": "king-of-spades-joe-carny-40mm"
+  },
+  {
+    "index": 400,
+    "matchName": "10 of Spades",
+    "matchRealname": "Wanda Wayland",
+    "matchBase": "40mm",
+    "id": "10-of-spades-wanda-wayland-40mm"
+  },
+  {
+    "index": 401,
+    "matchName": "Jack of Spades",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "jack-of-spades-unknown-40mm"
+  },
+  {
+    "index": 402,
+    "matchName": "Ace of Spades",
+    "matchRealname": "Derek Reston",
+    "matchBase": "40mm",
+    "id": "ace-of-spades-derek-reston-40mm"
+  },
+  {
+    "index": 403,
+    "matchName": "Queen of Spades",
+    "matchRealname": "Mona Taylor",
+    "matchBase": "40mm",
+    "id": "queen-of-spades-mona-taylor-40mm"
+  },
+  {
+    "index": 404,
+    "matchName": "5 of Spades",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "5-of-spades-unknown-30mm"
+  },
+  {
+    "index": 405,
+    "matchName": "Slipknot Suicide Squad",
+    "matchRealname": "Christopher Weiss",
+    "matchBase": "30mm",
+    "id": "slipknot-suicide-squad-christopher-weiss-30mm"
+  },
+  {
+    "index": 406,
+    "matchName": "Polka-Dot Man The Suicide Squad",
+    "matchRealname": "Abner Krill",
+    "matchBase": "30mm",
+    "id": "polka-dot-man-the-suicide-squad-abner-krill-30mm"
+  },
+  {
+    "index": 407,
+    "matchName": "Weasel The Suicide Squad",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "weasel-the-suicide-squad-unknown-30mm"
+  },
+  {
+    "index": 408,
+    "matchName": "Killer Moth",
+    "matchRealname": "Drury Walker",
+    "matchBase": "40mm",
+    "id": "killer-moth-drury-walker-40mm"
+  },
+  {
+    "index": 409,
+    "matchName": "John Economos",
+    "matchRealname": "John Economos",
+    "matchBase": "30mm",
+    "id": "john-economos-john-economos-30mm"
+  },
+  {
+    "index": 410,
+    "matchName": "Emilia Harcourt",
+    "matchRealname": "Emilia Harcourt",
+    "matchBase": "30mm",
+    "id": "emilia-harcourt-emilia-harcourt-30mm"
+  },
+  {
+    "index": 411,
+    "matchName": "Killer Croc Suicide Squad",
+    "matchRealname": "Waylon Jones",
+    "matchBase": "30mm",
+    "id": "killer-croc-suicide-squad-waylon-jones-30mm"
+  },
+  {
+    "index": 412,
+    "matchName": "Polka-Dot Man",
+    "matchRealname": "Abner Krill",
+    "matchBase": "40mm",
+    "id": "polka-dot-man-abner-krill-40mm"
+  },
+  {
+    "index": 413,
+    "matchName": "Thinker The Suicide Squad",
+    "matchRealname": "Gaius Grieves",
+    "matchBase": "30mm",
+    "id": "thinker-the-suicide-squad-gaius-grieves-30mm"
+  },
+  {
+    "index": 414,
+    "matchName": "Diablo Suicide Squad",
+    "matchRealname": "Chato Santana",
+    "matchBase": "30mm",
+    "id": "diablo-suicide-squad-chato-santana-30mm"
+  },
+  {
+    "index": 415,
+    "matchName": "Katana Suicide Squad",
+    "matchRealname": "Tatsu Yamashiro",
+    "matchBase": "30mm",
+    "id": "katana-suicide-squad-tatsu-yamashiro-30mm"
+  },
+  {
+    "index": 416,
+    "matchName": "Sebastian the Rat The Suicide Squad",
+    "matchRealname": "Sebastian",
+    "matchBase": "30mm",
+    "id": "sebastian-the-rat-the-suicide-squad-sebastian-30mm"
+  },
+  {
+    "index": 417,
+    "matchName": "Eagly",
+    "matchRealname": "Eagly",
+    "matchBase": "40mm",
+    "id": "eagly-eagly-40mm"
+  },
+  {
+    "index": 418,
+    "matchName": "King Shark The Suicide Squad",
+    "matchRealname": "Nanaue",
+    "matchBase": "40mm",
+    "id": "king-shark-the-suicide-squad-nanaue-40mm"
+  },
+  {
+    "index": 419,
+    "matchName": "Poison Ivy",
+    "matchRealname": "Dr. Pamela Lillian Isley",
+    "matchBase": "40mm / 60mm",
+    "id": "poison-ivy-dr-pamela-lillian-isley-40mm-60mm-2"
+  },
+  {
+    "index": 420,
+    "matchName": "Killer Croc Arkham Asylum",
+    "matchRealname": "Waylon Jones",
+    "matchBase": "60mm",
+    "id": "killer-croc-arkham-asylum-waylon-jones-60mm"
+  },
+  {
+    "index": 421,
+    "matchName": "T.D.K. The Suicide Squad",
+    "matchRealname": "Cory Pitzner",
+    "matchBase": "30mm",
+    "id": "t-d-k-the-suicide-squad-cory-pitzner-30mm"
+  },
+  {
+    "index": 422,
+    "matchName": "Deathstroke Vanguard Team",
+    "matchRealname": "Slade Wilson",
+    "matchBase": "30mm",
+    "id": "deathstroke-vanguard-team-slade-wilson-30mm"
+  },
+  {
+    "index": 423,
+    "matchName": "The Riddler Modern Age",
+    "matchRealname": "Edward Nigma",
+    "matchBase": "30mm",
+    "id": "the-riddler-modern-age-edward-nigma-30mm-2"
+  },
+  {
+    "index": 424,
+    "matchName": "Ratcatcher 2 The Suicide Squad",
+    "matchRealname": "Cleo Cazo",
+    "matchBase": "40mm",
+    "id": "ratcatcher-2-the-suicide-squad-cleo-cazo-40mm"
+  },
+  {
+    "index": 425,
+    "matchName": "Captain Boomerang Vanguard Team",
+    "matchRealname": "George \"Digger\" Harkness",
+    "matchBase": "30mm",
+    "id": "captain-boomerang-vanguard-team-george-digger-harkness-30mm"
+  },
+  {
+    "index": 426,
+    "matchName": "Rick Flag Infiltration",
+    "matchRealname": "Rick Flag",
+    "matchBase": "30mm",
+    "id": "rick-flag-infiltration-rick-flag-30mm"
+  },
+  {
+    "index": 427,
+    "matchName": "The Riddler",
+    "matchRealname": "Edward Nigma",
+    "matchBase": "60mm",
+    "id": "the-riddler-edward-nigma-60mm-2"
+  },
+  {
+    "index": 428,
+    "matchName": "Vigilante",
+    "matchRealname": "Adrian Chase",
+    "matchBase": "40mm",
+    "id": "vigilante-adrian-chase-40mm"
+  },
+  {
+    "index": 429,
+    "matchName": "Captain Boomerang Suicide Squad",
+    "matchRealname": "George \"Digger\" Harkness",
+    "matchBase": "30mm",
+    "id": "captain-boomerang-suicide-squad-george-digger-harkness-30mm"
+  },
+  {
+    "index": 430,
+    "matchName": "KGBeast",
+    "matchRealname": "Anatoliy Knyazev",
+    "matchBase": "40mm",
+    "id": "kgbeast-anatoliy-knyazev-40mm"
+  },
+  {
+    "index": 431,
+    "matchName": "Deadshot",
+    "matchRealname": "Floyd Lawton",
+    "matchBase": "40mm",
+    "id": "deadshot-floyd-lawton-40mm"
+  },
+  {
+    "index": 432,
+    "matchName": "Harley Quinn Bombshell",
+    "matchRealname": "Dr. Harleen Frances Quinzel",
+    "matchBase": "30mm",
+    "id": "harley-quinn-bombshell-dr-harleen-frances-quinzel-30mm"
+  },
+  {
+    "index": 433,
+    "matchName": "Deadshot Suicide Squad",
+    "matchRealname": "Floyd Lawton",
+    "matchBase": "30mm",
+    "id": "deadshot-suicide-squad-floyd-lawton-30mm"
+  },
+  {
+    "index": 434,
+    "matchName": "Deathstroke The Terminator",
+    "matchRealname": "Slade Wilson",
+    "matchBase": "40mm/60mm",
+    "id": "deathstroke-the-terminator-slade-wilson-40mm-60mm"
+  },
+  {
+    "index": 435,
+    "matchName": "Amanda Waller Viola Davis",
+    "matchRealname": "Amanda Waller",
+    "matchBase": "40mm",
+    "id": "amanda-waller-viola-davis-amanda-waller-40mm"
+  },
+  {
+    "index": 436,
+    "matchName": "Killer Croc",
+    "matchRealname": "Waylon Jones",
+    "matchBase": "60mm",
+    "id": "killer-croc-waylon-jones-60mm"
+  },
+  {
+    "index": 437,
+    "matchName": "Harley Quinn The Suicide Squad",
+    "matchRealname": "Dr. Harleen Frances Quinzel",
+    "matchBase": "30mm",
+    "id": "harley-quinn-the-suicide-squad-dr-harleen-frances-quinzel-30mm"
+  },
+  {
+    "index": 438,
+    "matchName": "Peacemaker John Cena",
+    "matchRealname": "Christopher Smith",
+    "matchBase": "40mm",
+    "id": "peacemaker-john-cena-christopher-smith-40mm"
+  },
+  {
+    "index": 439,
+    "matchName": "Bloodsport The Suicide Squad",
+    "matchRealname": "Robert DuBois",
+    "matchBase": "40mm",
+    "id": "bloodsport-the-suicide-squad-robert-dubois-40mm"
+  },
+  {
+    "index": 440,
+    "matchName": "Ratface",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "ratface-unknown-40mm"
+  },
+  {
+    "index": 441,
+    "matchName": "Kobra",
+    "matchRealname": "Jeffrey Franklin Burr",
+    "matchBase": "60mm",
+    "id": "kobra-jeffrey-franklin-burr-60mm"
+  },
+  {
+    "index": 442,
+    "matchName": "Naga Hazard Trooper 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "naga-hazard-trooper-2-unknown-30mm"
+  },
+  {
+    "index": 443,
+    "matchName": "The Nagas",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "the-nagas-unknown-30mm"
+  },
+  {
+    "index": 444,
+    "matchName": "Jake",
+    "matchRealname": "Jake Baker",
+    "matchBase": "40mm",
+    "id": "jake-jake-baker-40mm"
+  },
+  {
+    "index": 445,
+    "matchName": "Underworlder 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "underworlder-1-unknown-30mm"
+  },
+  {
+    "index": 446,
+    "matchName": "Kobra Hybrid",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "kobra-hybrid-unknown-40mm"
+  },
+  {
+    "index": 447,
+    "matchName": "Deacon Blackfire",
+    "matchRealname": "Joseph Blackfire",
+    "matchBase": "40mm / 60mm",
+    "id": "deacon-blackfire-joseph-blackfire-40mm-60mm"
+  },
+  {
+    "index": 448,
+    "matchName": "Underworlder Vagon 1",
+    "matchRealname": "Unknown",
+    "matchBase": "42x75mm",
+    "id": "underworlder-vagon-1-unknown-42x75mm"
+  },
+  {
+    "index": 449,
+    "matchName": "Underworlder 2",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "underworlder-2-unknown-40mm"
+  },
+  {
+    "index": 450,
+    "matchName": "Cobra Swarm",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "cobra-swarm-unknown-30mm"
+  },
+  {
+    "index": 451,
+    "matchName": "Young Woman",
+    "matchRealname": "Sally",
+    "matchBase": "40mm",
+    "id": "young-woman-sally-40mm"
+  },
+  {
+    "index": 452,
+    "matchName": "Lancehead 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "lancehead-1-unknown-30mm"
+  },
+  {
+    "index": 453,
+    "matchName": "Lady Eve",
+    "matchRealname": "Eve",
+    "matchBase": "30mm",
+    "id": "lady-eve-eve-30mm"
+  },
+  {
+    "index": 454,
+    "matchName": "Underworlder 6",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "underworlder-6-unknown-30mm"
+  },
+  {
+    "index": 455,
+    "matchName": "Underworlder 4",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "underworlder-4-unknown-30mm"
+  },
+  {
+    "index": 456,
+    "matchName": "Batman The Cult",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "40mm",
+    "id": "batman-the-cult-bruce-wayne-40mm"
+  },
+  {
+    "index": 457,
+    "matchName": "Kobra Bestowed",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "kobra-bestowed-unknown-30mm"
+  },
+  {
+    "index": 458,
+    "matchName": "Underworlder Vagon 2",
+    "matchRealname": "Unknown",
+    "matchBase": "42x75mm",
+    "id": "underworlder-vagon-2-unknown-42x75mm"
+  },
+  {
+    "index": 459,
+    "matchName": "Underworlder 5",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "underworlder-5-unknown-30mm"
+  },
+  {
+    "index": 460,
+    "matchName": "Naga Hazard Trooper 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "naga-hazard-trooper-1-unknown-30mm"
+  },
+  {
+    "index": 461,
+    "matchName": "Lancehead Captain",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "lancehead-captain-unknown-30mm"
+  },
+  {
+    "index": 462,
+    "matchName": "Lancehead 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "lancehead-2-unknown-30mm"
+  },
+  {
+    "index": 463,
+    "matchName": "Lancehead Soldier",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "lancehead-soldier-unknown-30mm"
+  },
+  {
+    "index": 464,
+    "matchName": "Damian Who Laughs",
+    "matchRealname": "Damian Wayne",
+    "matchBase": "30mm",
+    "id": "damian-who-laughs-damian-wayne-30mm"
+  },
+  {
+    "index": 465,
+    "matchName": "The Commissioner",
+    "matchRealname": "James Gordon",
+    "matchBase": "30mm",
+    "id": "the-commissioner-james-gordon-30mm"
+  },
+  {
+    "index": 466,
+    "matchName": "The Merciless",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "30mm",
+    "id": "the-merciless-bruce-wayne-30mm"
+  },
+  {
+    "index": 467,
+    "matchName": "Infected Who Laughs",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "infected-who-laughs-unknown-30mm"
+  },
+  {
+    "index": 468,
+    "matchName": "The Grim Knight",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "40mm",
+    "id": "the-grim-knight-bruce-wayne-40mm"
+  },
+  {
+    "index": 469,
+    "matchName": "The Batman Who Laughs",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "60mm",
+    "id": "the-batman-who-laughs-bruce-wayne-60mm"
+  },
+  {
+    "index": 470,
+    "matchName": "The Red Death",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "30mm",
+    "id": "the-red-death-bruce-wayne-30mm"
+  },
+  {
+    "index": 471,
+    "matchName": "The Drowned",
+    "matchRealname": "Bryce Wayne",
+    "matchBase": "30mm",
+    "id": "the-drowned-bryce-wayne-30mm"
+  },
+  {
+    "index": 472,
+    "matchName": "Robin Who Laughs",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "robin-who-laughs-unknown-30mm"
+  },
+  {
+    "index": 473,
+    "matchName": "Silk Spectre II",
+    "matchRealname": "Laurie Juspeczyk",
+    "matchBase": "30mm",
+    "id": "silk-spectre-ii-laurie-juspeczyk-30mm"
+  },
+  {
+    "index": 474,
+    "matchName": "The Comedian",
+    "matchRealname": "Edward Blake",
+    "matchBase": "30mm",
+    "id": "the-comedian-edward-blake-30mm"
+  },
+  {
+    "index": 475,
+    "matchName": "Nite Owl",
+    "matchRealname": "Daniel Dreiberg",
+    "matchBase": "30mm",
+    "id": "nite-owl-daniel-dreiberg-30mm"
+  },
+  {
+    "index": 476,
+    "matchName": "Rorschach",
+    "matchRealname": "Walter Joseph Kovacs",
+    "matchBase": "30mm",
+    "id": "rorschach-walter-joseph-kovacs-30mm"
+  },
+  {
+    "index": 477,
+    "matchName": "Bubastis",
+    "matchRealname": "Bubastis",
+    "matchBase": "40mm",
+    "id": "bubastis-bubastis-40mm"
+  },
+  {
+    "index": 478,
+    "matchName": "Ozymandias",
+    "matchRealname": "Adrian Alexander Veidt",
+    "matchBase": "60mm",
+    "id": "ozymandias-adrian-alexander-veidt-60mm"
+  },
+  {
+    "index": 479,
+    "matchName": "Psycho-Pirate",
+    "matchRealname": "Roger Hayden",
+    "matchBase": "40mm",
+    "id": "psycho-pirate-roger-hayden-40mm"
+  },
+  {
+    "index": 480,
+    "matchName": "Ratcatcher",
+    "matchRealname": "Otis Flannegan",
+    "matchBase": "40mm",
+    "id": "ratcatcher-otis-flannegan-40mm"
+  },
+  {
+    "index": 481,
+    "matchName": "Solomon Grundy",
+    "matchRealname": "Cyrus Gold",
+    "matchBase": "60mm",
+    "id": "solomon-grundy-cyrus-gold-60mm"
+  },
+  {
+    "index": 482,
+    "matchName": "Scarecrow",
+    "matchRealname": "Jonathan Crane",
+    "matchBase": "40mm",
+    "id": "scarecrow-jonathan-crane-40mm"
+  },
+  {
+    "index": 483,
+    "matchName": "Hush",
+    "matchRealname": "Thomas Elliot",
+    "matchBase": "40mm",
+    "id": "hush-thomas-elliot-40mm"
+  },
+  {
+    "index": 484,
+    "matchName": "Clock King",
+    "matchRealname": "William Tockman",
+    "matchBase": "40mm",
+    "id": "clock-king-william-tockman-40mm"
+  },
+  {
+    "index": 485,
+    "matchName": "Gentleman Ghost",
+    "matchRealname": "Jim Craddock",
+    "matchBase": "40mm",
+    "id": "gentleman-ghost-jim-craddock-40mm"
+  },
+  {
+    "index": 486,
+    "matchName": "Mad Hatter",
+    "matchRealname": "Jervis Tetch",
+    "matchBase": "40mm",
+    "id": "mad-hatter-jervis-tetch-40mm"
+  },
+  {
+    "index": 487,
+    "matchName": "Man-Bat",
+    "matchRealname": "Dr. Kirk Langstrom",
+    "matchBase": "60mm",
+    "id": "man-bat-dr-kirk-langstrom-60mm"
+  },
+  {
+    "index": 488,
+    "matchName": "Ten-Eyed Man",
+    "matchRealname": "Philip Reardon",
+    "matchBase": "40mm",
+    "id": "ten-eyed-man-philip-reardon-40mm"
+  },
+  {
+    "index": 489,
+    "matchName": "Lobo Paramilitary",
+    "matchRealname": "Unknown",
+    "matchBase": "40mm",
+    "id": "lobo-paramilitary-unknown-40mm"
+  },
+  {
+    "index": 490,
+    "matchName": "Calculator Classic",
+    "matchRealname": "Noah Kuttler",
+    "matchBase": "40mm",
+    "id": "calculator-classic-noah-kuttler-40mm"
+  },
+  {
+    "index": 491,
+    "matchName": "Catman The Hunter",
+    "matchRealname": "Thomas Reese Blake",
+    "matchBase": "40mm",
+    "id": "catman-the-hunter-thomas-reese-blake-40mm"
+  },
+  {
+    "index": 492,
+    "matchName": "Thug 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "thug-1-unknown-30mm"
+  },
+  {
+    "index": 493,
+    "matchName": "Harley Quinn Bewitched",
+    "matchRealname": "Dr. Harleen Frances Quinzel",
+    "matchBase": "40mm",
+    "id": "harley-quinn-bewitched-dr-harleen-frances-quinzel-40mm"
+  },
+  {
+    "index": 494,
+    "matchName": "Dr. Hugo Strange",
+    "matchRealname": "Hugo Strange",
+    "matchBase": "40mm",
+    "id": "dr-hugo-strange-hugo-strange-40mm"
+  },
+  {
+    "index": 495,
+    "matchName": "Thug 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "thug-2-unknown-30mm"
+  },
+  {
+    "index": 496,
+    "matchName": "Scarecrow Arkham Asylum",
+    "matchRealname": "Jonathan Crane",
+    "matchBase": "30mm",
+    "id": "scarecrow-arkham-asylum-jonathan-crane-30mm"
+  },
+  {
+    "index": 497,
+    "matchName": "Victor Zsasz",
+    "matchRealname": "Victor Zsasz",
+    "matchBase": "40mm",
+    "id": "victor-zsasz-victor-zsasz-40mm"
+  },
+  {
+    "index": 498,
+    "matchName": "Catwoman Julie Newmar",
+    "matchRealname": "Selina Kyle",
+    "matchBase": "30mm",
+    "id": "catwoman-julie-newmar-selina-kyle-30mm"
+  },
+  {
+    "index": 499,
+    "matchName": "Mr. Camera",
+    "matchRealname": "Harry Simms",
+    "matchBase": "40mm",
+    "id": "mr-camera-harry-simms-40mm"
+  },
+  {
+    "index": 500,
+    "matchName": "Condiment King",
+    "matchRealname": "Mitchell Mayo",
+    "matchBase": "40mm",
+    "id": "condiment-king-mitchell-mayo-40mm"
+  },
+  {
+    "index": 501,
+    "matchName": "Arkham Assistant 1",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "arkham-assistant-1-unknown-30mm"
+  },
+  {
+    "index": 502,
+    "matchName": "Thug 5",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "thug-5-unknown-30mm"
+  },
+  {
+    "index": 503,
+    "matchName": "Thug 3",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "thug-3-unknown-30mm"
+  },
+  {
+    "index": 504,
+    "matchName": "Crazy Quilt",
+    "matchRealname": "Paul Dekker",
+    "matchBase": "40mm",
+    "id": "crazy-quilt-paul-dekker-40mm"
+  },
+  {
+    "index": 505,
+    "matchName": "Sewer Swarm",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "sewer-swarm-unknown-30mm"
+  },
+  {
+    "index": 506,
+    "matchName": "Arkham Assistant 2",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "arkham-assistant-2-unknown-30mm"
+  },
+  {
+    "index": 507,
+    "matchName": "Thug 6",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "thug-6-unknown-30mm"
+  },
+  {
+    "index": 508,
+    "matchName": "Thug 4",
+    "matchRealname": "Unknown",
+    "matchBase": "30mm",
+    "id": "thug-4-unknown-30mm"
+  },
+  {
+    "index": 509,
+    "matchName": "Eraser",
+    "matchRealname": "Leonard Fiasco",
+    "matchBase": "40mm",
+    "id": "eraser-leonard-fiasco-40mm"
+  },
+  {
+    "index": 510,
+    "matchName": "Kite-Man",
+    "matchRealname": "Charles Brown",
+    "matchBase": "40mm",
+    "id": "kite-man-charles-brown-40mm"
+  },
+  {
+    "index": 511,
+    "matchName": "Signalman",
+    "matchRealname": "Phillip Cobb",
+    "matchBase": "40mm",
+    "id": "signalman-phillip-cobb-40mm"
+  },
+  {
+    "index": 512,
+    "matchName": "Calendar Man",
+    "matchRealname": "Julian Gregory Day",
+    "matchBase": "40mm",
+    "id": "calendar-man-julian-gregory-day-40mm"
+  },
+  {
+    "index": 513,
+    "matchName": "The Penguin Crime Lord Rising",
+    "matchRealname": "Oswald Chesterfield Cobblepot",
+    "matchBase": "40mm",
+    "id": "the-penguin-crime-lord-rising-oswald-chesterfield-cobblepot-40mm"
+  },
+  {
+    "index": 514,
+    "matchName": "Absolute Batman",
+    "matchRealname": "Bruce Wayne",
+    "matchBase": "40mm",
+    "id": "card-2026-absolute-batman"
+  },
+  {
+    "index": 515,
+    "matchName": "Sofia Gigante (The Penguin)",
+    "matchRealname": "Sofia Falcone Gigante",
+    "matchBase": "40mm",
+    "id": "card-2026-sofia-gigante-the-penguin"
+  }
+];
+
+for (const update of localModelStableIdUpdates) {
+  const target = models[update.index];
+  if (
+    target
+    && target.name === update.matchName
+    && (target.realname || "") === update.matchRealname
+    && (target.base || "") === update.matchBase
+  ) {
+    target.id = update.id;
+  }
+}
 
 function findOfficialModelSyncTarget(update) {
   const byIndex = models[update.index];
@@ -79725,9 +83229,24 @@ function findOfficialModelSyncTarget(update) {
     || null;
 }
 
-for (const update of officialModelSyncUpdates) {
+function applyOfficialModelSyncUpdate(update) {
   const target = findOfficialModelSyncTarget(update);
-  if (target) Object.assign(target, update.patch);
+  if (!target) return false;
+  Object.assign(target, update.patch);
+  return true;
+}
+
+const pendingOfficialModelSyncUpdates = [];
+for (const update of officialModelSyncUpdates) {
+  if (!applyOfficialModelSyncUpdate(update)) pendingOfficialModelSyncUpdates.push(update);
+}
+
+function applyPendingOfficialModelSyncUpdates() {
+  for (let index = pendingOfficialModelSyncUpdates.length - 1; index >= 0; index -= 1) {
+    if (applyOfficialModelSyncUpdate(pendingOfficialModelSyncUpdates[index])) {
+      pendingOfficialModelSyncUpdates.splice(index, 1);
+    }
+  }
 }
 
 for (const officialModel of officialModelExtensions) {
@@ -79822,7 +83341,7 @@ const cardProfileAdditions2026 = [
       "Obstinate",
       "Reinforced Gloves",
       "Savage Fighter {SPECIAL_ICON}",
-      "Spiked Bat-armor",
+      "Spiked-Batarmor",
       "Sturdy",
       "Tough Guy"
     ],
@@ -79896,6 +83415,11 @@ for (const cardModel of cardProfileAdditions2026) {
     models.push(cardModel);
   }
 }
+
+// These profiles are declared after the generated official layer so that their
+// local card images stay readable in source. Apply only sync updates whose
+// targets did not exist during the first pass.
+applyPendingOfficialModelSyncUpdates();
 // END CARD_PROFILE_UPDATES_2026
 
 const localOnlyModelVisibilityOverrides = [
@@ -80347,7 +83871,8 @@ const officialModelImageOverrides = {
   "838": "img/official-characters/838-john-economos-john-economos.png",
   "850": "img/official-characters/850-bruce-wayne-batman-dark-knight-rises.png",
   "851": "img/official-characters/851-selina-kyle-catwoman-dark-knight-rises.png",
-  "856": "img/official-characters/856-jade-nguyen-cheshire.png"
+  "856": "img/official-characters/856-jade-nguyen-cheshire.png",
+  "879": "img/official-characters/879-alfred-pennyworth-absolute-alfred.png"
 };
 
 function applyOfficialImageOverrides(collection, overrides) {
@@ -80400,7 +83925,7 @@ const traitDescriptions = {
     "Aerial Locator System": "Once per game at the start of the round, before determining who takes the lead, you can target one model currently in play. For the remainder of the round the target is illuminated, as if affected by a Lantern. \nNote that unlike the Lantern or Lamppost rules, only the target model is illuminated, not other models within 4”. NB. The rules governing line of sight apply as normal.",
     "Alpha": "This model's Attack and Defense cannot be reduced by any means.",
     "Always Illuminated": "This model is considered Illuminated and counts as a Light source with a radius of 2\".",
-    "Arkham's Scars": "You can choose to, instead of suffering any other Status on this model, suffer the Enervating (-1) Status.",
+    "Arkham's Scars": "You can choose to instead of suffering any other Status on this model to suffer the Enervating (+1) Status.",
     "Always on the Move": "This model can interrupt its Movement action to perform an Attack action, and then continue with its Movement action. The model must have enough actions available to use this trait.",
     "Always Prepared": "When this model Sets a Suspect, you may Set a Thwart within 4\" of that Suspect.",
     "Amazon": "This model receives a +1 bonus to its Attack and Defense rolls. In addition, enemy models roll 1 less attack die when targeting this model.",
@@ -80456,7 +83981,7 @@ const traitDescriptions = {
     "Bat-Armor Mk III": "Enemy models don’t roll a Strength die when attacking this model. In addition, if this model has moved this activation, it can make Melee Attacks against enemies up to 2” away in line of sight (ignore all traits that improve the model’s line of sight, such as Total Vision, for the purpose of these attacks).",
     "Bat Cape": "This model does not take Damage, nor can it be removed as a Casualty, as a result of Falling.",
     "Bat Family": "Keyword.",
-    "Bat Hooks {SPECIAL_ICON}": "Choose one:\nTarget an enemy model within 8\" and make an Opposed Endurance roll; if successful, place that model in contact with this model.\nor\nPlace this model within 6\".",
+    "Bat Hooks {SPECIAL_ICON}": "Choose one:\nTarget an enemy model within 8\" and make an Opposed Endurance roll. if successful, place that model in contact with this model.\nor\nPlace this model within 6\".",
     "Bat Beacon {SPECIAL_ICON}": "Target a Suspect within 6\". Place an Explosive Template centered over it and roll 2D6. All affected models with a Willpower value less than the result suffer Scared and Push (2) Statuses. If this model is affected, it may be placed anywhere within 4\" of its current position. This model ignores the Statuses caused by this trait. However, this model may not use this trait in two consecutive activations.",
     "Bat Form {SPECIAL_ICON}": "Target a Suspect within 6\". Place an Explosive Template centered over it and roll 2D6. All affected models with a Willpower value less than the result suffer Scared and Push (2) Statuses. If this model is affected, it may be placed anywhere within 4\" of its current position. This model ignores the Statuses caused by this trait. However, this model may not use this trait in two consecutive activations.",
     "Bat-Lenses": "When this model or a friendly model with Alias: Batman (Robert Pattinson) reveals an enemy Suspect, you may look at your opponent's Objective hand.",
@@ -80476,8 +84001,8 @@ const traitDescriptions = {
     "Berserker Fury {SPECIAL_ICON}": "This model gains +1 bonus to its Attack dice rolls and counts as two models for scoring Objective cards.",
     "Big Guy": "When this model suffers damage, reduce the damage suffered by 2 (to a minimum of 1).",
     "Big Bang Theory": "When this model would become KO or removed as a Casualty, remove all damage from this model. The opponent then places this model completely within 4” of its current position during the next Raise the plan phase you may assign 1 less Audacity per model that was either KO or removed as a Casualty. This model is still considered to have suffered the KO effect or become a Casualty for the purpose of traits and completing Objective cards.",
-    "Bio-Chemical Barrel {SPECIAL_ICON}": "Place an Explosive template completely within 8\". All models affected suffer Poison and should perform a poison endurance check immediately. (This trait can only be used once per round)",
-    "Bio-Chemical Recharge": "Once per Round, during this model activation:\nTarget a Poisoned Fish or Poison Barrel event marker within 4\", and place it in contact with an enemy model within 8\" and LoS. This model can use immediately the Bio-Chemical Barrel trait as a free action (you must affect that enemy model).",
+    "Bio-Chemical Barrel {SPECIAL_ICON}": "Place an Explosive template completely within 8\". All models affected suffer Poison and should perform a poison endurance check immediately. This trait can only be used once per round.",
+    "Bio-Chemical Recharge": "Once per Round, during this model's activation:\nTarget a Poisoned Fish or Poison Barrel event marker within 4\", and place it in contact with an enemy model within 8\" and LoS. This model can immediately use the Bio-Chemical Barrel trait as a free action (it must affect that enemy model).",
     "Bionic Eye": "This model ignores the Night rule, and may spend a Special Action while making a Ranged Attack to gain a +1 to Hit.",
     "Bipolar (Mental Disorder)": "At the beginning of this model’s activation, roll a die or flip a coin. If the result is even/heads, this model may make 1 Effort this round without taking a {STUN_ICON} marker. If the result is odd/tails, this model suffers the Enervating (1) Status.",
     "Biting": "Enemies within 6” that wish to perform an Action must first suffer the Enervating (1) Status. If they already have Enervating, they must instead increase their Enervating value by 1.",
@@ -80492,7 +84017,7 @@ const traitDescriptions = {
     "Bloody Christmas {SPECIAL_ICON}": "Before removing an enemy model as a Casualty by this model's actions, place a new friendly Suspect (if able) in contact with that model. That Suspect is also a Blood Present marker.",
     "Bloodlust": "When this model causes a KO or Casualty, you may place 2 {OBJECTIVE_CROSS_ICON} on top of the Psychopaths Objective card instead of 1.",
     "Bloodthirsty (Mental Disorder)": "During the Raise the Plan phase, if this model has at least 1 Damage marker of any kind, it gains +1 {+ATT_ICON}.",
-    "Bliss Distribution {SPECIAL_ICON}": "Target a friendly model within 8\" and LoS. The target model gains {MOV+4_ICON} and +2 {+ATT_ICON}. However, at the end of its activation it suffers {BLOOD_ICON}{BLOOD_ICON}.",
+    "Bliss Distribution {SPECIAL_ICON}": "Target a friendly model within 8\" and LoS. The target model gains {MOV+4_ICON} and 2 {+ATT_ICON}. However, at the end of its activation it suffers {BLOOD_ICON}{BLOOD_ICON}.",
     "Blow Up the Moon": "If a friendly Leonard model uses the New Laser trait within 8” of this model, you may immediately move this model up to 6” in any direction.",
     "Bluff {SPECIAL_ICON}": "Choose an enemy model within 6” and line of sight. The target reduces its Attacks skill by 1 until the end of the round. If multiple models with this trait target the same model, the effect is not cumulative.",
     "Blunt (X)": "Instead of inflicting normal Critical effect, the target suffers (X) {STUN_ICON} Damage upon a Critical Hit.",
@@ -80811,7 +84336,7 @@ const traitDescriptions = {
     "Faint": "When this model becomes KO, it is also removed as a Casualty.",
     "Falconry {SPECIAL_ICON}": "Until the end of the round, this model can perform ranged attacks against enemy models within 16”, ignoring cover and LoS, as long as the target models are within 6” of a friendly Suspect. If you remove that marker at the start of the Attack action, you may roll one additional Attack die.",
     "Family": "Model gains the Mobster trait.",
-    "Family Dinner": "Once per round, Sofia can inflict {BLOOD_ICON}{BLOOD_ICON} to a friendly model within 4\" to remove a Status from herself, remove 2 {BLOOD_ICON} from herself, or center an Explosive template over a friendly Suspect. This is resolved as an explosive Ranged Attack rolling a Strength 2+ die for each affected model, and inflicting Damage {BLOOD_ICON}{STUN_ICON} on a successful roll.",
+    "Family Dinner": "Once per round, Sofia can inflict {BLOOD_ICON}{BLOOD_ICON} to a friendly model within 4\" to remove a Status from herself, remove 2 {BLOOD_ICON} from herself, or center an Explosive template over a friendly Suspect. This is resolved as an Explosive Ranged Attack rolling a Strength 2+ die for each affected model, and inflicting Damage {BLOOD_ICON}{STUN_ICON} on a successful roll.",
     "Familiar with the Subject": "When this model places a Suspect within 4\" of an enemy model, you can search for a card that haves the same Suit as this model Keyword.",
     "Fast (X)": "Once per round this model may move X\" when a model resolves an action.",
     "Fast Allegation": "Model gains the Drop It! trait.",
@@ -81430,7 +84955,7 @@ const traitDescriptions = {
     "Slow (X)": "Status. A model suffering this effect reduces by its basic movement distance by (X) during its next Movement action.",
     "Slow Digestion": "After resolving a Devour attack that inflicts damage, remove the target from the gaming area. That model is ‘Devoured’. A Devoured model may still be activated each round, but can only take an Endurance roll. If it is successful, place the Devoured model within 2” of this model and continue its activation. If the Endurance roll fails, the Devoured model suffers {BLOOD_ICON}{BLOOD_ICON} damage. This model can only remove one enemy from the game in this way at the same time. If this model becomes a Casualty, place any model it Devoured within 2” before removing this model. If a model is still Devoured when the game ends, it is considered a Casualty.",
     "Small": "This model gains +1 Defense against enemy Ranged Attacks.",
-    "Spiked Bat-armor": "Enemy models don't roll a Strength die when attacking this model. In addition, when a melee attack action against this model is fully resolved, you can take 2 Efforts to deal 2 {BLOOD_ICON} to the attacker.",
+    "Spiked-Batarmor": "Enemy models don't roll a Strength die when attacking this model. In addition, when a melee attack action against this model is fully resolved, this model may make 2 Efforts to deal {BLOOD_ICON}{BLOOD_ICON} to the attacker.",
     "Small Caliber": "This weapon loses 2 dice instead of 1 if the target is not in effective range.",
     "Small Nightmare": "This model doesn't follows the Nightmare trait rules to come back to play while removed as a Casualty, instead they can be Set in play in contact with a friendly Suspect when a Fear card is returned to the Fear pile, they can only take an activation if they didn't take it before. In addition, this model gains +1 Defense against enemy Ranged Attacks.",
     "Smartest Man Alive {SPECIAL_ICON}": "Search into your Objective deck for 1 card, and add it to your hand.",
@@ -81497,7 +85022,7 @@ const traitDescriptions = {
     "Sneak Attack Takedown": "When this model inflicts a KO on an enemy model affected by this model's Sneak Attack trait, it can immediately take a Free Manipulate action.",
 
 
-    "Life-altering Injuries": "For scoring Objective cards, this model never counts as removing enemies as a Casualty; instead they always count as KOed models. When it does, this model may immediately Set a Suspect for free within 3\".",
+    "Life-altering Injuries": "For scoring Objective cards, this model never counts as removing enemies as a Casualty, instead they always count as KOed models. When this model removes an enemy as a Casualty, it may immediately Set a Suspect for free within 3\".",
     "Life-Force Absorption (Spell)": "Attack Action. 1 Magical counter. Take an opposed Willpower test against an enemy model within 4\" and LoS. If you pass the Willpower roll by a difference of up to 3, deal 1 ★ Damage to that model and remove 2 damage from this model. If you surpass the test by 4 or more, deal 2 ★ Damage to that model and remove 4 damage from this model.",
     "Magical Telekinesis (Spell)": "Manipulate Action. 2 Magical Counters. Target 2 combinations of 2 models or Suspects within 8\" and LoS to this model, move the selected items 4\".",
     "Telepathy (Spell)": "Movement Action. 1 Magic Counter. Target a friendly model and choose one option: Move the target its Movement value, or the target Sets a Suspect within 4\".",

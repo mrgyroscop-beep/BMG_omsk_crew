@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-09T04:00:00.796Z",
+  "generatedAt": "2026-09-01T06:57:10.109Z",
   "complete": true,
   "incomplete": [],
   "summary": {
@@ -44,7 +44,7 @@
     },
     "characters": {
       "type": "array",
-      "count": 646,
+      "count": 644,
       "fields": [
         "id",
         "name",
@@ -62,10 +62,10 @@
         "defense",
         "special",
         "endurance",
-        "reputation",
         "funding",
-        "eternal",
+        "reputation",
         "bases_size",
+        "eternal",
         "traits",
         "linked_to_characters",
         "linked_characters",
@@ -110,7 +110,7 @@
     },
     "traits": {
       "type": "array",
-      "count": 979,
+      "count": 986,
       "fields": [
         "id",
         "name",
@@ -151,8 +151,8 @@
         "name",
         "rate_of_fire",
         "ammunition",
-        "damage",
-        "traits"
+        "traits",
+        "damage"
       ]
     },
     "version": {
@@ -167,7 +167,7 @@
     },
     "images": {
       "type": "array",
-      "count": 1683,
+      "count": 1667,
       "fields": []
     },
     "rule_documents": {

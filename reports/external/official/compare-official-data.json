@@ -1,26 +1,26 @@
 {
-  "generatedAt": "2026-06-09T06:53:22.995Z",
+  "generatedAt": "2026-09-01T07:03:20.198Z",
   "officialMeta": {
     "source": "https://app.knightmodels.com/gamedata/",
-    "generatedAt": "2026-06-09T04:00:00.796Z",
+    "generatedAt": "2026-09-01T06:57:10.109Z",
     "complete": true,
-    "sourceBytes": 2437749,
-    "sourceDownloadedAt": "2026-06-09T03:43:36.553Z",
+    "sourceBytes": 2413743,
+    "sourceDownloadedAt": "2026-09-01T06:49:31.495Z",
     "incompleteSections": []
   },
   "counts": {
     "localBuilderCards": 390,
     "activeBuilderCards": 390,
     "builderCardsDisabledLocalOnly": 0,
-    "localMandatoryCards": 36,
-    "activeMandatoryCards": 19,
+    "localMandatoryCards": 50,
+    "activeMandatoryCards": 33,
     "mandatoryCardsDisabledLocalOnly": 17,
     "officialBuilderCards": 390,
     "officialMandatoryCards": 19,
     "officialCards": 409,
-    "localModels": 679,
+    "localModels": 682,
     "officialAffiliations": 21,
-    "localAffiliations": 21
+    "localAffiliations": 22
   },
   "cards": {
     "builder": {
@@ -32,7 +32,160 @@
     },
     "mandatory": {
       "missingLocal": [],
-      "missingOfficial": [],
+      "missingOfficial": [
+        {
+          "id": "crazy-jane-personality-scarlet-harlot",
+          "officialId": null,
+          "name": "SCARLET HARLOT",
+          "officialName": null,
+          "faction": [
+            "Doom Patrol",
+            "GCPD"
+          ],
+          "vp": null
+        },
+        {
+          "id": "crazy-jane-personality-hammerhead",
+          "officialId": null,
+          "name": "HAMMERHEAD",
+          "officialName": null,
+          "faction": [
+            "Doom Patrol",
+            "GCPD"
+          ],
+          "vp": null
+        },
+        {
+          "id": "crazy-jane-personality-black-annis",
+          "officialId": null,
+          "name": "BLACK ANNIS",
+          "officialName": null,
+          "faction": [
+            "Doom Patrol",
+            "GCPD"
+          ],
+          "vp": null
+        },
+        {
+          "id": "crazy-jane-personality-dr-harrison",
+          "officialId": null,
+          "name": "DR. HARRISON",
+          "officialName": null,
+          "faction": [
+            "Doom Patrol",
+            "GCPD"
+          ],
+          "vp": null
+        },
+        {
+          "id": "crazy-jane-personality-flit",
+          "officialId": null,
+          "name": "FLIT",
+          "officialName": null,
+          "faction": [
+            "Doom Patrol",
+            "GCPD"
+          ],
+          "vp": null
+        },
+        {
+          "id": "crazy-jane-personality-mama-pentecost",
+          "officialId": null,
+          "name": "MAMA PENTECOST",
+          "officialName": null,
+          "faction": [
+            "Doom Patrol",
+            "GCPD"
+          ],
+          "vp": null
+        },
+        {
+          "id": "crazy-jane-personality-baby-doll",
+          "officialId": null,
+          "name": "BABY DOLL",
+          "officialName": null,
+          "faction": [
+            "Doom Patrol",
+            "GCPD"
+          ],
+          "vp": null
+        },
+        {
+          "id": "crazy-jane-personality-the-snow-queen",
+          "officialId": null,
+          "name": "THE SNOW QUEEN",
+          "officialName": null,
+          "faction": [
+            "Doom Patrol",
+            "GCPD"
+          ],
+          "vp": null
+        },
+        {
+          "id": "crazy-jane-personality-the-sin-eater",
+          "officialId": null,
+          "name": "THE SIN-EATER",
+          "officialName": null,
+          "faction": [
+            "Doom Patrol",
+            "GCPD"
+          ],
+          "vp": null
+        },
+        {
+          "id": "crazy-jane-personality-flaming-katy",
+          "officialId": null,
+          "name": "FLAMING KATY",
+          "officialName": null,
+          "faction": [
+            "Doom Patrol",
+            "GCPD"
+          ],
+          "vp": null
+        },
+        {
+          "id": "crazy-jane-personality-lucy-fugue",
+          "officialId": null,
+          "name": "LUCY FUGUE",
+          "officialName": null,
+          "faction": [
+            "Doom Patrol",
+            "GCPD"
+          ],
+          "vp": null
+        },
+        {
+          "id": "crazy-jane-personality-lady-purple",
+          "officialId": null,
+          "name": "LADY PURPLE",
+          "officialName": null,
+          "faction": [
+            "Doom Patrol",
+            "GCPD"
+          ],
+          "vp": null
+        },
+        {
+          "id": "riddler-riddle-markers",
+          "officialId": null,
+          "name": "RIDDLE MARKERS",
+          "officialName": null,
+          "faction": [
+            "The Riddler"
+          ],
+          "vp": null
+        },
+        {
+          "id": "riddler-face-down-cards",
+          "officialId": null,
+          "name": "RIDDLER FACE DOWN CARDS",
+          "officialName": null,
+          "faction": [
+            "The Riddler"
+          ],
+          "vp": null
+        }
+      ],
       "differences": [],
       "ambiguous": [],
       "disabledLocalOnly": [
@@ -109,6 +262,8 @@
   },
   "affiliations": {
     "missingLocal": [],
-    "missingOfficial": []
+    "missingOfficial": [
+      "Birds of Prey"
+    ]
   }
 }

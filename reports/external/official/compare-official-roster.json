@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-06-09T09:31:26.032Z",
+  "generatedAt": "2026-09-01T07:03:20.429Z",
   "officialMeta": {
     "source": "https://app.knightmodels.com/gamedata/",
-    "generatedAt": "2026-06-09T04:00:00.796Z",
+    "generatedAt": "2026-09-01T06:57:10.109Z",
     "complete": true,
-    "sourceBytes": 2437749,
-    "sourceDownloadedAt": "2026-06-09T03:43:36.553Z",
+    "sourceBytes": 2413743,
+    "sourceDownloadedAt": "2026-09-01T06:49:31.495Z",
     "incompleteSections": []
   },
   "counts": {
-    "localModels": 679,
-    "activeLocalModels": 646,
-    "modelsDisabledLocalOnly": 33,
-    "officialCharacters": 646,
-    "matchedModels": 646,
-    "unmatchedLocalModels": 0,
+    "localModels": 682,
+    "activeLocalModels": 682,
+    "modelsDisabledLocalOnly": 0,
+    "officialCharacters": 644,
+    "matchedModels": 644,
+    "unmatchedLocalModels": 38,
     "ambiguousLocalModels": 0,
     "officialCharactersMissingLocal": 0,
-    "modelDifferences": 0,
+    "modelDifferences": 2,
     "localEquipment": 340,
     "officialEquipment": 324,
     "activeLocalEquipment": 324,
@@ -307,13 +307,6 @@
         "officialId": 815,
         "officialName": "Wally West",
         "officialAlias": "Kid Flash",
-        "score": 10000
-      },
-      {
-        "localName": "Batman The Gotham City Knight",
-        "officialId": 886,
-        "officialName": "Bruce Wayne",
-        "officialAlias": "Batman (The Gotham City Knight)",
         "score": 10000
       },
       {
@@ -1304,13 +1297,6 @@
         "score": 10000
       },
       {
-        "localName": "Blunderbuss Clown",
-        "officialId": 883,
-        "officialName": "Unknown",
-        "officialAlias": "Blunderbuss Clown",
-        "score": 10000
-      },
-      {
         "localName": "Joker's Victim 1",
         "officialId": 690,
         "officialName": "Unknown",
@@ -1340,14 +1326,14 @@
       },
       {
         "localName": "Axe Clown",
-        "officialId": 881,
+        "officialId": 884,
         "officialName": "Unknown",
         "officialAlias": "Axe Clown",
         "score": 10000
       },
       {
         "localName": "Barrel Clown",
-        "officialId": 880,
+        "officialId": 883,
         "officialName": "Unknown",
         "officialAlias": "Barrel Clown",
         "score": 10000
@@ -1360,13 +1346,6 @@
         "score": 10000
       },
       {
-        "localName": "Chainsaw Clown",
-        "officialId": 882,
-        "officialName": "Unknown",
-        "officialAlias": "Chainsaw Clown",
-        "score": 10000
-      },
-      {
         "localName": "Street Jester 1",
         "officialId": 747,
         "officialName": "Unknown",
@@ -1375,7 +1354,7 @@
       },
       {
         "localName": "Thorgon",
-        "officialId": 879,
+        "officialId": 882,
         "officialName": "Unknown",
         "officialAlias": "Thorgon",
         "score": 10000
@@ -1455,13 +1434,6 @@
         "officialId": 416,
         "officialName": "Unknown",
         "officialAlias": "Ace of Spades",
-        "score": 10000
-      },
-      {
-        "localName": "Slingy Clown",
-        "officialId": 884,
-        "officialName": "Unknown",
-        "officialAlias": "Slingy Clown",
         "score": 10000
       },
       {
@@ -1546,13 +1518,6 @@
         "officialId": 855,
         "officialName": "Unknown",
         "officialAlias": "Joker (Explosive Arrival)",
-        "score": 10000
-      },
-      {
-        "localName": "Joker (Bat-Armor)",
-        "officialId": 885,
-        "officialName": "Unknown",
-        "officialAlias": "Joker (Bat-Armor)",
         "score": 10000
       },
       {
@@ -1899,7 +1864,7 @@
         "score": 10000
       },
       {
-        "localName": "Emperor Penguin Unchained",
+        "localName": "Emperor Penguin (Unchained)",
         "officialId": 650,
         "officialName": "Ignatius Ogilvy",
         "officialAlias": "Emperor Penguin (Unchained)",
@@ -4550,15 +4515,67 @@
         "officialName": "Jade Nguyen",
         "officialAlias": "Cheshire",
         "score": 10000
+      },
+      {
+        "localName": "Absolute Alfred",
+        "officialId": 879,
+        "officialName": "Alfred Pennyworth",
+        "officialAlias": "Absolute Alfred",
+        "score": 10000
+      },
+      {
+        "localName": "Absolute Batman",
+        "officialId": 880,
+        "officialName": "Bruce Wayne",
+        "officialAlias": "Absolute Batman",
+        "score": 10000
+      },
+      {
+        "localName": "Sofia Gigante (The Penguin)",
+        "officialId": 881,
+        "officialName": "Sofia Falcone Gigante",
+        "officialAlias": "Sofia Gigante (The Penguin)",
+        "score": 10000
       }
     ],
-    "differences": [],
-    "unmatchedLocal": [],
-    "disabledLocalOnly": [
+    "differences": [
+      {
+        "localName": "Emperor Penguin (Unchained)",
+        "localRealName": "Ignatius Ogilvy",
+        "officialId": 650,
+        "officialName": "Ignatius Ogilvy",
+        "officialAlias": "Emperor Penguin (Unchained)",
+        "score": 10000,
+        "differences": {
+          "traits": {
+            "missingLocal": [],
+            "missingOfficial": [
+              "The Emperor"
+            ]
+          }
+        }
+      },
+      {
+        "localName": "Mr. Toxic",
+        "localRealName": "Hugh Marder",
+        "officialId": 651,
+        "officialName": "Hugh Marder",
+        "officialAlias": "Mr. Toxic",
+        "score": 10000,
+        "differences": {
+          "traits": {
+            "missingLocal": [],
+            "missingOfficial": [
+              "Scientific"
+            ]
+          }
+        }
+      }
+    ],
+    "unmatchedLocal": [
       {
         "localName": "Warden Sharp",
         "localRealName": "Quincy Ulysses Sharp",
-        "base": "30mm",
         "rep": 50,
         "funding": 0,
         "rank": [
@@ -4568,12 +4585,12 @@
         "faction": [
           "League of Shadows",
           "GCPD"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Jokermobile Arkham Knight",
         "localRealName": "Unknown",
-        "base": "90mm",
         "rep": 130,
         "funding": 0,
         "rank": [
@@ -4581,12 +4598,12 @@
         ],
         "faction": [
           "Joker"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Poison Ivy Arkham City",
         "localRealName": "Dr. Pamela Lillian Isley",
-        "base": "30mm",
         "rep": 101,
         "funding": 0,
         "rank": [
@@ -4594,12 +4611,12 @@
         ],
         "faction": [
           "Birds of Prey"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Batmobile Arkham Knight",
         "localRealName": "Bruce Wayne",
-        "base": "90mm",
         "rep": 160,
         "funding": 0,
         "rank": [
@@ -4608,12 +4625,12 @@
         "faction": [
           "Bat Family",
           "GCPD"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Batman Arkham City",
         "localRealName": "Bruce Wayne",
-        "base": "60mm",
         "rep": 125,
         "funding": 0,
         "rank": [
@@ -4622,12 +4639,12 @@
         "faction": [
           "Bat Family",
           "GCPD"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Green Arrow (Arrow)",
         "localRealName": "Oliver Queen",
-        "base": "30mm",
         "rep": 120,
         "funding": 0,
         "rank": [
@@ -4635,12 +4652,12 @@
         ],
         "faction": [
           "GCPD"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Mad Hatter Arkham Knight",
         "localRealName": "Jervis Tech",
-        "base": "30mm",
         "rep": 70,
         "funding": 200,
         "rank": [
@@ -4648,12 +4665,12 @@
         ],
         "faction": [
           "Unknown"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Rebel Armored Assassin",
         "localRealName": "Unknown",
-        "base": "30mm",
         "rep": 35,
         "funding": 200,
         "rank": [
@@ -4661,12 +4678,12 @@
         ],
         "faction": [
           "League of Shadows"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Rebel Masked Assassin 2",
         "localRealName": "Unknown",
-        "base": "30mm",
         "rep": 28,
         "funding": 0,
         "rank": [
@@ -4674,12 +4691,12 @@
         ],
         "faction": [
           "League of Shadows"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Rebel Monk",
         "localRealName": "Unknown",
-        "base": "40mm",
         "rep": 35,
         "funding": 0,
         "rank": [
@@ -4687,12 +4704,12 @@
         ],
         "faction": [
           "League of Shadows"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Rebel Masked Assassin 1",
         "localRealName": "Unknown",
-        "base": "30mm",
         "rep": 35,
         "funding": 150,
         "rank": [
@@ -4700,12 +4717,12 @@
         ],
         "faction": [
           "League of Shadows"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Shadow Armored Assassin",
         "localRealName": "Unknown",
-        "base": "30mm",
         "rep": 32,
         "funding": 0,
         "rank": [
@@ -4713,12 +4730,12 @@
         ],
         "faction": [
           "League of Shadows"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Armored Assassin",
         "localRealName": "Unknown",
-        "base": "30mm",
         "rep": 29,
         "funding": 200,
         "rank": [
@@ -4726,12 +4743,12 @@
         ],
         "faction": [
           "League of Shadows"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Guardian Monk",
         "localRealName": "Unknown",
-        "base": "40mm",
         "rep": 52,
         "funding": 0,
         "rank": [
@@ -4739,12 +4756,12 @@
         ],
         "faction": [
           "League of Shadows"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Nyssa al Ghul (Arkham Knight)",
         "localRealName": "Nyssa Raatko",
-        "base": "40mm",
         "rep": 100,
         "funding": 0,
         "rank": [
@@ -4752,12 +4769,12 @@
         ],
         "faction": [
           "League of Shadows"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Henry Ducard",
         "localRealName": "Unknown",
-        "base": "30mm",
         "rep": 108,
         "funding": 0,
         "rank": [
@@ -4766,12 +4783,12 @@
         ],
         "faction": [
           "League of Shadows"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Raven Trigon's Daughter",
         "localRealName": "Rachel Roth",
-        "base": "60mm",
         "rep": 70,
         "funding": 200,
         "rank": [
@@ -4779,12 +4796,12 @@
         ],
         "faction": [
           "Bat Family"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Ra's al Ghul Decoy",
         "localRealName": "Unknown",
-        "base": "30mm",
         "rep": 46,
         "funding": 0,
         "rank": [
@@ -4792,12 +4809,12 @@
         ],
         "faction": [
           "League of Shadows"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "League of Shadows Ninja 1",
         "localRealName": "Unknown",
-        "base": "30mm",
         "rep": 40,
         "funding": 100,
         "rank": [
@@ -4805,12 +4822,12 @@
         ],
         "faction": [
           "League of Shadows"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "League of Shadows Ninja 3",
         "localRealName": "Unknown",
-        "base": "30mm",
         "rep": 26,
         "funding": 300,
         "rank": [
@@ -4818,12 +4835,12 @@
         ],
         "faction": [
           "League of Shadows"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Bruce Batman Begins",
         "localRealName": "Bruce Wayne",
-        "base": "30mm",
         "rep": 52,
         "funding": 0,
         "rank": [
@@ -4831,12 +4848,12 @@
         ],
         "faction": [
           "League of Shadows"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Gordon Infiltrate",
         "localRealName": "James W. Gordon",
-        "base": "30mm",
         "rep": 40,
         "funding": 300,
         "rank": [
@@ -4844,12 +4861,12 @@
         ],
         "faction": [
           "GCPD"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "League of Shadows Ninja 2",
         "localRealName": "Unknown",
-        "base": "30mm",
         "rep": 28,
         "funding": 0,
         "rank": [
@@ -4857,12 +4874,12 @@
         ],
         "faction": [
           "League of Shadows"
-        ]
+        ],
+        "candidates": []
       },
       {
         "localName": "Batman Dark Knight Rises Batpod",
         "localRealName": "Bruce Wayne / 42x75mm",
-        "base": "42x75mm",
         "rep": 120,
         "funding": 0,
         "rank": [
@@ -4870,103 +4887,12 @@
         ],
         "faction": [
           "GCPD"
-        ]
-      },
-      {
-        "localName": "Chuckcles",
-        "localRealName": "Unknown",
-        "base": "30mm",
-        "rep": 23,
-        "funding": 200,
-        "rank": [
-          "Henchman"
         ],
-        "faction": [
-          "Joker"
-        ]
+        "candidates": []
       },
       {
-        "localName": "Rastaclow",
-        "localRealName": "Unknown",
-        "base": "30mm",
-        "rep": 21,
-        "funding": 600,
-        "rank": [
-          "Henchman"
-        ],
-        "faction": [
-          "Joker"
-        ]
-      },
-      {
-        "localName": "Hassassin 4",
-        "localRealName": "Unknown",
-        "base": "30mm",
-        "rep": 22,
-        "funding": 0,
-        "rank": [
-          "Henchman"
-        ],
-        "faction": [
-          "League of Shadows"
-        ]
-      },
-      {
-        "localName": "Hassassin 1",
-        "localRealName": "Unknown",
-        "base": "30mm",
-        "rep": 20,
-        "funding": 0,
-        "rank": [
-          "Henchman"
-        ],
-        "faction": [
-          "League of Shadows"
-        ]
-      },
-      {
-        "localName": "Hassassin 3",
-        "localRealName": "Unknown",
-        "base": "30mm",
-        "rep": 20,
-        "funding": 100,
-        "rank": [
-          "Henchman"
-        ],
-        "faction": [
-          "League of Shadows"
-        ]
-      },
-      {
-        "localName": "Hassassin 2",
-        "localRealName": "Unknown",
-        "base": "30mm",
-        "rep": 24,
-        "funding": 0,
-        "rank": [
-          "Henchman"
-        ],
-        "faction": [
-          "League of Shadows"
-        ]
-      },
-      {
-        "localName": "Harley Quinn KaBoom!",
-        "localRealName": "Dr. Harleen Frances Quinzel",
-        "base": "60mm",
-        "rep": 84,
-        "funding": 0,
-        "rank": [
-          "Sidekick"
-        ],
-        "faction": [
-          "Birds of Prey"
-        ]
-      },
-      {
-        "localName": "Batgirl Vampire Queen",
-        "localRealName": "Barbara Gordon",
-        "base": "40mm",
+        "localName": "Batman The Gotham City Knight",
+        "localRealName": "Bruce Wayne",
         "rep": 130,
         "funding": 0,
         "rank": [
@@ -4975,12 +4901,169 @@
         "faction": [
           "Bat Family",
           "GCPD"
-        ]
+        ],
+        "candidates": []
+      },
+      {
+        "localName": "Chuckcles",
+        "localRealName": "Unknown",
+        "rep": 23,
+        "funding": 200,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "Joker"
+        ],
+        "candidates": []
+      },
+      {
+        "localName": "Blunderbuss Clown",
+        "localRealName": "Unknown",
+        "rep": 16,
+        "funding": 200,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "Joker"
+        ],
+        "candidates": []
+      },
+      {
+        "localName": "Chainsaw Clown",
+        "localRealName": "Unknown",
+        "rep": 18,
+        "funding": 350,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "Joker"
+        ],
+        "candidates": []
+      },
+      {
+        "localName": "Rastaclow",
+        "localRealName": "Unknown",
+        "rep": 21,
+        "funding": 600,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "Joker"
+        ],
+        "candidates": []
+      },
+      {
+        "localName": "Slingy Clown",
+        "localRealName": "Unknown",
+        "rep": 16,
+        "funding": 200,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "Joker"
+        ],
+        "candidates": []
+      },
+      {
+        "localName": "Joker (Bat-Armor)",
+        "localRealName": "Unknown",
+        "rep": 85,
+        "funding": 0,
+        "rank": [
+          "Leader"
+        ],
+        "faction": [
+          "Joker"
+        ],
+        "candidates": []
+      },
+      {
+        "localName": "Hassassin 4",
+        "localRealName": "Unknown",
+        "rep": 22,
+        "funding": 0,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ],
+        "candidates": []
+      },
+      {
+        "localName": "Hassassin 1",
+        "localRealName": "Unknown",
+        "rep": 20,
+        "funding": 0,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ],
+        "candidates": []
+      },
+      {
+        "localName": "Hassassin 3",
+        "localRealName": "Unknown",
+        "rep": 20,
+        "funding": 100,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ],
+        "candidates": []
+      },
+      {
+        "localName": "Hassassin 2",
+        "localRealName": "Unknown",
+        "rep": 24,
+        "funding": 0,
+        "rank": [
+          "Henchman"
+        ],
+        "faction": [
+          "League of Shadows"
+        ],
+        "candidates": []
+      },
+      {
+        "localName": "Harley Quinn KaBoom!",
+        "localRealName": "Dr. Harleen Frances Quinzel",
+        "rep": 84,
+        "funding": 0,
+        "rank": [
+          "Sidekick"
+        ],
+        "faction": [
+          "Birds of Prey"
+        ],
+        "candidates": []
+      },
+      {
+        "localName": "Batgirl Vampire Queen",
+        "localRealName": "Barbara Gordon",
+        "rep": 130,
+        "funding": 0,
+        "rank": [
+          "Leader"
+        ],
+        "faction": [
+          "Bat Family",
+          "GCPD"
+        ],
+        "candidates": []
       },
       {
         "localName": "The Penguin Crime Lord Rising",
         "localRealName": "Oswald Chesterfield Cobblepot",
-        "base": "40mm",
         "rep": 74,
         "funding": 0,
         "rank": [
@@ -4988,9 +5071,11 @@
         ],
         "faction": [
           "Penguin"
-        ]
+        ],
+        "candidates": []
       }
     ],
+    "disabledLocalOnly": [],
     "ambiguousLocal": [],
     "missingLocal": []
   },

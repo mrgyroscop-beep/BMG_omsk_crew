@@ -125,7 +125,12 @@ if (!best?.tempPath || !fs.existsSync(best.tempPath)) {
   throw new Error("No official gamedata payload was downloaded.");
 }
 
-fs.copyFileSync(best.tempPath, OUT_JSON);
+if (best.validJson) {
+  const payload = JSON.parse(fs.readFileSync(best.tempPath, "utf8"));
+  fs.writeFileSync(OUT_JSON, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
+} else {
+  fs.copyFileSync(best.tempPath, OUT_JSON);
+}
 fs.writeFileSync(OUT_META, JSON.stringify({
   source: SOURCE_URL,
   downloadedAt: new Date().toISOString(),
