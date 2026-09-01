@@ -110,10 +110,103 @@ const speedforceCards = [
   )
 ];
 
+function crazyJanePersonalityCard(id, name, en, ru) {
+  return {
+    id: `crazy-jane-personality-${id}`,
+    name,
+    type: "Personality",
+    category: "character",
+    faction: ["Doom Patrol", "GCPD"],
+    mandatory: true,
+    countsForDeck: false,
+    requiredModels: ["Crazy Jane"],
+    showWhenRequirementMet: true,
+    text: { en, ru }
+  };
+}
+
+// Crazy Jane's physical card set is not included in the official gamedata API.
+// These 12 Personalities are transcribed from the cards supplied with the model.
+const crazyJanePersonalityCards = [
+  crazyJanePersonalityCard(
+    "scarlet-harlot",
+    "SCARLET HARLOT",
+    `Once per round, this model can spend 2SC. If it does, all enemy models within 6" lose 1 Action Counter of your choice. In addition, once per round this model can spend 1SC to target an enemy model within 4" and line of sight — the target reduces its Defense by 1 until the end of the round.`,
+    `Один раз за раунд эта модель может потратить 2SC. В этом случае все вражеские модели в пределах 6" теряют 1 выбранный вами Action Counter. Кроме того, один раз за раунд эта модель может потратить 1SC и выбрать вражескую модель в пределах 4" и линии видимости — выбранная модель получает −1 Defense до конца раунда.`
+  ),
+  crazyJanePersonalityCard(
+    "hammerhead",
+    "HAMMERHEAD",
+    `Unarmed attacks inflict ★★★ Damage. This model gains +2 to its Damage rolls, and each strike the model makes requires 2 successful Block rolls to successfully defend against.`,
+    `Безоружные атаки наносят ★★★ Damage. Эта модель получает +2 к броскам Damage, а для защиты от каждого нанесённого ею удара требуются 2 успешных броска Block.`
+  ),
+  crazyJanePersonalityCard(
+    "black-annis",
+    "BLACK ANNIS",
+    `Gain +1 Attack and +1 to Damage rolls. May reroll failed Damage rolls. In addition, this model's Unarmed Attacks inflict 🩸★.`,
+    `Модель получает +1 Attack и +1 к броскам Damage. Она может перебрасывать проваленные броски Damage. Кроме того, её безоружные атаки наносят 🩸★.`
+  ),
+  crazyJanePersonalityCard(
+    "dr-harrison",
+    "DR. HARRISON",
+    `Once per round, this model can spend 2SC to select up to 2 enemy non-vehicle models within 8" and line of sight. The targets immediately suffer the Hypnotize effect. In addition, enemy models within 4" of this model at the end of the round suffer −1 Willpower during the next round.`,
+    `Один раз за раунд эта модель может потратить 2SC и выбрать до 2 вражеских моделей, не являющихся Vehicle, в пределах 8" и линии видимости. Выбранные модели немедленно получают эффект Hypnotize. Кроме того, вражеские модели в пределах 4" от этой модели в конце раунда получают −1 Willpower в следующем раунде.`
+  ),
+  crazyJanePersonalityCard(
+    "flit",
+    "FLIT",
+    `Once per round, during this model's activation, you can place it anywhere on the board.`,
+    `Один раз за раунд во время активации этой модели вы можете разместить её в любом месте игрового поля.`
+  ),
+  crazyJanePersonalityCard(
+    "mama-pentecost",
+    "MAMA PENTECOST",
+    `All friendly models gain 1 additional VP when Controlling an Objective. In addition, friendly models always score an Inspired Solution result when manipulating a Riddle Objective.`,
+    `Все дружественные модели получают 1 дополнительный VP при контроле Objective. Кроме того, дружественные модели всегда получают результат Inspired Solution при выполнении Manipulate с Riddle Objective.`
+  ),
+  crazyJanePersonalityCard(
+    "baby-doll",
+    "BABY DOLL",
+    `All models within 4" suffer −2 to their Damage rolls. In addition, whenever this model is the target of an attack, the attacker must pass a Willpower roll or the attack automatically fails.`,
+    `Все модели в пределах 4" получают −2 к броскам Damage. Кроме того, когда эта модель становится целью атаки, атакующий должен пройти бросок Willpower, иначе атака автоматически проваливается.`
+  ),
+  crazyJanePersonalityCard(
+    "the-snow-queen",
+    "THE SNOW QUEEN",
+    `This model's Unarmed Attacks inflict the Cooled effect. In addition, once per round you can select a model within 10" and line of sight: the target must pass an Endurance roll, or become subject to the Cooled effect. If the target passes the Endurance roll, it still suffers −1 to Defense until the end of the round and loses 1MC.`,
+    `Безоружные атаки этой модели накладывают эффект Cooled. Кроме того, один раз за раунд вы можете выбрать модель в пределах 10" и линии видимости: цель должна пройти бросок Endurance, иначе она получает эффект Cooled. Если цель проходит бросок Endurance, она всё равно получает −1 Defense до конца раунда и теряет 1MC.`
+  ),
+  crazyJanePersonalityCard(
+    "the-sin-eater",
+    "THE SIN-EATER",
+    `This model ignores all Damage suffered.`,
+    `Эта модель игнорирует весь полученный Damage.`
+  ),
+  crazyJanePersonalityCard(
+    "flaming-katy",
+    "FLAMING KATY",
+    `Can use the Flame Bolts Weapon. Enemy models that end their activations within 4" of this model suffer the Fire effect.`,
+    `Может использовать оружие Flame Bolts. Вражеские модели, завершившие активацию в пределах 4" от этой модели, получают эффект Fire.`
+  ),
+  crazyJanePersonalityCard(
+    "lucy-fugue",
+    "LUCY FUGUE",
+    `Can use the Lightning Weapon and can see any distance, ignoring obstacles and terrain. This model can perform ranged attacks through scenery, ignoring Ping!`,
+    `Может использовать оружие Lightning и видит на любую дистанцию, игнорируя препятствия и элементы местности. Эта модель может выполнять дальние атаки сквозь элементы местности, игнорируя Ping!`
+  ),
+  crazyJanePersonalityCard(
+    "lady-purple",
+    "LADY PURPLE",
+    `Gain +1 Willpower. This model may reroll any of its dice rolls. In addition, friendly models within 4" may reroll 1 die per activation.`,
+    `Модель получает +1 Willpower и может перебрасывать любые свои броски кубиков. Кроме того, дружественные модели в пределах 4" могут перебросить 1 кубик за активацию.`
+  )
+];
+
 // ======================== КАРТЫ ДЛЯ БИЛДЕРА ========================
 // Каталог пока наполняется постепенно. Названия карт оставляем как на оригинальной карте.
 const builderMandatoryCards = [
   ...speedforceCards,
+  ...crazyJanePersonalityCards,
   {
     id: "vigilantes-special-rules",
     name: "VIGILANTES SPECIAL RULES",
@@ -373,6 +466,28 @@ const builderMandatoryCards = [
     text: {
       en: "INFECTED\n\nWhen a model gains an Infected counter, that model discards any previously gained Infected counters.\n\nFREED\n\nRemove an Infected counter from an enemy model. Place up to 2 models with the Freed trait previously removed as Casualty. Place them within 4” of a friendly model (Alias: Batman Who Laughs). If the enemy model has the Rank: {RANK_LEADER_ICON} or {RANK_SIDEKICK_ICON}, you may increase the cost of this Resource to 1 to place a model with He Freed Me trait instead.\n\nA model placed this way may be activated as normal if it did not already activate earlier in this Round. The opponent gains a Pass marker for each model placed.",
       ru: "INFECTED\n\nКогда модель получает Infected counter, она сбрасывает все ранее полученные Infected counters.\n\nFREED\n\nУберите Infected counter с вражеской модели. Разместите до 2 моделей с трейтом Freed, ранее удаленных как Casualty. Разместите их в пределах 4” от дружественной модели (Alias: Batman Who Laughs). Если вражеская модель имеет Rank: {RANK_LEADER_ICON} или {RANK_SIDEKICK_ICON}, вы можете увеличить стоимость этого Resource до 1, чтобы вместо этого разместить модель с трейтом He Freed Me.\n\nМодель, размещенная таким образом, может активироваться как обычно, если она еще не активировалась ранее в этом раунде. Оппонент получает Pass marker за каждую размещенную модель."
+    }
+  },
+  {
+    id: "km-card-434",
+    officialId: 434,
+    officialName: "Owl Markers Rules",
+    officialImage: "https://app.knightmodels.com/images/card/owl-markers-rules-1701445793.jpg",
+    name: "Owl Markers Rules",
+    img: "img/cards/official/434-owl-markers-rules.jpg",
+    renderAsCardImage: true,
+    type: "Special Rules",
+    category: "crew",
+    faction: ["Court of Owls"],
+    isGeneral: false,
+    value: "0 VP",
+    vp: 0,
+    maxPerDeck: 1,
+    mandatory: true,
+    countsForDeck: false,
+    text: {
+      en: "Before any models have been Deployed, Set 3 friendly Owl markers (30mm) anywhere in Play.\n\nWhen a friendly model Sets a Suspect, Move 1 friendly Owl 4”.",
+      ru: "До того как будут выставлены любые модели, выставьте 3 дружественных маркера Owl (30 мм) в любом месте игровой зоны.\n\nКогда дружественная модель выставляет Suspect, передвиньте 1 дружественный маркер Owl на 4”."
     }
   }
 ];
@@ -13419,28 +13534,6 @@ const officialMandatoryCardExtensions = [
     "mandatory": true,
     "id": "km-card-348",
     "name": "Royal Flush Gang Special Rules",
-    "img": "img/no.png",
-    "officialOnly": true
-  },
-  {
-    "officialId": 434,
-    "officialName": "Owl Markers Rules",
-    "officialImage": "https://app.knightmodels.com/images/card/owl-markers-rules-1701445793.jpg",
-    "officialObjectiveTypeId": null,
-    "renderAsCardImage": true,
-    "type": "Special Rules",
-    "category": "crew",
-    "isGeneral": false,
-    "value": "0 VP",
-    "vp": 0,
-    "maxPerDeck": 1,
-    "countsForDeck": false,
-    "faction": [
-      "Court of Owls"
-    ],
-    "mandatory": true,
-    "id": "km-card-434",
-    "name": "Owl Markers Rules",
     "img": "img/no.png",
     "officialOnly": true
   },
