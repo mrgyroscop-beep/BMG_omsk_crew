@@ -13,6 +13,10 @@
     onlyBossAffiliationOrNoAffiliation: true, // Только персонажи с аффилиацией Босса или без аффилиации
     onlyBossAffiliationObjectives: true, // Только объективы с аффилиацией Босса или без аффилиации
     mustHaveLeaderAsBoss: true // Должен быть Leader как Босс
+  },
+  "Doom Patrol": {
+    // Official team rule: The Chief keeps the Sidekick rank, but is always this team's Boss.
+    alwaysTeamBossModels: ["The Chief"]
   }
   // Другие фракции могут иметь стандартные правила (пустой объект или null)
 };

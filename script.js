@@ -788,6 +788,7 @@ const translations = {
     builder_tournament_mode: "Турнирная банда",
     builder_tournament_rules: "Турнир: 350 REP / $1500 / 20 карт целей",
     builder_tournament_limit_locked: "Для турнирной банды лимит зафиксирован на 350 REP.",
+    builder_role_boss: "Boss",
     nothing_found: "Ничего не найдено",
     subtitle: "Batman: Gotham Chronicles<br>Конструктор отрядов",
     leader_first: "Первой моделью должен быть Leader для этой фракции!",
@@ -1130,6 +1131,7 @@ const translations = {
     builder_tournament_mode: "Tournament crew",
     builder_tournament_rules: "Tournament: 350 REP / $1500 / 20 Objective cards",
     builder_tournament_limit_locked: "Tournament crews are locked to 350 REP.",
+    builder_role_boss: "Boss",
     nothing_found: "Nothing found",
     subtitle: "Batman: Gotham Chronicles<br>Crew Builder",
     leader_first: "Leader must be the first model for this faction!",
@@ -7369,6 +7371,31 @@ function canPassTraitRecruitmentRules(model) {
   return true;
 }
 
+function isAlwaysTeamBossForFaction(model, faction = currentFaction) {
+  if (!model || !faction) return false;
+  const factionRules = factionCrewRules[faction] || {};
+  const alwaysBossModels = Array.isArray(factionRules.alwaysTeamBossModels)
+    ? factionRules.alwaysTeamBossModels
+    : [];
+  return alwaysBossModels.includes(model.name);
+}
+
+function canStartCurrentCrewAsBoss(model, rank) {
+  return rank === "Leader" || isAlwaysTeamBossForFaction(model);
+}
+
+function isCurrentCrewBoss(model) {
+  if (!model || !BMG_BOSS) return false;
+  if (model.uniqueId && BMG_BOSS.uniqueId) return model.uniqueId === BMG_BOSS.uniqueId;
+  return isSameModel(BMG_BOSS, model);
+}
+
+function renderBuilderBossRoleBadge(model) {
+  if (!isAlwaysTeamBossForFaction(model)) return "";
+  const label = t("builder_role_boss");
+  return `<span class="team-boss-badge" aria-label="${escapeAttribute(label)}">${escapeHtml(label)}</span>`;
+}
+
 function canUseRankForCurrentCrew(model, rank) {
   if (!currentFaction || !rank) return false;
   if (isBeastBoyShapeshiftForm(model)) return false;
@@ -7379,7 +7406,7 @@ function canUseRankForCurrentCrew(model, rank) {
   if (!modelRanks.includes(rank)) return false;
 
   if (!BMG_BOSS) {
-    if (rank !== "Leader") return false;
+    if (!canStartCurrentCrewAsBoss(model, rank)) return false;
   }
 
   if (BMG_BOSS && BMG_BOSS.rankUsed === "Sidekick" && rank === "Leader" && !modelRanks.includes("Sidekick")) {
@@ -12972,7 +12999,7 @@ function addModelWithRank(model, chosenRank, options = {}) {
       return;
     }
   }
-  if (!BMG_BOSS && factionRules.mustHaveLeaderAsBoss && chosenRank !== "Leader") {
+  if (!BMG_BOSS && factionRules.mustHaveLeaderAsBoss && !canStartCurrentCrewAsBoss(model, chosenRank)) {
     showBuilderWarning(t("leader_first"));
     return;
   }
@@ -13009,9 +13036,10 @@ function addModelWithRank(model, chosenRank, options = {}) {
   if (isBeastBoyMainModel(cloned)) {
     addBeastBoyShapeshiftForms(cloned);
   }
-  if (!BMG_BOSS && (chosenRank === "Leader" || chosenRank === "Sidekick")) {
+  if (!BMG_BOSS && canStartCurrentCrewAsBoss(cloned, chosenRank)) {
     BMG_BOSS = cloned;
     BMG_AFFILIATIONS = getFactions(cloned);
+    cloned.isBoss = true;
   }
   updateCrewEquipmentCounts();
   modifiers = calculateModifiers();
@@ -13962,6 +13990,7 @@ const renderMiniCardsBuilder = debounce(() => {
     const minionLimit = getMinionLimit(item);
     const ranks = getRanks(item);
     const isAttachedForm = isRosterAttachment(item);
+    const isCrewBoss = item.inCrew && isCurrentCrewBoss(item);
 
     const div = document.createElement("div");
     div.className = `mini-card ${item.inCrew ? "in-crew" : ""} ${isAttachedForm ? "attached-form" : ""}`;
@@ -13990,13 +14019,14 @@ const renderMiniCardsBuilder = debounce(() => {
       : "";
 
     div.innerHTML = `
-${item.inCrew && BMG_BOSS && BMG_BOSS.name === item.name ? '<span class="boss-crown">👑</span>' : ''}
+${isCrewBoss ? `<span class="boss-crown" role="img" aria-label="${escapeAttribute(t("builder_role_boss"))}">👑</span>` : ''}
 ${renderMiniModelImage(item)}
 <div class="mini-info">
   <div class="mini-name">${escapeHtml(item.name)}</div>
   ${renderModelAffiliationLine(item)}
   <div class="mini-ranks">
     ${ranks.map(rank => `<img src="img/${rank}.png" alt="${rank}" class="rank-icon" onerror="this.src='img/no.png'">`).join('')}
+    ${renderBuilderBossRoleBadge(item)}
   </div>
   ${renderMiniMetaBadges(item, { note: isAttachedForm ? t("beast_boy_form_badge") : "" })}
 </div>
@@ -15190,7 +15220,7 @@ function bmgCanAddModel(model, options = {}) {
 
   // Проверка первого Босса
   if (!BMG_BOSS) {
-    if (model.rankUsed !== "Leader") {
+    if (!canStartCurrentCrewAsBoss(model, model.rankUsed)) {
       showBuilderWarning(t("leader_required", { rank: "Leader" }));
       return false;
     }
@@ -15934,6 +15964,7 @@ function buildRosterExportText(rosterName = "") {
   recruitedCrew.forEach(m => {
     exportText += `- ${m.name}`;
     exportText += m.rankUsed ? ` [${m.rankUsed}]` : "";
+    if (isCurrentCrewBoss(m)) exportText += ` | Role ${t("builder_role_boss")}`;
     exportText += ` | Rep ${displayValue(modelRepValue(m))} | Funding $${displayValue(modelFundingValue(m))}`;
     if (m.id) exportText += ` | ID ${m.id}`;
     if (m.realname) exportText += ` | Realname ${m.realname}`;
