@@ -258,6 +258,14 @@ window.PRINTABLE_MODEL_NAMES = new Set([
   'The Twin 1',
   'The Twin 2',
   'Vipera',
+  'Homicide Detective',
+  'Killer Croc Thug',
+  'Lucius Fox',
+  'Reinforcement Cop',
+  'Renée Montoya',
+  'Robin Tim Drake',
+  'Slingy Clown',
+  'Thorgon',
 ]);
 
 window.PRINTABLE_MODEL_KEYS = new Set([

@@ -12224,7 +12224,7 @@ function findBuilderCardByKey(cardKey) {
 function showBuilderCardTranslation(cardKey) {
   const card = findBuilderCardByKey(cardKey);
   if (!card) return;
-  showTraitPopup(getBuilderCardName(card), getBuilderCardTranslationHTML(card));
+  showTraitPopup(getBuilderCardName(card), `<div class="builder-card-translation">${getBuilderCardTranslationHTML(card)}</div>`);
 }
 
 function showBuilderCardPreviewByKey(cardKey) {

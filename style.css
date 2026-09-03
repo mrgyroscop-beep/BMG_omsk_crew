@@ -3290,6 +3290,12 @@ body.tournament-feature-disabled [data-tournament-feature] {
   gap: 14px;
 }
 
+.rank-select-content:has(.builder-card-translation) {
+  max-height: calc(100vh - 40px);
+  max-height: calc(100dvh - 40px);
+  overflow-y: auto;
+}
+
 .match-card-preview-img {
   width: min(100%, 320px);
   margin: 0 auto;

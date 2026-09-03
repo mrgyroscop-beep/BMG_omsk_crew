@@ -1,208 +1,293 @@
-Printable models found: 185 of 512 app models
+Модели, доступные для печати: 277 из 682 записей приложения.
+Обновлено: 2026-09-02.
+Новых отметок: 9 (8 названий).
 
-Aaron Cash (1 files)
-Ace (2 files)
-Alfred Pennyworth (5 files)
-Arkham Assistant 1 (2 files)
-Arkham Assistant 2 (2 files)
-Arkham Knight (4 files)
-Armoured Assassin (1 files)
-Axe Clown (1 files)
-Bane Commander (2 files)
-Bane Dark Knight Rises (1 files)
-Bane Titan (4 files)
-Bane Unleashed (5 files)
-Barrel Clown (1 files)
-Barsad (1 files)
-Batgirl Classic Costume (3 files)
-Batgirl Vampire Queen (4 files)
-Batman 1997 (4 files)
-Batman [Bruce Wayne / 40mm] (3 files)
-Batman [Thomas Wayne / 40mm] (7 files)
-Batman Arkham City (2 files)
-Batman Arkham Knight (3 files)
-Batman Dark Knight Rises (3 files)
-Batman Dark Knight Rises Batpod (4 files)
-Batman Red Rain (1 files)
-Batman The Gotham City Knight (6 files)
-Batmobile Arkham Knight (16 files)
-Beast Boy - Gorilla Teen Titans (1 files)
-Beast Boy - Hawk Teen Titans (1 files)
-Beast Boy - Human (Teen Titans) (1 files)
-Beast Boy - Tiger Teen Titans (1 files)
-Beat Cop (1 files)
-Bird Classic (2 files)
-Black Canary (1 files)
-Blunderbuss Clown (1 files)
-Bruce Batman Begins (1 files)
-Bruce the Hyena (2 files)
-Catwoman Batman Returns (4 files)
-Catwoman Dark Knight Rises (1 files)
-Chainsaw Clown (1 files)
-Cheshire (1 files)
-Christmas Joker (3 files)
-Clown Hunter (2 files)
-Commissioner Gordon (8 files)
-Condiment King (3 files)
-Crazy Quilt (2 files)
-Damien Darhk (1 files)
-Detective Montoya (1 files)
-Dove (1 files)
-Dr. Friitawa (2 files)
-Eagly (1 files)
-Electrocutioner (1 files)
-Emperor Penguin (3 files)
-Explosive Penguin (1 files)
-Floronic Man (4 files)
-Frank the Plant (7 files)
-Gentleman Ghost (6 files)
-Green Arrow (Arrow) (4 files)
-Grumpy (1 files)
-Guardian Monk (1 files)
-Happy (1 files)
-Harley Quinn (1 files)
-Harley Quinn (& The Boys) (2 files)
-Harley Quinn (Arkham Asylum) (1 files)
-Harley Quinn (BTG) (4 files)
-Harley Quinn Arkham Knight (1 files)
-Harley Quinn Bewitched (2 files)
-Harley Quinn KaBoom! (3 files)
-Harley Quinn Roller Derby (3 files)
-Harley Thug 1 (1 files)
-Harley Thug 2 (1 files)
-Harley Thug 3 (1 files)
-Harley Thug 4 (1 files)
-Harley Thug 5 (1 files)
-Harley Thug 6 (1 files)
-Harley Thug 7 (1 files)
-Hawk (2 files)
-Henry Ducard (1 files)
-Huge Nightmare (2 files)
-Hugo Strange (2 files)
-Huntress (4 files)
-Hypnotic (1 files)
-Imperceptible Man (1 files)
-Infiltrate OP (1 files)
-Joker (Arkham Asylum) (1 files)
-Joker (Bat-Armor) (2 files)
-Joker (Dark Knight Rises) (1 files)
-Joker (Explosive Arrival) (1 files)
-Joker [Unknown / 40mm / 60mm] (13 files)
-Joker Titan (2 files)
-Joker's Bus Driver (1 files)
-KGBeast (4 files)
-Killer Moth (2 files)
-Kite-Man (3 files)
-Lady Shiva (2 files)
-Lark (1 files)
-League Acolyte 1 (1 files)
-League Acolyte 2 (1 files)
-League Acolyte 3 (2 files)
-League Acolyte 4 (1 files)
-League of Shadows Ninja 1 (1 files)
-League of Shadows Ninja 2 (1 files)
-League of Shadows Ninja 3 (1 files)
-Lieutenant OP (1 files)
-Little Nightmare (4 files)
-Lobo (Paramilitary) (2 files)
-Loose Lips (1 files)
-Macgregor (1 files)
-Mad Hatter (3 files)
-Mad Hatter Arkham Knight (1 files)
-Malicia (1 files)
-Man-Bat (4 files)
-Medic OP (1 files)
-Mercenary 1 (1 files)
-Mercenary 2 (1 files)
-Minigun Penguin (1 files)
-Miranda Tate (1 files)
-Mr. Camera (2 files)
-Mr. Combustible (1 files)
-Mr. Toxic (2 files)
-Mutated Plant 1 (1 files)
-Mutated Plant 2 (1 files)
-Mutated Plant 3 (1 files)
-Nightmare of Anger (2 files)
-Nightmare of Demotivation (2 files)
-Nightmare of Fear (2 files)
-Nightmare of Insignificance (2 files)
-Nightwing Arkham Knight (1 files)
-Nightwing Rebirth (3 files)
-Nyssa Al Ghul (2 files)
-Oracle (6 files)
-Peacemaker John Cena (4 files)
-Penguin Elite Thug (1 files)
-Penguin Lieutenant (1 files)
-Penguin Thug 1 (1 files)
-Penguin Thug 2 (1 files)
-Poison Ivy (9 files)
-Poison Ivy Arkham City (1 files)
-Psycho Pirate (5 files)
-Ra's al Ghul (7 files)
-Ra's Al Ghul Acolyte (1 files)
-Rabid Plant 1 (2 files)
-Rabid Plant 2 (2 files)
-Raven (1 files)
-Raven Trigon's Daughter (2 files)
-Rebel Masked Assassin 1 (1 files)
-Rebel Masked Assassin 2 (1 files)
-Rebel Monk (1 files)
-Red Hood The Outlaw (8 files)
-Red Robin (3 files)
-Robin 1997 (3 files)
-Robin [Damian Wayne / 30mm] (1 files)
-Robin Classic (1 files)
-Rocket Launcher Penguin (2 files)
-Roller Derby Thug 1 (2 files)
-Roller Derby Thug 2 (2 files)
-Roller Derby Thug 3 (2 files)
-Roller Derby Thug 4 (2 files)
-Scarecrow (The Worst Nightmare) (3 files)
-Scarecrow Arkham Asylum (1 files)
-Shadow Armored Assassin (2 files)
-Smash (1 files)
-Solomon Grundy (3 files)
-Starfire Teen Titans (1 files)
-Street Demonz 1 (1 files)
-Street Demonz 2 (1 files)
-Street Demonz 3 (1 files)
-Street Demonz 4 (2 files)
-Street Jester 1 (1 files)
-Street Jester 2 (1 files)
-SWAT QRT 1 (1 files)
-SWAT QRT 2 (1 files)
-SWAT QRT 3 (2 files)
-Talia Rebirth (3 files)
-Ted Hunter (1 files)
-The Heretic (1 files)
-The Penguin (Burgess Meredith) (2 files)
-The Penguin Arkham City (1 files)
-The Penguin Danny DeVito (2 files)
-The Penguin New 52 (2 files)
-The Penguin Penguin's Duck (4 files)
-Two-Face Arkham City (1 files)
-Ubu (1 files)
-Unknown [Cassandra Cain / 30mm] (1 files)
-Warden Sharp (1 files)
-Wonder Girl (1 files)
+Новые отметки:
+- Robin Tim Drake — Bat Family, GCPD
+- Lucius Fox — Bat Family, GCPD
+- Renée Montoya — GCPD
+- Homicide Detective — GCPD
+- Reinforcement Cop — GCPD
+- Killer Croc Thug — Organized Crime
+- Thorgon — Joker
+- Slingy Clown — Joker
+- Killer Croc Thug — Two-Face
 
-Unresolved file groups: 19
-- 30 base
-- 40 base
-- 60 base
-- bane king
-- batman king
-- chuckles
-- dark knight rises catwoman on batpod
-- harley thug breaker
-- kid flash
-- killer croc arkham city
-- lou
-- reverse flash
-- spartan
-- spoiler
-- the wizard
-- tumbler
-- wrestler a
-- wrestler b
-- wrestler b boxes
+Полный список:
+Aaron Cash [Aaron Cash / 30mm; GCPD]
+Absolute Batman [Bruce Wayne / 40mm; Bat Family, GCPD]
+Ace [Ace / 30mm; Bat Family]
+Alfred Pennyworth [Alfred Pennyworth / 40mm; Bat Family]
+Alfred Pennyworth [Alfred Pennyworth / 30mm; GCPD]
+Alfred Pennyworth [Alfred Pennyworth / 40mm; GCPD]
+Arkham Assistant 1 [Unknown / 30mm; Unknown]
+Arkham Assistant 2 [Unknown / 30mm; Unknown]
+Arkham Knight [Jason Todd / 30mm; Bane]
+Armored Assassin [Unknown / 30mm; League of Shadows]
+Attorney Harvey Dent [Harvey Dent / 40mm; GCPD]
+Axe Clown [Unknown / 30mm; Joker]
+Bane Commander [Unknown / 40mm; Bane]
+Bane Dark Knight Rises [Unknown / 30mm; Bane, League of Shadows]
+Bane Titan [Unknown / 60mm; Bane]
+Bane Unleashed [Unknown / 60mm; Bane]
+Barrel Clown [Unknown / 30mm; Joker]
+Barsad [Unknown / 30mm; Bane, League of Shadows]
+Batgirl Classic Costume [Barbara Gordon / 40mm; Bat Family, GCPD, Harley Quinn & Friends]
+Batgirl Vampire Queen [Barbara Gordon / 40mm; Bat Family, GCPD]
+Batman [Bruce Wayne / 40mm; Bat Family, GCPD]
+Batman [Thomas Wayne / 40mm; Bane]
+Batman 1997 [Bruce Wayne / 40mm; GCPD]
+Batman Arkham City [Bruce Wayne / 60mm; Bat Family, GCPD]
+Batman Arkham Knight [Bruce Wayne / 30mm; GCPD]
+Batman Dark Knight Rises [Bruce Wayne / 30mm; GCPD]
+Batman Dark Knight Rises Batpod [Bruce Wayne / 42x75mm / 42x75mm; GCPD]
+Batman on Bike Robert Pattinson [Bruce Wayne / 42x75mm; GCPD]
+Batman Red Rain [Bruce Wayne / 40mm; GCPD]
+Batman Robert Pattinson [Bruce Wayne / 40mm; GCPD]
+Batman The Gotham City Knight [Bruce Wayne / 40mm; Bat Family, GCPD]
+Batman Year One [Bruce Wayne / 40mm; GCPD]
+Batmobile Arkham Knight [Bruce Wayne / 90mm; Bat Family, GCPD]
+Beast Boy - Gorilla Teen Titans [Unknown / 40mm; Bat Family]
+Beast Boy - Hawk Teen Titans [Unknown / 40mm; Bat Family]
+Beast Boy - Human (Teen Titans) [Garfield Mark Logan / 30mm; Bat Family, Doom Patrol]
+Beast Boy - Tiger Teen Titans [Unknown / 40mm; Bat Family]
+Beat Cop [Unknown / 30mm; GCPD]
+Bird Classic [Angel Vallelunga / 40mm; Bane]
+Black Canary [Dinah Lance / 30mm; Harley Quinn & Friends]
+Blunderbuss Clown [Unknown / 30mm; Joker]
+Bouncer 1 [Unknown / 30mm; Organized Crime]
+Bouncer 2 [Unknown / 30mm; Organized Crime]
+Bouncer 3 [Unknown / 30mm; Organized Crime]
+Bruce Batman Begins [Bruce Wayne / 30mm; League of Shadows]
+Bruce the Hyena [Unknown / 30mm; Harley Quinn & Friends]
+Calculator Classic [Noah Kuttler / 40mm; Unknown]
+Carmine Falcone (John Turturro) [Carmine Falcone / 60mm; Organized Crime]
+Catwoman (Zoë Kravitz) [Selina Kyle / 40mm; Unknown]
+Catwoman Dark Knight Rises [Selina Kyle / 30mm; GCPD, Unknown]
+Catwoman Michelle Pfeiffer [Selina Kyle / 40mm; GCPD, Penguin]
+Chainsaw Clown [Unknown / 30mm; Joker]
+Cheshire [Jade Nguyen / 30mm; League of Shadows]
+Cheshire [Jade Nguyen / 30mm; Suicide Squad]
+Chief Mackenzie [Mackenzie Bock / 30mm; GCPD]
+Clayface [Basil Karlo / 60mm; Bat Family, Unknown]
+Clownhunter [Bao Pham / 40mm; Bat Family]
+Commissioner Gordon [James W. Gordon / 40mm / 60mm; GCPD]
+Commissioner Gordon [James W. Gordon / 30mm; GCPD]
+Condiment King [Mitchell Mayo / 40mm; Unknown]
+Crazy Quilt [Paul Dekker / 40mm; Unknown]
+Damien Darhk [Damien Darhk / 30mm; Unknown]
+Deadshot [Floyd Lawton / 40mm; Suicide Squad, Unknown]
+Dementor [Unknown / 40mm; Court of Owls]
+Detective Flass Year One [Arnold Flass / 30mm; GCPD, Organized Crime]
+Detective Kenzie [William Kenzie / 30mm; Organized Crime]
+Detective Montoya [Renée Maria Montoya / 30mm; Harley Quinn & Friends]
+Dove [Dawn Granger / 30mm; Bat Family, Harley Quinn & Friends]
+Dr. Friitawa [Linda Friitawa / 40mm; Scarecrow]
+Dr. Hugo Strange [Hugo Strange / 40mm; Unknown]
+Eagly [Eagly / 40mm; Suicide Squad]
+Echo [Unknown / 30mm; The Riddler]
+Electrocutioner [Lester Buchinsky / 30mm; Suicide Squad, Unknown]
+Emperor Penguin [Ignatius Ogilvy / 30mm; Penguin]
+Emperor Penguin (Unchained) [Ignatius Ogilvy / 40mm; Penguin]
+Eraser [Leonard Fiasco / 40mm; Unknown]
+Explosive Penguin [Unknown / 30mm; Penguin]
+Fat Johnny [John D'Amico / 30mm; Organized Crime]
+Floronic Man [Jason Woodrue / 40mm; Harley Quinn & Friends]
+Frank the Plant [Frank / 60mm; Harley Quinn & Friends]
+GCPD Mounted Cop [Unknown / 42x75mm; GCPD]
+GCPD Officer 1 [Unknown / 30mm; GCPD]
+GCPD Officer 2 [Unknown / 30mm; GCPD]
+Gentleman Ghost [Jim Craddock / 40mm; Unknown]
+Gilda Dent [Gilda Dent / 40mm; GCPD]
+Green Arrow (Arrow) [Oliver Queen / 30mm; GCPD]
+Grumpy [Unknown / 30mm; Joker]
+Guardian Monk [Unknown / 40mm; League of Shadows]
+Happy [Unknown / 30mm; Joker]
+Harley Quinn [Dr. Harleen Frances Quinzel / 30mm; Harley Quinn & Friends, Suicide Squad]
+Harley Quinn [Dr. Harleen Frances Quinzel / 30mm; Harley Quinn & Friends, Joker, Suicide Squad]
+Harley Quinn (& The Boys) [Dr. Harleen Frances Quinzel / 40mm; Joker]
+Harley Quinn (Arkham Asylum) [Dr. Harleen Frances Quinzel / 30mm; Joker]
+Harley Quinn (BTG) [Dr. Harleen Frances Quinzel / 40mm; Joker, Suicide Squad]
+Harley Quinn Arkham Knight [Dr. Harleen Frances Quinzel / 30mm; Joker]
+Harley Quinn Bewitched [Dr. Harleen Frances Quinzel / 40mm; Unknown]
+Harley Quinn KaBoom! [Dr. Harleen Frances Quinzel / 60mm; Birds of Prey]
+Harley Quinn Roller Derby [Dr. Harleen Frances Quinzel / 40mm; Harley Quinn & Friends]
+Harley Thug 1 [Punker / 30mm; Joker]
+Harley Thug 2 [Bragg / 30mm; Joker]
+Harley Thug 3 [Worker / 30mm; Joker]
+Harley Thug 4 [Unknown / 30mm; Joker]
+Harley Thug 5 [Unknown / 30mm; Joker]
+Harley Thug 6 [Chencho / 30mm; Joker]
+Harley Thug 7 [Lumberjack / 30mm; Joker]
+Hawk [Hank Hall / 30mm; Bat Family, Harley Quinn & Friends]
+Henry Ducard [Unknown / 30mm; League of Shadows]
+Homicide Detective [Unknown / 30mm; GCPD] — добавлено 2026-09-02
+Huntress [Helena Bertinelli / 30mm; Harley Quinn & Friends]
+Huntress [Helena Bertinelli / 30mm; GCPD]
+Hypnotic [Unknown / 30mm; Penguin]
+Iceman [Rosco Versace / 30mm; Organized Crime]
+Imperceptible Man [Unknown / 30mm; Penguin]
+Infiltrate OP [Claire / 30mm; Bane]
+Joe Chill [Joseph Chilton / 30mm; Unknown]
+Joker [Unknown / 40mm / 60mm; Joker]
+Joker (Arkham Asylum) [Unknown / 30mm; Joker]
+Joker (Bat-Armor) [Unknown / 40mm; Joker]
+Joker (Christmas) [Unknown / 40mm; Joker]
+Joker (Dark Knight Rises) [Unknown / 30mm; Joker]
+Joker (Explosive Arrival) [Unknown / 40mm; Joker]
+Joker (Titan) [Unknown / 60mm; Joker]
+Joker's Bus Driver [Unknown / 30mm; Joker]
+KGBeast [Anatoli Knyazev / 40mm; Suicide Squad, Unknown]
+Killer Croc Thug [Waylon Jones / 40mm; Organized Crime] — добавлено 2026-09-02
+Killer Croc Thug [Waylon Jones / 40mm; Two-Face] — добавлено 2026-09-02
+Killer Frost (Rebirth) [Caitlin Snow / 40mm; Harley Quinn & Friends, Suicide Squad]
+Killer Frost Rebirth [Caitlin Snow / 40mm; Mr. Freeze]
+Killer Moth [Drury Walker / 40mm; Suicide Squad, Unknown]
+Kite-Man [Charles Brown / 40mm; Unknown]
+Lady Shiva [Sandra Wu-San / 40mm; Harley Quinn & Friends, League of Shadows]
+Lark [Unknown / 30mm; Penguin]
+League Acolyte 1 [Unknown / 30mm; League of Shadows]
+League Acolyte 2 [Unknown / 30mm; League of Shadows]
+League Acolyte 3 [Unknown / 30mm; League of Shadows]
+League Acolyte 4 [Unknown / 30mm; League of Shadows]
+League of Shadows Ninja 1 [Unknown / 30mm; League of Shadows]
+League of Shadows Ninja 2 [Unknown / 30mm; League of Shadows]
+League of Shadows Ninja 3 [Unknown / 30mm; League of Shadows]
+Lieutenant Gordon Year One [James W. Gordon / 30mm; GCPD]
+Lieutenant OP [Ross / 30mm; Bane]
+Lincoln March [Lincoln March / 30mm; Court of Owls]
+Little Nightmare [Unknown / 30mm; Scarecrow]
+Lobo Paramilitary [Unknown / 40mm; Unknown]
+Loose Lips [Ricky LeBlanc / 30mm; Penguin]
+Lt. Gordon Jeffrey Wright [James W. Gordon / 40mm; GCPD]
+Lucius Fox [Lucius Fox / 40mm; Bat Family, GCPD] — добавлено 2026-09-02
+Macgregor [Unknown / 30mm; Bane]
+Mad Hatter [Jervis Tetch / 40mm; Unknown]
+Mad Hatter Arkham Knight [Jervis Tech / 30mm; Unknown]
+Mafia Thug [Unknown / 30mm; Organized Crime]
+Malatesta [Hugo Testa / 30mm; Organized Crime]
+Malicia [Malicia / 30mm; Bane]
+Man-Bat [Dr. Kirk Langstrom / 60mm; Unknown]
+Medic OP [Dillon / 30mm; Bane]
+Mercenary 1 [Unknown / 30mm; Bane, League of Shadows]
+Mercenary 2 [Unknown / 30mm; Bane, League of Shadows]
+Minigun Penguin [Unknown / 30mm; Penguin]
+Miranda Tate [Talia Al Ghul / 30mm; League of Shadows]
+Mr. Camera [Harry Simms / 40mm; Unknown]
+Mr. Combustible [Unknown / 30mm; Penguin]
+Mr. Toxic [Hugh Marder / 30mm; Penguin]
+Mutated Plant 1 [Unknown / 30mm; Harley Quinn & Friends]
+Mutated Plant 2 [Unknown / 30mm; Harley Quinn & Friends]
+Mutated Plant 3 [Unknown / 30mm; Harley Quinn & Friends]
+Nightmare of Anger [Unknown / 30mm; Scarecrow]
+Nightmare of Demotivation [Unknown / 30mm; Scarecrow]
+Nightmare of Fear [Unknown / 30mm; Scarecrow]
+Nightmare of Insignificance [Unknown / 30mm; Scarecrow]
+Nightwing Arkham Knight [Dick Grayson / 30mm; GCPD]
+Nightwing Rebirth [Dick Grayson / 40mm; Bat Family, GCPD]
+Nyssa Al Ghul [Nyssa Raatko / 30mm; League of Shadows]
+Officer Martinez [Martinez / 30mm; GCPD]
+Oracle [Barbara Gordon / 40mm; Bat Family, GCPD, Harley Quinn & Friends]
+Peacemaker John Cena [Christopher Smith / 40mm; Suicide Squad]
+Penguin Elite Thug [Mason / 30mm; Penguin]
+Penguin Lieutenant [Big A / 40mm; Penguin]
+Penguin Thug 1 [Shane / 30mm; Penguin]
+Penguin Thug 2 [Tanner / 30mm; Penguin]
+Poison Ivy [Dr. Pamela Lillian Isley / 30mm; Harley Quinn & Friends, Suicide Squad]
+Poison Ivy [Dr. Pamela Lillian Isley / 40mm; Harley Quinn & Friends, Suicide Squad]
+Poison Ivy [Dr. Pamela Lillian Isley / 40mm / 60mm; Harley Quinn & Friends]
+Poison Ivy [Dr. Pamela Lillian Isley / 40mm / 60mm; Suicide Squad]
+Poison Ivy Arkham City [Dr. Pamela Lillian Isley / 30mm; Birds of Prey]
+Polka-Dot Man [Abner Krill / 40mm; Suicide Squad, Unknown]
+Psycho-Pirate [Roger Hayden / 40mm; Unknown]
+Quelle [Josette / 30mm; The Riddler]
+Query [Unknown / 30mm; The Riddler]
+Quiz 1 [Alexander / 30mm; The Riddler]
+Quiz 2 [Igor / 30mm; The Riddler]
+Quiz 3 [John Carrie / 30mm; The Riddler]
+Quiz 4 [Finn O’Farrell / 40mm; The Riddler]
+Quiz 5 [Francoise Moreau / 30mm; The Riddler]
+Quiz 6 [Charlie C. / 30mm; The Riddler]
+Quiz 7 [Alex Orange / 30mm; The Riddler]
+Quiz 8 [Finn O’Farrell / 40mm; The Riddler]
+Ra's al Ghul [Unknown / 40mm / 60mm; League of Shadows]
+Rabid Plant 1 [Unknown / 40mm; Harley Quinn & Friends]
+Rabid Plant 2 [Unknown / 40mm; Harley Quinn & Friends]
+Ratcatcher [Otis Flannegan / 40mm; Unknown]
+Raven [Rachel Roth / 30mm; Bat Family]
+Raven Trigon's Daughter [Rachel Roth / 60mm; Bat Family]
+Reaper [Benjamin Gruener / 30mm; Organized Crime]
+Rebel Masked Assassin 1 [Unknown / 30mm; League of Shadows]
+Rebel Masked Assassin 2 [Unknown / 30mm; League of Shadows]
+Rebel Monk [Unknown / 40mm; League of Shadows]
+Red Hood The Outlaw [Jason Todd / 40mm; Bat Family, GCPD]
+Red Robin [Tim Drake / 40mm; Bat Family, GCPD]
+Reinforcement Cop [Unknown / 30mm; GCPD] — добавлено 2026-09-02
+Renée Montoya [Renée Maria Montoya / 30mm; GCPD] — добавлено 2026-09-02
+Robin [Damian Wayne / 30mm; Court of Owls, League of Shadows]
+Robin [Damian Wayne / 30mm; Bat Family, GCPD]
+Robin 1997 [Dick Grayson / 40mm; GCPD]
+Robin Classic [Dick Grayson / 40mm; Bat Family, GCPD]
+Robin Tim Drake [Tim Drake / 40mm; Bat Family, GCPD] — добавлено 2026-09-02
+Rocket Launcher Penguin [Unknown / 30mm; Penguin]
+Roller Derby Thug 1 [Unknown / 40mm; Harley Quinn & Friends]
+Roller Derby Thug 2 [Unknown / 30mm; Harley Quinn & Friends]
+Roller Derby Thug 3 [Unknown / 30mm; Harley Quinn & Friends]
+Roller Derby Thug 4 [Unknown / 30mm; Harley Quinn & Friends]
+Sal Maroni [Salvatore Maroni / 30mm; Organized Crime]
+Scarecrow (The Worst Nightmare) [Jonathan Crane / 60mm; Scarecrow]
+Scarecrow Arkham Asylum [Jonathan Crane / 30mm; Unknown]
+Sewer Swarm [Unknown / 30mm; Unknown]
+Shadow Armored Assassin [Unknown / 30mm; League of Shadows]
+Showtime [Tony Gianni / 30mm; Organized Crime]
+Slingy Clown [Unknown / 30mm; Joker] — добавлено 2026-09-02
+Smash [Unknown / 40mm; Bane]
+Sofia Gigante (The Penguin) [Sofia Falcone Gigante / 40mm; Organized Crime]
+Solomon Grundy [Cyrus Gold / 60mm; Unknown]
+Starfire Teen Titans [Koriand'r / 30mm; Bat Family]
+Street Demonz 1 [Grumble / 30mm; Penguin]
+Street Demonz 2 [Simmons / 30mm; Penguin]
+Street Demonz 3 [Reaver / 30mm; Penguin]
+Street Demonz 4 [Aaron "Durum Killer" Taylor / 40mm; Penguin]
+Street Demonz Biker 1 [Joe "Viking" Thompson / 42x75mm; Penguin]
+Street Demonz Biker 2 [Jackson "Fat" Smith / 42x75mm; Penguin]
+Street Demonz Biker 3 [Serge "Darky" Powers / 42x75mm; Penguin]
+Street Jester 1 [Unknown / 30mm; Joker]
+Street Jester 2 [Unknown / 30mm; Joker]
+SWAT QRT 1 [QRT 1 / 30mm; GCPD]
+SWAT QRT 2 [QRT 2 / 30mm; GCPD]
+SWAT QRT 3 [QRT 3 / 30mm; GCPD]
+Talia Rebirth [Talia Al Ghul / 40mm; League of Shadows]
+Ted Hunter [Unknown / 30mm; Bane]
+The Bull [Luigi Lombardo / 30mm; Organized Crime]
+The Drifter Robert Pattinson [Bruce Wayne / 40mm; GCPD]
+The Heretic [Damian Wayne Clone / 40mm; League of Shadows]
+The Holiday Killer [Alberto Falcone / 30mm; Organized Crime]
+The Penguin (Burgess Meredith) [Oswald Chesterfield Cobblepot / 30mm; Joker]
+The Penguin (Colin Farrell) [Oswald Chesterfield Cobblepot / 40mm; Organized Crime]
+The Penguin Arkham City [Oswald Chesterfield Cobblepot / 30mm; Penguin]
+The Penguin Crime Lord Rising [Oswald Chesterfield Cobblepot / 40mm; Penguin]
+The Penguin Danny DeVito [Oswald Chesterfield Cobblepot / 40mm; Penguin]
+The Penguin New 52 [Oswald Chesterfield Cobblepot / 30mm; Penguin]
+The Penguin Penguin's Duck [Oswald Chesterfield Cobblepot / 60mm; Penguin]
+The Riddler [Edward Nigma / 60mm; The Riddler]
+The Riddler [Edward Nigma / 60mm; Suicide Squad]
+The Riddler [Edward Nigma / 40mm; The Riddler]
+The Riddler [Edward Nigma / 40mm; The Riddler]
+The Riddler Modern Age [Edward Nigma / 30mm; The Riddler]
+The Riddler Modern Age [Edward Nigma / 30mm; Suicide Squad]
+The Riddler's Follower 1 [Unknown / 30mm; The Riddler]
+The Riddler's Follower 2 [Unknown / 30mm; The Riddler]
+The Riddler's Follower 3 [Unknown / 30mm; The Riddler]
+The Roman [Carmine Falcone / 30mm; Organized Crime]
+The Tailor [Alan Il'Gordo / 30mm; Organized Crime]
+The Twin 1 [Unknown / 30mm; Organized Crime]
+The Twin 2 [Unknown / 30mm; Organized Crime]
+The Ventriloquist [Arnold Wesker / 30mm; Organized Crime]
+Thorgon [Unknown / 40mm; Joker] — добавлено 2026-09-02
+Two-Face Arkham City [Harvey Dent / 30mm; Two-Face]
+Ubu [Unknown / 40mm; League of Shadows]
+Unknown [Cassandra Cain / 30mm; Harley Quinn & Friends]
+Vipera [Samuel Hill / 30mm; Organized Crime]
+Warden Sharp [Quincy Ulysses Sharp / 30mm; League of Shadows, GCPD]
+Wonder Girl [Donna Troy / 30mm; Bat Family]

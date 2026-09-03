@@ -198,6 +198,6 @@ Created for the Batman Miniature Game player community.
 
 ## 📝 Версия / Version
 
-**v0.7.1** — Двуязычная поддержка, мобильная оптимизация, исправления ошибок
+**v0.8.1** — 2026-09-03: переводы всех 15 карт Organized Crime, исправление прокрутки длинных переводов, 277 доступных для печати записей моделей из 682 (+9 записей, 8 названий).
 
-**v0.7.1** — Bilingual support, mobile optimization, bug fixes
+**v0.8.1** — 2026-09-03: translations for all 15 Organized Crime cards, scrollable long translations, 277 printable model records out of 682 (+9 records across 8 names).
