@@ -4,7 +4,36 @@
   "printable_model_count": 291,
   "previous_printable_model_count": 277,
   "newly_printable_model_count": 14,
-  "note": "Counts are runtime app records. Some characters have separate records by faction. File lists are confirmed but are not an exhaustive disk inventory.",
+  "note": "Counts are runtime app records. Physical sculpts without a separate game profile are listed separately and do not change the app-record count.",
+  "court_of_owls_supported_sculpt_count": 20,
+  "court_of_owls_supported_sculpts": [
+    "1880's Talon",
+    "1890's Talon",
+    "Calvin Rose / Talon",
+    "Court's Rioter",
+    "Dementor",
+    "Dick Grayson Talon",
+    "Ephraim Newhouse",
+    "Henry Ballard",
+    "High Court Lady",
+    "Infiltrated Organized Crime",
+    "Infiltrated Police Officer",
+    "Lincoln March",
+    "O'Malley's Father — Brandon O'Malley",
+    "O'Malley's Grandfather — James O'Malley",
+    "O'Malley's Son — Nathaniel O'Malley",
+    "Raptor",
+    "Robin — Damian Wayne",
+    "Strix",
+    "The Court",
+    "William Cobb / The Talon"
+  ],
+  "court_of_owls_sculpts_without_app_profile": [
+    "Court's Rioter",
+    "Dick Grayson Talon",
+    "Infiltrated Organized Crime",
+    "Infiltrated Police Officer"
+  ],
   "newly_printable_models": [
     {
       "id": "strix-mary-turner-30mm",

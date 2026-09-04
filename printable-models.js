@@ -295,3 +295,28 @@ window.PRINTABLE_MODEL_IMAGE_KEYS = new Set([
   'TheRiddlerJimCarrey.png',
   'TheRiddlerPaulDano.png',
 ]);
+
+// Physical Supported sculpts currently present for the Court of Owls.
+// appModel is null when the sculpt has no separate profile in the app data.
+window.COURT_OF_OWLS_SUPPORTED_SCULPTS = [
+  { name: "1880's Talon", appModel: "1880's Talon" },
+  { name: "1890's Talon", appModel: "1890's Talon" },
+  { name: 'Calvin Rose / Talon', appModel: 'Talon' },
+  { name: "Court's Rioter", appModel: null },
+  { name: 'Dementor', appModel: 'Dementor' },
+  { name: 'Dick Grayson Talon', appModel: null },
+  { name: 'Ephraim Newhouse', appModel: 'Ephraim Newhouse' },
+  { name: 'Henry Ballard', appModel: 'Henry Ballard' },
+  { name: 'High Court Lady', appModel: 'High Court Lady' },
+  { name: 'Infiltrated Organized Crime', appModel: null },
+  { name: 'Infiltrated Police Officer', appModel: null },
+  { name: 'Lincoln March', appModel: 'Lincoln March' },
+  { name: "O'Malley's Father — Brandon O'Malley", appModel: "O'Malley's Father" },
+  { name: "O'Malley's Grandfather — James O'Malley", appModel: "O'Malley's Grandfather" },
+  { name: "O'Malley's Son — Nathaniel O'Malley", appModel: "O'Malley's Son" },
+  { name: 'Raptor', appModel: 'Raptor' },
+  { name: 'Robin — Damian Wayne', appModel: 'Robin' },
+  { name: 'Strix', appModel: 'Strix' },
+  { name: 'The Court', appModel: 'The Court' },
+  { name: 'William Cobb / The Talon', appModel: 'The Talon' },
+];

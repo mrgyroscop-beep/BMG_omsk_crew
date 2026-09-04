@@ -2,6 +2,34 @@
 Обновлено: 2026-09-04.
 Новых отметок: 14.
 
+Supported-модели банды «Суд Сов»: 20.
+- 1880's Talon
+- 1890's Talon
+- Calvin Rose / Talon
+- Court's Rioter
+- Dementor
+- Dick Grayson Talon
+- Ephraim Newhouse
+- Henry Ballard
+- High Court Lady
+- Infiltrated Organized Crime
+- Infiltrated Police Officer
+- Lincoln March
+- O'Malley's Father — Brandon O'Malley
+- O'Malley's Grandfather — James O'Malley
+- O'Malley's Son — Nathaniel O'Malley
+- Raptor
+- Robin — Damian Wayne
+- Strix
+- The Court
+- William Cobb / The Talon
+
+Без отдельного игрового профиля в данных приложения:
+- Court's Rioter
+- Dick Grayson Talon
+- Infiltrated Organized Crime
+- Infiltrated Police Officer
+
 Новые отметки:
 - Strix — Court of Owls, Harley Quinn & Friends
 - The Court — Court of Owls

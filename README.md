@@ -198,6 +198,10 @@ Created for the Batman Miniature Game player community.
 
 ## 📝 Версия / Version
 
+**v0.8.3** — 2026-09-04: добавлен отдельный каталог из 20 Supported-скульптов Суда сов; четыре скульпта без самостоятельных игровых профилей учитываются отдельно и не подменяют High Court Member или Nightwing.
+
+**v0.8.3** — 2026-09-04: added a separate catalog of 20 supported Court of Owls sculpts; four sculpts without standalone game profiles are tracked separately instead of being mapped to High Court Member or Nightwing.
+
 **v0.8.2** — 2026-09-04: полные переводы карт и снаряжения Vigilantes, отдельные разделы карт «Семья Бэтмена» и «Юные Титаны», исправленная мобильная панель билдера, 291 доступная для печати запись модели из 682 (+14).
 
 **v0.8.2** — 2026-09-04: complete Vigilantes card and equipment translations, separate Bat Family and Teen Titans card sections, corrected mobile builder header, 291 printable model records out of 682 (+14).
