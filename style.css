@@ -4361,8 +4361,7 @@ body.tournament-feature-disabled [data-tournament-feature] {
     padding: 10px 8px 8px;
   }
 
-  #cardsSection > .top-bar,
-  #builderMain > .top-bar {
+  #cardsSection > .top-bar {
     position: fixed !important;
     top: 0;
     left: 0;
@@ -4377,9 +4376,8 @@ body.tournament-feature-disabled [data-tournament-feature] {
     scroll-padding-top: var(--mobile-fixed-topbar-height, 124px);
   }
 
-  #builderMain {
-    padding-top: var(--mobile-fixed-topbar-height, 156px);
-    scroll-padding-top: var(--mobile-fixed-topbar-height, 156px);
+  #builderMain > .top-bar {
+    position: relative;
   }
 
   #builderMain .builder-more-menu {

@@ -266,6 +266,20 @@ window.PRINTABLE_MODEL_NAMES = new Set([
   'Robin Tim Drake',
   'Slingy Clown',
   'Thorgon',
+  '1880\'s Talon',
+  '1890\'s Talon',
+  'Catman The Hunter',
+  'Ephraim Newhouse',
+  'Henry Ballard',
+  'High Court Lady',
+  'O\'Malley\'s Father',
+  'O\'Malley\'s Grandfather',
+  'O\'Malley\'s Son',
+  'Raptor',
+  'Strix',
+  'Talon',
+  'The Court',
+  'The Talon',
 ]);
 
 window.PRINTABLE_MODEL_KEYS = new Set([

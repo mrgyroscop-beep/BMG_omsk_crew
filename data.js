@@ -223,7 +223,7 @@ const builderMandatoryCards = [
     countsForDeck: false,
     text: {
       en: "THWART\n\nAfter placing the Sewers and Lampposts, Set 8 friendly THWART! markers in Play.\n\nYou cannot have more than 8 friendly THWART! markers in Play at the same time.\n\nIf an Objective card refers to a THWART!, it only refers to a friendly THWART!.\n\nWhen a model places a Suspect within 4” of a THWART! the owner of that model may Move that THWART! 4”.\n\nWhen a THWART! is Moved or Placed, it cannot end within 4” of an Edge of the Gaming Area.",
-      ru: "THWART\n\nПосле размещения Sewers и Lampposts выставьте в игру 8 дружественных маркеров THWART!.\n\nУ вас не может быть больше 8 дружественных маркеров THWART! в игре одновременно.\n\nЕсли карта цели ссылается на THWART!, это относится только к дружественному THWART!.\n\nКогда модель размещает Suspect в пределах 4” от THWART!, владелец этой модели может передвинуть этот THWART! на 4”.\n\nКогда THWART! передвигается или размещается, он не может закончить это перемещение в пределах 4” от края Gaming Area."
+      ru: "THWART!\n\nПосле размещения канализационных люков и фонарей разместите в игре 8 дружественных маркеров THWART!.\n\nУ вас не может одновременно находиться в игре больше 8 дружественных маркеров THWART!.\n\nЕсли Objective-карта ссылается на THWART!, имеется в виду только дружественный маркер THWART!.\n\nКогда модель размещает Suspect в пределах 4” от маркера THWART!, владелец этой модели может передвинуть этот маркер THWART! на 4”.\n\nКогда маркер THWART! передвигается или размещается, он не может закончить это перемещение в пределах 4” от края игровой зоны."
     }
   },
   {
@@ -1463,12 +1463,12 @@ const builderCards = [
     maxPerDeck: 4,
     text: {
       en: "A friendly model Sets a Suspect within 4” of an enemy model that is within 8” of a THWART!. Then remove that THWART!.",
-      ru: "Дружественная модель выставляет Suspect в пределах 4” от вражеской модели, которая находится в пределах 8” от THWART!. Затем уберите этот THWART!."
+      ru: "Дружественная модель размещает Suspect в пределах 4” от вражеской модели, которая находится в пределах 8” от маркера THWART!. Затем уберите этот маркер THWART!."
     },
     resource: {
       cost: 1,
       en: "An active friendly model within 4” of a THWART! Moves 4”.",
-      ru: "Активная дружественная модель в пределах 4” от THWART! передвигается на 4”."
+      ru: "Активная дружественная модель в пределах 4” от маркера THWART! передвигается на 4”."
     }
   },
   {
@@ -1484,12 +1484,12 @@ const builderCards = [
     maxPerDeck: 4,
     text: {
       en: "A friendly model Reveals a Suspect within 4” of an enemy model that is within 8” of a THWART!, then remove that THWART! marker.",
-      ru: "Дружественная модель раскрывает Suspect в пределах 4” от вражеской модели, которая находится в пределах 8” от THWART!, затем уберите этот маркер THWART!."
+      ru: "Дружественная модель раскрывает Suspect в пределах 4” от вражеской модели, которая находится в пределах 8” от маркера THWART!. Затем уберите этот маркер THWART!."
     },
     resource: {
       cost: 1,
       en: "Burn 0 • If you have fewer than 5 THWART! in play, cancel an Objective card used as a Resource. That card is discarded.",
-      ru: "Burn 0 • Если у вас в игре меньше 5 THWART!, отмените карту цели, использованную как Resource. Эта карта сбрасывается."
+      ru: "Burn 0 • Если у вас в игре меньше 5 маркеров THWART!, отмените эффект Objective-карты, разыгранной как Resource. Эта карта сбрасывается."
     }
   },
   {
@@ -1505,12 +1505,12 @@ const builderCards = [
     maxPerDeck: 3,
     text: {
       en: "Each time a friendly model starts its activation within 4” of a THWART!, place a success marker on this card if it Sets a Suspect that activation. If it does not, place a failure marker.\n\nScore when this card has 3 success markers. Discard when this card has 3 failure markers.\n\nWhen scored, the opponent removes a THWART!.",
-      ru: "Каждый раз, когда дружественная модель начинает активацию в пределах 4” от THWART!, положите на эту карту маркер успеха, если она выставила Suspect в этой активации. Если нет, положите маркер провала.\n\nЗасчитайте, когда на этой карте 3 маркера успеха. Сбросьте, когда на этой карте 3 маркера провала.\n\nКогда карта засчитана, оппонент убирает THWART!."
+      ru: "Каждый раз, когда дружественная модель начинает активацию в пределах 4” от маркера THWART!, положите на эту карту маркер успеха, если в течение этой активации она размещает Suspect. В противном случае положите маркер провала.\n\nЗасчитайте карту, когда на ней будет 3 маркера успеха. Сбросьте карту, когда на ней будет 3 маркера провала.\n\nКогда карта засчитана, оппонент убирает 1 маркер THWART!."
     },
     resource: {
       cost: 1,
       en: "Burn 0 • Move a THWART! 4”.",
-      ru: "Burn 0 • Передвиньте THWART! на 4”."
+      ru: "Burn 0 • Передвиньте 1 маркер THWART! на 4”."
     }
   },
   {
@@ -1526,12 +1526,12 @@ const builderCards = [
     maxPerDeck: 3,
     text: {
       en: "A friendly model Sets a Suspect in the enemy DZ and within 4” of a THWART!. Then remove that THWART!.",
-      ru: "Дружественная модель выставляет Suspect во вражеской DZ и в пределах 4” от THWART!. Затем уберите этот THWART!."
+      ru: "Дружественная модель размещает Suspect во вражеской зоне развёртывания и в пределах 4” от маркера THWART!. Затем уберите этот маркер THWART!."
     },
     resource: {
       cost: 1,
       en: "Remove a THWART! within 4” of the friendly active model. Look at the opponent's Objective hand. Discard 1 card from their hand or yours.",
-      ru: "Уберите THWART! в пределах 4” от активной дружественной модели. Посмотрите руку карт целей оппонента. Сбросьте 1 карту из его руки или из вашей."
+      ru: "Уберите маркер THWART! в пределах 4” от активной дружественной модели. Посмотрите Objective-руку оппонента. Сбросьте 1 карту из его руки или из своей."
     }
   },
   {
@@ -1547,12 +1547,12 @@ const builderCards = [
     maxPerDeck: 3,
     text: {
       en: "An enemy model suffers KO within 4” of a THWART!. Then remove that THWART!.",
-      ru: "Вражеская модель получает KO в пределах 4” от THWART!. Затем уберите этот THWART!."
+      ru: "Вражеская модель получает KO в пределах 4” от маркера THWART!. Затем уберите этот маркер THWART!."
     },
     resource: {
       cost: 1,
       en: "Play at the start of an activation. Target model gains 2 Free Efforts during this activation.",
-      ru: "Разыграйте в начале активации. Выбранная модель получает 2 Free Efforts на время этой активации."
+      ru: "Разыграйте в начале активации. Выбранная модель получает 2 бесплатных Effort на время этой активации."
     }
   },
   {
@@ -1568,7 +1568,7 @@ const builderCards = [
     maxPerDeck: 3,
     text: {
       en: "2 opposite edges of the Gaming Area have a friendly Suspect within 4”.\n\nThe opponent Moves those Suspects 4”, and removes 1 THWART!.",
-      ru: "У двух противоположных краев Gaming Area есть дружественный Suspect в пределах 4”.\n\nОппонент передвигает эти Suspects на 4” и убирает 1 THWART!."
+      ru: "В пределах 4” от каждого из двух противоположных краёв игровой зоны находится дружественный Suspect.\n\nОппонент передвигает эти Suspects на 4” и убирает 1 маркер THWART!."
     },
     resource: {
       cost: 1,
@@ -1589,12 +1589,12 @@ const builderCards = [
     maxPerDeck: 3,
     text: {
       en: "Limited • Play this card when an enemy model makes a Tactical action and target it. Each activation in which a friendly model Sets a Suspect within 4” of the target or targets it with an Attack, place a success marker on this card.\n\nScore when this card has 2 success markers.\n\nWhen scored, the opponent removes a THWART!.",
-      ru: "Limited • Разыграйте эту карту, когда вражеская модель выполняет Tactical action, и выберите ее целью. В каждой активации, где дружественная модель выставляет Suspect в пределах 4” от цели или выбирает ее целью Attack, положите на эту карту маркер успеха.\n\nЗасчитайте, когда на этой карте 2 маркера успеха.\n\nКогда карта засчитана, оппонент убирает THWART!."
+      ru: "Limited • Разыграйте эту карту, когда вражеская модель выполняет тактическое действие, и выберите эту модель целью. В каждой активации, во время которой дружественная модель размещает Suspect в пределах 4” от цели или выбирает цель для атаки, положите на эту карту маркер успеха.\n\nЗасчитайте карту, когда на ней будет 2 маркера успеха.\n\nКогда карта засчитана, оппонент убирает 1 маркер THWART!."
     },
     resource: {
       cost: 0,
       en: "A friendly model within 4” of another friendly model and a THWART! adds 1 die during a Melee Attack or Defense roll.",
-      ru: "Дружественная модель в пределах 4” от другой дружественной модели и THWART! добавляет 1 кубик во время Melee Attack или Defense roll."
+      ru: "Дружественная модель в пределах 4” от другой дружественной модели и маркера THWART! добавляет 1 кубик к броску ближней атаки или защиты."
     }
   },
   {
@@ -1610,12 +1610,12 @@ const builderCards = [
     maxPerDeck: 3,
     text: {
       en: "Play when a friendly model Sets a Suspect. Until the end of the Round, that Suspect is also an Informant marker and cannot be Revealed or removed this round.\n\nScore if there are no enemy models within 4” of the Informant marker, or if it has 2 THWARTS! within 4”. If scored this way, remove both THWARTS!.",
-      ru: "Разыграйте, когда дружественная модель выставляет Suspect. До конца раунда этот Suspect также является маркером Informant и не может быть Revealed или удален в этом раунде.\n\nЗасчитайте, если в пределах 4” от маркера Informant нет вражеских моделей, или если в пределах 4” от него есть 2 THWARTS!. Если засчитано этим способом, уберите оба THWARTS!."
+      ru: "Разыграйте, когда дружественная модель размещает Suspect. До конца раунда этот Suspect также считается маркером Informant и не может быть раскрыт или убран в этом раунде.\n\nЗасчитайте карту, если в пределах 4” от маркера Informant нет вражеских моделей или если в пределах 4” от него есть 2 маркера THWART!. Если карта засчитана вторым способом, уберите оба маркера THWART!."
     },
     resource: {
       cost: "*",
       en: "Exception (When Scoring) • Set a THWART! within 4” of the Informant marker.",
-      ru: "Exception (When Scoring) • Выставьте THWART! в пределах 4” от маркера Informant."
+      ru: "Исключение (при засчитывании) • Разместите маркер THWART! в пределах 4” от маркера Informant."
     }
   },
   {
@@ -1631,12 +1631,12 @@ const builderCards = [
     maxPerDeck: 3,
     text: {
       en: "Target a friendly model. When the target Sets a Suspect, place a Numeric counter on this card, and add an additional counter if the Suspect is placed within 4” of an enemy model and a THWART!. A friendly Boss may spend a Special Action to roll 1D6.\n\nScore if the result matches a Numeric counter on this card.",
-      ru: "Выберите дружественную модель. Когда цель выставляет Suspect, положите на эту карту Numeric counter и добавьте дополнительный counter, если Suspect размещен в пределах 4” от вражеской модели и THWART!. Дружественный Boss может потратить Special Action, чтобы бросить 1D6.\n\nЗасчитайте, если результат совпадает с Numeric counter на этой карте."
+      ru: "Выберите дружественную модель. Когда цель размещает Suspect, положите на эту карту числовой счётчик; добавьте ещё один счётчик, если Suspect размещён в пределах 4” от вражеской модели и маркера THWART!. Дружественный Boss может потратить особое действие, чтобы бросить 1D6.\n\nЗасчитайте карту, если результат совпадает со значением одного из числовых счётчиков на ней."
     },
     resource: {
       cost: "*",
       en: "Burn 1 • Exception (When Scoring) • Set a THWART! within 4” of the target.",
-      ru: "Burn 1 • Exception (When Scoring) • Выставьте THWART! в пределах 4” от цели."
+      ru: "Burn 1 • Исключение (при засчитывании) • Разместите маркер THWART! в пределах 4” от цели."
     }
   },
   {
@@ -1652,12 +1652,12 @@ const builderCards = [
     maxPerDeck: 3,
     text: {
       en: "Limited • Target a friendly model within 4” of a THWART! or a model that has the Detective trait. When that model reveals an enemy Suspect, place 2 success markers on this card.\n\nScore when this card has more success markers than enemy Suspects in play.",
-      ru: "Limited • Выберите дружественную модель в пределах 4” от THWART! или модель с трейтом Detective. Когда эта модель раскрывает вражеский Suspect, положите 2 маркера успеха на эту карту.\n\nЗасчитайте, когда на этой карте больше маркеров успеха, чем вражеских Suspects в игре."
+      ru: "Limited • Выберите дружественную модель в пределах 4” от маркера THWART! или модель с трейтом Detective. Когда эта модель раскрывает вражеский Suspect, положите на эту карту 2 маркера успеха.\n\nЗасчитайте карту, когда на ней будет больше маркеров успеха, чем вражеских Suspects в игре."
     },
     resource: {
       cost: 1,
       en: "A friendly model within 8” and LoS of a THWART! gains a free Manipulate action.",
-      ru: "Дружественная модель в пределах 8” и LoS от THWART! получает бесплатное действие Manipulate."
+      ru: "Дружественная модель в пределах 8” от маркера THWART! и в его LoS получает бесплатное действие Manipulate."
     }
   },
   {
@@ -1673,12 +1673,12 @@ const builderCards = [
     maxPerDeck: 3,
     text: {
       en: "A friendly model within 4” of a THWART! Turns Off a Lamppost.",
-      ru: "Дружественная модель в пределах 4” от THWART! выключает Lamppost."
+      ru: "Дружественная модель в пределах 4” от маркера THWART! выключает фонарь."
     },
     resource: {
       cost: 1,
       en: "An enemy model suffering KO that is in contact with a friendly model and within 4” of a THWART! is removed as a Casualty.",
-      ru: "Вражеская модель в KO, находящаяся в контакте с дружественной моделью и в пределах 4” от THWART!, удаляется как Casualty."
+      ru: "Вражеская модель в KO, находящаяся в контакте с дружественной моделью и в пределах 4” от маркера THWART!, удаляется как Casualty."
     }
   },
   {
@@ -1694,12 +1694,12 @@ const builderCards = [
     maxPerDeck: 4,
     text: {
       en: "A friendly model inflicts Damage on an enemy model that is not within 4” of a THWART! but is within 4” of a friendly Suspect.\n\nChange all inflicted {BLOOD_ICON} to {STUN_ICON}.",
-      ru: "Дружественная модель наносит Damage вражеской модели, которая не находится в пределах 4” от THWART!, но находится в пределах 4” от дружественного Suspect.\n\nЗамените все нанесенные {BLOOD_ICON} на {STUN_ICON}."
+      ru: "Дружественная модель наносит урон вражеской модели, которая находится за пределами 4” от маркера THWART!, но в пределах 4” от дружественного Suspect.\n\nЗамените весь нанесённый урон {BLOOD_ICON} на {STUN_ICON}."
     },
     resource: {
       cost: "*",
       en: "Burn 1 • Exception (When Scoring) • Set a THWART! within 4” of the target.",
-      ru: "Burn 1 • Exception (When Scoring) • Выставьте THWART! в пределах 4” от цели."
+      ru: "Burn 1 • Исключение (при засчитывании) • Разместите маркер THWART! в пределах 4” от цели."
     }
   },
   {
@@ -1715,12 +1715,12 @@ const builderCards = [
     maxPerDeck: 3,
     text: {
       en: "Set a Trigon's Portal Event marker within 4” of a Suspect and an enemy.\n\nScore if there are more THWARTS! and friendly models than enemy models within 4” of the Trigon's Portal.",
-      ru: "Разместите маркер события Trigon's Portal в пределах 4” от Suspect и врага.\n\nЗасчитайте, если в пределах 4” от Trigon's Portal больше THWARTS! и дружественных моделей, чем вражеских моделей."
+      ru: "Разместите маркер события Trigon's Portal в пределах 4” от Suspect и вражеской модели.\n\nЗасчитайте карту, если в пределах 4” от Trigon's Portal суммарно больше маркеров THWART! и дружественных моделей, чем вражеских моделей."
     },
     resource: {
       cost: "*",
       en: "Burn 1 • Exception (When Scoring) • Set a THWART! within 4” of the Trigon's Portal before removing it.",
-      ru: "Burn 1 • Exception (When Scoring) • Выставьте THWART! в пределах 4” от Trigon's Portal перед его удалением."
+      ru: "Burn 1 • Исключение (при засчитывании) • Перед удалением Trigon's Portal разместите маркер THWART! в пределах 4” от него."
     }
   },
   {
@@ -1736,12 +1736,12 @@ const builderCards = [
     maxPerDeck: 4,
     text: {
       en: "Limited • Target a friendly model within 4” of a THWART! and a friendly Suspect. Place a Timer 1D3+2 on this card.\n\nWhen the counter is reduced to 0, the target is within 4” of a THWART!.",
-      ru: "Limited • Выберите дружественную модель в пределах 4” от THWART! и дружественного Suspect. Положите на эту карту Timer 1D3+2.\n\nКогда counter снижается до 0, цель находится в пределах 4” от THWART!."
+      ru: "Limited • Выберите дружественную модель в пределах 4” от маркера THWART! и дружественного Suspect. Положите на эту карту таймер 1D3+2.\n\nКогда значение таймера снизится до 0, цель должна находиться в пределах 4” от маркера THWART!."
     },
     resource: {
       cost: "*",
       en: "Burn 1 • Exception (When Scoring) • Set a THWART! within 4” of the target.",
-      ru: "Burn 1 • Exception (When Scoring) • Выставьте THWART! в пределах 4” от цели."
+      ru: "Burn 1 • Исключение (при засчитывании) • Разместите маркер THWART! в пределах 4” от цели."
     }
   },
   {
@@ -1757,12 +1757,12 @@ const builderCards = [
     maxPerDeck: 3,
     text: {
       en: "A friendly model within 4” of a THWART! blocks at least 2 successful hits.",
-      ru: "Дружественная модель в пределах 4” от THWART! блокирует как минимум 2 успешных попадания."
+      ru: "Дружественная модель в пределах 4” от маркера THWART! блокирует как минимум 2 успешных попадания."
     },
     resource: {
       cost: 2,
       en: "Burn 1 • Play when a friendly model suffers {BLOOD_ICON}. Roll 1D6. On a result of 6+ the model ignores that {BLOOD_ICON}.\n\nAdd 1 to the result for each THWART! within 4”. If the roll is successful, remove 1 of those THWARTS!.",
-      ru: "Burn 1 • Разыграйте, когда дружественная модель получает {BLOOD_ICON}. Бросьте 1D6. При результате 6+ модель игнорирует этот {BLOOD_ICON}.\n\nДобавьте 1 к результату за каждый THWART! в пределах 4”. Если бросок успешен, уберите 1 из этих THWARTS!."
+      ru: "Burn 1 • Разыграйте, когда дружественная модель получает урон {BLOOD_ICON}. Бросьте 1D6. При результате 6+ модель игнорирует этот урон {BLOOD_ICON}.\n\nДобавьте 1 к результату за каждый маркер THWART! в пределах 4”. Если бросок успешен, уберите 1 из этих маркеров THWART!."
     }
   },
   {
@@ -1778,12 +1778,12 @@ const builderCards = [
     maxPerDeck: 3,
     text: {
       en: "Limited • Target the active friendly model. Each time the target inflicts Damage on an enemy model, if that friendly model is within 4” of a THWART!, place a success marker on this card. Then the opponent Moves that THWART! 4”.\n\nScore when this card has 2 success markers.",
-      ru: "Limited • Выберите активную дружественную модель. Каждый раз, когда цель наносит Damage вражеской модели, если эта дружественная модель находится в пределах 4” от THWART!, положите на эту карту маркер успеха. Затем оппонент передвигает этот THWART! на 4”.\n\nЗасчитайте, когда на этой карте 2 маркера успеха."
+      ru: "Limited • Выберите активную дружественную модель. Каждый раз, когда цель наносит урон вражеской модели, если цель находится в пределах 4” от маркера THWART!, положите на эту карту маркер успеха. Затем оппонент передвигает этот маркер THWART! на 4”.\n\nЗасчитайте карту, когда на ней будет 2 маркера успеха."
     },
     resource: {
       cost: 1,
       en: "A model without Audacity within 8” of a THWART! gains a free Attack action.",
-      ru: "Модель без Audacity в пределах 8” от THWART! получает бесплатное действие Attack."
+      ru: "Модель без Audacity в пределах 8” от маркера THWART! получает бесплатное действие атаки."
     }
   },
   {
@@ -1799,12 +1799,12 @@ const builderCards = [
     maxPerDeck: 3,
     text: {
       en: "A friendly model with the The Dark Knight Returns trait inflicts KO on an enemy that is within 4” of a THWART!. Then remove all {BLOOD_ICON} on that enemy model.",
-      ru: "Дружественная модель с трейтом The Dark Knight Returns наносит KO врагу, который находится в пределах 4” от THWART!. Затем уберите все {BLOOD_ICON} с этой вражеской модели."
+      ru: "Дружественная модель с трейтом The Dark Knight Returns вводит в KO вражескую модель в пределах 4” от маркера THWART!. Затем уберите с этой вражеской модели весь урон {BLOOD_ICON}."
     },
     resource: {
       cost: 1,
       en: "An active friendly model with the The Dark Knight Returns trait within 8” of a THWART! removes up to 2 Damage.",
-      ru: "Активная дружественная модель с трейтом The Dark Knight Returns в пределах 8” от THWART! снимает до 2 Damage."
+      ru: "Активная дружественная модель с трейтом The Dark Knight Returns в пределах 8” от маркера THWART! убирает до 2 маркеров урона."
     }
   },
   {
@@ -14139,8 +14139,6 @@ const equipmentByFaction = {
 const disabledLocalOnlyEquipmentByFaction = {
   "Bat Family": [
     "Always Prepared",
-    "The Leader",
-    "The Shadows",
     "Improved Bat-Armor",
     "Improved Batclaw",
     "Improved Batlings",

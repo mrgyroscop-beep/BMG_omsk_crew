@@ -1,19 +1,26 @@
-Модели, доступные для печати: 277 из 682 записей приложения.
-Обновлено: 2026-09-02.
-Новых отметок: 9 (8 названий).
+Модели, доступные для печати: 291 из 682 записей приложения.
+Обновлено: 2026-09-04.
+Новых отметок: 14.
 
 Новые отметки:
-- Robin Tim Drake — Bat Family, GCPD
-- Lucius Fox — Bat Family, GCPD
-- Renée Montoya — GCPD
-- Homicide Detective — GCPD
-- Reinforcement Cop — GCPD
-- Killer Croc Thug — Organized Crime
-- Thorgon — Joker
-- Slingy Clown — Joker
-- Killer Croc Thug — Two-Face
+- Strix — Court of Owls, Harley Quinn & Friends
+- The Court — Court of Owls
+- 1890's Talon — Court of Owls
+- The Talon — Court of Owls, Suicide Squad
+- O'Malley's Grandfather — Court of Owls
+- Talon — Bat Family, Court of Owls
+- O'Malley's Father — Court of Owls
+- Raptor — Court of Owls, Cults
+- 1880's Talon — Court of Owls
+- O'Malley's Son — Court of Owls
+- Ephraim Newhouse — Court of Owls
+- Catman The Hunter — Unknown
+- Henry Ballard — Court of Owls
+- High Court Lady — Court of Owls
 
 Полный список:
+1880's Talon [Unknown / 30mm; Court of Owls] — добавлено 2026-09-04
+1890's Talon [Xiao Loong / 30mm; Court of Owls] — добавлено 2026-09-04
 Aaron Cash [Aaron Cash / 30mm; GCPD]
 Absolute Batman [Bruce Wayne / 40mm; Bat Family, GCPD]
 Ace [Ace / 30mm; Bat Family]
@@ -62,6 +69,7 @@ Bruce Batman Begins [Bruce Wayne / 30mm; League of Shadows]
 Bruce the Hyena [Unknown / 30mm; Harley Quinn & Friends]
 Calculator Classic [Noah Kuttler / 40mm; Unknown]
 Carmine Falcone (John Turturro) [Carmine Falcone / 60mm; Organized Crime]
+Catman The Hunter [Thomas Reese Blake / 40mm; Unknown] — добавлено 2026-09-04
 Catwoman (Zoë Kravitz) [Selina Kyle / 40mm; Unknown]
 Catwoman Dark Knight Rises [Selina Kyle / 30mm; GCPD, Unknown]
 Catwoman Michelle Pfeiffer [Selina Kyle / 40mm; GCPD, Penguin]
@@ -89,6 +97,7 @@ Echo [Unknown / 30mm; The Riddler]
 Electrocutioner [Lester Buchinsky / 30mm; Suicide Squad, Unknown]
 Emperor Penguin [Ignatius Ogilvy / 30mm; Penguin]
 Emperor Penguin (Unchained) [Ignatius Ogilvy / 40mm; Penguin]
+Ephraim Newhouse [Ephraim Newhouse / 30mm; Court of Owls] — добавлено 2026-09-04
 Eraser [Leonard Fiasco / 40mm; Unknown]
 Explosive Penguin [Unknown / 30mm; Penguin]
 Fat Johnny [John D'Amico / 30mm; Organized Crime]
@@ -120,8 +129,10 @@ Harley Thug 5 [Unknown / 30mm; Joker]
 Harley Thug 6 [Chencho / 30mm; Joker]
 Harley Thug 7 [Lumberjack / 30mm; Joker]
 Hawk [Hank Hall / 30mm; Bat Family, Harley Quinn & Friends]
+Henry Ballard [Henry Ballard / 30mm; Court of Owls] — добавлено 2026-09-04
 Henry Ducard [Unknown / 30mm; League of Shadows]
-Homicide Detective [Unknown / 30mm; GCPD] — добавлено 2026-09-02
+High Court Lady [Unknown / 30mm; Court of Owls] — добавлено 2026-09-04
+Homicide Detective [Unknown / 30mm; GCPD]
 Huntress [Helena Bertinelli / 30mm; Harley Quinn & Friends]
 Huntress [Helena Bertinelli / 30mm; GCPD]
 Hypnotic [Unknown / 30mm; Penguin]
@@ -138,8 +149,8 @@ Joker (Explosive Arrival) [Unknown / 40mm; Joker]
 Joker (Titan) [Unknown / 60mm; Joker]
 Joker's Bus Driver [Unknown / 30mm; Joker]
 KGBeast [Anatoli Knyazev / 40mm; Suicide Squad, Unknown]
-Killer Croc Thug [Waylon Jones / 40mm; Organized Crime] — добавлено 2026-09-02
-Killer Croc Thug [Waylon Jones / 40mm; Two-Face] — добавлено 2026-09-02
+Killer Croc Thug [Waylon Jones / 40mm; Organized Crime]
+Killer Croc Thug [Waylon Jones / 40mm; Two-Face]
 Killer Frost (Rebirth) [Caitlin Snow / 40mm; Harley Quinn & Friends, Suicide Squad]
 Killer Frost Rebirth [Caitlin Snow / 40mm; Mr. Freeze]
 Killer Moth [Drury Walker / 40mm; Suicide Squad, Unknown]
@@ -160,7 +171,7 @@ Little Nightmare [Unknown / 30mm; Scarecrow]
 Lobo Paramilitary [Unknown / 40mm; Unknown]
 Loose Lips [Ricky LeBlanc / 30mm; Penguin]
 Lt. Gordon Jeffrey Wright [James W. Gordon / 40mm; GCPD]
-Lucius Fox [Lucius Fox / 40mm; Bat Family, GCPD] — добавлено 2026-09-02
+Lucius Fox [Lucius Fox / 40mm; Bat Family, GCPD]
 Macgregor [Unknown / 30mm; Bane]
 Mad Hatter [Jervis Tetch / 40mm; Unknown]
 Mad Hatter Arkham Knight [Jervis Tech / 30mm; Unknown]
@@ -186,6 +197,9 @@ Nightmare of Insignificance [Unknown / 30mm; Scarecrow]
 Nightwing Arkham Knight [Dick Grayson / 30mm; GCPD]
 Nightwing Rebirth [Dick Grayson / 40mm; Bat Family, GCPD]
 Nyssa Al Ghul [Nyssa Raatko / 30mm; League of Shadows]
+O'Malley's Father [Brandon O'Malley / 30mm; Court of Owls] — добавлено 2026-09-04
+O'Malley's Grandfather [James O'Malley / 30mm; Court of Owls] — добавлено 2026-09-04
+O'Malley's Son [Nathaniel O'Malley / 30mm; Court of Owls] — добавлено 2026-09-04
 Officer Martinez [Martinez / 30mm; GCPD]
 Oracle [Barbara Gordon / 40mm; Bat Family, GCPD, Harley Quinn & Friends]
 Peacemaker John Cena [Christopher Smith / 40mm; Suicide Squad]
@@ -213,6 +227,7 @@ Quiz 8 [Finn O’Farrell / 40mm; The Riddler]
 Ra's al Ghul [Unknown / 40mm / 60mm; League of Shadows]
 Rabid Plant 1 [Unknown / 40mm; Harley Quinn & Friends]
 Rabid Plant 2 [Unknown / 40mm; Harley Quinn & Friends]
+Raptor [Richard / 40mm; Court of Owls, Cults] — добавлено 2026-09-04
 Ratcatcher [Otis Flannegan / 40mm; Unknown]
 Raven [Rachel Roth / 30mm; Bat Family]
 Raven Trigon's Daughter [Rachel Roth / 60mm; Bat Family]
@@ -222,13 +237,13 @@ Rebel Masked Assassin 2 [Unknown / 30mm; League of Shadows]
 Rebel Monk [Unknown / 40mm; League of Shadows]
 Red Hood The Outlaw [Jason Todd / 40mm; Bat Family, GCPD]
 Red Robin [Tim Drake / 40mm; Bat Family, GCPD]
-Reinforcement Cop [Unknown / 30mm; GCPD] — добавлено 2026-09-02
-Renée Montoya [Renée Maria Montoya / 30mm; GCPD] — добавлено 2026-09-02
+Reinforcement Cop [Unknown / 30mm; GCPD]
+Renée Montoya [Renée Maria Montoya / 30mm; GCPD]
 Robin [Damian Wayne / 30mm; Court of Owls, League of Shadows]
 Robin [Damian Wayne / 30mm; Bat Family, GCPD]
 Robin 1997 [Dick Grayson / 40mm; GCPD]
 Robin Classic [Dick Grayson / 40mm; Bat Family, GCPD]
-Robin Tim Drake [Tim Drake / 40mm; Bat Family, GCPD] — добавлено 2026-09-02
+Robin Tim Drake [Tim Drake / 40mm; Bat Family, GCPD]
 Rocket Launcher Penguin [Unknown / 30mm; Penguin]
 Roller Derby Thug 1 [Unknown / 40mm; Harley Quinn & Friends]
 Roller Derby Thug 2 [Unknown / 30mm; Harley Quinn & Friends]
@@ -240,7 +255,7 @@ Scarecrow Arkham Asylum [Jonathan Crane / 30mm; Unknown]
 Sewer Swarm [Unknown / 30mm; Unknown]
 Shadow Armored Assassin [Unknown / 30mm; League of Shadows]
 Showtime [Tony Gianni / 30mm; Organized Crime]
-Slingy Clown [Unknown / 30mm; Joker] — добавлено 2026-09-02
+Slingy Clown [Unknown / 30mm; Joker]
 Smash [Unknown / 40mm; Bane]
 Sofia Gigante (The Penguin) [Sofia Falcone Gigante / 40mm; Organized Crime]
 Solomon Grundy [Cyrus Gold / 60mm; Unknown]
@@ -254,12 +269,15 @@ Street Demonz Biker 2 [Jackson "Fat" Smith / 42x75mm; Penguin]
 Street Demonz Biker 3 [Serge "Darky" Powers / 42x75mm; Penguin]
 Street Jester 1 [Unknown / 30mm; Joker]
 Street Jester 2 [Unknown / 30mm; Joker]
+Strix [Mary Turner / 30mm; Court of Owls, Harley Quinn & Friends] — добавлено 2026-09-04
 SWAT QRT 1 [QRT 1 / 30mm; GCPD]
 SWAT QRT 2 [QRT 2 / 30mm; GCPD]
 SWAT QRT 3 [QRT 3 / 30mm; GCPD]
 Talia Rebirth [Talia Al Ghul / 40mm; League of Shadows]
+Talon [Calvin Rose / 40mm; Bat Family, Court of Owls] — добавлено 2026-09-04
 Ted Hunter [Unknown / 30mm; Bane]
 The Bull [Luigi Lombardo / 30mm; Organized Crime]
+The Court [Unknown / 60mm; Court of Owls] — добавлено 2026-09-04
 The Drifter Robert Pattinson [Bruce Wayne / 40mm; GCPD]
 The Heretic [Damian Wayne Clone / 40mm; League of Shadows]
 The Holiday Killer [Alberto Falcone / 30mm; Organized Crime]
@@ -281,10 +299,11 @@ The Riddler's Follower 2 [Unknown / 30mm; The Riddler]
 The Riddler's Follower 3 [Unknown / 30mm; The Riddler]
 The Roman [Carmine Falcone / 30mm; Organized Crime]
 The Tailor [Alan Il'Gordo / 30mm; Organized Crime]
+The Talon [William Cobb / 30mm; Court of Owls, Suicide Squad] — добавлено 2026-09-04
 The Twin 1 [Unknown / 30mm; Organized Crime]
 The Twin 2 [Unknown / 30mm; Organized Crime]
 The Ventriloquist [Arnold Wesker / 30mm; Organized Crime]
-Thorgon [Unknown / 40mm; Joker] — добавлено 2026-09-02
+Thorgon [Unknown / 40mm; Joker]
 Two-Face Arkham City [Harvey Dent / 30mm; Two-Face]
 Ubu [Unknown / 40mm; League of Shadows]
 Unknown [Cassandra Cain / 30mm; Harley Quinn & Friends]

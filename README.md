@@ -198,6 +198,6 @@ Created for the Batman Miniature Game player community.
 
 ## 📝 Версия / Version
 
-**v0.8.1** — 2026-09-03: переводы всех 15 карт Organized Crime, исправление прокрутки длинных переводов, 277 доступных для печати записей моделей из 682 (+9 записей, 8 названий).
+**v0.8.2** — 2026-09-04: полные переводы карт и снаряжения Vigilantes, отдельные разделы карт «Семья Бэтмена» и «Юные Титаны», исправленная мобильная панель билдера, 291 доступная для печати запись модели из 682 (+14).
 
-**v0.8.1** — 2026-09-03: translations for all 15 Organized Crime cards, scrollable long translations, 277 printable model records out of 682 (+9 records across 8 names).
+**v0.8.2** — 2026-09-04: complete Vigilantes card and equipment translations, separate Bat Family and Teen Titans card sections, corrected mobile builder header, 291 printable model records out of 682 (+14).

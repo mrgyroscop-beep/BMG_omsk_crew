@@ -1,87 +1,161 @@
 {
-  "generated": "2026-09-02",
+  "generated": "2026-09-04",
   "model_count_in_app": 682,
-  "printable_model_count": 277,
-  "previous_printable_model_count": 268,
-  "newly_printable_model_count": 9,
-  "note": "Counts are runtime app records. Some characters have separate records by faction. File lists are provided where confirmed by this import or the earlier report; they are not an exhaustive disk inventory.",
+  "printable_model_count": 291,
+  "previous_printable_model_count": 277,
+  "newly_printable_model_count": 14,
+  "note": "Counts are runtime app records. Some characters have separate records by faction. File lists are confirmed but are not an exhaustive disk inventory.",
   "newly_printable_models": [
     {
-      "id": "robin-tim-drake-tim-drake-40mm",
-      "name": "Robin Tim Drake",
-      "realname": "Tim Drake",
+      "id": "strix-mary-turner-30mm",
+      "name": "Strix",
+      "realname": "Mary Turner",
+      "factions": [
+        "Court of Owls",
+        "Harley Quinn & Friends"
+      ]
+    },
+    {
+      "id": "the-court-unknown-60mm",
+      "name": "The Court",
+      "realname": "Unknown",
+      "factions": [
+        "Court of Owls"
+      ]
+    },
+    {
+      "id": "1890-s-talon-xiao-loong-30mm",
+      "name": "1890's Talon",
+      "realname": "Xiao Loong",
+      "factions": [
+        "Court of Owls"
+      ]
+    },
+    {
+      "id": "the-talon-william-cobb-30mm",
+      "name": "The Talon",
+      "realname": "William Cobb",
+      "factions": [
+        "Court of Owls",
+        "Suicide Squad"
+      ]
+    },
+    {
+      "id": "o-malley-s-grandfather-james-o-malley-30mm",
+      "name": "O'Malley's Grandfather",
+      "realname": "James O'Malley",
+      "factions": [
+        "Court of Owls"
+      ]
+    },
+    {
+      "id": "talon-calvin-rose-40mm",
+      "name": "Talon",
+      "realname": "Calvin Rose",
       "factions": [
         "Bat Family",
-        "GCPD"
+        "Court of Owls"
       ]
     },
     {
-      "id": "lucius-fox-lucius-fox-40mm",
-      "name": "Lucius Fox",
-      "realname": "Lucius Fox",
+      "id": "o-malley-s-father-brandon-o-malley-30mm",
+      "name": "O'Malley's Father",
+      "realname": "Brandon O'Malley",
       "factions": [
-        "Bat Family",
-        "GCPD"
+        "Court of Owls"
       ]
     },
     {
-      "id": "ren-e-montoya-ren-e-maria-montoya-30mm",
-      "name": "Renée Montoya",
-      "realname": "Renée Maria Montoya",
+      "id": "raptor-richard-40mm",
+      "name": "Raptor",
+      "realname": "Richard",
       "factions": [
-        "GCPD"
+        "Court of Owls",
+        "Cults"
       ]
     },
     {
-      "id": "homicide-detective-unknown-30mm",
-      "name": "Homicide Detective",
+      "id": "1880-s-talon-unknown-30mm",
+      "name": "1880's Talon",
       "realname": "Unknown",
       "factions": [
-        "GCPD"
+        "Court of Owls"
       ]
     },
     {
-      "id": "reinforcement-cop-unknown-30mm",
-      "name": "Reinforcement Cop",
+      "id": "o-malley-s-son-nathaniel-o-malley-30mm",
+      "name": "O'Malley's Son",
+      "realname": "Nathaniel O'Malley",
+      "factions": [
+        "Court of Owls"
+      ]
+    },
+    {
+      "id": "ephraim-newhouse-ephraim-newhouse-30mm",
+      "name": "Ephraim Newhouse",
+      "realname": "Ephraim Newhouse",
+      "factions": [
+        "Court of Owls"
+      ]
+    },
+    {
+      "id": "catman-the-hunter-thomas-reese-blake-40mm",
+      "name": "Catman The Hunter",
+      "realname": "Thomas Reese Blake",
+      "factions": [
+        "Unknown"
+      ]
+    },
+    {
+      "id": "km-150",
+      "name": "Henry Ballard",
+      "realname": "Henry Ballard",
+      "factions": [
+        "Court of Owls"
+      ]
+    },
+    {
+      "id": "km-151",
+      "name": "High Court Lady",
       "realname": "Unknown",
       "factions": [
-        "GCPD"
-      ]
-    },
-    {
-      "id": "killer-croc-thug-waylon-jones-40mm",
-      "name": "Killer Croc Thug",
-      "realname": "Waylon Jones",
-      "factions": [
-        "Organized Crime"
-      ]
-    },
-    {
-      "id": "thorgon-unknown-40mm",
-      "name": "Thorgon",
-      "realname": "Unknown",
-      "factions": [
-        "Joker"
-      ]
-    },
-    {
-      "id": "slingy-clown-unknown-30mm",
-      "name": "Slingy Clown",
-      "realname": "Unknown",
-      "factions": [
-        "Joker"
-      ]
-    },
-    {
-      "id": "killer-croc-thug-waylon-jones-40mm-2",
-      "name": "Killer Croc Thug",
-      "realname": "Waylon Jones",
-      "factions": [
-        "Two-Face"
+        "Court of Owls"
       ]
     }
   ],
   "printable_models": [
+    {
+      "id": "1880-s-talon-unknown-30mm",
+      "model": "1880's Talon",
+      "realname": "Unknown",
+      "base": "30mm",
+      "factions": [
+        "Court of Owls"
+      ],
+      "file_count": 4,
+      "files": [
+        "Court of Owls/Supported/1880s_Talon/1880_Talon_Body_Supported.stl",
+        "Court of Owls/Supported/1880s_Talon/1880_Talon_Cape_Supported.stl",
+        "Court of Owls/Unsupported/1880s_Talon/1880_Talon_Body_Unsupported.stl",
+        "Court of Owls/Unsupported/1880s_Talon/1880_Talon_Cape_Unsupported.stl"
+      ],
+      "newly_printable": true
+    },
+    {
+      "id": "1890-s-talon-xiao-loong-30mm",
+      "model": "1890's Talon",
+      "realname": "Xiao Loong",
+      "base": "30mm",
+      "factions": [
+        "Court of Owls"
+      ],
+      "file_count": 2,
+      "files": [
+        "Court of Owls/Supported/1890s_Talon/1890_Talon_Supported.stl",
+        "Court of Owls/Unsupported/1890s_Talon/1890_Talon_Unsupported.stl"
+      ],
+      "newly_printable": true
+    },
     {
       "id": "aaron-cash-aaron-cash-30mm-30mm",
       "model": "Aaron Cash",
@@ -849,6 +923,28 @@
       "newly_printable": false
     },
     {
+      "id": "catman-the-hunter-thomas-reese-blake-40mm",
+      "model": "Catman The Hunter",
+      "realname": "Thomas Reese Blake",
+      "base": "40mm",
+      "factions": [
+        "Unknown"
+      ],
+      "newly_printable": true,
+      "files": [
+        "Наемники/Supported/catman/Catman_Base_Supported.stl",
+        "Наемники/Supported/catman/Catman_Body_Supported.stl",
+        "Наемники/Supported/catman/Catman_Head_A_Supported.stl",
+        "Наемники/Supported/catman/Catman_Head_B_Supported.stl",
+        "Наемники/Unsupported/catman/Catman_Base_Unsupported.stl",
+        "Наемники/Unsupported/catman/Catman_Body_Unsupported.stl",
+        "Наемники/Unsupported/catman/Catman_Head_A_Unsupported.stl",
+        "Наемники/Unsupported/catman/Catman_Head_B_Unsupported.stl",
+        "Наемники/Unsupported/catman/catman_smooth_repair_old.stl"
+      ],
+      "file_count": 9
+    },
+    {
       "id": "km-710",
       "model": "Catwoman (Zoë Kravitz)",
       "realname": "Selina Kyle",
@@ -1069,7 +1165,13 @@
       "factions": [
         "Court of Owls"
       ],
-      "newly_printable": false
+      "newly_printable": false,
+      "files": [
+        "Court of Owls/Supported/dementor/Dementor_Supported.stl",
+        "Court of Owls/Unsupported/dementor/Dementor_Unsupported.stl",
+        "Court of Owls/Unsupported/dementor/dementor_repaired_finished_40_old.stl"
+      ],
+      "file_count": 3
     },
     {
       "id": "detective-flass-year-one-arnold-flass-30mm",
@@ -1212,6 +1314,21 @@
         "Penguin"
       ],
       "newly_printable": false
+    },
+    {
+      "id": "ephraim-newhouse-ephraim-newhouse-30mm",
+      "model": "Ephraim Newhouse",
+      "realname": "Ephraim Newhouse",
+      "base": "30mm",
+      "factions": [
+        "Court of Owls"
+      ],
+      "file_count": 2,
+      "files": [
+        "Court of Owls/Supported/Ephraim_Newhouse/Ephraim_Newhouse_Supported.stl",
+        "Court of Owls/Unsupported/Ephraim_Newhouse/Ephraim_Newhouse_Unsupported.stl"
+      ],
+      "newly_printable": true
     },
     {
       "id": "eraser-leonard-fiasco-40mm",
@@ -1670,6 +1787,21 @@
       "newly_printable": false
     },
     {
+      "id": "km-150",
+      "model": "Henry Ballard",
+      "realname": "Henry Ballard",
+      "base": "30mm",
+      "factions": [
+        "Court of Owls"
+      ],
+      "file_count": 2,
+      "files": [
+        "Court of Owls/Supported/Henry_Ballard/Henry_Ballard_Supported.stl",
+        "Court of Owls/Unsupported/Henry_Ballard/Henry_Ballard_Unsupported.stl"
+      ],
+      "newly_printable": true
+    },
+    {
       "id": "henry-ducard-unknown-30mm",
       "model": "Henry Ducard",
       "realname": "Unknown",
@@ -1684,6 +1816,21 @@
       "newly_printable": false
     },
     {
+      "id": "km-151",
+      "model": "High Court Lady",
+      "realname": "Unknown",
+      "base": "30mm",
+      "factions": [
+        "Court of Owls"
+      ],
+      "file_count": 2,
+      "files": [
+        "Court of Owls/Supported/High_Court_Lady/High_Court_Lady_Supported.stl",
+        "Court of Owls/Unsupported/High_Court_Lady/High_Court_Lady_Unsupported.stl"
+      ],
+      "newly_printable": true
+    },
+    {
       "id": "homicide-detective-unknown-30mm",
       "model": "Homicide Detective",
       "realname": "Unknown",
@@ -1696,7 +1843,7 @@
         "GCPD/Supported/Homicide_Detective/Homicide_detective_supported.stl",
         "GCPD/Unsupported/Homicide_Detective/Homicide_detective_unsupported.stl"
       ],
-      "newly_printable": true
+      "newly_printable": false
     },
     {
       "id": "huntress-helena-bertinelli-30mm",
@@ -1969,7 +2116,7 @@
         "Two-Face/Unsupported/Killer_Croc_Thug/killer_croc_thug_base_unsupported.stl",
         "Two-Face/Unsupported/Killer_Croc_Thug/killer_croc_thug_body_unsupported.stl"
       ],
-      "newly_printable": true
+      "newly_printable": false
     },
     {
       "id": "killer-croc-thug-waylon-jones-40mm-2",
@@ -1990,7 +2137,7 @@
         "Two-Face/Unsupported/Killer_Croc_Thug/killer_croc_thug_base_unsupported.stl",
         "Two-Face/Unsupported/Killer_Croc_Thug/killer_croc_thug_body_unsupported.stl"
       ],
-      "newly_printable": true
+      "newly_printable": false
     },
     {
       "id": "killer-frost-rebirth-caitlin-snow-40mm-2",
@@ -2208,7 +2355,17 @@
       "factions": [
         "Court of Owls"
       ],
-      "newly_printable": false
+      "newly_printable": false,
+      "files": [
+        "Court of Owls/Supported/linkoln_march/Lincoln_March_Base_Part1_Supported.stl",
+        "Court of Owls/Supported/linkoln_march/Lincoln_March_Base_Part2_Supported.stl",
+        "Court of Owls/Supported/linkoln_march/Lincoln_March_Body_Supported.stl",
+        "Court of Owls/Unsupported/linkoln_march/Lincoln_March_Base_Part1_Unsupported.stl",
+        "Court of Owls/Unsupported/linkoln_march/Lincoln_March_Base_Part2_Unsupported.stl",
+        "Court of Owls/Unsupported/linkoln_march/Lincoln_March_Body_Unsupported.stl",
+        "Court of Owls/Unsupported/linkoln_march/linkoln_march_repair_smooth_30mm_old.stl"
+      ],
+      "file_count": 7
     },
     {
       "id": "little-nightmare-unknown-30mm",
@@ -2291,7 +2448,7 @@
         "Наемники/Unsupported/Lucius_Fox/Lucius_fox_body_unsupported.stl",
         "Наемники/Unsupported/Lucius_Fox/Lucius_fox_table_unsupported.stl"
       ],
-      "newly_printable": true
+      "newly_printable": false
     },
     {
       "id": "macgregor-unknown-30mm",
@@ -2658,6 +2815,51 @@
         "League of Shadows/Unsupported/Nyssa/Nyssa_body_Unsupported.stl"
       ],
       "newly_printable": false
+    },
+    {
+      "id": "o-malley-s-father-brandon-o-malley-30mm",
+      "model": "O'Malley's Father",
+      "realname": "Brandon O'Malley",
+      "base": "30mm",
+      "factions": [
+        "Court of Owls"
+      ],
+      "file_count": 2,
+      "files": [
+        "Court of Owls/Supported/OMalleys_Father/Brandon_O_Malley_Supported.stl",
+        "Court of Owls/Unsupported/OMalleys_Father/Brandon_O_Malley_Unsupported.stl"
+      ],
+      "newly_printable": true
+    },
+    {
+      "id": "o-malley-s-grandfather-james-o-malley-30mm",
+      "model": "O'Malley's Grandfather",
+      "realname": "James O'Malley",
+      "base": "30mm",
+      "factions": [
+        "Court of Owls"
+      ],
+      "file_count": 2,
+      "files": [
+        "Court of Owls/Supported/OMalleys_Grandfather/James_O_Malley_Supported.stl",
+        "Court of Owls/Unsupported/OMalleys_Grandfather/James_O_Malley_Unsupported.stl"
+      ],
+      "newly_printable": true
+    },
+    {
+      "id": "o-malley-s-son-nathaniel-o-malley-30mm",
+      "model": "O'Malley's Son",
+      "realname": "Nathaniel O'Malley",
+      "base": "30mm",
+      "factions": [
+        "Court of Owls"
+      ],
+      "file_count": 2,
+      "files": [
+        "Court of Owls/Supported/OMalleys_Son/Nathaniel_O_Malley_Supported.stl",
+        "Court of Owls/Unsupported/OMalleys_Son/Nathaniel_O_Malley_Unsupported.stl"
+      ],
+      "newly_printable": true
     },
     {
       "id": "officer-martinez-martinez-30mm",
@@ -3133,6 +3335,38 @@
       "newly_printable": false
     },
     {
+      "id": "raptor-richard-40mm",
+      "model": "Raptor",
+      "realname": "Richard",
+      "base": "40mm",
+      "factions": [
+        "Court of Owls",
+        "Cults"
+      ],
+      "file_count": 18,
+      "files": [
+        "Court of Owls/Supported/Raptor/Raptor_Base_Body_Supported.stl",
+        "Court of Owls/Supported/Raptor/Raptor_Base_part1_Supported.stl",
+        "Court of Owls/Supported/Raptor/Raptor_Base_part2_Supported.stl",
+        "Court of Owls/Unsupported/Raptor/Raptor_Base_part1_Unsupported.stl",
+        "Court of Owls/Unsupported/Raptor/Raptor_Base_part2_Unsupported.stl",
+        "Court of Owls/Unsupported/Raptor/Raptor_Body_Unsupported.stl",
+        "Cults/Supported/Raptor/Raptor_Base_Body_Supported.stl",
+        "Cults/Supported/Raptor/Raptor_Base_part1_Supported.stl",
+        "Cults/Supported/Raptor/Raptor_Base_part2_Supported.stl",
+        "Cults/Unsupported/Raptor/Raptor_Base_part1_Unsupported.stl",
+        "Cults/Unsupported/Raptor/Raptor_Base_part2_Unsupported.stl",
+        "Cults/Unsupported/Raptor/Raptor_Body_Unsupported.stl",
+        "Наемники/Supported/Raptor/Raptor_Base_Body_Supported.stl",
+        "Наемники/Supported/Raptor/Raptor_Base_part1_Supported.stl",
+        "Наемники/Supported/Raptor/Raptor_Base_part2_Supported.stl",
+        "Наемники/Unsupported/Raptor/Raptor_Base_part1_Unsupported.stl",
+        "Наемники/Unsupported/Raptor/Raptor_Base_part2_Unsupported.stl",
+        "Наемники/Unsupported/Raptor/Raptor_Body_Unsupported.stl"
+      ],
+      "newly_printable": true
+    },
+    {
       "id": "ratcatcher-otis-flannegan-40mm",
       "model": "Ratcatcher",
       "realname": "Otis Flannegan",
@@ -3291,7 +3525,7 @@
         "GCPD/Supported/Reinforcement_Cop/Reinforcement_Cop_supported.stl",
         "GCPD/Unsupported/Reinforcement_Cop/Reinforcement_Cop_unsupported.stl"
       ],
-      "newly_printable": true
+      "newly_printable": false
     },
     {
       "id": "ren-e-montoya-ren-e-maria-montoya-30mm",
@@ -3306,7 +3540,7 @@
         "GCPD/Supported/Renee_Montoya/Renée_Montoya_supported.stl",
         "GCPD/Unsupported/Renee_Montoya/Renée_Montoya_unsupported.stl"
       ],
-      "newly_printable": true
+      "newly_printable": false
     },
     {
       "id": "robin-damian-wayne-30mm",
@@ -3440,7 +3674,7 @@
         "Наемники/Unsupported/Robin_Tim_Drake/Robin_Tim_Drake_base_unsupported.stl",
         "Наемники/Unsupported/Robin_Tim_Drake/Robin_Tim_Drake_body_unsupported.stl"
       ],
-      "newly_printable": true
+      "newly_printable": false
     },
     {
       "id": "rocket-launcher-penguin-unknown-30mm",
@@ -3605,7 +3839,7 @@
         "Joker/Supported/Slingy_Clown/slingy_clown_supported.stl",
         "Joker/Unsupported/Slingy_Clown/slingy_clown_unsupported.stl"
       ],
-      "newly_printable": true
+      "newly_printable": false
     },
     {
       "id": "smash-unknown-40mm",
@@ -3778,6 +4012,26 @@
       "newly_printable": false
     },
     {
+      "id": "strix-mary-turner-30mm",
+      "model": "Strix",
+      "realname": "Mary Turner",
+      "base": "30mm",
+      "factions": [
+        "Court of Owls",
+        "Harley Quinn & Friends"
+      ],
+      "newly_printable": true,
+      "files": [
+        "Court of Owls/Supported/strix/Strix_Supported.stl",
+        "Court of Owls/Unsupported/strix/Strix_Unsupported.stl",
+        "Court of Owls/Unsupported/strix/strix_smooth_old.stl",
+        "Harley Quinn & Friends/Supported/strix/Strix_Supported.stl",
+        "Harley Quinn & Friends/Unsupported/strix/Strix_Unsupported.stl",
+        "Harley Quinn & Friends/Unsupported/strix/strix_smooth_old.stl"
+      ],
+      "file_count": 6
+    },
+    {
       "id": "swat-qrt-1-qrt-1-30mm",
       "model": "SWAT QRT 1",
       "realname": "QRT 1",
@@ -3837,6 +4091,32 @@
       "newly_printable": false
     },
     {
+      "id": "talon-calvin-rose-40mm",
+      "model": "Talon",
+      "realname": "Calvin Rose",
+      "base": "40mm",
+      "factions": [
+        "Bat Family",
+        "Court of Owls"
+      ],
+      "file_count": 12,
+      "files": [
+        "Bat Family/Supported/Calvin_Rose/Calvin_Rose_Base_Supported.stl",
+        "Bat Family/Supported/Calvin_Rose/Calvin_Rose_Body_Supported.stl",
+        "Bat Family/Unsupported/Calvin_Rose/Calvin_Rose_Base_Unsupported.stl",
+        "Bat Family/Unsupported/Calvin_Rose/Calvin_Rose_Body_Unsupported.stl",
+        "Court of Owls/Supported/Calvin_Rose/Calvin_Rose_Base_Supported.stl",
+        "Court of Owls/Supported/Calvin_Rose/Calvin_Rose_Body_Supported.stl",
+        "Court of Owls/Unsupported/Calvin_Rose/Calvin_Rose_Base_Unsupported.stl",
+        "Court of Owls/Unsupported/Calvin_Rose/Calvin_Rose_Body_Unsupported.stl",
+        "Наемники/Supported/Calvin_Rose/Calvin_Rose_Base_Supported.stl",
+        "Наемники/Supported/Calvin_Rose/Calvin_Rose_Body_Supported.stl",
+        "Наемники/Unsupported/Calvin_Rose/Calvin_Rose_Base_Unsupported.stl",
+        "Наемники/Unsupported/Calvin_Rose/Calvin_Rose_Body_Unsupported.stl"
+      ],
+      "newly_printable": true
+    },
+    {
       "id": "ted-hunter-unknown-30mm",
       "model": "Ted Hunter",
       "realname": "Unknown",
@@ -3859,6 +4139,29 @@
         "Organized Crime"
       ],
       "newly_printable": false
+    },
+    {
+      "id": "the-court-unknown-60mm",
+      "model": "The Court",
+      "realname": "Unknown",
+      "base": "60mm",
+      "factions": [
+        "Court of Owls"
+      ],
+      "file_count": 10,
+      "files": [
+        "Court of Owls/Supported/The_Court/The_Court_Base_Supported.stl",
+        "Court of Owls/Supported/The_Court/The_Court_Chair_Supported.stl",
+        "Court of Owls/Supported/The_Court/The_Court_Child_Supported.stl",
+        "Court of Owls/Supported/The_Court/The_Court_Man_Supported.stl",
+        "Court of Owls/Supported/The_Court/The_Court_Woman_Supported.stl",
+        "Court of Owls/Unsupported/The_Court/The_Court_Base_Unsupported.stl",
+        "Court of Owls/Unsupported/The_Court/The_Court_Chair_Unsupported.stl",
+        "Court of Owls/Unsupported/The_Court/The_Court_Child_Unsupported.stl",
+        "Court of Owls/Unsupported/The_Court/The_Court_Man_Unsupported.stl",
+        "Court of Owls/Unsupported/The_Court/The_Court_Woman_Unsupported.stl"
+      ],
+      "newly_printable": true
     },
     {
       "id": "the-drifter-robert-pattinson-bruce-wayne-40mm-40mm",
@@ -4101,6 +4404,24 @@
       "newly_printable": false
     },
     {
+      "id": "the-talon-william-cobb-30mm",
+      "model": "The Talon",
+      "realname": "William Cobb",
+      "base": "30mm",
+      "factions": [
+        "Court of Owls",
+        "Suicide Squad"
+      ],
+      "file_count": 4,
+      "files": [
+        "Court of Owls/Supported/William_Cobb/William_Cobb_Supported.stl",
+        "Court of Owls/Unsupported/William_Cobb/William_Cobb_Unsupported.stl",
+        "Suicide Squad/Supported/William_Cobb/William_Cobb_Supported.stl",
+        "Suicide Squad/Unsupported/William_Cobb/William_Cobb_Unsupported.stl"
+      ],
+      "newly_printable": true
+    },
+    {
       "id": "the-twin-1-unknown-30mm",
       "model": "The Twin 1",
       "realname": "Unknown",
@@ -4145,7 +4466,7 @@
         "Joker/Unsupported/Thorgon/Thorgon_base_unsupported.stl",
         "Joker/Unsupported/Thorgon/Thorgon_body_unsupported.stl"
       ],
-      "newly_printable": true
+      "newly_printable": false
     },
     {
       "id": "two-face-arkham-city-harvey-dent-30mm",

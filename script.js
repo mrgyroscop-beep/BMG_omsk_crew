@@ -745,6 +745,8 @@ const translations = {
     builder_cards_mandatory: "Обязательные правила",
     builder_cards_group_general: "Общие карты",
     builder_cards_group_crew: "Карты банды",
+    builder_cards_group_bat_family: "Семья Бэтмена",
+    builder_cards_group_teen_titans: "Юные Титаны",
     builder_cards_group_character: "Персональные карты",
     builder_cards_group_other: "Другие карты",
     builder_cards_empty: "Каталог карт пуст",
@@ -1088,6 +1090,8 @@ const translations = {
     builder_cards_mandatory: "Mandatory rules",
     builder_cards_group_general: "General cards",
     builder_cards_group_crew: "Crew cards",
+    builder_cards_group_bat_family: "Bat Family",
+    builder_cards_group_teen_titans: "Teen Titans",
     builder_cards_group_character: "Character cards",
     builder_cards_group_other: "Other cards",
     builder_cards_empty: "Card catalog is empty",
@@ -3652,6 +3656,14 @@ const exactWeaponTraitTranslations = {
 
 const exactCompendiumBodyTranslations = {
   ru: {
+    "When this model sets a Suspect, you may set a Thwart within 4\" of that Suspect.": "Когда эта модель размещает Suspect, вы можете разместить маркер THWART! в пределах 4\" от него.",
+    "Once per game, at the start of the activation of this model, you may use Moment of Glory. This model benefits from the Boss's Inspire trait exactly as if it held Rank: Henchman until the end of the round.": "Один раз за игру, в начале активации этой модели, вы можете использовать «Момент славы». До конца раунда эта модель получает эффект трейта Inspire босса так, словно имеет ранг Henchman.",
+    "This model gains +1 to its Defense rolls while it also benefits from the Bat-Armor MKII trait.": "Пока эта модель получает эффект трейта Bat-Armor MKII, она добавляет +1 к своим броскам защиты.",
+    "This model's Batclaw/Grapple Gun trait provides +8\" when used instead of +6\".": "При использовании трейта Batclaw/Grapple Gun эта модель перемещается на +8\" вместо +6\".",
+    "When this model attacks with a weapon with the Throwing trait, it gains +1 to Hit and the Mechanical trait.": "Когда эта модель атакует оружием с трейтом Throwing, оружие получает +1 к попаданию и трейт Mechanical.",
+    "When this model attacks unarmed and uses the Reinforced Gloves trait, its attacks gain the Overwhelming trait.": "Когда эта модель атакует без оружия и использует трейт Reinforced Gloves, её атаки получают трейт Overwhelming.",
+    "Reduce the cost of this Free Agent by 30 Reputation.": "Уменьшите стоимость этого Free Agent на 30 REP.",
+    "Adds 30 Reputation to use on models with Rank {RANK_HENCHMAN_ICON}.": "Добавляет 30 REP, которые можно потратить на модели с рангом {RANK_HENCHMAN_ICON}.",
     "You can choose to instead of suffering any other Status on this model to suffer the Enervating (+1) Status.": "Вместо получения этой моделью любого другого статуса вы можете выбрать статус Enervating (+1).",
     "Choose one:\nTarget an enemy model within 8\" and make an Opposed Endurance roll. if successful, place that model in contact with this model.\nor\nPlace this model within 6\".": "Выберите один вариант:\n• Выберите вражескую модель в пределах 8\" и выполните встречный бросок стойкости. При успехе разместите выбранную модель в контакте с этой моделью.\n• Разместите эту модель в пределах 6\".",
     "Enemy models don't roll a Strength die when attacking this model. In addition, when a melee attack action against this model is fully resolved, this model may make 2 Efforts to deal {BLOOD_ICON}{BLOOD_ICON} to the attacker.": "Вражеские модели не бросают кубик силы при атаке этой модели. Кроме того, после полного разрешения действия атаки ближнего боя против этой модели она может сделать 2 Effort, чтобы нанести атакующей модели {BLOOD_ICON}{BLOOD_ICON}.",
@@ -4202,7 +4214,7 @@ const exactCompendiumBodyTranslations = {
     "During its activation, this model may take up to 1 Effort to perform an extra Manipulate action.": "Во время своей активации эта модель может потратить до 1 Effort, чтобы выполнить дополнительное действие Manipulate.",
     "At the end of any action that inflicts damage to a friendly Howard model within 8” of this model, this model may move up to 4” towards the friendly Howard model, then remove 1 damage from that model.": "В конце любого действия, которое наносит урон дружественной модели Howard в пределах 8” от этой модели, эта модель может переместиться на расстояние до 4” к дружественной модели Howard, а затем убрать 1 урон с той модели.",
     "Model gains Exhaustive Planner trait.": "Модель получает трейт Exhaustive Planner.",
-    "Model gains the Hidden Boss trait.": "Модель получает трейт Hidden Boss.",
+    "Model gains the Hidden Boss trait.": "Модель получает трейт «Скрытый босс».",
     "Each time you score an Objective card, after you draw a new card, draw 1 additional Objective card and place it face down without looking at it. Only 1 card can be in play in this manner at a time. You may play this card as a Resource following the usual rules without paying the cost. If the Resource cannot be played when you choose to play it, the effect is ignored.": "Каждый раз, когда вы выполняете карту цели, после того как возьмёте новую карту, возьмите ещё 1 дополнительную карту цели и положите её рубашкой вниз, не глядя на неё. Одновременно таким образом в игре может находиться только 1 карта. Вы можете сыграть эту карту как ресурс по обычным правилам, не оплачивая её стоимость. Если ресурс нельзя разыграть в тот момент, когда вы решите это сделать, эффект игнорируется.",
     "If an allied Bruce Wayne model receives any number of hits while within 4” of this model, this model may make an Effort - if it does so, resolve the hits against this model instead.": "Если союзная модель Bruce Wayne получает любое количество попаданий, находясь в пределах 4” от этой модели, эта модель может сделать Effort. Если она делает это, все эти попадания разрешаются по ней вместо Bruce Wayne.",
     "If this model is the crew’s Boss, friendly models with Rank {RANK_HENCHMAN_ICON} gain the Expendable trait.": "Если эта модель является Boss команды, дружественные модели ранга {RANK_HENCHMAN_ICON} получают трейт Expendable.",
@@ -6720,8 +6732,7 @@ function updateMobileFixedTopbarOffsets() {
     mobileTopbarOffsetFrame = null;
     const isMobile = window.matchMedia && window.matchMedia("(max-width: 480px)").matches;
     [
-      ["cardsSection", "#cardsSection > .top-bar"],
-      ["builderMain", "#builderMain > .top-bar"]
+      ["cardsSection", "#cardsSection > .top-bar"]
     ].forEach(([sectionId, headerSelector]) => {
       const section = document.getElementById(sectionId);
       if (!section) return;
@@ -11925,10 +11936,7 @@ function isBuilderCardGeneral(card) {
 
 function isBuilderCardCharacterSpecific(card) {
   if (!card) return false;
-  const category = String(card.category || card.deckType || "").toLowerCase();
-  return category === "character" ||
-    getBuilderCardRequiredModelNames(card).length > 0 ||
-    Boolean(card.modelName || card.modelAlias || card.requiredModel || card.requiredModelName || card.subtitle);
+  return getBuilderCardRequiredModelNames(card).length > 0;
 }
 
 function isBuilderCardSingle(card) {
@@ -12523,11 +12531,20 @@ function renderBuilderCardItem(card, options = {}) {
 
 function getBuilderCardGroupKey(card) {
   const category = String(card?.category || card?.deckType || "").toLowerCase();
+  const requiredModels = getBuilderCardRequiredModelNames(card);
+  const requiredTraits = getBuilderCardRequiredTraits(card).map(normalizeBuilderCardTraitText);
+  const factions = getBuilderCardFactionList(card);
 
-  if (category === "character" || getBuilderCardRequiredModelNames(card).length) {
+  if (requiredModels.length) {
     return "character";
   }
-  if (category === "crew" || category === "faction" || getBuilderCardFactionList(card).length) {
+  if (factions.includes("Vigilantes") && requiredTraits.includes(normalizeBuilderCardTraitText("Bat Family"))) {
+    return "bat-family";
+  }
+  if (factions.includes("Vigilantes") && requiredTraits.includes(normalizeBuilderCardTraitText("Teen Titans"))) {
+    return "teen-titans";
+  }
+  if (category === "crew" || category === "faction" || factions.length || category === "character") {
     return "crew";
   }
   if (isBuilderCardGeneral(card)) {
@@ -12541,6 +12558,8 @@ function getBuilderCardGroupTitle(groupKey) {
   const labels = {
     general: t("builder_cards_group_general"),
     crew: t("builder_cards_group_crew"),
+    "bat-family": t("builder_cards_group_bat_family"),
+    "teen-titans": t("builder_cards_group_teen_titans"),
     character: t("builder_cards_group_character"),
     other: t("builder_cards_group_other")
   };
@@ -12597,7 +12616,7 @@ function passesBuilderCardQuickFilter(card, options = {}) {
   if (builderCardQuickFilter === "available") return available;
   if (builderCardQuickFilter === "selected") return selected;
   if (builderCardQuickFilter === "general") return groupKey === "general";
-  if (builderCardQuickFilter === "crew") return groupKey === "crew";
+  if (builderCardQuickFilter === "crew") return ["crew", "bat-family", "teen-titans"].includes(groupKey);
   if (builderCardQuickFilter === "character") return groupKey === "character";
   if (builderCardQuickFilter === "missing") {
     return builderCardHasCrewRequirement(card) && !isBuilderCardRequirementMet(card);
@@ -12651,7 +12670,7 @@ function setBuilderCardQuickFilter(filter) {
 }
 
 function groupBuilderCardEntries(entries) {
-  const order = ["general", "crew", "character", "other"];
+  const order = ["general", "crew", "bat-family", "teen-titans", "character", "other"];
   const groups = new Map(order.map(key => [key, []]));
 
   entries.forEach(entry => {
@@ -15864,7 +15883,7 @@ function openEquipmentMenu(model, cardElement = null, sourceEvent = null) {
                 ${eq.maxPerCrew ? `<span>0-${eq.maxPerCrew}</span>` : ""}
                 ${requirement ? `<span>${escapeHtml(requirement)}</span>` : ""}
               </span>
-              <span class="equipment-option-effect">${replaceIcons(translateSentence(effects || uiText("description_not_found")))}</span>
+              <span class="equipment-option-effect">${replaceIcons(localizeCompendiumBody(effects || uiText("description_not_found")))}</span>
               ${warnings.length ? `<span class="equipment-option-warning">${warnings.join(" / ")}</span>` : ""}
             </button>
           `;
