@@ -352,7 +352,8 @@ function buildDisabled(localCards, matches) {
   const matchedIndexes = new Set(matches.map(match => match.index));
   return localCards
     .map((card, index) => ({ card, index }))
-    .filter(item => !matchedIndexes.has(item.index))
+    // The app feed omits some support cards printed in official objective PDFs.
+    .filter(item => !matchedIndexes.has(item.index) && !item.card.officialPdfSource)
     .map(({ card, index }) => ({
       index,
       id: card.id || "",

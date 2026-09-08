@@ -496,6 +496,30 @@ const builderMandatoryCards = [
   }
 ];
 
+// Printed support card missing from the Knight Models app's gamedata feed.
+builderMandatoryCards.push({
+  id: "court-of-owls-card-keywords",
+  name: "BURN X / TALON'S PREY / LIMITED",
+  img: "img/cards/court-of-owls/card-keywords.jpg",
+  renderAsCardImage: true,
+  type: "Special Rules",
+  category: "crew",
+  faction: ["Court of Owls"],
+  isGeneral: false,
+  mandatory: true,
+  countsForDeck: false,
+  maxPerDeck: 1,
+  officialPdfSource: {
+    document: "OBJECTIVE_COURT_OF_OWLS.pdf",
+    version: "The Court of Owls v02 - Nov 2023",
+    page: 4
+  },
+  text: {
+    en: "Burn X: You can play this Resource by paying X Resource points to discard this card from your hand, placing it at the bottom of your Objective deck.\n\nTalon’s Prey: Target an enemy model within 4” of a friendly Owl marker and a friendly Suspect. Mark that model as Prey. Traits and Objectives referring to Prey only refer to enemy models marked as Prey. If this resource is used more than once this round, it increases its cost to 1 this round. Only one model can be Prey. If you mark a model as Prey and there is already another marked model in play, the previous model is no longer considered Prey.\n\nLimited: Only 1 card with this name can be in play at a time.",
+    ru: "Burn X: вы можете разыграть этот ресурс, заплатив X очков ресурса, чтобы сбросить эту карту с руки, поместив её под низ своей колоды целей.\n\nTalon’s Prey: выберите вражескую модель в пределах 4” от дружественного маркера Owl и дружественного Suspect. Отметьте эту модель как Prey (добычу). Трейты и цели, ссылающиеся на Prey, относятся только к вражеским моделям с этой отметкой. Если этот ресурс используется более одного раза за раунд, его стоимость в этом раунде повышается до 1. Только одна модель может быть Prey. Если вы отмечаете модель как Prey, когда в игре уже есть другая отмеченная модель, предыдущая модель перестаёт считаться Prey.\n\nLimited: одновременно в игре может находиться только одна карта с этим названием."
+  }
+});
+
 const characterObjectiveTextRu = {
   "reinforce-bird": `Условие: дружественная модель находится в пределах 4" от другой дружественной модели с трейтом Veteran и получает не больше 2 Damage от Attack.
 
