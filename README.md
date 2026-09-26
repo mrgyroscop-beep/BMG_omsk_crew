@@ -198,6 +198,10 @@ Created for the Batman Miniature Game player community.
 
 ## 📝 Версия / Version
 
+**v0.9.3** — 2026-09-26: коды новых матчевых комнат теперь состоят из шести цифр.
+
+**v0.9.3** — 2026-09-26: new match room codes now use six digits.
+
 **v0.9.2** — 2026-09-26: добавлено версионирование клиентских файлов, чтобы браузер сразу загружал исправления вместо старого JavaScript из кэша.
 
 **v0.9.2** — 2026-09-26: added client asset versioning so browsers load fixes immediately instead of using stale cached JavaScript.

@@ -672,7 +672,7 @@ const translations = {
     match_room_restoring: "Восстанавливаем комнату…",
     match_room_left: "Вы вышли из комнаты.",
     match_room_closed: "Комната закрыта.",
-    match_room_invalid_code: "Введите код комнаты из 6 символов.",
+    match_room_invalid_code: "Введите шестизначный код комнаты.",
     match_room_service_error: "Сервис комнат сейчас недоступен.",
     match_room_expired: "Комната не найдена или уже закрыта.",
     match_room_full: "В комнате уже два игрока.",
@@ -1032,7 +1032,7 @@ const translations = {
     match_room_restoring: "Restoring room…",
     match_room_left: "You left the room.",
     match_room_closed: "Room closed.",
-    match_room_invalid_code: "Enter the 6-character room code.",
+    match_room_invalid_code: "Enter the 6-digit room code.",
     match_room_service_error: "Room service is currently unavailable.",
     match_room_expired: "Room was not found or has already closed.",
     match_room_full: "This room already has two players.",
@@ -9069,7 +9069,7 @@ function loadMatchRoomSession() {
     const raw = localStorage.getItem(MATCH_ROOM_STORAGE_KEY);
     const parsed = raw ? JSON.parse(raw) : null;
     matchRoomSession = parsed?.code && parsed?.token
-      ? { code: normalizeMatchRoomCode(parsed.code), token: String(parsed.token), side: parsed.side === "guest" ? "guest" : "host" }
+      ? { code: normalizeStoredMatchRoomCode(parsed.code), token: String(parsed.token), side: parsed.side === "guest" ? "guest" : "host" }
       : null;
   } catch (error) {
     console.warn("Failed to load match room", error);
@@ -9102,7 +9102,11 @@ function clearMatchRoomState(options = {}) {
 }
 
 function normalizeMatchRoomCode(value) {
-  return String(value || "").toUpperCase().replace(/[^A-HJ-NP-Z2-9]/gu, "").slice(0, 6);
+  return String(value || "").replace(/\D/gu, "").slice(0, 6);
+}
+
+function normalizeStoredMatchRoomCode(value) {
+  return String(value || "").toUpperCase().replace(/[^A-Z0-9]/gu, "").slice(0, 6);
 }
 
 function getMatchRoomPlayer(side) {

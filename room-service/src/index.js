@@ -2,8 +2,8 @@ const ROOM_TTL_SECONDS = 24 * 60 * 60;
 const MAX_BODY_BYTES = 128 * 1024;
 const MAX_ROSTER_BYTES = 96 * 1024;
 const ROOM_CODE_LENGTH = 6;
-const ROOM_CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-const ROOM_CODE_PATTERN = /^[A-HJ-NP-Z2-9]{6}$/u;
+const ROOM_CODE_ALPHABET = "0123456789";
+const ROOM_CODE_PATTERN = /^(?:\d{6}|[A-HJ-NP-Z2-9]{6})$/u;
 
 export default {
   async fetch(request, env) {
@@ -251,9 +251,17 @@ function normalizeRoomCode(value) {
 }
 
 function randomRoomCode() {
-  const bytes = new Uint8Array(ROOM_CODE_LENGTH);
-  crypto.getRandomValues(bytes);
-  return [...bytes].map(byte => ROOM_CODE_ALPHABET[byte % ROOM_CODE_ALPHABET.length]).join("");
+  let code = "";
+  while (code.length < ROOM_CODE_LENGTH) {
+    const bytes = new Uint8Array((ROOM_CODE_LENGTH - code.length) * 2);
+    crypto.getRandomValues(bytes);
+    for (const byte of bytes) {
+      if (byte >= 250) continue;
+      code += ROOM_CODE_ALPHABET[byte % ROOM_CODE_ALPHABET.length];
+      if (code.length === ROOM_CODE_LENGTH) break;
+    }
+  }
+  return code;
 }
 
 function randomToken() {
