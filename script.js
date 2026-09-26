@@ -9699,7 +9699,7 @@ function getValidMatchOwnState() {
 }
 
 function canStartMatchGame() {
-  return Boolean(getValidMatchOwnState() && matchOpponentRoster && matchRoom?.status === "active");
+  return Boolean(getValidMatchOwnState());
 }
 
 function updateMatchStartGameButton() {
@@ -9994,18 +9994,9 @@ function startMatchGame() {
     alert(t("match_own_roster_required"));
     return;
   }
-  if (!matchOpponentRoster) {
-    alert(t("match_opponent_required"));
-    return;
-  }
-  if (matchRoom?.status !== "active") {
-    alert(t("match_room_active"));
-    return;
-  }
-
   matchGameRosters = {
     own: applyMatchRosterRuleEffects(ownState.roster),
-    opponent: applyMatchRosterRuleEffects(matchOpponentRoster)
+    opponent: matchOpponentRoster ? applyMatchRosterRuleEffects(matchOpponentRoster) : null
   };
   matchGameSide = "own";
   matchGameCardsExpanded = false;
@@ -10032,7 +10023,8 @@ function startMatchGame() {
 }
 
 function setMatchGameSide(side) {
-  const nextSide = side === "opponent" ? "opponent" : "own";
+  const hasOpponent = Boolean(matchGameRosters?.opponent);
+  const nextSide = side === "opponent" && hasOpponent ? "opponent" : "own";
   if (matchGameSide !== nextSide) {
     matchGameCardsExpanded = false;
   }
@@ -11319,9 +11311,13 @@ function renderMatchGameHud(roster) {
 }
 
 function renderMatchGame() {
+  const hasOpponent = Boolean(matchGameRosters?.opponent);
+  if (!hasOpponent && matchGameSide !== "own") matchGameSide = "own";
   const roster = getMatchGameRoster();
   const ownButton = $("matchGameOwnBtn");
   const opponentButton = $("matchGameOpponentBtn");
+  const sideSwitch = $("matchGameSideSwitch");
+  if (sideSwitch) sideSwitch.hidden = !hasOpponent;
   if (ownButton) {
     ownButton.classList.toggle("active", matchGameSide === "own");
     ownButton.setAttribute("aria-pressed", matchGameSide === "own" ? "true" : "false");
@@ -11368,6 +11364,7 @@ function initMatchGameSwipe() {
   }, { passive: true });
 
   area.addEventListener("touchend", event => {
+    if (!matchGameRosters?.opponent) return;
     const touch = event.changedTouches[0];
     const dx = touch.clientX - startX;
     const dy = touch.clientY - startY;

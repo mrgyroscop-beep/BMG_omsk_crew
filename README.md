@@ -198,6 +198,10 @@ Created for the Batman Miniature Game player community.
 
 ## 📝 Версия / Version
 
+**v0.10.2** — 2026-09-26: матч теперь можно запустить без комнаты и подключённого соперника; в одиночном режиме отображается только собственный ростер.
+
+**v0.10.2** — 2026-09-26: matches can now start without a room or connected opponent; solo mode displays only the player's own roster.
+
 **v0.10.1** — 2026-09-26: турнирный режим отключён и удалён из главного меню и настроек.
 
 **v0.10.1** — 2026-09-26: disabled tournament mode and removed it from the main menu and settings.

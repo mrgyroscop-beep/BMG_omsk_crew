@@ -2920,6 +2920,10 @@ body.tournament-feature-disabled [data-tournament-feature] {
   margin-right: auto;
 }
 
+.match-game-switch[hidden] {
+  display: none !important;
+}
+
 .match-game-models .mini-card {
   grid-template-columns: 84px minmax(0, 1fr);
   border-color: #303030;
