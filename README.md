@@ -198,6 +198,10 @@ Created for the Batman Miniature Game player community.
 
 ## 📝 Версия / Version
 
+**v0.9.1** — 2026-09-26: исправлен вход в матч с обычным ростером без цифровой колоды Objective-карт.
+
+**v0.9.1** — 2026-09-26: fixed match entry for standard rosters without a digital Objective deck.
+
 **v0.9.0** — 2026-09-26: QR-обмен ростерами заменён онлайн-комнатами с коротким кодом, восстановлением сессии и готовностью обоих игроков; добавлен Cloudflare Worker с D1. Матч и турнир теперь поддерживают ростеры без собранной цифровой колоды Objective-карт.
 
 **v0.9.0** — 2026-09-26: QR roster exchange was replaced with online rooms using short codes, session recovery, and two-player readiness; a Cloudflare Worker with D1 was added. Match and tournament modes now support rosters without a completed digital Objective deck.

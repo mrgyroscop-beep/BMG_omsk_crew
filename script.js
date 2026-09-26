@@ -7746,12 +7746,10 @@ function isCrewEntryVisibleWithTournamentSetting(crewEntry) {
 }
 
 function getCrewEntryDeckOptions(crewEntry) {
-  if (!isTournamentCrewEntry(crewEntry)) return {};
-
   // An empty digital deck means the player is using physical Objective cards.
-  // If any cards are entered, the normal Batmatch deck limits still apply.
+  // If any cards are entered, the normal limits for that roster type still apply.
   return {
-    ...getBatmatchDeckOptions(),
+    ...(isTournamentCrewEntry(crewEntry) ? getBatmatchDeckOptions() : getStandardDeckOptions()),
     allowEmptyDeck: true
   };
 }
