@@ -10042,6 +10042,10 @@ function getMatchGameRosterBySide(side = matchGameSide) {
   return side === "opponent" ? matchGameRosters.opponent : matchGameRosters.own;
 }
 
+function canEditMatchGameSide(side = matchGameSide) {
+  return side !== "opponent";
+}
+
 function findMatchGameBaseModel(modelEntry, faction = "") {
   if (typeof modelEntry?.id === "number") return models[modelEntry.id] || null;
   return findMatchRosterModel(modelEntry, faction);
@@ -10163,6 +10167,7 @@ function getMatchGameCounterSide(side = matchGameSide) {
 
 function adjustMatchGameCounter(counter, delta, event) {
   stopMatchGameTrackerEvent(event);
+  if (!canEditMatchGameSide()) return;
   const sideState = getMatchGameCounterSide(matchGameSide);
   const key = counter === "passes" ? "passes" : counter === "vp" ? "vpAdjustment" : "resource";
   if (key === "vpAdjustment") {
@@ -10284,6 +10289,7 @@ function stopMatchGameTrackerEvent(event) {
 
 function adjustMatchGameDamage(side, rosterIndex, type, delta, event) {
   stopMatchGameTrackerEvent(event);
+  if (!canEditMatchGameSide(side)) return;
   const key = type === "stun" ? "stun" : "blood";
   const state = getMatchGameModelState(side, rosterIndex, true);
   state[key] = Math.max(0, numericValue(state[key], 0) + numericValue(delta, 0));
@@ -10292,6 +10298,7 @@ function adjustMatchGameDamage(side, rosterIndex, type, delta, event) {
 
 function setMatchGameDamageFromBubble(side, rosterIndex, type, bubbleIndex, maxValue, event) {
   stopMatchGameTrackerEvent(event);
+  if (!canEditMatchGameSide(side)) return;
   const key = type === "stun" ? "stun" : "blood";
   const max = Math.max(0, numericValue(maxValue, 0));
   const index = Math.max(0, Math.min(max - 1, numericValue(bubbleIndex, 0)));
@@ -10309,6 +10316,7 @@ function setMatchGameDamageFromBubble(side, rosterIndex, type, bubbleIndex, maxV
 
 function setMatchGameEffortSpentFromBubble(side, rosterIndex, effortIndex, event) {
   stopMatchGameTrackerEvent(event);
+  if (!canEditMatchGameSide(side)) return;
   const roster = getMatchGameRosterBySide(side);
   const modelEntry = roster?.models?.[rosterIndex];
   if (!modelEntry) return;
@@ -10328,6 +10336,7 @@ function setMatchGameEffortSpentFromBubble(side, rosterIndex, effortIndex, event
 
 function toggleMatchGameActivated(side, rosterIndex, event) {
   stopMatchGameTrackerEvent(event);
+  if (!canEditMatchGameSide(side)) return;
   const state = getMatchGameModelState(side, rosterIndex, true);
   state.activated = !state.activated;
   renderMatchGame();
@@ -10335,6 +10344,7 @@ function toggleMatchGameActivated(side, rosterIndex, event) {
 
 function toggleMatchGameAudacity(side, rosterIndex, event) {
   stopMatchGameTrackerEvent(event);
+  if (!canEditMatchGameSide(side)) return;
   const state = getMatchGameModelState(side, rosterIndex, true);
   state.audacity = !state.audacity;
   renderMatchGame();
@@ -10349,9 +10359,10 @@ function isMatchGameModelKO(modelState, modelEntry, baseModel) {
 
 function startMatchGameNewRound(event) {
   stopMatchGameTrackerEvent(event);
+  if (!canEditMatchGameSide()) return;
   if (!matchGameModelState) resetMatchGameModelState();
   if (!matchGameCounterState) resetMatchGameCounterState();
-  ["own", "opponent"].forEach(side => {
+  ["own"].forEach(side => {
     const roster = getMatchGameRosterBySide(side);
     (roster?.models || []).forEach((modelEntry, rosterIndex) => {
       const state = getMatchGameModelState(side, rosterIndex, true);
@@ -10377,6 +10388,7 @@ function resetMatchGameActivations(side = matchGameSide, event) {
 
 function adjustMatchGameStatus(side, rosterIndex, statusId, delta, event) {
   stopMatchGameTrackerEvent(event);
+  if (!canEditMatchGameSide(side)) return;
   if (!statusId || !getMatchGameStatusOption(statusId)) return;
   const state = getMatchGameModelState(side, rosterIndex, true);
   const currentCount = numericValue(state.statuses?.[statusId], 0);
@@ -10396,6 +10408,7 @@ function addMatchGameStatus(side, rosterIndex, statusId, event) {
 
 function clearMatchGameStatus(side, rosterIndex, statusId, event) {
   stopMatchGameTrackerEvent(event);
+  if (!canEditMatchGameSide(side)) return;
   const state = getMatchGameModelState(side, rosterIndex, true);
   if (state.statuses) delete state.statuses[statusId];
   renderMatchGame();
@@ -10424,13 +10437,14 @@ function renderMatchGameDamageTracker(modelState, modelEntry, baseModel, side, r
 function renderMatchGameBubbleTrack(side, rosterIndex, type, label, value, maxValue) {
   const max = Math.max(0, numericValue(maxValue, 0));
   const damage = Math.max(0, numericValue(value, 0));
+  const disabled = canEditMatchGameSide(side) ? "" : " disabled";
   const emptyCount = Math.min(max, damage);
   const dangerClass = max > 0 && damage >= max ? " is-danger" : "";
   const bubbles = max > 0
     ? Array.from({ length: max }, (_, index) => {
         const emptyClass = index >= max - emptyCount ? " is-empty" : "";
         const actionLabel = `${label}: ${damage}/${max}. ${index + 1}`;
-        return `<button class="match-game-bubble${emptyClass}" type="button" onclick="setMatchGameDamageFromBubble('${side}', ${rosterIndex}, '${type}', ${index}, ${max}, event)" aria-label="${escapeAttribute(actionLabel)}"></button>`;
+        return `<button class="match-game-bubble${emptyClass}" type="button" onclick="setMatchGameDamageFromBubble('${side}', ${rosterIndex}, '${type}', ${index}, ${max}, event)" aria-label="${escapeAttribute(actionLabel)}"${disabled}></button>`;
       }).join("")
     : `<span class="match-game-bubbles-unknown">?</span>`;
 
@@ -10446,6 +10460,7 @@ function renderMatchGameBubbleTrack(side, rosterIndex, type, label, value, maxVa
 function renderMatchGameEffortIcons(modelState, side, rosterIndex, modelEntry, baseModel) {
   const effort = getMatchGameEffortMeta(modelState, modelEntry, baseModel);
   const slots = Math.max(0, effort.baseLimit);
+  const disabled = canEditMatchGameSide(side) ? "" : " disabled";
   if (!slots) return "";
   const title = `${t("match_tracker_effort")}: ${effort.available}/${effort.maxAvailable}`;
   const icons = Array.from({ length: slots }, (_, index) => {
@@ -10456,7 +10471,7 @@ function renderMatchGameEffortIcons(modelState, side, rosterIndex, modelEntry, b
       className += " is-spent";
     }
     const actionLabel = `${t("match_tracker_effort")}: ${effort.available}/${effort.maxAvailable}. ${index + 1}`;
-    return `<button class="${className}" type="button" onclick="setMatchGameEffortSpentFromBubble('${side}', ${rosterIndex}, ${index}, event)" aria-label="${escapeAttribute(actionLabel)}"><span aria-hidden="true"></span></button>`;
+    return `<button class="${className}" type="button" onclick="setMatchGameEffortSpentFromBubble('${side}', ${rosterIndex}, ${index}, event)" aria-label="${escapeAttribute(actionLabel)}"${disabled}><span aria-hidden="true"></span></button>`;
   }).join("");
 
   return `
@@ -10470,9 +10485,10 @@ function renderMatchGameEffortIcons(modelState, side, rosterIndex, modelEntry, b
 function renderMatchGameActivationTracker(modelState, side, rosterIndex, modelEntry, baseModel) {
   const activeClass = modelState.activated ? " is-active" : "";
   const label = modelState.activated ? t("match_tracker_activated") : t("match_tracker_ready");
+  const disabled = canEditMatchGameSide(side) ? "" : " disabled";
   return `
     <div class="match-game-activation-line">
-      <button class="match-game-activation-toggle${activeClass}" type="button" onclick="toggleMatchGameActivated('${side}', ${rosterIndex}, event)" aria-pressed="${modelState.activated ? "true" : "false"}">
+      <button class="match-game-activation-toggle${activeClass}" type="button" onclick="toggleMatchGameActivated('${side}', ${rosterIndex}, event)" aria-pressed="${modelState.activated ? "true" : "false"}"${disabled}>
         ${escapeHtml(label)}
       </button>
       ${renderMatchGameEffortIcons(modelState, side, rosterIndex, modelEntry, baseModel)}
@@ -10481,6 +10497,7 @@ function renderMatchGameActivationTracker(modelState, side, rosterIndex, modelEn
 }
 
 function renderMatchGameStatusesTracker(modelState, side, rosterIndex) {
+  const disabled = canEditMatchGameSide(side) ? "" : " disabled";
   const statusRows = Object.entries(modelState.statuses || {})
     .filter(([statusId, count]) => numericValue(count, 0) > 0 && getMatchGameStatusOption(statusId))
     .map(([statusId, count]) => `
@@ -10488,9 +10505,9 @@ function renderMatchGameStatusesTracker(modelState, side, rosterIndex) {
         <button type="button" class="match-game-status-info" onclick="showMatchGameStatusInfo('${escapeAttribute(statusId)}', event)" aria-label="${escapeAttribute(getMatchGameStatusLabel(statusId))}">
           ${escapeHtml(getMatchGameStatusLabel(statusId))}${numericValue(count, 0) > 1 ? ` x${escapeHtml(count)}` : ""}
         </button>
-        <button type="button" onclick="adjustMatchGameStatus('${side}', ${rosterIndex}, '${escapeAttribute(statusId)}', -1, event)" aria-label="${escapeAttribute(getMatchGameStatusLabel(statusId))} -">−</button>
-        <button type="button" onclick="adjustMatchGameStatus('${side}', ${rosterIndex}, '${escapeAttribute(statusId)}', 1, event)" aria-label="${escapeAttribute(getMatchGameStatusLabel(statusId))} +">+</button>
-        <button type="button" class="is-clear" onclick="clearMatchGameStatus('${side}', ${rosterIndex}, '${escapeAttribute(statusId)}', event)" aria-label="${escapeAttribute(t("match_tracker_status_remove"))}">×</button>
+        <button type="button" onclick="adjustMatchGameStatus('${side}', ${rosterIndex}, '${escapeAttribute(statusId)}', -1, event)" aria-label="${escapeAttribute(getMatchGameStatusLabel(statusId))} -"${disabled}>−</button>
+        <button type="button" onclick="adjustMatchGameStatus('${side}', ${rosterIndex}, '${escapeAttribute(statusId)}', 1, event)" aria-label="${escapeAttribute(getMatchGameStatusLabel(statusId))} +"${disabled}>+</button>
+        <button type="button" class="is-clear" onclick="clearMatchGameStatus('${side}', ${rosterIndex}, '${escapeAttribute(statusId)}', event)" aria-label="${escapeAttribute(t("match_tracker_status_remove"))}"${disabled}>×</button>
       </span>
     `).join("");
 
@@ -10502,7 +10519,7 @@ function renderMatchGameStatusesTracker(modelState, side, rosterIndex) {
       <div class="match-game-status-list">
         ${statusRows || `<span class="match-game-status-empty">${escapeHtml(t("match_tracker_no_statuses"))}</span>`}
       </div>
-      <select class="match-game-status-select" aria-label="${escapeAttribute(t("match_tracker_add_status"))}" onclick="stopMatchGameTrackerEvent(event)" onchange="addMatchGameStatus('${side}', ${rosterIndex}, this.value, event); this.value = '';">
+      <select class="match-game-status-select" aria-label="${escapeAttribute(t("match_tracker_add_status"))}" onclick="stopMatchGameTrackerEvent(event)" onchange="addMatchGameStatus('${side}', ${rosterIndex}, this.value, event); this.value = '';"${disabled}>
         <option value="">${escapeHtml(t("match_tracker_add_status"))}</option>
         ${MATCH_GAME_STATUS_OPTIONS.map(status => `<option value="${escapeAttribute(status.id)}">${escapeHtml(status.label)}</option>`).join("")}
       </select>
@@ -10560,6 +10577,7 @@ function renderMatchGameDamagePanel(modelState, modelEntry, baseModel, side, ros
     { type: "blood", icon: "", label: t("match_tracker_health"), value: numericValue(modelState.blood, 0), max: endurance },
     { type: "stun", icon: "★", label: t("match_tracker_stun"), value: numericValue(modelState.stun, 0), max: willpower }
   ];
+  const disabled = canEditMatchGameSide(side) ? "" : " disabled";
   return `
     <div class="match-game-sheet-rows">
       ${rows.map(row => `
@@ -10570,8 +10588,8 @@ function renderMatchGameDamagePanel(modelState, modelEntry, baseModel, side, ros
             <span>${escapeHtml(row.label)} · ${escapeHtml(row.value)}/${escapeHtml(row.max || "?")}</span>
           </div>
           <div class="match-game-stepper">
-            <button type="button" onclick="adjustMatchGameDamage('${side}', ${rosterIndex}, '${row.type}', -1, event)" aria-label="${escapeAttribute(row.label)} −">−</button>
-            <button type="button" onclick="adjustMatchGameDamage('${side}', ${rosterIndex}, '${row.type}', 1, event)" aria-label="${escapeAttribute(row.label)} +">+</button>
+            <button type="button" onclick="adjustMatchGameDamage('${side}', ${rosterIndex}, '${row.type}', -1, event)" aria-label="${escapeAttribute(row.label)} −"${disabled}>−</button>
+            <button type="button" onclick="adjustMatchGameDamage('${side}', ${rosterIndex}, '${row.type}', 1, event)" aria-label="${escapeAttribute(row.label)} +"${disabled}>+</button>
           </div>
         </div>
       `).join("")}
@@ -10580,6 +10598,7 @@ function renderMatchGameDamagePanel(modelState, modelEntry, baseModel, side, ros
 }
 
 function renderMatchGameEffectsPanel(modelState, side, rosterIndex) {
+  const disabled = canEditMatchGameSide(side) ? "" : " disabled";
   return `
     <div class="match-game-effects-list">
       ${MATCH_GAME_STATUS_OPTIONS.map(status => {
@@ -10592,8 +10611,8 @@ function renderMatchGameEffectsPanel(modelState, side, rosterIndex) {
             </button>
             <strong>${count || "—"}</strong>
             <div class="match-game-stepper">
-              <button type="button" onclick="adjustMatchGameStatus('${side}', ${rosterIndex}, '${escapeAttribute(status.id)}', -1, event)" aria-label="${escapeAttribute(status.label)} −">−</button>
-              <button type="button" onclick="adjustMatchGameStatus('${side}', ${rosterIndex}, '${escapeAttribute(status.id)}', 1, event)" aria-label="${escapeAttribute(status.label)} +">+</button>
+              <button type="button" onclick="adjustMatchGameStatus('${side}', ${rosterIndex}, '${escapeAttribute(status.id)}', -1, event)" aria-label="${escapeAttribute(status.label)} −"${disabled}>−</button>
+              <button type="button" onclick="adjustMatchGameStatus('${side}', ${rosterIndex}, '${escapeAttribute(status.id)}', 1, event)" aria-label="${escapeAttribute(status.label)} +"${disabled}>+</button>
             </div>
           </div>
         `;
@@ -10644,6 +10663,7 @@ function renderMatchGameOverlay() {
 function renderMatchGameModelCard(modelEntry, rosterIndex) {
   const roster = getMatchGameRoster();
   const side = matchGameSide === "opponent" ? "opponent" : "own";
+  const disabled = canEditMatchGameSide(side) ? "" : " disabled";
   const baseModel = findMatchGameBaseModel(modelEntry, roster?.faction || "");
   const imageModel = baseModel ? { ...baseModel, name: modelEntry.name || baseModel.name } : modelEntry;
   const modelState = getMatchGameModelState(side, rosterIndex, true);
@@ -10677,14 +10697,14 @@ function renderMatchGameModelCard(modelEntry, rosterIndex) {
         <div class="match-game-model-controls" onclick="stopMatchGameTrackerEvent(event)">
           ${isMatchGameTrackerEnabled("activation") ? `
             <div class="match-game-activation-buttons">
-              <button class="match-game-audacity-btn${modelState.audacity ? " is-active" : ""}" type="button" onclick="toggleMatchGameAudacity('${side}', ${rosterIndex}, event)" aria-pressed="${modelState.audacity ? "true" : "false"}" aria-label="${escapeAttribute(t("match_tracker_audacity"))}">
+              <button class="match-game-audacity-btn${modelState.audacity ? " is-active" : ""}" type="button" onclick="toggleMatchGameAudacity('${side}', ${rosterIndex}, event)" aria-pressed="${modelState.audacity ? "true" : "false"}" aria-label="${escapeAttribute(t("match_tracker_audacity"))}"${disabled}>
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <circle cx="12" cy="12" r="7.2"></circle>
                   <circle class="is-core" cx="12" cy="12" r="2.4"></circle>
                   <path d="M12 2v4M22 12h-4M12 22v-4M2 12h4"></path>
                 </svg>
               </button>
-              <button class="match-game-activate-btn${modelState.activated ? " is-active" : ""}" type="button" onclick="toggleMatchGameActivated('${side}', ${rosterIndex}, event)" aria-pressed="${modelState.activated ? "true" : "false"}" aria-label="${escapeAttribute(modelState.activated ? t("match_tracker_activated") : t("match_tracker_ready"))}">✓</button>
+              <button class="match-game-activate-btn${modelState.activated ? " is-active" : ""}" type="button" onclick="toggleMatchGameActivated('${side}', ${rosterIndex}, event)" aria-pressed="${modelState.activated ? "true" : "false"}" aria-label="${escapeAttribute(modelState.activated ? t("match_tracker_activated") : t("match_tracker_ready"))}"${disabled}>✓</button>
             </div>
           ` : ""}
           ${isMatchGameTrackerEnabled("activation") ? renderMatchGameEffortIcons(modelState, side, rosterIndex, modelEntry, baseModel) : ""}
@@ -11065,6 +11085,7 @@ function drawMatchObjectiveCard(state) {
 }
 
 function fillMatchObjectiveHand(side = matchGameSide) {
+  if (!canEditMatchGameSide(side)) return;
   const state = getMatchObjectiveState(side);
   while (state.hand.length < 4 && state.deck.length > 0) {
     drawMatchObjectiveCard(state);
@@ -11072,11 +11093,13 @@ function fillMatchObjectiveHand(side = matchGameSide) {
 }
 
 function drawMatchObjectiveHand() {
+  if (!canEditMatchGameSide()) return;
   fillMatchObjectiveHand(matchGameSide);
   renderMatchGame();
 }
 
 function shuffleMatchObjectiveDrawPile() {
+  if (!canEditMatchGameSide()) return;
   const state = getMatchObjectiveState(matchGameSide);
   state.deck = shuffleMatchObjectiveDeck(state.deck);
   renderMatchGame();
@@ -11090,6 +11113,7 @@ function removeMatchObjectiveCardFromPile(pile, instanceId) {
 }
 
 function playMatchObjectiveHandCard(instanceId, action) {
+  if (!canEditMatchGameSide()) return;
   const state = getMatchObjectiveState(matchGameSide);
   const card = removeMatchObjectiveCardFromPile(state.hand, instanceId);
   if (!card) return;
@@ -11110,6 +11134,7 @@ function playMatchObjectiveHandCard(instanceId, action) {
 }
 
 function resolveMatchObjectiveDeclaredCard(instanceId, result) {
+  if (!canEditMatchGameSide()) return;
   const state = getMatchObjectiveState(matchGameSide);
   const card = removeMatchObjectiveCardFromPile(state.declared, instanceId);
   if (!card) return;
@@ -11166,6 +11191,7 @@ function showMatchObjectiveCard(instanceId) {
 }
 
 function renderMatchObjectiveCard(card, zone) {
+  const editable = canEditMatchGameSide();
   const valueText = getMatchObjectiveValueText(card);
   const resourceCost = getMatchObjectiveResourceCostText(card);
   const imageContent = card.img
@@ -11176,7 +11202,7 @@ function renderMatchObjectiveCard(card, zone) {
       ${imageContent}
     </button>
   `;
-  const handActions = zone === "hand"
+  const handActions = zone === "hand" && editable
     ? `
       <details class="match-objective-actions-menu">
         <summary>${escapeHtml(t("match_objectives_actions_menu"))}</summary>
@@ -11189,7 +11215,7 @@ function renderMatchObjectiveCard(card, zone) {
       </details>
     `
     : "";
-  const declaredActions = zone === "declared"
+  const declaredActions = zone === "declared" && editable
     ? `
       <div class="match-objective-card-actions">
         <button type="button" onclick="resolveMatchObjectiveDeclaredCard('${escapeAttribute(card.instanceId)}','complete')">${t("match_objectives_action_complete")}</button>
@@ -11232,6 +11258,7 @@ function renderMatchObjectiveZone(title, countText, cards, emptyText, zone) {
 
 function renderMatchObjectivePlayArea(roster) {
   const state = getMatchObjectiveState(matchGameSide);
+  const editable = canEditMatchGameSide();
   const totalCards = roster?.cardCount || (roster?.cards || []).reduce((sum, card) => sum + numericValue(card.count, 1), 0);
   const vpTotal = getMatchObjectiveVpTotal(state);
   const hasAnyCards = totalCards > 0 || state.hand.length || state.declared.length || state.scored.length || state.deck.length;
@@ -11248,10 +11275,10 @@ function renderMatchObjectivePlayArea(roster) {
           </div>
         </div>
         <div class="match-objective-panel-actions">
-          <button class="match-objective-draw-btn" type="button" onclick="drawMatchObjectiveHand()" ${state.hand.length >= 4 || !state.deck.length ? "disabled" : ""}>
+          <button class="match-objective-draw-btn" type="button" onclick="drawMatchObjectiveHand()" ${!editable || state.hand.length >= 4 || !state.deck.length ? "disabled" : ""}>
             ${escapeHtml(t("match_objectives_draw_hand"))}
           </button>
-          <button class="match-objective-draw-btn is-secondary" type="button" onclick="shuffleMatchObjectiveDrawPile()" ${state.deck.length < 2 ? "disabled" : ""}>
+          <button class="match-objective-draw-btn is-secondary" type="button" onclick="shuffleMatchObjectiveDrawPile()" ${!editable || state.deck.length < 2 ? "disabled" : ""}>
             ${escapeHtml(t("match_objectives_shuffle_deck"))}
           </button>
         </div>
@@ -11269,14 +11296,15 @@ function renderMatchObjectivePlayArea(roster) {
 }
 
 function renderMatchGameCounterControl(key, label, value, icon) {
+  const disabled = canEditMatchGameSide() ? "" : " disabled";
   return `
     <div class="match-game-hud-counter">
       <span class="match-game-hud-label">${escapeHtml(label)}</span>
       <div class="match-game-hud-stepper">
-        <button type="button" onclick="adjustMatchGameCounter('${key}', -1, event)" aria-label="${escapeAttribute(label)} −">−</button>
+        <button type="button" onclick="adjustMatchGameCounter('${key}', -1, event)" aria-label="${escapeAttribute(label)} −"${disabled}>−</button>
         <strong>${escapeHtml(value)}</strong>
         <span class="match-game-hud-icon" aria-hidden="true">${icon}</span>
-        <button type="button" onclick="adjustMatchGameCounter('${key}', 1, event)" aria-label="${escapeAttribute(label)} +">+</button>
+        <button type="button" onclick="adjustMatchGameCounter('${key}', 1, event)" aria-label="${escapeAttribute(label)} +"${disabled}>+</button>
       </div>
     </div>
   `;
@@ -11288,6 +11316,7 @@ function renderMatchGameHud(roster) {
   const objectiveVp = getMatchObjectiveVpTotal(getMatchObjectiveState(matchGameSide));
   const vp = objectiveVp + numericValue(sideState.vpAdjustment, 0);
   const modelCount = Array.isArray(roster?.models) ? roster.models.length : numericValue(roster?.modelCount, 0);
+  const disabled = canEditMatchGameSide() ? "" : " disabled";
 
   return `
     <div class="match-game-hud-roster">
@@ -11297,7 +11326,7 @@ function renderMatchGameHud(roster) {
     <div class="match-game-hud-grid">
       <div class="match-game-round-block">
         <div class="match-game-round-pill">${escapeHtml(t("match_hud_round"))} <strong>${escapeHtml(matchGameCounterState.round)}</strong></div>
-        <button class="match-game-next-round" type="button" onclick="startMatchGameNewRound(event)">${escapeHtml(t("match_tracker_reset_activations"))}</button>
+        <button class="match-game-next-round" type="button" onclick="startMatchGameNewRound(event)"${disabled}>${escapeHtml(t("match_tracker_reset_activations"))}</button>
       </div>
       ${renderMatchGameCounterControl("resource", t("match_hud_resource"), sideState.resource, "ϟ")}
       ${renderMatchGameCounterControl("passes", t("match_hud_passes"), sideState.passes, "↷")}
@@ -11330,6 +11359,8 @@ function renderMatchGame() {
   const summary = $("matchGameSummary");
   const modelsContainer = $("matchGameModels");
   const cardsContainer = $("matchGameCards");
+  const swipeArea = $("matchGameSwipeArea");
+  swipeArea?.classList.toggle("is-readonly", !canEditMatchGameSide());
   if (!summary || !modelsContainer || !cardsContainer) return;
 
   if (!roster) {

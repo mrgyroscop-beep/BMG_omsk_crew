@@ -198,6 +198,10 @@ Created for the Batman Miniature Game player community.
 
 ## 📝 Версия / Version
 
+**v0.10.3** — 2026-09-26: состояние ростера соперника на игровом экране переведено в режим только для чтения; нельзя изменять его раны, оглушение, активации, Audacity, усилия, эффекты, счётчики и карты целей.
+
+**v0.10.3** — 2026-09-26: the opponent roster is now read-only on the play screen; its damage, stun, activations, Audacity, effort, effects, counters, and objective cards cannot be changed.
+
 **v0.10.2** — 2026-09-26: матч теперь можно запустить без комнаты и подключённого соперника; в одиночном режиме отображается только собственный ростер.
 
 **v0.10.2** — 2026-09-26: matches can now start without a room or connected opponent; solo mode displays only the player's own roster.

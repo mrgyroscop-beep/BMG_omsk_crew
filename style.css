@@ -2924,6 +2924,17 @@ body.tournament-feature-disabled [data-tournament-feature] {
   display: none !important;
 }
 
+.match-game-area.is-readonly button:disabled,
+.match-game-area.is-readonly select:disabled {
+  cursor: default;
+}
+
+.match-game-area.is-readonly button:disabled:hover,
+.match-game-area.is-readonly button:disabled:focus-visible {
+  transform: none;
+  box-shadow: none;
+}
+
 .match-game-models .mini-card {
   grid-template-columns: 84px minmax(0, 1fr);
   border-color: #303030;
