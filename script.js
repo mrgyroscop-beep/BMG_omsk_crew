@@ -111,6 +111,10 @@ let diceFinishTimer = null;
 let tournamentFeatureEnabled = true;
 let matchGameTrackerSettings = { ...MATCH_GAME_TRACKER_SETTING_DEFAULTS };
 let matchGameModelState = null;
+let matchGameCounterState = null;
+let matchGameOpenMenu = null;
+let matchGamePanel = null;
+let matchGameToolsExpanded = false;
 
 // Режимы просмотра
 let currentMode = 'menu'; // menu, cards, builder, my-crews, wargame-day, batmatch, match, match-game, rules
@@ -731,6 +735,17 @@ const translations = {
     match_tracker_add_status: "Добавить состояние",
     match_tracker_no_statuses: "Нет состояний",
     match_tracker_status_remove: "Убрать",
+    match_tracker_audacity: "Активация с Audacity",
+    match_hud_round: "Раунд",
+    match_hud_resource: "Ресурс",
+    match_hud_models: "Модели",
+    match_hud_passes: "Пасы",
+    match_hud_vp: "VP",
+    match_quick_damage: "Урон",
+    match_quick_effects: "Эффекты",
+    match_quick_actions: "Действия модели",
+    match_panel_close: "Закрыть",
+    match_game_tools: "Карты и подготовка",
     match_status_ko_description: "Модель находится в KO. Кнопка «Новый раунд» не снимает ей Stun автоматически; снимите KO и Stun вручную, когда модель восстановилась по правилам.",
     match_setup_title: "Деплой и ивент",
     match_setup_generate: "Сгенерировать деплой и ивент",
@@ -1091,6 +1106,17 @@ const translations = {
     match_tracker_add_status: "Add status",
     match_tracker_no_statuses: "No statuses",
     match_tracker_status_remove: "Remove",
+    match_tracker_audacity: "Activation with Audacity",
+    match_hud_round: "Round",
+    match_hud_resource: "Resource",
+    match_hud_models: "Models",
+    match_hud_passes: "Passes",
+    match_hud_vp: "VP",
+    match_quick_damage: "Damage",
+    match_quick_effects: "Effects",
+    match_quick_actions: "Model actions",
+    match_panel_close: "Close",
+    match_game_tools: "Cards and setup",
     match_status_ko_description: "The model is KO. The New round button does not automatically remove Stun from it; clear KO and Stun manually when the model recovers by the rules.",
     match_setup_title: "Deployment and event",
     match_setup_generate: "Generate deployment and event",
@@ -8224,6 +8250,7 @@ function playWargameDayCrew(crewId) {
     resetMatchSetupSelection();
     resetMatchGameObjectiveState();
     resetMatchGameModelState();
+    resetMatchGameCounterState();
 
     rememberNavigation("match-game");
     currentMode = "match-game";
@@ -9984,6 +10011,7 @@ function startMatchGame() {
   resetMatchSetupSelection();
   resetMatchGameObjectiveState();
   resetMatchGameModelState();
+  resetMatchGameCounterState();
 
   rememberNavigation('match-game');
   currentMode = 'match-game';
@@ -10118,6 +10146,40 @@ function resetMatchGameModelState() {
     own: {},
     opponent: {}
   };
+  matchGameOpenMenu = null;
+  matchGamePanel = null;
+  matchGameToolsExpanded = false;
+}
+
+function resetMatchGameCounterState() {
+  matchGameCounterState = {
+    round: 1,
+    own: { resource: 0, passes: 0, vpAdjustment: 0 },
+    opponent: { resource: 0, passes: 0, vpAdjustment: 0 }
+  };
+}
+
+function getMatchGameCounterSide(side = matchGameSide) {
+  if (!matchGameCounterState) resetMatchGameCounterState();
+  const normalizedSide = side === "opponent" ? "opponent" : "own";
+  if (!matchGameCounterState[normalizedSide]) {
+    matchGameCounterState[normalizedSide] = { resource: 0, passes: 0, vpAdjustment: 0 };
+  }
+  return matchGameCounterState[normalizedSide];
+}
+
+function adjustMatchGameCounter(counter, delta, event) {
+  stopMatchGameTrackerEvent(event);
+  const sideState = getMatchGameCounterSide(matchGameSide);
+  const key = counter === "passes" ? "passes" : counter === "vp" ? "vpAdjustment" : "resource";
+  if (key === "vpAdjustment") {
+    const objectiveVp = getMatchObjectiveVpTotal(getMatchObjectiveState(matchGameSide));
+    const currentTotal = objectiveVp + numericValue(sideState.vpAdjustment, 0);
+    sideState.vpAdjustment = Math.max(0, currentTotal + numericValue(delta, 0)) - objectiveVp;
+  } else {
+    sideState[key] = Math.max(0, numericValue(sideState[key], 0) + numericValue(delta, 0));
+  }
+  renderMatchGame();
 }
 
 function getMatchGameModelState(side = matchGameSide, rosterIndex, create = true) {
@@ -10131,6 +10193,7 @@ function getMatchGameModelState(side = matchGameSide, rosterIndex, create = true
       stun: 0,
       effortSpent: 0,
       activated: false,
+      audacity: false,
       statuses: {}
     };
   }
@@ -10277,6 +10340,13 @@ function toggleMatchGameActivated(side, rosterIndex, event) {
   renderMatchGame();
 }
 
+function toggleMatchGameAudacity(side, rosterIndex, event) {
+  stopMatchGameTrackerEvent(event);
+  const state = getMatchGameModelState(side, rosterIndex, true);
+  state.audacity = !state.audacity;
+  renderMatchGame();
+}
+
 function isMatchGameModelKO(modelState, modelEntry, baseModel) {
   const willpower = getMatchGameWillpower(modelEntry, baseModel);
   const stun = Math.max(0, numericValue(modelState?.stun, 0));
@@ -10287,18 +10357,24 @@ function isMatchGameModelKO(modelState, modelEntry, baseModel) {
 function startMatchGameNewRound(event) {
   stopMatchGameTrackerEvent(event);
   if (!matchGameModelState) resetMatchGameModelState();
+  if (!matchGameCounterState) resetMatchGameCounterState();
   ["own", "opponent"].forEach(side => {
     const roster = getMatchGameRosterBySide(side);
     (roster?.models || []).forEach((modelEntry, rosterIndex) => {
       const state = getMatchGameModelState(side, rosterIndex, true);
       const baseModel = findMatchGameBaseModel(modelEntry, roster?.faction || "");
       state.activated = false;
+      state.audacity = false;
       state.effortSpent = 0;
       if (!isMatchGameModelKO(state, modelEntry, baseModel)) {
         state.stun = Math.max(0, numericValue(state.stun, 0) - 1);
       }
     });
+    getMatchGameCounterSide(side).passes = 0;
   });
+  matchGameCounterState.round = Math.max(1, numericValue(matchGameCounterState.round, 1) + 1);
+  matchGameOpenMenu = null;
+  matchGamePanel = null;
   renderMatchGame();
 }
 
@@ -10460,39 +10536,179 @@ function renderMatchGameModelTracker(modelEntry, baseModel, rosterIndex) {
   return `<div class="match-game-tracker" onclick="stopMatchGameTrackerEvent(event)">${sections.join("")}</div>`;
 }
 
+function toggleMatchGameQuickMenu(side, rosterIndex, event) {
+  stopMatchGameTrackerEvent(event);
+  const key = `${side}:${rosterIndex}`;
+  matchGameOpenMenu = matchGameOpenMenu === key ? null : key;
+  renderMatchGame();
+}
+
+function openMatchGamePanel(type, side, rosterIndex, event) {
+  stopMatchGameTrackerEvent(event);
+  matchGamePanel = {
+    type: type === "effects" ? "effects" : "damage",
+    side: side === "opponent" ? "opponent" : "own",
+    rosterIndex: numericValue(rosterIndex, 0)
+  };
+  matchGameOpenMenu = null;
+  renderMatchGameOverlay();
+}
+
+function closeMatchGamePanel(event) {
+  stopMatchGameTrackerEvent(event);
+  matchGamePanel = null;
+  renderMatchGameOverlay();
+}
+
+function renderMatchGameDamagePanel(modelState, modelEntry, baseModel, side, rosterIndex) {
+  const endurance = getMatchGameEndurance(modelEntry, baseModel);
+  const willpower = getMatchGameWillpower(modelEntry, baseModel);
+  const rows = [
+    { type: "blood", icon: "", label: t("match_tracker_health"), value: numericValue(modelState.blood, 0), max: endurance },
+    { type: "stun", icon: "★", label: t("match_tracker_stun"), value: numericValue(modelState.stun, 0), max: willpower }
+  ];
+  return `
+    <div class="match-game-sheet-rows">
+      ${rows.map(row => `
+        <div class="match-game-sheet-row is-${row.type}">
+          <span class="match-game-sheet-icon" aria-hidden="true">${row.type === "blood" ? `<i class="match-game-blood-drop"></i>` : row.icon}</span>
+          <div class="match-game-sheet-value">
+            <strong>${escapeHtml(Math.max(0, row.max - row.value))}</strong>
+            <span>${escapeHtml(row.label)} · ${escapeHtml(row.value)}/${escapeHtml(row.max || "?")}</span>
+          </div>
+          <div class="match-game-stepper">
+            <button type="button" onclick="adjustMatchGameDamage('${side}', ${rosterIndex}, '${row.type}', -1, event)" aria-label="${escapeAttribute(row.label)} −">−</button>
+            <button type="button" onclick="adjustMatchGameDamage('${side}', ${rosterIndex}, '${row.type}', 1, event)" aria-label="${escapeAttribute(row.label)} +">+</button>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderMatchGameEffectsPanel(modelState, side, rosterIndex) {
+  return `
+    <div class="match-game-effects-list">
+      ${MATCH_GAME_STATUS_OPTIONS.map(status => {
+        const count = numericValue(modelState.statuses?.[status.id], 0);
+        return `
+          <div class="match-game-effect-row${count > 0 ? " is-active" : ""}">
+            <button class="match-game-effect-info" type="button" onclick="showMatchGameStatusInfo('${escapeAttribute(status.id)}', event)">
+              <span class="match-game-effect-glyph">${escapeHtml(status.short || status.label.slice(0, 2))}</span>
+              <span>${escapeHtml(status.label)}</span>
+            </button>
+            <strong>${count || "—"}</strong>
+            <div class="match-game-stepper">
+              <button type="button" onclick="adjustMatchGameStatus('${side}', ${rosterIndex}, '${escapeAttribute(status.id)}', -1, event)" aria-label="${escapeAttribute(status.label)} −">−</button>
+              <button type="button" onclick="adjustMatchGameStatus('${side}', ${rosterIndex}, '${escapeAttribute(status.id)}', 1, event)" aria-label="${escapeAttribute(status.label)} +">+</button>
+            </div>
+          </div>
+        `;
+      }).join("")}
+    </div>
+  `;
+}
+
+function renderMatchGameOverlay() {
+  const overlay = $("matchGameOverlay");
+  if (!overlay) return;
+  if (!matchGamePanel) {
+    overlay.classList.remove("is-open");
+    overlay.innerHTML = "";
+    return;
+  }
+
+  const roster = getMatchGameRosterBySide(matchGamePanel.side);
+  const modelEntry = roster?.models?.[matchGamePanel.rosterIndex];
+  if (!modelEntry) {
+    matchGamePanel = null;
+    overlay.classList.remove("is-open");
+    overlay.innerHTML = "";
+    return;
+  }
+
+  const baseModel = findMatchGameBaseModel(modelEntry, roster?.faction || "");
+  const modelState = getMatchGameModelState(matchGamePanel.side, matchGamePanel.rosterIndex, true);
+  const title = matchGamePanel.type === "effects" ? t("match_quick_effects") : t("match_quick_damage");
+  const content = matchGamePanel.type === "effects"
+    ? renderMatchGameEffectsPanel(modelState, matchGamePanel.side, matchGamePanel.rosterIndex)
+    : renderMatchGameDamagePanel(modelState, modelEntry, baseModel, matchGamePanel.side, matchGamePanel.rosterIndex);
+
+  overlay.innerHTML = `
+    <div class="match-game-overlay-backdrop" onclick="closeMatchGamePanel(event)"></div>
+    <section class="match-game-sheet" role="dialog" aria-modal="true" aria-label="${escapeAttribute(title)}" onclick="stopMatchGameTrackerEvent(event)">
+      <div class="match-game-sheet-handle" aria-hidden="true"></div>
+      <header class="match-game-sheet-head">
+        <div><span>${escapeHtml(modelEntry.name)}</span><h2>${escapeHtml(title)}</h2></div>
+        <button type="button" onclick="closeMatchGamePanel(event)" aria-label="${escapeAttribute(t("match_panel_close"))}">×</button>
+      </header>
+      ${content}
+    </section>
+  `;
+  overlay.classList.add("is-open");
+}
+
 function renderMatchGameModelCard(modelEntry, rosterIndex) {
   const roster = getMatchGameRoster();
+  const side = matchGameSide === "opponent" ? "opponent" : "own";
   const baseModel = findMatchGameBaseModel(modelEntry, roster?.faction || "");
   const imageModel = baseModel ? { ...baseModel, name: modelEntry.name || baseModel.name } : modelEntry;
-  const rep = displayValue(modelEntry.rep ?? baseModel?.rep, 0);
-  const funding = displayValue(modelEntry.funding ?? baseModel?.funding, 0);
+  const modelState = getMatchGameModelState(side, rosterIndex, true);
+  const endurance = getMatchGameEndurance(modelEntry, baseModel);
+  const willpower = getMatchGameWillpower(modelEntry, baseModel);
+  const healthLeft = Math.max(0, endurance - numericValue(modelState.blood, 0));
+  const willpowerLeft = Math.max(0, willpower - numericValue(modelState.stun, 0));
+  const ranks = modelEntry.rank ? [modelEntry.rank] : getRanks(baseModel || {});
+  const role = ranks[0] || modelEntry.rankUsed || baseModel?.rankUsed || "—";
   const equipmentNames = getMatchModelEquipmentNames(modelEntry);
-  const equipment = equipmentNames.length
-    ? `<div class="match-game-equipment"><span>${escapeHtml(getMatchEquipmentLabel())}:</span> ${escapeHtml(equipmentNames.join(", "))}</div>`
-    : "";
-  const attachedBadge = isRosterAttachment(modelEntry)
-    ? `<div class="match-game-form-note">${escapeHtml(t("beast_boy_form_badge"))}</div>`
-    : "";
-  const possessedBadge = modelEntry.hiredByPossessed
-    ? `<div class="match-game-rule-note">Possessed: -1 Willpower • Self-Discipline</div>`
-    : "";
-  const modelState = getMatchGameModelState(matchGameSide, rosterIndex, false);
-  const activatedClass = isMatchGameTrackerEnabled("activation") && modelState?.activated ? " is-activated" : "";
+  const statusCount = Object.values(modelState.statuses || {}).reduce((sum, count) => sum + numericValue(count, 0), 0);
+  const activatedClass = isMatchGameTrackerEnabled("activation") && modelState.activated ? " is-activated" : "";
+  const menuKey = `${side}:${rosterIndex}`;
+  const menuOpen = matchGameOpenMenu === menuKey;
 
   return `
-    <div class="mini-card in-crew match-game-model-card${activatedClass}" onclick="showMatchGameModel(${rosterIndex})">
-      ${renderMiniModelImage(imageModel)}
-      <div class="mini-info">
-        <div class="mini-name">${escapeHtml(modelEntry.name)}</div>
-        ${baseModel ? renderModelAffiliationLine(baseModel) : ""}
-        ${renderMatchRankIcons(modelEntry, baseModel)}
-        <div class="mini-rep">${escapeHtml(rep)} Rep • $${escapeHtml(funding)}</div>
-        ${attachedBadge}
-        ${possessedBadge}
-        ${equipment}
+    <article class="match-game-model-block${activatedClass}">
+      <div class="match-game-model-card">
+        <div class="match-game-model-art" role="button" tabindex="0" onclick="showMatchGameModel(${rosterIndex})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showMatchGameModel(${rosterIndex});}">
+          ${renderMiniModelImage(imageModel)}
+          <div class="match-game-model-vitals">
+            <span>${escapeHtml(healthLeft)}/${escapeHtml(endurance || "?")} <i class="match-game-mini-drop" aria-hidden="true"></i></span>
+            <span>${escapeHtml(willpowerLeft)}/${escapeHtml(willpower || "?")} ★</span>
+          </div>
+        </div>
+        <div class="match-game-model-identity" role="button" tabindex="0" onclick="showMatchGameModel(${rosterIndex})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showMatchGameModel(${rosterIndex});}">
+          <strong>${escapeHtml(modelEntry.name)}</strong>
+          <span>${escapeHtml(role)}</span>
+          ${statusCount > 0 ? `<small>${escapeHtml(statusCount)} ${escapeHtml(t("match_tracker_statuses"))}</small>` : ""}
+        </div>
+        <div class="match-game-model-controls" onclick="stopMatchGameTrackerEvent(event)">
+          ${isMatchGameTrackerEnabled("activation") ? `
+            <div class="match-game-activation-buttons">
+              <button class="match-game-audacity-btn${modelState.audacity ? " is-active" : ""}" type="button" onclick="toggleMatchGameAudacity('${side}', ${rosterIndex}, event)" aria-pressed="${modelState.audacity ? "true" : "false"}" aria-label="${escapeAttribute(t("match_tracker_audacity"))}">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="7.2"></circle>
+                  <circle class="is-core" cx="12" cy="12" r="2.4"></circle>
+                  <path d="M12 2v4M22 12h-4M12 22v-4M2 12h4"></path>
+                </svg>
+              </button>
+              <button class="match-game-activate-btn${modelState.activated ? " is-active" : ""}" type="button" onclick="toggleMatchGameActivated('${side}', ${rosterIndex}, event)" aria-pressed="${modelState.activated ? "true" : "false"}" aria-label="${escapeAttribute(modelState.activated ? t("match_tracker_activated") : t("match_tracker_ready"))}">✓</button>
+            </div>
+          ` : ""}
+          ${isMatchGameTrackerEnabled("activation") ? renderMatchGameEffortIcons(modelState, side, rosterIndex, modelEntry, baseModel) : ""}
+        </div>
+        <div class="match-game-menu-wrap" onclick="stopMatchGameTrackerEvent(event)">
+          <button class="match-game-menu-btn" type="button" onclick="toggleMatchGameQuickMenu('${side}', ${rosterIndex}, event)" aria-expanded="${menuOpen ? "true" : "false"}" aria-label="${escapeAttribute(t("match_quick_actions"))}"><span></span><span></span><span></span></button>
+          ${menuOpen ? `
+            <div class="match-game-quick-menu">
+              ${isMatchGameTrackerEnabled("damage") ? `<button type="button" onclick="openMatchGamePanel('damage', '${side}', ${rosterIndex}, event)">${escapeHtml(t("match_quick_damage"))}</button>` : ""}
+              ${isMatchGameTrackerEnabled("statuses") ? `<button type="button" onclick="openMatchGamePanel('effects', '${side}', ${rosterIndex}, event)">${escapeHtml(t("match_quick_effects"))}</button>` : ""}
+            </div>
+          ` : ""}
+        </div>
       </div>
-      ${renderMatchGameModelTracker(modelEntry, baseModel, rosterIndex)}
-    </div>
+      ${equipmentNames.length ? `<div class="match-game-equipment-strip">${escapeHtml(equipmentNames.join(", "))}</div>` : ""}
+      ${modelEntry.hiredByPossessed ? `<div class="match-game-equipment-strip is-rule">Possessed: -1 Willpower • Self-Discipline</div>` : ""}
+    </article>
   `;
 }
 
@@ -10704,10 +10920,18 @@ function showMatchSetupCardsGallery() {
 function renderMatchGameCards(roster) {
   const cards = Array.isArray(roster?.cards) ? roster.cards : [];
   const totalCards = roster?.cardCount || cards.reduce((sum, card) => sum + numericValue(card.count, 1), 0);
+  const toolsToggle = `
+    <button class="match-game-tools-toggle" type="button" onclick="toggleMatchGameTools()" aria-expanded="${matchGameToolsExpanded ? "true" : "false"}">
+      <span>${escapeHtml(t("match_game_tools"))}</span>
+      <strong>${matchGameToolsExpanded ? "−" : "+"}</strong>
+    </button>
+  `;
+  if (!matchGameToolsExpanded) return toolsToggle;
   const objectivePlayArea = renderMatchObjectivePlayArea(roster);
   const matchSetupPanel = renderMatchSetupPanel();
   if (!cards.length) {
     return `
+      ${toolsToggle}
       ${matchSetupPanel}
       ${objectivePlayArea}
       <div class="match-roster-list">
@@ -10718,6 +10942,7 @@ function renderMatchGameCards(roster) {
   }
 
   return `
+    ${toolsToggle}
     ${matchSetupPanel}
     ${objectivePlayArea}
     <div class="match-roster-list match-game-card-list ${matchGameCardsExpanded ? "is-open" : ""}">
@@ -10736,6 +10961,11 @@ function renderMatchGameCards(roster) {
       }
     </div>
   `;
+}
+
+function toggleMatchGameTools() {
+  matchGameToolsExpanded = !matchGameToolsExpanded;
+  renderMatchGame();
 }
 
 function toggleMatchGameCards() {
@@ -11045,6 +11275,48 @@ function renderMatchObjectivePlayArea(roster) {
   `;
 }
 
+function renderMatchGameCounterControl(key, label, value, icon) {
+  return `
+    <div class="match-game-hud-counter">
+      <span class="match-game-hud-label">${escapeHtml(label)}</span>
+      <div class="match-game-hud-stepper">
+        <button type="button" onclick="adjustMatchGameCounter('${key}', -1, event)" aria-label="${escapeAttribute(label)} −">−</button>
+        <strong>${escapeHtml(value)}</strong>
+        <span class="match-game-hud-icon" aria-hidden="true">${icon}</span>
+        <button type="button" onclick="adjustMatchGameCounter('${key}', 1, event)" aria-label="${escapeAttribute(label)} +">+</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderMatchGameHud(roster) {
+  if (!matchGameCounterState) resetMatchGameCounterState();
+  const sideState = getMatchGameCounterSide(matchGameSide);
+  const objectiveVp = getMatchObjectiveVpTotal(getMatchObjectiveState(matchGameSide));
+  const vp = objectiveVp + numericValue(sideState.vpAdjustment, 0);
+  const modelCount = Array.isArray(roster?.models) ? roster.models.length : numericValue(roster?.modelCount, 0);
+
+  return `
+    <div class="match-game-hud-roster">
+      <strong>${escapeHtml(roster.title || "Crew")}</strong>
+      <span>${escapeHtml(roster.faction || "Unknown")}</span>
+    </div>
+    <div class="match-game-hud-grid">
+      <div class="match-game-round-block">
+        <div class="match-game-round-pill">${escapeHtml(t("match_hud_round"))} <strong>${escapeHtml(matchGameCounterState.round)}</strong></div>
+        <button class="match-game-next-round" type="button" onclick="startMatchGameNewRound(event)">${escapeHtml(t("match_tracker_reset_activations"))}</button>
+      </div>
+      ${renderMatchGameCounterControl("resource", t("match_hud_resource"), sideState.resource, "ϟ")}
+      ${renderMatchGameCounterControl("passes", t("match_hud_passes"), sideState.passes, "↷")}
+      <div class="match-game-hud-static">
+        <span>${escapeHtml(t("match_hud_models"))}</span>
+        <strong>${escapeHtml(modelCount)} <i aria-hidden="true">●</i></strong>
+      </div>
+      ${renderMatchGameCounterControl("vp", t("match_hud_vp"), vp, "◆")}
+    </div>
+  `;
+}
+
 function renderMatchGame() {
   const roster = getMatchGameRoster();
   const ownButton = $("matchGameOwnBtn");
@@ -11070,29 +11342,14 @@ function renderMatchGame() {
     return;
   }
 
-  summary.innerHTML = `
-    <div class="match-roster-head">
-      <div class="match-roster-title">${escapeHtml(roster.title || "Crew")}</div>
-      <div class="match-roster-meta">${escapeHtml(roster.faction || "Unknown")}</div>
-    </div>
-    <div class="match-roster-meta">
-      ${t("match_limits")}: REP ${escapeHtml(roster.repLimit)} / $${escapeHtml(roster.fundingLimit)}
-      • ${t("match_used")}: REP ${escapeHtml(roster.usedRep)} / $${escapeHtml(roster.usedFunding)}
-    </div>
-    ${isMatchGameTrackerEnabled("activation")
-      ? `<div class="match-game-summary-actions">
-          <button type="button" class="match-game-reset-activations" onclick="startMatchGameNewRound(event)">
-            ${escapeHtml(t("match_tracker_reset_activations"))}
-          </button>
-        </div>`
-      : ""}
-  `;
+  summary.innerHTML = renderMatchGameHud(roster);
 
   const rosterModelRefs = getSortedMatchRosterModelRefs(roster);
   modelsContainer.innerHTML = rosterModelRefs.length
     ? rosterModelRefs.map(({ modelEntry, index }) => renderMatchGameModelCard(modelEntry, index)).join("")
     : `<div class="match-status-line is-warning">${t("match_game_empty")}</div>`;
   cardsContainer.innerHTML = renderMatchGameCards(roster);
+  renderMatchGameOverlay();
 }
 
 function initMatchGameSwipe() {
