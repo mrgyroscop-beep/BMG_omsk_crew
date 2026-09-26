@@ -198,6 +198,10 @@ Created for the Batman Miniature Game player community.
 
 ## 📝 Версия / Version
 
+**v0.9.0** — 2026-09-26: QR-обмен ростерами заменён онлайн-комнатами с коротким кодом, восстановлением сессии и готовностью обоих игроков; добавлен Cloudflare Worker с D1. Матч и турнир теперь поддерживают ростеры без собранной цифровой колоды Objective-карт.
+
+**v0.9.0** — 2026-09-26: QR roster exchange was replaced with online rooms using short codes, session recovery, and two-player readiness; a Cloudflare Worker with D1 was added. Match and tournament modes now support rosters without a completed digital Objective deck.
+
 **v0.8.3** — 2026-09-04: добавлен отдельный каталог из 20 Supported-скульптов Суда сов; четыре скульпта без самостоятельных игровых профилей учитываются отдельно и не подменяют High Court Member или Nightwing.
 
 **v0.8.3** — 2026-09-04: added a separate catalog of 20 supported Court of Owls sculpts; four sculpts without standalone game profiles are tracked separately instead of being mapped to High Court Member or Nightwing.

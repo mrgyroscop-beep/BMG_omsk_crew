@@ -232,13 +232,16 @@ LocalStorage ключ:
 - `buildMatchCrewState(crewEntry, options)`
 - `buildMatchRosterFromParsedCrew(crewEntry, parsed)`
 - `validateMatchRoster(parsed, options)`
-- `buildMatchPayloadCode(roster)`
-- `parseMatchPayloadCode(rawCode)`
 - `renderMatchSection()`
 - `renderMatchCrewStatus()`
-- `showMatchQr()`
-- `importMatchPayloadCode(code)`
+- `createMatchRoom()`
+- `joinMatchRoom()`
+- `readMatchRoom()`
+- `toggleMatchRoomReady()`
+- `leaveMatchRoom()`
 - `renderMatchOpponentRoster()`
+
+Матч использует онлайн-комнаты вместо QR. Cloudflare Worker и D1-миграции находятся в `room-service/`. Браузер хранит только код комнаты, сторону и секрет участника под ключом `bmg_match_room_v1`; сам секрет в D1 сохраняется только в виде SHA-256. Ростер фиксируется при создании или входе, а игра становится доступна после готовности обоих участников.
 
 Режим игры:
 
@@ -467,5 +470,5 @@ await browser.newPage({ viewport: { width: 390, height: 680 }, deviceScaleFactor
 - Objective card - карта цели.
 - Character Objective card - Objective-карта, привязанная к конкретному персонажу.
 - Setup card - Encounter/Event карта для деплоя и событий.
-- Match payload - компактный код/QR для передачи ростера в режим матча.
+- Match room - короткоживущая серверная комната для обмена ростерами и подтверждения готовности игроков.
 - BatMatch/Tournament - турнирный пакет из двух листов, 20 Objective cards, 3 Encounter и 3 Event на лист.

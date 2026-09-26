@@ -1,4 +1,4 @@
-﻿// ======================== ГЛОБАЛЬНЫЕ ========================
+// ======================== ГЛОБАЛЬНЫЕ ========================
 let crew = [];
 let crewCards = [];
 let crewEquipmentCounts = {}; // { "Magazine": count } for crew-wide limits
@@ -89,15 +89,21 @@ let builderEditingCrewId = null;
 let builderRosterTitle = "";
 let builderSavedRosterText = "";
 let matchSelectedCrewId = null;
-let matchCurrentPayloadCode = "";
 let matchOpponentRoster = null;
-let matchScannerState = null;
+let matchRoomSession = null;
+let matchRoom = null;
+let matchRoomPollTimer = null;
+let matchRoomRequestPending = false;
+let matchRoomMessage = "";
+let matchRoomMessageType = "";
 let matchGameSide = "own";
 let matchGameRosters = null;
 let matchGameCardsExpanded = false;
 let matchGameObjectiveState = null;
 let matchGameNextCardInstanceId = 1;
-const MATCH_OPPONENT_STORAGE_KEY = 'bmg_match_opponent_roster_v1';
+const MATCH_ROOM_STORAGE_KEY = 'bmg_match_room_v1';
+const MATCH_ROOM_POLL_INTERVAL_MS = 2000;
+const MATCH_ROOM_API_BASE = String(window.BMG_ROOM_API_BASE || 'https://bmg-match-rooms.mrgyroscop.workers.dev/api').replace(/\/+$/, '');
 let versionEasterClickCount = 0;
 let versionEasterClickTimer = null;
 let diceAnimationTimer = null;
@@ -643,28 +649,43 @@ const translations = {
     match_select_crew: "Выберите банду из Моих банд",
     match_choose_placeholder: "Выберите сохранённую банду",
     match_no_crews: "В разделе «Мои банды» пока нет сохранённых ростеров.",
-    match_exchange: "Обмен",
-    match_show_qr: "Показать QR",
-    match_scan_qr: "Сканировать QR",
-    match_copy_code: "Скопировать код",
-    match_paste_code: "Или вставьте код оппонента",
-    match_import_code: "Добавить оппонента",
+    match_room: "Комната",
+    match_room_intro: "Создайте комнату или введите код соперника.",
+    match_room_create: "Создать комнату",
+    match_room_or: "или",
+    match_room_join_code: "Код комнаты",
+    match_room_join: "Войти",
+    match_room_code: "Код комнаты",
+    match_room_copy: "Копировать",
+    match_room_copied: "Код комнаты скопирован.",
+    match_room_ready: "Готов",
+    match_room_ready_done: "Готовность отмечена",
+    match_room_leave: "Выйти",
+    match_room_close: "Закрыть комнату",
+    match_room_waiting: "Ожидаем второго игрока.",
+    match_room_opponent_joined: "Соперник подключился.",
+    match_room_you_ready: "Вы готовы",
+    match_room_you_not_ready: "Вы не готовы",
+    match_room_opponent_ready: "Соперник готов",
+    match_room_opponent_not_ready: "Соперник не готов",
+    match_room_active: "Оба игрока готовы. Можно начинать игру.",
+    match_room_restoring: "Восстанавливаем комнату…",
+    match_room_left: "Вы вышли из комнаты.",
+    match_room_closed: "Комната закрыта.",
+    match_room_invalid_code: "Введите код комнаты из 6 символов.",
+    match_room_service_error: "Сервис комнат сейчас недоступен.",
+    match_room_expired: "Комната не найдена или уже закрыта.",
+    match_room_full: "В комнате уже два игрока.",
+    match_room_roster_locked: "Выйдите из комнаты, чтобы сменить банду.",
     match_opponent: "Оппонент",
-    match_clear_opponent: "Очистить",
-    match_no_opponent: "Банда оппонента пока не добавлена.",
+    match_no_opponent: "Ожидаем подключение соперника.",
     match_roster_ok: "Ростер готов к матчу.",
     match_roster_invalid: "Ростер пока нельзя использовать в матче.",
-    match_qr_unavailable: "QR-библиотека не загрузилась. Можно скопировать код вручную.",
-    match_camera_unavailable: "Камера или сканер QR недоступны. Вставьте код вручную.",
-    match_code_copied: "Код матча скопирован.",
-    match_payload_invalid: "Не удалось прочитать код матча.",
     match_own_roster_required: "Сначала выберите валидную свою банду.",
     match_models: "Модели",
     match_cards: "Карты",
     match_limits: "Лимиты",
     match_used: "Использовано",
-    match_scan_title: "Сканирование QR",
-    match_scan_hint: "Наведите камеру на QR оппонента.",
     match_start_game: "Игра",
     match_game_title: "ИГРА",
     match_my_side: "МОЯ",
@@ -988,28 +1009,43 @@ const translations = {
     match_select_crew: "Choose a crew from My Crews",
     match_choose_placeholder: "Choose a saved crew",
     match_no_crews: "There are no saved rosters in My Crews yet.",
-    match_exchange: "Exchange",
-    match_show_qr: "Show QR",
-    match_scan_qr: "Scan QR",
-    match_copy_code: "Copy code",
-    match_paste_code: "Or paste opponent code",
-    match_import_code: "Add opponent",
+    match_room: "Room",
+    match_room_intro: "Create a room or enter your opponent's code.",
+    match_room_create: "Create room",
+    match_room_or: "or",
+    match_room_join_code: "Room code",
+    match_room_join: "Join",
+    match_room_code: "Room code",
+    match_room_copy: "Copy",
+    match_room_copied: "Room code copied.",
+    match_room_ready: "Ready",
+    match_room_ready_done: "Ready",
+    match_room_leave: "Leave",
+    match_room_close: "Close room",
+    match_room_waiting: "Waiting for the second player.",
+    match_room_opponent_joined: "Opponent connected.",
+    match_room_you_ready: "You are ready",
+    match_room_you_not_ready: "You are not ready",
+    match_room_opponent_ready: "Opponent is ready",
+    match_room_opponent_not_ready: "Opponent is not ready",
+    match_room_active: "Both players are ready. The game can begin.",
+    match_room_restoring: "Restoring room…",
+    match_room_left: "You left the room.",
+    match_room_closed: "Room closed.",
+    match_room_invalid_code: "Enter the 6-character room code.",
+    match_room_service_error: "Room service is currently unavailable.",
+    match_room_expired: "Room was not found or has already closed.",
+    match_room_full: "This room already has two players.",
+    match_room_roster_locked: "Leave the room to change your crew.",
     match_opponent: "Opponent",
-    match_clear_opponent: "Clear",
-    match_no_opponent: "No opponent crew has been added yet.",
+    match_no_opponent: "Waiting for the opponent to connect.",
     match_roster_ok: "Roster is ready for the match.",
     match_roster_invalid: "Roster cannot be used for the match yet.",
-    match_qr_unavailable: "QR library did not load. You can copy the code manually.",
-    match_camera_unavailable: "Camera or QR scanner is unavailable. Paste the code manually.",
-    match_code_copied: "Match code copied.",
-    match_payload_invalid: "Could not read match code.",
     match_own_roster_required: "Choose a valid crew first.",
     match_models: "Models",
     match_cards: "Cards",
     match_limits: "Limits",
     match_used: "Used",
-    match_scan_title: "QR scan",
-    match_scan_hint: "Point the camera at the opponent QR.",
     match_start_game: "Play",
     match_game_title: "PLAY",
     match_my_side: "MINE",
@@ -7710,7 +7746,14 @@ function isCrewEntryVisibleWithTournamentSetting(crewEntry) {
 }
 
 function getCrewEntryDeckOptions(crewEntry) {
-  return isTournamentCrewEntry(crewEntry) ? getBatmatchDeckOptions() : {};
+  if (!isTournamentCrewEntry(crewEntry)) return {};
+
+  // An empty digital deck means the player is using physical Objective cards.
+  // If any cards are entered, the normal Batmatch deck limits still apply.
+  return {
+    ...getBatmatchDeckOptions(),
+    allowEmptyDeck: true
+  };
 }
 
 function getBatmatchCrewEntries() {
@@ -8186,7 +8229,7 @@ function playWargameDayCrew(crewId) {
 
     rememberNavigation("match-game");
     currentMode = "match-game";
-    closeMatchQrScanner();
+    stopMatchRoomPolling();
     $("mainMenu").style.display = "none";
     $("cardsSection").style.display = "none";
     $("builderSection").style.display = "none";
@@ -8225,6 +8268,10 @@ function downloadWargameDayCrew(crewId) {
 }
 
 function playSavedMyCrew(crewId) {
+  if (matchRoomSession) {
+    alert(t("match_room_roster_locked"));
+    return;
+  }
   const crewEntry = myCrews.find(item => item.id === crewId);
   if (!crewEntry) return;
   if (!isCrewEntryVisibleWithTournamentSetting(crewEntry)) {
@@ -8239,7 +8286,6 @@ function playSavedMyCrew(crewId) {
       return;
     }
     matchSelectedCrewId = crewId;
-    matchCurrentPayloadCode = "";
     showMatch();
   } catch (error) {
     alert(error.message || t("match_roster_invalid"));
@@ -8249,7 +8295,7 @@ function playSavedMyCrew(crewId) {
 function showMyCrews(options = {}) {
   rememberNavigation('my-crews', options);
   currentMode = 'my-crews';
-  closeMatchQrScanner();
+  stopMatchRoomPolling();
   $('mainMenu').style.display = 'none';
   $('cardsSection').style.display = 'none';
   $('builderSection').style.display = 'none';
@@ -8267,7 +8313,7 @@ function showMyCrews(options = {}) {
 function showWargameDay(options = {}) {
   rememberNavigation('wargame-day', options);
   currentMode = 'wargame-day';
-  closeMatchQrScanner();
+  stopMatchRoomPolling();
   $('mainMenu').style.display = 'none';
   $('cardsSection').style.display = 'none';
   $('builderSection').style.display = 'none';
@@ -8611,6 +8657,7 @@ function getBatmatchRosterCheckItems(validation) {
   const characterCardNames = getBatmatchCharacterCardNames(getParsedRosterCardObjects(state.parsed));
   const restrictions = getBatmatchModelRestrictionDiagnostics(state);
   const forbiddenCount = restrictions.forbiddenLegend.length;
+  const hasEnteredDeck = numericValue(stats.total, 0) > 0;
   const deckTotalOk = numericValue(stats.total, 0) === BATMATCH_DECK_SIZE;
   const deckBalanceOk = numericValue(stats.general, 0) <= numericValue(stats.crewSpecific, 0)
     && numericValue(stats.general, 0) <= numericValue(stats.maxGeneral, BATMATCH_MAX_GENERAL)
@@ -8618,7 +8665,7 @@ function getBatmatchRosterCheckItems(validation) {
     && !stats.copyRuleIssues?.length
     && !stats.requirementIssues?.length;
 
-  return [
+  const items = [
     {
       id: "rep",
       label: t("batmatch_check_rep"),
@@ -8632,36 +8679,44 @@ function getBatmatchRosterCheckItems(validation) {
       value: `$${usedFunding}/1500`,
       detail: matchText(`лимит ростера: $${fundingLimit}`, `roster limit: $${fundingLimit}`),
       ok: fundingLimit <= 1500 && usedFunding <= 1500
-    },
-    {
-      id: "deck",
-      label: t("batmatch_check_deck"),
-      value: `${numericValue(stats.total, 0)}/${BATMATCH_DECK_SIZE}`,
-      detail: matchText("ровно 20 карт целей", "exactly 20 Objective cards"),
-      ok: deckTotalOk
-    },
-    {
-      id: "balance",
-      label: t("batmatch_check_deck_balance"),
-      value: `${t("builder_deck_general")} ${numericValue(stats.general, 0)}/${numericValue(stats.maxGeneral, BATMATCH_MAX_GENERAL)}`,
-      detail: `${t("builder_deck_single")}: ${numericValue(stats.single, 0)}/${numericValue(stats.maxSingle, BATMATCH_MAX_SINGLE)}`,
-      ok: deckBalanceOk
-    },
-    {
-      id: "character",
-      label: t("batmatch_check_character_cards"),
-      value: t("batmatch_check_character_count", { count: characterCardNames.length }),
-      detail: characterCardNames.join(", ") || t("batmatch_check_ok"),
-      ok: characterCardNames.length <= 1
-    },
-    {
+    }
+  ];
+
+  if (hasEnteredDeck) {
+    items.push(
+      {
+        id: "deck",
+        label: t("batmatch_check_deck"),
+        value: `${numericValue(stats.total, 0)}/${BATMATCH_DECK_SIZE}`,
+        detail: matchText("ровно 20 карт целей", "exactly 20 Objective cards"),
+        ok: deckTotalOk
+      },
+      {
+        id: "balance",
+        label: t("batmatch_check_deck_balance"),
+        value: `${t("builder_deck_general")} ${numericValue(stats.general, 0)}/${numericValue(stats.maxGeneral, BATMATCH_MAX_GENERAL)}`,
+        detail: `${t("builder_deck_single")}: ${numericValue(stats.single, 0)}/${numericValue(stats.maxSingle, BATMATCH_MAX_SINGLE)}`,
+        ok: deckBalanceOk
+      },
+      {
+        id: "character",
+        label: t("batmatch_check_character_cards"),
+        value: t("batmatch_check_character_count", { count: characterCardNames.length }),
+        detail: characterCardNames.join(", ") || t("batmatch_check_ok"),
+        ok: characterCardNames.length <= 1
+      }
+    );
+  }
+
+  items.push({
       id: "restricted",
       label: t("batmatch_check_forbidden_models"),
       value: forbiddenCount ? t("batmatch_check_problem") : t("batmatch_check_ok"),
       detail: forbiddenCount ? t("batmatch_check_forbidden_found") : t("batmatch_check_no_forbidden"),
       ok: forbiddenCount === 0
-    }
-  ];
+  });
+
+  return items;
 }
 
 function validateBatmatchCrewEntry(crewEntry) {
@@ -8678,7 +8733,8 @@ function validateBatmatchCrewEntry(crewEntry) {
     state = buildMatchCrewState(crewEntry, {
       deckSize: BATMATCH_DECK_SIZE,
       maxSingle: BATMATCH_MAX_SINGLE,
-      maxGeneral: BATMATCH_MAX_GENERAL
+      maxGeneral: BATMATCH_MAX_GENERAL,
+      allowEmptyDeck: true
     });
   } catch (error) {
     return {
@@ -9010,25 +9066,107 @@ function matchText(ru, en) {
   return currentLang === "ru" ? ru : en;
 }
 
-function loadMatchOpponentFromStorage() {
+function loadMatchRoomSession() {
   try {
-    const raw = localStorage.getItem(MATCH_OPPONENT_STORAGE_KEY);
-    matchOpponentRoster = raw ? applyMatchRosterRuleEffects(JSON.parse(raw)) : null;
+    const raw = localStorage.getItem(MATCH_ROOM_STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : null;
+    matchRoomSession = parsed?.code && parsed?.token
+      ? { code: normalizeMatchRoomCode(parsed.code), token: String(parsed.token), side: parsed.side === "guest" ? "guest" : "host" }
+      : null;
   } catch (error) {
-    console.warn("Failed to load opponent roster", error);
-    matchOpponentRoster = null;
+    console.warn("Failed to load match room", error);
+    matchRoomSession = null;
+  }
+  return matchRoomSession;
+}
+
+function saveMatchRoomSession() {
+  try {
+    if (matchRoomSession) {
+      localStorage.setItem(MATCH_ROOM_STORAGE_KEY, JSON.stringify(matchRoomSession));
+    } else {
+      localStorage.removeItem(MATCH_ROOM_STORAGE_KEY);
+    }
+  } catch (error) {
+    console.warn("Failed to save match room", error);
   }
 }
 
-function saveMatchOpponentToStorage() {
+function clearMatchRoomState(options = {}) {
+  matchRoomSession = null;
+  matchRoom = null;
+  matchOpponentRoster = null;
+  saveMatchRoomSession();
+  if (!options.keepMessage) {
+    matchRoomMessage = "";
+    matchRoomMessageType = "";
+  }
+}
+
+function normalizeMatchRoomCode(value) {
+  return String(value || "").toUpperCase().replace(/[^A-HJ-NP-Z2-9]/gu, "").slice(0, 6);
+}
+
+function getMatchRoomPlayer(side) {
+  return side === "guest" ? matchRoom?.guest : matchRoom?.host;
+}
+
+function getMatchRoomOwnPlayer() {
+  return getMatchRoomPlayer(matchRoomSession?.side || matchRoom?.you);
+}
+
+function getMatchRoomOpponentPlayer() {
+  const side = matchRoomSession?.side || matchRoom?.you;
+  return getMatchRoomPlayer(side === "guest" ? "host" : "guest");
+}
+
+function applyMatchRoom(room) {
+  matchRoom = room || null;
+  if (matchRoomSession && room?.you) {
+    matchRoomSession.side = room.you;
+    saveMatchRoomSession();
+  }
+  const opponent = getMatchRoomOpponentPlayer();
+  matchOpponentRoster = opponent?.roster ? applyMatchRosterRuleEffects(opponent.roster) : null;
+}
+
+function setMatchRoomMessage(message, type = "") {
+  matchRoomMessage = message || "";
+  matchRoomMessageType = type;
+  renderMatchRoom();
+}
+
+async function requestMatchRoom(path, options = {}) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 12000);
+  const headers = { Accept: "application/json", ...(options.headers || {}) };
+  if (options.body !== undefined) headers["Content-Type"] = "application/json";
+  if (options.token) headers.Authorization = `Bearer ${options.token}`;
+
   try {
-    if (matchOpponentRoster) {
-      localStorage.setItem(MATCH_OPPONENT_STORAGE_KEY, JSON.stringify(matchOpponentRoster));
-    } else {
-      localStorage.removeItem(MATCH_OPPONENT_STORAGE_KEY);
+    const response = await fetch(`${MATCH_ROOM_API_BASE}${path}`, {
+      method: options.method || "GET",
+      headers,
+      body: options.body === undefined ? undefined : JSON.stringify(options.body),
+      signal: controller.signal
+    });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      const error = new Error(payload?.error?.message || t("match_room_service_error"));
+      error.code = payload?.error?.code || "request_failed";
+      error.status = response.status;
+      throw error;
     }
+    return payload;
   } catch (error) {
-    console.warn("Failed to save opponent roster", error);
+    if (error?.name === "AbortError") {
+      const timeoutError = new Error(t("match_room_service_error"));
+      timeoutError.code = "timeout";
+      throw timeoutError;
+    }
+    throw error;
+  } finally {
+    clearTimeout(timeoutId);
   }
 }
 
@@ -9370,139 +9508,6 @@ function buildMatchCrewState(crewEntry, options = {}) {
   return { parsed, validation, roster };
 }
 
-const MATCH_PAYLOAD_PREFIX_V2 = "BMG2:";
-const MATCH_RANK_CODES = ["Leader", "Sidekick", "Henchman", "Free Agent", "Vehicle"];
-
-function encodeBase64Url(text) {
-  const bytes = new TextEncoder().encode(text);
-  let binary = "";
-  bytes.forEach(byte => {
-    binary += String.fromCharCode(byte);
-  });
-  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
-}
-
-function decodeBase64Url(value) {
-  const normalized = String(value || "").replace(/-/g, "+").replace(/_/g, "/");
-  const padded = normalized + "=".repeat((4 - normalized.length % 4) % 4);
-  const binary = atob(padded);
-  const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
-  return new TextDecoder().decode(bytes);
-}
-
-function encodeBytesBase64Url(bytes) {
-  let binary = "";
-  bytes.forEach(byte => {
-    binary += String.fromCharCode(byte);
-  });
-  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
-}
-
-function decodeBase64UrlBytes(value) {
-  const normalized = String(value || "").replace(/-/g, "+").replace(/_/g, "/");
-  const padded = normalized + "=".repeat((4 - normalized.length % 4) % 4);
-  const binary = atob(padded);
-  return Uint8Array.from(binary, char => char.charCodeAt(0));
-}
-
-function writeMatchVarint(bytes, value) {
-  let next = Math.max(0, numericValue(value, 0));
-  do {
-    let byte = next & 0x7F;
-    next = Math.floor(next / 128);
-    if (next > 0) byte |= 0x80;
-    bytes.push(byte);
-  } while (next > 0);
-}
-
-function readMatchVarint(reader) {
-  let result = 0;
-  let shift = 0;
-  while (reader.index < reader.bytes.length) {
-    const byte = reader.bytes[reader.index++];
-    result += (byte & 0x7F) * Math.pow(2, shift);
-    if ((byte & 0x80) === 0) return result;
-    shift += 7;
-    if (shift > 35) break;
-  }
-  throw new Error(t("match_payload_invalid"));
-}
-
-function writeMatchString(bytes, value) {
-  const encoded = new TextEncoder().encode(String(value || ""));
-  writeMatchVarint(bytes, encoded.length);
-  encoded.forEach(byte => bytes.push(byte));
-}
-
-function readMatchString(reader) {
-  const length = readMatchVarint(reader);
-  if (reader.index + length > reader.bytes.length) {
-    throw new Error(t("match_payload_invalid"));
-  }
-  const chunk = reader.bytes.slice(reader.index, reader.index + length);
-  reader.index += length;
-  return new TextDecoder().decode(chunk);
-}
-
-function writeMatchCatalogRef(bytes, index, fallbackText) {
-  if (Number.isInteger(index) && index >= 0) {
-    writeMatchVarint(bytes, index + 1);
-    return;
-  }
-  writeMatchVarint(bytes, 0);
-  writeMatchString(bytes, fallbackText || "");
-}
-
-function readMatchCatalogRef(reader) {
-  const value = readMatchVarint(reader);
-  if (value > 0) return { index: value - 1, text: "" };
-  return { index: null, text: readMatchString(reader) };
-}
-
-function getMatchFactionCatalog() {
-  const result = [];
-  const add = faction => {
-    if (faction && !result.includes(faction)) result.push(faction);
-  };
-  if (typeof factionCrewRules !== "undefined" && factionCrewRules) {
-    Object.keys(factionCrewRules).forEach(add);
-  }
-  models.forEach(model => getFactions(model).forEach(add));
-  return result;
-}
-
-function writeMatchRankRef(bytes, rank) {
-  if (!rank) {
-    writeMatchVarint(bytes, 0);
-    return;
-  }
-  const index = MATCH_RANK_CODES.indexOf(rank);
-  if (index >= 0) {
-    writeMatchVarint(bytes, index + 1);
-    return;
-  }
-  writeMatchVarint(bytes, MATCH_RANK_CODES.length + 1);
-  writeMatchString(bytes, rank);
-}
-
-function readMatchRankRef(reader, model) {
-  const value = readMatchVarint(reader);
-  if (value === 0) return decodeMatchRank("", model);
-  if (value <= MATCH_RANK_CODES.length) return MATCH_RANK_CODES[value - 1] || "";
-  return readMatchString(reader);
-}
-
-function buildMatchPayloadCode(roster) {
-  return `${MATCH_PAYLOAD_PREFIX_V2}${encodeMatchPayloadBytes(roster)}`;
-}
-
-function decodeMatchRank(value, model) {
-  if (typeof value === "number") return MATCH_RANK_CODES[value] || "";
-  if (value !== undefined && value !== null && value !== "") return String(value);
-  const ranks = getRanks(model || {});
-  return ranks.length === 1 ? ranks[0] : "";
-}
-
 function getMatchEquipmentCatalog(faction) {
   return getEquipmentCatalogForFaction(faction, { includeDisabled: true });
 }
@@ -9541,170 +9546,6 @@ function getEquipmentCatalogForFaction(faction, options = {}) {
   return [...factionItems, ...mergedGlobalItems];
 }
 
-function getMatchCardCatalogIndex(card) {
-  const catalog = getAllMatchCardsCatalog({ includeDisabled: true });
-  const key = getBuilderCardKey(card);
-  const name = getBuilderCardName(card);
-  const index = catalog.findIndex(item => getBuilderCardKey(item) === key || getBuilderCardName(item) === name);
-  return index >= 0 ? index : null;
-}
-
-function getMatchCardByRef(ref) {
-  const catalog = getAllMatchCardsCatalog({ includeDisabled: true });
-  if (typeof ref === "number") return catalog[ref] || null;
-  return catalog.find(card => getBuilderCardKey(card) === ref || getBuilderCardName(card) === ref) || null;
-}
-
-function encodeMatchPayloadBytes(roster) {
-  const faction = roster.faction || "Unknown";
-  const factionCatalog = getMatchFactionCatalog();
-  const bytes = [];
-
-  writeMatchVarint(bytes, 2);
-  writeMatchCatalogRef(bytes, factionCatalog.indexOf(faction), faction);
-  writeMatchVarint(bytes, roster.repLimit || 350);
-  writeMatchVarint(bytes, roster.fundingLimit || 1500);
-  writeMatchVarint(bytes, roster.usedRep || 0);
-  writeMatchVarint(bytes, roster.usedFunding || 0);
-
-  const rosterModels = Array.isArray(roster.models) ? roster.models : [];
-  writeMatchVarint(bytes, rosterModels.length);
-  rosterModels.forEach(model => {
-    const catalogModel = typeof model.id === "number" ? models[model.id] : findMatchRosterModel(model, faction);
-    const modelIndex = typeof model.id === "number" ? model.id : getMatchModelIndex(catalogModel);
-    writeMatchCatalogRef(bytes, modelIndex, model.name || catalogModel?.name || "");
-    writeMatchRankRef(bytes, model.rank || "");
-
-    const equipment = getMatchModelEquipmentNames(model);
-    const equipmentCatalog = getMatchEquipmentCatalog(faction);
-    writeMatchVarint(bytes, equipment.length);
-    equipment.forEach(name => {
-      const index = equipmentCatalog.findIndex(item => item.name === name);
-      writeMatchCatalogRef(bytes, index, name);
-    });
-  });
-
-  const rosterCards = Array.isArray(roster.cards) ? roster.cards : [];
-  writeMatchVarint(bytes, rosterCards.length);
-  rosterCards.forEach(card => {
-    const cardIndex = getMatchCardCatalogIndex(card);
-    writeMatchCatalogRef(bytes, cardIndex, card.id || card.name || "");
-    writeMatchVarint(bytes, numericValue(card.count, 1));
-  });
-
-  return encodeBytesBase64Url(bytes);
-}
-
-function decodeMatchPayloadBytes(body) {
-  const bytes = decodeBase64UrlBytes(body);
-
-  const reader = { bytes, index: 0 };
-  const version = readMatchVarint(reader);
-  if (version !== 2) {
-    throw new Error(t("match_payload_invalid"));
-  }
-
-  const factionRef = readMatchCatalogRef(reader);
-  const factionCatalog = getMatchFactionCatalog();
-  const faction = factionRef.index !== null
-    ? (factionCatalog[factionRef.index] || "Unknown")
-    : (factionRef.text || "Unknown");
-  const repLimit = readMatchVarint(reader);
-  const fundingLimit = readMatchVarint(reader);
-  const usedRep = readMatchVarint(reader);
-  const usedFunding = readMatchVarint(reader);
-  const modelCount = readMatchVarint(reader);
-  const expandedModels = [];
-
-  for (let index = 0; index < modelCount; index++) {
-    const modelRef = readMatchCatalogRef(reader);
-    const baseModel = modelRef.index !== null
-      ? (models[modelRef.index] || null)
-      : findMatchRosterModel(modelRef.text, faction);
-    const rank = readMatchRankRef(reader, baseModel);
-    const equipmentCount = readMatchVarint(reader);
-    const equipmentCatalog = getMatchEquipmentCatalog(faction);
-    const equipment = [];
-
-    for (let eqIndex = 0; eqIndex < equipmentCount; eqIndex++) {
-      const eqRef = readMatchCatalogRef(reader);
-      equipment.push(eqRef.index !== null ? (equipmentCatalog[eqRef.index]?.name || "") : eqRef.text);
-    }
-
-    expandedModels.push({
-      id: getMatchModelIndex(baseModel),
-      modelId: baseModel?.id || "",
-      name: baseModel?.name || modelRef.text || "",
-      realname: baseModel?.realname || "",
-      base: baseModel?.base || "",
-      rank,
-      rep: baseModel?.rep ?? "",
-      funding: baseModel?.funding ?? "",
-      equipment: equipment.filter(Boolean)
-    });
-  }
-
-  const cardRows = readMatchVarint(reader);
-  const expandedCards = [];
-  const cardCatalog = getAllMatchCardsCatalog({ includeDisabled: true });
-  for (let index = 0; index < cardRows; index++) {
-    const cardRef = readMatchCatalogRef(reader);
-    const card = cardRef.index !== null ? (cardCatalog[cardRef.index] || null) : getMatchCardByRef(cardRef.text);
-    const count = readMatchVarint(reader);
-    expandedCards.push({
-      id: card ? getBuilderCardKey(card) : cardRef.text,
-      name: card ? getBuilderCardName(card) : cardRef.text,
-      count,
-      type: card?.type || ""
-    });
-  }
-
-  return applyMatchRosterRuleEffects({
-    title: faction,
-    faction,
-    repLimit,
-    fundingLimit,
-    usedRep,
-    usedFunding,
-    modelCount: expandedModels.length,
-    cardCount: expandedCards.reduce((sum, card) => sum + numericValue(card.count, 1), 0),
-    models: expandedModels,
-    cards: expandedCards
-  });
-}
-
-function normalizeMatchPayloadCode(rawCode) {
-  let code = String(rawCode || "").replace(/\u0000/g, "").trim();
-  try {
-    const decoded = decodeURIComponent(code);
-    if (decoded.includes(MATCH_PAYLOAD_PREFIX_V2)) code = decoded.trim();
-  } catch (error) {
-    // Some scanners already return plain text; percent-decoding is only a convenience.
-  }
-
-  const prefixIndex = code.indexOf(MATCH_PAYLOAD_PREFIX_V2);
-  if (prefixIndex >= 0) {
-    code = code.slice(prefixIndex);
-  }
-  return code.replace(/\s+/g, "");
-}
-
-function parseMatchPayloadCode(rawCode) {
-  const code = normalizeMatchPayloadCode(rawCode);
-  if (!code.startsWith(MATCH_PAYLOAD_PREFIX_V2)) {
-    throw new Error(t("match_payload_invalid"));
-  }
-  const roster = decodeMatchPayloadBytes(code.replace(MATCH_PAYLOAD_PREFIX_V2, ""));
-  if (!roster) {
-    throw new Error(t("match_payload_invalid"));
-  }
-  return {
-    t: "bmg-match-roster",
-    v: 2,
-    roster
-  };
-}
-
 function renderMatchSection() {
   loadMyCrewsFromStorage();
   const select = $("matchCrewSelect");
@@ -9715,38 +9556,56 @@ function renderMatchSection() {
     matchSelectedCrewId = null;
   }
 
-  select.innerHTML = [
-    `<option value="">${escapeHtml(t("match_choose_placeholder"))}</option>`,
-    ...sortedCrews.map(crewEntry => `
-      <option value="${escapeAttribute(crewEntry.id)}" ${crewEntry.id === matchSelectedCrewId ? "selected" : ""}>
-        ${escapeHtml(crewEntry.title || crewEntry.faction || "Crew")} — ${escapeHtml(crewEntry.faction || "Unknown")}
-      </option>
-    `)
-  ].join("");
+  const roomRoster = getMatchRoomOwnPlayer()?.roster;
+  select.innerHTML = roomRoster
+    ? `<option value="__room__" selected>${escapeHtml(roomRoster.title || roomRoster.faction || "Crew")} — ${escapeHtml(roomRoster.faction || "Unknown")}</option>`
+    : [
+        `<option value="">${escapeHtml(t("match_choose_placeholder"))}</option>`,
+        ...sortedCrews.map(crewEntry => `
+          <option value="${escapeAttribute(crewEntry.id)}" ${crewEntry.id === matchSelectedCrewId ? "selected" : ""}>
+            ${escapeHtml(crewEntry.title || crewEntry.faction || "Crew")} — ${escapeHtml(crewEntry.faction || "Unknown")}
+          </option>
+        `)
+      ].join("");
+  select.disabled = Boolean(matchRoomSession || matchRoomRequestPending);
 
   renderMatchCrewStatus();
+  renderMatchRoom();
   renderMatchOpponentRoster();
   updateMatchStartGameButton();
 }
 
 function selectMatchCrew(crewId) {
+  if (matchRoomSession) {
+    alert(t("match_room_roster_locked"));
+    renderMatchSection();
+    return;
+  }
   matchSelectedCrewId = crewId || null;
-  matchCurrentPayloadCode = "";
-  const box = $("matchQrBox");
-  if (box) box.classList.add("hidden");
   renderMatchCrewStatus();
+  renderMatchRoom();
   updateMatchStartGameButton();
 }
 
 function renderMatchCrewStatus() {
   const status = $("matchCrewStatus");
-  const showButton = $("matchShowQrBtn");
-  const scanButton = $("matchScanQrBtn");
   if (!status) return;
 
-  if (showButton) showButton.disabled = true;
-  if (scanButton) scanButton.disabled = true;
-  matchCurrentPayloadCode = "";
+  const roomRoster = getMatchRoomOwnPlayer()?.roster;
+  if (roomRoster) {
+    status.innerHTML = `
+      <div class="match-status-line is-ok">${escapeHtml(t("match_roster_ok"))}</div>
+      <div class="match-status-line">
+        ${escapeHtml(roomRoster.faction)} • ${t("match_models")}: ${escapeHtml(roomRoster.modelCount || roomRoster.models?.length || 0)} • ${t("match_cards")}: ${escapeHtml(roomRoster.cardCount || 0)}
+      </div>
+      <div class="match-status-line">
+        ${t("match_limits")}: REP ${escapeHtml(roomRoster.repLimit)} / $${escapeHtml(roomRoster.fundingLimit)}<br>
+        ${t("match_used")}: REP ${escapeHtml(roomRoster.usedRep)} / $${escapeHtml(roomRoster.usedFunding)}
+      </div>
+    `;
+    updateMatchStartGameButton();
+    return;
+  }
 
   if (!myCrews.length) {
     status.innerHTML = `<div class="match-status-line is-warning">${t("match_no_crews")}</div>`;
@@ -9765,11 +9624,6 @@ function renderMatchCrewStatus() {
     const state = buildMatchCrewState(crewEntry, getCrewEntryDeckOptions(crewEntry));
     const roster = state.roster;
     const isLegal = state.validation.isLegal;
-    if (showButton) showButton.disabled = !isLegal;
-    if (scanButton) scanButton.disabled = !isLegal;
-    if (isLegal) {
-      matchCurrentPayloadCode = buildMatchPayloadCode(roster);
-    }
 
     const statusClass = isLegal ? "is-ok" : "is-warning";
     const header = `
@@ -9795,6 +9649,14 @@ function renderMatchCrewStatus() {
 }
 
 function getValidMatchOwnState() {
+  const roomRoster = getMatchRoomOwnPlayer()?.roster;
+  if (roomRoster) {
+    return {
+      parsed: null,
+      validation: { isLegal: true, messages: [] },
+      roster: applyMatchRosterRuleEffects(roomRoster)
+    };
+  }
   const crewEntry = getMatchSelectedCrewEntry();
   if (!crewEntry) return null;
 
@@ -9807,7 +9669,7 @@ function getValidMatchOwnState() {
 }
 
 function canStartMatchGame() {
-  return Boolean(getValidMatchOwnState() && matchOpponentRoster);
+  return Boolean(getValidMatchOwnState() && matchOpponentRoster && matchRoom?.status === "active");
 }
 
 function updateMatchStartGameButton() {
@@ -9836,110 +9698,225 @@ function getCurrentMatchStateOrAlert() {
   }
 }
 
-function renderMatchQrUnavailable(canvas) {
-  if (!canvas) return;
-  const ctx = canvas.getContext("2d");
-  ctx.fillStyle = "#ffffff";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "#111111";
-  ctx.font = "16px sans-serif";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillText("QR unavailable", canvas.width / 2, canvas.height / 2);
+function handleMatchRoomCodeInput(input) {
+  if (!input) return;
+  input.value = normalizeMatchRoomCode(input.value);
+  renderMatchRoom();
 }
 
-function renderMatchQrWithFallback(canvas, code, onFailure) {
-  const renderers = [
-    window.BMGLocalQRCode,
-    window.QRCode
-  ].filter(qr => qr && typeof qr.toCanvas === "function");
+function formatMatchRoomError(error) {
+  if (error?.code === "room_not_found" || error?.status === 404) return t("match_room_expired");
+  if (error?.code === "room_full") return t("match_room_full");
+  if (error?.code === "invalid_room_code") return t("match_room_invalid_code");
+  if (error?.code === "timeout" || !error?.status || error?.status >= 500) return t("match_room_service_error");
+  return error?.message || t("match_room_service_error");
+}
 
-  const tryRenderer = index => {
-    const qr = renderers[index];
-    if (!qr) {
-      renderMatchQrUnavailable(canvas);
-      if (typeof onFailure === "function") onFailure();
+function renderMatchRoom() {
+  const lobby = $("matchRoomLobby");
+  const active = $("matchRoomActive");
+  const createButton = $("matchCreateRoomBtn");
+  const joinButton = $("matchJoinRoomBtn");
+  const codeInput = $("matchRoomCodeInput");
+  const select = $("matchCrewSelect");
+  const message = $("matchRoomMessage");
+  if (!lobby || !active) return;
+
+  const hasSession = Boolean(matchRoomSession);
+  lobby.classList.toggle("hidden", hasSession);
+  active.classList.toggle("hidden", !hasSession);
+  if (select) select.disabled = hasSession || matchRoomRequestPending;
+
+  const ownState = getValidMatchOwnState();
+  if (createButton) createButton.disabled = !ownState || hasSession || matchRoomRequestPending;
+  if (codeInput) codeInput.disabled = hasSession || matchRoomRequestPending;
+  if (joinButton) {
+    joinButton.disabled = !ownState || hasSession || matchRoomRequestPending || normalizeMatchRoomCode(codeInput?.value).length !== 6;
+  }
+
+  if (message) {
+    message.textContent = matchRoomMessage;
+    message.className = `match-room-message${matchRoomMessageType ? ` is-${matchRoomMessageType}` : ""}${matchRoomMessage ? "" : " hidden"}`;
+  }
+
+  if (!hasSession) return;
+  const code = matchRoom?.code || matchRoomSession.code;
+  if ($("matchRoomCode")) $("matchRoomCode").textContent = code || "—";
+
+  const roomStatus = $("matchRoomStatus");
+  const ownPlayer = getMatchRoomOwnPlayer();
+  const opponentPlayer = getMatchRoomOpponentPlayer();
+  if (roomStatus) {
+    if (!matchRoom) {
+      roomStatus.innerHTML = `<div class="match-status-line">${escapeHtml(t("match_room_restoring"))}</div>`;
+    } else if (matchRoom.status === "active") {
+      roomStatus.innerHTML = `<div class="match-status-line is-ok">${escapeHtml(t("match_room_active"))}</div>`;
+    } else if (!opponentPlayer) {
+      roomStatus.innerHTML = `<div class="match-status-line">${escapeHtml(t("match_room_waiting"))}</div>`;
+    } else {
+      roomStatus.innerHTML = `
+        <div class="match-status-line is-ok">${escapeHtml(t("match_room_opponent_joined"))}</div>
+        <div class="match-room-readiness">
+          <span class="${ownPlayer?.ready ? "is-ready" : ""}">${escapeHtml(t(ownPlayer?.ready ? "match_room_you_ready" : "match_room_you_not_ready"))}</span>
+          <span class="${opponentPlayer.ready ? "is-ready" : ""}">${escapeHtml(t(opponentPlayer.ready ? "match_room_opponent_ready" : "match_room_opponent_not_ready"))}</span>
+        </div>
+      `;
+    }
+  }
+
+  const readyButton = $("matchRoomReadyBtn");
+  if (readyButton) {
+    readyButton.textContent = t(ownPlayer?.ready ? "match_room_ready_done" : "match_room_ready");
+    readyButton.disabled = !matchRoom || !opponentPlayer || matchRoom.status === "active" || matchRoomRequestPending;
+    readyButton.classList.toggle("is-ready", Boolean(ownPlayer?.ready));
+  }
+  const leaveButton = $("matchRoomLeaveBtn");
+  if (leaveButton) {
+    leaveButton.textContent = t(matchRoomSession.side === "host" ? "match_room_close" : "match_room_leave");
+    leaveButton.disabled = matchRoomRequestPending;
+  }
+}
+
+async function createMatchRoom() {
+  const state = getCurrentMatchStateOrAlert();
+  if (!state || matchRoomRequestPending) return;
+  matchRoomRequestPending = true;
+  setMatchRoomMessage("", "");
+  try {
+    const payload = await requestMatchRoom("/rooms", { method: "POST", body: { roster: state.roster } });
+    matchRoomSession = { code: payload.room.code, token: payload.token, side: payload.room.you };
+    saveMatchRoomSession();
+    applyMatchRoom(payload.room);
+    startMatchRoomPolling();
+  } catch (error) {
+    setMatchRoomMessage(formatMatchRoomError(error), "error");
+  } finally {
+    matchRoomRequestPending = false;
+    renderMatchSection();
+  }
+}
+
+async function joinMatchRoom() {
+  const state = getCurrentMatchStateOrAlert();
+  if (!state || matchRoomRequestPending) return;
+  const code = normalizeMatchRoomCode($("matchRoomCodeInput")?.value);
+  if (code.length !== 6) {
+    setMatchRoomMessage(t("match_room_invalid_code"), "error");
+    return;
+  }
+  matchRoomRequestPending = true;
+  setMatchRoomMessage("", "");
+  try {
+    const payload = await requestMatchRoom(`/rooms/${encodeURIComponent(code)}/join`, { method: "POST", body: { roster: state.roster } });
+    matchRoomSession = { code: payload.room.code, token: payload.token, side: payload.room.you };
+    saveMatchRoomSession();
+    applyMatchRoom(payload.room);
+    startMatchRoomPolling();
+  } catch (error) {
+    setMatchRoomMessage(formatMatchRoomError(error), "error");
+  } finally {
+    matchRoomRequestPending = false;
+    renderMatchSection();
+  }
+}
+
+async function readMatchRoom(options = {}) {
+  if (!matchRoomSession || matchRoomRequestPending) return;
+  matchRoomRequestPending = true;
+  if (options.restoring) setMatchRoomMessage(t("match_room_restoring"), "");
+  try {
+    const payload = await requestMatchRoom(`/rooms/${encodeURIComponent(matchRoomSession.code)}`, { token: matchRoomSession.token });
+    applyMatchRoom(payload.room);
+    matchRoomMessage = "";
+    matchRoomMessageType = "";
+  } catch (error) {
+    if (error?.status === 401 || error?.status === 403 || error?.status === 404) {
+      clearMatchRoomState({ keepMessage: true });
+    }
+    matchRoomMessage = formatMatchRoomError(error);
+    matchRoomMessageType = "error";
+  } finally {
+    matchRoomRequestPending = false;
+    renderMatchSection();
+  }
+}
+
+async function toggleMatchRoomReady() {
+  if (!matchRoomSession || !matchRoom || matchRoomRequestPending) return;
+  const ownPlayer = getMatchRoomOwnPlayer();
+  matchRoomRequestPending = true;
+  renderMatchRoom();
+  try {
+    const payload = await requestMatchRoom(`/rooms/${encodeURIComponent(matchRoomSession.code)}`, {
+      method: "PATCH",
+      token: matchRoomSession.token,
+      body: { expectedVersion: matchRoom.version, ready: !ownPlayer?.ready }
+    });
+    applyMatchRoom(payload.room);
+    matchRoomMessage = "";
+    matchRoomMessageType = "";
+  } catch (error) {
+    if (error?.code === "version_conflict") {
+      matchRoomRequestPending = false;
+      await readMatchRoom();
       return;
     }
-
-    try {
-      qr.toCanvas(canvas, code, {
-        width: 280,
-        margin: 2,
-        errorCorrectionLevel: "L",
-        color: { dark: "#000000", light: "#ffffff" }
-      }, error => {
-        if (error) {
-          console.warn("QR render failed", error);
-          tryRenderer(index + 1);
-        }
-      });
-    } catch (error) {
-      console.warn("QR render failed", error);
-      tryRenderer(index + 1);
-    }
-  };
-
-  tryRenderer(0);
+    setMatchRoomMessage(formatMatchRoomError(error), "error");
+  } finally {
+    matchRoomRequestPending = false;
+    renderMatchSection();
+  }
 }
 
-function showMatchQr() {
-  const state = getCurrentMatchStateOrAlert();
-  if (!state) return;
-
-  matchCurrentPayloadCode = buildMatchPayloadCode(state.roster);
-  const box = $("matchQrBox");
-  const textarea = $("matchShareCode");
-  const canvas = $("matchQrCanvas");
-  if (!box || !textarea || !canvas) return;
-
-  textarea.value = matchCurrentPayloadCode;
-  box.classList.remove("hidden");
-
-  renderMatchQrWithFallback(canvas, matchCurrentPayloadCode, () => {
-    alert(t("match_qr_unavailable"));
-  });
+async function leaveMatchRoom() {
+  if (!matchRoomSession || matchRoomRequestPending) return;
+  matchRoomRequestPending = true;
+  renderMatchRoom();
+  const wasHost = matchRoomSession.side === "host";
+  try {
+    await requestMatchRoom(`/rooms/${encodeURIComponent(matchRoomSession.code)}`, { method: "DELETE", token: matchRoomSession.token });
+    clearMatchRoomState({ keepMessage: true });
+    matchRoomMessage = t(wasHost ? "match_room_closed" : "match_room_left");
+    matchRoomMessageType = "success";
+  } catch (error) {
+    if (error?.status === 404) clearMatchRoomState({ keepMessage: true });
+    matchRoomMessage = formatMatchRoomError(error);
+    matchRoomMessageType = "error";
+  } finally {
+    matchRoomRequestPending = false;
+    renderMatchSection();
+  }
 }
 
-function copyMatchCode() {
-  const code = matchCurrentPayloadCode || $("matchShareCode")?.value || "";
+function copyMatchRoomCode() {
+  const code = matchRoom?.code || matchRoomSession?.code || "";
   if (!code) return;
   navigator.clipboard.writeText(code).then(() => {
-    alert(t("match_code_copied"));
+    setMatchRoomMessage(t("match_room_copied"), "success");
   }).catch(() => {
     prompt(t("export_copy_prompt"), code);
   });
 }
 
-function importMatchPayloadCode(code) {
-  const payload = parseMatchPayloadCode(code);
-  matchOpponentRoster = applyMatchRosterRuleEffects(payload.roster);
-  saveMatchOpponentToStorage();
-  renderMatchOpponentRoster();
-  updateMatchStartGameButton();
+function stopMatchRoomPolling() {
+  if (matchRoomPollTimer) clearInterval(matchRoomPollTimer);
+  matchRoomPollTimer = null;
 }
 
-function importMatchCodeFromTextarea() {
-  if (!getCurrentMatchStateOrAlert()) return;
-  try {
-    importMatchPayloadCode($("matchImportCode")?.value || "");
-    if ($("matchImportCode")) $("matchImportCode").value = "";
-  } catch (error) {
-    alert(error.message || t("match_payload_invalid"));
-  }
+function startMatchRoomPolling() {
+  stopMatchRoomPolling();
+  if (!matchRoomSession || currentMode !== "match") return;
+  matchRoomPollTimer = setInterval(() => {
+    if (document.visibilityState === "visible" && currentMode === "match") readMatchRoom();
+  }, MATCH_ROOM_POLL_INTERVAL_MS);
 }
 
-function clearMatchOpponent() {
-  matchOpponentRoster = null;
-  saveMatchOpponentToStorage();
-  renderMatchOpponentRoster();
-  updateMatchStartGameButton();
-}
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && currentMode === "match" && matchRoomSession) readMatchRoom();
+});
 
 function renderMatchOpponentRoster() {
   const container = $("matchOpponentRoster");
-  const clearButton = $("matchClearOpponentBtn");
-  if (clearButton) clearButton.disabled = !matchOpponentRoster;
   if (!container) return;
 
   if (!matchOpponentRoster) {
@@ -9991,6 +9968,10 @@ function startMatchGame() {
     alert(t("match_opponent_required"));
     return;
   }
+  if (matchRoom?.status !== "active") {
+    alert(t("match_room_active"));
+    return;
+  }
 
   matchGameRosters = {
     own: applyMatchRosterRuleEffects(ownState.roster),
@@ -10004,7 +9985,7 @@ function startMatchGame() {
 
   rememberNavigation('match-game');
   currentMode = 'match-game';
-  closeMatchQrScanner();
+  stopMatchRoomPolling();
   $('mainMenu').style.display = 'none';
   $('cardsSection').style.display = 'none';
   $('builderSection').style.display = 'none';
@@ -11135,109 +11116,10 @@ function initMatchGameSwipe() {
   }, { passive: true });
 }
 
-function closeMatchQrScanner() {
-  if (matchScannerState?.raf) {
-    cancelAnimationFrame(matchScannerState.raf);
-  }
-  if (matchScannerState?.stream) {
-    matchScannerState.stream.getTracks().forEach(track => track.stop());
-  }
-  matchScannerState = null;
-  document.getElementById("matchScannerModal")?.remove();
-}
-
-async function startMatchQrScanner() {
-  if (!getCurrentMatchStateOrAlert()) return;
-  if (!navigator.mediaDevices?.getUserMedia || (!("BarcodeDetector" in window) && typeof window.jsQR !== "function")) {
-    alert(t("match_camera_unavailable"));
-    return;
-  }
-
-  closeMatchQrScanner();
-
-  const modal = document.createElement("div");
-  modal.id = "matchScannerModal";
-  modal.className = "rank-select-modal";
-  modal.innerHTML = `
-    <div class="rank-select-content builder-exit-confirm">
-      <div class="rank-select-header">
-        ${t("match_scan_title")}
-        <div class="rank-select-close" onclick="closeMatchQrScanner()">×</div>
-      </div>
-      <div class="builder-exit-confirm-body">
-        <p>${t("match_scan_hint")}</p>
-        <video class="match-scanner-video" playsinline muted></video>
-        <canvas style="display:none" width="640" height="480"></canvas>
-      </div>
-      <div class="rank-select-buttons">
-        <button class="rank-select-btn cancel-exit-btn">${t("back")}</button>
-      </div>
-    </div>
-  `;
-
-  modal.querySelector(".cancel-exit-btn").onclick = closeMatchQrScanner;
-  modal.onclick = event => {
-    if (event.target === modal) closeMatchQrScanner();
-  };
-  document.body.appendChild(modal);
-
-  const video = modal.querySelector("video");
-  const canvas = modal.querySelector("canvas");
-  const context = canvas.getContext("2d");
-
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
-    video.srcObject = stream;
-    await video.play();
-
-    const detector = "BarcodeDetector" in window ? new BarcodeDetector({ formats: ["qr_code"] }) : null;
-    matchScannerState = { stream, raf: null };
-
-    const scanFrame = async () => {
-      if (!matchScannerState) return;
-      try {
-        let code = "";
-        if (detector) {
-          const results = await detector.detect(video);
-          code = results[0]?.rawValue || "";
-        } else if (typeof window.jsQR === "function" && video.videoWidth && video.videoHeight) {
-          canvas.width = video.videoWidth;
-          canvas.height = video.videoHeight;
-          context.drawImage(video, 0, 0, canvas.width, canvas.height);
-          const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-          const result = window.jsQR(imageData.data, imageData.width, imageData.height);
-          code = result?.data || "";
-        }
-
-        if (code) {
-          closeMatchQrScanner();
-          try {
-            importMatchPayloadCode(code);
-          } catch (error) {
-            alert(error.message || t("match_payload_invalid"));
-          }
-          return;
-        }
-      } catch (error) {
-        console.warn("QR scan failed", error);
-      }
-      if (matchScannerState) {
-        matchScannerState.raf = requestAnimationFrame(scanFrame);
-      }
-    };
-
-    scanFrame();
-  } catch (error) {
-    console.warn("Camera failed", error);
-    closeMatchQrScanner();
-    alert(t("match_camera_unavailable"));
-  }
-}
-
 function showMatch(options = {}) {
   rememberNavigation('match', options);
   currentMode = 'match';
-  closeMatchQrScanner();
+  stopMatchRoomPolling();
   $('mainMenu').style.display = 'none';
   $('cardsSection').style.display = 'none';
   $('builderSection').style.display = 'none';
@@ -11248,14 +11130,20 @@ function showMatch(options = {}) {
   $('matchGameSection').style.display = 'none';
   $('compendiumModal').classList.remove('active');
   $('modelSearchModal').classList.remove('active');
-  loadMatchOpponentFromStorage();
+  loadMatchRoomSession();
+  if (!matchRoomSession) {
+    matchRoom = null;
+    matchOpponentRoster = null;
+  }
   renderMatchSection();
+  if (matchRoomSession) readMatchRoom({ restoring: true });
+  startMatchRoomPolling();
 }
 
 function showCards(options = {}) {
   rememberNavigation('cards', options);
   currentMode = 'cards';
-  closeMatchQrScanner();
+  stopMatchRoomPolling();
   cardsContentMode = 'models';
   $('mainMenu').style.display = 'none';
   $('cardsSection').style.display = 'block';
@@ -11290,7 +11178,7 @@ function showBuilder(options = {}) {
   }
   rememberNavigation('builder', options);
   currentMode = 'builder';
-  closeMatchQrScanner();
+  stopMatchRoomPolling();
   closeBuilderMoreMenu();
   builderContentMode = 'models';
   $('mainMenu').style.display = 'none';
@@ -11313,7 +11201,7 @@ function showBuilder(options = {}) {
 function showRules(options = {}) {
   rememberNavigation('rules', options);
   currentMode = 'rules';
-  closeMatchQrScanner();
+  stopMatchRoomPolling();
   $('mainMenu').style.display = 'none';
   $('cardsSection').style.display = 'none';
   $('builderSection').style.display = 'none';
@@ -11333,7 +11221,7 @@ function showBatmatch(options = {}) {
 
   rememberNavigation('batmatch', options);
   currentMode = 'batmatch';
-  closeMatchQrScanner();
+  stopMatchRoomPolling();
   loadMyCrewsFromStorage();
   loadBatmatchStateFromStorage();
   $('mainMenu').style.display = 'none';
@@ -11376,7 +11264,7 @@ function navigateBack() {
 function backToMenu(options = {}) {
   currentMode = 'menu';
   if (!options?.skipHistory) navigationHistory = [];
-  closeMatchQrScanner();
+  stopMatchRoomPolling();
   closeBuilderMoreMenu();
   $('mainMenu').style.display = 'flex';
   $('cardsSection').style.display = 'none';

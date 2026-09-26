@@ -51,7 +51,7 @@
         </button>
       </div>
       <div class="main-menu-footer">
-        <p id="appVersion" class="version" role="button" tabindex="0" aria-label="Версия приложения">v0.8.3</p>
+        <p id="appVersion" class="version" role="button" tabindex="0" aria-label="Версия приложения">v0.9.0</p>
       </div>
     </div>
   </div>
@@ -588,28 +588,42 @@
         <select id="matchCrewSelect" class="match-select" onchange="selectMatchCrew(this.value)"></select>
         <div id="matchCrewStatus" class="match-status"></div>
         <div class="match-actions">
-          <button id="matchShowQrBtn" class="match-action-btn" type="button" onclick="showMatchQr()" disabled data-i18n="match_show_qr">Показать QR</button>
-          <button id="matchScanQrBtn" class="match-action-btn secondary" type="button" onclick="startMatchQrScanner()" disabled data-i18n="match_scan_qr">Сканировать QR</button>
           <button id="matchStartGameBtn" class="match-action-btn match-play-btn" type="button" onclick="startMatchGame()" disabled data-i18n="match_start_game">Игра</button>
         </div>
       </section>
 
       <section class="match-panel">
-        <h2 data-i18n="match_exchange">Обмен</h2>
-        <div id="matchQrBox" class="match-qr-box hidden">
-          <canvas id="matchQrCanvas" class="match-qr-canvas" width="280" height="280"></canvas>
-          <textarea id="matchShareCode" class="match-code-textarea" readonly></textarea>
-          <button class="match-action-btn" type="button" onclick="copyMatchCode()" data-i18n="match_copy_code">Скопировать код</button>
+        <h2 data-i18n="match_room">Комната</h2>
+        <div id="matchRoomLobby" class="match-room-lobby">
+          <p class="match-room-intro" data-i18n="match_room_intro">Создайте комнату или введите код соперника.</p>
+          <button id="matchCreateRoomBtn" class="match-action-btn" type="button" onclick="createMatchRoom()" disabled data-i18n="match_room_create">Создать комнату</button>
+          <div class="match-room-divider" data-i18n="match_room_or">или</div>
+          <label class="match-field-label" for="matchRoomCodeInput" data-i18n="match_room_join_code">Код комнаты</label>
+          <div class="match-room-join">
+            <input id="matchRoomCodeInput" class="match-room-code-input" type="text" maxlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABC123" oninput="handleMatchRoomCodeInput(this)">
+            <button id="matchJoinRoomBtn" class="match-action-btn secondary" type="button" onclick="joinMatchRoom()" disabled data-i18n="match_room_join">Войти</button>
+          </div>
         </div>
-        <label class="match-field-label" for="matchImportCode" data-i18n="match_paste_code">Или вставьте код оппонента</label>
-        <textarea id="matchImportCode" class="match-code-textarea" placeholder="BMG2:..."></textarea>
-        <button class="match-action-btn secondary" type="button" onclick="importMatchCodeFromTextarea()" data-i18n="match_import_code">Добавить оппонента</button>
+        <div id="matchRoomActive" class="match-room-active hidden">
+          <div class="match-room-code-row">
+            <div>
+              <span class="match-room-code-label" data-i18n="match_room_code">Код комнаты</span>
+              <strong id="matchRoomCode" class="match-room-code">—</strong>
+            </div>
+            <button class="match-action-btn secondary" type="button" onclick="copyMatchRoomCode()" data-i18n="match_room_copy">Копировать</button>
+          </div>
+          <div id="matchRoomStatus" class="match-room-status"></div>
+          <div class="match-actions">
+            <button id="matchRoomReadyBtn" class="match-action-btn" type="button" onclick="toggleMatchRoomReady()" data-i18n="match_room_ready">Готов</button>
+            <button id="matchRoomLeaveBtn" class="match-action-btn danger" type="button" onclick="leaveMatchRoom()" data-i18n="match_room_leave">Выйти</button>
+          </div>
+        </div>
+        <div id="matchRoomMessage" class="match-room-message" role="status" aria-live="polite"></div>
       </section>
 
       <section class="match-panel match-opponent-panel">
         <h2 data-i18n="match_opponent">Оппонент</h2>
         <div id="matchOpponentRoster" class="match-opponent-roster"></div>
-        <button id="matchClearOpponentBtn" class="match-action-btn danger" type="button" onclick="clearMatchOpponent()" disabled data-i18n="match_clear_opponent">Очистить</button>
       </section>
     </div>
   </div>
@@ -761,9 +775,6 @@
   <script src="data.js"></script>
   <script src="official-card-translations.js"></script>
   <script src="printable-models.js"></script>
-  <script src="local-qrcode.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js" defer></script>
   <script src="script.js"></script>
 </body>
 </html>

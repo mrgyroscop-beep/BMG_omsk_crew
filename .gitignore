@@ -1,0 +1,4 @@
+room-service/node_modules/
+room-service/.wrangler/
+.dev.vars
+

@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "bmg-match-rooms",
+  "main": "./src/index.js",
+  "compatibility_date": "2026-09-26",
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "vars": {
+    "ALLOWED_ORIGINS": "https://mrgyroscop-beep.github.io,http://127.0.0.1:8000,http://localhost:8000"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "bmg-match-rooms",
+      "database_id": "0f1940a3-6b4e-4d48-a691-0d122659ceb0",
+      "migrations_dir": "./migrations"
+    }
+  ]
+}
