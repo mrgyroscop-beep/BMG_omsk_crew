@@ -198,6 +198,10 @@ Created for the Batman Miniature Game player community.
 
 ## 📝 Версия / Version
 
+**v0.10.1** — 2026-09-26: турнирный режим отключён и удалён из главного меню и настроек.
+
+**v0.10.1** — 2026-09-26: disabled tournament mode and removed it from the main menu and settings.
+
 **v0.10.0** — 2026-09-26: игровой экран переработан в компактный мобильный пульт с раундами, ресурсами, пасами и VP, быстрыми панелями урона и эффектов, а также отдельными отметками обычной активации и активации с Audacity.
 
 **v0.10.0** — 2026-09-26: redesigned the play screen as a compact mobile console with round, resource, pass and VP counters, quick damage and effects panels, and separate regular and Audacity activation markers.

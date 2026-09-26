@@ -108,7 +108,7 @@ let versionEasterClickCount = 0;
 let versionEasterClickTimer = null;
 let diceAnimationTimer = null;
 let diceFinishTimer = null;
-let tournamentFeatureEnabled = true;
+let tournamentFeatureEnabled = false;
 let matchGameTrackerSettings = { ...MATCH_GAME_TRACKER_SETTING_DEFAULTS };
 let matchGameModelState = null;
 let matchGameCounterState = null;
@@ -6653,17 +6653,18 @@ document.addEventListener('DOMContentLoaded', () => {
 const $ = id => document.getElementById(id);
 
 function isTournamentFeatureEnabled() {
-  return tournamentFeatureEnabled !== false;
+  return false;
 }
 
 function loadTournamentFeatureSetting() {
-  tournamentFeatureEnabled = localStorage.getItem(TOURNAMENT_FEATURE_STORAGE_KEY) !== "false";
+  tournamentFeatureEnabled = false;
+  localStorage.setItem(TOURNAMENT_FEATURE_STORAGE_KEY, "false");
   updateTournamentFeatureUI();
 }
 
 function setTournamentFeatureEnabled(enabled) {
-  tournamentFeatureEnabled = Boolean(enabled);
-  localStorage.setItem(TOURNAMENT_FEATURE_STORAGE_KEY, tournamentFeatureEnabled ? "true" : "false");
+  tournamentFeatureEnabled = false;
+  localStorage.setItem(TOURNAMENT_FEATURE_STORAGE_KEY, "false");
   updateTournamentFeatureUI();
 
   if (!tournamentFeatureEnabled && currentMode === "batmatch") {

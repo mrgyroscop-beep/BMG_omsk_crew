@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BMG Crew Builder</title>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=0.10.0">
+  <link rel="stylesheet" href="style.css?v=0.10.1">
 </head>
-<body>
+<body class="tournament-feature-disabled">
 
   <!-- ГЛАВНОЕ МЕНЮ ВЫБОРА -->
   <div id="mainMenu" class="main-menu">
@@ -51,7 +51,7 @@
         </button>
       </div>
       <div class="main-menu-footer">
-        <p id="appVersion" class="version" role="button" tabindex="0" aria-label="Версия приложения">v0.10.0</p>
+        <p id="appVersion" class="version" role="button" tabindex="0" aria-label="Версия приложения">v0.10.1</p>
       </div>
     </div>
   </div>
@@ -728,16 +728,6 @@
         <button class="settings-close" type="button" onclick="closeSettings()" data-i18n-aria-label="settings_close" aria-label="Закрыть настройки">×</button>
       </div>
       <div class="settings-body">
-        <label class="settings-switch-row">
-          <span class="settings-switch-copy">
-            <strong data-i18n="settings_tournament_title">Турнир</strong>
-            <span id="settingsTournamentStatus" class="settings-switch-status">Включен</span>
-          </span>
-          <input id="settingsTournamentToggle" class="settings-switch-input" type="checkbox" checked onchange="setTournamentFeatureEnabled(this.checked)">
-          <span class="settings-switch-control" aria-hidden="true">
-            <span class="settings-switch-knob"></span>
-          </span>
-        </label>
         <div class="settings-section-title" data-i18n="settings_match_game_title">Игра</div>
         <label class="settings-switch-row is-compact">
           <span class="settings-switch-copy">
@@ -773,10 +763,10 @@
     </div>
   </div>
 
-  <script src="data.js?v=0.10.0"></script>
-  <script src="official-card-translations.js?v=0.10.0"></script>
-  <script src="printable-models.js?v=0.10.0"></script>
-  <script src="script.js?v=0.10.0"></script>
+  <script src="data.js?v=0.10.1"></script>
+  <script src="official-card-translations.js?v=0.10.1"></script>
+  <script src="printable-models.js?v=0.10.1"></script>
+  <script src="script.js?v=0.10.1"></script>
 </body>
 </html>
 
