@@ -198,6 +198,10 @@ Created for the Batman Miniature Game player community.
 
 ## 📝 Версия / Version
 
+**v0.11.1** — 2026-09-28: в настройки добавлен мгновенный выбор между классической темой и темой «Неоновый нуар»; выбранное оформление сохраняется и восстанавливается при следующем запуске.
+
+**v0.11.1** — 2026-09-28: added an instant theme selector for the classic and Neon Noir themes; the selected appearance is saved and restored on the next launch.
+
 **v0.11.0** — 2026-09-28: интерфейс приложения переведён в неоновый нуар с холодной голубой палитрой, обновлёнными поверхностями и элементами управления; для главного меню, каталогов, матчевого лобби и игрового экрана добавлены отдельные атмосферные фоны.
 
 **v0.11.0** — 2026-09-28: redesigned the application in a neon-noir style with a cool cyan palette, refreshed surfaces and controls; added dedicated atmospheric backgrounds for the main menu, catalogs, match lobby, and play screen.

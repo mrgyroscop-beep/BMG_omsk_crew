@@ -51,6 +51,7 @@ const MY_CREWS_STORAGE_KEY = 'bmg_my_crews_v1';
 const BATMATCH_STORAGE_KEY = 'bmg_batmatch_packet_v1';
 const TOURNAMENT_FEATURE_STORAGE_KEY = 'bmg_tournament_feature_enabled_v1';
 const MATCH_GAME_TRACKER_SETTINGS_STORAGE_KEY = 'bmg_match_game_tracker_settings_v1';
+const APP_THEME_STORAGE_KEY = 'bmg_app_theme_v1';
 const BATMATCH_DECK_SIZE = 20;
 const BATMATCH_MAX_SINGLE = 10;
 const BATMATCH_MAX_GENERAL = 10;
@@ -109,6 +110,7 @@ let versionEasterClickTimer = null;
 let diceAnimationTimer = null;
 let diceFinishTimer = null;
 let tournamentFeatureEnabled = false;
+let appTheme = window.BMG_INITIAL_THEME === "classic" ? "classic" : "neon";
 let matchGameTrackerSettings = { ...MATCH_GAME_TRACKER_SETTING_DEFAULTS };
 let matchGameModelState = null;
 let matchGameCounterState = null;
@@ -552,6 +554,10 @@ const translations = {
     settings_close: "Закрыть настройки",
     settings_title: "НАСТРОЙКИ",
     settings_empty: "Пока пусто",
+    settings_appearance_title: "Оформление",
+    settings_theme_title: "Тема приложения",
+    settings_theme_neon: "Неоновый нуар",
+    settings_theme_classic: "Классическая",
     settings_tournament_title: "Турнир",
     settings_tournament_enabled: "Включен",
     settings_tournament_disabled: "Выключен",
@@ -923,6 +929,10 @@ const translations = {
     settings_close: "Close settings",
     settings_title: "SETTINGS",
     settings_empty: "Empty for now",
+    settings_appearance_title: "Appearance",
+    settings_theme_title: "Application theme",
+    settings_theme_neon: "Neon noir",
+    settings_theme_classic: "Classic",
     settings_tournament_title: "Tournament",
     settings_tournament_enabled: "Enabled",
     settings_tournament_disabled: "Disabled",
@@ -1417,6 +1427,7 @@ function setLanguage(lang) {
   updateBuilderQuickFilterUi();
   updateBuilderCardFilterUi();
   updateTournamentFeatureUI();
+  updateAppThemeSettingsUI();
   updateMatchGameTrackerSettingsUI();
   updateCrewBar();
   updateBuilderContentModeButtons();
@@ -6644,6 +6655,7 @@ function setCompendiumSearchMode(mode) {
 // Загрузка сохранённого языка при старте
 document.addEventListener('DOMContentLoaded', () => {
   const savedLang = localStorage.getItem('bmg_lang') || 'ru';
+  loadAppThemeSetting();
   setLanguage(savedLang);
   loadTournamentFeatureSetting();
   loadMatchGameTrackerSettings();
@@ -6651,6 +6663,53 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const $ = id => document.getElementById(id);
+
+function normalizeAppTheme(theme) {
+  return theme === "classic" ? "classic" : "neon";
+}
+
+function applyAppTheme(theme, { persist = true } = {}) {
+  appTheme = normalizeAppTheme(theme);
+  const neonStylesheet = $("neonThemeStylesheet");
+  const classicStylesheet = $("classicThemeStylesheet");
+
+  if (neonStylesheet) neonStylesheet.disabled = appTheme !== "neon";
+  if (classicStylesheet) classicStylesheet.disabled = appTheme !== "classic";
+  document.documentElement.dataset.theme = appTheme;
+
+  if (persist) {
+    try {
+      localStorage.setItem(APP_THEME_STORAGE_KEY, appTheme);
+    } catch (error) {
+      // The selected theme still applies for the current session.
+    }
+  }
+
+  updateAppThemeSettingsUI();
+}
+
+function loadAppThemeSetting() {
+  let savedTheme = window.BMG_INITIAL_THEME;
+  try {
+    savedTheme = localStorage.getItem(APP_THEME_STORAGE_KEY) || savedTheme;
+  } catch (error) {
+    savedTheme = window.BMG_INITIAL_THEME;
+  }
+  applyAppTheme(savedTheme, { persist: false });
+}
+
+function setAppTheme(theme) {
+  applyAppTheme(theme);
+}
+
+function updateAppThemeSettingsUI() {
+  const toggle = $("settingsThemeToggle");
+  const status = $("settingsThemeStatus");
+  const isNeon = appTheme === "neon";
+
+  if (toggle) toggle.checked = isNeon;
+  if (status) status.textContent = t(isNeon ? "settings_theme_neon" : "settings_theme_classic");
+}
 
 function isTournamentFeatureEnabled() {
   return false;
@@ -6759,10 +6818,11 @@ function openSettings() {
   if (!modal) return;
 
   updateTournamentFeatureUI();
+  updateAppThemeSettingsUI();
   updateMatchGameTrackerSettingsUI();
   modal.classList.add("active");
   modal.setAttribute("aria-hidden", "false");
-  modal.querySelector("#settingsTournamentToggle")?.focus({ preventScroll: true });
+  modal.querySelector("#settingsThemeToggle")?.focus({ preventScroll: true });
 }
 
 function closeSettings() {
