@@ -198,6 +198,10 @@ Created for the Batman Miniature Game player community.
 
 ## 📝 Версия / Version
 
+**v0.11.0** — 2026-09-28: интерфейс приложения переведён в неоновый нуар с холодной голубой палитрой, обновлёнными поверхностями и элементами управления; для главного меню, каталогов, матчевого лобби и игрового экрана добавлены отдельные атмосферные фоны.
+
+**v0.11.0** — 2026-09-28: redesigned the application in a neon-noir style with a cool cyan palette, refreshed surfaces and controls; added dedicated atmospheric backgrounds for the main menu, catalogs, match lobby, and play screen.
+
 **v0.10.3** — 2026-09-26: состояние ростера соперника на игровом экране переведено в режим только для чтения; нельзя изменять его раны, оглушение, активации, Audacity, усилия, эффекты, счётчики и карты целей.
 
 **v0.10.3** — 2026-09-26: the opponent roster is now read-only on the play screen; its damage, stun, activations, Audacity, effort, effects, counters, and objective cards cannot be changed.
