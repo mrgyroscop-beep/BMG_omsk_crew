@@ -13867,9 +13867,36 @@ function crewFundingUsedWithCandidate(model) {
   return crewFundingUsed([...crewModels, model]);
 }
 
+const CREW_FUNDING_TRAIT_RULES = Object.freeze({
+  "business agent": { amount: 350 },
+  "dirty money": { amount: 300, bossOnly: true },
+  "never do it for free": { amount: 300, bossOnly: true },
+  "lord of business": { amount: 500, bossOnly: true },
+  "millionaire": { amount: 400 },
+  "public resources": { amount: 300 },
+  "bat credit card": { amount: 350 }
+});
+
+function calculateCrewFundingBonus(crewModels = getRecruitedCrewModels(), boss = BMG_BOSS) {
+  return crewModels.reduce((total, model) => {
+    return total + getModelTraits(model).reduce((modelTotal, trait) => {
+      const rule = CREW_FUNDING_TRAIT_RULES[getCleanName(trait).toLowerCase()];
+      if (!rule) return modelTotal;
+      if (rule.bossOnly && (!boss || !isSameModel(model, boss))) return modelTotal;
+      return modelTotal + rule.amount;
+    }, 0);
+  }, 0);
+}
+
+function bmgFundingLimitWithCandidate(model) {
+  const crewModels = [...getRecruitedCrewModels(), model];
+  const boss = BMG_BOSS || (canStartCurrentCrewAsBoss(model, model?.rankUsed) ? model : null);
+  return bmgFundingLimit({ crewModels, boss });
+}
+
 function canAffordModelInCurrentCrew(model) {
   return crewRepUsed() + modelRepValue(model) <= BMG_REP_LIMIT
-    && crewFundingUsedWithCandidate(model) <= bmgFundingLimit();
+    && crewFundingUsedWithCandidate(model) <= bmgFundingLimitWithCandidate(model);
 }
 
 function updateBuilderMeter(meterId, barId, noteId, used, limit) {
@@ -13945,10 +13972,11 @@ const updateCrewBar = () => {
 };
 
 function calculateModifiers() {
+  const recruitedCrewModels = getRecruitedCrewModels();
   const mods = { 
     extraFreeAgents: 0, 
     extraVehicles: 0, 
-    extraFunding: 0, 
+    extraFunding: calculateCrewFundingBonus(recruitedCrewModels, BMG_BOSS),
     extraDuplicates: 0, 
     extraElites: {}, 
     extraVeterans: {}, 
@@ -13957,10 +13985,9 @@ function calculateModifiers() {
     allowBetray: false
   };
 
-  getRecruitedCrewModels().forEach(m => {
-    m.traits.forEach(t => {
+  recruitedCrewModels.forEach(m => {
+    getModelTraits(m).forEach(t => {
       // === Уже были ===
-      if (t === "Business Agent") mods.extraFunding += 100;
       if (t === "Kaos Agent") mods.extraDuplicates += 1;
 
       const eliteBossMatch = t.match(/^Elite Boss \((.+)\)$/);
@@ -13982,18 +14009,6 @@ function calculateModifiers() {
       }
 
       // === НОВЫЕ ТРЕЙТЫ, влияющие на набор банды ===
-
-      // Funding
-      if (t === "Black Market Connections") mods.extraFunding += 200;
-      if (t === "Corporate Resources") mods.extraFunding += 300;
-      if (t === "Politician") mods.extraFunding += 200;
-      if (t === "Rich") mods.extraFunding += 200; // чаще всего 200, иногда 100 — можно уточнить по модели
-      if (t === "Supply Cache") mods.extraFunding += 300;
-      
-      // Новые трейты для Funding
-      if (t === "Millionaire") mods.extraFunding += 400;
-      if (t === "Corrupt") mods.extraFunding += 50; // +Funding для corrupt моделей
-      if (t === "Vocational") mods.extraFunding += 200; // +Funding для vocational jobs
 
       // Free Agents
       if (t === "Undercover Agent") mods.extraFreeAgents += 1;
@@ -15195,11 +15210,12 @@ let BMG_AFFILIATIONS = null;
 /*************************
  * BMG HELPERS
  *************************/
-function bmgFundingLimit() {
+function bmgFundingLimit({ crewModels = getRecruitedCrewModels(), boss = BMG_BOSS } = {}) {
   if (builderTournamentMode) return 1500;
-  if (BMG_REP_LIMIT === 200) return 500 + numericValue(modifiers.extraFunding, 0);
-  if (BMG_REP_LIMIT === 350 || BMG_REP_LIMIT === 450) return 1500 + numericValue(modifiers.extraFunding, 0);
-  return Math.ceil(BMG_REP_LIMIT / 150) * 500 + numericValue(modifiers.extraFunding, 0);
+  const extraFunding = calculateCrewFundingBonus(crewModels, boss);
+  if (BMG_REP_LIMIT === 200) return 500 + extraFunding;
+  if (BMG_REP_LIMIT === 350 || BMG_REP_LIMIT === 450) return 1500 + extraFunding;
+  return Math.ceil(BMG_REP_LIMIT / 150) * 500 + extraFunding;
 }
 
 function updateGameSizeButtons() {
@@ -15484,7 +15500,7 @@ function bmgCanAddModel(model, options = {}) {
     showBuilderWarning(t("rep_exceeded"));
     return false;
   }
-  if (usedFunding > bmgFundingLimit()) {
+  if (usedFunding > bmgFundingLimitWithCandidate(model)) {
     showBuilderWarning(t("funding_insufficient"));
     return false;
   }

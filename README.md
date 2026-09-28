@@ -198,6 +198,10 @@ Created for the Batman Miniature Game player community.
 
 ## 📝 Версия / Version
 
+**v0.11.2** — 2026-09-28: исправлен расчёт Funding от трейтов Business Agent, Dirty Money, Lord of Business, Millionaire, Public Resources и Bat Credit Card; бонусы босса и собственный бонус добавляемой модели теперь учитываются при проверке ростера.
+
+**v0.11.2** — 2026-09-28: fixed Funding calculations for Business Agent, Dirty Money, Lord of Business, Millionaire, Public Resources and Bat Credit Card; boss-only bonuses and a model's own Funding bonus are now included during roster validation.
+
 **v0.11.1** — 2026-09-28: в настройки добавлен мгновенный выбор между классической темой и темой «Неоновый нуар»; выбранное оформление сохраняется и восстанавливается при следующем запуске.
 
 **v0.11.1** — 2026-09-28: added an instant theme selector for the classic and Neon Noir themes; the selected appearance is saved and restored on the next launch.
