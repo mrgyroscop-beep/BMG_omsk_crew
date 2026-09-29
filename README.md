@@ -198,6 +198,10 @@ Created for the Batman Miniature Game player community.
 
 ## 📝 Версия / Version
 
+**v0.12.0** — 2026-09-29: в «Карточки → Модели» добавлены поиск и быстрые фильтры; также добавлено одноразовое уведомление о новой версии и полный двуязычный архив изменений в настройках.
+
+**v0.12.0** — 2026-09-29: added search and quick filters to Cards → Models, plus a one-time new-version notice and a complete bilingual changelog in Settings.
+
 **v0.11.3** — 2026-09-29: ссылки на трейты, правила и статусы внутри описаний стали интерактивными; вложенные статьи открываются в том же окне, а закрытие возвращает к предыдущему описанию.
 
 **v0.11.3** — 2026-09-29: references to traits, rules and statuses inside descriptions are now interactive; nested entries open in the same dialog and closing returns to the previous description.

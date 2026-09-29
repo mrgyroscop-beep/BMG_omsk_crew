@@ -12,6 +12,8 @@ let builderQuickFilter = "all";
 let builderAvailableOnly = false;
 let builderCardQuery = "";
 let builderCardQuickFilter = "all";
+let cardsModelQuery = "";
+let cardsQuickFilter = "all";
 let cardsPrintOnly = false;
 let cardsFactionOnly = false;
 let builderContentMode = 'models';
@@ -564,6 +566,9 @@ const translations = {
     settings_tournament_disabled: "Выключен",
     settings_tournament_disabled_notice: "Турнирный режим выключен в настройках.",
     settings_match_game_title: "Игра",
+    settings_about_title: "О приложении",
+    settings_changelog_title: "История изменений",
+    settings_changelog_description: "Что появилось в новых версиях",
     settings_damage_tracker_title: "Урон и стойкость",
     settings_status_tracker_title: "Состояния",
     settings_activation_tracker_title: "Активации",
@@ -939,6 +944,9 @@ const translations = {
     settings_tournament_disabled: "Disabled",
     settings_tournament_disabled_notice: "Tournament mode is disabled in settings.",
     settings_match_game_title: "Game",
+    settings_about_title: "About",
+    settings_changelog_title: "Changelog",
+    settings_changelog_description: "See what changed in each version",
     settings_damage_tracker_title: "Damage and Endurance",
     settings_status_tracker_title: "Statuses",
     settings_activation_tracker_title: "Activations",
@@ -1395,6 +1403,7 @@ function setLanguage(lang) {
 
   // Сохраняем в localStorage
   localStorage.setItem('bmg_lang', lang);
+  window.dispatchEvent(new CustomEvent("bmg-language-change", { detail: { language: lang } }));
 
   const compendiumModal = document.getElementById('compendiumModal');
   const compendiumOpen = compendiumModal?.classList.contains('active');
@@ -1443,6 +1452,9 @@ function setLanguage(lang) {
   }
   if (currentMode === 'cards' && cardsContentMode === 'cards') {
     renderCardsCatalogView();
+  }
+  if (currentMode === 'cards' && cardsContentMode === 'models') {
+    renderMiniCardsView();
   }
 
   if (currentMode === 'my-crews') {
@@ -11629,8 +11641,11 @@ function showCards(options = {}) {
 
   // Сбрасываем фракцию и показываем вкладки
   currentFaction = null;
+  cardsModelQuery = "";
+  cardsQuickFilter = "all";
   $('modelsGridCards').innerHTML = '';
   if ($('cardsGridCards')) $('cardsGridCards').innerHTML = '';
+  updateCardsQuickFilterUi(0);
   updateCardsContentModeButtons();
   $('cardsTabsContainer').classList.remove('hidden');
   initTabs();
@@ -12130,6 +12145,73 @@ function passesCardsFactionFilter(model) {
   return !cardsFactionOnly || modelHasCurrentFaction(model);
 }
 
+function passesCardsQuickFilter(model) {
+  if (!model || !modelMatchesSearchQuery(model, cardsModelQuery)) return false;
+
+  const ranks = getRanks(model);
+  if (cardsQuickFilter === "leader") return ranks.includes("Leader");
+  if (cardsQuickFilter === "henchman") return ranks.includes("Henchman");
+  return true;
+}
+
+function updateCardsQuickFilterUi(count = null) {
+  document.querySelectorAll("[data-cards-filter]").forEach(button => {
+    const filter = button.dataset.cardsFilter;
+    const active = filter === "print"
+      ? cardsPrintOnly
+      : filter === cardsQuickFilter;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+
+  const input = $("cardsQuickSearchInput");
+  if (input && input.value !== cardsModelQuery) input.value = cardsModelQuery;
+
+  const clearButton = $("cardsQuickSearchClear");
+  if (clearButton) {
+    clearButton.classList.toggle("is-visible", Boolean(cardsModelQuery.trim()));
+  }
+
+  const meta = $("cardsSearchMeta");
+  if (meta && count !== null) {
+    meta.textContent = t("builder_search_count", { count });
+  }
+}
+
+function setCardsModelQuery(value) {
+  cardsModelQuery = String(value || "");
+  updateCardsQuickFilterUi();
+  if (currentMode === "cards" && cardsContentMode === "models") {
+    renderMiniCardsView();
+  }
+}
+
+function clearCardsModelSearch() {
+  cardsModelQuery = "";
+  const input = $("cardsQuickSearchInput");
+  if (input) input.value = "";
+  updateCardsQuickFilterUi();
+  if (currentMode === "cards" && cardsContentMode === "models") {
+    renderMiniCardsView();
+  }
+}
+
+function setCardsQuickFilter(filter) {
+  if (filter === "print") {
+    cardsPrintOnly = !cardsPrintOnly;
+    updateCardsPrintFilterButton();
+  } else if (["all", "leader", "henchman"].includes(filter)) {
+    cardsQuickFilter = filter;
+  } else {
+    cardsQuickFilter = "all";
+  }
+
+  updateCardsQuickFilterUi();
+  if (currentMode === "cards" && cardsContentMode === "models") {
+    renderMiniCardsView();
+  }
+}
+
 function updateCardsPrintFilterButton() {
   const button = $("cardsPrintFilterBtn");
   if (!button) return;
@@ -12149,6 +12231,7 @@ function updateCardsFactionFilterButton() {
 function toggleCardsPrintFilter() {
   cardsPrintOnly = !cardsPrintOnly;
   updateCardsPrintFilterButton();
+  updateCardsQuickFilterUi();
   if (currentMode === "cards" && cardsContentMode === "models") {
     renderMiniCardsView();
   }
@@ -12176,6 +12259,7 @@ function updateCardsContentModeButtons() {
   const cardsPanel = $("cardsCardsPanel");
   const printButton = $("cardsPrintFilterBtn");
   const factionButton = $("cardsFactionFilterBtn");
+  const quickSearch = $("cardsQuickSearch");
 
   if (modelsButton) {
     modelsButton.classList.toggle("active", !isCardsMode);
@@ -12189,8 +12273,10 @@ function updateCardsContentModeButtons() {
   if (cardsPanel) cardsPanel.style.display = isCardsMode ? "block" : "none";
   if (printButton) printButton.style.display = isCardsMode ? "none" : "";
   if (factionButton) factionButton.style.display = isCardsMode ? "none" : "";
+  if (quickSearch) quickSearch.style.display = !isCardsMode && currentFaction ? "grid" : "none";
   updateCardsPrintFilterButton();
   updateCardsFactionFilterButton();
+  updateCardsQuickFilterUi();
   updateMobileFixedTopbarOffsets();
 }
 
@@ -14308,7 +14394,8 @@ function getCardsViewModels() {
   return sortModelsByRankAndRep(models.filter(m =>
     canShowInFactionCards(m, currentFaction) &&
     passesCardsPrintFilter(m) &&
-    passesCardsFactionFilter(m)
+    passesCardsFactionFilter(m) &&
+    passesCardsQuickFilter(m)
   ));
 }
 
@@ -14345,13 +14432,24 @@ const renderMiniCardsView = debounce(() => {
   if (!currentFaction) {
     // Если фракция не выбрана, не рендерим ничего
     $('modelsGridCards').innerHTML = '';
+    if ($('cardsQuickSearch')) $('cardsQuickSearch').style.display = 'none';
+    updateCardsQuickFilterUi(0);
     return;
   }
 
   const grid = $("modelsGridCards");
+  if ($('cardsQuickSearch') && cardsContentMode === 'models') {
+    $('cardsQuickSearch').style.display = 'grid';
+  }
 
   // В режиме просмотра показываем базово допустимые модели фракции без проверок текущего состава.
   let filteredModels = getCardsViewModels();
+  updateCardsQuickFilterUi(filteredModels.length);
+
+  if (!filteredModels.length) {
+    grid.innerHTML = `<div class="builder-cards-empty">${escapeHtml(t("builder_search_empty"))}</div>`;
+    return;
+  }
 
   const fragment = document.createDocumentFragment();
 

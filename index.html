@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="app-version" content="0.12.0">
   <title>BMG Crew Builder</title>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap" rel="stylesheet">
-  <link id="neonThemeStylesheet" rel="stylesheet" href="style.css?v=0.11.3">
-  <link id="classicThemeStylesheet" rel="stylesheet" href="style-classic.css?v=0.11.3" disabled>
+  <link id="neonThemeStylesheet" rel="stylesheet" href="style.css?v=0.12.0">
+  <link id="classicThemeStylesheet" rel="stylesheet" href="style-classic.css?v=0.12.0" disabled>
   <script>
     (() => {
       let theme = "neon";
@@ -68,7 +69,7 @@
         </button>
       </div>
       <div class="main-menu-footer">
-        <p id="appVersion" class="version" role="button" tabindex="0" aria-label="Версия приложения">v0.11.3</p>
+        <p id="appVersion" class="version" role="button" tabindex="0" aria-label="Версия приложения">v0.12.0</p>
       </div>
     </div>
   </div>
@@ -189,6 +190,20 @@
 
     <!-- Контейнер для моделей -->
     <div id="cardsModelsPanel">
+      <div id="cardsQuickSearch" class="builder-quick-search cards-quick-search" style="display:none;">
+        <label class="builder-search-field" for="cardsQuickSearchInput">
+          <svg class="builder-search-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          <input id="cardsQuickSearchInput" type="search" autocomplete="off" data-i18n-placeholder="builder_quick_search_placeholder" placeholder="Поиск по имени, фракции, трейту..." oninput="setCardsModelQuery(this.value)">
+          <button id="cardsQuickSearchClear" class="builder-search-clear" type="button" onclick="clearCardsModelSearch()" aria-label="Clear search">×</button>
+        </label>
+        <div class="builder-filter-chips" role="group" aria-label="Model filters">
+          <button class="builder-filter-chip active" type="button" data-cards-filter="all" onclick="setCardsQuickFilter('all')" data-i18n="builder_filter_all">Все</button>
+          <button class="builder-filter-chip" type="button" data-cards-filter="leader" onclick="setCardsQuickFilter('leader')" data-i18n="builder_filter_leaders">Лидеры</button>
+          <button class="builder-filter-chip" type="button" data-cards-filter="henchman" onclick="setCardsQuickFilter('henchman')" data-i18n="builder_filter_henchmen">Henchmen</button>
+          <button class="builder-filter-chip" type="button" data-cards-filter="print" onclick="setCardsQuickFilter('print')" data-i18n="builder_filter_print">Print</button>
+        </div>
+        <div id="cardsSearchMeta" class="builder-search-meta" aria-live="polite"></div>
+      </div>
       <div id="modelsGridCards" class="models-list"></div>
     </div>
     <div id="cardsCardsPanel" style="display:none;">
@@ -787,14 +802,48 @@
             <span class="settings-switch-knob"></span>
           </span>
         </label>
+        <div class="settings-section-title" data-i18n="settings_about_title">О приложении</div>
+        <button id="settingsChangelogButton" class="settings-action-row" type="button" onclick="openChangelog({ returnToSettings: true })">
+          <span class="settings-action-icon" aria-hidden="true">↻</span>
+          <span class="settings-action-copy">
+            <strong data-i18n="settings_changelog_title">История изменений</strong>
+            <span data-i18n="settings_changelog_description">Что появилось в новых версиях</span>
+          </span>
+          <span class="settings-action-arrow" aria-hidden="true">›</span>
+        </button>
       </div>
     </div>
   </div>
 
-  <script src="data.js?v=0.11.3"></script>
-  <script src="official-card-translations.js?v=0.11.3"></script>
-  <script src="printable-models.js?v=0.11.3"></script>
-  <script src="script.js?v=0.11.3"></script>
+  <div id="releaseNoticeModal" class="release-notice-modal" aria-hidden="true" onclick="handleReleaseNoticeBackdropClick(event)">
+    <section class="release-notice-panel" role="dialog" aria-modal="true" aria-labelledby="releaseNoticeTitle">
+      <div class="release-notice-accent" aria-hidden="true"></div>
+      <div id="releaseNoticeContent"></div>
+      <div class="release-notice-actions">
+        <button id="releaseNoticeHistoryButton" class="release-notice-secondary" type="button" onclick="openChangelog()"></button>
+        <button id="releaseNoticeDismissButton" class="release-notice-primary" type="button" onclick="dismissReleaseNotice()"></button>
+      </div>
+    </section>
+  </div>
+
+  <div id="changelogModal" class="changelog-modal" aria-hidden="true" onclick="handleChangelogBackdropClick(event)">
+    <section class="changelog-panel" role="dialog" aria-modal="true" aria-labelledby="changelogTitle">
+      <div class="changelog-header">
+        <div>
+          <span id="changelogKicker" class="changelog-kicker"></span>
+          <h2 id="changelogTitle"></h2>
+        </div>
+        <button id="changelogCloseButton" class="changelog-close" type="button" onclick="closeChangelog()" aria-label="Закрыть">×</button>
+      </div>
+      <div id="changelogContent" class="changelog-list"></div>
+    </section>
+  </div>
+
+  <script src="data.js?v=0.12.0"></script>
+  <script src="official-card-translations.js?v=0.12.0"></script>
+  <script src="printable-models.js?v=0.12.0"></script>
+  <script src="script.js?v=0.12.0"></script>
+  <script src="changelog.js?v=0.12.0"></script>
 </body>
 </html>
 
