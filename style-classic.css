@@ -1325,9 +1325,15 @@ body.full-card-open {
 /* ПОПАП ТРЕЙТОВ */
 .trait-popup { position:fixed; inset:0; background:rgba(0,0,0,0.85); backdrop-filter:blur(5px); z-index:10000; display:flex; align-items:center; justify-content:center; padding:20px; }
 .trait-popup-content { background:#fff; width:100%; max-width:450px; border-radius:15px; border:2px solid #e94560; overflow:hidden; box-shadow:0 0 25px rgba(233,69,96,0.4); }
-.trait-popup-header { background:#ffd700; padding:15px; color:#000; display:flex; justify-content:space-between; align-items:center; font-family:'Oswald',sans-serif; }
+.trait-popup-header { background:#ffd700; min-height:68px; padding:12px 12px 12px 18px; color:#000; display:flex; gap:12px; justify-content:space-between; align-items:center; font-family:'Oswald',sans-serif; }
+.trait-popup-title { min-width:0; font-size:20px; line-height:1.2; }
 .trait-popup-body { padding:20px; color:#000; line-height:1.6; max-height:70vh; overflow-y:auto; }
-.trait-popup-close { font-size:48px; cursor:pointer; }
+.trait-popup-close { flex:0 0 44px; width:44px; height:44px; padding:0; border:0; border-radius:8px; background:transparent; color:#000; font:400 40px/1 'Oswald',sans-serif; cursor:pointer; }
+.trait-popup-close:hover { background:rgba(0,0,0,0.1); }
+.trait-popup-close:focus-visible { outline:3px solid #000; outline-offset:2px; }
+.compendium-reference-link { display:inline; margin:0; padding:0; border:0; background:transparent; color:#8d1730; font:inherit; font-weight:700; text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:3px; cursor:pointer; }
+.compendium-reference-link:hover { color:#5f0f20; }
+.compendium-reference-link:focus-visible { border-radius:3px; outline:3px solid #b51e3d; outline-offset:2px; }
 
 /* АДАПТИВ */
 @media (max-width:380px) {

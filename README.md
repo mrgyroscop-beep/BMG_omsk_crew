@@ -198,6 +198,10 @@ Created for the Batman Miniature Game player community.
 
 ## 📝 Версия / Version
 
+**v0.11.3** — 2026-09-29: ссылки на трейты, правила и статусы внутри описаний стали интерактивными; вложенные статьи открываются в том же окне, а закрытие возвращает к предыдущему описанию.
+
+**v0.11.3** — 2026-09-29: references to traits, rules and statuses inside descriptions are now interactive; nested entries open in the same dialog and closing returns to the previous description.
+
 **v0.11.2** — 2026-09-28: исправлен расчёт Funding от трейтов Business Agent, Dirty Money, Lord of Business, Millionaire, Public Resources и Bat Credit Card; бонусы босса и собственный бонус добавляемой модели теперь учитываются при проверке ростера.
 
 **v0.11.2** — 2026-09-28: fixed Funding calculations for Business Agent, Dirty Money, Lord of Business, Millionaire, Public Resources and Bat Credit Card; boss-only bonuses and a model's own Funding bonus are now included during roster validation.

@@ -34,6 +34,7 @@ let allCompendiumHTML = "";
 let compendiumKeys = [];
 let specialTraitNames = new Set(); // Кэш специальных трейтов
 let compendiumCacheByLang = {};
+let compendiumReferenceIndexByLang = {};
 let i18nNodeCache = null;
 let currentFullCardModel = null;
 let fullCardCloseTimer = null;
@@ -1422,6 +1423,8 @@ function setLanguage(lang) {
   if (document.getElementById('fullCard')?.classList.contains('active')) {
     rerenderOpenFullCard();
   }
+
+  rerenderOpenTraitPopup();
 
   updateBuilderPrintFilterButton();
   updateBuilderQuickFilterUi();
@@ -6431,6 +6434,127 @@ function localizeCompendiumBody(text) {
   if (fallbackTranslation) return postProcessLocalizedText(fallbackTranslation);
 
   return postProcessLocalizedText(translateSentence(text));
+}
+
+const COMPENDIUM_REFERENCE_ALIASES = Object.freeze({
+  "Knock Down": "Knocked Down",
+  "CRT": "CRT (X)"
+});
+
+function cleanCompendiumReferenceLabel(value) {
+  return String(value || "")
+    .replace(/\{[^}]+\}/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getCompendiumReferenceIndex() {
+  if (compendiumReferenceIndexByLang[currentLang]) {
+    return compendiumReferenceIndexByLang[currentLang];
+  }
+
+  const keys = Object.keys(window.compendium || {});
+  const keyByNormalizedName = new Map();
+  const targetByTerm = new Map();
+
+  keys.forEach(key => {
+    const cleanKey = cleanCompendiumReferenceLabel(key);
+    const normalizedKey = normalizeExactKey(cleanKey);
+    if (cleanKey && !keyByNormalizedName.has(normalizedKey)) {
+      keyByNormalizedName.set(normalizedKey, key);
+    }
+  });
+
+  const addTerm = (term, target, { overwrite = false } = {}) => {
+    const cleanTerm = cleanCompendiumReferenceLabel(term);
+    if (cleanTerm.length < 3 || !target) return;
+    const normalizedTerm = normalizeExactKey(cleanTerm);
+    if (overwrite || !targetByTerm.has(normalizedTerm)) {
+      targetByTerm.set(normalizedTerm, { term: cleanTerm, target });
+    }
+  };
+
+  keys.forEach(key => {
+    const cleanKey = cleanCompendiumReferenceLabel(key);
+    const localizedKey = cleanCompendiumReferenceLabel(localizeCompendiumTitle(key));
+    addTerm(cleanKey, key);
+    addTerm(localizedKey, key);
+
+    const parameterizedBase = cleanKey.replace(/\s*\(\s*X\s*\)\s*$/i, "").trim();
+    if (parameterizedBase !== cleanKey) addTerm(parameterizedBase, key);
+
+    const localizedParameterizedBase = localizedKey.replace(/\s*\(\s*X\s*\)\s*$/i, "").trim();
+    if (localizedParameterizedBase !== localizedKey) addTerm(localizedParameterizedBase, key);
+  });
+
+  Object.entries(COMPENDIUM_REFERENCE_ALIASES).forEach(([alias, targetName]) => {
+    const target = keyByNormalizedName.get(normalizeExactKey(targetName));
+    addTerm(alias, target, { overwrite: true });
+  });
+
+  const terms = [...targetByTerm.values()]
+    .map(item => item.term)
+    .sort((a, b) => b.length - a.length || a.localeCompare(b));
+  const escapedTerms = terms.map(term => term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  const matcher = escapedTerms.length
+    ? new RegExp(`(^|[^\\p{L}\\p{N}])(${escapedTerms.join("|")})(?=$|[^\\p{L}\\p{N}])`, "giu")
+    : null;
+
+  const index = { matcher, targetByTerm };
+  compendiumReferenceIndexByLang[currentLang] = index;
+  return index;
+}
+
+function linkCompendiumReferences(root, currentEntryName = "") {
+  if (!root || !window.compendium) return;
+  const { matcher, targetByTerm } = getCompendiumReferenceIndex();
+  if (!matcher) return;
+
+  const currentKey = normalizeExactKey(cleanCompendiumReferenceLabel(currentEntryName));
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  const textNodes = [];
+  while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+  textNodes.forEach(textNode => {
+    if (textNode.parentElement?.closest("button, a, script, style")) return;
+    const text = textNode.nodeValue || "";
+    matcher.lastIndex = 0;
+    const matches = [...text.matchAll(matcher)];
+    if (!matches.length) return;
+
+    const fragment = document.createDocumentFragment();
+    let cursor = 0;
+
+    matches.forEach(match => {
+      const prefix = match[1] || "";
+      const label = match[2] || "";
+      const labelStart = (match.index || 0) + prefix.length;
+      const reference = targetByTerm.get(normalizeExactKey(label));
+      if (!reference) return;
+
+      fragment.appendChild(document.createTextNode(text.slice(cursor, labelStart)));
+      const targetKey = normalizeExactKey(cleanCompendiumReferenceLabel(reference.target));
+      if (targetKey === currentKey) {
+        fragment.appendChild(document.createTextNode(label));
+      } else {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "compendium-reference-link";
+        button.dataset.compendiumReference = reference.target;
+        button.textContent = label;
+        button.setAttribute("aria-label", `${label}: ${currentLang === "ru" ? "открыть описание" : "open description"}`);
+        button.addEventListener("click", event => {
+          event.stopPropagation();
+          showTraitDesc(reference.target);
+        });
+        fragment.appendChild(button);
+      }
+      cursor = labelStart + label.length;
+    });
+
+    fragment.appendChild(document.createTextNode(text.slice(cursor)));
+    textNode.replaceWith(fragment);
+  });
 }
 
 let compendiumTraitUsageCache = null;
@@ -15018,11 +15142,8 @@ const openModelSearch = () => {
 $("modelSearchInput").oninput = renderUnifiedSearch;
 
 // ======================== ТРЕЙТЫ ========================
-function showTraitDesc(traitName) {
-  // 1. Твоя родная логика поиска 1 в 1
+function getTraitPopupEntry(traitName) {
   const entry = findCompendiumEntry(traitName);
-  
-  // 2. Извлекаем текст (проверяем, объект это или строка)
   let rawText = "";
   if (entry) {
     rawText = (typeof entry === 'object' && entry.description) ? entry.description : entry;
@@ -15030,30 +15151,108 @@ function showTraitDesc(traitName) {
     rawText = uiText("description_not_found");
   }
 
-  // 3. Создаем элементы
-  const overlay = document.createElement("div");
-  overlay.className = "trait-popup";
+  return { traitName, rawText };
+}
 
-  // Обрабатываем иконки в заголовке и в самом тексте
+function renderTraitPopupEntry(overlay, historyEntry) {
+  if (!overlay || !historyEntry) return;
+  const { traitName, rawText } = getTraitPopupEntry(historyEntry.traitName);
   const formattedTitle = replaceIcons(translateDisplayText(traitName));
   const formattedBody = replaceIcons(localizeCompendiumBody(rawText)).replace(/\n/g, "<br>");
+  const title = overlay.querySelector(".trait-popup-title");
+  const body = overlay.querySelector(".trait-popup-body");
+  const closeButton = overlay.querySelector(".trait-popup-close");
+  const hasPreviousEntry = overlay._traitHistory.length > 1;
 
-  overlay.innerHTML = `
-    <div class="trait-popup-content">
-      <div class="trait-popup-header">
-        <strong>${formattedTitle}</strong>
-        <div class="trait-popup-close" onclick="this.closest('.trait-popup').remove()">×</div>
+  if (title) title.innerHTML = formattedTitle;
+  if (body) {
+    body.innerHTML = formattedBody;
+    linkCompendiumReferences(body, traitName);
+    body.scrollTop = historyEntry.scrollTop || 0;
+  }
+  if (closeButton) {
+    closeButton.setAttribute(
+      "aria-label",
+      hasPreviousEntry
+        ? (currentLang === "ru" ? "Вернуться к предыдущему описанию" : "Return to previous description")
+        : (currentLang === "ru" ? "Закрыть описание" : "Close description")
+    );
+  }
+}
+
+function closeTraitDesc() {
+  const overlay = document.querySelector('.trait-popup[data-compendium-popup="true"]');
+  if (!overlay) return;
+  const history = overlay._traitHistory || [];
+
+  if (history.length > 1) {
+    history.pop();
+    renderTraitPopupEntry(overlay, history[history.length - 1]);
+    overlay.querySelector(".trait-popup-close")?.focus({ preventScroll: true });
+    return;
+  }
+
+  const returnFocus = overlay._traitReturnFocus;
+  overlay.remove();
+  if (returnFocus instanceof HTMLElement && returnFocus.isConnected) {
+    returnFocus.focus({ preventScroll: true });
+  }
+}
+
+function rerenderOpenTraitPopup() {
+  const overlay = document.querySelector('.trait-popup[data-compendium-popup="true"]');
+  const history = overlay?._traitHistory || [];
+  if (!overlay || !history.length) return;
+  const body = overlay.querySelector(".trait-popup-body");
+  history[history.length - 1].scrollTop = body?.scrollTop || 0;
+  renderTraitPopupEntry(overlay, history[history.length - 1]);
+}
+
+function showTraitDesc(traitName) {
+  let overlay = document.querySelector('.trait-popup[data-compendium-popup="true"]');
+
+  if (!overlay) {
+    overlay = document.createElement("div");
+    overlay.className = "trait-popup";
+    overlay.dataset.compendiumPopup = "true";
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-modal", "true");
+    overlay.setAttribute("aria-labelledby", "traitPopupTitle");
+    overlay._traitHistory = [];
+    overlay._traitReturnFocus = document.activeElement;
+    overlay.innerHTML = `
+      <div class="trait-popup-content">
+        <div class="trait-popup-header">
+          <strong id="traitPopupTitle" class="trait-popup-title"></strong>
+          <button class="trait-popup-close" type="button" onclick="closeTraitDesc()">×</button>
+        </div>
+        <div class="trait-popup-body"></div>
       </div>
-      <div class="trait-popup-body">
-        ${formattedBody}
-      </div>
-    </div>
-  `;
+    `;
 
-  // Закрытие по клику на фон
-  overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+    overlay.addEventListener("click", event => {
+      if (event.target === overlay) closeTraitDesc();
+    });
+    overlay.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeTraitDesc();
+      }
+    });
+    document.body.appendChild(overlay);
+  }
 
-  document.body.appendChild(overlay);
+  const history = overlay._traitHistory;
+  const body = overlay.querySelector(".trait-popup-body");
+  if (history.length) history[history.length - 1].scrollTop = body?.scrollTop || 0;
+
+  const currentEntry = history[history.length - 1];
+  if (!currentEntry || normalizeExactKey(currentEntry.traitName) !== normalizeExactKey(traitName)) {
+    history.push({ traitName, scrollTop: 0 });
+  }
+
+  renderTraitPopupEntry(overlay, history[history.length - 1]);
+  overlay.querySelector(".trait-popup-close")?.focus({ preventScroll: true });
 }
 
 // Функция для показа попапа с описанием (для трейтов и equipment) - ИСПРАВЛЕННАЯ ВЕРСИЯ
@@ -15083,6 +15282,7 @@ function showTraitPopup(name, desc) {
   };
 
   document.body.appendChild(overlay);
+  linkCompendiumReferences(overlay.querySelector(".rank-select-buttons"), name);
 }
 
 // Новая функция для показа effects equipment
