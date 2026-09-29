@@ -785,6 +785,27 @@ body.full-card-open {
 .model-search-card .mini-affiliation-line { justify-content:flex-start; margin:0; white-space:normal; }
 .model-search-card .mini-badges { justify-content:flex-start; margin-top:2px; }
 .model-search-card .search-add-btn { top:50%; right:12px; transform:translateY(-50%); }
+.compendium-model-result { cursor:pointer; }
+.compendium-model-result-header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:16px;
+  background:#222;
+  color:#fff;
+  font-size:18px;
+  text-align:left;
+}
+.compendium-model-result-name { min-width:0; color:#fff; font-weight:700; }
+.compendium-model-result-cost { flex:0 0 auto; color:#ff5b78; font-weight:700; white-space:nowrap; }
+.compendium-model-result-details {
+  padding:12px;
+  background:#181818;
+  border-top:1px solid #333;
+  color:#d0d0d0;
+  font-size:14px;
+}
 
 /* ОФИЦИАЛЬНЫЕ КАРТОЧКИ */
 .official-card { background:#ffd700; color:#000; border-radius:20px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.6); margin:10px; font-family:'Oswald',sans-serif; }
@@ -1365,6 +1386,9 @@ body.full-card-open {
   .comp-entry { margin: 20px 10px 8px; border-radius: 12px; }
   .comp-title { font-size: 18px; padding: 10px 8px; }
   .comp-text { font-size: 14px; padding: 10px 8px; line-height: 1.6; background: #f8f9fa; border-top: 1px solid #ddd; }
+  .compendium-model-result-header { align-items:flex-start; flex-direction:column; gap:5px; padding:12px; }
+  .compendium-model-result-cost { white-space:normal; }
+  .compendium-model-result-details { padding:10px 12px; background:#181818; color:#d0d0d0; border-top-color:#333; }
 
   .header-buttons { gap: 8px; }
   .top-bar-content { gap: 8px; }

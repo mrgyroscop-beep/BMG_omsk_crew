@@ -4,6 +4,24 @@
   const SEEN_VERSION_KEY = "bmg-release-notes-seen-v1";
   const RELEASES = Object.freeze([
     {
+      version: "0.12.1",
+      date: "2026-09-29",
+      title: {
+        ru: "Имена моделей снова видны",
+        en: "Model names are visible again",
+      },
+      summary: {
+        ru: "Исправлен контраст карточек в поиске моделей справочника.",
+        en: "Fixed model-card contrast in the compendium search.",
+      },
+      items: [
+        {
+          ru: "Названия, стоимость, ранг и фракция читаются в неоновой и классической темах.",
+          en: "Names, cost, rank, and faction are readable in both Neon Noir and Classic themes.",
+        },
+      ],
+    },
+    {
       version: "0.12.0",
       date: "2026-09-29",
       title: {

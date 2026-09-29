@@ -6760,11 +6760,12 @@ function renderCompendiumModelsSearch(query = "") {
     .sort((a, b) => a.name.localeCompare(b.name));
 
   const html = results.length ? results.map(m => `
-    <div class="comp-entry" style="cursor:pointer" onclick="showFullCard(models[${m._id}])">
-      <div class="comp-title" style="background:#222;padding:16px;font-size:18px">
-        ${m.name}<span style="float:right;color:#e94560;font-weight:bold">${displayValue(m.rep)} Rep • $${displayValue(m.funding)} • ${getPrintableStatusText(m)}</span>
+    <div class="comp-entry compendium-model-result" onclick="showFullCard(models[${m._id}])">
+      <div class="comp-title compendium-model-result-header">
+        <span class="compendium-model-result-name">${escapeHtml(m.name)}</span>
+        <span class="compendium-model-result-cost">${displayValue(m.rep)} Rep • $${displayValue(m.funding)} • ${getPrintableStatusText(m)}</span>
       </div>
-      <div class="comp-text" style="padding:12px;font-size:14px;color:#aaa">
+      <div class="comp-text compendium-model-result-details">
         ${localizeRank(m.rank || "Free Agent")} • ${localizeFactionList(getFactions(m).length ? getFactions(m) : "—")}
       </div>
     </div>`).join("") : `<div style="text-align:center;color:#888;padding:80px;font-size:18px;">${t("nothing_found")}</div>`;

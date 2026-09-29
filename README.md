@@ -198,6 +198,10 @@ Created for the Batman Miniature Game player community.
 
 ## 📝 Версия / Version
 
+**v0.12.1** — 2026-09-29: исправлен контраст результатов поиска в справочнике — имена моделей, стоимость, ранг и фракция снова читаются в обеих темах.
+
+**v0.12.1** — 2026-09-29: fixed compendium search contrast so model names, cost, rank, and faction are readable in both themes.
+
 **v0.12.0** — 2026-09-29: в «Карточки → Модели» добавлены поиск и быстрые фильтры; также добавлено одноразовое уведомление о новой версии и полный двуязычный архив изменений в настройках.
 
 **v0.12.0** — 2026-09-29: added search and quick filters to Cards → Models, plus a one-time new-version notice and a complete bilingual changelog in Settings.
